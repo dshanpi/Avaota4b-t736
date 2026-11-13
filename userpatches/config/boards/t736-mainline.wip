@@ -1,0 +1,9 @@
+# T736 custom board; hardware validation remains in progress.
+BOARD_NAME="T736 custom mainline"
+BOARD_VENDOR="custom"
+BOARDFAMILY="t736-mainline"
+KERNEL_TARGET="current"
+BOOTCONFIG="t736_bringup_defconfig"
+SERIALCON="ttyS0"
+BOOT_FDT_FILE="allwinner/t736-mainline-bringup.dtb"
+HAS_VIDEO_OUTPUT="no"

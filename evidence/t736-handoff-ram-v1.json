@@ -1,0 +1,34 @@
+{
+  "status": "Compiled RAM candidate; not hardware validated or installed as Boot1",
+  "bytes": 753664,
+  "sha256": "e35c28ac83f83003e6e343c69adf97bb84006db419f161cc7f5c068825c91c90",
+  "load_address": "0x4a000000",
+  "entry_address": "0x4a001000",
+  "vendor_dependencies": [
+    "1600-byte board spare header data",
+    "board firmware DTB",
+    "DDR initialization",
+    "BL31",
+    "SCP",
+    "OP-TEE"
+  ],
+  "old_vendor_uboot_executable_included": false,
+  "inputs": {
+    "header_source": {
+      "path": "/home/ubuntu/t736-mainline/build/vendor-uboot-header.bin",
+      "sha256": "d297e25176bc1ec71d24703cf8ee948643a7d6370b495b91a53aee5da5652388"
+    },
+    "shim": {
+      "path": "/home/ubuntu/t736-mainline/build/handoff/handoff.bin",
+      "sha256": "91bb65f9663de3e26176ca41a0f956be90ada749fd2e160bb8ecdda35b2309de"
+    },
+    "uboot": {
+      "path": "/home/ubuntu/t736-mainline/build/u-boot-armbian/u-boot.bin",
+      "sha256": "500c704de6993ed02fe9b03b8322ebdeadd7e1dd2f30e87c4672391dc56a817e"
+    },
+    "dtb": {
+      "path": "/home/ubuntu/t736-mainline/build/vendor-kernel.dtb",
+      "sha256": "504a05d1ba100c26b663f3729b62bbebeb77eff66cf0752a172a2a8eb649c560"
+    }
+  }
+}

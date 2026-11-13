@@ -1,0 +1,19 @@
+mmc dev 0; mmc read 0x60000000 0x2e000 0x3f59; crc32 0x60000000 0x7eb008; mmc read 0x63000000 0x3e000 0x5; crc32 0x63000000 0x943; mmc read 0x64000000 0x3f000 0x90d; crc32 0x64000000 0x121934
+
+switch to partitions #0, OK
+
+mmc0(part 0) is current device
+
+MMC read: dev # 0, block # 188416, count 16217 ... 16217 blocks read: OK
+
+CRC32 for 60000000 ... 607eb007 ==> d9b358f4
+
+MMC read: dev # 0, block # 253952, count 5 ... 5 blocks read: OK
+
+CRC32 for 63000000 ... 63000942 ==> 2397a789
+
+MMC read: dev # 0, block # 258048, count 2317 ... 2317 blocks read: OK
+
+CRC32 for 64000000 ... 64121933 ==> d64971b9
+
+T736-mainline=> 

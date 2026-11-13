@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-13",
+  "state": "mainline_armbian_booted_from_emmc_to_serial_login",
+  "versions": {
+    "u_boot": "2026.10-t736-bringup",
+    "linux": "6.18.63-t736-armbian",
+    "armbian": "26.11.0-trunk / Debian 13 trixie minimal"
+  },
+  "board_level_code_implemented": true,
+  "final_mainline_armbian_firmware_complete": false,
+  "runtime_vendor_uboot_retained": true,
+  "hardware_passed": [
+    "U-Boot ARM64 console and relocation",
+    "8 GiB memory description and >4 GiB RAM spot check",
+    "Linux 8 CPU SMP and initramfs /init",
+    "eMMC six GPT partitions",
+    "8.3 MB Image read SHA256 matches",
+    "64 KiB write, cache-drop readback and scratch restore",
+    "U-Boot ext4 kernel/initrd/DTB reads at 5.3 MiB/s",
+    "Debian initramfs mounted ext4 rootfs read/write",
+    "Armbian systemd reached multi-user.target and serial login"
+  ],
+  "rootfs": "Armbian 26.11.0-trunk.128 trixie mounted read/write from mmcblk0p4; systemd multi-user.target and ttyS0 login reached",
+  "rootfs_sparse_sha256": "370b531cf5dd10a1f5177756ca407ee7e33ac391f15a92acca2891a804f49bb1",
+  "boot_chain": [
+    "vendor Boot0",
+    "vendor BL31/OP-TEE/SCP",
+    "vendor U-Boot 2018.07",
+    "upstream U-Boot 2026.10 + board patch",
+    "upstream Linux 6.18.63 + board patch"
+  ],
+  "next": [
+    "Diagnose systemd-resolved and include root fsck in initramfs",
+    "Install and verify U-Boot compressed-kernel bootcommand fix",
+    "RAM-test independent handoff, then validate persistent replacement and unattended cold boot",
+    "Independent clock/pin/power and peripheral drivers"
+  ],
+  "known_issues": [
+    "systemd-resolved failed; journal diagnosis pending",
+    "Armbian initramfs lacks fsck (fstab root type detection failed at build)",
+    "v2 U-Boot needs manual kernel_comp_addr_r/kernel_comp_size; v3 source fix compiled but not installed",
+    "Old vendor U-Boot 2018.07 remains before the new U-Boot",
+    "Ethernet/USB/display and board clock/power drivers not implemented"
+  ],
+  "coldboot": "Power cycle followed by explicit old-U-Boot bootm and compressed-kernel environment settings; unattended cold boot is not yet validated",
+  "packaged_kernel_uncompressed_sha256": "1e49f0e92105508daa4e03cdcf3a537ed6c4e6e2cd2ed26d86281f8f4ea88241",
+  "snapshot_scope": "Source backup with selected board evidence, no vendor firmware or images",
+  "authenticated_armbian_login": "Initial password accepted; completed password-change shell not yet confirmed",
+  "source_changes_not_deployed": [
+    "Compressed-kernel bootcommand fix compiled but not installed",
+    "AArch32 handoff candidate compiled; not hardware tested"
+  ]
+}

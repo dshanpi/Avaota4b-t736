@@ -1,0 +1,19 @@
+#!/bin/sh
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+mount -t devtmpfs devtmpfs /dev
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t tmpfs tmpfs /tmp
+mkdir -p /dev/pts /run
+mount -t devpts devpts /dev/pts
+exec </dev/console >/dev/console 2>&1
+echo 'T736_MAINLINE_INITRAMFS_READY'
+uname -a
+cat /proc/cmdline
+cat /sys/devices/system/cpu/online
+head -n 5 /proc/meminfo
+echo 'Mainline bring-up shell. Armbian rootfs integration is pending.'
+while :; do
+	setsid cttyhack /bin/sh
+	echo 'Shell exited; restarting console.'
+done

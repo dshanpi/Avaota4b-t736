@@ -1,0 +1,42 @@
+{
+  "board": "T736 custom board / Avaota4b project",
+  "observed_date": "2026-11-13",
+  "soc": "T736 / sun60iw2",
+  "memory": {
+    "bytes": 8589934592,
+    "range": [
+      "0x40000000",
+      "0x240000000"
+    ],
+    "ddr_initializer": "retained vendor firmware",
+    "full_stress_test": false
+  },
+  "cpu": {
+    "online": "0-7",
+    "topology": "6 Cortex-A55 + 2 Cortex-A76"
+  },
+  "uart0": {
+    "base": "0x02500000",
+    "baud": 115200,
+    "console": "ttyS0"
+  },
+  "emmc": {
+    "part": "A31Y5C",
+    "bytes": 62537072640,
+    "controller_base": "0x04023000",
+    "mainline_mode": "12 MHz 8-bit PIO",
+    "vendor_bsp_mode_historical": "HS400 200 MHz; not supported by the new PIO driver",
+    "validated": "GPT, boot image hash, 64 KiB write/read/restore, ext4 rootfs boot"
+  },
+  "vendor_pmic_observed": "AXP8191",
+  "not_implemented": [
+    "PCIe",
+    "Ethernet",
+    "Wi-Fi",
+    "Bluetooth",
+    "HDMI",
+    "USB",
+    "board-specific CCU/pinctrl/PMIC"
+  ],
+  "schematic_and_exact_pcb_revision_match": "not fully verified"
+}

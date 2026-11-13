@@ -1,0 +1,33 @@
+{
+  "scope": "Selected fields from original LYNX task results; host paths and channel identifiers omitted",
+  "results": [
+    {
+      "taskId": "flash-1794511568601708100",
+      "state": "success",
+      "phase": "complete",
+      "verifyState": "success",
+      "error": null,
+      "exitCode": 0,
+      "postFlashAction": "none",
+      "postFlashState": "skipped",
+      "transferredBytes": 45219840,
+      "source_log": "kernel-probe-v2-flash-fes-status.json",
+      "mode": "partition",
+      "verify_requested": true
+    },
+    {
+      "taskId": "flash-1794512043640164500",
+      "state": "success",
+      "phase": "complete",
+      "verifyState": "success",
+      "error": null,
+      "exitCode": 0,
+      "postFlashAction": "none",
+      "postFlashState": "skipped",
+      "transferredBytes": 7847885312,
+      "source_log": "armbian-v2-flash-fes-status.json",
+      "mode": "partition",
+      "verify_requested": true
+    }
+  ]
+}

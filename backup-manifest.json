@@ -1,0 +1,438 @@
+{
+  "date": "2026-11-13",
+  "timezone": "Asia/Shanghai",
+  "repository": "https://github.com/dshanpi/Avaota4b-t736",
+  "base_commit": "50bd6216ab31d0cb792b1541986ec0f944f581da",
+  "purpose": "Mainline board port source backup; incomplete peripheral and persistent boot support",
+  "manifest_excludes_itself": true,
+  "log_processing": "UTF-8/LF normalization and ANSI/backspace removal; failure text retained",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 102,
+      "sha256": "4f89200a3536f309f3b2ead25f9dc1f497d93d6378286cb55952801b15318d56",
+      "git_blob_sha": "ca7b0c7c1083b6333395c0e06e5459dbd2135ca3",
+      "mode": "100644"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 188,
+      "sha256": "c967a8cdb2c1be5b1a4362e4d9c544951c2f200bc16dcb8e3e7576354d73d9f8",
+      "git_blob_sha": "279288282227a5cc97d16a20c009400a8739805d",
+      "mode": "100644"
+    },
+    {
+      "path": "LICENSES/GPL-2.0.txt",
+      "bytes": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+      "git_blob_sha": "d159169d1050894d3ea3b98e1c965c4058208fe1",
+      "mode": "100644"
+    },
+    {
+      "path": "LICENSES/README.md",
+      "bytes": 400,
+      "sha256": "c4e41cb2df80eb4c555003ce4dc96f2532e485ec1a4dac96c02d8103826eca18",
+      "git_blob_sha": "75fb3eb8689d0adce61ca0b6501a6f68d7015190",
+      "mode": "100644"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2945,
+      "sha256": "02d96b1fadb1b289cb4899b5784cb16e03d3f9c302b6e8795859a570285d4570",
+      "git_blob_sha": "6118aae1f4295eb8d38594101821a6b339ca62e8",
+      "mode": "100644"
+    },
+    {
+      "path": "boards/t736-mainline-bringup.dts",
+      "bytes": 2551,
+      "sha256": "4df411cc1f6e6e4de0aa395c676312c49c7c997caac69247301ad02a73abd991",
+      "git_blob_sha": "7f015d30be5b3974d2a25885415ccf6b4c1d1835",
+      "mode": "100644"
+    },
+    {
+      "path": "boards/t736_mmc_pio.c",
+      "bytes": 8150,
+      "sha256": "4de6e53af6ba7eec4d07569131a0965db04f297c8aeafe5aee3b6c1d37450f28",
+      "git_blob_sha": "2d006bad40c566af3f3a307d65b1be56c5dd984b",
+      "mode": "100644"
+    },
+    {
+      "path": "config/board-facts.json",
+      "bytes": 1038,
+      "sha256": "41f48d62f523fc2362c99f61e23a79e32750a54f4a6c7f4a3e4d5e7a4dd7fd29",
+      "git_blob_sha": "9b43dfc5878f6d01dc6c74d66ba7a61923d5be73",
+      "mode": "100644"
+    },
+    {
+      "path": "config/busybox-1.37.0.config",
+      "bytes": 29535,
+      "sha256": "38642f52d27d38f28c2adfa7449a5911664a32f95962d3968fbbce112b453b82",
+      "git_blob_sha": "41ea05ff2f7f8146d4943f6590d2434717017e3c",
+      "mode": "100644"
+    },
+    {
+      "path": "config/external-inputs.json",
+      "bytes": 777,
+      "sha256": "be0a1ee09a2cacdee695cdef664622f06f5c6c1911fb0f314932aa3fb2f22f24",
+      "git_blob_sha": "a28e971a187a8069f6d3342705252cba6b089d10",
+      "mode": "100644"
+    },
+    {
+      "path": "config/patch-ledger.json",
+      "bytes": 5261,
+      "sha256": "d02bb6bacdad5fb8ae0bd0a36bcedc70efb41341f55c12c840d315c6630e0c5c",
+      "git_blob_sha": "5814820e78221f983bc3d18f46170208f253a5d3",
+      "mode": "100644"
+    },
+    {
+      "path": "config/reference-components.json",
+      "bytes": 1316,
+      "sha256": "620a66b0f9d9bab340b462af034a1ebe7398d7a4ad4f0abc9bae0a7f5c140066",
+      "git_blob_sha": "50f6c3a9ac382570e754279a9df9d48b03dcb329",
+      "mode": "100644"
+    },
+    {
+      "path": "config/sources.lock.json",
+      "bytes": 1647,
+      "sha256": "c977ec0a75e2ada538fe0f5237e07a8288f91efa1d1bb7496d8d369d4d68b608",
+      "git_blob_sha": "56640800315ad77d0fbbdadf623e616b52a0e9fb",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/BOOT_CHAIN.md",
+      "bytes": 1914,
+      "sha256": "4227d2a41c98679514088008b1716852a599cec6f2921cf60200e4c2c1f9472d",
+      "git_blob_sha": "213c8c7bdc0c4249a790c4ebbdcb71082eec6bc7",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/BUILD.md",
+      "bytes": 6823,
+      "sha256": "4fbfe45604b7fb0e337ac8cff89cc08f41a4818cd91ece77ca56d9d3862a58f6",
+      "git_blob_sha": "26a20dab1d08a14a45ea0ec63ebbb3a542a26446",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "bytes": 3129,
+      "sha256": "cf1f8b29f82405db8648e02fc7924f9d022b877efea8d4366d9cb63d609646c6",
+      "git_blob_sha": "fba5812d96d68161de2c5eaba8406c294b6db499",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/armbian-6.18.63-firstboot.log",
+      "bytes": 24737,
+      "sha256": "8535ca7b638393453f23fd7e70b148552afce48066afdf106bf94e5f88d546fd",
+      "git_blob_sha": "608dcc2868f55304901d0c1ac8187984be907493",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/armbian-v2-uboot-ext4.log",
+      "bytes": 1505,
+      "sha256": "40243a183f6249cd4ba910074639e1fec93799182b50187fe2e542d25a5dd05b",
+      "git_blob_sha": "fd87851671a54a998ae58dc5209c02bdc22076e4",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/backup-validation.json",
+      "bytes": 851,
+      "sha256": "c8c9803cc2b0edb750acea120a0a005c8ac22b38f6880f4f4d0578c2c3ee059a",
+      "git_blob_sha": "dd17744b702cb245f6d65b217f0c21502c2ca725",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/boot-mainline-probe-v2.payloads.json",
+      "bytes": 762,
+      "sha256": "1a0fa9d477dddf726a197efb5a77cc320820bc68af2a7bc30608c868223fd673",
+      "git_blob_sha": "0222dfdc593bce6903f795575bf56a2ea124e581",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/boot-package-layout-20261112.json",
+      "bytes": 1764,
+      "sha256": "74411a64f4ba9bff040be50208dc8b3dc5321516711af3e9cc96139ec03d1118",
+      "git_blob_sha": "2d4935f040005884f5cfbc8255df2efd134d8ce0",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/flash-verification.json",
+      "bytes": 941,
+      "sha256": "0cb7b42fd28d7ef5b1b74e762a25764a1357fce19312b788945abf0663cbc680",
+      "git_blob_sha": "32656a984bd1cc776736c3bcf98810542b01c1b2",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/kernel-probe-v2-payload-crc.log",
+      "bytes": 620,
+      "sha256": "07f590ef6d4149fdfe91fe7a154d9072c5c2f022158c9f4ae97a7708a56a8cec",
+      "git_blob_sha": "e82e169c5708719079998171920ee0bbaa7751b0",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/kernel-probe-v2-uboot.log",
+      "bytes": 1349,
+      "sha256": "43c06262ba6f239147ac4ddbf5901573517c786ba3aabed74dac372c32e54a94",
+      "git_blob_sha": "8824d7e3f461b2f1775f4caa9666b90f98820ff2",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/linux-6.18.63-v2-emmc-write.log",
+      "bytes": 1473,
+      "sha256": "7e6f02a5cb4d78b14202e550f9c4dcee17d3b8606de4744a828ab0fbe230fdfe",
+      "git_blob_sha": "515637dd7852fab202cad9bab5b78d8d5d7ec95f",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/linux-6.18.63-v2-emmc.log",
+      "bytes": 6154,
+      "sha256": "5794612374d41fffe41a3db30d585f1695c3c9c0c9289fffd1d27fef6717569f",
+      "git_blob_sha": "106d52b295090d36446137740d864f5a73a5b589",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/linux-6.18.63-v2-firstboot.log",
+      "bytes": 8497,
+      "sha256": "bc9e540cf54851b9f54ee73eb88ea1e5b65eb0ff90d7b6a5d7a71a809fd6eca5",
+      "git_blob_sha": "fb4effd3394fd1297768e4f1fc874eb275d9ee26",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/t736-handoff-ram-v1.json",
+      "bytes": 1192,
+      "sha256": "d4dccd7e3d7cef7a1fc2fc855c5d456ba24f8bd408310f690c5e1b8e3bba9a2a",
+      "git_blob_sha": "fce001479562ceb7bbbfcf6a38389dc1786cfbf6",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/t736-mainline-armbian-validation-v2.manifest.json",
+      "bytes": 2972,
+      "sha256": "5c3109fbfb5bfa948ec8719c71a66b93ffdb246b02adc0dc7123d8d02fe6de25",
+      "git_blob_sha": "a3ec4f560ac4863ece4fada723478156c21a4daa",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/uboot-2026.10-hardware-validation.log",
+      "bytes": 3572,
+      "sha256": "901f430716e20e9c8e622f310a48e910dcbfe518d7dc2705aa19d1a8fb75d340",
+      "git_blob_sha": "19688d9b0f34afe79fd8a67c93fb63c17c4fad34",
+      "mode": "100644"
+    },
+    {
+      "path": "handoff/handoff.c",
+      "bytes": 1716,
+      "sha256": "903e6d3c0fce5cc19e3177cd7f269ad9af78aed289a278e09694de6790cc01db",
+      "git_blob_sha": "b7f103d949a644c4804b09d5683b6e676bad69e6",
+      "mode": "100644"
+    },
+    {
+      "path": "handoff/handoff.ld",
+      "bytes": 261,
+      "sha256": "ed299d58a5e781b974a917ab3aa16367d9f2c983a2f1082d95958dedbfe3fec2",
+      "git_blob_sha": "632e6bfac13bf6365dc8786a34c44cde51ec1794",
+      "mode": "100644"
+    },
+    {
+      "path": "handoff/start.S",
+      "bytes": 191,
+      "sha256": "c940bbe4d2476306ebcf3ca48c6d755865325ee2a3968c1484fbb6ab3bd75a75",
+      "git_blob_sha": "5e8e5f06b65a49ca03a082fbdc2f2c23cc81a609",
+      "mode": "100644"
+    },
+    {
+      "path": "initramfs/init",
+      "bytes": 532,
+      "sha256": "bb5291c6e9648dadd18f2eb7db4105f7182a0b94b637f0481c8726f82644578f",
+      "git_blob_sha": "c76b1c543b373ec178fa606fc3bb8db42607b06f",
+      "mode": "100755"
+    },
+    {
+      "path": "status.json",
+      "bytes": 2632,
+      "sha256": "8cabea72f4be501c0b41db81a29948e4cee39f8606b0fdc79c9097ead838ad73",
+      "git_blob_sha": "948441685057d88301a79c3b1770594e5bcfc178",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_live_evidence.py",
+      "bytes": 3508,
+      "sha256": "26daeca4cc1e0c445f1bba8bb43018b2a237f208e3328925b357d5a4246b8b3f",
+      "git_blob_sha": "7450efa138805d1ec6288d2090a4f79c999652d8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_packed_dtb.py",
+      "bytes": 2840,
+      "sha256": "fcf9b2540014ea6a7a756096f3c7626ce3514d42ca714ba8c9b640c97e6f1a16",
+      "git_blob_sha": "d5759786b82377a3f689f5809803c83cbe280190",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_source_resume.py",
+      "bytes": 2228,
+      "sha256": "ac4c28600f97c96d806fd2c4288fc02d9c3ad308c3ae101cb4ca7a5de59b3d7e",
+      "git_blob_sha": "f3adee403a8999b93620a020e67c92455f4c7c52",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_tools.py",
+      "bytes": 3886,
+      "sha256": "ca56f28e2c6cc7092099c23e7af398b34d4e33736031c61b665460def1605403",
+      "git_blob_sha": "93bdd4c1f273b0c51caf2f12559e3dd73cce6149",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_validation_package.py",
+      "bytes": 1827,
+      "sha256": "b76c0ed3ae5a6ce61f8a3b17de1e9292e9cc5836cc9952990893a4146fad3882",
+      "git_blob_sha": "378ba3c307cde9b79f341169577658f48eec1591",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/audit_upstream.py",
+      "bytes": 4762,
+      "sha256": "a9abbbf59a7c414e101e3b22b4ba2466b2ee2e819fd0f9d8ffc2cb6eaa8b4148",
+      "git_blob_sha": "77894049cff196ce9986fe4da61787f1a5042b29",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/build_armbian_kernel.sh",
+      "bytes": 2695,
+      "sha256": "ff914e1775856eaeb5db9b88a26c01883938d7a0a165ae3b71011375cc0fefff",
+      "git_blob_sha": "c25c5a3506e77eed4c44c3f0def519c18cb7d334",
+      "mode": "100755"
+    },
+    {
+      "path": "tools/build_armbian_rootfs.sh",
+      "bytes": 2589,
+      "sha256": "733d4ac90dc69ffe33ab00a980700c02760b272166a2e39d460292a62518ad9b",
+      "git_blob_sha": "f05b00fdd26b5fe4637834cdb80ec361be9d0c17",
+      "mode": "100755"
+    },
+    {
+      "path": "tools/build_bringup_payloads.sh",
+      "bytes": 1403,
+      "sha256": "07034b0b091f6159277be614e7a1af0798a4b0a1898eaa411864d4490df5b273",
+      "git_blob_sha": "f73e6a04161856968a6ff05c0bfbee717ba93432",
+      "mode": "100755"
+    },
+    {
+      "path": "tools/build_handoff.sh",
+      "bytes": 1123,
+      "sha256": "92ee5b5b83f559f2643fc430fb7aab0d95b09b4b5b767fb01c6d8dca22808922",
+      "git_blob_sha": "96c6b0a2853f04c646032259c29f764fd8f058a3",
+      "mode": "100755"
+    },
+    {
+      "path": "tools/build_minimal_kernel.sh",
+      "bytes": 1728,
+      "sha256": "5cc65354caaa67483767467f2a7a22b03a51efd8dd9f1c6044c0eab04a13f19a",
+      "git_blob_sha": "72832a10068595d48caa95d74f8d215b8e53ccf3",
+      "mode": "100755"
+    },
+    {
+      "path": "tools/collect_target_evidence.sh",
+      "bytes": 2007,
+      "sha256": "be3a2839db93f1e274676cbc4040802052fd2c7ed4236399d4da6ef80bea50a7",
+      "git_blob_sha": "56f5244e79bdc41b2d45b0e657a4f18c7144f062",
+      "mode": "100755"
+    },
+    {
+      "path": "tools/import_target_evidence.py",
+      "bytes": 5915,
+      "sha256": "74f890227752f240e0adf81fa399cc9b10a2fa18b7f59e97b7f0bd46cbf92efd",
+      "git_blob_sha": "59d3c926ecf0afc312d35734d82f4fd47c038f3b",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/inspect_packed_dtb.py",
+      "bytes": 8219,
+      "sha256": "3b962d5a1905644228ded061f9c964138710b43e05a934329e0093ed62b64792",
+      "git_blob_sha": "02116d926e3ab9f3279d1027db63deb05eb29743",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/inventory_components.py",
+      "bytes": 3717,
+      "sha256": "7c1e0b951c27ca04032cf4009cbb6f2686c5a4ae01ee21c3578fb74686733343",
+      "git_blob_sha": "a514d95bef40b20b2e73cfed9b5c3c88a952fef2",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/pack_boot_validation.py",
+      "bytes": 6658,
+      "sha256": "cc80d685c1fe77ca8440d573e962bc37e55eb106b19a4f0f36f0fda92063ac86",
+      "git_blob_sha": "503e1c96156c2d909902d41b25d6c1c09a17520f",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/pack_handoff.py",
+      "bytes": 2678,
+      "sha256": "1b9490f6d30ff49a64eca1c26b9c4d606c6a63d5cd86d0355d14aa28c00bb5fb",
+      "git_blob_sha": "6b1b8b4806b5d99473de579974c04c988953f67e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/prepare_linux.sh",
+      "bytes": 990,
+      "sha256": "99e6a8b78a17d3c425f5e7594fe2939cf4232762dd703cdea27945961e6080bb",
+      "git_blob_sha": "4a1f9961efe5b5c9c803373bde60b645fc76e5d4",
+      "mode": "100755"
+    },
+    {
+      "path": "tools/prepare_sources.py",
+      "bytes": 6233,
+      "sha256": "0dab89baa203e72755e6923ea60501293422c3036efdc8cd7e3eccadc5f9dc5e",
+      "git_blob_sha": "ad3d69ba5c7e19bb30059cbafa16ef2d4dc47641",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk_preflight.sh",
+      "bytes": 893,
+      "sha256": "308682ab83a95a9006a1d0991fd0b54338d9c257ace497dc58ad491b3af7c22a",
+      "git_blob_sha": "9cbaafa950e99d464de1d360b19261380606a933",
+      "mode": "100755"
+    },
+    {
+      "path": "tools/workspace_policy.py",
+      "bytes": 630,
+      "sha256": "a0d90523b732688dd10c53c5b1dbe0a5f8d0d05affdf84227ddafed73fae9901",
+      "git_blob_sha": "fc648fa2d37871dac780beed989093ad4022c377",
+      "mode": "100644"
+    },
+    {
+      "path": "userpatches/config/boards/t736-mainline.wip",
+      "bytes": 298,
+      "sha256": "9d8cfa824b32bdd9724bcdf1dc49ac75e4f930f53743c8335c6c3c8d334635b5",
+      "git_blob_sha": "af17a9c7564b17156a7b00196ebd411c83f50bfb",
+      "mode": "100644"
+    },
+    {
+      "path": "userpatches/config/sources/families/t736-mainline.conf",
+      "bytes": 668,
+      "sha256": "39e1b2718e4be27e44fbdda3e9f0aa99ed245050f7977df53a55462e14666bb9",
+      "git_blob_sha": "9c8d2c8257974efa4b8e8e513fa896383f91c8cb",
+      "mode": "100644"
+    },
+    {
+      "path": "userpatches/kernel/t736-mainline-6.18/0001-t736-minimal-board.patch",
+      "bytes": 12454,
+      "sha256": "815aaecc7a694741b57880343030392102319760edb0700a9c5236097f38da68",
+      "git_blob_sha": "fa3ca86c81e5515d11ee0b27ac7231f02a4c6734",
+      "mode": "100644"
+    },
+    {
+      "path": "userpatches/linux-t736-mainline-current.config",
+      "bytes": 63355,
+      "sha256": "d82c6e27d76e0964af812165cfddc8ff8c686aee9bb7a3e7ac8ec9e60d807c68",
+      "git_blob_sha": "cd790d49333007838d5dafa9c358fc96f1ccd446",
+      "mode": "100644"
+    },
+    {
+      "path": "userpatches/u-boot/u-boot-t736-mainline/0001-t736-uart-memory-mmc.patch",
+      "bytes": 13988,
+      "sha256": "378d2bf542bdfbc470caede39f856b45a4231aaa01941a0bb5899b367c06a923",
+      "git_blob_sha": "0a64d559a7b2e8e086963642f3d5143d520d0ae3",
+      "mode": "100644"
+    }
+  ]
+}

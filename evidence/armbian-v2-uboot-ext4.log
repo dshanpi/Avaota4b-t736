@@ -1,0 +1,75 @@
+sunxi_flash read 0x60000000 boot; bootm 0x60000000
+
+avb_footer.c:22: ERROR: Footer magic is incorrect.
+
+[28.546]no vendor_boot partition is found
+
+Android's image name: t736-uboot-probe
+
+fdt  addr 0x41000000 0x41080000 exceed ramdisk scope
+
+ramdisk  addr 0x41000000 0x41000000
+
+[28.573]Starting kernel ...
+
+[28.576]total: 28576 ms
+
+[28.578][mmc]: mmc exit start
+
+[28.597][mmc]: mmc 2 exit ok
+
+NOTICE:  [SCP] :wait arisc ready....
+
+NOTICE:  [SCP] :arisc version: []
+
+NOTICE:  [SCP] :arisc startup ready
+
+NOTICE:  [SCP] :arisc startup notify message feedback
+
+NOTICE:  [SCP] :sunxi-arisc driver is starting
+
+NOTICE:  BL3-1: Next image address = 0x52000000
+
+NOTICE:  BL3-1: Next image spsr = 0x3c5
+
+<debug_uart>
+
+U-Boot 2026.10-t736-bringup (Nov 12 2026 - 14:21:10 -0500)
+
+Model: T736 custom board RAM bring-up
+
+Board: T736 custom RAM bring-up; vendor DDR/BL31/SCP retained
+
+DRAM:  8 GiB
+
+Core:  4 devices, 4 uclasses, devicetree: separate
+
+MMC:   T736 SMHC3 read-only PIO: 0
+
+Loading Environment from nowhere...
+Loading Environment from nowhere... OK
+
+In:    serial@2500000
+
+Out:   serial@2500000
+
+Err:   serial@2500000
+
+Hit any key to stop autoboot: 3
+Hit any key to stop autoboot: 2
+Hit any key to stop autoboot: 1
+Hit any key to stop autoboot: 0
+
+switch to partitions #0, OK
+
+mmc0(part 0) is current device
+
+3691527 bytes read in 669 ms (5.3 MiB/s)
+
+11035692 bytes read in 1995 ms (5.3 MiB/s)
+
+2371 bytes read in 2 ms (1.1 MiB/s)
+
+kernel_comp_addr_r or kernel_comp_size is not provided!
+
+T736-mainline=> 

@@ -1,0 +1,18 @@
+{
+  "busybox": {
+    "version": "1.37.0",
+    "url": "https://busybox.net/downloads/busybox-1.37.0.tar.bz2",
+    "sha256": "3311dff32e746499f4df0d5df04d7eb396382d7e108bb9250e7b519b837043a4",
+    "config": "config/busybox-1.37.0.config"
+  },
+  "armbian_rootfs": {
+    "source": "Official Armbian framework artifact cache",
+    "oci_reference": "ghcr.io/armbian/os/rootfs-arm64-trixie-minimal:202611-665d3a23b595-H6eccde-B58ef30",
+    "file": "rootfs-arm64-trixie-minimal_202611-665d3a23b595-H6eccde-B58ef30.tar.zst",
+    "bytes": 112117905,
+    "sha256": "b0a114ec7d7a32345ff71acb376aaa6014bf66b57527d29c85a6e3022c918dbc"
+  },
+  "vendor_firmware_included": false,
+  "vendor_reference_hashes": "config/reference-components.json",
+  "firmware_usage": "config/patch-ledger.json"
+}

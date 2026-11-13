@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Image-6.18.63-t736-armbian",
+    "offset": 8388608,
+    "size": 8302600,
+    "sha256": "ef9f69126fc7aa838214660bd806e44b896f2b5e7d3fc29383508357785f4dce",
+    "crc32": "d9b358f4",
+    "command": "mmc read 0x60000000 0x2e000 0x3f59"
+  },
+  {
+    "name": "t736-mainline-armbian.dtb",
+    "offset": 41943040,
+    "size": 2371,
+    "sha256": "68db5fd3a1bb0db679c6e46ad46e4f9679a549219d9d5defebd8969de36e681a",
+    "crc32": "2397a789",
+    "command": "mmc read 0x63000000 0x3e000 0x5"
+  },
+  {
+    "name": "initramfs-t736-bringup.cpio.gz",
+    "offset": 44040192,
+    "size": 1186100,
+    "sha256": "d53428a2355d5a87725cf6bf87d4cb3a0a5f8f6d5c892923eac51b2f4dbec902",
+    "crc32": "d64971b9",
+    "command": "mmc read 0x64000000 0x3f000 0x90d"
+  }
+]

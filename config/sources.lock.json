@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-12",
+  "status": "Pinned upstream inputs for the 2026-11-13 source backup",
+  "components": [
+    {
+      "name": "u-boot",
+      "url": "https://github.com/u-boot/u-boot.git",
+      "ref": "refs/tags/v2026.10",
+      "commit": "5508406582f6f7120dce0c4b3059819a41788db2",
+      "version": "2026.10",
+      "tag_object": "a58e2b7af42c179ace2c6210de0a219fa3f3cf3c",
+      "signature_status": "GitHub unknown_key; local cryptographic verification not performed",
+      "origin": "official_upstream",
+      "board_support": "Independent board implementation in userpatches; partial hardware validation, see status.json"
+    },
+    {
+      "name": "linux",
+      "url": "https://github.com/gregkh/linux.git",
+      "ref": "refs/tags/v6.18.63",
+      "commit": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
+      "version": "6.18.63",
+      "tag_object": "c5452ba98cfe761a0f44a56d4caf96556a9b9070",
+      "signature_status": "GitHub reports valid tag signature; local verification not performed",
+      "origin": "upstream_stable_maintainer",
+      "board_support": "Independent board implementation in userpatches; partial hardware validation, see status.json"
+    },
+    {
+      "name": "armbian-build",
+      "url": "https://github.com/armbian/build.git",
+      "ref": "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736",
+      "commit": "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736",
+      "version": "development snapshot pinned 2026-11-12",
+      "origin": "official_framework",
+      "board_support": "Independent board implementation in userpatches; partial hardware validation, see status.json"
+    }
+  ]
+}

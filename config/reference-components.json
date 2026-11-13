@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "purpose": "Local T736 recovery evidence only; none is a new mainline deliverable",
+  "components": [
+    {"file": "fes1.fex", "role": "flash_dram_loader_candidate", "sha256": "ab8618a40c51e381d2904dfb12ced567f3b2016bbb50e805980a463402a97994", "size": 225728, "origin": "existing_user_board_sdk", "redistribution_reviewed": false},
+    {"file": "u-boot.fex", "role": "flash_protocol_loader_candidate", "sha256": "cdeb0be64b063a089797e9c385f0c6a20f70548e5540de3453308c53a4b546fd", "size": 1245184, "origin": "existing_user_board_sdk", "redistribution_reviewed": false},
+    {"file": "boot0_sdcard.fex", "role": "persistent_first_stage_reference", "sha256": "0e2397669df804256505c786d7a9db6b40720203dd3e6b1ea33955486efa98c8", "size": 258048, "origin": "existing_user_board_sdk", "redistribution_reviewed": false},
+    {"file": "boot_package.fex", "role": "persistent_runtime_reference", "sha256": "b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3", "size": 1867776, "origin": "existing_user_board_sdk", "redistribution_reviewed": false},
+    {"file": "boot.fex", "role": "persistent_kernel_reference", "sha256": "22dcb7a8a2a494cd10e7988e3d5a2331bd521b0482241a4eaf20eeb316ea2c30", "size": 20162560, "origin": "existing_user_board_sdk", "redistribution_reviewed": false}
+  ]
+}

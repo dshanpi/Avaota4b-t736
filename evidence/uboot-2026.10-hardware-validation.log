@@ -1,0 +1,187 @@
+version; bdinfo; mmc list; mmc dev 0; mmc info
+
+U-Boot 2026.10-t736-bringup (Nov 12 2026 - 06:17:19 -0500)
+
+aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+
+GNU ld (GNU Binutils for Ubuntu) 2.42
+
+boot_params = 0x0000000000000000
+
+DRAM bank   = 0x0000000000000000
+
+-> start    = 0x0000000040000000
+
+-> size     = 0x0000000200000000
+
+flashstart  = 0x0000000000000000
+
+flashsize   = 0x0000000000000000
+
+flashoffset = 0x0000000000000000
+
+baudrate    = 115200 bps
+
+relocaddr   = 0x00000000affb5000
+
+reloc off   = 0x000000005dfb5000
+
+Build       = 64-bit
+
+fdt_blob    = 0x00000000af794b30
+
+lmb_dump_all:
+
+ memory.count = 0x1
+
+ memory[0]	[0x40000000-0x23fffffff], 0x200000000 bytes, flags: none
+
+ reserved.count = 0x1
+
+ reserved[0]	[0xae794b20-0xafffffff], 0x186b4e0 bytes, flags: no-overwrite
+
+devicetree  = separate
+
+serial addr = 0x0000000002500000
+
+ width      = 0x0000000000000004
+
+ shift      = 0x0000000000000002
+
+ offset     = 0x0000000000000000
+
+ clock      = 0x00000000016e3600
+
+arch_number = 0x0000000000000000
+
+TLB addr    = 0x00000000afff0000
+
+irq_sp      = 0x00000000af794b20
+
+sp start    = 0x00000000af794b20
+
+Early malloc usage: 1e0 / 2000
+
+T736 SMHC3 read-only PIO: 0
+
+switch to partitions #0, OK
+
+mmc0(part 0) is current device
+
+Device: T736 SMHC3 read-only PIO
+
+Manufacturer ID: ec
+
+OEM: 0
+
+Name: A31Y5C
+
+Bus Speed: 12000000
+
+Mode: MMC legacy
+
+Rd Block Len: 512
+
+MMC version 5.1
+
+High Capacity: Yes
+
+Capacity: 58.2 GiB
+
+Bus Width: 8-bit
+
+HC WP Group Size: 8 MiB
+
+User Capacity: 58.2 GiB WRREL
+
+Boot Capacity: 4 MiB ENH
+
+RPMB Capacity: 4 MiB ENH
+
+Boot area 0 is not write protected
+
+Boot area 1 is not write protected
+
+T736-mainline=> mmc read 0x60000000 0 1; md.b 0x600001b0 0x50; mmc part
+
+MMC read: dev # 0, block # 0, count 1 ... 1 blocks read: OK
+
+600001b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+
+600001c0: 02 00 ee ff ff ff 01 00 00 00 ff ff ff ff 00 00  ................
+
+600001d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+
+600001e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+
+600001f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 55 aa  ..............U.
+
+Partition Map for mmc device 0  --   Partition Type: EFI
+
+Part	Start LBA	End LBA		Name
+
+	Attributes
+
+	Type GUID
+
+	Partition GUID
+
+  1	0x00012000	0x00021fff	"boot-resource"
+
+	attrs:	0x8000000000000000
+
+	type:	ebd0a0a2-b9e5-4433-87c0-68b6b72699c7
+
+	guid:	a0085546-4166-744a-a353-fca9272b8e45
+
+  2	0x00022000	0x00029fff	"env"
+
+	attrs:	0x8000000000000000
+
+	type:	ebd0a0a2-b9e5-4433-87c0-68b6b72699c7
+
+	guid:	a0085546-4166-744a-a353-fca9272b8e46
+
+  3	0x0002a000	0x00059fff	"boot"
+
+	attrs:	0x8000000000000000
+
+	type:	ebd0a0a2-b9e5-4433-87c0-68b6b72699c7
+
+	guid:	a0085546-4166-744a-a353-fca9272b8e47
+
+  4	0x0005a000	0x00ee29ff	"rootfs"
+
+	attrs:	0x8000000000000000
+
+	type:	ebd0a0a2-b9e5-4433-87c0-68b6b72699c7
+
+	guid:	a0085546-4166-744a-a353-fca9272b8e48
+
+  5	0x00ee2a00	0x00eea9ff	"private"
+
+	attrs:	0x8000000000000000
+
+	type:	ebd0a0a2-b9e5-4433-87c0-68b6b72699c7
+
+	guid:	a0085546-4166-744a-a353-fca9272b8e49
+
+  6	0x00eeaa00	0x0747bfde	"UDISK"
+
+	attrs:	0x8000000000000000
+
+	type:	ebd0a0a2-b9e5-4433-87c0-68b6b72699c7
+
+	guid:	a0085546-4166-744a-a353-fca9272b8e4a
+
+T736-mainline=> mw.l 0x160000000 0xa55a5aa5 0x10; md.l 0x160000000 0x10
+
+160000000: a55a5aa5 a55a5aa5 a55a5aa5 a55a5aa5  .ZZ..ZZ..ZZ..ZZ.
+
+160000010: a55a5aa5 a55a5aa5 a55a5aa5 a55a5aa5  .ZZ..ZZ..ZZ..ZZ.
+
+160000020: a55a5aa5 a55a5aa5 a55a5aa5 a55a5aa5  .ZZ..ZZ..ZZ..ZZ.
+
+160000030: a55a5aa5 a55a5aa5 a55a5aa5 a55a5aa5  .ZZ..ZZ..ZZ..ZZ.
+
+T736-mainline=> 

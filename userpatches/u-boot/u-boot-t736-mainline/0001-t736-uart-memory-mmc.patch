@@ -1,0 +1,499 @@
+diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
+index 1b474a34..74991546 100644
+--- a/arch/arm/Kconfig
++++ b/arch/arm/Kconfig
+@@ -2203,6 +2203,20 @@ config TARGET_XENGUEST_ARM64
+ 	select XEN_SERIAL
+ 	imply OF_HAS_PRIOR_STAGE
+ 
++config TARGET_T736_BRINGUP
++	bool "T736 custom board RAM bring-up"
++	select ARM64
++	select DM
++	select DM_SERIAL
++	select OF_CONTROL
++	select SYS_NS16550
++	select SYS_NS16550_MEM32
++	select LINUX_KERNEL_IMAGE_HEADER
++	select HAS_CUSTOM_SYS_INIT_SP_ADDR
++	help
++	  RAM payload for the independently maintained T736 board port.
++	  A prior firmware stage must initialize DRAM, power and UART0.
++
+ config ARCH_GXP
+ 	bool "Support HPE GXP SoCs"
+ 	select DM
+@@ -2474,6 +2488,7 @@ source "board/phytium/durian/Kconfig"
+ source "board/phytium/pomelo/Kconfig"
+ source "board/phytium/pe2201/Kconfig"
+ source "board/xen/xenguest_arm64/Kconfig"
++source "board/t736/bringup/Kconfig"
+ 
+ source "arch/arm/Kconfig.debug"
+ 
+diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
+index 37d3b6fd..229b757f 100644
+--- a/arch/arm/dts/Makefile
++++ b/arch/arm/dts/Makefile
+@@ -1170,6 +1170,8 @@ dtb-$(CONFIG_TARGET_CORSTONE1000) += corstone1000-mps3.dtb \
+ 
+ dtb-$(CONFIG_TARGET_COREPRIMEVELTE) += pxa1908-samsung-coreprimevelte.dtb
+ 
++dtb-$(CONFIG_TARGET_T736_BRINGUP) += t736-bringup.dtb
++
+ include $(srctree)/scripts/Makefile.dts
+ 
+ # Add any required device tree compiler flags here
+diff --git a/arch/arm/dts/t736-bringup.dts b/arch/arm/dts/t736-bringup.dts
+new file mode 100644
+index 00000000..43dbb79b
+--- /dev/null
++++ b/arch/arm/dts/t736-bringup.dts
+@@ -0,0 +1,33 @@
++// SPDX-License-Identifier: GPL-2.0+
++/dts-v1/;
++
++/ {
++	model = "T736 custom board RAM bring-up";
++	compatible = "allwinner,t736";
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases { serial0 = &uart0; };
++	chosen { stdout-path = "serial0:115200n8"; };
++
++	memory@40000000 {
++		device_type = "memory";
++		reg = <0 0x40000000 2 0>;
++	};
++
++	mmc@4023000 {
++		compatible = "allwinner,t736-smhc3-bringup";
++		reg = <0 0x04023000 0 0x1000>;
++		bus-width = <8>;
++		non-removable;
++	};
++
++	uart0: serial@2500000 {
++		compatible = "snps,dw-apb-uart";
++		reg = <0 0x02500000 0 0x400>;
++		reg-shift = <2>;
++		reg-io-width = <4>;
++		clock-frequency = <24000000>;
++		bootph-all;
++	};
++};
+diff --git a/board/t736/bringup/Kconfig b/board/t736/bringup/Kconfig
+new file mode 100644
+index 00000000..6630894c
+--- /dev/null
++++ b/board/t736/bringup/Kconfig
+@@ -0,0 +1,18 @@
++if TARGET_T736_BRINGUP
++
++config SYS_BOARD
++	default "bringup"
++
++config SYS_VENDOR
++	default "t736"
++
++config SYS_CONFIG_NAME
++	default "t736-bringup"
++
++config TEXT_BASE
++	default 0x52000000
++
++config LNX_KRNL_IMG_TEXT_OFFSET_BASE
++	default 0x40000000
++
++endif
+diff --git a/board/t736/bringup/Makefile b/board/t736/bringup/Makefile
+new file mode 100644
+index 00000000..bcca1a9f
+--- /dev/null
++++ b/board/t736/bringup/Makefile
+@@ -0,0 +1,2 @@
++# SPDX-License-Identifier: GPL-2.0+
++obj-y += board.o
+diff --git a/board/t736/bringup/board.c b/board/t736/bringup/board.c
+new file mode 100644
+index 00000000..6d0c31c2
+--- /dev/null
++++ b/board/t736/bringup/board.c
+@@ -0,0 +1,75 @@
++// SPDX-License-Identifier: GPL-2.0+
++/* Independently authored from the T736 running FDT and memory evidence. */
++#include <config.h>
++#include <cpu_func.h>
++#include <init.h>
++#include <stdio.h>
++#include <linux/arm-smccc.h>
++#include <asm/global_data.h>
++#include <asm/armv8/mmu.h>
++
++DECLARE_GLOBAL_DATA_PTR;
++
++static struct mm_region t736_mem_map[] = {
++	{ .virt = 0, .phys = 0, .size = 0x40000000,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_DEVICE_NGNRNE) |
++		   PTE_BLOCK_NON_SHARE | PTE_BLOCK_PXN | PTE_BLOCK_UXN },
++	{ .virt = 0x40000000, .phys = 0x40000000, .size = 0x08000000,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) | PTE_BLOCK_INNER_SHARE },
++	/* Leave the observed BL31 reservation unmapped. */
++	{ .virt = 0x49000000, .phys = 0x49000000, .size = 0x69800000,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) | PTE_BLOCK_INNER_SHARE },
++	/* Leave the observed secure DRAM reservation unmapped. */
++	{ .virt = 0xc0000000, .phys = 0xc0000000, .size = 0x3b800000,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) | PTE_BLOCK_INNER_SHARE },
++	{ .virt = 0x100000000ULL, .phys = 0x100000000ULL,
++	  .size = 0x140000000ULL,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) | PTE_BLOCK_INNER_SHARE },
++	{ 0 }
++};
++
++struct mm_region *mem_map = t736_mem_map;
++
++int dram_init(void)
++{
++	/* No destructive sizing probe across firmware-owned memory. */
++	gd->ram_size = 0x200000000ULL;
++	return 0;
++}
++
++int dram_init_banksize(void)
++{
++	gd->dram[0].start = 0x40000000;
++	gd->dram[0].size = gd->ram_size;
++	return 0;
++}
++
++phys_addr_t board_get_usable_ram_top(phys_size_t total_size)
++{
++	/* Keep relocation below all observed high firmware reservations. */
++	return 0xb0000000;
++}
++
++int board_init(void)
++{
++	return 0;
++}
++
++int checkboard(void)
++{
++	puts("Board: T736 custom RAM bring-up; vendor DDR/BL31/SCP retained\n");
++	return 0;
++}
++
++void enable_caches(void)
++{
++	icache_enable();
++	dcache_enable();
++}
++
++void reset_cpu(void)
++{
++	struct arm_smccc_res res;
++
++	arm_smccc_smc(0x84000009, 0, 0, 0, 0, 0, 0, 0, &res);
++}
+diff --git a/configs/t736_bringup_defconfig b/configs/t736_bringup_defconfig
+new file mode 100644
+index 00000000..080f9761
+--- /dev/null
++++ b/configs/t736_bringup_defconfig
+@@ -0,0 +1,47 @@
++CONFIG_ARM=y
++CONFIG_NR_DRAM_BANKS=1
++CONFIG_TARGET_T736_BRINGUP=y
++CONFIG_TEXT_BASE=0x52000000
++CONFIG_CUSTOM_SYS_INIT_SP_ADDR=0x51f00000
++CONFIG_SYS_LOAD_ADDR=0x60000000
++CONFIG_SYS_MALLOC_LEN=0x800000
++CONFIG_DEFAULT_DEVICE_TREE="t736-bringup"
++# CONFIG_OF_UPSTREAM is not set
++CONFIG_POSITION_INDEPENDENT=y
++CONFIG_COUNTER_FREQUENCY=0
++CONFIG_LOCALVERSION="-t736-bringup"
++CONFIG_BOOTDELAY=3
++CONFIG_USE_BOOTCOMMAND=y
++CONFIG_BOOTCOMMAND="setenv kernel_comp_addr_r 0x68000000; if mmc dev 0 && ext4load mmc 0:4 0x60000000 /boot/vmlinuz-6.18.63-t736-armbian && setenv kernel_comp_size ${filesize} && ext4load mmc 0:4 0x64000000 /boot/initrd.img-6.18.63-t736-armbian; then setenv rdsize ${filesize}; if ext4load mmc 0:4 0x63000000 /boot/dtb/allwinner/t736-mainline-bringup.dtb; then setenv bootargs earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused; booti 0x60000000 0x64000000:${rdsize} 0x63000000; fi; fi"
++CONFIG_HUSH_PARSER=y
++CONFIG_SUPPORT_RAW_INITRD=y
++# CONFIG_BOOTSTD is not set
++# CONFIG_DISPLAY_CPUINFO is not set
++CONFIG_DISPLAY_BOARDINFO=y
++CONFIG_ENV_IS_NOWHERE=y
++CONFIG_CMD_BDI=y
++CONFIG_CMD_MEMINFO=y
++CONFIG_CMD_MEMORY=y
++CONFIG_CMD_CRC32=y
++CONFIG_CMD_CACHE=y
++CONFIG_CMD_FDT=y
++CONFIG_CMD_BOOTI=y
++CONFIG_LEGACY_IMAGE_FORMAT=y
++CONFIG_SYS_PROMPT="T736-mainline=> "
++CONFIG_DEBUG_UART=y
++CONFIG_DEBUG_UART_NS16550=y
++CONFIG_DEBUG_UART_BASE=0x02500000
++CONFIG_DEBUG_UART_CLOCK=24000000
++CONFIG_DEBUG_UART_SHIFT=2
++CONFIG_DEBUG_UART_ANNOUNCE=y
++CONFIG_SYS_NS16550=y
++CONFIG_SYS_NS16550_MEM32=y
++# CONFIG_NET is not set
++CONFIG_MMC=y
++CONFIG_DM_MMC=y
++CONFIG_CMD_MMC=y
++# CONFIG_MMC_WRITE is not set
++CONFIG_FS_EXT4=y
++CONFIG_CMD_EXT4=y
++CONFIG_EFI_PARTITION=y
++# CONFIG_EFI_LOADER is not set
+diff --git a/drivers/mmc/Makefile b/drivers/mmc/Makefile
+index a23336d7..0d7baba2 100644
+--- a/drivers/mmc/Makefile
++++ b/drivers/mmc/Makefile
+@@ -4,6 +4,7 @@
+ # Wolfgang Denk, DENX Software Engineering, wd@denx.de.
+ 
+ obj-y += mmc.o
++obj-$(CONFIG_TARGET_T736_BRINGUP) += t736_mmc.o
+ obj-$(CONFIG_$(PHASE_)DM_MMC) += mmc-uclass.o
+ 
+ ifdef CONFIG_$(PHASE_)DM_MMC
+diff --git a/drivers/mmc/t736_mmc.c b/drivers/mmc/t736_mmc.c
+new file mode 100644
+index 00000000..c9ef8b72
+--- /dev/null
++++ b/drivers/mmc/t736_mmc.c
+@@ -0,0 +1,219 @@
++// SPDX-License-Identifier: GPL-2.0+
++/* T736 SMHC3: documented registers, read-only PIO and inherited power rails. */
++#include <dm.h>
++#include <mmc.h>
++#include <asm/io.h>
++#include <linux/delay.h>
++#include <linux/errno.h>
++#include <linux/iopoll.h>
++
++#define CTRL 0x00
++#define CLKDIV 0x04
++#define TIMEOUT 0x08
++#define WIDTH 0x0c
++#define BLOCKSIZE 0x10
++#define BYTECOUNT 0x14
++#define COMMAND 0x18
++#define ARGUMENT 0x1c
++#define RESPONSE 0x20
++#define IRQMASK 0x30
++#define IRQSTATUS 0x38
++#define STATUS 0x3c
++#define TIMING 0x5c
++#define CARDRESET 0x78
++#define FIFO 0x200
++#define CMD_START BIT(31)
++#define IRQ_ERRORS 0xbfc2
++
++struct t736_mmc {
++	void __iomem *base;
++	struct mmc_config cfg;
++	struct mmc mmc;
++};
++
++static int update_clock(struct t736_mmc *p)
++{
++	u32 value;
++	int ret;
++
++	writel(CMD_START | BIT(21) | BIT(13), p->base + COMMAND);
++	ret = readl_poll_timeout(p->base + COMMAND, value,
++				!(value & CMD_START), 1000000);
++	writel(~0U, p->base + IRQSTATUS);
++	return ret;
++}
++
++static int t736_set_ios(struct udevice *dev)
++{
++	struct t736_mmc *p = dev_get_plat(dev);
++	unsigned int divisor;
++	int ret;
++
++	writel(BIT(31), p->base + CLKDIV);
++	ret = update_clock(p);
++	if (ret || !p->mmc.clock)
++		return ret;
++	/* New timing mode divides the module clock by two. */
++	divisor = DIV_ROUND_UP(24000000U, 2 * p->mmc.clock);
++	if (!divisor || divisor > 32)
++		return -EINVAL;
++	writel(BIT(31) | (divisor - 1), (void __iomem *)0x02002d30);
++	setbits_le32(p->base + TIMING, BIT(31));
++	writel(p->mmc.bus_width == 8 ? 2 : p->mmc.bus_width == 4 ? 1 : 0,
++	       p->base + WIDTH);
++	writel(BIT(31) | BIT(16), p->base + CLKDIV);
++	ret = update_clock(p);
++	clrbits_le32(p->base + CLKDIV, BIT(31));
++	return ret;
++}
++
++static int t736_send_cmd(struct udevice *dev, struct mmc_cmd *cmd,
++			 struct mmc_data *data)
++{
++	struct t736_mmc *p = dev_get_plat(dev);
++	u32 flags = CMD_START | cmd->cmdidx, status, value;
++	unsigned long start;
++	unsigned int remaining = 0;
++	u8 *dest = NULL;
++	int i, ret;
++
++	if (cmd->cmdidx == 24 || cmd->cmdidx == 25 || cmd->cmdidx == 38 ||
++	    (data && (data->flags & MMC_DATA_WRITE)))
++		return -EROFS;
++	if (data) {
++		if (data->blocks != 1 || (data->blocksize & 3))
++			return -EINVAL;
++		remaining = data->blocksize;
++		dest = (u8 *)data->dest;
++		setbits_le32(p->base + CTRL, BIT(1));
++		ret = readl_poll_timeout(p->base + CTRL, value,
++					!(value & BIT(1)), 100000);
++		if (ret)
++			return ret;
++		writel(data->blocksize, p->base + BLOCKSIZE);
++		writel(remaining, p->base + BYTECOUNT);
++		flags |= BIT(9) | BIT(13);
++	}
++	if (!cmd->cmdidx)
++		flags |= BIT(15);
++	if (cmd->resp_type & MMC_RSP_PRESENT)
++		flags |= BIT(6);
++	if (cmd->resp_type & MMC_RSP_136)
++		flags |= BIT(7);
++	if (cmd->resp_type & MMC_RSP_CRC)
++		flags |= BIT(8);
++	writel(~0U, p->base + IRQSTATUS);
++	writel(cmd->cmdarg, p->base + ARGUMENT);
++	writel(flags, p->base + COMMAND);
++	start = get_timer(0);
++	for (;;) {
++		status = readl(p->base + IRQSTATUS);
++		if (status & IRQ_ERRORS) {
++			debug("T736 CMD%u status=%08x\n", cmd->cmdidx, status);
++			return status & (BIT(8) | BIT(9)) ? -ETIMEDOUT : -EIO;
++		}
++		if (remaining && !(readl(p->base + STATUS) & BIT(2))) {
++			value = readl(p->base + FIFO);
++			memcpy(dest, &value, sizeof(value));
++			dest += sizeof(value);
++			remaining -= sizeof(value);
++		}
++		if (!remaining && (status & BIT(2)) && (!data || (status & BIT(3))))
++			break;
++		if (get_timer(start) > 2000)
++			return -ETIMEDOUT;
++	}
++	if (cmd->resp_type & MMC_RSP_136)
++		for (i = 0; i < 4; i++)
++			cmd->response[i] = readl(p->base + RESPONSE + (3 - i) * 4);
++	else
++		cmd->response[0] = readl(p->base + RESPONSE);
++	if (cmd->resp_type & MMC_RSP_BUSY) {
++		ret = readl_poll_timeout(p->base + STATUS, value,
++					!(value & BIT(9)), 2000000);
++		if (ret)
++			return ret;
++	}
++	writel(~0U, p->base + IRQSTATUS);
++	return 0;
++}
++
++static int t736_get_cd(struct udevice *dev)
++{
++	return 1;
++}
++
++static int t736_probe(struct udevice *dev)
++{
++	static const u8 pins[] = { 0, 1, 5, 6, 8, 9, 10, 11, 13, 14, 15, 16 };
++	struct t736_mmc *p = dev_get_plat(dev);
++	struct mmc_uclass_priv *upriv = dev_get_uclass_priv(dev);
++	void __iomem *reg;
++	u32 value;
++	int i, ret;
++
++	p->base = dev_read_addr_ptr(dev);
++	if (!p->base)
++		return -EINVAL;
++	/* Function 4 selects SMHC3; prior firmware sets rails and pad drive. */
++	for (i = 0; i < ARRAY_SIZE(pins); i++) {
++		reg = (void __iomem *)(0x02000180UL + (pins[i] / 8) * 4);
++		clrsetbits_le32(reg, 0xf << ((pins[i] % 8) * 4),
++			       4 << ((pins[i] % 8) * 4));
++	}
++	writel(BIT(31), (void __iomem *)0x02002d30);
++	clrbits_le32((void __iomem *)0x02002d3c, BIT(16));
++	udelay(10);
++	setbits_le32((void __iomem *)0x02002d3c, BIT(16) | BIT(0));
++	writel(7, p->base + CTRL);
++	ret = readl_poll_timeout(p->base + CTRL, value, !(value & 7), 100000);
++	if (ret)
++		return ret;
++	writel(BIT(31), p->base + CTRL);
++	writel(0, p->base + IRQMASK);
++	writel(~0U, p->base + IRQSTATUS);
++	writel(~0U, p->base + TIMEOUT);
++	writel(0, p->base + CARDRESET);
++	udelay(10);
++	writel(1, p->base + CARDRESET);
++	mdelay(1);
++	p->cfg.name = "T736 SMHC3 read-only PIO";
++	p->cfg.host_caps = MMC_MODE_4BIT | MMC_MODE_8BIT;
++	p->cfg.voltages = MMC_VDD_32_33 | MMC_VDD_33_34;
++	p->cfg.f_min = 400000;
++	p->cfg.f_max = 12000000;
++	p->cfg.b_max = 1;
++	p->mmc.cfg = &p->cfg;
++	p->mmc.dev = dev;
++	p->mmc.priv = p;
++	upriv->mmc = &p->mmc;
++	return 0;
++}
++
++static int t736_bind(struct udevice *dev)
++{
++	struct t736_mmc *p = dev_get_plat(dev);
++
++	return mmc_bind(dev, &p->mmc, &p->cfg);
++}
++
++static const struct dm_mmc_ops t736_ops = {
++	.send_cmd = t736_send_cmd,
++	.set_ios = t736_set_ios,
++	.get_cd = t736_get_cd,
++};
++
++static const struct udevice_id t736_ids[] = {
++	{ .compatible = "allwinner,t736-smhc3-bringup" },
++	{ }
++};
++
++U_BOOT_DRIVER(t736_mmc) = {
++	.name = "t736_mmc",
++	.id = UCLASS_MMC,
++	.of_match = t736_ids,
++	.ops = &t736_ops,
++	.bind = t736_bind,
++	.probe = t736_probe,
++	.plat_auto = sizeof(struct t736_mmc),
++};
+diff --git a/include/configs/t736-bringup.h b/include/configs/t736-bringup.h
+new file mode 100644
+index 00000000..53617350
+--- /dev/null
++++ b/include/configs/t736-bringup.h
+@@ -0,0 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
++#ifndef __T736_BRINGUP_H
++#define __T736_BRINGUP_H
++#define CFG_SYS_SDRAM_BASE 0x40000000
++#endif

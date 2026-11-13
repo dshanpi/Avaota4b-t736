@@ -1,0 +1,69 @@
+busybox dd if=/dev/mmcblk0p3 of=/tmp/mmc-original bs=4096 skip=24560 count=1
+
+6 && busybox dd if=/dev/urandom of=/tmp/mmc-pattern bs=4096 count=16 && busybox 
+
+dd if=/tmp/mmc-pattern of=/dev/mmcblk0p3 bs=4096 seek=24560 conv=notrunc && sync
+
+16+0 records in
+
+16+0 records out
+
+65536 bytes (64.0KB) copied, 0.012742 seconds, 4.9MB/s
+
+random: crng init done
+
+16+0 records in
+
+16+0 records out
+
+65536 bytes (64.0KB) copied, 1.254540 seconds, 51.0KB/s
+
+16+0 records in
+
+16+0 records out
+
+65536 bytes (64.0KB) copied, 0.013373 seconds, 4.7MB/s
+
+/bin/sh: sync: not found
+
+~ # busybox sync; echo 3 > /proc/sys/vm/drop_caches; busybox dd if=/dev/mmcblk0p
+
+3 of=/tmp/mmc-readback bs=4096 skip=24560 count=16; busybox cmp /tmp/mmc-pattern
+
+ /tmp/mmc-readback && echo T736_EMMC_64K_WRITE_READ_OK; busybox dd if=/tmp/mmc-o
+
+riginal of=/dev/mmcblk0p3 bs=4096 seek=24560 conv=notrunc; busybox sync; echo 3 
+
+> /proc/sys/vm/drop_caches; busybox dd if=/dev/mmcblk0p3 of=/tmp/mmc-restored bs
+
+=4096 skip=24560 count=16; busybox cmp /tmp/mmc-original /tmp/mmc-restored && ec
+
+ho T736_EMMC_SCRATCH_RESTOsh (86): drop_caches: 3
+
+RED
+
+16+0 records in
+
+16+0 records out
+
+65536 bytes (64.0KB) copied, 0.013575 seconds, 4.6MB/s
+
+T736_EMMC_64K_WRITE_READ_OK
+
+16+0 records in
+
+16+0 records oush (86): drop_caches: 3
+
+t
+
+65536 bytes (64.0KB) copied, 0.012647 seconds, 4.9MB/s
+
+16+0 records in
+
+16+0 records out
+
+65536 bytes (64.0KB) copied, 0.009149 seconds, 6.8MB/s
+
+T736_EMMC_SCRATCH_RESTORED
+
+~ # 

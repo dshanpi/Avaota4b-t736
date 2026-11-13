@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "policy": "No Radxa repository, patch, board code, image or firmware imports. Preserve shared upstream provenance. Do not claim zero code similarity or a formal clean-room process.",
+  "required_fields_for_each_patch": [
+    "id",
+    "component",
+    "base_commit",
+    "source",
+    "author",
+    "license",
+    "independently_authored",
+    "derived_from",
+    "hardware_evidence",
+    "validation",
+    "upstream_status"
+  ],
+  "patches": [
+    {
+      "id": "0001-t736-uart-memory-mmc",
+      "component": "u-boot",
+      "base_commit": "5508406582f6f7120dce0c4b3059819a41788db2",
+      "source": "userpatches/u-boot/u-boot-t736-mainline/0001-t736-uart-memory-mmc.patch",
+      "sha256": "378d2bf542bdfbc470caede39f856b45a4231aaa01941a0bb5899b367c06a923",
+      "author": "Project-local implementation with Codex assistance",
+      "license": "GPL-2.0-or-later (retain per-file SPDX notices)",
+      "independently_authored": true,
+      "derived_from": [
+        "Official upstream framework APIs",
+        "Board vendor SDK register and boot ABI reference; no Radxa imports"
+      ],
+      "hardware_evidence": [
+        "evidence/uboot-2026.10-hardware-validation.log",
+        "evidence/kernel-probe-v2-uboot.log"
+      ],
+      "validation": "Compiled and booted on T736; UART, memory and eMMC initial PIO path passed. Peripheral and persistent handoff work remains. Latest compressed kernel bootcommand fix compiled; runtime validation pending.",
+      "upstream_status": "Local experimental patch; not submitted upstream"
+    },
+    {
+      "id": "0001-t736-minimal-board",
+      "component": "linux",
+      "base_commit": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
+      "source": "userpatches/kernel/t736-mainline-6.18/0001-t736-minimal-board.patch",
+      "sha256": "815aaecc7a694741b57880343030392102319760edb0700a9c5236097f38da68",
+      "author": "Project-local implementation with Codex assistance",
+      "license": "GPL-2.0-only",
+      "independently_authored": true,
+      "derived_from": [
+        "Official upstream framework APIs",
+        "Board vendor SDK register and boot ABI reference; no Radxa imports"
+      ],
+      "hardware_evidence": [
+        "evidence/linux-6.18.63-v2-firstboot.log",
+        "evidence/linux-6.18.63-v2-emmc.log",
+        "evidence/linux-6.18.63-v2-emmc-write.log",
+        "evidence/armbian-6.18.63-firstboot.log"
+      ],
+      "validation": "Compiled and booted on T736; UART, memory and eMMC initial PIO path passed. Peripheral and persistent handoff work remains.",
+      "upstream_status": "Local experimental patch; not submitted upstream"
+    },
+    {
+      "id": "t736-aarch32-handoff-v1",
+      "component": "boot_handoff",
+      "base_commit": null,
+      "source": "handoff/ and tools/build_handoff.sh, tools/pack_handoff.py",
+      "author": "Project-local implementation with Codex assistance",
+      "license": "GPL-2.0-only",
+      "independently_authored": true,
+      "derived_from": [
+        "Board vendor ABI definitions: drivers/smc/sunxi_smc_v2.c and arch/arm/lib/bootm.c",
+        "Board vendor spare header format: include/private_uboot.h and include/spare_head.h"
+      ],
+      "hardware_evidence": [
+        "evidence/boot-package-layout-20261112.json",
+        "evidence/kernel-probe-v2-uboot.log"
+      ],
+      "validation": "ARM32 compile with -Wall -Wextra -Werror; disassembly and package checksum reviewed; candidate not hardware tested or installed as Boot1",
+      "upstream_status": "Local experiment"
+    }
+  ],
+  "firmware_dependencies": [
+    {
+      "component": "boot0_sdcard.fex",
+      "source": "This board recovery package",
+      "sha256": "0e2397669df804256505c786d7a9db6b40720203dd3e6b1ea33955486efa98c8",
+      "role": "Persistent DDR and early storage initialization",
+      "status": "Retained for staged validation; not independently implemented"
+    },
+    {
+      "component": "fes1.fex",
+      "source": "This board recovery package",
+      "sha256": "ab8618a40c51e381d2904dfb12ced567f3b2016bbb50e805980a463402a97994",
+      "role": "RAM-only FES DDR initialization",
+      "status": "Retained for staged validation; not independently implemented"
+    },
+    {
+      "component": "u-boot.fex",
+      "source": "This board recovery package",
+      "sha256": "cdeb0be64b063a089797e9c385f0c6a20f70548e5540de3453308c53a4b546fd",
+      "role": "RAM-only vendor FES transport",
+      "status": "Retained for staged validation; not independently implemented"
+    },
+    {
+      "component": "boot_package.fex",
+      "source": "This board recovery package",
+      "sha256": "b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3",
+      "role": "Persistent vendor U-Boot 2018.07, BL31, SCP and OP-TEE",
+      "status": "Retained for staged validation; not independently implemented"
+    },
+    {
+      "component": "vendor Android DTB",
+      "source": "Board recovery boot.fex",
+      "role": "Passed to vendor firmware before entering the new U-Boot; mainline kernel uses independent DTS",
+      "status": "Transitional dependency"
+    }
+  ],
+  "implementation_state": "Mainline Armbian booted from eMMC to systemd multi-user.target and serial login. Persistent handoff, DNS failure and peripheral work remain."
+}

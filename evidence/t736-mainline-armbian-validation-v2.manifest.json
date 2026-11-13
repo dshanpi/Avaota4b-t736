@@ -1,0 +1,97 @@
+{
+  "purpose": "FES mainline validation with vendor Boot0/Boot1; not final Armbian firmware",
+  "required_mode": "partition",
+  "partition_downloads": [
+    "boot",
+    "rootfs"
+  ],
+  "persistent_vendor_boot0_boot1_retained": true,
+  "files": [
+    {
+      "name": "sys_config.fex",
+      "bytes": 5199,
+      "sha256": "d1dc7941d8e4945669253110b3abf892a8f7710c578b7fa284db5965de1b555f",
+      "unchanged_from_recovery": true
+    },
+    {
+      "name": "config.fex",
+      "bytes": 5120,
+      "sha256": "c6ca514a4f8088f0ba0ac20b6909433ef882d1a54bc55cc7c72fc0b87fb95d82",
+      "unchanged_from_recovery": true
+    },
+    {
+      "name": "board.fex",
+      "bytes": 1024,
+      "sha256": "ab1d5b1e29bc04511d1fc6942ae365f3202d5795fa06e3699acfae987fafb245",
+      "unchanged_from_recovery": true
+    },
+    {
+      "name": "sys_partition.fex",
+      "bytes": 2697,
+      "sha256": "0c72da41d1f1a768027512184a0d2cd9109868059298bcfd71c510088fd060e7",
+      "unchanged_from_recovery": false
+    },
+    {
+      "name": "boot0_sdcard.fex",
+      "bytes": 258048,
+      "sha256": "0e2397669df804256505c786d7a9db6b40720203dd3e6b1ea33955486efa98c8",
+      "unchanged_from_recovery": true
+    },
+    {
+      "name": "u-boot.fex",
+      "bytes": 1245184,
+      "sha256": "cdeb0be64b063a089797e9c385f0c6a20f70548e5540de3453308c53a4b546fd",
+      "unchanged_from_recovery": true
+    },
+    {
+      "name": "fes1.fex",
+      "bytes": 225728,
+      "sha256": "ab8618a40c51e381d2904dfb12ced567f3b2016bbb50e805980a463402a97994",
+      "unchanged_from_recovery": true
+    },
+    {
+      "name": "boot_package.fex",
+      "bytes": 1867776,
+      "sha256": "b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3",
+      "unchanged_from_recovery": true
+    },
+    {
+      "name": "sunxi_gpt.fex",
+      "bytes": 8192,
+      "sha256": "ba658739ee6dac35a6f1fc8251286642b698f450813cbd82cae7224e3b997ed5",
+      "unchanged_from_recovery": true
+    },
+    {
+      "name": "sunxi_mbr.fex",
+      "bytes": 65536,
+      "sha256": "e40a5dc62e04542da1ea863aa39b521dd9dca4d479b23abb04213563d8ce4006",
+      "unchanged_from_recovery": true
+    },
+    {
+      "name": "boot.fex",
+      "bytes": 45226496,
+      "sha256": "1cb3bed2da08e2997aef177513ff0ed1c6bbe11d4329cac3d319c9a0e8a43b29",
+      "unchanged_from_recovery": false
+    },
+    {
+      "name": "Vboot.fex",
+      "bytes": 4,
+      "sha256": "36772119738544261890b6e3d069698081e3a4c9e0ff9d4adb106473d9117126",
+      "unchanged_from_recovery": false
+    },
+    {
+      "name": "rootfs.fex",
+      "bytes": 531903040,
+      "sha256": "370b531cf5dd10a1f5177756ca407ee7e33ac391f15a92acca2891a804f49bb1",
+      "unchanged_from_recovery": false
+    },
+    {
+      "name": "Vrootfs.fex",
+      "bytes": 4,
+      "sha256": "8e173221f6c71cda76b170a39740715f7e17949ce6ab58c9e3a435e1a9387457",
+      "unchanged_from_recovery": false
+    }
+  ],
+  "sha256": "fc3aaa5824b18ac659d34ec6e166018174adce8ab734d2d2d7acb4fa1cca4fac",
+  "bytes": 580834304
+}

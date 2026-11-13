@@ -1,0 +1,45 @@
+{
+  "scope": "Existing recovery package metadata, not a new boot image or verified runtime handoff",
+  "source": "..\\analysis\\golden-image-components\\boot_package.fex",
+  "sha256": "b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3",
+  "format_reference": "User SDK brandy/brandy-2.0/u-boot-2018/include/private_toc.h (format fields only; no code copied)",
+  "entries": [
+    {
+      "name": "u-boot",
+      "offset": "0x800",
+      "size": 1245184,
+      "type": 3,
+      "run_address_field": "0x0",
+      "sha256": "cdeb0be64b063a089797e9c385f0c6a20f70548e5540de3453308c53a4b546fd",
+      "prefix_hex": "8e0100ea75626f6f740000000c8740aa004000000000130000001300342e302e"
+    },
+    {
+      "name": "monitor",
+      "offset": "0x130800",
+      "size": 78809,
+      "type": 3,
+      "run_address_field": "0x0",
+      "sha256": "7f31687ff046b09fc69c07b0fa446308bd88d0e15b2153e81fb11039fbed45ca",
+      "prefix_hex": "420000146d6f6e69746f72000000000000000000000000000000000043484b76"
+    },
+    {
+      "name": "scp",
+      "offset": "0x143c00",
+      "size": 121912,
+      "type": 3,
+      "run_address_field": "0x0",
+      "sha256": "2e0d1845cb78da42790ee72f16a5cf12bd4c074979253345e4824546e811e66d",
+      "prefix_hex": "81400141814101428142014381430144814401458145014681460147814797e1"
+    },
+    {
+      "name": "optee",
+      "offset": "0x161c00",
+      "size": 411040,
+      "type": 3,
+      "run_address_field": "0x0",
+      "sha256": "267bbd4d5cafd86549eee42035908fb13fb3ae23e557f8ed32ed5e8f8c2d755d",
+      "prefix_hex": "000400146f7074656500000000000000000000000000000000000000332e3700"
+    }
+  ],
+  "warning": "All run_address fields are zero; do not infer entry addresses from them. OP-TEE is also present and must be accounted for."
+}
