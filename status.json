@@ -1,7 +1,7 @@
 {
   "date": "2026-11-13",
-  "updated_utc": "2026-11-13T04:14:48.118463+00:00",
-  "state": "v4_usb1_controllers_and_high_speed_hub_hardware_validated",
+  "updated_utc": "2026-11-13T05:16:34.297468+00:00",
+  "state": "v4_usb1_hub_and_empty_reader_validated_pio_layout_candidate_corrected",
   "versions": {
     "u_boot": "2026.10-t736-bringup",
     "linux": "6.18.63-t736-armbian",
@@ -25,7 +25,8 @@
     "Armbian systemd reached multi-user.target and serial login",
     "Unattended cold boot through v3/v4 kernel to Armbian login",
     "initramfs fsck.ext4 clean, real tmpfs and systemd-resolved active",
-    "USB1 EHCI/OHCI registered; PL6 VBUS high; 1a40:0101 four-port hub enumerated at 480 Mbps; hub control requests and EHCI interrupts observed"
+    "USB1 EHCI/OHCI registered; PL6 VBUS high; 1a40:0101 four-port hub enumerated at 480 Mbps; hub control requests and EHCI interrupts observed",
+    "USB1 Realtek 0bda:0316 reader enumerates at 480 Mbps on 1-1.3; usb-storage and SCSI inquiry work; user confirms no TF card present"
   ],
   "rootfs": "Restored with user authorization; GPT rootfs start 368640 size 15239680 sectors; ext4 mounted read/write.",
   "rootfs_sparse_sha256": "370b531cf5dd10a1f5177756ca407ee7e33ac391f15a92acca2891a804f49bb1",
@@ -37,8 +38,8 @@
     "upstream Linux 6.18.63 + board patch"
   ],
   "next": [
-    "Validate downstream USB devices and I/O",
-    "Integrate main PIO with eMMC pin ownership, then GMAC clock/reset and RGMII candidates",
+    "Test USB storage read/write when media is available; empty reader is expected and needs no troubleshooting",
+    "Integrate corrected main PIO layout and eMMC PC pin ownership, then GMAC clock/reset and RGMII candidates",
     "Continue other peripherals and independent boot handoff"
   ],
   "workspace": {
@@ -64,7 +65,10 @@
     "evidence/usb1-v4-validation.log",
     "evidence/usb1-v4-hub-status.log",
     "evidence/usb1-v4-install.log",
-    "evidence/usb1-v4-transfer.json"
+    "evidence/usb1-v4-transfer.json",
+    "evidence/schematic-review-runtime.log",
+    "evidence/usb1-v4-reader-validation.log",
+    "evidence/pio-layout-candidate-build.log"
   ],
   "handoff_candidate": {
     "path": "output/t736-handoff-ram-v1.bin",
@@ -75,9 +79,9 @@
   "known_issues": [
     "Old vendor U-Boot 2018.07 remains before new U-Boot",
     "eMMC remains 12 MHz 8-bit PIO; no full stress test",
-    "USB1 hub communication passed, downstream device validation pending physical port check",
     "R-APB/pad supplies/UART and platform clocks still partly depend on vendor firmware",
-    "Ethernet, PCIe, Wi-Fi, Bluetooth and HDMI not hardware supported yet"
+    "Ethernet, PCIe, Wi-Fi, Bluetooth and HDMI not hardware supported yet",
+    "USB reader is empty as confirmed by user; actual storage I/O and HID remain untested"
   ],
   "coldboot": "After corrected layout flash and saved vendor bootcmd, no-input hardware power cycle reached Armbian login via U-Boot 2026.10 and Linux 6.18.63 #3.",
   "authenticated_armbian_login": true,
@@ -123,7 +127,7 @@
       "deferred_probes": 0,
       "vbus": "PL6 output high, regulator enabled",
       "hub": "1a40:0101, 4 ports, high-speed 480 Mbps",
-      "hub_port_status": "all 4 ports report power; no downstream connect at observation",
+      "hub_port_status": "Port 3 enumerates 0bda:0316 reader at 480 Mbps; other ports untested",
       "dma": "DMA zone 0x40000000..0xffffffff; DMA32 zone empty because DMA already covers the 32-bit range",
       "not_validated": [
         "USB storage read/write",
@@ -131,9 +135,31 @@
         "OHCI full/low-speed traffic",
         "USB0 OTG",
         "USB3"
-      ]
+      ],
+      "reader": {
+        "id": "0bda:0316",
+        "path": "1-1.3",
+        "driver": "usb-storage",
+        "scsi": "Generic- SD/MMC 1.00",
+        "block_device": "sda",
+        "capacity_bytes": 0,
+        "medium": "No TF card fitted, confirmed by user; no storage I/O result"
+      },
+      "fat_charset": {
+        "modules": "nls_cp437 and nls_iso8859_1 built from official Linux sources and loaded in RAM",
+        "persistent": false,
+        "full_kernel_rebuilt": false,
+        "next_build_flags": [
+          "NLS_CODEPAGE_437",
+          "NLS_ISO8859_1",
+          "FAT_DEFAULT_UTF8"
+        ],
+        "fat_mount_tested": false
+      }
     },
     "systemd_failed_units": 0,
     "packaged_kernel_uncompressed_sha256": "a4d95f771d1237fae125d59127d3d0f7d212bc5b4271a7f0be2bc1b09cc7a7b6"
-  }
+  },
+  "schematic_review": "docs/HARDWARE_MAP.md",
+  "main_pio_candidate": "Register layout corrected and compile-only validated; not part of installed v4 or default build"
 }

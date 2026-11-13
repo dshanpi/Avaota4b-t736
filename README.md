@@ -10,7 +10,7 @@
 | Linux | 官方 v6.18.63 + 独立板级代码；8 CPU、串口、eMMC PIO、ext4 根系统已运行 |
 | Armbian | 26.11.0-trunk.128，Debian 13 Trixie minimal；已完成无输入冷启动及 root shell 登录 |
 | v3 运行时修复 | 内核包 6.18.63-3；真实 tmpfs、IPv4 组播依赖和 initramfs fsck 已实板验证；systemd 失败单元为 0 |
-| USB1 首版 | 时钟/复位、R-PIO PL6 VBUS、USB2 PHY、主线 EHCI/OHCI 和低地址 DMA 配置已编译成 6.18.63-4；已无输入启动；控制器及 480 Mbps 四口 Hub 枚举通过，下游设备 I/O 待验证 |
+| USB1 首版 | 时钟/复位、R-PIO PL6 VBUS、USB2 PHY、主线 EHCI/OHCI 和低地址 DMA 配置已编译成 6.18.63-4；已无输入启动；控制器、480 Mbps 四口 Hub 和 Realtek 读卡器枚举通过；读卡器为空，存储 I/O 待验证 |
 
 eMMC 当前是 **12 MHz、8-bit PIO**；没有高速/DMA 或全面压力测试结论。8 GiB 内存完成识别和高地址抽测，没有完整稳定性认证。
 PCIe、网卡、Wi-Fi、蓝牙、HDMI 尚未验证支持。USB 控制器探测、真实设备枚举与 I/O 必须分别记录，不能用编译成功代替外设可用。
@@ -45,3 +45,5 @@ root 密码已恢复为用户指定值，项目与备份不记录密码。
 构建机工程为 `/home/ubuntu/t736-mainline`。Tina SDK `/home/ubuntu/t736-aiot/tina` 只读参考，不在其目录构建或改代码。
 Windows 文件名大小写冲突，因此 Linux 使用远端独立官方源码副本构建。
 不导入瑞莎仓库、DTS、补丁、镜像、固件或衍生实现。厂家二进制和系统镜像不随源码备份发布。
+
+原理图接线、装配选项及主 PIO 候选修正见 `docs/HARDWARE_MAP.md`；主 PIO 修正仅完成宿主验证，当前实板仍是内核包 6.18.63-4。

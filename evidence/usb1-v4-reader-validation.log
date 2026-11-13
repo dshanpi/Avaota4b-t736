@@ -1,0 +1,195 @@
+Derived from usb1-v4-storage.log; raw SHA256 a3f2063fcf1786c71d19d624b2f933c3bdebf6ee53776ff6609d5f0a46be5c07
+ANSI/CR normalized; USB serial identifier redacted.
+User later confirmed that no TF card is fitted. No storage write/read test performed.
+
+lsusb -t; lsblk -b -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS; dmesg | tail -24; cat /sys 
+/class/block/sda/size; blockdev --getsize64 /dev/sda
+
+/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=ehci-platform/1p, 480M
+    |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 480M
+        |__ Port 003: Dev 003, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+/:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=ohci-platform/1p, 12M
+NAME                SIZE TYPE FSTYPE MOUNTPOINTS
+sda                    0 disk        
+mmcblk0      62537072640 disk        
+├─mmcblk0p1     33554432 part vfat   
+├─mmcblk0p2     16777216 part        
+├─mmcblk0p3    100663296 part        
+├─mmcblk0p4   7802716160 part ext4   /
+├─mmcblk0p5     16777216 part        
+└─mmcblk0p6  54528818688 part        
+mmcblk0boot0     4194304 disk        
+mmcblk0boot1     4194304 disk        
+[    8.659711] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[    8.665961] systemd[1]: Finished modprobe@fuse.service - Load Kernel Module fuse.
+[    8.687839] systemd[1]: Finished systemd-modules-load.service - Load Kernel Modules.
+[    8.710829] systemd[1]: Mounting sys-fs-fuse-connections.mount - FUSE Control File System...
+[    8.733980] systemd[1]: Mounting sys-kernel-config.mount - Kernel Configuration File System...
+[    8.758388] systemd[1]: systemd-fsck-root.service - File System Check on Root Device skipped, unmet condition check ConditionPathExists=!/run/initramfs/fsck-root
+[    8.789025] systemd[1]: Starting systemd-remount-fs.service - Remount Root and Kernel File Systems...
+[    8.814312] systemd[1]: Starting systemd-sysctl.service - Apply Kernel Variables...
+[    8.842266] systemd[1]: Mounted sys-fs-fuse-connections.mount - FUSE Control File System.
+[    8.865532] systemd[1]: Mounted sys-kernel-config.mount - Kernel Configuration File System.
+[    8.920307] systemd-journald[229]: Collecting audit messages is disabled.
+[    8.926084] systemd[1]: Finished systemd-udev-load-credentials.service - Load udev Rules from Credentials.
+[    8.934295] EXT4-fs (mmcblk0p4): re-mounted 0694d921-75c3-44e2-85f5-03c2f6f0e139.
+[    8.963638] systemd[1]: Finished systemd-remount-fs.service - Remount Root and Kernel File Systems.
+[    8.987027] systemd[1]: Started systemd-journald.service - Journal Service.
+[    9.192449] systemd-journald[229]: Received client request to flush runtime journal.
+[   10.430208] random: crng init done
+[   18.122162] systemd-journald[229]: Received client request to relinquish /var/log/journal/644e54b3be754d4a9f5e7ed72f1a1c56 access.
+[ 2818.982183] usb 1-1.3: new high-speed USB device number 3 using ehci-platform
+[ 2819.217525] usb-storage 1-1.3:1.0: USB Mass Storage device detected
+[ 2819.225196] scsi host0: usb-storage 1-1.3:1.0
+[ 2820.240204] scsi 0:0:0:0: Direct-Access     Generic- SD/MMC           1.00 PQ: 0 ANSI: 4
+[ 2820.248934] sd 0:0:0:0: [sda] Media removed, stopped polling
+[ 2820.274338] sd 0:0:0:0: [sda] Attached SCSI removable disk
+0
+blockdev: cannot open /dev/sda: No medium found
+root@t736:~# readlink -f /sys/class/block/sda/device; printf '1\n' > /sys/class/block/sda/device 
+/rescan; udevadm settle; lsblk -b -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS /dev/sda; dmesg | tail -1 
+8
+
+/sys/devices/platform/4200000.usb/usb1/1-1/1-1.3/1-1.3:1.0/host0/target0:0:0/0:0:0:0
+NAME SIZE TYPE FSTYPE MOUNTPOINTS
+sda     0 disk        
+[    8.789025] systemd[1]: Starting systemd-remount-fs.service - Remount Root and Kernel File Systems...
+[    8.814312] systemd[1]: Starting systemd-sysctl.service - Apply Kernel Variables...
+[    8.842266] systemd[1]: Mounted sys-fs-fuse-connections.mount - FUSE Control File System.
+[    8.865532] systemd[1]: Mounted sys-kernel-config.mount - Kernel Configuration File System.
+[    8.920307] systemd-journald[229]: Collecting audit messages is disabled.
+[    8.926084] systemd[1]: Finished systemd-udev-load-credentials.service - Load udev Rules from Credentials.
+[    8.934295] EXT4-fs (mmcblk0p4): re-mounted 0694d921-75c3-44e2-85f5-03c2f6f0e139.
+[    8.963638] systemd[1]: Finished systemd-remount-fs.service - Remount Root and Kernel File Systems.
+[    8.987027] systemd[1]: Started systemd-journald.service - Journal Service.
+[    9.192449] systemd-journald[229]: Received client request to flush runtime journal.
+[   10.430208] random: crng init done
+[   18.122162] systemd-journald[229]: Received client request to relinquish /var/log/journal/644e54b3be754d4a9f5e7ed72f1a1c56 access.
+[ 2818.982183] usb 1-1.3: new high-speed USB device number 3 using ehci-platform
+[ 2819.217525] usb-storage 1-1.3:1.0: USB Mass Storage device detected
+[ 2819.225196] scsi host0: usb-storage 1-1.3:1.0
+[ 2820.240204] scsi 0:0:0:0: Direct-Access     Generic- SD/MMC           1.00 PQ: 0 ANSI: 4
+[ 2820.248934] sd 0:0:0:0: [sda] Media removed, stopped polling
+[ 2820.274338] sd 0:0:0:0: [sda] Attached SCSI removable disk
+root@t736:~# command -v usbreset; readlink /sys/bus/usb/devices/1-1.3:1.0/driver; lsusb -v -d 0b 
+da:0316 | head -65; cat /sys/block/sda/events /sys/block/sda/events_poll_msecs
+
+/usr/bin/usbreset
+../../../../../../../bus/usb/drivers/usb-storage
+
+Bus 001 Device 003: ID 0bda:0316 Realtek Semiconductor Corp. Card Reader
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.10
+  bDeviceClass            0 [unknown]
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 
+  bMaxPacketSize0        64
+  idVendor           0x0bda Realtek Semiconductor Corp.
+  idProduct          0x0316 Card Reader
+  bcdDevice            2.04
+  iManufacturer           1 Generic
+  iProduct                2 USB3.0-CRW
+  iSerial                 3 [redacted]
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0020
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          4 CARD READER
+    bmAttributes         0x80
+      (Bus Powered)
+    MaxPower              500mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass         8 Mass Storage
+      bInterfaceSubClass      6 SCSI
+      bInterfaceProtocol     80 Bulk-Only
+      iInterface              5 Bulk-In, Bulk-Out, Interface
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x01  EP 1 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+Binary Object Store Descriptor:
+  bLength                 5
+  bDescriptorType        15
+  wTotalLength       0x0016
+  bNumDeviceCaps          2
+  USB 2.0 Extension Device Capability:
+    bLength                 7
+media_change
+-1
+root@t736:~# usbreset 001/003; printf '1\n' > /sys/class/block/sda/device/rescan; udevadm settle 
+; lsblk -b -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS /dev/sda; dmesg | tail -14
+
+usb 1-1.3: reset high-speed USB device number 3 using ehci-platform
+Resetting USB3.0-CRW ... ok
+NAME SIZE TYPE FSTYPE MOUNTPOINTS
+sda     0 disk        
+[    8.926084] systemd[1]: Finished systemd-udev-load-credentials.service - Load udev Rules from Credentials.
+[    8.934295] EXT4-fs (mmcblk0p4): re-mounted 0694d921-75c3-44e2-85f5-03c2f6f0e139.
+[    8.963638] systemd[1]: Finished systemd-remount-fs.service - Remount Root and Kernel File Systems.
+[    8.987027] systemd[1]: Started systemd-journald.service - Journal Service.
+[    9.192449] systemd-journald[229]: Received client request to flush runtime journal.
+[   10.430208] random: crng init done
+[   18.122162] systemd-journald[229]: Received client request to relinquish /var/log/journal/644e54b3be754d4a9f5e7ed72f1a1c56 access.
+[ 2818.982183] usb 1-1.3: new high-speed USB device number 3 using ehci-platform
+[ 2819.217525] usb-storage 1-1.3:1.0: USB Mass Storage device detected
+[ 2819.225196] scsi host0: usb-storage 1-1.3:1.0
+[ 2820.240204] scsi 0:0:0:0: Direct-Access     Generic- SD/MMC           1.00 PQ: 0 ANSI: 4
+[ 2820.248934] sd 0:0:0:0: [sda] Media removed, stopped polling
+[ 2820.274338] sd 0:0:0:0: [sda] Attached SCSI removable disk
+[ 2959.274195] usb 1-1.3: reset high-speed USB device number 3 using ehci-platform
+root@t736:~# printf '1-1.3:1.0\n' > /sys/bus/usb/drivers/usb-storage/unbind; printf '1-1.3:1.0\n 
+' > /sys/bus/usb/drivers/usb-storage/bind; udevadm settle
+
+usb-storage 1-1.3:1.0: USB Mass Storage device detected
+scsi host0: usb-storage 1-1.3:1.0
+root@t736:~# scsi 0:0:0:0: Direct-Access     Generic- SD/MMC           1.00 PQ: 0 ANSI: 4
+sd 0:0:0:0: [sda] Media removed, stopped polling
+sd 0:0:0:0: [sda] Attached SCSI removable disk
+insmod /tmp/t736-transfer/nls_cp437.ko && insmod /tmp/t736-transfer/nls_iso8859-1.ko; lsmod; lsblk -b -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS /dev/sda; dmesg | tail -12
+
+nls_cp437: loading out-of-tree module taints kernel.
+Module                  Size  Used by
+nls_iso8859_1          12288  0
+nls_cp437              16384  0
+NAME SIZE TYPE FSTYPE MOUNTPOINTS
+sda     0 disk        
+[ 2819.217525] usb-storage 1-1.3:1.0: USB Mass Storage device detected
+[ 2819.225196] scsi host0: usb-storage 1-1.3:1.0
+[ 2820.240204] scsi 0:0:0:0: Direct-Access     Generic- SD/MMC           1.00 PQ: 0 ANSI: 4
+[ 2820.248934] sd 0:0:0:0: [sda] Media removed, stopped polling
+[ 2820.274338] sd 0:0:0:0: [sda] Attached SCSI removable disk
+[ 2959.274195] usb 1-1.3: reset high-speed USB device number 3 using ehci-platform
+[ 2985.590708] usb-storage 1-1.3:1.0: USB Mass Storage device detected
+[ 2985.596060] scsi host0: usb-storage 1-1.3:1.0
+[ 2986.608192] scsi 0:0:0:0: Direct-Access     Generic- SD/MMC           1.00 PQ: 0 ANSI: 4
+[ 2986.616818] sd 0:0:0:0: [sda] Media removed, stopped polling
+[ 2986.634339] sd 0:0:0:0: [sda] Attached SCSI removable disk
+[ 3150.730994] nls_cp437: loading out-of-tree module taints kernel.
+root@t736:~# 

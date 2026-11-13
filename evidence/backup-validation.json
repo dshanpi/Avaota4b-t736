@@ -18,5 +18,22 @@
     "private_key_and_token_pattern_scan": "passed",
     "large_images_and_vendor_binaries_not_included": true
   },
-  "hardware_evidence": "docs/VALIDATION.md and status.json"
+  "hardware_evidence": "docs/VALIDATION.md and status.json",
+  "schematic_review_update": {
+    "time_utc": "2026-11-13T05:17:49.737453+00:00",
+    "host_tests": "43 passed",
+    "candidate_register_helper_checks": 85,
+    "candidate_arm64_objects": [
+      "pinctrl-sunxi.o",
+      "pinctrl-t736.o",
+      "pinctrl-t736-r.o"
+    ],
+    "candidate_checkpatch": "0 errors, 0 warnings with --no-signoff for unsigned local candidate",
+    "default_kernel_core_unchanged": true,
+    "board_kernel_replaced": false,
+    "board_runtime": "v4; reader port 3 at 480 Mbps, empty media confirmed; 0 failed systemd units",
+    "public_files": 92,
+    "original_vendor_pdfs_published": false,
+    "public_secret_pattern_scan": "passed"
+  }
 }

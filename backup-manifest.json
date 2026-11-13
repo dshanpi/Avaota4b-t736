@@ -2,7 +2,7 @@
   "date": "2026-11-13",
   "timezone": "Asia/Shanghai",
   "repository": "https://github.com/dshanpi/Avaota4b-t736",
-  "base_commit": "a45a42839ed5db6d25f9e9ae5f29b0fd9decd06d",
+  "base_commit": "d7ec09226430bfd0eac1f7b3a06e54b97b54cc6a",
   "purpose": "Recovered mainline Armbian runtime and initial USB1 board port; incomplete peripherals and persistent handoff",
   "manifest_excludes_itself": true,
   "log_processing": "UTF-8/LF normalization and ANSI/backspace removal; failure text retained",
@@ -51,9 +51,9 @@
     },
     {
       "path": "boards/pinctrl-t736.c",
-      "bytes": 1301,
-      "sha256": "4a95f8580f83eb480c6c4855b55161e17f2d14c8afe21cc3cdf046e31c161e6a",
-      "git_blob_sha": "1d65237f06f518cc7a6aae1c8ea6ea0c7f733638",
+      "bytes": 1593,
+      "sha256": "c3dd06badc75725f6292235e66d820a6cf93973d53805db1ab4f4029e930f1c7",
+      "git_blob_sha": "ab53491d9f77e18ed6d2b6c622c8653fe04c9b69",
       "mode": "100644"
     },
     {
@@ -93,9 +93,9 @@
     },
     {
       "path": "config/patch-ledger.json",
-      "bytes": 5506,
-      "sha256": "474423d0634d58f61074a89012bfe14349a9379b1ae081f1c35774d12e3049e3",
-      "git_blob_sha": "686d10df6273fbd30490c23ba5ab5ae04190411b",
+      "bytes": 6535,
+      "sha256": "68b77ff5cc89af143f12b32ef2d8761d615263e876d0079ed648f3cf640778b2",
+      "git_blob_sha": "68ae9f5dc6c54caa2baf1ed49e8719f94bb67686",
       "mode": "100644"
     },
     {
@@ -127,17 +127,24 @@
       "mode": "100644"
     },
     {
+      "path": "docs/HARDWARE_MAP.md",
+      "bytes": 6021,
+      "sha256": "71afd3bdde31239f8c28937c43f995de082011eb014f4a5e646305c03424844d",
+      "git_blob_sha": "53b3e00d6333af0bc544b0fd40f8ab422a146a2e",
+      "mode": "100644"
+    },
+    {
       "path": "docs/USB1.md",
-      "bytes": 3327,
-      "sha256": "25607f77dc828074f0d4faec0bd19ac373460dd3dc02344bfb1b83e44b73ace8",
-      "git_blob_sha": "2410c44e15ecb15ca656039a9ff6918c632bf567",
+      "bytes": 3819,
+      "sha256": "932bcbceb3e586fe13ccee4cb7d39d53cc254ccc628d7806cc48969b83b6c156",
+      "git_blob_sha": "aa7c5dcb371f62961ba377bbe5dbb15d5a972cbb",
       "mode": "100644"
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 3570,
-      "sha256": "f75abe763289def1fd14e267b14947c4bb3156f2e8ecb61666834c9a51636d12",
-      "git_blob_sha": "7ec2944172170ca4ab355548d2a3c77ccb2cf4fe",
+      "bytes": 4220,
+      "sha256": "3d8cb1bb36acb720ce42f63b837a8561b1f852e8486dddbf472298d7b65e6fa8",
+      "git_blob_sha": "6aa9e317dc0fb85f18b59f559120c8bfde84d99b",
       "mode": "100644"
     },
     {
@@ -156,9 +163,9 @@
     },
     {
       "path": "evidence/backup-validation.json",
-      "bytes": 910,
-      "sha256": "c24f1847cb2c5062b2a9f8e466e95b3643e4d10a8d035487e3e17b1553a3fbc3",
-      "git_blob_sha": "6f712316e08b26dbff7963a50eadaea1fa97c0b3",
+      "bytes": 1578,
+      "sha256": "a119f9493dd4b76a3353444c5124b81caa9c480e31b4eba520cdc30056f79fec",
+      "git_blob_sha": "26ad5c162b268a4ad91d16cbf006418b67065813",
       "mode": "100644"
     },
     {
@@ -177,9 +184,9 @@
     },
     {
       "path": "evidence/ethernet-reference-audit.json",
-      "bytes": 3274,
-      "sha256": "8ad352007669133633f5aa49236f68cb1c4f1975f44177cd4ec09b6cb95b86d1",
-      "git_blob_sha": "8ead609db28615374134bd1274214b708277a1ea",
+      "bytes": 3995,
+      "sha256": "b9f1a258e901867c3fae7ffb54a4827affdf55bcbf9b866768486f90df08015b",
+      "git_blob_sha": "0d6ce4198ec396bf7922dea56e138af4007bb11e",
       "mode": "100644"
     },
     {
@@ -225,6 +232,13 @@
       "mode": "100644"
     },
     {
+      "path": "evidence/pio-layout-candidate-build.log",
+      "bytes": 1038,
+      "sha256": "91881f821e5c3316572e389262183b97c20853aa5674b46b2953a4dc6b662a77",
+      "git_blob_sha": "28ab068d6d98320c7f49dce3c979627059c0f187",
+      "mode": "100644"
+    },
+    {
       "path": "evidence/runtime-v3-layout-incident.json",
       "bytes": 2023,
       "sha256": "3edfbf0f0f6a140833db84916168bd676d1ad11ef2286198862d322823d36f71",
@@ -250,6 +264,13 @@
       "bytes": 251,
       "sha256": "cd7acaf5eea750628fbf7b69d03e979773edf3bf3c0cdab3fb0051a3178e65de",
       "git_blob_sha": "f0a4a7e15facc8d36a88039a1549361896e6d72a",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/schematic-review-runtime.log",
+      "bytes": 657,
+      "sha256": "41d1ecf4faa8447832ebc6a9359a51c4bdccf413d789f30e572ef41d524c1900",
+      "git_blob_sha": "23173e34298ab9ed5c159a5e2b7edb929cf9ed02",
       "mode": "100644"
     },
     {
@@ -299,6 +320,13 @@
       "bytes": 2046,
       "sha256": "31dccaecb97cd29f955bba4e1c3ac616a75cadca6a73ed3f5e0e6104e8a34469",
       "git_blob_sha": "12ce8dc882d9b67d7a66165c1dd8a5d7a96968b9",
+      "mode": "100644"
+    },
+    {
+      "path": "evidence/usb1-v4-reader-validation.log",
+      "bytes": 10795,
+      "sha256": "055adaa319651aeae70bfb8c913c10c6c04e1fd482359127998cfb0427b99e5b",
+      "git_blob_sha": "d91a259fb6f21ec9c6f9368a6df1a6051024dc1a",
       "mode": "100644"
     },
     {
@@ -358,17 +386,24 @@
       "mode": "100644"
     },
     {
+      "path": "patches/linux/0002-t736-main-pio-layout.patch",
+      "bytes": 4665,
+      "sha256": "bf891a0283341fd2ba9cc3f6a883d651f9146d3d0e231d48e3ea792a11fff580",
+      "git_blob_sha": "c54565dc721396030f35862f035f18b64b8d0806",
+      "mode": "100644"
+    },
+    {
       "path": "README.md",
-      "bytes": 3598,
-      "sha256": "b7aaaed8984e0a40fdb80d24b2796416253962bb4203fb97464cad1a6db79919",
-      "git_blob_sha": "e3569b17eee79b7c58213e96a247177c73f8a6dc",
+      "bytes": 3792,
+      "sha256": "2890b2d8950d191964320017e19b66951105f959509aef143661f5035a5f2347",
+      "git_blob_sha": "0fad9304ade80059d3d25748f97164b1ac77c9d7",
       "mode": "100644"
     },
     {
       "path": "status.json",
-      "bytes": 6292,
-      "sha256": "1eceadf0a21fddc08810a6a922a1f9816a6a9754bb110e7b9ad6dbcfeabd99f5",
-      "git_blob_sha": "4cdb3f6e5dfa0e9860896eb915b6a48a229a663b",
+      "bytes": 7492,
+      "sha256": "f6ba1401b8aed9e0411d9bfd30fc3e6c44b16688a61f70cdb1739d82ed90783c",
+      "git_blob_sha": "b27fde49bc0729a91347135b92eecced1598efe4",
       "mode": "100644"
     },
     {
@@ -422,9 +457,9 @@
     },
     {
       "path": "tools/build_armbian_kernel.sh",
-      "bytes": 4271,
-      "sha256": "e8f5db98974cfe6073c8d40a5823734bb68ef3ad525e02b404d9bfeaf5414e32",
-      "git_blob_sha": "938ddb138d8bdd940a7b0113a3a49eea465a1a62",
+      "bytes": 4322,
+      "sha256": "3a9e63734f63249c9740bb9c76fb0d096d00d052fbf86f5677ef2b67ad8650f6",
+      "git_blob_sha": "b20771ccc5e88a0f6077ced70ba995ac7dee0b28",
       "mode": "100644"
     },
     {
@@ -456,6 +491,13 @@
       "mode": "100644"
     },
     {
+      "path": "tools/build_pio_candidate.sh",
+      "bytes": 1220,
+      "sha256": "ed3057731462a6e9a4f8789ada8a3a1518d1e30bad78b8556a33eb24ec2d7045",
+      "git_blob_sha": "fd64cda8df5d6f92b95df808ee0ba2652acd0693",
+      "mode": "100644"
+    },
+    {
       "path": "tools/build_runtime_initrd.sh",
       "bytes": 1472,
       "sha256": "a6ebe473035326a555e82f62397b6951e0d8bfa57b2f0e9ef68a30dac41c0b09",
@@ -463,10 +505,24 @@
       "mode": "100644"
     },
     {
+      "path": "tools/build_usb_fs_helpers.sh",
+      "bytes": 712,
+      "sha256": "5782a7f05aebdae808589c0319ba246c19fb0e400fc48a06cc65b5356d3b116b",
+      "git_blob_sha": "fe88075faa5fe3761bc0f9de42cc58d95e02bcb2",
+      "mode": "100644"
+    },
+    {
       "path": "tools/check_kernel_config.py",
       "bytes": 1965,
       "sha256": "ca9993040af04baa8484fa94906ee3c59dd785d239354540d7a41b03b2f23068",
       "git_blob_sha": "6ce9c8f810412e179835ac01f50b56d7a01b4a18",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/check_pio_layout.py",
+      "bytes": 5486,
+      "sha256": "573e81107b2976eb8012491a37e773788370dc6e3a77695feecc9d57c0b44fca",
+      "git_blob_sha": "cb0f69bc33cb49f0d126ba964229a06409aeeef1",
       "mode": "100644"
     },
     {

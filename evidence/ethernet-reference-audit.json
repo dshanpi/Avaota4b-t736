@@ -57,7 +57,7 @@
     "Use host_dma_width=32 with low DMA zones",
     "Split-header feature disabled in board vendor reference",
     "Separate TX0/RX0 interrupt routing must be wired into upstream stmmac resources",
-    "Do not reserve main PIO MMIO before removing conflicting eMMC direct pinmux resource",
+    "Do not reserve main PIO MMIO before removing conflicting eMMC PC direct pinmux resource",
     "Pin-bank voltage and PLL parent setup must be verified; no claim of independent PMIC/clock tree"
   ],
   "sources": [
@@ -65,11 +65,12 @@
     "read-only Tina bsp/drivers/stmmac/dwmac-sunxi.c/.h",
     "read-only Tina bsp/drivers/clk/sunxi-ng/ccu-sun60iw2.c",
     "read-only Tina bsp/drivers/pinctrl/pinctrl-sun60iw2.c",
-    "official Linux v6.18.63 stmmac interfaces"
+    "official Linux v6.18.63 stmmac interfaces",
+    "Reference schematics correlated in docs/HARDWARE_MAP.md; no mainline Ethernet hardware success"
   ],
   "main_pio_candidate": {
     "source": "boards/pinctrl-t736.c",
-    "compile": "single object compiled against Linux 6.18.63",
+    "compile": "Corrected core layout, main PIO and unchanged R-PIO objects compiled against Linux 6.18.63; 85 host register checks passed",
     "runtime": "not enabled in USB1 v4; no hardware validation",
     "resource": {
       "base": "0x02000000",
@@ -99,7 +100,20 @@
       "J": 28,
       "K": 26
     },
-    "integration_requirement": "Move current eMMC PI mux ownership from direct MMIO to pinctrl before enabling this full PIO resource"
+    "integration_requirement": "Move eMMC PC pins from direct MMIO at 0x02000180 to pinctrl; use corrected 0x80-stride main PIO layout (not D1 NEW_REG_LAYOUT)",
+    "register_layout": {
+      "bank_offset": "0x80",
+      "bank_stride": "0x80",
+      "drive_offset": "0x20",
+      "pull_offset": "0x30",
+      "irq_offset": "0xc0",
+      "irq_stride": "0x80",
+      "PC_CFG0": "0x180",
+      "PH_CFG0": "0x400",
+      "PK_CFG0": "0x580"
+    },
+    "correction": "Previous candidate incorrectly used D1 NEW_REG_LAYOUT. Previous PI description was wrong: eMMC uses PC; existing eMMC register address was correct.",
+    "patch": "patches/linux/0002-t736-main-pio-layout.patch"
   },
   "dwmac_candidate": {
     "source": "boards/dwmac-t736.c",

@@ -1,0 +1,20 @@
+PASS: 85 register/shift/mask checks; T736 main PIO, R-PIO, legacy and D1
+PIO_CANDIDATE_COMPILE_PASS
+bf891a0283341fd2ba9cc3f6a883d651f9146d3d0e231d48e3ea792a11fff580  patches/linux/0002-t736-main-pio-layout.patch
+c3dd06badc75725f6292235e66d820a6cf93973d53805db1ab4f4029e930f1c7  boards/pinctrl-t736.c
+b980178ef3c49fbd171df7d2031eaa8765ec65e39612dba1c8d354c3ba9b5200  build/linux-pio-audit/drivers/pinctrl/sunxi/pinctrl-t736.o
+DEFAULT_CORE_UNCHANGED
+ERROR: Missing Signed-off-by: line(s)
+
+total: 1 errors, 0 warnings, 113 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or --fix-inplace.
+
+patches/linux/0002-t736-main-pio-layout.patch has style problems, please review.
+
+NOTE: If any of the errors are false positives, please report
+      them to the maintainer, see CHECKPATCH in MAINTAINERS.
+total: 0 errors, 0 warnings, 113 lines checked
+
+patches/linux/0002-t736-main-pio-layout.patch has no obvious style problems and is ready for submission.

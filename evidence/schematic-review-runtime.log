@@ -1,0 +1,16 @@
+printf 'SCHEMATIC_REVIEW_RUNTIME\n'; uname -r; lsusb -t; cat /sys/class/block/sda/size; lsmod | head -8; systemctl --failed --no-pager
+
+SCHEMATIC_REVIEW_RUNTIME
+6.18.63-t736-armbian
+/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=ehci-platform/1p, 480M
+    |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 480M
+        |__ Port 003: Dev 003, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+/:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=ohci-platform/1p, 12M
+0
+Module                  Size  Used by
+nls_iso8859_1          12288  0
+nls_cp437              16384  0
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+root@t736:~# 

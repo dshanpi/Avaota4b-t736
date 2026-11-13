@@ -38,7 +38,7 @@ DTB SHA256：`40ece1d8d9682477bdc892817696f93b5a162015e79b47a9b24c7cb72c39450a`�
 - DMA zone 覆盖 0x40000000..0xffffffff；DMA32 zone 为空，因为 DMA 已覆盖 32 位范围。
 - PL6 output high，usb1-vbus regulator enabled。
 - 真实 USB2 Hub `1a40:0101`（Terminus，4 口）以 480 Mbps 枚举；描述符及 Hub 端口状态控制请求成功，EHCI 中断工作。
-- Hub 四个端口报告供电，暂未报告下游连接。USB 存储/HID 通信和 OHCI 设备尚未验证；不能宣称全部 USB 端口已可用。
+- Hub 下游 port 3 已枚举 Realtek 0bda:0316 读卡器（1-1.3，480 Mbps），usb-storage/SCSI 探测成功。用户确认没有 TF 卡，容量 0 和“无介质”正常；存储读写、HID、OHCI 设备仍未验证。
 - 根分区布局未改变，systemd 失败单元 0，systemd-resolved active。
 
 ## 证据
@@ -56,5 +56,11 @@ DTB SHA256：`40ece1d8d9682477bdc892817696f93b5a162015e79b47a9b24c7cb72c39450a`�
 
 ## 未完成
 
-旧运行时 U-Boot 替换、eMMC 高速/DMA、完整内存/存储压力测试、独立 PMIC/CCU、PCIe、Ethernet、Wi-Fi、蓝牙、HDMI、USB 下游设备通信、USB0/USB3、休眠与动态调频仍需实板工作。
+旧运行时 U-Boot 替换、eMMC 高速/DMA、完整内存/存储压力测试、独立 PMIC/CCU、PCIe、Ethernet、Wi-Fi、蓝牙、HDMI、USB 存储读写/HID、USB0/USB3、休眠与动态调频仍需实板工作。
 宿主测试验证解析、布局和打包逻辑，不替代硬件测试。
+
+## 原理图审计与编译验证
+
+`docs/HARDWARE_MAP.md` 记录来源哈希、PDF 页序、连线及实板验证边界。主 PIO 候选修正通过 85 项实际 C 寄存器 helper 检查以及 ARM64 core/main/R-PIO 单对象编译，尚未上板。证据：`evidence/pio-layout-candidate-build.log`。
+
+读卡器及临时 FAT 字符集模块证据：`evidence/usb1-v4-reader-validation.log`、`evidence/schematic-review-runtime.log`。两个 NLS 模块加载成功仅证明与 v4 兼容，不证明介质读写；未持久安装，下一次内核构建才包含配置修正。
