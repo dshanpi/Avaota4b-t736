@@ -38,5 +38,27 @@
     "USB",
     "board-specific CCU/pinctrl/PMIC"
   ],
-  "schematic_and_exact_pcb_revision_match": "not fully verified"
+  "schematic_and_exact_pcb_revision_match": "not fully verified",
+  "usb1_candidate": {
+    "ehci_base": "0x04200000",
+    "ohci_base": "0x04200400",
+    "phy_pmu_base": "0x04200800",
+    "gic_spi": [
+      159,
+      160
+    ],
+    "vbus_gpio": "PL6 active high",
+    "status": "v4 hardware: controllers and 480 Mbps 1a40:0101 hub passed; downstream devices not yet validated"
+  },
+  "ethernet_reference": {
+    "source": "board effective vendor FDT and read-only Tina SDK",
+    "mac_base": "0x04500000",
+    "syscfg_base": "0x04508000",
+    "ip": "DWMAC 5.20",
+    "phy_id": "001c.c916",
+    "mdio_address": 1,
+    "phy_reset": "PH16 active low",
+    "rgmii_pins": "PH0-PH15 mux5",
+    "mainline_status": "not implemented"
+  }
 }

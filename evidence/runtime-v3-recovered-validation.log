@@ -1,0 +1,40 @@
+uname -a; cat /sys/class/block/mmcblk0p4/start /sys/class/block/mmcblk0p4/size; fin 
+dmnt -o TARGET,SOURCE,FSTYPE,OPTIONS / /run /dev/shm; df -hT / /run /dev/shm; stat -f /run; syst 
+emctl --failed --no-pager; systemctl is-active systemd-resolved; journalctl -b -u systemd-resolv 
+ed --no-pager -n 12; cat /run/initramfs/fsck.log; dpkg-query -W linux-image-6.18.63-t736-armbian 
+; sync
+
+Linux t736 6.18.63-t736-armbian #3 SMP Thu Nov 12 21:53:05 EST 2026 aarch64 GNU/Linux
+368640
+15239680
+Filesystem     Type   Size  Used Avail Use% Mounted on
+/dev/mmcblk0p4 ext4   7.1G  517M  6.6G   8% /
+tmpfs          tmpfs  781M  1.3M  780M   1% /run
+tmpfs          tmpfs  3.9G     0  3.9G   0% /dev/shm
+  File: "/run"
+    ID: c383872f4b0edb36 Namelen: 255     Type: tmpfs
+Block size: 4096       Fundamental block size: 4096
+Blocks: Total: 199865     Free: 199540     Available: 199540
+Inodes: Total: 999323     Free: 998032
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+active
+Nov 11 15:47:59 t736 systemd[1]: Starting systemd-resolved.service - Network Name Resolution...
+Nov 11 15:48:01 t736 systemd-resolved[261]: Positive Trust Anchors:
+Nov 11 15:48:01 t736 systemd-resolved[261]: . IN DS 20326 8 2 e06d44b80b8f1d39a95c0b0d7c65d08458e880409bbc683457104237c7f8ec8d
+Nov 11 15:48:01 t736 systemd-resolved[261]: . IN DS 38696 8 2 683d2d0acb8c9b712a1948b27f741219298d0a450d612c483af444a4c0fb2b16
+Nov 11 15:48:01 t736 systemd-resolved[261]: Negative trust anchors: home.arpa 10.in-addr.arpa 16.172.in-addr.arpa 17.172.in-addr.arpa 18.172.in-addr.arpa 19.172.in-addr.arpa 20.172.in-addr.arpa 21.172.in-addr.arpa 22.172.in-addr.arpa 23.172.in-addr.arpa 24.172.in-addr.arpa 25.172.in-addr.arpa 26.172.in-addr.arpa 27.172.in-addr.arpa 28.172.in-addr.arpa 29.172.in-addr.arpa 30.172.in-addr.arpa 31.172.in-addr.arpa 170.0.0.192.in-addr.arpa 171.0.0.192.in-addr.arpa 168.192.in-addr.arpa d.f.ip6.arpa ipv4only.arpa resolver.arpa corp home internal intranet lan local private test
+Nov 11 15:48:07 t736 systemd-resolved[261]: Using system hostname 't736'.
+Nov 11 15:48:07 t736 systemd[1]: Started systemd-resolved.service - Network Name Resolution.
+Log of fsck -C -a -V -t ext4 /dev/mmcblk0p4 
+Thu Jan  1 00:00:04 1970
+
+fsck from util-linux 2.41.5
+[/sbin/fsck.ext4 (1) -- /dev/mmcblk0p4] fsck.ext4 -a -C0 /dev/mmcblk0p4 
+rootfs: clean, 21359/476720 files, 184697/1904960 blocks
+
+Thu Jan  1 00:00:04 1970
+----------------
+linux-image-6.18.63-t736-armbian	6.18.63-3
+root@t736:~# 

@@ -22,7 +22,7 @@
       "source": "userpatches/u-boot/u-boot-t736-mainline/0001-t736-uart-memory-mmc.patch",
       "sha256": "378d2bf542bdfbc470caede39f856b45a4231aaa01941a0bb5899b367c06a923",
       "author": "Project-local implementation with Codex assistance",
-      "license": "GPL-2.0-or-later (retain per-file SPDX notices)",
+      "license": "GPL-2.0-only",
       "independently_authored": true,
       "derived_from": [
         "Official upstream framework APIs",
@@ -30,9 +30,10 @@
       ],
       "hardware_evidence": [
         "evidence/uboot-2026.10-hardware-validation.log",
-        "evidence/kernel-probe-v2-uboot.log"
+        "evidence/kernel-probe-v2-uboot.log",
+        "evidence/runtime-v3-recovered-coldboot-auto.log"
       ],
-      "validation": "Compiled and booted on T736; UART, memory and eMMC initial PIO path passed. Peripheral and persistent handoff work remains. Latest compressed kernel bootcommand fix compiled; runtime validation pending.",
+      "validation": "Compiled and cold-booted without input through compressed kernel, initrd and DTB to Armbian login; vendor U-Boot 2018.07 remains.",
       "upstream_status": "Local experimental patch; not submitted upstream"
     },
     {
@@ -40,7 +41,7 @@
       "component": "linux",
       "base_commit": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
       "source": "userpatches/kernel/t736-mainline-6.18/0001-t736-minimal-board.patch",
-      "sha256": "815aaecc7a694741b57880343030392102319760edb0700a9c5236097f38da68",
+      "sha256": "b395c01185280d925058f93f1589c05979de6943ae74ea467a1b22b6a86b843b",
       "author": "Project-local implementation with Codex assistance",
       "license": "GPL-2.0-only",
       "independently_authored": true,
@@ -52,9 +53,12 @@
         "evidence/linux-6.18.63-v2-firstboot.log",
         "evidence/linux-6.18.63-v2-emmc.log",
         "evidence/linux-6.18.63-v2-emmc-write.log",
-        "evidence/armbian-6.18.63-firstboot.log"
+        "evidence/armbian-6.18.63-firstboot.log",
+        "evidence/runtime-v3-recovered-validation.log",
+        "evidence/usb1-v4-validation.log",
+        "evidence/usb1-v4-hub-status.log"
       ],
-      "validation": "Compiled and booted on T736; UART, memory and eMMC initial PIO path passed. Peripheral and persistent handoff work remains.",
+      "validation": "v3 runtime fixes and v4 unattended cold boot passed. USB1 clock/pinctrl/PHY and EHCI/OHCI bound; 1a40:0101 hub at 480 Mbps, control requests and EHCI IRQs passed. Downstream USB devices and other peripherals unvalidated.",
       "upstream_status": "Local experimental patch; not submitted upstream"
     },
     {
@@ -113,5 +117,5 @@
       "status": "Transitional dependency"
     }
   ],
-  "implementation_state": "Mainline Armbian booted from eMMC to systemd multi-user.target and serial login. Persistent handoff, DNS failure and peripheral work remain."
+  "implementation_state": "Armbian recovered; v3/v4 unattended cold boot passed. USB1 controllers and real 480 Mbps hub communication passed. Downstream devices, other peripherals and independent persistent handoff remain."
 }

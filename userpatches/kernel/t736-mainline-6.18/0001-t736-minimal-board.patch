@@ -8,9 +8,10 @@ diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwin
 +
 +dtb-y += t736-mainline-bringup.dtb
 diff --git a/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts b/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
+new file mode 100644
 --- /dev/null
 +++ b/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
-@@ -0,0 +1,82 @@
+@@ -0,0 +1,162 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/dts-v1/;
 +
@@ -70,6 +71,86 @@ diff --git a/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts b/arch/arm6
 +		clock-frequency = <24000000>;
 +	};
 +
++	dcxo: dcxo {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <26000000>;
++	};
++
++	osc32k: osc32k {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++	};
++
++	/* The R-APB gate and bank voltages remain initialized by firmware.
++	 * osc24m is a temporary APB clock handle, not a measured bus rate.
++	 */
++	r_pio: pinctrl@7025000 {
++		compatible = "allwinner,t736-r-pinctrl";
++		reg = <0 0x07025000 0 0x410>;
++		interrupts = <0 198 4>, <0 200 4>;
++		clocks = <&osc24m>, <&dcxo>, <&osc32k>;
++		clock-names = "apb", "hosc", "losc";
++		gpio-controller;
++		#gpio-cells = <3>;
++		interrupt-controller;
++		#interrupt-cells = <3>;
++		#address-cells = <0>;
++	};
++
++	usb1_vbus: regulator-usb1-vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "usb1-vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		gpio = <&r_pio 0 6 0>;
++		enable-active-high;
++		startup-delay-us = <1000>;
++	};
++
++	/* Separate resources avoid the eMMC driver's CCU register subset. */
++	usb_ccu: clock-controller@2003300 {
++		compatible = "allwinner,t736-usb-ccu";
++		reg = <0 0x02003300 0 0x50>, <0 0x020025a4 0 4>,
++		      <0 0x020025c0 0 4>;
++		clocks = <&osc24m>;
++		#clock-cells = <1>;
++		#reset-cells = <1>;
++	};
++
++	usb1_phy: phy@4200800 {
++		compatible = "allwinner,t736-usb1-phy";
++		reg = <0 0x04200800 0 0x20>;
++		clocks = <&usb_ccu 0>, <&usb_ccu 1>, <&usb_ccu 5>, <&usb_ccu 4>;
++		clock-names = "ref", "bus", "master", "msi";
++		resets = <&usb_ccu 0>;
++		#phy-cells = <0>;
++		vbus-supply = <&usb1_vbus>;
++		allwinner,phy-tuning = <0x188>;
++	};
++
++	ehci1: usb@4200000 {
++		compatible = "generic-ehci";
++		reg = <0 0x04200000 0 0x400>;
++		interrupts = <0 159 4>;
++		clocks = <&usb_ccu 1>;
++		resets = <&usb_ccu 1>;
++		phys = <&usb1_phy>;
++		phy-names = "usb";
++		companion = <&ohci1>;
++	};
++
++	ohci1: usb@4200400 {
++		compatible = "generic-ohci";
++		reg = <0 0x04200400 0 0x400>;
++		interrupts = <0 160 4>;
++		clocks = <&usb_ccu 2>, <&usb_ccu 3>;
++		resets = <&usb_ccu 2>;
++		phys = <&usb1_phy>;
++		phy-names = "usb";
++	};
++
 +	/* Initial PIO driver owns these registers until CCU/pinctrl integration. */
 +	mmc0: mmc@4023000 {
 +		compatible = "allwinner,t736-smhc3-pio";
@@ -114,6 +195,7 @@ diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
 +	tristate "T736 SMHC3 initial PIO driver"
 +	depends on OF && ARM64
 diff --git a/drivers/mmc/host/t736_mmc_pio.c b/drivers/mmc/host/t736_mmc_pio.c
+new file mode 100644
 --- /dev/null
 +++ b/drivers/mmc/host/t736_mmc_pio.c
 @@ -0,0 +1,282 @@
@@ -399,3 +481,406 @@ diff --git a/drivers/mmc/host/t736_mmc_pio.c b/drivers/mmc/host/t736_mmc_pio.c
 +module_platform_driver(t736_driver);
 +MODULE_DESCRIPTION("T736 SMHC3 initial PIO driver");
 +MODULE_LICENSE("GPL");
+diff --git a/drivers/pinctrl/sunxi/Makefile b/drivers/pinctrl/sunxi/Makefile
+--- a/drivers/pinctrl/sunxi/Makefile
++++ b/drivers/pinctrl/sunxi/Makefile
+@@ -31,3 +31,5 @@
+ obj-$(CONFIG_PINCTRL_SUN55I_A523_R)	+= pinctrl-sun55i-a523-r.o
+ obj-$(CONFIG_PINCTRL_SUN9I_A80)		+= pinctrl-sun9i-a80.o
+ obj-$(CONFIG_PINCTRL_SUN9I_A80_R)	+= pinctrl-sun9i-a80-r.o
++
++obj-$(CONFIG_PINCTRL_T736_R) += pinctrl-t736-r.o
+diff --git a/drivers/pinctrl/sunxi/Kconfig b/drivers/pinctrl/sunxi/Kconfig
+--- a/drivers/pinctrl/sunxi/Kconfig
++++ b/drivers/pinctrl/sunxi/Kconfig
+@@ -142,3 +142,8 @@
+ 	select PINCTRL_SUNXI
+ 
+ endif
++
++config PINCTRL_T736_R
++	bool "T736 always-on GPIO banks"
++	depends on ARCH_SUNXI && OF
++	select PINCTRL_SUNXI
+diff --git a/drivers/pinctrl/sunxi/pinctrl-t736-r.c b/drivers/pinctrl/sunxi/pinctrl-t736-r.c
+new file mode 100644
+--- /dev/null
++++ b/drivers/pinctrl/sunxi/pinctrl-t736-r.c
+@@ -0,0 +1,32 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* T736 always-on GPIO banks. Alternate-function tables remain board-specific. */
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/pinctrl/pinctrl.h>
++#include <linux/platform_device.h>
++#include "pinctrl-sunxi.h"
++
++static const u8 t736_r_pins[SUNXI_PINCTRL_MAX_BANKS] = { 14, 6 };
++static const u8 t736_r_muxes[SUNXI_PINCTRL_MAX_BANKS] = { 14, 14 };
++static const unsigned int t736_r_irq_map[] = { 0, 1 };
++static struct sunxi_pinctrl_desc t736_r_desc = {
++	.pin_base = PL_BASE,
++	.irq_banks = ARRAY_SIZE(t736_r_irq_map),
++	.irq_bank_map = t736_r_irq_map,
++	/* Pad supply voltage remains configured by the board PMIC firmware. */
++};
++
++static int t736_r_probe(struct platform_device *pdev)
++{
++	return sunxi_pinctrl_dt_table_init(pdev, t736_r_pins, t736_r_muxes,
++					 &t736_r_desc, SUNXI_PINCTRL_NEW_REG_LAYOUT);
++}
++
++static const struct of_device_id t736_r_match[] = {
++	{ .compatible = "allwinner,t736-r-pinctrl" }, { }
++};
++static struct platform_driver t736_r_driver = {
++	.probe = t736_r_probe,
++	.driver = { .name = "t736-r-pinctrl", .of_match_table = t736_r_match },
++};
++builtin_platform_driver(t736_r_driver);
+diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+--- a/drivers/clk/Makefile
++++ b/drivers/clk/Makefile
+@@ -168,3 +168,5 @@
+ obj-y					+= xilinx/
+ obj-$(CONFIG_ARCH_ZYNQ)			+= zynq/
+ obj-$(CONFIG_COMMON_CLK_ZYNQMP)         += zynqmp/
++
++obj-$(CONFIG_CLK_T736_USB) += clk-t736-usb.o
+diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+--- a/drivers/clk/Kconfig
++++ b/drivers/clk/Kconfig
+@@ -584,3 +584,8 @@
+ 	  Kunit test for the clk-fractional-divider type.
+ 
+ endif
++
++config CLK_T736_USB
++	bool "T736 USB1 initial clock/reset subset"
++	depends on ARCH_SUNXI && OF && COMMON_CLK
++	select RESET_CONTROLLER
+diff --git a/drivers/clk/clk-t736-usb.c b/drivers/clk/clk-t736-usb.c
+new file mode 100644
+--- /dev/null
++++ b/drivers/clk/clk-t736-usb.c
+@@ -0,0 +1,172 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Initial USB1 clock/reset subset; does not claim ownership of the whole CCU. */
++#include <linux/clk-provider.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/reset-controller.h>
++#include <linux/spinlock.h>
++
++#define N_CLOCKS 6
++#define N_RESETS 3
++
++struct t736_usb_ccu;
++struct t736_gate {
++	struct clk_hw hw;
++	struct t736_usb_ccu *ccu;
++	void __iomem *reg;
++	u32 mask, key, mux_mask;
++};
++
++struct t736_usb_ccu {
++	void __iomem *usb, *msi, *master;
++	spinlock_t lock;
++	struct reset_controller_dev reset;
++	struct t736_gate gates[N_CLOCKS];
++	struct clk_hw_onecell_data *clocks;
++};
++
++static int t736_gate_enable(struct clk_hw *hw)
++{
++	struct t736_gate *gate = container_of(hw, struct t736_gate, hw);
++	unsigned long flags;
++	u32 value;
++
++	spin_lock_irqsave(&gate->ccu->lock, flags);
++	value = readl(gate->reg);
++	/* USB reference mux value 0 selects the existing 24 MHz system clock. */
++	writel((value & ~gate->mux_mask) | gate->key | gate->mask, gate->reg);
++	spin_unlock_irqrestore(&gate->ccu->lock, flags);
++	return 0;
++}
++
++static void t736_gate_disable(struct clk_hw *hw)
++{
++	struct t736_gate *gate = container_of(hw, struct t736_gate, hw);
++	unsigned long flags;
++
++	spin_lock_irqsave(&gate->ccu->lock, flags);
++	writel((readl(gate->reg) | gate->key) & ~gate->mask, gate->reg);
++	spin_unlock_irqrestore(&gate->ccu->lock, flags);
++}
++
++static int t736_gate_enabled(struct clk_hw *hw)
++{
++	struct t736_gate *gate = container_of(hw, struct t736_gate, hw);
++
++	return !!(readl(gate->reg) & gate->mask);
++}
++
++static const struct clk_ops t736_gate_ops = {
++	.enable = t736_gate_enable,
++	.disable = t736_gate_disable,
++	.is_enabled = t736_gate_enabled,
++};
++
++static int t736_reset_update(struct reset_controller_dev *rc, unsigned long id,
++			    bool assert)
++{
++	struct t736_usb_ccu *ccu = container_of(rc, struct t736_usb_ccu, reset);
++	static const u32 offsets[] = { 0x08, 0x0c, 0x0c };
++	static const u32 masks[] = { BIT(30), BIT(20), BIT(16) };
++	unsigned long flags;
++	u32 value;
++
++	if (id >= N_RESETS)
++		return -EINVAL;
++	spin_lock_irqsave(&ccu->lock, flags);
++	value = readl(ccu->usb + offsets[id]);
++	writel(assert ? value & ~masks[id] : value | masks[id],
++	       ccu->usb + offsets[id]);
++	spin_unlock_irqrestore(&ccu->lock, flags);
++	return 0;
++}
++
++static int t736_reset_assert(struct reset_controller_dev *rc, unsigned long id)
++{
++	return t736_reset_update(rc, id, true);
++}
++
++static int t736_reset_deassert(struct reset_controller_dev *rc, unsigned long id)
++{
++	return t736_reset_update(rc, id, false);
++}
++
++static const struct reset_control_ops t736_reset_ops = {
++	.assert = t736_reset_assert,
++	.deassert = t736_reset_deassert,
++};
++
++static int t736_usb_ccu_probe(struct platform_device *pdev)
++{
++	static const char * const names[] = {
++		"t736-usb-ref", "t736-usb1-ehci", "t736-usb1-ohci",
++		"t736-usb1-ohci-clock", "t736-usb-msi", "t736-usb-master"
++	};
++	static const u32 masks[] = { BIT(31), BIT(4), BIT(0), BIT(31), BIT(0), BIT(9) };
++	struct clk_parent_data parent = { .index = 0 };
++	struct device *dev = &pdev->dev;
++	struct t736_usb_ccu *ccu;
++	void __iomem *regs[N_CLOCKS];
++	int i, ret;
++
++	ccu = devm_kzalloc(dev, sizeof(*ccu), GFP_KERNEL);
++	if (!ccu)
++		return -ENOMEM;
++	spin_lock_init(&ccu->lock);
++	ccu->usb = devm_platform_ioremap_resource(pdev, 0);
++	ccu->msi = devm_platform_ioremap_resource(pdev, 1);
++	ccu->master = devm_platform_ioremap_resource(pdev, 2);
++	if (IS_ERR(ccu->usb))
++		return PTR_ERR(ccu->usb);
++	if (IS_ERR(ccu->msi))
++		return PTR_ERR(ccu->msi);
++	if (IS_ERR(ccu->master))
++		return PTR_ERR(ccu->master);
++	regs[0] = ccu->usb + 0x40;
++	regs[1] = ccu->usb + 0x0c;
++	regs[2] = ccu->usb + 0x0c;
++	regs[3] = ccu->usb + 0x08;
++	regs[4] = ccu->msi;
++	regs[5] = ccu->master;
++	ccu->clocks = devm_kzalloc(dev, struct_size(ccu->clocks, hws, N_CLOCKS), GFP_KERNEL);
++	if (!ccu->clocks)
++		return -ENOMEM;
++	ccu->clocks->num = N_CLOCKS;
++	for (i = 0; i < N_CLOCKS; i++) {
++		struct t736_gate *gate = &ccu->gates[i];
++		struct clk_init_data init = {
++			.name = names[i], .ops = &t736_gate_ops,
++			.parent_data = &parent, .num_parents = 1,
++		};
++
++		gate->ccu = ccu;
++		gate->reg = regs[i];
++		gate->mask = masks[i];
++		gate->key = i == 5 ? 0x010000ff : 0;
++		gate->mux_mask = i == 0 ? GENMASK(26, 24) : 0;
++		gate->hw.init = &init;
++		ret = devm_clk_hw_register(dev, &gate->hw);
++		if (ret)
++			return ret;
++		ccu->clocks->hws[i] = &gate->hw;
++	}
++	ccu->reset.owner = THIS_MODULE;
++	ccu->reset.ops = &t736_reset_ops;
++	ccu->reset.nr_resets = N_RESETS;
++	ccu->reset.of_node = dev->of_node;
++	ret = devm_reset_controller_register(dev, &ccu->reset);
++	if (ret)
++		return ret;
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, ccu->clocks);
++}
++
++static const struct of_device_id t736_usb_ccu_match[] = {
++	{ .compatible = "allwinner,t736-usb-ccu" }, { }
++};
++static struct platform_driver t736_usb_ccu_driver = {
++	.probe = t736_usb_ccu_probe,
++	.driver = { .name = "t736-usb-ccu", .of_match_table = t736_usb_ccu_match },
++};
++builtin_platform_driver(t736_usb_ccu_driver);
+diff --git a/drivers/phy/allwinner/Makefile b/drivers/phy/allwinner/Makefile
+--- a/drivers/phy/allwinner/Makefile
++++ b/drivers/phy/allwinner/Makefile
+@@ -3,3 +3,5 @@
+ obj-$(CONFIG_PHY_SUN6I_MIPI_DPHY)	+= phy-sun6i-mipi-dphy.o
+ obj-$(CONFIG_PHY_SUN9I_USB)		+= phy-sun9i-usb.o
+ obj-$(CONFIG_PHY_SUN50I_USB3)		+= phy-sun50i-usb3.o
++
++obj-$(CONFIG_PHY_T736_USB2) += phy-t736-usb2.o
+diff --git a/drivers/phy/allwinner/Kconfig b/drivers/phy/allwinner/Kconfig
+--- a/drivers/phy/allwinner/Kconfig
++++ b/drivers/phy/allwinner/Kconfig
+@@ -57,3 +57,8 @@
+ 	  part of Allwinner H6 SoC.
+ 
+ 	  This driver controls each individual USB 2+3 host PHY combo.
++
++config PHY_T736_USB2
++	bool "T736 USB1 host PHY"
++	depends on ARCH_SUNXI && OF && COMMON_CLK && RESET_CONTROLLER && REGULATOR
++	select GENERIC_PHY
+diff --git a/drivers/phy/allwinner/phy-t736-usb2.c b/drivers/phy/allwinner/phy-t736-usb2.c
+new file mode 100644
+--- /dev/null
++++ b/drivers/phy/allwinner/phy-t736-usb2.c
+@@ -0,0 +1,121 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Initial host-only USB1 PHY port, using the board's existing 24 MHz source. */
++#include <linux/clk.h>
++#include <linux/delay.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/phy/phy.h>
++#include <linux/platform_device.h>
++#include <linux/regulator/consumer.h>
++#include <linux/reset.h>
++
++struct t736_usb_phy {
++	void __iomem *pmu;
++	struct clk_bulk_data clocks[4];
++	struct reset_control *reset;
++	struct regulator *vbus;
++	u32 tuning;
++};
++
++static int t736_phy_init(struct phy *phy)
++{
++	struct t736_usb_phy *data = phy_get_drvdata(phy);
++	u32 value, tune = data->tuning;
++	int ret;
++
++	ret = clk_bulk_prepare_enable(ARRAY_SIZE(data->clocks), data->clocks);
++	if (ret)
++		return ret;
++	ret = reset_control_assert(data->reset);
++	if (ret)
++		goto clocks_off;
++	udelay(10);
++	/* The port PMU is mapped separately from the EHCI and OHCI registers. */
++	writel(readl(data->pmu + 0x10) & ~BIT(3), data->pmu + 0x10);
++	ret = reset_control_deassert(data->reset);
++	if (ret)
++		goto clocks_off;
++	udelay(10);
++	value = readl(data->pmu + 0x18) & ~0xf3f;
++	value |= (tune & 0xf) << 8 | (tune & 0x30) | ((tune >> 6) & 0xf);
++	writel(value, data->pmu + 0x18);
++	/* USB1 AHB INCR16/INCR4/alignment and host bypass; preserve other bits. */
++	writel(readl(data->pmu) | BIT(15) | BIT(11) | BIT(9) | BIT(8) | BIT(0), data->pmu);
++	return 0;
++clocks_off:
++	clk_bulk_disable_unprepare(ARRAY_SIZE(data->clocks), data->clocks);
++	return ret;
++}
++
++static int t736_phy_exit(struct phy *phy)
++{
++	struct t736_usb_phy *data = phy_get_drvdata(phy);
++
++	writel(readl(data->pmu + 0x10) | BIT(3), data->pmu + 0x10);
++	reset_control_assert(data->reset);
++	clk_bulk_disable_unprepare(ARRAY_SIZE(data->clocks), data->clocks);
++	return 0;
++}
++
++static int t736_phy_on(struct phy *phy)
++{
++	return regulator_enable(((struct t736_usb_phy *)phy_get_drvdata(phy))->vbus);
++}
++
++static int t736_phy_off(struct phy *phy)
++{
++	return regulator_disable(((struct t736_usb_phy *)phy_get_drvdata(phy))->vbus);
++}
++
++static const struct phy_ops t736_phy_ops = {
++	.init = t736_phy_init, .exit = t736_phy_exit,
++	.power_on = t736_phy_on, .power_off = t736_phy_off, .owner = THIS_MODULE,
++};
++
++static int t736_phy_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct t736_usb_phy *data;
++	struct phy_provider *provider;
++	struct phy *phy;
++	int ret;
++
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++	data->pmu = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(data->pmu))
++		return PTR_ERR(data->pmu);
++	data->clocks[0].id = "ref";
++	data->clocks[1].id = "bus";
++	data->clocks[2].id = "master";
++	data->clocks[3].id = "msi";
++	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(data->clocks), data->clocks);
++	if (ret)
++		return dev_err_probe(dev, ret, "USB PHY clocks unavailable\n");
++	data->reset = devm_reset_control_get_exclusive(dev, NULL);
++	if (IS_ERR(data->reset))
++		return dev_err_probe(dev, PTR_ERR(data->reset), "USB PHY reset unavailable\n");
++	data->vbus = devm_regulator_get(dev, "vbus");
++	if (IS_ERR(data->vbus))
++		return dev_err_probe(dev, PTR_ERR(data->vbus), "USB VBUS supply unavailable\n");
++	ret = of_property_read_u32(dev->of_node, "allwinner,phy-tuning", &data->tuning);
++	if (ret || data->tuning > 0x3ff)
++		return -EINVAL;
++	phy = devm_phy_create(dev, NULL, &t736_phy_ops);
++	if (IS_ERR(phy))
++		return PTR_ERR(phy);
++	phy_set_drvdata(phy, data);
++	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
++	return PTR_ERR_OR_ZERO(provider);
++}
++
++static const struct of_device_id t736_phy_match[] = {
++	{ .compatible = "allwinner,t736-usb1-phy" }, { }
++};
++static struct platform_driver t736_phy_driver = {
++	.probe = t736_phy_probe,
++	.driver = { .name = "t736-usb1-phy", .of_match_table = t736_phy_match },
++};
++builtin_platform_driver(t736_phy_driver);

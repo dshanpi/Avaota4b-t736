@@ -1,61 +1,60 @@
-# 验证状态：2026-11-13
+# 实板验证状态（2026-11-13）
 
-## 已实板验证
+## v3 恢复与自动启动
 
-- U-Boot 2026.10 在 ARM64 模式运行，串口和重定位正常。
-- 8 GiB 内存描述生效；4 GiB 以上地址完成抽样写读。
-- Linux 6.18.63 的 8 个 CPU 全部上线，initramfs 自动执行 `/init`。
-- eMMC A31Y5C 容量约 58.2 GiB，六个 GPT 分区可识别。
-- 从 eMMC 读取 8.3 MB 验证 Image，SHA256 与构建产物一致。
-- 在 boot 分区未用尾部完成 64 KiB 写入、清缓存回读比对，并恢复原数据。
-- U-Boot 从 ext4 读取内核、initrd、DTB，文件读取约 5.3 MiB/s。
-- Armbian rootfs 以读写方式挂载到 mmcblk0p4；systemd 到达 multi-user.target 和 ttyS0 登录。
-- LYNX 对 Armbian 验证镜像报告写入成功及 verifyState=success。
+恢复任务 `flash-1794540554778633200` 终态 success、verifyState success，committedBytes 613262400。
+恢复镜像 SHA256：`322859ec6b41aeada69b3fc25e605a6934eff89ebd21bc9cae78ce2a9a59c48d`。
 
-## 实板版本与当前源码差异
-
-实板 v2 U-Boot 缺少自动解压参数。启动 Armbian 时手工设置了：
+FES 恢复使旧 U-Boot 环境 CRC 失效。重新保存以下命令后，另一次硬件断电上电，全程不输入字符，到达 Armbian 登录：
 
 ```text
-setenv kernel_comp_addr_r 0x68000000
-setenv kernel_comp_size 0x385407
-run bootcmd
+setenv bootcmd 'sunxi_flash read 0x60000000 boot; bootm 0x60000000'
+saveenv
 ```
 
-`0x385407` 是当次压缩内核文件长度，不能用于任意新内核。
-当前补丁在加载内核后保存 `${filesize}`，自动提供解压参数。
-该修改已重新编译，尚未安装或完成实板自动启动验证。
+新版 U-Boot 自动读取压缩内核，并根据实际 `${filesize}` 设置解压缓冲区；已不需要手工设置长度。
+这证明现存两级 U-Boot 链可自动启动，不证明独立 ARM32 交接候选已成功。
 
-`handoff/` 仅通过 ARM32 编译、反汇编检查及封装校验。没有实板运行结果。
-所有烧录验证包仍保留厂家持久 Boot0/Boot1。
+恢复后 root shell 实测：
 
-## 尚未完成
+- Linux 6.18.63-t736-armbian #3，软件包 6.18.63-3。
+- 根分区起点 368640，长度 15239680 个 512 字节扇区。
+- ext4 根系统读写挂载，7.1 GiB 文件系统。
+- initramfs 执行 fsck.ext4，结果 clean。
+- `/run` 是 781 MiB tmpfs，`/dev/shm` 是 3.9 GiB tmpfs，statfs 有真实容量。
+- `systemctl --failed` 返回 0 个单元；systemd-resolved active。
+- 已完成登录和改密；普通用户创建向导暂未完成。密码不进入日志或仓库。
 
-- 去掉旧运行时 U-Boot 2018.07，验证完整持久启动交接。
-- 无人干预的断电冷启动。
-- systemd-resolved 启动失败的日志诊断。
-- initramfs 的 root fsck；构建时未识别实际根分区，启动日志提示缺少 fsck。
-- eMMC DMA、高速时序、大容量压力测试和掉电测试。
-- PCIe、网卡、Wi-Fi、蓝牙、HDMI、USB 及其他外设。
-- 独立板级时钟、引脚、电源、休眠和动态调频支持。
+DNS 服务启动成功仅证明之前缺少 IP_MULTICAST 的问题已解决；网卡和实际 DNS 查询尚未验证。
 
-登录时已观察到 root 初始密码认证通过。首次改密的 `Current password:` 需再次输入初始密码。
-用户曾在该处输入新密码，出现认证令牌错误；该次操作不足以证明 PAM 或文件系统损坏。
-备份时尚未取得用户完成改密后的 shell 验证结果。
+## v4 USB1 实板验证
+
+内核包 `6.18.63-4` 编译完成。SHA256：`edebf4e704ee8716a5b8b90458fda32adf234bb3a2f5c98d0c1882a69b5ab3fe`。
+DTB SHA256：`40ece1d8d9682477bdc892817696f93b5a162015e79b47a9b24c7cb72c39450a`。
+主机配置检查覆盖 21 个关键符号，完整 Linux 补丁可应用到锁定官方快照。
+已通过整包 SHA256 后安装，备份 v3 启动文件于 `/boot/t736-v3-recovery`。正常关机后用硬件断电上电，无输入启动 Linux #4 和 Armbian 登录。
+
+- USB 时钟、R-PIO、PHY、EHCI、OHCI 驱动全部绑定，没有 deferred probe。
+- DMA zone 覆盖 0x40000000..0xffffffff；DMA32 zone 为空，因为 DMA 已覆盖 32 位范围。
+- PL6 output high，usb1-vbus regulator enabled。
+- 真实 USB2 Hub `1a40:0101`（Terminus，4 口）以 480 Mbps 枚举；描述符及 Hub 端口状态控制请求成功，EHCI 中断工作。
+- Hub 四个端口报告供电，暂未报告下游连接。USB 存储/HID 通信和 OHCI 设备尚未验证；不能宣称全部 USB 端口已可用。
+- 根分区布局未改变，systemd 失败单元 0，systemd-resolved active。
 
 ## 证据
 
-| 文件 | 内容 |
+| 文件 | 结论 |
 |---|---|
-| `evidence/uboot-2026.10-hardware-validation.log` | 新 U-Boot、内存与 eMMC |
-| `evidence/kernel-probe-v2-payload-crc.log` | 板端 Image、DTB、initramfs CRC |
-| `evidence/linux-6.18.63-v2-firstboot.log` | 新内核、SMP、initramfs、块设备 |
-| `evidence/linux-6.18.63-v2-emmc.log` | Image SHA256 读取验证 |
-| `evidence/linux-6.18.63-v2-emmc-write.log` | 写入、回读、恢复标记 |
-| `evidence/armbian-v2-uboot-ext4.log` | ext4 读取及 v2 解压参数问题 |
-| `evidence/armbian-6.18.63-firstboot.log` | 根分区挂载、systemd、登录及现存服务错误 |
-| `evidence/flash-verification.json` | 从原始 LYNX 结果提取的终态 |
+| `evidence/runtime-v3-recovered-coldboot-auto.log` | 保存环境后的无输入冷启动、fsck、systemd、登录 |
+| `evidence/runtime-v3-recovered-validation.log` | 分区几何、tmpfs、服务、软件包版本 |
+| `evidence/usb1-v4-coldboot.log` | v4 无输入启动及 Hub 枚举 |
+| `evidence/usb1-v4-validation.log` | 驱动、DMA、供电、中断、系统服务 |
+| `evidence/usb1-v4-hub-status.log` | Hub 描述符、端口状态与分区核验 |
+| `evidence/runtime-v3-layout-incident.json` | 错误布局事故及恢复结果 |
+| `evidence/linux-6.18.63-v2-emmc.log` | 历史 eMMC Image SHA256 读取 |
+| `evidence/linux-6.18.63-v2-emmc-write.log` | 历史 64 KiB 写入、清缓存回读和原数据恢复 |
 
-日志中的 UTC/EST 构建时区来自构建机。本文日期按 Asia/Shanghai 记录。
-日志保留早期失败和调试命令，不能仅靠检索一个错误行判断最终结果。
-宿主工具测试只验证解析与封装逻辑，不替代硬件验证。
+## 未完成
+
+旧运行时 U-Boot 替换、eMMC 高速/DMA、完整内存/存储压力测试、独立 PMIC/CCU、PCIe、Ethernet、Wi-Fi、蓝牙、HDMI、USB 下游设备通信、USB0/USB3、休眠与动态调频仍需实板工作。
+宿主测试验证解析、布局和打包逻辑，不替代硬件测试。

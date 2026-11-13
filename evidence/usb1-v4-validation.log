@@ -1,0 +1,120 @@
+root@t736:~# sh /root/check-usb1.sh; lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS; cat /sys/kernel 
+/debug/gpio
+
+Linux t736 6.18.63-t736-armbian #4 SMP Thu Nov 12 22:39:57 EST 2026 aarch64 GNU/Linux
+
+DMA zones
+Node 0, zone      DMA
+        present  786432
+        managed  713541
+Node 0, zone    DMA32
+        present  0
+        managed  0
+Node 0, zone   Normal
+        present  1310720
+        managed  1270423
+Node 0, zone  Movable
+        present  0
+        managed  0
+
+Board drivers
+/sys/bus/platform/devices/2003300.clock-controller: ../../../bus/platform/drivers/t736-usb-ccu
+/sys/bus/platform/devices/7025000.pinctrl: ../../../bus/platform/drivers/t736-r-pinctrl
+/sys/bus/platform/devices/4200800.phy: ../../../bus/platform/drivers/t736-usb1-phy
+/sys/bus/platform/devices/4200000.usb: ../../../bus/platform/drivers/ehci-platform
+/sys/bus/platform/devices/4200400.usb: ../../../bus/platform/drivers/ohci-platform
+
+Deferred probes
+
+USB devices
+/sys/bus/usb/devices/1-1
+  idVendor=1a40
+  idProduct=0101
+  product=USB 2.0 Hub
+  speed=480
+  bDeviceClass=09
+/sys/bus/usb/devices/usb1
+  idVendor=1d6b
+  idProduct=0002
+  manufacturer=Linux 6.18.63-t736-armbian ehci_hcd
+  product=EHCI Host Controller
+  speed=480
+  bDeviceClass=09
+/sys/bus/usb/devices/usb2
+  idVendor=1d6b
+  idProduct=0001
+  manufacturer=Linux 6.18.63-t736-armbian ohci_hcd
+  product=Generic Platform OHCI controller
+  speed=12
+  bDeviceClass=09
+
+USB topology
+/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=ehci-platform/1p, 480M
+    |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 480M
+/:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=ohci-platform/1p, 12M
+
+Clock and regulator state
+/sys/kernel/debug/clk/clk_summary:    t736-usb-master                  1       1        0        24000000    0          0     50000      Y      4200800.phy                     master                   
+/sys/kernel/debug/clk/clk_summary:    t736-usb-msi                     1       1        0        24000000    0          0     50000      Y      4200800.phy                     msi                      
+/sys/kernel/debug/clk/clk_summary:    t736-usb1-ohci-clock             1       1        0        24000000    0          0     50000      Y      usb@4200400                     no_connection_id         
+/sys/kernel/debug/clk/clk_summary:    t736-usb1-ohci                   1       1        0        24000000    0          0     50000      Y      usb@4200400                     no_connection_id         
+/sys/kernel/debug/clk/clk_summary:    t736-usb1-ehci                   2       2        0        24000000    0          0     50000      Y      usb@4200000                     no_connection_id         
+/sys/kernel/debug/clk/clk_summary:    t736-usb-ref                     1       1        0        24000000    0          0     50000      Y      4200800.phy                     ref                      
+/sys/kernel/debug/regulator/regulator_summary:    7025000.pinctrl-vcc-pl        1                                 0mA     0mV     0mV
+/sys/kernel/debug/regulator/regulator_summary: usb1-vbus                        1    1      0 unknown  5000mV     0mA  5000mV  5000mV 
+
+USB interrupts
+ 80:         28          0          0          0          0          0          0          0    GICv3 191 Level     ehci_hcd:usb1
+ 81:          0          0          0          0          0          0          0          0    GICv3 192 Level     ohci_hcd:usb2
+
+Kernel messages
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+[    0.000000]   DMA      [mem 0x0000000040000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.234580] pinctrl core: initialized pinctrl subsystem
+[    0.247866] DMA: preallocated 1024 KiB GFP_KERNEL pool for atomic allocations
+[    0.253849] DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.260521] DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.277167] usbcore: registered new interface driver usbfs
+[    0.281404] usbcore: registered new interface driver hub
+[    0.285466] usbcore: registered new device driver usb
+[    0.411955] t736-r-pinctrl 7025000.pinctrl: initialized sunXi PIO driver
+[    0.512650] usbcore: registered new interface driver usb-storage
+[    0.554319] usbcore: registered new interface driver usbhid
+[    0.558592] usbhid: USB HID core driver
+[    0.582703] t736-r-pinctrl 7025000.pinctrl: supply vcc-pl not found, using dummy regulator
+[    0.598201] ehci-platform 4200000.usb: EHCI Host Controller
+[    0.602496] ehci-platform 4200000.usb: new USB bus registered, assigned bus number 1
+[    0.608995] ohci-platform 4200400.usb: Generic Platform OHCI controller
+[    0.614332] ohci-platform 4200400.usb: new USB bus registered, assigned bus number 2
+[    0.620878] ohci-platform 4200400.usb: irq 81, io mem 0x04200400
+[    0.625672] ehci-platform 4200000.usb: irq 80, io mem 0x04200000
+[    0.646193] ehci-platform 4200000.usb: USB 2.0 started, EHCI 1.00
+[    0.651665] hub 1-0:1.0: USB hub found
+[    0.686897] hub 2-0:1.0: USB hub found
+[    0.914204] usb 1-1: new high-speed USB device number 2 using ehci-platform
+[    1.070542] hub 1-1:1.0: USB hub found
+
+System services
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+NAME          SIZE TYPE FSTYPE MOUNTPOINTS
+mmcblk0      58.2G disk        
+├─mmcblk0p1    32M part vfat   
+├─mmcblk0p2    16M part        
+├─mmcblk0p3    96M part        
+├─mmcblk0p4   7.3G part ext4   /
+├─mmcblk0p5    16M part        
+└─mmcblk0p6  50.8G part        
+mmcblk0boot0    4M disk        
+mmcblk0boot1    4M disk        
+gpiochip0: 64 GPIOs, parent: platform/7025000.pinctrl, 7025000.pinctrl:
+ gpio-6   (                    |regulator-usb1-vbus ) out hi 
+root@t736:~# gzip -dc /boot/vmlinuz-6.18.63-t736-armbian | sha256sum; lsusb -t
+
+a4d95f771d1237fae125d59127d3d0f7d212bc5b4271a7f0be2bc1b09cc7a7b6  -
+/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=ehci-platform/1p, 480M
+    |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 480M
+/:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=ohci-platform/1p, 12M
+root@t736:~# 

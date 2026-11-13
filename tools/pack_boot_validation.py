@@ -13,6 +13,39 @@ import struct
 import sys
 from pathlib import Path
 
+# These are the layout files from the image actually used for the 2026-11-13
+# Armbian boot, not merely a recovery image with matching Boot0/FES binaries.
+# FES may rewrite/erase storage when its supplied layout changes even when
+# only one downloadfile is selected. Reject any unverified layout change.
+VALIDATED_LAYOUT_HASHES = {
+    'sunxi_gpt.fex': 'ba658739ee6dac35a6f1fc8251286642b698f450813cbd82cae7224e3b997ed5',
+    'sunxi_mbr.fex': 'e40a5dc62e04542da1ea863aa39b521dd9dca4d479b23abb04213563d8ce4006',
+}
+VALIDATED_PARTITION_SIZES = {
+    'boot-resource': 65536, 'env': 32768, 'boot': 196608,
+    'rootfs': 15239680, 'private': 32768,
+}
+
+
+def validate_layout(payloads):
+    for name, expected in VALIDATED_LAYOUT_HASHES.items():
+        if hashlib.sha256(payloads[name]).hexdigest() != expected:
+            raise ValueError(f'{name} differs from the previously booted Armbian layout; '
+                             'matching loader binaries do not prove partition compatibility')
+    sections = re.split(rb'(?mi)^\s*\[partition\]\s*$', payloads['sys_partition.fex'])[1:]
+    sizes = {}
+    for section in sections:
+        name = re.search(rb'(?mi)^\s*name\s*=\s*([^\s;]+)', section)
+        size = re.search(rb'(?mi)^\s*size\s*=\s*([0-9]+)', section)
+        if not name or not size:
+            raise ValueError('Missing partition name or size')
+        key = name.group(1).decode('ascii')
+        if key in sizes:
+            raise ValueError('Duplicate partition name')
+        sizes[key] = int(size.group(1))
+    if sizes != VALIDATED_PARTITION_SIZES:
+        raise ValueError('Partition script differs from the validated Armbian geometry')
+
 
 def align(value, size):
     return (value + size - 1) // size * size
@@ -88,6 +121,7 @@ def main():
             _, offset, size = entries[name]
             source.seek(offset)
             payloads[name] = source.read(size)
+    validate_layout(payloads)
     original_hashes = {name: hashlib.sha256(data).hexdigest() for name, data in payloads.items()}
     boot = args.boot.read_bytes()
     if boot[:8] != b'ANDROID!' or len(boot) > 196608 * 512:
@@ -115,7 +149,8 @@ def main():
     struct.pack_into('<I', image, 60, len(keep))
     manifest = {'purpose': 'FES mainline validation with vendor Boot0/Boot1; not final Armbian firmware',
                 'required_mode': 'partition', 'partition_downloads': [name.decode().removesuffix('.fex') for name in selected],
-                'persistent_vendor_boot0_boot1_retained': True, 'files': []}
+                'persistent_vendor_boot0_boot1_retained': True,
+                'validated_layout_hashes': VALIDATED_LAYOUT_HASHES, 'files': []}
     for i, name in enumerate(keep):
         old, _, _ = entries[name]
         data = payloads[name]

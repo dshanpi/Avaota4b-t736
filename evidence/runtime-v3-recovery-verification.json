@@ -1,0 +1,9 @@
+{
+  "taskId": "flash-1794540554778633200",
+  "state": "success",
+  "phase": "complete",
+  "verifyState": "success",
+  "committedBytes": 613262400,
+  "error": null,
+  "image_sha256": "322859ec6b41aeada69b3fc25e605a6934eff89ebd21bc9cae78ce2a9a59c48d"
+}

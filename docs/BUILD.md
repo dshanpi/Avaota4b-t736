@@ -57,10 +57,10 @@ sh tools/build_armbian_kernel.sh
 DEB_BUILD_PROFILES=pkg.linux-upstream.nokernelheaders \
   make -C sources/work/linux O="$PWD/build/linux-armbian" \
   ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- KBUILD_DEBARCH=arm64 \
-  KDEB_PKGVERSION=6.18.63-2 -j8 bindeb-pkg
+  KDEB_PKGVERSION=6.18.63-4 -j8 bindeb-pkg
 ```
 
-种子内核配置必须先复制，避免依赖未随备份上传的旧 `build/linux-bringup/.config`。
+构建脚本在新输出目录中会使用仓库内的种子配置，并检查 olddefconfig 后的必需符号。
 构建输出为 `u-boot.bin`、Image、DTB、modules 和内核 Debian 包。
 Debian 包中的 `vmlinuz` 是 gzip 压缩 Image。当前 U-Boot 补丁为它设置了解压参数。
 构建时间、工具链及 Debian 包依赖可能变化，因此不承诺重建产物与历史哈希逐字节一致。
@@ -86,7 +86,7 @@ cd sources/work/armbian-build
 mkdir -p build/armbian-rootfs
 sudo tar --numeric-owner --xattrs --acls -I zstd -xf /path/to/verified-rootfs.tar.zst \
   -C build/armbian-rootfs
-sudo env KERNEL_PACKAGE_REVISION=2 unshare --mount --fork sh tools/build_armbian_rootfs.sh
+sudo env KERNEL_PACKAGE_REVISION=4 unshare --mount --fork sh tools/build_armbian_rootfs.sh
 ```
 
 `/path/to/verified-rootfs.tar.zst` 必须替换为实际文件，staging 目录不能混入其他系统内容。

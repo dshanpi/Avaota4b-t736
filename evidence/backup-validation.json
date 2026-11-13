@@ -2,21 +2,21 @@
   "date": "2026-11-13",
   "timezone": "Asia/Shanghai",
   "unit_tests": {
-    "passed": 35,
+    "passed": 43,
     "failed": 0,
-    "scope": "Host source/evidence/packaging helpers; no claim of new hardware validation"
+    "scope": "Host source/evidence/layout/runtime payload tooling; not a substitute for hardware tests"
   },
   "linux_host_checks": {
-    "shell_syntax": "passed for all copied .sh, board and family files",
-    "source_lock": "passed",
-    "u_boot_patch_on_official_snapshot": "dry-run passed, 10 paths",
-    "linux_patch_on_official_snapshot": "dry-run passed, 5 paths"
+    "linux_patch_on_official_snapshot": "git apply --check passed, 14 paths",
+    "kernel_config": "21 resolved required symbols passed",
+    "new_shell_scripts": "sh -n passed for install_usb1_v4.sh and check_usb1.sh"
   },
+  "compile_scope": "USB1 v4 kernel and Debian package built; separate main-PIO and DWMAC candidates passed object compile only and are not enabled",
   "publication_checks": {
     "selected_text_only": true,
     "ssh_credentials_and_mcp_session_not_included": true,
-    "private_key_token_and_private_ip_pattern_scan": "passed",
+    "private_key_and_token_pattern_scan": "passed",
     "large_images_and_vendor_binaries_not_included": true
   },
-  "compile_scope": "Previously compiled board code retained. Packaging/documentation-only backup did not trigger a new kernel build."
+  "hardware_evidence": "docs/VALIDATION.md and status.json"
 }

@@ -1,0 +1,8 @@
+{
+  "method": "LYNX UART, base64 canonical lines with per-16KiB SHA256 acknowledgements",
+  "bytes": 4586596,
+  "sha256": "edebf4e704ee8716a5b8b90458fda32adf234bb3a2f5c98d0c1882a69b5ab3fe",
+  "verified": true,
+  "destination": "/tmp/t736-transfer/linux-usb-v4.deb",
+  "previous_attempts": "Unacknowledged stream failed and had UART overrun; corrupted data never installed. Verified 2 MiB prefix retained and remainder retransmitted in checked blocks."
+}

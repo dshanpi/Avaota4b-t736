@@ -1,0 +1,123 @@
+{
+  "status": "reference audit only; no mainline Ethernet hardware result",
+  "mac": {
+    "ip": "Synopsys DWMAC 5.20",
+    "base": "0x04500000",
+    "size": "0x8000",
+    "extended": "0x04508000",
+    "interrupts": {
+      "macirq": 172,
+      "eth_lpi": 178,
+      "tx0_irq": 173,
+      "rx0_irq": 174
+    }
+  },
+  "phy": {
+    "id": "001c.c916",
+    "mdio_address": 1,
+    "max_speed_mbps": 1000,
+    "reset": "PH16 active low",
+    "reset_assert_us": 10000,
+    "reset_deassert_us": 150000,
+    "supply": "shared vendor-initialized 3.3V"
+  },
+  "rgmii": {
+    "pins": "PH0-PH15",
+    "mux": 5,
+    "mode": "rgmii",
+    "external_tx_clock": true,
+    "tx_delay_steps": 13,
+    "rx_delay_steps": 10
+  },
+  "ccu": {
+    "base": "0x02002000",
+    "mac_gate": {
+      "offset": "0x141c",
+      "bit": 0
+    },
+    "resets": {
+      "offset": "0x141c",
+      "bus_bit": 16,
+      "axi_bit": 17
+    },
+    "phy_clock": {
+      "offset": "0x1410",
+      "gate_bit": 31,
+      "divider_bits": "4:0",
+      "parent": "pll-peri0-150m",
+      "rate_hz": 25000000
+    },
+    "mbus_gate": {
+      "offset": "0x05e4",
+      "bit": 11,
+      "key": "0x40302"
+    }
+  },
+  "constraints": [
+    "Use host_dma_width=32 with low DMA zones",
+    "Split-header feature disabled in board vendor reference",
+    "Separate TX0/RX0 interrupt routing must be wired into upstream stmmac resources",
+    "Do not reserve main PIO MMIO before removing conflicting eMMC direct pinmux resource",
+    "Pin-bank voltage and PLL parent setup must be verified; no claim of independent PMIC/clock tree"
+  ],
+  "sources": [
+    "board effective vendor FDT captured 2026-11-12",
+    "read-only Tina bsp/drivers/stmmac/dwmac-sunxi.c/.h",
+    "read-only Tina bsp/drivers/clk/sunxi-ng/ccu-sun60iw2.c",
+    "read-only Tina bsp/drivers/pinctrl/pinctrl-sun60iw2.c",
+    "official Linux v6.18.63 stmmac interfaces"
+  ],
+  "main_pio_candidate": {
+    "source": "boards/pinctrl-t736.c",
+    "compile": "single object compiled against Linux 6.18.63",
+    "runtime": "not enabled in USB1 v4; no hardware validation",
+    "resource": {
+      "base": "0x02000000",
+      "size": "0x600",
+      "interrupts": [
+        69,
+        71,
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        85,
+        87
+      ]
+    },
+    "pins_per_bank": {
+      "B": 11,
+      "C": 17,
+      "D": 24,
+      "E": 16,
+      "F": 7,
+      "G": 15,
+      "H": 20,
+      "I": 17,
+      "J": 28,
+      "K": 26
+    },
+    "integration_requirement": "Move current eMMC PI mux ownership from direct MMIO to pinctrl before enabling this full PIO resource"
+  },
+  "dwmac_candidate": {
+    "source": "boards/dwmac-t736.c",
+    "compile": "object compiled using official 6.18.63 stmmac interfaces",
+    "runtime": "not enabled, no hardware probe or traffic test",
+    "handles": [
+      "plain RGMII MAC-side delay taps",
+      "external transmit clock selection",
+      "32-bit DMA limit",
+      "split-header disable",
+      "queue 0 dedicated RX/TX IRQs",
+      "PHY regulator and reference clock"
+    ],
+    "remaining": [
+      "GMAC clock/reset provider",
+      "main PIO and eMMC ownership integration",
+      "board DT and Kconfig",
+      "PHY detection, link negotiation, DHCP and bidirectional traffic"
+    ]
+  }
+}

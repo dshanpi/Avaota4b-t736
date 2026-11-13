@@ -6,7 +6,7 @@ root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd -P)
 [ "$(id -u)" = 0 ]
 stage="$root/build/armbian-rootfs"
 revision="${KERNEL_PACKAGE_REVISION:-1}"
-case "$revision" in 1|2) ;; *) exit 1 ;; esac
+case "$revision" in ''|*[!0-9]*|0) exit 1 ;; esac
 [ -x "$stage/usr/lib/systemd/systemd" ]
 mount --make-rprivate /
 mount -t proc proc "$stage/proc"
@@ -43,6 +43,10 @@ systemctl --root="$stage" set-default multi-user.target
 mkdir -p "$stage/boot/dtb/allwinner"
 cp "$root/output/t736-mainline-armbian.dtb" "$stage/boot/dtb/allwinner/t736-mainline-bringup.dtb"
 cp "$root/build/linux-armbian/.config" "$stage/boot/config-6.18.63-t736-armbian"
+# The build host cannot resolve the board's root PARTUUID. Tell the stock
+# initramfs-tools fsck hook which checker is needed instead of probing it.
+mkdir -p "$stage/etc/initramfs-tools/conf.d"
+printf 'FSTYPE=ext4\n' > "$stage/etc/initramfs-tools/conf.d/t736-rootfs"
 chroot "$stage" /usr/sbin/update-initramfs -u -k 6.18.63-t736-armbian
 chroot "$stage" /usr/bin/apt-get clean
 cleanup

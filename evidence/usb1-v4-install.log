@@ -1,0 +1,52 @@
+sh /tmp/t736-transfer/install-usb-v4.sh
+
+/tmp/t736-transfer/linux-usb-v4.deb: OK
+vmlinuz-6.18.63-t736-armbian: OK
+initrd.img-6.18.63-t736-armbian: OK
+config-6.18.63-t736-armbian: OK
+t736-mainline-bringup.dtb: OK
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 19341 files and directories currently installed.)
+Preparing to unpack .../t736-transfer/linux-usb-v4.deb ...
+Unpacking linux-image-6.18.63-t736-armbian (6.18.63-4) over (6.18.63-3) ...
+Setting up linux-image-6.18.63-t736-armbian (6.18.63-4) ...
+update-initramfs: Generating /boot/initrd.img-6.18.63-t736-armbian
+update-initramfs: Armbian: Converting to u-boot format: /boot/uInitrd-6.18.63-t736-armbian
+Image Name:   uInitrd
+Created:      Wed Nov 11 16:22:09 2026
+Image Type:   AArch64 Linux RAMDisk Image (gzip compressed)
+Data Size:    11471937 Bytes = 11203.06 KiB = 10.94 MiB
+Load Address: 00000000
+Entry Point:  00000000
+update-initramfs: Armbian: Symlinking /boot/uInitrd-6.18.63-t736-armbian to /boot/uInitrd
+'/boot/uInitrd' -> 'uInitrd-6.18.63-t736-armbian'
+update-initramfs: Armbian: done.
+/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/t736-mainline-bringup.dtb: OK
+usr/sbin/fsck
+usr/sbin/fsck.ext4
+e3c8c49e0d2ae3230f35541ee736d01c17dbe304ec24d88811ad3d70cd8314a8  /boot/vmlinuz-6.18.63-t736-armbian
+483c158d7f8b64891011a99f6e17aa673994a000b5d09c7a31447f1b6d53e3f6  /boot/initrd.img-6.18.63-t736-armbian
+40ece1d8d9682477bdc892817696f93b5a162015e79b47a9b24c7cb72c39450a  /boot/dtb/allwinner/t736-mainline-bringup.dtb
+
+T736_USB1_V4_INSTALL_OK
+root@t736:~# 

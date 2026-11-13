@@ -57,6 +57,86 @@
 		clock-frequency = <24000000>;
 	};
 
+	dcxo: dcxo {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <26000000>;
+	};
+
+	osc32k: osc32k {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <32768>;
+	};
+
+	/* The R-APB gate and bank voltages remain initialized by firmware.
+	 * osc24m is a temporary APB clock handle, not a measured bus rate.
+	 */
+	r_pio: pinctrl@7025000 {
+		compatible = "allwinner,t736-r-pinctrl";
+		reg = <0 0x07025000 0 0x410>;
+		interrupts = <0 198 4>, <0 200 4>;
+		clocks = <&osc24m>, <&dcxo>, <&osc32k>;
+		clock-names = "apb", "hosc", "losc";
+		gpio-controller;
+		#gpio-cells = <3>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#address-cells = <0>;
+	};
+
+	usb1_vbus: regulator-usb1-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "usb1-vbus";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		gpio = <&r_pio 0 6 0>;
+		enable-active-high;
+		startup-delay-us = <1000>;
+	};
+
+	/* Separate resources avoid the eMMC driver's CCU register subset. */
+	usb_ccu: clock-controller@2003300 {
+		compatible = "allwinner,t736-usb-ccu";
+		reg = <0 0x02003300 0 0x50>, <0 0x020025a4 0 4>,
+		      <0 0x020025c0 0 4>;
+		clocks = <&osc24m>;
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	usb1_phy: phy@4200800 {
+		compatible = "allwinner,t736-usb1-phy";
+		reg = <0 0x04200800 0 0x20>;
+		clocks = <&usb_ccu 0>, <&usb_ccu 1>, <&usb_ccu 5>, <&usb_ccu 4>;
+		clock-names = "ref", "bus", "master", "msi";
+		resets = <&usb_ccu 0>;
+		#phy-cells = <0>;
+		vbus-supply = <&usb1_vbus>;
+		allwinner,phy-tuning = <0x188>;
+	};
+
+	ehci1: usb@4200000 {
+		compatible = "generic-ehci";
+		reg = <0 0x04200000 0 0x400>;
+		interrupts = <0 159 4>;
+		clocks = <&usb_ccu 1>;
+		resets = <&usb_ccu 1>;
+		phys = <&usb1_phy>;
+		phy-names = "usb";
+		companion = <&ohci1>;
+	};
+
+	ohci1: usb@4200400 {
+		compatible = "generic-ohci";
+		reg = <0 0x04200400 0 0x400>;
+		interrupts = <0 160 4>;
+		clocks = <&usb_ccu 2>, <&usb_ccu 3>;
+		resets = <&usb_ccu 2>;
+		phys = <&usb1_phy>;
+		phy-names = "usb";
+	};
+
 	/* Initial PIO driver owns these registers until CCU/pinctrl integration. */
 	mmc0: mmc@4023000 {
 		compatible = "allwinner,t736-smhc3-pio";

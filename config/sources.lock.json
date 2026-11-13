@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "recorded_on": "2026-11-12",
-  "status": "Pinned upstream inputs for the 2026-11-13 source backup",
+  "status": "Pinned official upstream inputs; Linux built on case-sensitive isolated host checkout",
   "components": [
     {
       "name": "u-boot",

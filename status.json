@@ -1,12 +1,16 @@
 {
   "date": "2026-11-13",
-  "state": "mainline_armbian_booted_from_emmc_to_serial_login",
+  "updated_utc": "2026-11-13T04:14:48.118463+00:00",
+  "state": "v4_usb1_controllers_and_high_speed_hub_hardware_validated",
   "versions": {
     "u_boot": "2026.10-t736-bringup",
     "linux": "6.18.63-t736-armbian",
     "armbian": "26.11.0-trunk / Debian 13 trixie minimal"
   },
   "board_level_code_implemented": true,
+  "compilation_started": true,
+  "validation_image_built": true,
+  "validation_image_flashed_and_verified": true,
   "final_mainline_armbian_firmware_complete": false,
   "runtime_vendor_uboot_retained": true,
   "hardware_passed": [
@@ -18,9 +22,12 @@
     "64 KiB write, cache-drop readback and scratch restore",
     "U-Boot ext4 kernel/initrd/DTB reads at 5.3 MiB/s",
     "Debian initramfs mounted ext4 rootfs read/write",
-    "Armbian systemd reached multi-user.target and serial login"
+    "Armbian systemd reached multi-user.target and serial login",
+    "Unattended cold boot through v3/v4 kernel to Armbian login",
+    "initramfs fsck.ext4 clean, real tmpfs and systemd-resolved active",
+    "USB1 EHCI/OHCI registered; PL6 VBUS high; 1a40:0101 four-port hub enumerated at 480 Mbps; hub control requests and EHCI interrupts observed"
   ],
-  "rootfs": "Armbian 26.11.0-trunk.128 trixie mounted read/write from mmcblk0p4; systemd multi-user.target and ttyS0 login reached",
+  "rootfs": "Restored with user authorization; GPT rootfs start 368640 size 15239680 sectors; ext4 mounted read/write.",
   "rootfs_sparse_sha256": "370b531cf5dd10a1f5177756ca407ee7e33ac391f15a92acca2891a804f49bb1",
   "boot_chain": [
     "vendor Boot0",
@@ -30,24 +37,103 @@
     "upstream Linux 6.18.63 + board patch"
   ],
   "next": [
-    "Diagnose systemd-resolved and include root fsck in initramfs",
-    "Install and verify U-Boot compressed-kernel bootcommand fix",
-    "RAM-test independent handoff, then validate persistent replacement and unattended cold boot",
-    "Independent clock/pin/power and peripheral drivers"
+    "Validate downstream USB devices and I/O",
+    "Integrate main PIO with eMMC pin ownership, then GMAC clock/reset and RGMII candidates",
+    "Continue other peripherals and independent boot handoff"
   ],
+  "workspace": {
+    "local": "G:\\codex\\t736\\mainline",
+    "linux": "/home/ubuntu/t736-mainline",
+    "linux_created": true,
+    "tina_sdk_modified": false,
+    "isolation_guard_implemented": true
+  },
+  "sources_lock": "config/sources.lock.json",
+  "evidence": [
+    "evidence/kernel-probe-v2-flash-fes-status.json",
+    "evidence/linux-6.18.63-v2-firstboot.log",
+    "evidence/linux-6.18.63-v2-emmc.log",
+    "evidence/linux-6.18.63-v2-emmc-write.log",
+    "evidence/armbian-v2-flash-fes-status.json",
+    "evidence/armbian-v2-uboot-ext4.log",
+    "evidence/armbian-6.18.63-firstboot.log",
+    "evidence/runtime-v3-recovered-coldboot-auto.log",
+    "evidence/runtime-v3-recovered-validation.log",
+    "evidence/runtime-v3-recovery-verification.json",
+    "evidence/usb1-v4-coldboot.log",
+    "evidence/usb1-v4-validation.log",
+    "evidence/usb1-v4-hub-status.log",
+    "evidence/usb1-v4-install.log",
+    "evidence/usb1-v4-transfer.json"
+  ],
+  "handoff_candidate": {
+    "path": "output/t736-handoff-ram-v1.bin",
+    "state": "compiled_and_host_checksum_verified_not_hardware_tested",
+    "sha256": "e35c28ac83f83003e6e343c69adf97bb84006db419f161cc7f5c068825c91c90"
+  },
+  "packaged_kernel_uncompressed_sha256": "a4d95f771d1237fae125d59127d3d0f7d212bc5b4271a7f0be2bc1b09cc7a7b6",
   "known_issues": [
-    "systemd-resolved failed; journal diagnosis pending",
-    "Armbian initramfs lacks fsck (fstab root type detection failed at build)",
-    "v2 U-Boot needs manual kernel_comp_addr_r/kernel_comp_size; v3 source fix compiled but not installed",
-    "Old vendor U-Boot 2018.07 remains before the new U-Boot",
-    "Ethernet/USB/display and board clock/power drivers not implemented"
+    "Old vendor U-Boot 2018.07 remains before new U-Boot",
+    "eMMC remains 12 MHz 8-bit PIO; no full stress test",
+    "USB1 hub communication passed, downstream device validation pending physical port check",
+    "R-APB/pad supplies/UART and platform clocks still partly depend on vendor firmware",
+    "Ethernet, PCIe, Wi-Fi, Bluetooth and HDMI not hardware supported yet"
   ],
-  "coldboot": "Power cycle followed by explicit old-U-Boot bootm and compressed-kernel environment settings; unattended cold boot is not yet validated",
-  "packaged_kernel_uncompressed_sha256": "1e49f0e92105508daa4e03cdcf3a537ed6c4e6e2cd2ed26d86281f8f4ea88241",
-  "snapshot_scope": "Source backup with selected board evidence, no vendor firmware or images",
-  "authenticated_armbian_login": "Initial password accepted; completed password-change shell not yet confirmed",
-  "source_changes_not_deployed": [
-    "Compressed-kernel bootcommand fix compiled but not installed",
-    "AArch32 handoff candidate compiled; not hardware tested"
-  ]
+  "coldboot": "After corrected layout flash and saved vendor bootcmd, no-input hardware power cycle reached Armbian login via U-Boot 2026.10 and Linux 6.18.63 #3.",
+  "authenticated_armbian_login": true,
+  "authenticated_armbian_login_note": "Recovered v3 root login succeeded; user-provided password restored without storing it in project files.",
+  "runtime_v3": {
+    "kernel_package": "6.18.63-3",
+    "kernel_sha256": "aed23b21be8e647a9cf7eb00922cf9a839658d71f62489fba9b8c5d0849d150d",
+    "fixes_compiled": [
+      "SHMEM/TMPFS",
+      "IP_MULTICAST",
+      "CRYPTO and FW_LOADER parent options",
+      "initramfs fsck.ext4"
+    ],
+    "systemd_validation": "systemctl --failed: 0; systemd-resolved active; /run and /dev/shm real tmpfs; initramfs fsck.ext4 clean",
+    "layout_incident": "evidence\\runtime-v3-layout-incident.json",
+    "tmpfs_hardware_validation": "initramfs /run reports tmpfs size=799460k; Shmem present",
+    "recovery_candidate": {
+      "path": "output/t736-runtime-recovery-v3.img",
+      "sha256": "322859ec6b41aeada69b3fc25e605a6934eff89ebd21bc9cae78ce2a9a59c48d",
+      "bytes": 616967168,
+      "checks": "known-good layout, sparse bounds, checksums, e2fsck and LYNX format inspection passed",
+      "flashed": true,
+      "verify_state": "success",
+      "flash_task": "flash-1794540554778633200"
+    }
+  },
+  "runtime_v4": {
+    "kernel_package": "6.18.63-4",
+    "kernel_banner": "#4 SMP Thu Nov 12 22:39:57 EST 2026",
+    "package_sha256": "edebf4e704ee8716a5b8b90458fda32adf234bb3a2f5c98d0c1882a69b5ab3fe",
+    "dtb_sha256": "40ece1d8d9682477bdc892817696f93b5a162015e79b47a9b24c7cb72c39450a",
+    "install": "verified serial package, dpkg and initramfs fsck checks passed",
+    "rollback_boot_files": "/boot/t736-v3-recovery",
+    "coldboot": "unattended hardware cycle passed after clean shutdown",
+    "usb1": {
+      "drivers": [
+        "t736-usb-ccu",
+        "t736-r-pinctrl",
+        "t736-usb1-phy",
+        "ehci-platform",
+        "ohci-platform"
+      ],
+      "deferred_probes": 0,
+      "vbus": "PL6 output high, regulator enabled",
+      "hub": "1a40:0101, 4 ports, high-speed 480 Mbps",
+      "hub_port_status": "all 4 ports report power; no downstream connect at observation",
+      "dma": "DMA zone 0x40000000..0xffffffff; DMA32 zone empty because DMA already covers the 32-bit range",
+      "not_validated": [
+        "USB storage read/write",
+        "HID input",
+        "OHCI full/low-speed traffic",
+        "USB0 OTG",
+        "USB3"
+      ]
+    },
+    "systemd_failed_units": 0,
+    "packaged_kernel_uncompressed_sha256": "a4d95f771d1237fae125d59127d3d0f7d212bc5b4271a7f0be2bc1b09cc7a7b6"
+  }
 }

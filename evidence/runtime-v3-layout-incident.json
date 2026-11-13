@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-13",
+  "state": "restored_with_user_authorization_and_hardware_verified",
+  "cause": "Wrong recovery reference selected. Its Boot0/FES binaries matched, but its GPT/MBR layout differed. Partition-mode FES flashing changed the partition table and erased data at the old root filesystem location.",
+  "bad_candidate": "t736-runtime-validation-v3.img",
+  "bad_candidate_sha256": "953548e8e0b35cef4a655143e184fe2fe8afad75bab14b4a3c2bb92b133ec897",
+  "prior_rootfs": {
+    "start_sector": 368640,
+    "sectors": 15239680
+  },
+  "after_flash_rootfs": {
+    "start_sector": 303104,
+    "sectors": 2097152
+  },
+  "prior_rootfs_readback": {
+    "primary_4k": "all zero",
+    "backup_block_32768": "all zero",
+    "backup_block_884736": "all zero, complete 4096-byte capture",
+    "backup_block_1605632": "all zero, complete 4096-byte capture"
+  },
+  "rootfs_was_not_intentionally_selected_for_download": true,
+  "code_fix": "pack_boot_validation.py requires known-good GPT and vendor MBR hashes plus all partition sizes; rejects bad v3 candidate",
+  "checks": {
+    "host_tests": 43,
+    "known_good_v2_layout": "accepted",
+    "wrong_reference_layout": "rejected"
+  },
+  "logs": [
+    "armbian-runtime-v3-firstboot.log",
+    "armbian-runtime-v3-initramfs-debug.log",
+    "runtime-v3-layout-recovery.log"
+  ],
+  "recovery_result": {
+    "authorized": true,
+    "flash_task": "flash-1794540554778633200",
+    "verify_state": "success",
+    "rootfs_start_sector": 368640,
+    "rootfs_sectors": 15239680,
+    "unattended_boot": "passed after restoring vendor bootcmd",
+    "fsck": "clean",
+    "systemd_failed_units": 0,
+    "evidence": "runtime-v3-recovered-validation.log"
+  },
+  "board_at_incident": "Linux 6.18.63-t736-armbian #3 initramfs shell; root filesystem cannot mount; no post-incident repair writes made",
+  "restore_plan_at_incident": "Build a v3 root filesystem with initial Armbian credentials, package with the previously booted v2 GPT/MBR, inspect, and await user choice before writing rootfs"
+}

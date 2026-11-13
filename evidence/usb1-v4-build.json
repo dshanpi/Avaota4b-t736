@@ -1,0 +1,34 @@
+{
+  "kernel_package": "6.18.63-4",
+  "state": "installed_and_cold_booted_usb1_hub_enumeration_passed",
+  "source_base": "Linux v6.18.63",
+  "host_tests": {
+    "unittest": 43,
+    "passed": 43,
+    "required_config_symbols": 21,
+    "patch_apply_check": "passed on pristine official snapshot",
+    "checkpatch": {
+      "errors": 0,
+      "warnings": 13
+    }
+  },
+  "scope": "USB1 host-only plus v3 runtime fixes",
+  "files": {
+    "output/linux-image-6.18.63-t736-armbian_6.18.63-4_arm64.deb": {
+      "bytes": 4586596,
+      "sha256": "edebf4e704ee8716a5b8b90458fda32adf234bb3a2f5c98d0c1882a69b5ab3fe"
+    },
+    "output/t736-usb-v4.dtb": {
+      "bytes": 4044,
+      "sha256": "40ece1d8d9682477bdc892817696f93b5a162015e79b47a9b24c7cb72c39450a"
+    },
+    "userpatches/kernel/t736-mainline-6.18/0001-t736-minimal-board.patch": {
+      "bytes": 27539,
+      "sha256": "b395c01185280d925058f93f1589c05979de6943ae74ea467a1b22b6a86b843b"
+    },
+    "userpatches/linux-t736-mainline-current.config": {
+      "bytes": 79347,
+      "sha256": "95398fac2a9714e2a0cd40fb573c665180548d8b17a3cd8536e870d11ad3ff77"
+    }
+  }
+}
