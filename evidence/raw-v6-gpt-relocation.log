@@ -1,0 +1,32 @@
+( set -eu; test "$(cat /sys/block/mmcblk0/size)" = 122142720; test "$(findmnt -n -o SOURCE /)" = /dev/mmcblk0p4; b=/root/t736-v6-gpt-before-2026111 
+3; test ! -e "$b"; mkdir -m 700 "$b"; sfdisk --dump /dev/mmcblk0 > "$b/layout.sf 
+disk"; dd if=/dev/mmcblk0 of="$b/primary.bin" bs=512 count=16 status=none; dd if 
+=/dev/mmcblk0 of="$b/vendor-mirror.bin" bs=512 skip=40960 count=16 status=none;  
+dd if=/dev/mmcblk0 of="$b/old-tail.bin" bs=512 skip=16777182 count=34 status=non 
+e; dd if=/dev/mmcblk0 of="$b/device-tail.bin" bs=512 skip=122142686 count=34 sta 
+tus=none; sha256sum "$b"/*.bin; sync )
+
+GPT PMBR size mismatch (16777215 != 122142719) will be corrected by write.
+The backup GPT table is not on the end of the device.
+eddd2a4fe4c76485ce6d93da5984022ae6bce02e7e6815be8170521b870664d4  /root/t736-v6-gpt-before-20261113/device-tail.bin
+84966b541a63805fb7c1f9d9c7c98f214375bbdc15d84a98fc613cd2b7d9e9df  /root/t736-v6-gpt-before-20261113/old-tail.bin
+951b681ba53c1505097e302377b87d7ebfcf2436b1e37ddadd6e705f24ccf886  /root/t736-v6-gpt-before-20261113/primary.bin
+951b681ba53c1505097e302377b87d7ebfcf2436b1e37ddadd6e705f24ccf886  /root/t736-v6-gpt-before-20261113/vendor-mirror.bin
+root@t736:~# ( set -eu; sfdisk --no-reread --no-tell-kernel --relocate gpt-bak-std /dev/mmcblk0; sfdisk --dump /dev/mmcblk0 > /root/t736-v6-gpt-before-20261113/layout-after.sfdisk; diff -u <(sed -n '/^\/dev\/mmcblk0p/p' /root/t736-v6-gpt-be 
+fore-20261113/layout.sfdisk) <(sed -n '/^\/dev\/mmcblk0p/p' /root/t736-v6-gpt-be 
+fore-20261113/layout-after.sfdisk); sfdisk --verify /dev/mmcblk0; dd if=/dev/mmc 
+blk0 of=/run/t736-v6-primary-gpt.bin bs=512 count=16 status=none; dd if=/run/t73 
+6-v6-primary-gpt.bin of=/dev/mmcblk0 bs=512 seek=40960 conv=notrunc,fsync status 
+=none; sync; echo GPT_RELOCATED_PARTITIONS_UNCHANGED )
+
+GPT PMBR size mismatch (16777215 != 122142719) will be corrected by write.
+The backup GPT table is not on the end of the device. This problem will be corrected by write.
+
+The partition table has been altered.
+/dev/mmcblk0:
+No errors detected.
+Header version: 1.0
+Using 6 out of 6 partitions.
+A total of 105365535 free sectors is available in 1 segment.
+GPT_RELOCATED_PARTITIONS_UNCHANGED
+root@t736:~# 

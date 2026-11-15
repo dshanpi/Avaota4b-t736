@@ -1,0 +1,22 @@
+sha256sum /boot/vmlinuz-6.18.63-t736-armbian /boot/initrd.img-6.18.63-t736-armbian /boot/dtb/allwinner/t736-mainline-bringup.dtb; ( cd /boot/t736-v4-recovery && sha256sum -c SHA256SUMS ); dd if=/dev/mmcblk0 bs=512 skip=172032 count=920 status=none | sha256sum; dd if=/dev/mmcblk0 bs=512 skip=16 count=504 status=none | sha256sum; dd if=/dev/mmcblk0 bs=512 skip=24576 count=3648 status=none | sha256sum; dd if=/dev/mmcblk0 bs=512 skip=32800 count=3648 status=none | sha256sum
+
+47ffe1952daebd3f04cbea294a4c8ef251c122dfc8a2efac29d1984361ff9d4f  /boot/vmlinuz-6.18.63-t736-armbian
+8b999b82264956ceff828af4c8ed90ff536e1fff454443d779b2315179d937f5  /boot/initrd.img-6.18.63-t736-armbian
+020ee57ead39f4535a3945165ddb7eef513d1facdaa8496f62a9f6c387d5f2b4  /boot/dtb/allwinner/t736-mainline-bringup.dtb
+vmlinuz-6.18.63-t736-armbian: OK
+( cd /boot/t736-v4-recovery && sha256sum -c SHA256SUMS ); dd if=/de 
+v/mmcblk0 bs=512 skip=172032 count=920 status=none | sha256sum; dd if=/dev/mmcbl 
+k0 bs=512 skip=16 count=504 status=none | sha256sum; dd if=/dev/mmcblk0 bs=512 s 
+kip=24576 count=3648 status=none | sha256sum; dd if=/dev/mmcblk0 bs=512 skip=328 
+00 count=3648 status=none | sha256sum; echo BOOT_HASH_CHECKS_DONE
+
+vmlinuz-6.18.63-t736-armbian: OK
+initrd.img-6.18.63-t736-armbian: OK
+config-6.18.63-t736-armbian: OK
+t736-mainline-bringup.dtb: OK
+04fef7f1e0cc52ceb4c37f901b6988f1eecb9f335fdbb93822436dc7d58bd6b2  -
+0e2397669df804256505c786d7a9db6b40720203dd3e6b1ea33955486efa98c8  -
+b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3  -
+b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3  -
+BOOT_HASH_CHECKS_DONE
+root@t736:~# 

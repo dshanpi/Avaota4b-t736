@@ -1,0 +1,15 @@
+sfdisk --verify /dev/mmcblk0; systemctl --failed --no-pager; findmnt -n -o SOURCE,FSTYPE,OPTIONS /; dmesg | grep -E 'GPT:|Invalid GPT|MDIO device|cannot attach to PHY'; echo V6_POST_COLD_BOOT_CHECKS_DONE
+
+/dev/mmcblk0:
+No errors detected.
+Header version: 1.0
+Using 6 out of 6 partitions.
+A total of 105365535 free sectors is available in 1 segment.
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+/dev/mmcblk0p4 ext4 rw,noatime
+[    0.616148] mdio_bus stmmac-0: MDIO device at address 1 is missing.
+[   15.198101] t736-dwmac 4500000.ethernet end0: cannot attach to PHY (error: -19)
+V6_POST_COLD_BOOT_CHECKS_DONE
+root@t736:~# 

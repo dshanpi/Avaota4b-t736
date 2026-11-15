@@ -1,0 +1,524 @@
+sh /tmp/t736-transfer/display_check.sh; printf "DISPLAY_RC=%s\n" "$?"
+
+Linux t736 6.18.63-t736-hdmi-v13 #13 SMP Sat Nov 14 06:19:10 EST 2026 aarch64 GNU/Linux
+earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused
+
+DISPLAY_KERNEL_LOG
+[    0.000000] Linux version 6.18.63-t736-hdmi-v13 (ubuntu@ubuntu2404) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #13 SMP Sat Nov 14 06:19:10 EST 2026
+[    0.000000] printk: legacy bootconsole [uart8250] enabled
+[    0.000000] cma: Reserved 128 MiB at 0x00000000f3800000
+[    0.233140] Memory: 7787504K/8388608K available (6464K kernel code, 2114K rwdata, 2388K rodata, 448K init, 286K bss, 466908K reserved, 131072K cma-reserved)
+[    0.333071] /display-engine@5000000: Fixed dependency cycle(s) with /tcon@5730000
+[    0.340040] /tcon@5730000: Fixed dependency cycle(s) with /display-engine@5000000
+[    0.347550] /tcon@5730000: Fixed dependency cycle(s) with /hdmi@5520000
+[    0.353542] /hdmi@5520000: Fixed dependency cycle(s) with /tcon@5730000
+[    0.592767] t736-display-ccu 2002a00.clock-controller: DE PLL locked at 600 MHz; HDMI PHY reference is board DCXO 26 MHz
+[    0.752132] printk: legacy bootconsole [uart8250] disabled
+[    0.762464] [drm] [TCON_TOP]sunxi_tcon_top_probe start
+[    0.767125] [drm] [SUNXI-DE] offline_mode not found, used def val
+[    0.772044] [drm] de use no display sys
+[    0.776993] [drm] [TCON] sunxi_tcon_probe start
+[    0.780251] [drm] [SUNXI-TCON] sunxi_tcon_of_get_id 4
+[    0.784408] [drm] [TCON] sunxi_tcon_probe ret = 0
+[    0.788291] [drm] sunxi_drm_platform_probe start
+[    0.791643] [drm] sunxi_drm_match_add start
+[    0.795349] [drm] sunxi_drm_match_add finish
+[    0.798408] [drm] sunxi_drm_bind start
+[    0.801397] [drm] [TCON_TOP]sunxi_tcon_top_bind start
+[    0.805556] sunxi-drm sunxi-drm: bound 5510000.tcon-top (ops 0xffff8000806d79e0)
+[    0.811715] [drm] [SUNXI-DE] sunxi_de_bind start
+[    0.815481] [drm] sunxi_de_bind crtc init for de 0 ok
+[    0.819805] sunxi-drm sunxi-drm: bound 5000000.display-engine (ops 0xffff8000806d4fa0)
+[    0.826544] [drm] [SUNXI-TCON] sunxi_tcon_of_get_id 4
+[    0.831200] [drm] sunxi-hdmi: hdmi drv init dts done
+[    0.835722] [drm] sunxi-hdmi: [warn] not set hdmi notify node!
+[    0.840348] [drm] sunxi-hdmi: hdmi drv enable resource done
+[    0.844635] [drm] sunxi-hdmi: hdmi drv init resource done
+[    0.848886] [drm] sunxi-hdmi: hdmi drv init i2c adapter finish
+[    0.855740] [drm] sunxi-hdmi: drm hdmi connector create finish
+[    0.860371] [drm] sunxi-hdmi: hdmi devices bind done <<<<<<<<<<
+[    0.865203] sunxi-drm sunxi-drm: bound 5520000.hdmi (ops 0xffff8000806d8098)
+[    0.870987] sunxi-drm sunxi-drm: bound 5730000.tcon (ops 0xffff8000806d76e8)
+[    0.876885] [drm] HDMI-A-1 Not connected, start hot-plug monitoring
+[    0.881880] [drm] start HDMI-A-1 monitor monitoring, interval: 100ms
+[    0.886952] [drm:commit_init_connecting.isra.0] *ERROR* offline mode: init connecting not found sunxi_drm_offline_mode_pre_init
+[    0.898253] [drm] Initialized sunxi-drm 3.0.0 for sunxi-drm on minor 0
+[    0.903558] [drm] sunxi_drm_bind ok
+[    0.910813] [drm] sunxi-hdmi: hdmi drv detect hpd connect
+[    1.441000] [drm] sunxi-hdmi: dw edid unsupport parser desc type: 255
+[    1.446508] [drm] sunxi-hdmi: dw edid unsupport parser desc type: 253
+[    1.451863] [drm] sunxi-hdmi: sunxi hdmi edid parse block0 finish
+[    1.457018] [drm] sunxi-hdmi: [error] dw edid parse dtd timing pixel clock[0KHz] invalid!
+[    1.464105] [drm] sunxi-hdmi: sunxi hdmi edid parse block1 finish
+[    1.548780] [drm] HDMI-A-1 connection detected
+[    1.553585] [drm] sunxi-hdmi: drm get edid support modes: 42
+[    1.558095] [drm] HDMI-A-1: Configuration mode 2560x1440@60Hz
+[    1.582747] [drm] sunxi-hdmi: drm hdmi set mode change when disp info change
+[    1.588549] [drm] sunxi-hdmi: drm hdmi check mode: change >>>>>>>>>>>>>>>>
+[    1.601685] [drm] sunxi-hdmi: sunxi hdmi select vic 0 use hdmi14 vsif
+[    1.611440] [drm] sunxi-hdmi: drm hdmi mode set: 2560*1440 >>>>>>>>>>>>>>>>
+[    1.617120] [drm] [SUNXI-CRTC]sunxi_crtc_atomic_enable
+[    1.620987] [drm] sunxi_de_enable index 0
+[    1.623759] [drm] sunxi_de_enable finish sw en=0
+[    1.627111] [drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+[    1.633520] [drm] sunxi-hdmi: dw audio get n = 6144
+[    1.664207] [drm] sunxi-hdmi: top phy auto calculate done
+[    1.668930] [drm] sunxi-hdmi: [top phy]
+[    1.671466] [drm] sunxi-hdmi:  - pixel clock 241500KHz
+[    1.675314] [drm] sunxi-hdmi:    - pll: 0xE8064000, 0x00035000, 0x00000000, 0x30000000
+[    1.681969] [drm] sunxi-hdmi: top phy config done
+[    1.695279] [drm] sunxi-hdmi: [warn] snps phy check clk: 241500Hz is match in [237600Hz-288000Hz] and change use: 237600Hz
+[    1.703613] [drm] sunxi-hdmi: [snps phy]
+[    1.719467] [drm] sunxi-hdmi:  - refer clock: 237600KHz, color bits: 8, repeat: 0
+[    1.738641] [drm] sunxi-hdmi:     - mpll: 0x0000, 0x3040, 0x0605
+[    1.749624] [drm] sunxi-hdmi:  - refer clock: 241500KHz. [185625KHz~340000KHz]
+[    1.759106] [drm] sunxi-hdmi:     - drive: 0x0004, 0x8040, 0x8e85
+[    1.767933] [drm] sunxi-hdmi: snps phy state: lock
+[    1.824925] [drm] sunxi-hdmi: dw audio check: triger cts re-calculate
+[    1.830076] [drm] sunxi-hdmi: hdmi drv enable output done
+[    1.834183] [drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[    1.895008] [drm] HDMI-A-1: Configuration complete
+[    1.996686] GPT: Use GNU Parted to correct GPT errors.
+[   15.317265] systemd[1]: kmod-static-nodes.service - Create List of Static Device Nodes skipped, unmet condition check ConditionFileNotEmpty=/lib/modules/6.18.63-t736-hdmi-v13/modules.devname
+[   15.401891] systemd[1]: Starting modprobe@drm.service - Load Kernel Module drm...
+[   16.012048] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[   16.019366] systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+
+DISPLAY_DEVICES
+crw-rw---- 1 root video 29, 0 Nov 11 15:48 /dev/fb0
+
+/dev/dri:
+total 0
+drwxr-xr-x 2 root root      60 Nov 11 15:48 by-path
+crw-rw---- 1 root video 226, 0 Nov 11 15:48 card0
+
+/sys/class/graphics:
+total 0
+lrwxrwxrwx 1 root root 0 Jan  1  1970 fb0 -> ../../devices/platform/sunxi-drm/graphics/fb0
+lrwxrwxrwx 1 root root 0 Jan  1  1970 fbcon -> ../../devices/virtual/graphics/fbcon
+
+CONNECTOR /sys/class/drm/card0-HDMI-A-1
+connected
+enabled
+2560x1440
+2048x1080
+2048x1080
+1920x1080
+1920x1080
+1920x1080
+1920x1080i
+1920x1080i
+1920x1080
+1920x1080i
+1600x1200
+1280x1024
+1280x720
+1280x720
+1280x720
+1280x720
+1024x768
+800x600
+720x576
+720x576
+720x480
+720x480
+720x480
+720x480
+640x480
+640x480
+640x480
+256 /sys/class/drm/card0-HDMI-A-1/edid
+75ecf4dfe66e41e302ca8f9512e04658b3f7a9940c85b3610f176d29b40cf895  /sys/class/drm/card0-HDMI-A-1/edid
+
+CONNECTOR /sys/class/drm/card0-Writeback-1
+unknown
+disabled
+0 /sys/class/drm/card0-Writeback-1/edid
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /sys/class/drm/card0-Writeback-1/edid
+
+FRAMEBUFFER /sys/class/graphics/fb0
+t736-drm-fb
+2560,2880
+32
+
+FRAMEBUFFER /sys/class/graphics/fbcon
+
+DISPLAY_CLOCKS
+    t736-de-mbus                     1       1        0        600000000   0          0     50000      Y      5000000.display-engine          mbus_vo_sys              
+    t736-tv0                         1       1        0        200000000   0          0     50000      Y      5730000.tcon                    clk_bus_tcon             
+    t736-vo1-ahb                     1       1        0        200000000   0          0     50000      Y      5510000.tcon-top                clk_ahb_gate             
+    t736-vo1-top                     1       1        0        200000000   0          0     50000      Y      5510000.tcon-top                clk_bus_dpss_top         
+    t736-de-ahb                      1       1        0        200000000   0          0     50000      Y      5000000.display-engine          ahb_vid_out              
+    t736-de-bus                      1       1        0        200000000   0          0     50000      Y      5000000.display-engine          clk_bus_de               
+    t736-hdmi-cec                    0       0        0        32768       0          0     50000      N      5520000.hdmi                    clk_cec                  
+    t736-display-ppu                 1       1        0        26000000    0          0     50000      Y      7061000.power-controller        no_connection_id         
+    t736-hdmi-bus                    1       1        0        26000000    0          0     50000      Y      5520000.hdmi                    clk_hdmi                 
+    t736-hdmi-sfr                    1       1        0        24000000    0          0     50000      Y      5520000.hdmi                    clk_hdmi_24M             
+    t736-de                          1       1        0        600000000   0          0     50000      Y      5000000.display-engine          clk_de                   
+
+POWER_DOMAINS
+domain                          status          children        performance
+    /device                         runtime status                  managed by
+------------------------------------------------------------------------------
+t736-vo1                        on                              0
+    5510000.tcon-top                active                      0           SW
+    5520000.hdmi                    active                      0           SW
+t736-de-sys                     on                              0
+    5000000.display-engine          active                      0           SW
+
+DEFERRED_DEVICES
+
+DRM_STATE
+plane[94]: plane-0-vch0(0)
+	crtc=DE-0
+	fb=139
+		allocated by = sunxi_fbdev
+		refcount=2
+		format=AR24 little-endian (0x34325241)
+		modifier=0x0
+		size=2560x2880
+		layers:
+			size[0]=2560x2880
+			pitch[0]=10240
+			offset[0]=0
+			obj[0]:
+				name=0
+				refcount=3
+				start=00100000
+				size=29491200
+				imported=no
+				dma_addr=0x00000000f3c00000
+				vaddr=00000000744b9608
+	crtc-pos=2560x1440+0+0
+	src-pos=2560.000000x1440.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=0
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+		 layer_id | fb_id |       src-pos       |       crtc-pos      | blend_mode |  alpha |   color 
+		 ---------+-------+---------------------+---------------------+------------+--------+---------
+		     0    |  139  | 2560x1440+   0+   0 | 2560x1440+   0+   0 |      none  |   255  | 0x00000000
+
+	ovl@  101000: enable
+		(2560x1440+   0+   0) = (2560x1440) ==> (2560x1440) 
+	afbd@  105000: disable
+
+	tfbd@  105400: disable
+
+	scaler@  104000: disable
+
+	snr@  106400: disable
+
+	sharp@  106000: disable
+
+	cdc@  108000: disable
+
+	gtm disable
+	vch0_cdc_icsc@       0: disable
+	vch0_cdc_icsc@       0: disable
+
+	dlc@  115000: disable
+	gamma0@  116000:
+		gamma_tbl off
+
+	fcm@  111000: disable csc: disable
+	vch0_fcm_icsc@       0: disable
+	vch0_fcm_ocsc@       0: disable
+
+	vch0_csc@  100800: enable
+		in:  colorfmt: rgb, eotf: bt709, colorspace: BT709, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+plane[102]: plane-1-vch1(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=1
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  121000: disable
+		
+	tfbd@  125400: disable
+
+	scaler@  124000: disable
+
+	vch1_csc@  120800: disable
+plane[108]: plane-2-uch0(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=2
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  1c1000: disable
+		
+	tfbd@  1c5400: disable
+
+	scaler@  1c4000: disable
+
+	cdc@  1c8000: disable
+
+	uch0_csc@  1c0800: disable
+plane[114]: plane-3-uch2(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=3
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  201000: disable
+		
+	scaler@  204000: disable
+
+	uch2_csc@  200800: disable
+blender@  281000: enable
+	 pipe_id | enable | channel | premult |       crtc-pos      
+	---------+--------+---------+---------+---------------------
+	     0   |   true |    0    |  false  | 2560x1440+   0+   0 
+
+	deband@  287000: disable
+	smbl0@  28b000:
+		smbl_tbl off
+	gamma0@  289000:
+		gamma_tbl off
+	disp0_gamma_csc@       0: enable
+		in:  colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+		bcsh: 50 50 50 50
+	dither@  288000: disable
+	fmt@  285000: disable
+
+crtc[101]: DE-0
+	enable=1
+	active=1
+	self_refresh_active=0
+	planes_changed=1
+	mode_changed=1
+	active_changed=1
+	connectors_changed=1
+	color_mgmt_changed=0
+	plane_mask=1
+	connector_mask=2
+	encoder_mask=2
+	mode: "2560x1440": 60 241500 2560 2608 2640 2720 1440 1443 1448 1481 0x48 0x9
+	on: 2560x1440@60&600Mhz->tcon4	irqcnt:14283	err:0	fps:59.932
+		format_space:0	yuv_sampling:0	eotf:4	cs:4	color_range:1	data_bits:0
+	offline composite fps:99.84	timeout:14283
+	    vsync: 14283 last rcq at vsync: 2024 offline: disable
+	wb off
+connector[122]: Writeback-1
+	crtc=(null)
+	self_refresh_aware=0
+	interlace_allowed=0
+	ycbcr_420_allowed=0
+	max_requested_bpc=0
+	colorspace=Default
+connector[128]: HDMI-A-1
+	crtc=DE-0
+	self_refresh_aware=0
+	interlace_allowed=1
+	ycbcr_420_allowed=1
+	max_requested_bpc=0
+	colorspace=Default
+	broadcast_rgb=Automatic
+	is_limited_range=n
+	output_bpc=0
+	output_format=RGB
+	tmds_char_rate=0
+plane[94]: plane-0-vch0(0)
+	crtc=DE-0
+	fb=139
+		allocated by = sunxi_fbdev
+		refcount=2
+		format=AR24 little-endian (0x34325241)
+		modifier=0x0
+		size=2560x2880
+		layers:
+			size[0]=2560x2880
+			pitch[0]=10240
+			offset[0]=0
+			obj[0]:
+				name=0
+				refcount=3
+				start=00100000
+				size=29491200
+				imported=no
+				dma_addr=0x00000000f3c00000
+				vaddr=00000000744b9608
+	crtc-pos=2560x1440+0+0
+	src-pos=2560.000000x1440.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=0
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+		 layer_id | fb_id |       src-pos       |       crtc-pos      | blend_mode |  alpha |   color 
+		 ---------+-------+---------------------+---------------------+------------+--------+---------
+		     0    |  139  | 2560x1440+   0+   0 | 2560x1440+   0+   0 |      none  |   255  | 0x00000000
+
+	ovl@  101000: enable
+		(2560x1440+   0+   0) = (2560x1440) ==> (2560x1440) 
+	afbd@  105000: disable
+
+	tfbd@  105400: disable
+
+	scaler@  104000: disable
+
+	snr@  106400: disable
+
+	sharp@  106000: disable
+
+	cdc@  108000: disable
+
+	gtm disable
+	vch0_cdc_icsc@       0: disable
+	vch0_cdc_icsc@       0: disable
+
+	dlc@  115000: disable
+	gamma0@  116000:
+		gamma_tbl off
+
+	fcm@  111000: disable csc: disable
+	vch0_fcm_icsc@       0: disable
+	vch0_fcm_ocsc@       0: disable
+
+	vch0_csc@  100800: enable
+		in:  colorfmt: rgb, eotf: bt709, colorspace: BT709, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+plane[102]: plane-1-vch1(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=1
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  121000: disable
+		
+	tfbd@  125400: disable
+
+	scaler@  124000: disable
+
+	vch1_csc@  120800: disable
+plane[108]: plane-2-uch0(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=2
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  1c1000: disable
+		
+	tfbd@  1c5400: disable
+
+	scaler@  1c4000: disable
+
+	cdc@  1c8000: disable
+
+	uch0_csc@  1c0800: disable
+plane[114]: plane-3-uch2(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=3
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  201000: disable
+		
+	scaler@  204000: disable
+
+	uch2_csc@  200800: disable
+blender@  281000: enable
+	 pipe_id | enable | channel | premult |       crtc-pos      
+	---------+--------+---------+---------+---------------------
+	     0   |   true |    0    |  false  | 2560x1440+   0+   0 
+
+	deband@  287000: disable
+	smbl0@  28b000:
+		smbl_tbl off
+	gamma0@  289000:
+		gamma_tbl off
+	disp0_gamma_csc@       0: enable
+		in:  colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+		bcsh: 50 50 50 50
+	dither@  288000: disable
+	fmt@  285000: disable
+
+crtc[101]: DE-0
+	enable=1
+	active=1
+	self_refresh_active=0
+	planes_changed=1
+	mode_changed=1
+	active_changed=1
+	connectors_changed=1
+	color_mgmt_changed=0
+	plane_mask=1
+	connector_mask=2
+	encoder_mask=2
+	mode: "2560x1440": 60 241500 2560 2608 2640 2720 1440 1443 1448 1481 0x48 0x9
+	on: 2560x1440@60&600Mhz->tcon4	irqcnt:14309	err:0	fps:59.932
+		format_space:0	yuv_sampling:0	eotf:4	cs:4	color_range:1	data_bits:0
+	offline composite fps:99.84	timeout:14309
+	    vsync: 14309 last rcq at vsync: 2024 offline: disable
+	wb off
+connector[122]: Writeback-1
+	crtc=(null)
+	self_refresh_aware=0
+	interlace_allowed=0
+	ycbcr_420_allowed=0
+	max_requested_bpc=0
+	colorspace=Default
+connector[128]: HDMI-A-1
+	crtc=DE-0
+	self_refresh_aware=0
+	interlace_allowed=1
+	ycbcr_420_allowed=1
+	max_requested_bpc=0
+	colorspace=Default
+	broadcast_rgb=Automatic
+	is_limited_range=n
+	output_bpc=0
+	output_format=RGB
+	tmds_char_rate=0
+
+DISPLAY_INTERRUPTS
+411:          0          0          0          0          0          0          0          0    GICv3  66 Level     5000000.display-engine
+412:      14330          0          0          0          0          0          0          0    GICv3  89 Level     5730000.tcon
+
+SYSTEM_STATE
+0
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+end0             UP             10.0.0.249/24 metric 1024 fd67:b33e:a9c2:0:c884:85ff:fe01:e58e/64 fe80::c884:85ff:fe01:e58e/64 
+sit0@NONE        DOWN           
+
+DISPLAY_CHECK_FINISHED
+DISPLAY_RC=0
+root@t736:~# 

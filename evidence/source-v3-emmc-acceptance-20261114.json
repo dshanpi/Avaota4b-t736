@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-14",
+  "image": "t736-armbian-source-v3.raw.img",
+  "image_sha256": "911951b5cbcbc667a68506bc0bc1bdd4929e3edcafff136af3d42cccd3b721a6",
+  "flash_task": "flash-1794651648165782700",
+  "flashed_bytes": 8589934592,
+  "write_state": "success",
+  "verify_state": "success",
+  "spl_media_sha256": "7a3b30d3a0349e2b62d06fa07699cf1284af1e60a5704d4f1330aaf5011532db",
+  "ddr": {
+    "fixed_board": "8 GiB LPDDR4x",
+    "para1": "0x311a",
+    "para2": "0xa0001001",
+    "tpr13": "0x6063",
+    "auto_geometry_scan": false,
+    "phy_training_retained": true,
+    "reported_mib": 8192,
+    "a32_memory_word_checks": 524288,
+    "a64_memory_checks": 262144,
+    "linux_256m_four_patterns_rc": 0
+  },
+  "controlled_emmc_boots": 3,
+  "boot_input_required": false,
+  "power_cycle_off_ms": 10000,
+  "physical_voltage_measured": false,
+  "root_authenticated": true,
+  "online_cpus": "0-7",
+  "linux_memory_mib": 7749,
+  "failed_services": 0,
+  "kernel_taint": 0,
+  "fs_16m_direct_read_sha256": "0bd54c02f1fb6eba20a356d60f24e94e50c068be2b994bd9f06c5547c091ee04",
+  "file_hash_persisted_across_boots": true,
+  "gpt_relocated_verified": true,
+  "partition_definitions_unchanged": true,
+  "recovery": {
+    "method": "lynx_allwinner_enter_fel/uboot_serial_efex",
+    "promptObserved": true,
+    "efexBytesWritten": 6,
+    "felOnline": true,
+    "physical_button_required": false
+  },
+  "ccu_after_ddr": {
+    "peri0": "0xff126310",
+    "ahb": "0x03000002",
+    "apb0": "0x03000005"
+  },
+  "limitations": [
+    "HDMI absent from deployed kernel; source display Image links but board resources pending",
+    "Ethernet still Generic Clause 45 PHY / DMA reset failure",
+    "Pure-source ZCal still unresolved; authorized DDR library used",
+    "Three bounded boots and 256 MiB test are not full memory certification"
+  ],
+  "evidence": [
+    "source-raw-v3-flash-retry-status-20261114.json",
+    "source-v3-coldboot-1-20261114.log",
+    "source-v3-runtime-20261114.log",
+    "source-v3-runtime-memory-20261114.log",
+    "source-v3-gpt-verification.json",
+    "source-v3-recovery-entry-20261114.json",
+    "source-v3-coldboot-2-20261114.log",
+    "source-v3-clean-shutdown-2-20261114.log",
+    "source-v3-coldboot-3-20261114.log",
+    "source-v3-runtime-3-20261114.log"
+  ]
+}

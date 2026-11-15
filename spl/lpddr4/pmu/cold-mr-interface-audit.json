@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-14",
+  "scope": "Source-authored experimental cold LPDDR4 MR interface; no hardware actions, normal-boot integration or vendor executable content",
+  "primary_reference": {
+    "title": "Rockchip RK3576 TRM Part2 V1.2 20240624",
+    "publisher": "Rockchip Electronics",
+    "url": "https://dl.khadas.com/products/edge-2l/datasheet/rockchip-rk3576-trm-part2-v1.2.pdf",
+    "text_mirror": "https://www.scribd.com/document/1076944297/Rockchip-RK3576-TRM-Part2-V1-2-20240624",
+    "pages": [635, 636, 637, 642, 643],
+    "provenance": "Rockchip register facts, independently matched controller generation/layout. No Radxa source or derivatives. No Rockchip PHY configuration transplanted."
+  },
+  "register_facts": {
+    "base": "T736 CTL0 0x0a110000; CTL1 stride 0x00400000",
+    "MRCTRL0+080": "bit31 trigger, bit24 receive-done clear, bits5:4 rank mask, bit3 software initialization intervention, bit0 read/write",
+    "MRCTRL1+084": "LP4 MR address15:8 and write data7:0",
+    "MRSTAT+090": "bit16 receive-done; bit0 command-busy falls when command issued",
+    "MRRDATA0+094": "raw DQ31:0",
+    "MRRDATA1+098": "raw DQ63:32",
+    "PWRCTL+180": "bit11 software self-refresh request; current held0x800 must be cleared separately before command stage",
+    "DERATECTL0+100": "bit0 automatic MR4 polling enable; command precondition requires disabled"
+  },
+  "prepare": "Check both controllers and reset-held memory before any write; set bit3 in both MRCTRL0 with readback. Two writes only; no command. Caller freezes expected_micro_reset to1 or9, matched exactly; stall must remain asserted and0 is never permitted.",
+  "command": "Check both channels armed, INIT, no low-power controls, DFI completion, reset high and caller-reviewed pin/timing readiness. MRW returns issued-only. MRR clears stale done, verifies zero, explicitly clears bit24, programs selection/data, triggers separately and requires new done before raw reads.",
+  "limitations": [
+    "Candidate same-generation done/data semantics require T736 hardware confirmation.",
+    "No automatic clear of software intervention, rollback, cleanup or retry.",
+    "No result proves valid MR bytes, trained DDR or usable memory.",
+    "Warm MRR component intentionally unchanged."
+  ],
+  "validation": {
+    "hardware_tested": false,
+    "native": "cc C11 O2 Wall Wextra Werror Wconversion Wshadow ASan UBSan",
+    "tests": "28 arm,42 MRW,48 MRR callback-failure positions; prewrite state corruption; stale/missing/early done; stuck busy/request; both clear-bit behaviors; select/data readback errors; invalid inputs; no callback after failure. All3 operations pass with frozenMicro1 or9; observedMicro0..9 other than expected abort before internalPHY reads; invalid expectedMicro values fail withoutMMIO.",
+    "arm": "arm-linux-gnueabi-gcc cortex-a55 ARM soft-float mno-unaligned-access O2 freestanding no-builtin; strict warnings pass; no undefined symbols",
+    "object_text_bytes": 3380,
+    "all_static_stack_frame_sum_bytes": 296,
+    "build_directory": "/home/ubuntu/t736-mainline/build/cold-mr"
+  }
+}

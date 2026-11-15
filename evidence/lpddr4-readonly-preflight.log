@@ -1,0 +1,9 @@
+t736-dwmac 4500000.ethernet end0: Link is Down
+t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+printf '\nT736_LP4_SOURCE_PROBE\n'; uname -r; command -v python3; ls -l /dev/mem; cat /sys/class/dmi/id/product_name 2>/dev/null; printf 'PROBE_DONE\n'
+
+T736_LP4_SOURCE_PROBE
+6.18.63-t736-armbian
+ls: cannot access '/dev/mem': No such file or directory
+PROBE_DONE
+root@t736:~# 

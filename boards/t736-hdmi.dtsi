@@ -1,0 +1,144 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/* T736 DE352 -> VO1/TCON-TV0 -> SNPS HDMI PHY. Requires the source SPL's
+ * verified DLDO2 1.8 V setup. This fragment is for the isolated HDMI candidate.
+ */
+/ {
+	peri300_display: clock-peri300-display {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <300000000>;
+	};
+	display_ccu: clock-controller@2002a00 {
+		compatible = "allwinner,t736-display-ccu";
+		reg = <0 0x02002a00 0 0x78>, <0 0x02003604 0 0xec>,
+		      <0 0x020022e0 0 0x14>, <0 0x02002000 0 4>,
+		      <0 0x020025c0 0 4>, <0 0x020025e0 0 4>,
+		      <0 0x070101ac 0 4>;
+		reg-names = "de", "vo1", "pll-de", "pll-ref", "ahb-master",
+			    "mbus-master", "ppu";
+		clocks = <&osc24m>, <&dcxo>, <&osc32k>, <&ahb_fw>,
+			 <&mbus_fw>, <&peri300_display>;
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+	display_pd: power-controller@7061000 {
+		compatible = "allwinner,t736-display-power";
+		reg = <0 0x07061000 0 0x1000>, <0 0x0706a000 0 0x1000>;
+		clocks = <&display_ccu 11>;
+		#power-domain-cells = <1>;
+	};
+	hdmi_core_supply: regulator-hdmi-core {
+		compatible = "regulator-fixed";
+		regulator-name = "hdmi-core-dcdc2-board";
+		regulator-min-microvolt = <900000>;
+		regulator-max-microvolt = <900000>;
+		regulator-always-on;
+	};
+	hdmi_1v8_supply: regulator-hdmi-1v8 {
+		compatible = "regulator-fixed";
+		regulator-name = "hdmi-1v8-source-spl";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		regulator-always-on;
+	};
+	sunxi_drm: sunxi-drm {
+		compatible = "allwinner,sunxi-drm";
+		fb_base = <0>;
+	};
+	de: display-engine@5000000 {
+		compatible = "allwinner,display-engine-v352";
+		reg = <0 0x05000000 0 0x400000>;
+		interrupts = <0 50 4>, <0 34 4>;
+		power-domains = <&display_pd 0>;
+		clocks = <&display_ccu 0>, <&display_ccu 1>,
+			 <&display_ccu 2>, <&display_ccu 3>;
+		clock-names = "clk_de", "clk_bus_de", "ahb_vid_out", "mbus_vo_sys";
+		resets = <&display_ccu 0>, <&display_ccu 1>;
+		reset-names = "rst_bus_de", "rst_bus_de_sys";
+		chn_cfg_mode = <2>;
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				de0_to_tv0: endpoint@4 {
+					reg = <4>;
+					remote-endpoint = <&tv0_from_de0>;
+				};
+			};
+		};
+	};
+	vo1: tcon-top@5510000 {
+		compatible = "allwinner,tcon-top1";
+		reg = <0 0x05510000 0 0x1000>;
+		clocks = <&display_ccu 4>, <&display_ccu 5>;
+		clock-names = "clk_bus_dpss_top", "clk_ahb_gate";
+		resets = <&display_ccu 2>, <&display_ccu 3>;
+		reset-names = "rst_bus_dpss_top", "rst_bus_reg";
+		power-domains = <&display_pd 1>;
+	};
+	tv0: tcon@5730000 {
+		compatible = "allwinner,tcon-tv";
+		reg = <0 0x05730000 0 0x1000>;
+		interrupts = <0 57 4>;
+		clocks = <&display_ccu 6>;
+		clock-names = "clk_bus_tcon";
+		resets = <&display_ccu 4>;
+		reset-names = "rst_bus_tcon";
+		top = <&vo1>;
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				tv0_from_de0: endpoint@0 {
+					reg = <0>;
+					remote-endpoint = <&de0_to_tv0>;
+				};
+			};
+			port@1 {
+				reg = <1>;
+				tv0_to_hdmi: endpoint { remote-endpoint = <&hdmi_from_tv0>; };
+			};
+		};
+	};
+	hdmi: hdmi@5520000 {
+		compatible = "allwinner,sunxi-hdmi";
+		reg = <0 0x05520000 0 0x100000>;
+		interrupts = <0 61 4>;
+		power-domains = <&display_pd 1>;
+		clocks = <&display_ccu 7>, <&display_ccu 8>, <&display_ccu 9>,
+			 <&display_ccu 10>, <&dcxo>;
+		clock-names = "clk_cec", "clk_hdmi", "clk_hdmi_24M", "clk_hdcp", "clk_dcxo";
+		resets = <&display_ccu 5>, <&display_ccu 6>, <&display_ccu 7>;
+		reset-names = "rst_bus_sub", "rst_bus_main", "rst_bus_hdcp";
+		dcdc2-supply = <&hdmi_core_supply>;
+		dldo2-supply = <&hdmi_1v8_supply>;
+		hdmi_power0 = "dcdc2";
+		hdmi_power1 = "dldo2";
+		hdmi_power_cnt = <2>;
+		hdmi_hdcp1x_enable = <0>;
+		hdmi_hdcp2x_enable = <0>;
+		hdmi_cec_enable = <0>;
+		hdmi_clock_source = <0>;
+		hdmi_resistor_select = <1>;
+		hdmi_ddc_index = <20>;
+		force-output = <0>;
+		snps_phy = <25000 185625 0x0007 0x8160 0x8188
+			    185625 185625 0x0007 0x8160 0x8198
+			    185625 340000 0x0004 0x8040 0x8e85
+			    340000 600000 0x0000 0x80c0 0x82f6>;
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				hdmi_from_tv0: endpoint { remote-endpoint = <&tv0_to_hdmi>; };
+			};
+		};
+	};
+};

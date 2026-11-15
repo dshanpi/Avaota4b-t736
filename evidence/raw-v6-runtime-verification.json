@@ -1,0 +1,53 @@
+{
+  "authenticated_root_login": true,
+  "kernel_package": "6.18.63-6",
+  "installed_sha256_match": {
+    "kernel": "47ffe1952daebd3f04cbea294a4c8ef251c122dfc8a2efac29d1984361ff9d4f",
+    "initrd": "8b999b82264956ceff828af4c8ed90ff536e1fff454443d779b2315179d937f5",
+    "dtb": "020ee57ead39f4535a3945165ddb7eef513d1facdaa8496f62a9f6c387d5f2b4",
+    "vendor-boot0-user-copy": "0e2397669df804256505c786d7a9db6b40720203dd3e6b1ea33955486efa98c8",
+    "vendor-boot-package": "b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3",
+    "vendor-boot-package-backup": "b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3",
+    "boot": "04fef7f1e0cc52ceb4c37f901b6988f1eecb9f335fdbb93822436dc7d58bd6b2"
+  },
+  "v4_fallback_sha256_pass": true,
+  "gpt": {
+    "primary": {
+      "current_lba": 1,
+      "backup_lba": 122142719,
+      "first_usable": 73728,
+      "last_usable": 122142716,
+      "entries_lba": 2,
+      "partition_count": 6,
+      "header_crc_valid": true,
+      "entries_crc_valid": true,
+      "entries_sha256": "750938222976776900b49d1782ee976c52db16fc42f1ab04ceeaffb3aaa4125f"
+    },
+    "secondary": {
+      "current_lba": 122142719,
+      "backup_lba": 1,
+      "first_usable": 73728,
+      "last_usable": 122142716,
+      "entries_lba": 122142717,
+      "partition_count": 6,
+      "header_crc_valid": true,
+      "entries_crc_valid": true,
+      "entries_sha256": "750938222976776900b49d1782ee976c52db16fc42f1ab04ceeaffb3aaa4125f"
+    },
+    "vendor_mirror_identical": true,
+    "all_partition_definitions_unchanged": true
+  },
+  "io_test": {
+    "bytes": 16777216,
+    "fsync": true,
+    "read_mode": "O_DIRECT",
+    "sha256": "a8e1245eaf76f94c602d495b4794f289492bf3b76ab7128322ffd3eb15c60694",
+    "equal": true
+  },
+  "systemd_failed_units": 0,
+  "ethernet": "end0 exists but down; MDIO PHY address 1 absent, cannot attach (-19)",
+  "post_gpt_coldboot": "passed",
+  "post_gpt_coldboot_authenticated_login": true,
+  "post_gpt_coldboot_gpt_warnings": false,
+  "post_gpt_coldboot_systemd_failed_units": 0
+}

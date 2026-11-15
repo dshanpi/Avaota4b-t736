@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-14",
+  "image": "source-v2",
+  "flash_task": "flash-1794649744466260200",
+  "write_bytes": 8589934592,
+  "flash_success": true,
+  "verify_success": true,
+  "source_spl_readback_sha256": "b643029ba6b5e4fa9b46623cae96235969488a2e4ce0f7bfb7d9491ba7bfe186",
+  "emmc_unattended_boot_to_root": true,
+  "power_off_requested_ms": 10000,
+  "actual_supply_voltage_measured": false,
+  "boot_id": "43091f50-f59c-4017-99c1-80f2d6f5e107",
+  "dram_mib": 8192,
+  "cpus_online": "0-7",
+  "linux_memory_mib": 7749,
+  "rootfs": "/dev/mmcblk0p4 ext4 rw,noatime",
+  "failed_units": 0,
+  "kernel_taint": 0,
+  "memory_check": {
+    "mib": 256,
+    "patterns": 4,
+    "exit_code": 0
+  },
+  "filesystem_check": {
+    "mib": 16,
+    "fsync": true,
+    "direct_read": true,
+    "sha256_match": true,
+    "sha256": "69372779fa456b251826cd79e0551e3929f49536214a690791fdb4f5c878eeaf"
+  },
+  "runtime_uptime_observed_seconds": 229.1,
+  "clean_shutdown": true,
+  "recovery": {
+    "success": false,
+    "observed_prompt": "T736-SPL=> ",
+    "diagnosis": "Dedicated tool did not recognize custom prompt (11 bytes); efex was not sent. Direct ROM entry remains untested.",
+    "candidate_fix": "v3 standalone => prompt"
+  },
+  "ethernet": {
+    "works": false,
+    "error": "Generic Clause45 PHY, DMA reset failed"
+  },
+  "hdmi": {
+    "works": false,
+    "drm_built": false,
+    "fb_built": false,
+    "devices_absent": [
+      "/sys/class/drm",
+      "/dev/dri",
+      "/dev/fb0"
+    ]
+  },
+  "controlled_three_boot_acceptance": false,
+  "evidence": [
+    "source-raw-v2-physical-fel-flash-status-20261114.json",
+    "source-v2-coldboot-1-20261114.log",
+    "source-v2-root-login-20261114.log",
+    "source-v2-runtime-20261114.log",
+    "source-v2-runtime-memory-20261114.log",
+    "source-v2-clean-shutdown-20261114.log",
+    "source-v2-recovery-prompt-20261114.log"
+  ]
+}

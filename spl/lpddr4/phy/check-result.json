@@ -1,0 +1,65 @@
+{
+  "commands": [
+    [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wshadow",
+      "-O2",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "/home/ubuntu/t736-mainline/spl/lpddr4/phy/host.c",
+      "/home/ubuntu/t736-mainline/spl/lpddr4/phy/test_host.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/spl/lpddr4/phy/build/test_host"
+    ],
+    [
+      "/home/ubuntu/t736-mainline/spl/lpddr4/phy/build/test_host"
+    ],
+    [
+      "arm-linux-gnueabi-gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wshadow",
+      "-O2",
+      "-mcpu=cortex-a55",
+      "-marm",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-c",
+      "/home/ubuntu/t736-mainline/spl/lpddr4/phy/host.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/spl/lpddr4/phy/build/host.o"
+    ]
+  ],
+  "sha256": {
+    "spl/lpddr4/phy/host.c": "261a86aa1a1e8598bd90e1e605528f885618c59775e8108cb470a2ba62d95ee3",
+    "spl/lpddr4/phy/host.h": "be3fd815d94bf2e3ae6e32ffc70de9a2494e288a910057129c29795ca1de25bc",
+    "spl/lpddr4/phy/test_host.c": "74e65a389a523cc96bb9cd141fae45d1107dd790683af10e20b30e9685b50255",
+    "spl/lpddr4/phy/check.py": "aeb2b1c35f25e2eacbe3d31114def9847ea1037fef25eb0041e84747855b6e8d",
+    "spl/lpddr4/phy/provenance.json": "b32aa9289ab0bed50ee6071a3a31ec959b905dd673713af49387994e003517d7",
+    "spl/lpddr4/phy/README.md": "8d8a9f1a40a6135ece2c785dbd0b49d1ab3c340a07dfb697ccbd20a267c0d790",
+    "spl/lpddr4/phy/build/host.o": "df2dd65f085aefc31e34235b1a3499f113e11b4dcc971bf19d086a87952766f1",
+    "spl/lpddr4/controller.h": "d42e7955af902cf11ecc4b7982bdb0357a56f235a381384f40504b1680bed339",
+    "spl/lpddr4/timing.h": "674f8fbcf14ace8e50848da4e8be8950ac359f0a415dedd20dd62cd21fe76468"
+  },
+  "native_asan_ubsan_pass": true,
+  "arm32_freestanding_compile_pass": true,
+  "undefined_symbols": [],
+  "board_running_phy_owner_refusal_observed": false,
+  "board_phy_or_clock_writes_tested": false,
+  "vendor_executable_data_linked": false,
+  "complete_cold_clock_tree": false,
+  "phy_electrical_configuration_complete": false,
+  "training_implemented": false,
+  "coldboot_tested": false,
+  "deployable": false
+}

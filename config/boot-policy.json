@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "confirmed_on": "2026-11-14",
+  "user_requirement": "允许厂家 DDR 库，先打通启动",
+  "normal_boot": {
+    "tina_vendor_binaries_allowed": false,
+    "vendor_ddr_library_allowed": true,
+    "vendor_ddr_pmu_binary_allowed": true,
+    "vendor_boot0_allowed": false,
+    "vendor_uboot_allowed": false,
+    "vendor_bl31_optee_scp_allowed": false,
+    "embedded_or_repackaged_vendor_binary_allowed": false,
+    "required_provenance": "Source boot stages with revisions and commands; explicitly authorized pinned vendor DDR library and embedded training code.",
+    "require_cold_boot_without_tina_runtime": false,
+    "reviewed_source_build_still_required": true,
+    "vendor_ddr_exception": {
+      "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+      "path": "sun60iw2p1/spl_libdram/libdram",
+      "includes": "embedded PMU/PIE used by this initializer"
+    },
+    "require_cold_boot_without_other_vendor_boot_stages": true
+  },
+  "programming_only": {
+    "method": "Tina RAM loader -> FES -> complete Armbian raw",
+    "loader": "output/t736-tina-fes-loader.img",
+    "loader_sha256": "565436e6d6f4370d05788afa3397a7e2368b5d5d2cef9a6490700b9b944cee08",
+    "persistent_partitions_in_loader": 0,
+    "raw_contains_loader": false
+  },
+  "source_exclusions": [],
+  "legacy_artifacts": {
+    "keep_existing_recovery_files": true,
+    "eligible_for_delivery": false,
+    "eligible_for_new_normal_boot_deployment": false
+  },
+  "policy_history": [
+    {
+      "date": "2026-11-14",
+      "previous_source_exclusions": [
+        "Radxa board code, firmware and derived implementations"
+      ],
+      "change": "User now explicitly authorizes Radxa A733 code reuse andTinaLP4 parameter adaptation."
+    },
+    {
+      "date": "2026-11-14",
+      "previous_user_requirement": "连 DDR 库也禁止，正常启动不能使用任何 Tina 厂家二进制",
+      "change": "用户明确授权：允许厂家 DDR 库，先打通启动。 Covers pinned libdram and embedded DDR PMU/PIE; not other vendor boot stages."
+    }
+  ],
+  "radxa_source_reuse_allowed": true,
+  "latest_route_review": "evidence/t736-radxa-a733-lp4-route-review-20261114.json"
+}

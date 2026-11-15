@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-11-14",
+  "purpose": "Stage cold-state common-domain observations before any controller-1 or internal PHY access",
+  "hardware_performed_by_this_audit": false,
+  "new_runtime_domain_writes_implemented": true,
+  "runtime_scope": "Standalone exactly-three-write source SRAM diagnostic; no controller or PHY access and no normal-boot integration",
+  "vendor_executable_arrays_used": false,
+  "critical_type_correction": {
+    "phy_revision_is_not_dram_type_enum": true,
+    "board_live_evidence": "evidence/lpddr4-register-observation.log: DRAMC_SYS_CFG=0x0000273f, DRAMC_CH_EN=0x00000002; both controller MSTR=0x03081002 and STAT=1",
+    "sdk_type8_evidence": "SDK mctl_com_set_bus_config explicitly branches on dram_type==8; T736 board config files including demo_aiot-bak/sys_config.fex declare dram_type=8.",
+    "channel_register": "mctl_channel_init sets bit1 for two channels, and sets bit0 only for SDK dram_type==9. On the observed LP4 board the low two bits must not be assumed to be 3; observed value is 2.",
+    "do_not_conflate": "Type9 PHY terminology and SDK dram_type==9 are different namespaces. The latter branch cannot be assumed to be this board's LPDDR4 path."
+  },
+  "source": {
+    "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+    "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+    "use": "Read-only ARM host MMIO and interface sequence facts; not a source translation or imported implementation",
+    "sections": ["mctl_core_init", "mctl_sys_init", "mctl_channel_init", "mctl_com_set_bus_config"],
+    "top_level_order": "mctl_core_init calls mctl_sys_init, then mctl_channel_init."
+  },
+  "source_cold_observation": {
+    "evidence": "evidence/t736-domain-sram-hardware-20261114.json",
+    "performed_by": "Root only",
+    "ccu": {"PLL_DDR": "0xf9004a00", "DRAM0_CLK": "0x80000003", "DRAM0_BGR": "0x00010001"},
+    "common": {"SYS_CFG": "0x00003200", "CHANNEL_TYPE": "0x00000000", "PRCM_07010250": "0x00000000"},
+    "interpretation": "Dual-channel selector bit1 is clear; PRCM candidate bit0 is clear; SYS_CFG bits selected by 0x3f are all zero. This differs from both the pre-controller SDK 0x2728 phase and live trained 0x273f. Exact reset/gate names and electrical isolation polarity remain unconfirmed. Common CSR accessibility is now independently demonstrated from the source-CCU cold state; channel-controller accessibility is not."
+  },
+  "minimal_domain_experiment": {
+    "source": ["spl/lpddr4/domain_prepare_diag.c", "spl/lpddr4/domain_prepare_diag.h"],
+    "initial_state": "Require all six exact values from source_cold_observation, not just PLL ready bits. Require explicit exclusive SRAM cold-context acknowledgement.",
+    "writes": [
+      {"address": "0x0a020010", "mask": "0x00003f3f", "value": "0x00002728", "source_fact": "SDK mctl_channel_init pre-controller dual-channel RMW"},
+      {"address": "0x0a020014", "mask": "0x00000003", "value": "0x00000002", "source_fact": "SDK dual-channel bit1 and non-type9 bit0 clear, independently matched by the actual LP4 board"},
+      {"address": "0x07010250", "mask": "0x00000001", "value": "0x00000001", "source_fact": "SDK pre-controller bit0 RMW followed by 10000us delay"}
+    ],
+    "procedure": "Fresh-read each register immediately before RMW, reject any drift, preserve all bits outside its mask, then exact readback. Wait 10000us after the third verified write and read all three again. Stop before every controller/PHY access.",
+    "deliberate_omissions": ["The initial clear0x14 and clear0x28 are no-ops from observed SYS_CFG=0x3200 and introduce no writes", "SDK mctl_sys_init bridge phases 0x0100/0x2600 and security-dependent SMC workaround", "Six common-master-port writes whose necessity for CSR-only access and side effects have not been established", "The later post-controller SYS_CFG=0x273c/0x273e/0x273f transitions"],
+    "result": "Positive WRITES_OBSERVED_ONLY=1 confirms the three writes, readbacks and wait only. Neither controller access nor DRAM readiness is implied. An ensuing channel probe is a separate reviewed experiment.",
+    "failure": "No retries, rollback, cleanup writes or subsequent reads after callback failure. Report attempted/completed counts so root does not treat an I/O error as proof of no side effect.",
+    "hardware_tested": false
+  },
+  "minimum_initial_read_group": {
+    "context": "Source SRAM-only execution after parent-owned CCU bring-up has completed; no initialized DRAM or vendor firmware assumed",
+    "ccu_first_32bit": [
+      {"address": "0x02002020", "name": "PLL_DDR"},
+      {"address": "0x02002580", "name": "NSI_CLK"},
+      {"address": "0x02002584", "name": "NSI_BGR"},
+      {"address": "0x02002588", "name": "MBUS_CLK"},
+      {"address": "0x02002c00", "name": "DRAM0_CLK"},
+      {"address": "0x02002c0c", "name": "DRAM0_BGR"}
+    ],
+    "common_then_32bit": [
+      {"address": "0x0a020010", "name": "DRAMC_SYS_CFG", "access_evidence": "SDK first common access follows DRAM0 bus reset release and bus gate enable in mctl_sys_init; it precedes channel/controller setup. Live Linux read also exists."},
+      {"address": "0x0a020014", "name": "DRAMC_CH_EN", "access_evidence": "SDK accesses in mctl_channel_init before touching either controller. Live Linux read also exists."},
+      {"address": "0x07010250", "name": "PRCM memory-isolation control candidate", "access_evidence": "SDK uses read-modify-write to set bit0 before controller configuration; public host source calls this memory isolation. Initially read only."}
+    ],
+    "do_not_include_yet": ["CH0/CH1 MSTR or STAT", "0x07410310/0x07410314 inferred PRCM mirror", "PHY MuxSel/MicroReset/internal CSRs", "DRAM address 0x40000000 or beyond"],
+    "reason": "Common-domain reads provide channel and reset context without first issuing a read to potentially disabled CH1. A bounded polling loop does not bound an individual MMIO bus hang.",
+    "access_certainty": "Supported by host sequence and existing live observation, not yet independently proven after this source-built CCU cold state. Root must preserve SRAM progress markers and controlled power-cycle recovery."
+  },
+  "sdk_host_domain_sequence_facts": [
+    {
+      "phase": "Common bridge state during mctl_sys_init",
+      "location": "mctl_sys_init+0x4e..0x68, after DRAM0_BGR bit16 and bit0 set",
+      "register": "0x0a020010",
+      "operations": ["clear 0x2600 and set 0x0100", "call security-dependent sunxi_smc_en_with_glitch_workaround", "clear 0x0100 and set 0x2600"],
+      "limits": "These fields are host facts, not independently named bitfields. Do not replay secure-chip workaround without establishing its target/security preconditions."
+    },
+    {
+      "phase": "Prepare channel domains before controller config",
+      "location": "mctl_channel_init+0x14..0x42",
+      "register": "0x0a020010",
+      "operations": ["clear bits selected by 0x14", "clear bits selected by 0x28", "replace mask 0x3f3f with 0x2728 for dual channel; single-channel value is 0x2208"],
+      "limits": "Preserve all bits outside each stated mask. Bits2/4 are changed separately from bits3/5, but exact reset/gate signal names and access guarantees are not documented by this binary observation alone."
+    },
+    {
+      "phase": "Channel/type selector",
+      "location": "mctl_channel_init+0x44..0x62",
+      "register": "0x0a020014",
+      "operations": ["clear low two bits", "set bit1 when dual-channel", "set bit0 only when SDK dram_type==9"],
+      "observed_board_low_bits": "0x2"
+    },
+    {
+      "phase": "Common host ports and isolation",
+      "location": "mctl_channel_init+0x64..0x8a",
+      "operations": ["0x0a02021c=0x103", "0x0a020220=0x13ff", "0x0a020224=0x103", "0x0a020228=0x13ff", "0x0a02021c=0x107", "0x0a020224=0x107", "set 0x07010250 bit0", "wait 10000 microseconds"],
+      "limits": "These precede the SDK's first controller access. Whether every port-enable write is needed for CSR-only CPU access is unknown; the writes must not be casually described as minimal or harmless. No runtime replay is implemented by this audit."
+    },
+    {
+      "phase": "Controller config while source SYS_CFG low field remains 0x28",
+      "location": "mctl_channel_init+0x8e..0xde",
+      "operations": ["mctl_com_set_bus_config for CH0, mctl_com_init for CH0", "same for CH1 only if dual-channel"],
+      "lp4_type8_first_host_access": "mctl_com_set_bus_config first reads 0x0a110380 + channel*0x400000, after the preceding common domain and isolation sequence.",
+      "limits": "Cold reset MSTR need not match 0x03081002 yet. Requiring that configured geometry before first domain access creates a circular precondition. Neither cold controller state nor accessibility should be inferred from the live OS register values."
+    },
+    {
+      "phase": "Release transitions before PHY init",
+      "location": "mctl_channel_init+0xde..0x114",
+      "register": "0x0a020010",
+      "operations": ["clear bit4; set 0x14 for dual-channel, or 0x04 for single-channel", "clear bit0; set bit1; wait 1 microsecond", "set bits0 and1; wait 1 microsecond", "then call mctl_phy_init"],
+      "dual_channel_masked_states_if_no_other_bits": ["0x2728 before controller config", "0x273c", "0x273e", "0x273f"],
+      "limits": "The final 0x273f matches live board observation. This corroborates sequence/address facts, not a complete proof of reset/gate names or sufficient analog readiness."
+    }
+  ],
+  "public_source_comparison": {
+    "repository": "InfernoEmbedded/u-boot",
+    "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+    "path": "arch/arm/mach-sunxi/dram_sun60i_a733.c",
+    "git_blob": "e228c7fe1d8d8a1da4635d1c8525da6c8cef4cce",
+    "corroborates": ["mctl_ccu_init writes 0x0a020010 with 0x100, 0x2600 and 0x2728", "common ports at 0x0a02021c/220/224/228", "PRCM isolation address 0x07010250"],
+    "differences": ["Public code uses full writes to common registers where SDK preserves other bits", "Public LP5 profile writes DRAMC_CH_EN=3; observed LP4 board is 2", "sun60i_a733_dmc_clock_setup instead applies similarly shaped field/reset sequences to 0x07010310 and 0x07410310 with feature registers at +4; this mapping is not corroborated by inspected T736 LP4 host path", "Public clock-name comments contain known NSI/MBUS naming differences from manual; do not import names as proof"],
+    "excluded": "No training/PIE/PMU executable tables imported or decoded. PRCM mirror writes are not proposed."
+  },
+  "proposed_observation_progression": [
+    "First record CCU plus common group only. Stop and inspect before any channel read if common state is not understood.",
+    "If a later root-reviewed experiment prepares the common domain using independently reviewed register facts, probe CH0 first with a fresh SRAM marker, then CH1 only after observing dual-channel selector bit1 and the reviewed channel gate/reset state. A responsive CH0 does not prove CH1 is accessible.",
+    "Configure source controller geometry as a separate stage; only then use cold_claim's configured-MSTR checks. Preserve initial-mode checks for mutating host ownership.",
+    "Observe PHY APB MuxSel only after common/PHY domain reset sequencing is established. MuxSel!=0 means stop; do not read internal CSR under PMU ownership.",
+    "Observe MicroReset and internal clock-enable candidate 0x0aa80100 separately. External CCU clocks alone do not prove internal PHY Hclk/Ucclk readiness.",
+    "Only after host ownership/reset and applicable internal clock conditions are understood, call the standalone read-only calibration snapshot. Do not auto-pulse calibration from common-domain success."
+  ]
+}

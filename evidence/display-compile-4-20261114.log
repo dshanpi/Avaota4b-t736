@@ -1,0 +1,195 @@
+/home/ubuntu/t736-aiot/tina/bsp/drivers/iommu/sunxi-iommu.h
+/home/ubuntu/t736-aiot/tina/bsp/include/sunxi-iommu.h
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_drv.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_intf.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_notify.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_gem.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_debug.o
+  CC      drivers/gpu/drm/t736-bsp/kernel_panic_printf.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_notify.c:46:5: warning: no previous prototype for ‘__sunxi_disp_notify_call_chain’ [-Wmissing-prototypes]
+   46 | int __sunxi_disp_notify_call_chain(unsigned long val, void *v)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_notify.c:81:6: warning: no previous prototype for ‘sunxi_disp_notify_init’ [-Wmissing-prototypes]
+   81 | void sunxi_disp_notify_init(void)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_backend.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:115:1: warning: no previous prototype for ‘sunxi_drm_gem_fb_create’ [-Wmissing-prototypes]
+  115 | sunxi_drm_gem_fb_create(struct drm_device *dev, struct drm_file *file,
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: In function ‘sunxi_drm_gem_fb_create’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:118:56: error: passing argument 3 of ‘drm_gem_fb_create_with_funcs’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  118 |         return drm_gem_fb_create_with_funcs(dev, file, mode_cmd,
+      |                                                        ^~~~~~~~
+      |                                                        |
+      |                                                        const struct drm_mode_fb_cmd2 *
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:28:
+/home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_gem_framebuffer_helper.h:33:60: note: expected ‘const struct drm_format_info *’ but argument is of type ‘const struct drm_mode_fb_cmd2 *’
+   33 |                              const struct drm_format_info *info,
+      |                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:119:45: error: passing argument 4 of ‘drm_gem_fb_create_with_funcs’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  119 |                                             &sunxi_drm_gem_fb_funcs);
+      |                                             ^~~~~~~~~~~~~~~~~~~~~~~
+      |                                             |
+      |                                             const struct drm_framebuffer_funcs *
+/home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_gem_framebuffer_helper.h:34:61: note: expected ‘const struct drm_mode_fb_cmd2 *’ but argument is of type ‘const struct drm_framebuffer_funcs *’
+   34 |                              const struct drm_mode_fb_cmd2 *mode_cmd,
+      |                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:118:16: error: too few arguments to function ‘drm_gem_fb_create_with_funcs’
+  118 |         return drm_gem_fb_create_with_funcs(dev, file, mode_cmd,
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_gem_framebuffer_helper.h:32:1: note: declared here
+   32 | drm_gem_fb_create_with_funcs(struct drm_device *dev, struct drm_file *file,
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: In function ‘sunxi_drm_atomic_helper_commit’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:129:51: warning: variable ‘new_plane_state’ set but not used [-Wunused-but-set-variable]
+  129 |         struct drm_plane_state *old_plane_state, *new_plane_state;
+      |                                                   ^~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:127:54: warning: variable ‘new_conn_state’ set but not used [-Wunused-but-set-variable]
+  127 |         struct drm_connector_state *old_conn_state, *new_conn_state;
+      |                                                      ^~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:183:22: error: initialization of ‘struct drm_framebuffer * (*)(struct drm_device *, struct drm_file *, const struct drm_format_info *, const struct drm_mode_fb_cmd2 *)’ from incompatible pointer type ‘struct drm_framebuffer * (*)(struct drm_device *, struct drm_file *, const struct drm_mode_fb_cmd2 *)’ [-Werror=incompatible-pointer-types]
+  183 |         .fb_create = sunxi_drm_gem_fb_create,
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:183:22: note: (near initialization for ‘sunxi_drm_mode_config_funcs.fb_create’)
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:225:6: warning: no previous prototype for ‘sunxi_drm_unload’ [-Wmissing-prototypes]
+  225 | void sunxi_drm_unload(struct drm_device *dev)
+      |      ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:230:23: warning: no previous prototype for ‘drm_get_disp_connector’ [-Wmissing-prototypes]
+  230 | struct drm_connector *drm_get_disp_connector(struct drm_device *dev, int index)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:425:10: error: ‘struct drm_driver’ has no member named ‘date’
+  425 |         .date = DRIVER_DATE,
+      |          ^~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:43:21: warning: initialization of ‘unsigned int’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+   43 | #define DRIVER_DATE "20230901"
+      |                     ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:425:17: note: in expansion of macro ‘DRIVER_DATE’
+  425 |         .date = DRIVER_DATE,
+      |                 ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:43:21: note: (near initialization for ‘sunxi_drm_driver.driver_features’)
+   43 | #define DRIVER_DATE "20230901"
+      |                     ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:425:17: note: in expansion of macro ‘DRIVER_DATE’
+  425 |         .date = DRIVER_DATE,
+      |                 ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:43:21: error: initializer element is not computable at load time
+   43 | #define DRIVER_DATE "20230901"
+      |                     ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:425:17: note: in expansion of macro ‘DRIVER_DATE’
+  425 |         .date = DRIVER_DATE,
+      |                 ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:43:21: note: (near initialization for ‘sunxi_drm_driver.driver_features’)
+   43 | #define DRIVER_DATE "20230901"
+      |                     ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:425:17: note: in expansion of macro ‘DRIVER_DATE’
+  425 |         .date = DRIVER_DATE,
+      |                 ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_intf.c:196:5: warning: no previous prototype for ‘sunxi_drm_atomic_helper_disable_all’ [-Wmissing-prototypes]
+  196 | int sunxi_drm_atomic_helper_disable_all(struct drm_device *dev,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: In function ‘sunxi_drm_mode_monitor_work_handler’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:794:13: warning: variable ‘modes_count’ set but not used [-Wunused-but-set-variable]
+  794 |         int modes_count;
+      |             ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1105:31: error: initialization of ‘int (*)(struct drm_plane *, struct drm_atomic_state *, bool)’ {aka ‘int (*)(struct drm_plane *, struct drm_atomic_state *, _Bool)’} from incompatible pointer type ‘int (*)(struct drm_plane *, struct drm_atomic_state *)’ [-Werror=incompatible-pointer-types]
+ 1105 |         .atomic_async_check = sunxi_plane_atomic_async_check,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1105:31: note: (near initialization for ‘sunxi_plane_helper_funcs.atomic_async_check’)
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1163:5: warning: no previous prototype for ‘sunxi_drm_plane_property_create’ [-Wmissing-prototypes]
+ 1163 | int sunxi_drm_plane_property_create(struct sunxi_drm_private *private)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1564:22: warning: no previous prototype for ‘sunxi_drm_wb_init_one’ [-Wmissing-prototypes]
+ 1564 | struct sunxi_drm_wb *sunxi_drm_wb_init_one(struct sunxi_de_wb_info *wb_info)
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1599:6: warning: no previous prototype for ‘sunxi_drm_wb_destory’ [-Wmissing-prototypes]
+ 1599 | void sunxi_drm_wb_destory(struct sunxi_drm_wb *wb)
+      |      ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:1401:19: error: initialization of ‘void (*)(struct platform_device *)’ from incompatible pointer type ‘int (*)(struct platform_device *)’ [-Werror=incompatible-pointer-types]
+ 1401 |         .remove = sunxi_drm_platform_remove,
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:1401:19: note: (near initialization for ‘sunxi_drm_platform_driver.remove’)
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/include/linux/module.h:23,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/include/linux/device/driver.h:21,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/include/linux/device.h:32,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/include/linux/hdmi.h:28,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_modes.h:30,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_crtc.h:32,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_atomic.h:31,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:13:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:1461:18: error: expected ‘,’ or ‘;’ before ‘DMA_BUF’
+ 1461 | MODULE_IMPORT_NS(DMA_BUF);
+      |                  ^~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/include/linux/moduleparam.h:31:61: note: in definition of macro ‘MODULE_INFO’
+   31 |                 = __MODULE_INFO_PREFIX __stringify(tag) "=" info
+      |                                                             ^~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:1461:1: note: in expansion of macro ‘MODULE_IMPORT_NS’
+ 1461 | MODULE_IMPORT_NS(DMA_BUF);
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_gem.c:31:6: warning: no previous prototype for ‘sunxi_drm_prime_gem_destroy’ [-Wmissing-prototypes]
+   31 | void sunxi_drm_prime_gem_destroy(struct drm_gem_object *obj,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_gem.c:130:6: warning: no previous prototype for ‘sunxi_gem_dma_free’ [-Wmissing-prototypes]
+  130 | void sunxi_gem_dma_free(struct sunxi_gem_object *sgem_obj)
+      |      ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1827:5: warning: no previous prototype for ‘sunxi_get_fpsraw_and_vblankcnt’ [-Wmissing-prototypes]
+ 1827 | u64 sunxi_get_fpsraw_and_vblankcnt(struct drm_crtc *crtc)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1845:6: warning: no previous prototype for ‘sunxi_crtc_atomic_print_state’ [-Wmissing-prototypes]
+ 1845 | void sunxi_crtc_atomic_print_state(struct drm_printer *p,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:2171:5: warning: no previous prototype for ‘commit_task_thread’ [-Wmissing-prototypes]
+ 2171 | s32 commit_task_thread(void *parg)
+      |     ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:2476:24: warning: no previous prototype for ‘sunxi_drm_crtc_init_one’ [-Wmissing-prototypes]
+ 2476 | struct sunxi_drm_crtc *sunxi_drm_crtc_init_one(struct sunxi_de_info *info)
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:2578:6: warning: no previous prototype for ‘sunxi_drm_crtc_destory’ [-Wmissing-prototypes]
+ 2578 | void sunxi_drm_crtc_destory(struct sunxi_drm_crtc *scrtc)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: In function ‘sunxi_drm_gem_fb_create’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:120:1: error: control reaches end of non-void function [-Werror=return-type]
+  120 | }
+      | ^
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:21:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-log.h:188:10: fatal error: errcode/sunxi-err.h: No such file or directory
+  188 | #include "errcode/sunxi-err.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev.h:18,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:15:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-log.h:188:10: fatal error: errcode/sunxi-err.h: No such file or directory
+  188 | #include "errcode/sunxi-err.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/kernel_panic_printf.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.o] Error 1
+cc1: some warnings being treated as errors
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_drm_drv.o] Error 1
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev.h:18,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:26:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-log.h:188:10: fatal error: errcode/sunxi-err.h: No such file or directory
+  188 | #include "errcode/sunxi-err.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.o] Error 1
+cc1: some warnings being treated as errors
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.o] Error 1
+make[6]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu/drm/t736-bsp] Error 2
+make[5]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu/drm] Error 2
+make[4]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu] Error 2
+make[3]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers] Error 2
+make[2]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:2051: .] Error 2
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+make[1]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'

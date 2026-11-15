@@ -1,0 +1,28 @@
+{
+  "native_asan_ubsan_pass": true,
+  "arm32_freestanding_compile_pass": true,
+  "layout_io_fault_positions": 52,
+  "timing_io_fault_positions": 136,
+  "undefined_symbols": [
+    "t736_lp4_build_layout",
+    "t736_lp4_build_timing"
+  ],
+  "observation_io_fault_positions": 6,
+  "write_readback_failure_positions": 64,
+  "controller_hardware_configured": false,
+  "source_only": true,
+  "board_access_or_readiness_claimed": false,
+  "training_or_normal_mode_implemented": false,
+  "sha256": {
+    "spl/lpddr4/phy/checked_controller.c": "e9e5430d2569d47da6f08d412ef7b297de9fe0dc0baec1abf9355af2e0a8f155",
+    "spl/lpddr4/controller.c": "1017f4a0c37370a1a5aab45d05d84e8942ee5800cdb78b1d6a70ab5083afba47",
+    "spl/lpddr4/timing.c": "194fd176e4fb78a4e1398e9f3f4a61e29754c056666ee5588b91929af2e4ae57",
+    "spl/lpddr4/phy/checked_controller.h": "85bac3a23e9b5a59ff34c61b9845d9511ab79af9cfa1e5bbe6c88a56a449c36a",
+    "spl/lpddr4/phy/test_checked_controller.c": "dccc138765d9189f839876e8b377e106d5e5ee9ea45343e925c48cc14598dfb0",
+    "spl/lpddr4/phy/check_controller.py": "0c12d8e07c14d457bddc587d1efeef7c40cc47454ca85d11c8c7f753d029c6f5",
+    "spl/lpddr4/phy/host.h": "256d672f20ac3f634de15d3f9565706ccf47c96abbfd274c5f21d977c6117c32",
+    "spl/lpddr4/controller.h": "d42e7955af902cf11ecc4b7982bdb0357a56f235a381384f40504b1680bed339",
+    "spl/lpddr4/timing.h": "674f8fbcf14ace8e50848da4e8be8950ac359f0a415dedd20dd62cd21fe76468",
+    "build/lpddr4-checked-controller/checked_controller.o": "4d8e5965833507979916524a8cb170f450699689d886b7f4cc89f09379b4ed18"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "date": "2026-11-14",
+  "kind": "design-audit-only-controller-initialization-timing-and-MR-profile",
+  "runtime_implementation": false,
+  "hardware_actions": false,
+  "vendor_executable_or_generated_program_imported": false,
+  "clean_room_claim": false,
+  "scope": "Complete the design inventory beyond the existing 22 geometry + 42 timing writes. This file does not modify that accepted subset, execute MR commands, release reset, or establish DDR correctness.",
+  "address_model": {
+    "TIMING0": "0x0a100000",
+    "CTL0": "0x0a110000",
+    "channel_stride": "0x00400000",
+    "global_init": "CTL+0xd00/0xd04 are INITTMG0/1, distinct from TIMING+0xd00/0xd04, which are TMGCFG/RANKTMG0.",
+    "corroboration_limit": "SiMa and RK3576 name/field layouts agree with the independently observed T736 register groups. Their SoC base addresses, channel stride, PHY implementation, reset wiring, and all board presets are not transplanted."
+  },
+  "sources": [
+    {
+      "id": "t736-host-interface",
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+      "inspection": "Read-only host MMIO register and parameter-interface facts in mctl_com_set_channel_timing, offsets 0x810..0x8be. No instruction program written by this library, firmware contents, IMEM, DMEM, PIE or PMU program is imported."
+    },
+    {
+      "id": "sima-controller-names",
+      "repository": "SiMa-ai/sima-ai-uboot",
+      "commit": "5a026adbe2a54aeaae5dc50e1852d4b5c1884640",
+      "path": "arch/arm/mach-sima/init_ddr_modalix.c",
+      "blob": "293179961431235b603a61c70dc5612446b91db2",
+      "use": "Register names only; see ../pmu/type9-controller-name-audit.json."
+    },
+    {
+      "id": "rk3576-controller-description",
+      "document": "Rockchip RK3576 TRM Part 2 V1.2, 2024-06-24",
+      "url": "https://www.scribd.com/document/1076944297/Rockchip-RK3576-TRM-Part2-V1-2-20240624",
+      "alternate_non_radxa_url": "https://dl.khadas.com/products/edge-2l/datasheet/rockchip-rk3576-trm-part2-v1.2.pdf",
+      "sections": "7.4.3; printed pages 601, 611-613, 635-637 and 672-673",
+      "use": "Independent register field semantics and programming modes. No RK board configuration or executable implementation imported.",
+      "local_pdf": "evidence/independent-reference/rockchip-rk3576-trm-part2-v1.2.pdf",
+      "pdf_sha256": "8a16671d228ee206012d9a3b8a976aec113f7ea2ea45fcabe8565b2d85e4f6cf",
+      "pdf_bytes": 81034667,
+      "pdf_pages": 2969,
+      "local_extract": "evidence/independent-reference/rockchip-rk3576-trm-part2-v1.2.ddrctl.txt",
+      "extract_command": "pdftotext -f 585 -l 810 -layout rockchip-rk3576-trm-part2-v1.2.pdf rockchip-rk3576-trm-part2-v1.2.ddrctl.txt",
+      "validation": "Complete non-Radxa Khadas download; local and remote SHA256 agree, pdfinfo and selected-page text extraction succeeded. Earlier timed-out files are marked .partial and are not cited."
+    },
+    {
+      "id": "jedec-lp4",
+      "document": "JESD209-4B",
+      "url": "https://studylib.net/doc/27908019/jesd209-4b",
+      "use": "MR1/2/3/11/12/13/14/22 bit assignments; device initialization and FSP concepts. Facts are paraphrased; no training implementation imported."
+    },
+    {
+      "id": "micron-init",
+      "url": "https://www.avnet.com/wcm/connect/3baa3889-1af3-47e9-ba83-fa7aad7c7f8e/micron-lpddr4-lpddr4x-sdram-datasheet.pdf?MOD=AJPERES&attachment=false&id=1700156388077",
+      "use": "Physical initialization minimum waits, independent of register encoding."
+    },
+    {
+      "id": "issi-init",
+      "url": "https://www.alldatasheet.com/html-pdf/2261960/ISSI/IS46LQ16128EA-062B2LA3/1722/13/IS46LQ16128EA-062B2LA3.html",
+      "use": "Independent initialization timing and boot-clock qualifications; this is not identification of the fitted DRAM."
+    },
+    {
+      "id": "micron-latency-qualification",
+      "document": "z4bm_embedded_lpddr4x_lpddr4.pdf, Rev D 3/2023, Table 30, printed page 57",
+      "url": "https://device.report/m/6bc738b8f89b00c53fce4bce432bb379b2e93434202cb06c5670177c7783995d",
+      "use": "Illustrates a device-specific lower as well as upper operating-frequency restriction for each latency selection."
+    },
+    {
+      "id": "litedram-encoding-crosscheck",
+      "repository": "enjoy-digital/litedram",
+      "commit": "60b5ae1b1ee5bc16ea695a93399434919797ff31",
+      "path": "litedram/init.py",
+      "blob": "4a289e2059a60bd8105f304d989764daf0b116d0",
+      "license": "BSD-2-Clause",
+      "use": "Independent source-level MR1/MR2 latency encoding cross-check only. Electrical defaults and example delay calibration are not adopted."
+    }
+  ],
+  "physical_initialization_requirements": {
+    "tINIT1_ns": 200000,
+    "tINIT2_ns": 10,
+    "tINIT3_ns": 2000000,
+    "tINIT4_CK": 5,
+    "tINIT5_ns": 2000,
+    "tZQCAL_ns": 1000,
+    "tZQLAT": "max(30 ns, 8 CK)",
+    "interpretation": "tINIT1 is a reset-low requirement after valid supplies; tINIT2 constrains CKE low before reset rises. tINIT3 starts at RESET_n rising, tINIT4 requires stable clocks before CKE rises, and tINIT5 starts at CKE rising. A 200 us wait after writing MemResetL=2 does not satisfy those later intervals or prove CKE pin state.",
+    "boot_clock": "The cited ISSI device guarantees boot operation with tCKb >=18 ns; operation faster than that requires system-specific validity. The current 1800 MHz analog setup is not by itself permission to issue cold device commands at that rate.",
+    "separation": "PHY impedance calibration and DRAM MPC ZQ calibration are different operations. Neither a PHY register readback nor a timer expiry proves the corresponding analog or device operation completed."
+  },
+  "checked_time_conversion_design": {
+    "formula": "ticks = ceil(ns * tick_hz / (1000000000 * quantum_cycles)); ticks = max(ticks, minimum_ticks)",
+    "integer_method": "Reject zero frequency/quantum and invalid width. Check multiplication against UINT64_MAX before multiplying. Compute numerator/denominator + (numerator%denominator != 0), avoiding an overflowing numerator+denominator-1. Reject a result exceeding the field width instead of truncating.",
+    "inputs": "Keep physical CK frequency, controller clock frequency, selected hardware counter frequency and counter quantum as distinct fields. Do not silently infer the counter frequency from a PHY encoding integer.",
+    "scope_limit": "This is the proposed arithmetic contract, not new runtime code or confirmation that every controller counter uses the same clock domain."
+  },
+  "INITTMG0": {
+    "address": "CTL+0xd00",
+    "field_mask_without_skip": "0x03ff1fff",
+    "fields": [
+      {"bits": "12:0", "name": "pre_cke_x1024", "physical_minimum": "tINIT3 = 2 ms", "width": 13, "quantum_cycles": 1024},
+      {"bits": "25:16", "name": "post_cke_x1024", "physical_minimum": "tINIT5 = 2 us", "width": 10, "quantum_cycles": 1024},
+      {"bits": "31:30", "name": "skip_dram_init", "encoding": {"0": "run initialization", "1": "skip initialization; normal mode", "2": "reserved", "3": "skip initialization; self-refresh mode"}}
+    ],
+    "programming_mode": "The independent TRM marks the two timing fields Static and skip_dram_init Quasi-dynamic group 2. Its default Static definition requires controller reset; SWCTLSTATIC offers an explicit outside-reset exception, described separately below. STAT=INIT alone is not proof of either permitted condition.",
+    "t736_host_fact": "At pstate0, the host computes the two waits with auto_cal_timing at CK/4, shifts the resulting count by 10, adds 1, and merges with mask 0x03ff1fff. At CK1800 MHz that calculation uses 450 MHz.",
+    "independent_arithmetic_example": {
+      "assumed_counter_hz": 450000000,
+      "pre_ticks": 879,
+      "post_ticks": 1,
+      "combined_timing_bits": "0x0001036f",
+      "pre_effective_ns": 2000213.3333333333,
+      "post_effective_ns": 2275.5555555555557
+    },
+    "rounding_difference": "The host expression floor(ceil(ns*f/1e9)/1024)+1 adds an extra quantum at exact boundaries. Independent ceil(ns*f/(1e9*1024)) satisfies the same minimum without treating the host arithmetic as normative; the example above coincides.",
+    "unit_qualification": "RK3576 field text says DRAM clock cycles and references Note 1 from Notes on Timing Registers, but that note was not present in the inspected chapter introduction. T736 host CK/4 is therefore explicit target evidence, not independently proven counter clock. At full CK1800 MHz the physical-time formula would instead produce pre3516/post4. Resolve by target specification or a measured externally observable transition before relying on hardware delays.",
+    "skip_policy": "Do not set skip=1 merely to reach normal mode. Skipping assumes software has actually performed all device initialization. Do not set skip=3 for a cold device. Historical train_mode behavior is not a source initialization policy."
+  },
+  "INITTMG1": {
+    "address": "CTL+0xd04",
+    "field": "dram_rstn_x1024, bits25:16, mask0x03ff0000, 10 bits",
+    "public_semantic": "Duration of DRAM reset assertion during the controller initialization sequence; at least one quantum with Synopsys PHY. Lower16 and upper6 are reserved in the independent TRM.",
+    "example_if_this_counter_owns_full_tINIT1": {"counter_hz": 450000000, "reset_low_ns": 200000, "ticks": 88, "field_value": "0x00580000", "effective_ns": 200248.88888888888},
+    "full_CK_alternative": {"counter_hz": 1800000000, "ticks": 352, "field_value": "0x01600000"},
+    "qualification": "The inspected T736 timing helper did not establish a write to this register. Do not assume the reset default provides tINIT1. Determine whether software PHY reset or the controller owns each edge and wait; the external reset sequence and hardware counter must not be double-counted or omitted. The clock-domain qualification of INITTMG0 also applies here.",
+    "programming_mode": "Static; integrate before reset release or establish the target SWCTLSTATIC unlock route."
+  },
+  "static_update_candidate": {
+    "name": "SWCTLSTATIC",
+    "address": "CTL+0xca4",
+    "field": "sw_static_unlock bit0; remaining31 bits reserved in independent TRM",
+    "source_location": "RK3576 TRM printed672; extracted text around5569",
+    "public_semantic": "Setting bit0 permits static register programming outside reset; clear it after programming.",
+    "target_status": "Not yet read or written on T736. Name/address compatibility is not proof that the target permits the same transaction. A fixed read can establish accessibility/reset value before an independently reviewed narrow write experiment.",
+    "integration": "Retain both-controller INIT/hold/ports-off preconditions and bounded transaction/readback evidence. Opening SWCTL/SWSTAT for quasi-dynamic fields is not automatically the same as this static unlock. Do not assert that INIT mode alone unlocks Static registers."
+  },
+  "MR_profile_and_static_packing": {
+    "design": "Use one typed profile with explicit FSP, latency set, DBI, pre/postamble, ODT and VREF selections. Generate CTL INITMR images, PHY expectations and actual MRW operands from that same profile. Validate code ranges and reject unsupported combinations before any MMIO mutation.",
+    "pair_formula": "pair(hi,lo) = ((uint32_t)hi << 16) | lo, after both operands are verified 8-bit mode-register values; preserve unrelated fields according to a verified target mask.",
+    "pairs": [
+      {"offset": "TIMING+0x500", "name": "INITMR0", "high": "MR1", "low": "MR2", "historical_value": "0x00fc003f"},
+      {"offset": "TIMING+0x504", "name": "INITMR1", "high": "MR3", "low": "MR13", "historical_value": "0x00330008"},
+      {"offset": "TIMING+0x508", "name": "INITMR2", "high": "MR11", "low": "MR12", "historical_value": "0x00040072"},
+      {"offset": "TIMING+0x50c", "name": "INITMR3", "high": "MR22", "low": "MR14", "historical_value": "0x0024001d"}
+    ],
+    "historical_profile_decode": {
+      "MR1_0xfc": "BL16; write preamble2CK; toggling read preamble; nWR40; read postamble1.5CK.",
+      "MR2_0x3f": "DBI-off RL36, WL18 setA, write leveling disabled.",
+      "MR3_0x33": "Read/write DBI off; pull-down RZQ/6; write-postamble bit1 set; pull-up calibration VDDQ/3; PPR-protection bit clear.",
+      "MR11_0x04": "DQ ODT RZQ/4; CA ODT disabled.",
+      "MR12_0x72": "CA VREF range1/code50; a selected setting, not proof of source training.",
+      "MR13_0x08": "FSP-OP0/FSP-WR0; VRCG bit3 set for fast VREF response. Data mask disable is bit5 and is clear. CBT/RPT/VRO clear.",
+      "MR14_0x1d": "DQ VREF range0/code29; historical selected setting may be training-derived.",
+      "MR22_0x24": "SoC ODT RZQ/4; ODTD-CA bit5 set; ODTE-CK bit3 and ODTE-CS bit4 clear. Actual termination also depends on MR11 and ODT_CA wiring."
+    },
+    "correction": "An earlier conversational shorthand incorrectly associated MR13 bit3 with DM disable. The verified mapping is bit3=VRCG, bit5=DMD; MR13=0x08 leaves data masking enabled.",
+    "latency_encoding": "For the existing profile, JEDEC nWR40 maps to MR1[6:4]=7; DBI-off RL36 maps to MR2[2:0]=7; setA WL18 maps to MR2[5:3]=7. These encodings do not themselves establish frequency compatibility for the fitted part.",
+    "frequency_compatibility": "The current source timing subset uses CK1800/RL36/WL18/nWR40. Micron Table30 places that combination in 1866..2133 MHz and explicitly restricts operation below its lower frequency; RL32/WL16/nWR34 is its 1600..1866 MHz row. This is an unresolved fitted-device qualification, not a universal statement that higher latency at lower frequency is illegal. Do not change the accepted subset from this unrelated device table alone.",
+    "historical_inputs": "demo_aiot-bak raw MR1=0x8c/MR2=0 are not the final speed-derived MR values. SDK MR14 selection can use a trained byte at parameter offset200 rather than its static input, depending on tpr10 bit29. Do not label a replayed final byte as source-trained.",
+    "automatic_init_coverage": "The independent TRM explicitly says INITMR2's MR11/MR12 and INITMR3's MR22/MR14 values are for HWFFC, not automatic initialization. INITMR0/1 describe MR1/MR2/MR3/MR13 initialization. Thus all four configuration words plus automatic init still do not demonstrate that the four electrical MR values were sent; the explicit software command path must cover required device state.",
+    "command_separation": "INITMR writes configure controller images; they are not evidence that MRW reached a DRAM device. The independent MRCTRL0.sw_init_int interface is being audited separately. Before commands, establish valid clock/CKE/reset sequencing, both-channel intervention policy and bounded completion evidence. MRR receive validity requires its own capture path."
+  },
+  "remaining_inventory_with_corrected_names": [
+    {"offset": "TIMING+0x078", "name": "DRAMSET1TMG30", "public_fields": "mrr2mrw[23:16], mrr2wr[15:8], mrr2rd[7:0], each DRAM CK; upper8 reserved", "next_work": "Derive turnarounds from the selected latency/device profile rather than copying historical0x00556262."},
+    {"offset": "TIMING+0x590/0x594", "name": "DFITMG4/DFITMG5", "public_fields": "Independent TRM fields are WCK enable/read/write/fast-sync/disable and fast-toggle/toggle/CS/post, in WCK cycles; these describe LPDDR5 mechanisms.", "next_work": "Do not treat historical nonzero presets as an LPDDR4 prerequisite. Establish whether T736 reuses any fields before importing the analogous meanings or adding writes."},
+    {"offset": "TIMING+0x650", "name": "RFMSET1TMG0", "next_work": "Corrects earlier vague initialization-timing label; do not use it as tINIT counter."},
+    {"offset": "TIMING+0x800/0x804", "name": "ZQSET1TMG0/1", "next_work": "Derive DRAM ZQ command timings and explicit automatic-ZQ policy; separate from PHY calibration."},
+    {"offset": "TIMING+0xd00", "name": "TMGCFG", "next_work": "Confirm target frequency-ratio encoding and its effect on each field family."},
+    {"offset": "TIMING+0xd04/0xd08", "name": "RANKTMG0/1", "next_work": "Derive inter-rank turnarounds with actual rank geometry and pipeline."},
+    {"offset": "TIMING+0xd0c", "name": "PWRTMG", "next_work": "Low-power policy/timing, not cold initialization delays."}
+  ],
+  "next_implementation_boundary": [
+    "Implement pure checked profile encoding and time conversion only after owner accepts the design; retain existing proven subset until inputs are reconciled.",
+    "Record actual target INITTMG0/1 and counter-clock evidence before selecting a final hardware delay route.",
+    "Place static field initialization at a confirmed reset-safe point or a target-validated SWCTLSTATIC unlock transaction in the eventual source startup.",
+    "Keep normal boot free of Tina/vendor executable, DDR library, PMU/PIE blob, vendor instruction arrays and Radxa-derived implementation.",
+    "Require real source PHY training, DRAM command completion and memory-pattern testing before treating controller normal mode as usable DDR."
+  ]
+}

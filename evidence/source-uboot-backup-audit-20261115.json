@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-15",
+  "timezone": "Asia/Shanghai",
+  "upstream_repository": "https://github.com/u-boot/u-boot",
+  "upstream_commit": "5508406582f6f7120dce0c4b3059819a41788db2",
+  "upstream_archive_sha256": "af3cca26c2ea2a352efc05980d991b7310959dc431c427ad3250e832a221abd8",
+  "archive_commit_metadata_verified": true,
+  "changed_upstream_files": [
+    "arch/arm/Kconfig",
+    "arch/arm/dts/Makefile",
+    "drivers/mmc/Makefile"
+  ],
+  "added_board_files": [
+    "arch/arm/dts/t736-bringup.dts",
+    "board/t736/bringup/Kconfig",
+    "board/t736/bringup/Makefile",
+    "board/t736/bringup/board.c",
+    "configs/t736_bringup_defconfig",
+    "drivers/mmc/t736_mmc.c",
+    "include/configs/t736-bringup.h"
+  ],
+  "current_source_sha256": {
+    "arch/arm/Kconfig": "9a039ca45b32bb725c3a609bbca08a320d7a625b4380c31a4ea0852a627b6266",
+    "arch/arm/dts/Makefile": "bb831077462d0841a3a60a629b0a8bcff1b13495436e9e4c6de96ac7c6318b86",
+    "drivers/mmc/Makefile": "038c6085406a58e337cf83e23c8b8e6c3d6ec223e20925a42509ec37122bee0f",
+    "arch/arm/dts/t736-bringup.dts": "1b52964ee40da7cd1bce329f171c6d9d012e1e51ad95acaad31c9632c4207158",
+    "board/t736/bringup/Kconfig": "5d3a501fe423607896aa7e698253e244e61b40758d48dfa261f7e0fa4b1f214d",
+    "board/t736/bringup/Makefile": "bb1cb635303a85257f86e9e3a636eb0b3fe5b8a922818915408769303d39cf08",
+    "board/t736/bringup/board.c": "2ee85915bcdf2c5b067b0522c4c403b24e5926dfbc9d244612247f2c3b77a5dd",
+    "configs/t736_bringup_defconfig": "88ef4bd75ee068bd16cbb193bd714928bbd0926b88217483e700d7d8722112c4",
+    "drivers/mmc/t736_mmc.c": "6e0b900db73c4726b7bd52904ae88cff324938d583c2903cc68863c9aefcb8a3",
+    "include/configs/t736-bringup.h": "50a899217235e757e2b24523ac2d20a6bdc468801de1adce7352b93bf359b47b"
+  },
+  "deployed_payload_sha256": "c9b05a7d207781a730c5e12aaae2bdfaf113194f8a3ea4b1e625d330e3f4018b",
+  "current_build_payload_matches_deployed": true,
+  "config_sha256": "3d8d55d5a2ee90933e12ed5d17ff37a6e15760b0e6b69764ff6710242a16c7ad",
+  "patch_sha256": "8c90d197ccb0cecdac42590b98a85a7021aaf05fe053ea6cd9c07e7f540463b9",
+  "patch_check_and_replay_passed": true,
+  "bootdelay": 3,
+  "timestamp_header": "#define U_BOOT_DATE \"Nov 14 2026\"\n#define U_BOOT_TIME \"04:08:11\"\n#define U_BOOT_TZ \"-0500\"\n#define U_BOOT_EPOCH 1794647291\n",
+  "version_header": "#define PLAIN_VERSION \"2026.10-t736-bringup\"\n#define U_BOOT_VERSION \"U-Boot \" PLAIN_VERSION\n#define U_BOOT_VERSION_NUM 2026\n#define U_BOOT_VERSION_NUM_PATCH 10\n#define HOST_ARCH 0xaa64\n#define CC_VERSION_STRING \"aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\"\n#define LD_VERSION_STRING \"GNU ld (GNU Binutils for Ubuntu) 2.42\"\n",
+  "source_epoch": 1794647291,
+  "fresh_rebuild_performed": false,
+  "byte_identical_rebuild_claimed": false,
+  "scope": "Exact current source delta and config captured; existing build payload matches deployed source-v6. Rebuild timestamp may change binary hash; do not replace the packer pinned hash without a separate artifact review.",
+  "hardware_accessed": false,
+  "tina_modified": false,
+  "build_script": "tools/build_source_uboot.sh",
+  "build_script_sha256": "4aed3d2d18fd9e2b8351d4bb58ed1c141f21638cd9756a505f2a7d84c3a84314",
+  "build_script_shell_syntax_checked": true
+}

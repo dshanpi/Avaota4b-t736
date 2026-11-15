@@ -1,0 +1,6 @@
+sync
+
+root@t736:~# printf 'PRE_CCU_FEL_SYNC_DONE\n'
+
+PRE_CCU_FEL_SYNC_DONE
+root@t736:~# 

@@ -1,0 +1,5 @@
+T736 SRAM source probe v1; NO DDR INITIALIZATION
+stack.bottom=0004f000
+stack.top=00050000
+counter.hz=00000000
+FAIL: physical counter unavailable or wrong frequency

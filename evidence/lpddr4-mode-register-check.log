@@ -1,0 +1,5 @@
+["cc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4", "-g", "-fsanitize=address,undefined", "-fno-omit-frame-pointer", "/home/ubuntu/t736-mainline/spl/lpddr4/mode_register.c", "/home/ubuntu/t736-mainline/spl/lpddr4/test_mode_register.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-mode-register/test_mode_register"]
+["/home/ubuntu/t736-mainline/build/lpddr4-mode-register/test_mode_register"]
+PASS: 3072 lane/channel/rank/ID vectors; only read commands; every I/O failure; busy, state, timeout guards
+["arm-linux-gnueabi-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4", "-mcpu=cortex-a55", "-marm", "-mfloat-abi=soft", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/mode_register.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-mode-register/mode_register.o"]
+["arm-linux-gnueabi-nm", "-u", "/home/ubuntu/t736-mainline/build/lpddr4-mode-register/mode_register.o"]

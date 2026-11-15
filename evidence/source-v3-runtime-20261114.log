@@ -1,0 +1,18 @@
+
+printf "V3_RUNTIME_BEGIN\n"; id; cat /proc/uptime; free -m; cat /sys/devices/system/cpu/online; findmnt -n -o SOURCE,FSTYPE,OPTIONS /; systemctl --failed --no-pager; cat /proc/sys/kernel/tainted; dd if=/dev/mmcblk0 bs=512 skip=16 count=432 status=none | sha256sum; printf "V3_RUNTIME_END\n"
+
+V3_RUNTIME_BEGIN
+uid=0(root) gid=0(root) groups=0(root)
+78.07 421.75
+               total        used        free      shared  buff/cache   available
+Mem:            7749         175        7405           9         242        7574
+Swap:              0           0           0
+0-7
+/dev/mmcblk0p4 ext4 rw,noatime
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+0
+7a3b30d3a0349e2b62d06fa07699cf1284af1e60a5704d4f1330aaf5011532db  -
+V3_RUNTIME_END
+root@t736:~# 

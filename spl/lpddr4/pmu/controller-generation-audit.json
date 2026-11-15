@@ -1,0 +1,172 @@
+{
+  "date": "2026-11-14",
+  "scope": "Independent host controller generation/layout and protocol facts; no presets or executable payloads imported",
+  "hardware_actions": false,
+  "sources": [
+    {
+      "repository": "DualTachyon/rk3588-svd",
+      "commit": "efd3ea5a59a14ad05aed24e294d91c894b8c7b09",
+      "path": "def/ddr/ddrctl_0.def",
+      "blob": "ff45e55b228aa3612b5f1e4286f341b65c693726",
+      "provenance": "README blob99bbf9a9cd96a2f3e6c804495b8e63e8d03d8041 says definitions were generated from Rockchip TRM text, Apache-2.0. No Radxa source or derivative used."
+    },
+    {
+      "repository": "chenchongbiao/arm-reference-solutions-build-scripts",
+      "commit": "184df5724f1887d43333513ba01fc1340d14f425",
+      "path": "files/scp/tc2/0003-module-snps_umctl-module-for-DDR-programming.patch",
+      "blob": "85f12d43fa5718fd4e7d5abc693c6bf104b19ae2",
+      "provenance": "Patch header identifies Arm author Usama Arif, date2021-04-26, source commitb28fa95fe7c6c4b9dcf569bea8dcdde4add4c4dd, Change-IdIe391b02e62b7deb512a5f98a02518b04c2e7121c. Located mirror only; official repository origin not independently pinned. No Radxa content used."
+    }
+  ],
+  "target_base": "0x0a100000",
+  "target_corroboration": "Layout agrees with target host code and SiMa named controller map. Target channel stride is0x00400000, not the source platform's stride.",
+  "matching_registers": [
+    {
+      "relative": "0x10000",
+      "name": "MSTR0"
+    },
+    {
+      "relative": "0x10014",
+      "name": "STAT"
+    },
+    {
+      "relative": "0x10080",
+      "name": "MRCTRL0"
+    },
+    {
+      "relative": "0x10084",
+      "name": "MRCTRL1"
+    },
+    {
+      "relative": "0x10090",
+      "name": "MRSTAT"
+    },
+    {
+      "relative": "0x10180",
+      "name": "PWRCTL"
+    },
+    {
+      "relative": "0x10200",
+      "name": "RFSHMOD0"
+    },
+    {
+      "relative": "0x10208",
+      "name": "RFSHCTL0"
+    },
+    {
+      "relative": "0x10280",
+      "name": "ZQCTL0"
+    },
+    {
+      "relative": "0x10510",
+      "name": "DFIMISC"
+    },
+    {
+      "relative": "0x10514",
+      "name": "DFISTAT"
+    },
+    {
+      "relative": "0x10b80",
+      "name": "OPCTRL0"
+    },
+    {
+      "relative": "0x10c80",
+      "name": "SWCTL"
+    },
+    {
+      "relative": "0x10c84",
+      "name": "SWSTAT"
+    },
+    {
+      "relative": "0x10d00",
+      "name": "INITTMG0"
+    },
+    {
+      "relative": "0x10d04",
+      "name": "INITTMG1"
+    },
+    {
+      "relative": "0x10ff8",
+      "name": "DDRCTL_VER_NUMBER"
+    },
+    {
+      "relative": "0x10ffc",
+      "name": "DDRCTL_VER_TYPE"
+    }
+  ],
+  "generation_local_protocol_evidence": [
+    {
+      "register": "DFIMISC",
+      "field": "dfi_init_complete_en",
+      "bit": 0,
+      "patch_lines": [
+        55,
+        111
+      ],
+      "context": "Separate from dfi_init_start. Arm path disables it before PHY initialization, enables after training/init handshake."
+    },
+    {
+      "register": "DFIMISC",
+      "field": "dfi_init_start",
+      "bit": 5,
+      "patch_lines": [
+        89,
+        102
+      ],
+      "context": "Arm path asserts it after external PHY initialization, commits SWCTL, polls DFISTAT bit0, then clears it. This is post-PHY sequence evidence, not a target cold-init shortcut."
+    },
+    {
+      "register": "SWCTL/SWSTAT",
+      "field": "sw_done/sw_done_ack",
+      "bit": 0,
+      "patch_lines": [
+        52,
+        59,
+        60
+      ],
+      "context": "Commit and acknowledgement bracket quasi-dynamic controller writes."
+    },
+    {
+      "register": "INITTMG0",
+      "field": "skip_dram_init",
+      "bits": [
+        31,
+        30
+      ],
+      "encoding": "01: skip DRAM initialization and start in normal operating mode",
+      "patch_lines": [
+        449,
+        451,
+        458
+      ],
+      "context": "Arm path explicitly uses independent PHY training and skips the controller's DRAM initialization only for that path. This is not target permission to claim training or skip prerequisites."
+    },
+    {
+      "register": "RFSHCTL0",
+      "field": "dis_auto_refresh",
+      "bit": 0,
+      "patch_lines": [
+        47,
+        48
+      ],
+      "context": "The matched layout places refresh control at10208, whereas10200 is RFSHMOD0. Do not reuse older NXP INIT0 naming."
+    },
+    {
+      "register": "MRCTRL0/MRCTRL1",
+      "patch_lines": [
+        139,
+        140,
+        142,
+        143,
+        144
+      ],
+      "context": "Wait MRSTAT busy clear; configure type/address/rank/data; separate APB transaction triggers MRCTRL0 bit31. SDK local host rank+trigger behavior corroborates this."
+    }
+  ],
+  "unresolved": [
+    "MRCTRL0.sw_init_int bit3 in older NXP controller is not yet corroborated for this generation or target.",
+    "The layout match does not prove hardware supports every optional field or source-platform timing value.",
+    "No public source here supplies a complete target cold LP4 training/CKE/reset/DFI sequence.",
+    "Readonly VERSION registers are optional future generation observations; no hardware access performed by this audit."
+  ]
+}

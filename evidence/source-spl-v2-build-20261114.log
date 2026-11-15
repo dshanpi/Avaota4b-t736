@@ -1,0 +1,2 @@
+
+{"kind": "source-emmc-spl-with-authorized-ddr-library", "entry": "0x47000", "report": "0x7d000", "window_end": "0x7fc00", "vendor_ddr_sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90", "packed_bytes": 221184, "packed_sha256": "b643029ba6b5e4fa9b46623cae96235969488a2e4ce0f7bfb7d9491ba7bfe186", "egon_checksum": "0x52bd19bd", "elf_sha256": "ca9a3273fd422dba6593394fc30acabf770101a94c7aa9bc842160e1e3f29eb6", "hardware_tested": false, "cold_boot_validated": false}

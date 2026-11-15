@@ -50,8 +50,11 @@ eMMC 驱动使用的 `0x02000180` 地址本来就是正确的 PC_CFG0，不需�
 | PK_INT_CFG3 / STA | 0x5cc / 0x5d4 |
 
 新增 `patches/linux/0002-t736-main-pio-layout.patch` 为官方 pinctrl 核心提供可选布局描述，修正主 PIO 候选。
-使用独立构建树和 `tools/build_pio_candidate.sh` 验证；该补丁尚未加入默认 Armbian 补丁序列，也未安装到板上。
+使用独立构建树和 `tools/build_pio_candidate.sh` 完成初次验证。随后加入默认 Armbian 补丁序列，在 v5 实板通过主 PIO 初始化、eMMC PC 引脚归属和文件读写验证。
 `tools/check_pio_layout.py` 执行实际 C 地址计算函数，检查手册中的地址、位移及掩码，并覆盖 legacy、D1、R-PIO 回归。
 
-下一步启用主 PIO 前，必须把 eMMC 的 PC 引脚所有权从直接 MMIO 移至 pinctrl，接入总线时钟并维持正确 pad 电压。
-然后才能集成 GMAC 时钟/复位与 DTS，逐步验证 MDIO → PHY → Link → DHCP → 双向数据传输。
+v5 已移除 eMMC 驱动对 PC 引脚的直接 MMIO 管理；debugfs 确认 12 个 PC 引脚由 `4023000.mmc` 的 `sdc3` 功能占用。另以 216 个引脚的回归检查覆盖没有 PA bank 时的 IRQ 编号修复；这不等于已验证 GPIO 中断电气输入。
+
+eMMC 保持 12 MHz、8-bit legacy PIO。16 MiB 文件写入/fsync 后以 O_DIRECT 读取，哈希一致；不是完整压力测试。PC 供电仍依赖厂家固件，设备树声明 1.8 V，而 MMC ios 的默认信号电压报告为 3.3 V；本轮没有测量 pad 电压，也没有切换供电。
+
+GMAC 时钟/复位与 DTS 已形成 v6 离线候选，下一步仍须按 MDIO → PHY → Link → DHCP → 双向数据传输逐项验收。

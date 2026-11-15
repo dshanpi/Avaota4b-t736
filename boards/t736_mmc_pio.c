@@ -5,6 +5,7 @@
 #include <linux/iopoll.h>
 #include <linux/mmc/host.h>
 #include <linux/module.h>
+#include <linux/pinctrl/consumer.h>
 #include <linux/platform_device.h>
 #include <linux/scatterlist.h>
 #include <linux/workqueue.h>
@@ -29,7 +30,7 @@
 
 struct t736_host {
 	struct mmc_host *mmc;
-	void __iomem *regs, *clock, *gate, *pins;
+	void __iomem *regs, *clock, *gate;
 	struct work_struct work;
 	struct mmc_request *request;
 	int ios_error;
@@ -193,11 +194,17 @@ static const struct mmc_host_ops t736_ops = {
 
 static int t736_probe(struct platform_device *pdev)
 {
-	static const u8 pins[] = { 0, 1, 5, 6, 8, 9, 10, 11, 13, 14, 15, 16 };
 	struct mmc_host *mmc;
 	struct t736_host *host;
-	u32 value, shift;
-	int i, ret;
+	struct pinctrl *pinctrl;
+	u32 value;
+	int ret;
+
+	/* Claim the PC pins before touching the storage controller. */
+	pinctrl = devm_pinctrl_get_select_default(&pdev->dev);
+	if (IS_ERR(pinctrl))
+		return dev_err_probe(&pdev->dev, PTR_ERR(pinctrl),
+				     "eMMC pinctrl unavailable\n");
 
 	mmc = mmc_alloc_host(sizeof(*host), &pdev->dev);
 	if (!mmc)
@@ -208,18 +215,11 @@ static int t736_probe(struct platform_device *pdev)
 	host->regs = devm_platform_ioremap_resource(pdev, 0);
 	host->clock = devm_platform_ioremap_resource(pdev, 1);
 	host->gate = devm_platform_ioremap_resource(pdev, 2);
-	host->pins = devm_platform_ioremap_resource(pdev, 3);
-	if (IS_ERR(host->regs) || IS_ERR(host->clock) || IS_ERR(host->gate) || IS_ERR(host->pins)) {
+	if (IS_ERR(host->regs) || IS_ERR(host->clock) || IS_ERR(host->gate)) {
 		ret = -ENODEV;
 		goto free_host;
 	}
-	/* Power rails and pad drive remain configured by board firmware. */
-	for (i = 0; i < ARRAY_SIZE(pins); i++) {
-		shift = (pins[i] % 8) * 4;
-		value = readl(host->pins + (pins[i] / 8) * 4);
-		writel((value & ~(0xfU << shift)) | (4U << shift),
-		       host->pins + (pins[i] / 8) * 4);
-	}
+	/* Power rails, pad drive and pulls remain configured by board firmware. */
 	writel(BIT(31), host->clock);
 	writel(readl(host->gate) & ~BIT(16), host->gate);
 	udelay(10);

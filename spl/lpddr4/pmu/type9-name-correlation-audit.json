@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-14",
+  "scope": "Names/address correspondence only; no presets or executable data. The local correspondence is a research aid, not proof of a global address alias or field meaning.",
+  "public_arc_source": {
+    "repository": "InfernoEmbedded/u-boot",
+    "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+    "path": "arch/arm/mach-sunxi/pmu/dwc_ddrphy_pmu_regs.h",
+    "local": "mainline\\sources\\audit\\a733-pmu-source-2f5e45fa\\dwc_ddrphy_pmu_regs.h"
+  },
+  "independent_host_names": "evidence/sima-type9-host-csr-map-20261114.json",
+  "correspondences": [
+    {
+      "arc_address": "0x90040000",
+      "logical_csr_candidate": "0x20000",
+      "public_arc_macro": "PHY_REG_MASTER_BASE",
+      "public_arc_header_line": 324,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_DfiFreqRatio_p0",
+      "sima_line": 941
+    },
+    {
+      "arc_address": "0x90040008",
+      "logical_csr_candidate": "0x20004",
+      "public_arc_macro": "PHY_REG_CAL_STAT_CTRL0",
+      "public_arc_header_line": 325,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_ZCalClkInfo_p0",
+      "sima_line": 1020
+    },
+    {
+      "arc_address": "0x9004000e",
+      "logical_csr_candidate": "0x20007",
+      "public_arc_macro": "PHY_REG_MASTER_CFG",
+      "public_arc_header_line": 327,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_DqsPreambleControl_p0",
+      "sima_line": 984
+    },
+    {
+      "arc_address": "0x90040018",
+      "logical_csr_candidate": "0x2000c",
+      "public_arc_macro": "PHY_REG_SLICE_STAT",
+      "public_arc_header_line": 328,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_AcPipeEn_p0",
+      "sima_line": 1348
+    },
+    {
+      "arc_address": "0x90040022",
+      "logical_csr_candidate": "0x20011",
+      "public_arc_macro": "PHY_REG_CAL_STAT_CTRL2",
+      "public_arc_header_line": 330,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_PPTTrainSetup2_p0",
+      "sima_line": 1315
+    },
+    {
+      "arc_address": "0x9004002a",
+      "logical_csr_candidate": "0x20015",
+      "public_arc_macro": "PHY_REG_PUB_ACK",
+      "public_arc_header_line": 331,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_SingleEndedMode_p0",
+      "sima_line": 1295
+    },
+    {
+      "arc_address": "0x90040058",
+      "logical_csr_candidate": "0x2002c",
+      "public_arc_macro": "PHY_REG_CA_VREF_DAC",
+      "public_arc_header_line": 341,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_ACSMRxEnPulse_p0",
+      "sima_line": 1343
+    },
+    {
+      "arc_address": "0x90040082",
+      "logical_csr_candidate": "0x20041",
+      "public_arc_macro": "PHY_REG_VREF_CTRL",
+      "public_arc_header_line": 343,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_ACSMWckFreeRunMode_p0",
+      "sima_line": 1591
+    },
+    {
+      "arc_address": "0x90040094",
+      "logical_csr_candidate": "0x2004a",
+      "public_arc_macro": "PHY_REG_ZQ_STAT",
+      "public_arc_header_line": 347,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_PllCtrl1_p0",
+      "sima_line": 1355
+    },
+    {
+      "arc_address": "0x900400c0",
+      "logical_csr_candidate": "0x20060",
+      "public_arc_macro": "PHY_REG_PHY_STATUS",
+      "public_arc_header_line": 348,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_MemResetL",
+      "sima_line": 894
+    },
+    {
+      "arc_address": "0x900400e4",
+      "logical_csr_candidate": "0x20072",
+      "public_arc_macro": "PHY_REG_CH0_ANALOG_PWR",
+      "public_arc_header_line": 350,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA",
+      "sima_line": 1609
+    },
+    {
+      "arc_address": "0x900400e6",
+      "logical_csr_candidate": "0x20073",
+      "public_arc_macro": "PHY_REG_CH1_ANALOG_PWR",
+      "public_arc_header_line": 351,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB",
+      "sima_line": 1611
+    },
+    {
+      "arc_address": "0x900400fc",
+      "logical_csr_candidate": "0x2007e",
+      "public_arc_macro": "PHY_REG_GATE_CTRL",
+      "public_arc_header_line": 354,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal",
+      "sima_line": 5694
+    },
+    {
+      "arc_address": "0x90040110",
+      "logical_csr_candidate": "0x20088",
+      "public_arc_macro": "PHY_REG_RFIFO_CFG",
+      "public_arc_header_line": 357,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_PllUPllProg0",
+      "sima_line": 1361
+    },
+    {
+      "arc_address": "0x90040600",
+      "logical_csr_candidate": "0x20300",
+      "public_arc_macro": "PHY_REG_CLK_PHASE_BASE",
+      "public_arc_header_line": 370,
+      "independent_sima_name": "DWC_DDRPHYA_MASTER0_p0_ZCalRZN",
+      "sima_line": 898
+    }
+  ],
+  "important_correction": "Do not interpret PHY_REG_CA_VREF_DAC at0x90040058 as a Vref DAC. Independent logical2002c host name is ACSMRxEnPulse. pmu_cbt.c::pmu_phy_reg_offset_diff_adjust writes logical2002c,2002d,20030 low8 and preserves3f00; these names identify RxEn/RxVal/Rdcs pulses, not an electrical Vref setting. Exact delay/width bit semantics remain unproved.",
+  "hardware_actions": false
+}

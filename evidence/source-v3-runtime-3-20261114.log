@@ -1,0 +1,18 @@
+printf "V3_BOOT3_BEGIN\n"; id; cat /proc/uptime; cat /sys/devices/system/cpu/online; systemctl --failed --no-pager; cat /proc/sys/kernel/tainted; sfdisk --verify /dev/mmcblk0; sha256sum /root/.t736-v3-fscheck.bin; printf "V3_BOOT3_END\n"
+
+V3_BOOT3_BEGIN
+uid=0(root) gid=0(root) groups=0(root)
+129.94 832.44
+0-7
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+0
+/dev/mmcblk0:
+No errors detected.
+Header version: 1.0
+Using 6 out of 6 partitions.
+A total of 105365535 free sectors is available in 1 segment.
+0bd54c02f1fb6eba20a356d60f24e94e50c068be2b994bd9f06c5547c091ee04  /root/.t736-v3-fscheck.bin
+V3_BOOT3_END
+root@t736:~# 

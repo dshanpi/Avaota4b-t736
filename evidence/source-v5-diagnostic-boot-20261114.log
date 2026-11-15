@@ -1,0 +1,2060 @@
+T736 source SRAM host + authorized libdram v1
+init_DRAM begin seed tpr3=110000 tpr13=6063
+DRAM BOOT DRIVE INFO: V0.6035
+DDR rail dcdc8 requested=1100 effective=1100 rc=0
+DDR rail eldo1 requested=660 effective=650 rc=0
+DRAM_VCC set to 1100 mv
+DRAM CLK =1800 MHZ
+DRAM Type =8 (8:LPDDR4,9:LPDDR5)
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+DRAM SIZE =8192 MBytes, para1 = 311a, para2 = a0001001, dram_tpr13 = 6063
+DRAM simple test OK.
+init_DRAM returned 8192 MiB, ticks=78714188
+MEM PASS: 8 x 64KiB windows, 4 address/data patterns, 524288 words checked; upper physical RAM pending
+BOARD power rc=0 DCDC1 en=ff voltage=17 DC1SW1=17->1f DLDO2=d->d LDO_EN3=40->42
+CCU after DDR: PERI0=ff126310 AHB=3000002 APB0=3000005
+SPL eMMC open rc=0 sectors=122142720 irq=0 r1=900
+SPL load addr=47000000 bytes=5040 LBA=24577
+SPL load addr=48000000 bytes=53924 LBA=24587
+SPL load addr=52000000 bytes=253648 LBA=24693
+SPL payload CRCs passed; source AArch64 handoff
+H00c51838 81000000 47000000 00000001 00000000 
+AT736 A64 source handoff EL=000000000000000c
+A64 MEM PASS 262144 x 64-bit checks, including RAM above 4GiB and final 64KiB
+Entering source TF-A 0x48000000
+
+NOTICE:  BL31: v2.15.0(debug):t736-independent-candidate-7d322909
+NOTICE:  BL31: Built : 06:57:46, Nov 13 2026
+INFO:    GICv3 without legacy support detected.
+INFO:    ARM GICv3 driver initialized in EL3
+INFO:    Maximum SPI INTID supported: 287
+NOTICE:  BL31: Detected Allwinner A733 SoC (1903)
+NOTICE:  BL31: Found U-Boot DTB at 0x5203cbd8, model: T736 custom board RAM bring-up
+INFO:    Configuring SPC Controller
+INFO:    BL31: Platform setup done
+INFO:    BL31: Initializing runtime services
+INFO:    BL31: cortex_a55: CPU workaround for erratum 1530923 was applied
+INFO:    PSCI: Suspend is unavailable
+INFO:    BL31: Preparing for EL3 exit to normal world
+INFO:    Entry point address = 0x52000000
+INFO:    SPSR = 0x3c9
+INFO:    Changed devicetree.
+
+<debug_uart>
+
+U-Boot 2026.10-t736-bringup (Nov 14 2026 - 04:08:11 -0500)
+
+Model: T736 custom board RAM bring-up
+Board: T736 source boot candidate; authorized vendor DDR library
+DRAM:  8 GiB
+Core:  4 devices, 4 uclasses, devicetree: separate
+MMC:   T736 SMHC3 read-only PIO: 0
+Loading Environment from nowhere...
+Loading Environment from nowhere... OK
+In:    serial@2500000
+Out:   serial@2500000
+Err:   serial@2500000
+
+Hit any key to stop autoboot: 3
+Hit any key to stop autoboot: 0
+T736-mainline=> setenv kernel_comp_addr_r 0x68000000; if mmc dev 0 && ext4load mmc 0:4 0x60000000 /boot/vmlinuz-6.18.63-t736-armbian && setenv kernel_comp_size ${filesize} && ext4load mmc 0:4 0x64000000 /boot/initrd.img-6.18.63-t736-armbian; then setenv rdsize ${filesize}; if ext4load mmc 0:4 0x63000000 /boot/dtb/allwinner/t736-mainline-bringup.dtb; then setenv bootargs earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused initcall_debug ignore_loglevel printk.time=1 drm.debug=0x1f fbcon=map:1; booti 0x60000000 0x64000000:${rdsize} 0x63000000; fi; fi
+switch to partitions #0, OK
+mmc0(part 0) is current device
+5019445 bytes read in 1156 ms (4.1 MiB/s)
+11477418 bytes read in 2643 ms (4.1 MiB/s)
+10027 bytes read in 4 ms (2.4 MiB/s)
+   Uncompressing Kernel Image to 0
+## Flattened Device Tree blob at 63000000
+   Booting using the fdt blob at 0x63000000
+Working FDT set to 63000000
+   Loading Ramdisk to adca1000, end ae7931aa ... OK
+   Loading Device Tree to 00000000adc9b000, end 00000000adca072a ... OK
+Working FDT set to adc9b000
+
+Starting kernel ...
+
+Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+Linux version 6.18.63-t736-hdmi-v12 (ubuntu@ubuntu2404) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #12 SMP Sat Nov 14 05:55:42 EST 2026
+Machine model: T736 custom board mainline bring-up
+earlycon: uart8250 at MMIO32 0x0000000002500000 (options '')
+printk: legacy bootconsole [uart8250] enabled
+printk: debug: ignoring loglevel setting.
+OF: reserved mem: Reserved memory: No reserved-memory node in the DT
+Zone ranges:
+  DMA      [mem 0x0000000040000000-0x00000000ffffffff]
+  DMA32    empty
+  Normal   [mem 0x0000000100000000-0x000000023fffffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000040000000-0x000000023fffffff]
+Initmem setup node 0 [mem 0x0000000040000000-0x000000023fffffff]
+cma: Reserved 128 MiB at 0x00000000f3800000
+psci: probing for conduit method from DT.
+psci: PSCIv1.1 detected in firmware.
+psci: Using standard PSCI v0.2 function IDs
+psci: MIGRATE_INFO_TYPE not supported.
+psci: SMC Calling Convention v1.5
+percpu: Embedded 18 pages/cpu s33560 r8192 d31976 u73728
+pcpu-alloc: s33560 r8192 d31976 u73728 alloc=18*4096
+pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+Detected VIPT I-cache on CPU0
+CPU features: detected: GICv3 CPU interface
+CPU features: detected: Virtualization Host Extensions
+CPU features: kernel page table isolation disabled by kernel configuration
+alternatives: applying boot alternatives
+Kernel command line: earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused initcall_debug ignore_loglevel printk.time=1 drm.debug=0x1f fbcon=map:1
+[    0.000000] printk: log buffer data + meta data: 131072 + 458752 = 589824 bytes
+[    0.000000] Dentry cache hash table entries: 1048576 (order: 11, 8388608 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+[    0.000000] software IO TLB: area num 8.
+[    0.000000] software IO TLB: mapped [mem 0x00000000ef800000-0x00000000f3800000] (64MB)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 2097152
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+[    0.000000] SLUB: HWalign=64, Order=0-1, MinObjects=0, CPUs=8, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] RCU Tasks Trace: Setting shift to 3 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=8.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GICv3: GIC: Using split EOI/Deactivate mode
+[    0.000000] GICv3: 256 SPIs implemented
+[    0.000000] GICv3: 0 Extended SPIs implemented
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GICv3: GICv3 features: 16 PPIs
+[    0.000000] GICv3: GICD_CTLR.DS=0, SCR_EL3.FIQ=0
+[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x0000000003460000
+[    0.000000] ITS: No ITS available, not enabling LPIs
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000000] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.000000] arch_timer: cp15 timer running at 24.00MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[    0.000001] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[    0.009153] Console: colour dummy device 80x25
+[    0.014126] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=96000)
+[    0.025421] pid_max: default: 32768 minimum: 301
+[    0.030683] LSM: initializing lsm=capability
+[    0.035647] Mount-cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.044022] Mountpoint-cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.055883] entering initcall level: early
+[    0.060416] calling  asids_init+0x0/0x7c @ 1
+[    0.065159] initcall asids_init+0x0/0x7c returned 0 after 0 usecs
+[    0.071882] calling  spawn_ksoftirqd+0x0/0x74 @ 1
+[    0.077258] initcall spawn_ksoftirqd+0x0/0x74 returned 0 after 0 usecs
+[    0.084469] calling  init_signal_sysctls+0x0/0x5c @ 1
+[    0.090144] initcall init_signal_sysctls+0x0/0x5c returned 0 after 0 usecs
+[    0.097724] calling  init_umh_sysctls+0x0/0x34 @ 1
+[    0.103021] initcall init_umh_sysctls+0x0/0x34 returned 0 after 0 usecs
+[    0.110318] calling  kthreads_init+0x0/0x34 @ 1
+[    0.115323] initcall kthreads_init+0x0/0x34 returned 0 after 0 usecs
+[    0.122324] calling  migration_init+0x0/0x44 @ 1
+[    0.127420] initcall migration_init+0x0/0x44 returned 0 after 0 usecs
+[    0.134518] calling  srcu_bootup_announce+0x0/0x8c @ 1
+[    0.140187] rcu: Hierarchical SRCU implementation.
+[    0.145456] rcu: 	Max phase no-delay instances is 1000.
+[    0.151203] initcall srcu_bootup_announce+0x0/0x8c returned 0 after 8000 usecs
+[    0.159163] calling  rcu_spawn_gp_kthread+0x0/0x210 @ 1
+[    0.165362] initcall rcu_spawn_gp_kthread+0x0/0x210 returned 0 after 0 usecs
+[    0.173162] calling  check_cpu_stall_init+0x0/0x2c @ 1
+[    0.178840] initcall check_cpu_stall_init+0x0/0x2c returned 0 after 0 usecs
+[    0.186519] calling  rcu_sysrq_init+0x0/0x18 @ 1
+[    0.191616] initcall rcu_sysrq_init+0x0/0x18 returned 0 after 0 usecs
+[    0.198716] calling  cpu_stop_init+0x0/0xa0 @ 1
+[    0.203899] initcall cpu_stop_init+0x0/0xa0 returned 0 after 0 usecs
+[    0.210932] calling  irq_work_init_threads+0x0/0x8 @ 1
+[    0.216601] initcall irq_work_init_threads+0x0/0x8 returned 0 after 0 usecs
+[    0.224269] calling  jump_label_init_module+0x0/0x1c @ 1
+[    0.230126] initcall jump_label_init_module+0x0/0x1c returned 0 after 0 usecs
+[    0.237984] calling  init_zero_pfn+0x0/0x28 @ 1
+[    0.242981] initcall init_zero_pfn+0x0/0x28 returned 0 after 0 usecs
+[    0.249981] calling  init_fs_inode_sysctls+0x0/0x38 @ 1
+[    0.255755] initcall init_fs_inode_sysctls+0x0/0x38 returned 0 after 0 usecs
+[    0.263526] calling  init_fs_locks_sysctls+0x0/0x34 @ 1
+[    0.269292] initcall init_fs_locks_sysctls+0x0/0x34 returned 0 after 0 usecs
+[    0.277059] calling  init_fs_sysctls+0x0/0x34 @ 1
+[    0.282251] initcall init_fs_sysctls+0x0/0x34 returned 0 after 0 usecs
+[    0.289440] calling  init_security_keys_sysctls+0x0/0x34 @ 1
+[    0.295696] initcall init_security_keys_sysctls+0x0/0x34 returned 0 after 0 usecs
+[    0.303941] calling  dummy_timer_register+0x0/0x34 @ 1
+[    0.309616] initcall dummy_timer_register+0x0/0x34 returned 0 after 0 usecs
+[    0.317878] smp: Bringing up secondary CPUs ...
+[    0.323760] Detected VIPT I-cache on CPU1
+[    0.323881] GICv3: CPU1: found redistributor 100 region 0:0x0000000003480000
+[    0.323945] CPU1: Booted secondary processor 0x0000000100 [0x412fd050]
+[    0.324975] Detected VIPT I-cache on CPU2
+[    0.325093] GICv3: CPU2: found redistributor 200 region 0:0x00000000034a0000
+[    0.325152] CPU2: Booted secondary processor 0x0000000200 [0x412fd050]
+[    0.326150] Detected VIPT I-cache on CPU3
+[    0.326257] GICv3: CPU3: found redistributor 300 region 0:0x00000000034c0000
+[    0.326309] CPU3: Booted secondary processor 0x0000000300 [0x412fd050]
+[    0.327500] Detected VIPT I-cache on CPU4
+[    0.327609] GICv3: CPU4: found redistributor 400 region 0:0x00000000034e0000
+[    0.327661] CPU4: Booted secondary processor 0x0000000400 [0x412fd050]
+[    0.328660] Detected VIPT I-cache on CPU5
+[    0.328776] GICv3: CPU5: found redistributor 500 region 0:0x0000000003500000
+[    0.328828] CPU5: Booted secondary processor 0x0000000500 [0x412fd050]
+[    0.331066] CPU features: detected: Spectre-v4
+[    0.331282] CPU features: detected: Spectre-BHB
+[    0.331420] Detected PIPT I-cache on CPU6
+[    0.332581] GICv3: CPU6: found redistributor 600 region 0:0x0000000003520000
+[    0.333083] CPU6: Booted secondary processor 0x0000000600 [0x414fd0b1]
+[    0.336289] Detected PIPT I-cache on CPU7
+[    0.337648] GICv3: CPU7: found redistributor 700 region 0:0x0000000003540000
+[    0.338198] CPU7: Booted secondary processor 0x0000000700 [0x414fd0b1]
+[    0.339708] smp: Brought up 1 node, 8 CPUs
+[    0.489279] SMP: Total of 8 processors activated.
+[    0.494455] CPU: All CPU(s) started at EL2
+[    0.498966] CPU features: detected: 32-bit EL0 Support
+[    0.504620] CPU features: detected: Data cache clean to the PoU not required for I/D coherence
+[    0.514091] CPU features: detected: CRC32 instructions
+[    0.519752] CPU features: detected: RCpc load-acquire (LDAPR)
+[    0.526078] CPU features: detected: Speculative Store Bypassing Safe (SSBS)
+[    0.534147] alternatives: applying system-wide alternatives
+[    0.542767] Memory: 7787508K/8388608K available (6464K kernel code, 2114K rwdata, 2384K rodata, 448K init, 286K bss, 466904K reserved, 131072K cma-reserved)
+[    0.560530] devtmpfs: initialized
+[    0.569697] entering initcall level: pure
+[    0.574129] calling  ipc_ns_init+0x0/0x44 @ 1
+[    0.578981] initcall ipc_ns_init+0x0/0x44 returned 0 after 0 usecs
+[    0.585802] calling  init_mmap_min_addr+0x0/0x44 @ 1
+[    0.591307] initcall init_mmap_min_addr+0x0/0x44 returned 0 after 0 usecs
+[    0.598801] calling  inet_frag_wq_init+0x0/0x4c @ 1
+[    0.604798] initcall inet_frag_wq_init+0x0/0x4c returned 0 after 0 usecs
+[    0.612398] entering initcall level: core
+[    0.616815] calling  fpsimd_init+0x0/0x6c @ 1
+[    0.621635] initcall fpsimd_init+0x0/0x6c returned 0 after 0 usecs
+[    0.628451] calling  init_amu_fie+0x0/0x8 @ 1
+[    0.633261] initcall init_amu_fie+0x0/0x8 returned 0 after 0 usecs
+[    0.640078] calling  wq_sysfs_init+0x0/0x2c @ 1
+[    0.645219] initcall wq_sysfs_init+0x0/0x2c returned 0 after 0 usecs
+[    0.652245] calling  ksysfs_init+0x0/0xb0 @ 1
+[    0.657098] initcall ksysfs_init+0x0/0xb0 returned 0 after 0 usecs
+[    0.663916] calling  pm_init+0x0/0x68 @ 1
+[    0.668394] initcall pm_init+0x0/0x68 returned 0 after 0 usecs
+[    0.674839] calling  rcu_set_runtime_mode+0x0/0x14 @ 1
+[    0.680512] initcall rcu_set_runtime_mode+0x0/0x14 returned 0 after 0 usecs
+[    0.688187] calling  rcu_init_tasks_generic+0x0/0xd8 @ 1
+[    0.694242] initcall rcu_init_tasks_generic+0x0/0xd8 returned 0 after 0 usecs
+[    0.702129] calling  posixtimer_init+0x0/0xe8 @ 1
+[    0.707350] posixtimers hash table entries: 4096 (order: 4, 65536 bytes, linear)
+[    0.715546] initcall posixtimer_init+0x0/0xe8 returned 0 after 4000 usecs
+[    0.723039] calling  futex_init+0x0/0x134 @ 1
+[    0.727961] futex hash table entries: 2048 (131072 bytes on 1 NUMA nodes, total 128 KiB, linear).
+[    0.737728] initcall futex_init+0x0/0x134 returned 0 after 4000 usecs
+[    0.744853] calling  cgroup_wq_init+0x0/0x8c @ 1
+[    0.750052] initcall cgroup_wq_init+0x0/0x8c returned 0 after 0 usecs
+[    0.757166] calling  cgroup1_wq_init+0x0/0x38 @ 1
+[    0.762383] initcall cgroup1_wq_init+0x0/0x38 returned 0 after 0 usecs
+[    0.769586] calling  bpf_offload_init+0x0/0x24 @ 1
+[    0.774894] initcall bpf_offload_init+0x0/0x24 returned 0 after 0 usecs
+[    0.782188] calling  cgroup_bpf_wq_init+0x0/0x40 @ 1
+[    0.787687] initcall cgroup_bpf_wq_init+0x0/0x40 returned 0 after 0 usecs
+[    0.795170] calling  cma_init_reserved_areas+0x0/0x24c @ 1
+[    0.802760] initcall cma_init_reserved_areas+0x0/0x24c returned 0 after 0 usecs
+[    0.810849] calling  execmem_late_init+0x0/0x1ec @ 1
+[    0.816343] 29792 pages in range for non-PLT usage
+[    0.816354] 521312 pages in range for PLT usage
+[    0.821632] initcall execmem_late_init+0x0/0x1ec returned 0 after 4000 usecs
+[    0.834383] calling  fsnotify_init+0x0/0x68 @ 1
+[    0.839428] initcall fsnotify_init+0x0/0x68 returned 0 after 0 usecs
+[    0.846444] calling  filelock_init+0x0/0x118 @ 1
+[    0.851577] initcall filelock_init+0x0/0x118 returned 0 after 0 usecs
+[    0.858682] calling  init_misc_binfmt+0x0/0x40 @ 1
+[    0.863969] initcall init_misc_binfmt+0x0/0x40 returned 0 after 0 usecs
+[    0.871260] calling  init_script_binfmt+0x0/0x24 @ 1
+[    0.876734] initcall init_script_binfmt+0x0/0x24 returned 0 after 0 usecs
+[    0.884214] calling  init_elf_binfmt+0x0/0x24 @ 1
+[    0.889403] initcall init_elf_binfmt+0x0/0x24 returned 0 after 0 usecs
+[    0.896601] calling  configfs_init+0x0/0xc0 @ 1
+[    0.901634] initcall configfs_init+0x0/0xc0 returned 0 after 0 usecs
+[    0.908645] calling  debugfs_init+0x0/0xe8 @ 1
+[    0.913578] initcall debugfs_init+0x0/0xe8 returned 0 after 0 usecs
+[    0.920492] calling  securityfs_init+0x0/0x8c @ 1
+[    0.925803] initcall securityfs_init+0x0/0x8c returned 0 after 0 usecs
+[    0.933009] calling  pinctrl_init+0x0/0xc4 @ 1
+[    0.937917] pinctrl core: initialized pinctrl subsystem
+[    0.943780] initcall pinctrl_init+0x0/0xc4 returned 0 after 4000 usecs
+[    0.950989] calling  gpiolib_dev_init+0x0/0x138 @ 1
+[    0.956494] initcall gpiolib_dev_init+0x0/0x138 returned 0 after 0 usecs
+[    0.963894] calling  genpd_bus_init+0x0/0xb0 @ 1
+[    0.969184] initcall genpd_bus_init+0x0/0xb0 returned 0 after 0 usecs
+[    0.976303] calling  regulator_init+0x0/0xa8 @ 1
+[    0.981796] probe of reg-dummy returned 0 after 0 usecs
+[    0.987573] initcall regulator_init+0x0/0xa8 returned 0 after 4000 usecs
+[    0.994973] calling  component_debug_init+0x0/0x2c @ 1
+[    1.000652] initcall component_debug_init+0x0/0x2c returned 0 after 0 usecs
+[    1.008333] calling  free_raw_capacity+0x0/0x30 @ 1
+[    1.013725] initcall free_raw_capacity+0x0/0x30 returned 0 after 0 usecs
+[    1.021116] calling  arch_timer_evtstrm_register+0x0/0x58 @ 1
+[    1.027459] initcall arch_timer_evtstrm_register+0x0/0x58 returned 0 after 0 usecs
+[    1.035803] calling  sock_init+0x0/0xc0 @ 1
+[    1.040618] initcall sock_init+0x0/0xc0 returned 0 after 0 usecs
+[    1.047261] calling  net_inuse_init+0x0/0x30 @ 1
+[    1.052368] initcall net_inuse_init+0x0/0x30 returned 0 after 0 usecs
+[    1.059475] calling  sock_struct_check+0x0/0x8 @ 1
+[    1.064761] initcall sock_struct_check+0x0/0x8 returned 0 after 0 usecs
+[    1.072056] calling  init_default_flow_dissectors+0x0/0x5c @ 1
+[    1.078497] initcall init_default_flow_dissectors+0x0/0x5c returned 0 after 0 usecs
+[    1.086938] calling  netlink_proto_init+0x0/0x134 @ 1
+[    1.093027] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    1.099623] initcall netlink_proto_init+0x0/0x134 returned 0 after 4000 usecs
+[    1.107505] calling  genl_init+0x0/0x4c @ 1
+[    1.112157] initcall genl_init+0x0/0x4c returned 0 after 0 usecs
+[    1.118984] entering initcall level: postcore
+[    1.123787] calling  debug_monitors_init+0x0/0x34 @ 1
+[    1.130082] initcall debug_monitors_init+0x0/0x34 returned 0 after 0 usecs
+[    1.137680] calling  init_overflow_sysctl+0x0/0x34 @ 1
+[    1.143382] initcall init_overflow_sysctl+0x0/0x34 returned 0 after 0 usecs
+[    1.151061] calling  irq_sysfs_init+0x0/0xb8 @ 1
+[    1.156639] initcall irq_sysfs_init+0x0/0xb8 returned 0 after 0 usecs
+[    1.163752] calling  dma_atomic_pool_init+0x0/0x144 @ 1
+[    1.170832] DMA: preallocated 1024 KiB GFP_KERNEL pool for atomic allocations
+[    1.179104] DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    1.188463] DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    1.197347] initcall dma_atomic_pool_init+0x0/0x144 returned 0 after 12000 usecs
+[    1.205514] calling  bdi_class_init+0x0/0x48 @ 1
+[    1.210663] initcall bdi_class_init+0x0/0x48 returned 0 after 0 usecs
+[    1.217770] calling  mm_sysfs_init+0x0/0x38 @ 1
+[    1.222781] initcall mm_sysfs_init+0x0/0x38 returned 0 after 0 usecs
+[    1.229786] calling  init_per_zone_wmark_min+0x0/0x24 @ 1
+[    1.235765] initcall init_per_zone_wmark_min+0x0/0x24 returned 0 after 0 usecs
+[    1.243738] calling  amba_init+0x0/0x1c @ 1
+[    1.248434] initcall amba_init+0x0/0x1c returned 0 after 0 usecs
+[    1.255068] calling  tty_class_init+0x0/0x20 @ 1
+[    1.260199] initcall tty_class_init+0x0/0x20 returned 0 after 0 usecs
+[    1.267309] calling  vtconsole_class_init+0x0/0xe4 @ 1
+[    1.273110] initcall vtconsole_class_init+0x0/0xe4 returned 0 after 0 usecs
+[    1.280788] calling  devlink_class_init+0x0/0x54 @ 1
+[    1.286299] initcall devlink_class_init+0x0/0x54 returned 0 after 0 usecs
+[    1.293790] calling  software_node_init+0x0/0x3c @ 1
+[    1.299278] initcall software_node_init+0x0/0x3c returned 0 after 0 usecs
+[    1.306763] calling  regmap_initcall+0x0/0x18 @ 1
+[    1.311970] initcall regmap_initcall+0x0/0x18 returned 0 after 0 usecs
+[    1.319167] calling  i2c_init+0x0/0xcc @ 1
+[    1.323808] initcall i2c_init+0x0/0xcc returned 0 after 0 usecs
+[    1.330345] calling  kobject_uevent_init+0x0/0x1c @ 1
+[    1.335967] initcall kobject_uevent_init+0x0/0x1c returned 0 after 0 usecs
+[    1.343746] entering initcall level: arch
+[    1.348179] calling  reserve_memblock_reserved_regions+0x0/0x12c @ 1
+[    1.355237] initcall reserve_memblock_reserved_regions+0x0/0x12c returned 0 after 0 usecs
+[    1.364260] calling  vdso_init+0x0/0xf0 @ 1
+[    1.368888] initcall vdso_init+0x0/0xf0 returned 0 after 0 usecs
+[    1.375514] calling  arm64_create_dummy_rsi_dev+0x0/0x38 @ 1
+[    1.381757] initcall arm64_create_dummy_rsi_dev+0x0/0x38 returned 0 after 0 usecs
+[    1.390002] calling  adjust_protection_map+0x0/0x44 @ 1
+[    1.395760] initcall adjust_protection_map+0x0/0x44 returned 0 after 0 usecs
+[    1.403530] calling  asids_update_limit+0x0/0x78 @ 1
+[    1.409011] ASID allocator initialised with 65536 entries
+[    1.414954] initcall asids_update_limit+0x0/0x78 returned 0 after 4000 usecs
+[    1.422723] calling  kcmp_cookies_init+0x0/0x50 @ 1
+[    1.428129] initcall kcmp_cookies_init+0x0/0x50 returned 0 after 0 usecs
+[    1.435524] calling  sunxi_mbus_init+0x0/0x40 @ 1
+[    1.440745] initcall sunxi_mbus_init+0x0/0x40 returned 0 after 0 usecs
+[    1.447948] calling  serial_base_init+0x0/0x68 @ 1
+[    1.453368] initcall serial_base_init+0x0/0x68 returned 0 after 0 usecs
+[    1.460675] calling  of_platform_default_populate_init+0x0/0xb8 @ 1
+[    1.476075] /display-engine@5000000: Fixed dependency cycle(s) with /tcon@5730000
+[    1.484473] /tcon@5730000: Fixed dependency cycle(s) with /display-engine@5000000
+[    1.493418] /tcon@5730000: Fixed dependency cycle(s) with /hdmi@5520000
+[    1.500856] /hdmi@5520000: Fixed dependency cycle(s) with /tcon@5730000
+[    1.508710] initcall of_platform_default_populate_init+0x0/0xb8 returned 0 after 24000 usecs
+[    1.518226] entering initcall level: subsys
+[    1.522841] calling  init_fork_sysctl+0x0/0x34 @ 1
+[    1.528140] initcall init_fork_sysctl+0x0/0x34 returned 0 after 0 usecs
+[    1.535434] calling  uid_cache_init+0x0/0xc0 @ 1
+[    1.540559] initcall uid_cache_init+0x0/0xc0 returned 0 after 0 usecs
+[    1.547668] calling  pid_namespace_sysctl_init+0x0/0x24 @ 1
+[    1.553835] initcall pid_namespace_sysctl_init+0x0/0x24 returned 0 after 0 usecs
+[    1.562007] calling  param_sysfs_init+0x0/0x60 @ 1
+[    1.567312] initcall param_sysfs_init+0x0/0x60 returned 0 after 0 usecs
+[    1.574620] calling  user_namespace_sysctl_init+0x0/0xdc @ 1
+[    1.580913] initcall user_namespace_sysctl_init+0x0/0xdc returned 0 after 0 usecs
+[    1.589173] calling  init_rtmutex_sysctl+0x0/0x34 @ 1
+[    1.594758] initcall init_rtmutex_sysctl+0x0/0x34 returned 0 after 0 usecs
+[    1.602340] calling  printk_set_kthreads_ready+0x0/0x3c @ 1
+[    1.608496] initcall printk_set_kthreads_ready+0x0/0x3c returned 0 after 0 usecs
+[    1.616651] calling  init_rcu_stall_sysctl+0x0/0x34 @ 1
+[    1.622425] initcall init_rcu_stall_sysctl+0x0/0x34 returned 0 after 0 usecs
+[    1.630202] calling  init_module_sysctl+0x0/0x34 @ 1
+[    1.635691] initcall init_module_sysctl+0x0/0x34 returned 0 after 0 usecs
+[    1.643186] calling  cgroup_sysfs_init+0x0/0x28 @ 1
+[    1.648589] initcall cgroup_sysfs_init+0x0/0x28 returned 0 after 0 usecs
+[    1.655989] calling  user_namespaces_init+0x0/0x70 @ 1
+[    1.661677] initcall user_namespaces_init+0x0/0x70 returned 0 after 0 usecs
+[    1.669353] calling  dev_map_init+0x0/0x20 @ 1
+[    1.674268] initcall dev_map_init+0x0/0x20 returned 0 after 0 usecs
+[    1.681181] calling  netns_bpf_init+0x0/0x20 @ 1
+[    1.686278] initcall netns_bpf_init+0x0/0x20 returned 0 after 0 usecs
+[    1.693381] calling  oom_init+0x0/0x5c @ 1
+[    1.698202] initcall oom_init+0x0/0x5c returned 0 after 0 usecs
+[    1.704751] calling  init_user_buckets+0x0/0x30 @ 1
+[    1.710136] initcall init_user_buckets+0x0/0x30 returned 0 after 0 usecs
+[    1.717521] calling  init_vm_util_sysctls+0x0/0x34 @ 1
+[    1.723195] initcall init_vm_util_sysctls+0x0/0x34 returned 0 after 0 usecs
+[    1.730868] calling  default_bdi_init+0x0/0x38 @ 1
+[    1.736546] initcall default_bdi_init+0x0/0x38 returned 0 after 0 usecs
+[    1.743860] calling  percpu_enable_async+0x0/0x14 @ 1
+[    1.749433] initcall percpu_enable_async+0x0/0x14 returned 0 after 0 usecs
+[    1.757011] calling  init_mm_sysctl+0x0/0x34 @ 1
+[    1.762113] initcall init_mm_sysctl+0x0/0x34 returned 0 after 0 usecs
+[    1.769221] calling  init_user_reserve+0x0/0x30 @ 1
+[    1.774607] initcall init_user_reserve+0x0/0x30 returned 0 after 0 usecs
+[    1.781993] calling  init_admin_reserve+0x0/0x30 @ 1
+[    1.787473] initcall init_admin_reserve+0x0/0x30 returned 0 after 0 usecs
+[    1.794954] calling  init_reserve_notifier+0x0/0x8 @ 1
+[    1.800622] initcall init_reserve_notifier+0x0/0x8 returned 0 after 0 usecs
+[    1.808293] calling  swap_init+0x0/0x98 @ 1
+[    1.812930] initcall swap_init+0x0/0x98 returned 0 after 0 usecs
+[    1.819559] calling  swapfile_init+0x0/0xc0 @ 1
+[    1.824577] initcall swapfile_init+0x0/0xc0 returned 0 after 0 usecs
+[    1.831585] calling  mem_cgroup_swap_init+0x0/0x40 @ 1
+[    1.837274] initcall mem_cgroup_swap_init+0x0/0x40 returned 0 after 0 usecs
+[    1.844955] calling  init_msg_buckets+0x0/0x30 @ 1
+[    1.850239] initcall init_msg_buckets+0x0/0x30 returned 0 after 0 usecs
+[    1.857528] calling  init_bio+0x0/0xb4 @ 1
+[    1.862143] initcall init_bio+0x0/0xb4 returned 0 after 0 usecs
+[    1.868686] calling  blk_ioc_init+0x0/0x48 @ 1
+[    1.873599] initcall blk_ioc_init+0x0/0x48 returned 0 after 0 usecs
+[    1.880509] calling  blk_mq_init+0x0/0x148 @ 1
+[    1.885417] initcall blk_mq_init+0x0/0x148 returned 0 after 0 usecs
+[    1.892328] calling  genhd_device_init+0x0/0x64 @ 1
+[    1.898011] initcall genhd_device_init+0x0/0x64 returned 0 after 0 usecs
+[    1.905423] calling  io_wq_init+0x0/0x48 @ 1
+[    1.910141] initcall io_wq_init+0x0/0x48 returned 0 after 0 usecs
+[    1.916863] calling  sha1_mod_init+0x0/0x2c @ 1
+[    1.921921] initcall sha1_mod_init+0x0/0x2c returned 0 after 0 usecs
+[    1.928928] calling  sha256_mod_init+0x0/0x4c @ 1
+[    1.934211] initcall sha256_mod_init+0x0/0x4c returned 0 after 0 usecs
+[    1.941410] calling  sg_pool_init+0x0/0xf4 @ 1
+[    1.946396] initcall sg_pool_init+0x0/0xf4 returned 0 after 0 usecs
+[    1.953322] calling  gpiolib_debugfs_init+0x0/0x3c @ 1
+[    1.959028] initcall gpiolib_debugfs_init+0x0/0x3c returned 0 after 0 usecs
+[    1.966711] calling  fbmem_init+0x0/0x80 @ 1
+[    1.971592] initcall fbmem_init+0x0/0x80 returned 0 after 0 usecs
+[    1.978324] calling  regulator_fixed_voltage_init+0x0/0x20 @ 1
+[    1.984978] initcall regulator_fixed_voltage_init+0x0/0x20 returned 0 after 0 usecs
+[    1.993441] calling  misc_init+0x0/0xbc @ 1
+[    1.998104] initcall misc_init+0x0/0xbc returned 0 after 0 usecs
+[    1.999533] probe of regulator-usb1-vbus returned -517 after 0 usecs
+[    2.004744] calling  register_cpu_capacity_sysctl+0x0/0x3c @ 1
+[    2.005452] probe of regulator-pc-firmware returned 0 after 0 usecs
+[    2.005898] probe of regulator-ph-firmware returned 0 after 0 usecs
+[    2.006321] probe of regulator-hdmi-core returned 0 after 0 usecs
+[    2.006736] probe of regulator-hdmi-1v8 returned 0 after 0 usecs
+[    2.046757] initcall register_cpu_capacity_sysctl+0x0/0x3c returned 0 after 0 usecs
+[    2.055222] calling  dma_buf_init+0x0/0x98 @ 1
+[    2.060237] initcall dma_buf_init+0x0/0x98 returned 0 after 0 usecs
+[    2.067158] calling  init_scsi+0x0/0x90 @ 1
+[    2.072176] SCSI subsystem initialized
+[    2.076316] initcall init_scsi+0x0/0x90 returned 0 after 4000 usecs
+[    2.083228] calling  mdio_bus_init+0x0/0x4c @ 1
+[    2.088304] initcall mdio_bus_init+0x0/0x4c returned 0 after 0 usecs
+[    2.095317] calling  phy_init+0x0/0x1a8 @ 1
+[    2.100038] initcall phy_init+0x0/0x1a8 returned 0 after 0 usecs
+[    2.106674] calling  usb_common_init+0x0/0x2c @ 1
+[    2.111889] initcall usb_common_init+0x0/0x2c returned 0 after 0 usecs
+[    2.119090] calling  usb_init+0x0/0x174 @ 1
+[    2.123901] usbcore: registered new interface driver usbfs
+[    2.130023] usbcore: registered new interface driver hub
+[    2.135946] usbcore: registered new device driver usb
+[    2.141516] initcall usb_init+0x0/0x174 returned 0 after 12000 usecs
+[    2.148526] calling  serio_init+0x0/0x40 @ 1
+[    2.153311] initcall serio_init+0x0/0x40 returned 0 after 0 usecs
+[    2.160041] calling  input_init+0x0/0x108 @ 1
+[    2.164905] initcall input_init+0x0/0x108 returned 0 after 0 usecs
+[    2.171730] calling  cec_devnode_init+0x0/0xc4 @ 1
+[    2.177095] initcall cec_devnode_init+0x0/0xc4 returned 0 after 0 usecs
+[    2.184396] calling  power_supply_class_init+0x0/0x20 @ 1
+[    2.190424] initcall power_supply_class_init+0x0/0x20 returned 0 after 0 usecs
+[    2.198389] calling  mmc_init+0x0/0x48 @ 1
+[    2.203035] initcall mmc_init+0x0/0x48 returned 0 after 0 usecs
+[    2.209571] calling  proto_init+0x0/0x1c @ 1
+[    2.214304] initcall proto_init+0x0/0x1c returned 0 after 0 usecs
+[    2.221028] calling  net_dev_init+0x0/0x2f0 @ 1
+[    2.226796] initcall net_dev_init+0x0/0x2f0 returned 0 after 0 usecs
+[    2.233825] calling  neigh_init+0x0/0x24 @ 1
+[    2.238551] initcall neigh_init+0x0/0x24 returned 0 after 0 usecs
+[    2.245275] calling  fib_notifier_init+0x0/0x1c @ 1
+[    2.250667] initcall fib_notifier_init+0x0/0x1c returned 0 after 0 usecs
+[    2.258059] calling  netdev_genl_init+0x0/0x50 @ 1
+[    2.263457] initcall netdev_genl_init+0x0/0x50 returned 0 after 0 usecs
+[    2.270766] calling  page_pool_user_init+0x0/0x20 @ 1
+[    2.276346] initcall page_pool_user_init+0x0/0x20 returned 0 after 0 usecs
+[    2.283929] calling  ethnl_init+0x0/0x74 @ 1
+[    2.289051] initcall ethnl_init+0x0/0x74 returned 0 after 0 usecs
+[    2.295783] calling  nexthop_init+0x0/0x44 @ 1
+[    2.300702] initcall nexthop_init+0x0/0x44 returned 0 after 0 usecs
+[    2.307616] calling  vsprintf_init_hashval+0x0/0x20 @ 1
+[    2.313380] initcall vsprintf_init_hashval+0x0/0x20 returned 0 after 0 usecs
+[    2.321156] calling  init_32bit_el0_mask+0x0/0x50 @ 1
+[    2.326734] initcall init_32bit_el0_mask+0x0/0x50 returned 0 after 0 usecs
+[    2.334507] entering initcall level: fs
+[    2.338731] calling  create_debug_debugfs_entry+0x0/0x30 @ 1
+[    2.344992] initcall create_debug_debugfs_entry+0x0/0x30 returned 0 after 0 usecs
+[    2.353261] calling  iomem_init_inode+0x0/0xa8 @ 1
+[    2.358632] initcall iomem_init_inode+0x0/0xa8 returned 0 after 0 usecs
+[    2.365932] calling  clocksource_done_booting+0x0/0x58 @ 1
+[    2.372288] clocksource: Switched to clocksource arch_sys_counter
+[    2.379004] initcall clocksource_done_booting+0x0/0x58 returned 0 after 6824 usecs
+[    2.387358] calling  bpf_init+0x0/0x64 @ 1
+[    2.391896] initcall bpf_init+0x0/0x64 returned 0 after 16 usecs
+[    2.398524] calling  init_fs_stat_sysctls+0x0/0x40 @ 1
+[    2.404225] initcall init_fs_stat_sysctls+0x0/0x40 returned 0 after 24 usecs
+[    2.412001] calling  init_fs_exec_sysctls+0x0/0x34 @ 1
+[    2.417685] initcall init_fs_exec_sysctls+0x0/0x34 returned 0 after 7 usecs
+[    2.425377] calling  init_pipe_fs+0x0/0x78 @ 1
+[    2.430361] initcall init_pipe_fs+0x0/0x78 returned 0 after 72 usecs
+[    2.437384] calling  init_fs_namei_sysctls+0x0/0x34 @ 1
+[    2.443166] initcall init_fs_namei_sysctls+0x0/0x34 returned 0 after 12 usecs
+[    2.451041] calling  init_fs_dcache_sysctls+0x0/0x5c @ 1
+[    2.456928] initcall init_fs_dcache_sysctls+0x0/0x5c returned 0 after 18 usecs
+[    2.464899] calling  init_fs_namespace_sysctls+0x0/0x34 @ 1
+[    2.471055] initcall init_fs_namespace_sysctls+0x0/0x34 returned 0 after 6 usecs
+[    2.479219] calling  inotify_user_setup+0x0/0xe8 @ 1
+[    2.484726] initcall inotify_user_setup+0x0/0xe8 returned 0 after 25 usecs
+[    2.492308] calling  eventpoll_init+0x0/0x110 @ 1
+[    2.497517] initcall eventpoll_init+0x0/0x110 returned 0 after 18 usecs
+[    2.504813] calling  anon_inode_init+0x0/0x7c @ 1
+[    2.510072] initcall anon_inode_init+0x0/0x7c returned 0 after 70 usecs
+[    2.517375] calling  proc_locks_init+0x0/0x3c @ 1
+[    2.522574] initcall proc_locks_init+0x0/0x3c returned 0 after 8 usecs
+[    2.529782] calling  backing_aio_init+0x0/0x54 @ 1
+[    2.535078] initcall backing_aio_init+0x0/0x54 returned 0 after 8 usecs
+[    2.542373] calling  init_vm_drop_caches_sysctls+0x0/0x34 @ 1
+[    2.548721] initcall init_vm_drop_caches_sysctls+0x0/0x34 returned 0 after 9 usecs
+[    2.557067] calling  iomap_dio_init+0x0/0x38 @ 1
+[    2.562187] initcall iomap_dio_init+0x0/0x38 returned 0 after 27 usecs
+[    2.569386] calling  iomap_ioend_init+0x0/0x70 @ 1
+[    2.574880] initcall iomap_ioend_init+0x0/0x70 returned 0 after 208 usecs
+[    2.582377] calling  proc_cmdline_init+0x0/0x50 @ 1
+[    2.587767] initcall proc_cmdline_init+0x0/0x50 returned 0 after 8 usecs
+[    2.595159] calling  proc_consoles_init+0x0/0x38 @ 1
+[    2.600643] initcall proc_consoles_init+0x0/0x38 returned 0 after 5 usecs
+[    2.608124] calling  proc_cpuinfo_init+0x0/0x30 @ 1
+[    2.613535] initcall proc_cpuinfo_init+0x0/0x30 returned 0 after 6 usecs
+[    2.620925] calling  proc_devices_init+0x0/0x44 @ 1
+[    2.626312] initcall proc_devices_init+0x0/0x44 returned 0 after 5 usecs
+[    2.633709] calling  proc_interrupts_init+0x0/0x38 @ 1
+[    2.639382] initcall proc_interrupts_init+0x0/0x38 returned 0 after 5 usecs
+[    2.647060] calling  proc_loadavg_init+0x0/0x40 @ 1
+[    2.652449] initcall proc_loadavg_init+0x0/0x40 returned 0 after 5 usecs
+[    2.659836] calling  proc_meminfo_init+0x0/0x40 @ 1
+[    2.665225] initcall proc_meminfo_init+0x0/0x40 returned 0 after 5 usecs
+[    2.672614] calling  proc_stat_init+0x0/0x30 @ 1
+[    2.677713] initcall proc_stat_init+0x0/0x30 returned 0 after 5 usecs
+[    2.684821] calling  proc_uptime_init+0x0/0x40 @ 1
+[    2.690111] initcall proc_uptime_init+0x0/0x40 returned 0 after 5 usecs
+[    2.697406] calling  proc_version_init+0x0/0x40 @ 1
+[    2.702790] initcall proc_version_init+0x0/0x40 returned 0 after 5 usecs
+[    2.710178] calling  proc_softirqs_init+0x0/0x40 @ 1
+[    2.715683] initcall proc_softirqs_init+0x0/0x40 returned 0 after 5 usecs
+[    2.723171] calling  proc_kmsg_init+0x0/0x30 @ 1
+[    2.728275] initcall proc_kmsg_init+0x0/0x30 returned 0 after 5 usecs
+[    2.735391] calling  proc_page_init+0x0/0x6c @ 1
+[    2.740509] initcall proc_page_init+0x0/0x6c returned 0 after 18 usecs
+[    2.747714] calling  init_ramfs_fs+0x0/0x1c @ 1
+[    2.752724] initcall init_ramfs_fs+0x0/0x1c returned 0 after 4 usecs
+[    2.759737] calling  chr_dev_init+0x0/0xa0 @ 1
+[    2.780013] initcall chr_dev_init+0x0/0xa0 returned 0 after 15367 usecs
+[    2.787350] calling  firmware_class_init+0x0/0x3c @ 1
+[    2.792949] initcall firmware_class_init+0x0/0x3c returned 0 after 2 usecs
+[    2.800543] calling  sysctl_core_init+0x0/0x44 @ 1
+[    2.805909] initcall sysctl_core_init+0x0/0x44 returned 0 after 66 usecs
+[    2.813310] calling  eth_offload_init+0x0/0x20 @ 1
+[    2.818613] initcall eth_offload_init+0x0/0x20 returned 0 after 1 usecs
+[    2.825913] calling  ipv4_offload_init+0x0/0xb4 @ 1
+[    2.831313] initcall ipv4_offload_init+0x0/0xb4 returned 0 after 3 usecs
+[    2.838712] calling  inet_init+0x0/0x2b0 @ 1
+[    2.843512] NET: Registered PF_INET protocol family
+[    2.849344] IP idents hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    2.872759] tcp_listen_portaddr_hash hash table entries: 4096 (order: 4, 65536 bytes, linear)
+[    2.882278] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    2.890844] TCP established hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    2.900427] TCP bind hash table entries: 65536 (order: 9, 2097152 bytes, linear)
+[    2.911033] TCP: Hash tables configured (established 65536 bind 65536)
+[    2.918497] UDP hash table entries: 4096 (order: 6, 262144 bytes, linear)
+[    2.926412] UDP-Lite hash table entries: 4096 (order: 6, 262144 bytes, linear)
+[    2.935051] initcall inet_init+0x0/0x2b0 returned 0 after 91609 usecs
+[    2.942298] calling  af_unix_init+0x0/0xec @ 1
+[    2.947255] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    2.953538] initcall af_unix_init+0x0/0xec returned 0 after 6320 usecs
+[    2.960754] calling  ipv6_offload_init+0x0/0xbc @ 1
+[    2.966151] initcall ipv6_offload_init+0x0/0xbc returned 0 after 5 usecs
+[    2.973542] calling  populate_rootfs+0x0/0x50 @ 1
+[    2.978786] initcall populate_rootfs+0x0/0x50 returned 0 after 28 usecs
+[    2.986297] entering initcall level: device
+[    2.988568] Trying to unpack rootfs image as initramfs...
+[    2.990914] calling  register_arm64_panic_block+0x0/0x28 @ 1
+[    3.003072] initcall register_arm64_panic_block+0x0/0x28 returned 0 after 4 usecs
+[    3.011326] calling  cpuinfo_regs_init+0x0/0xd4 @ 1
+[    3.026691] initcall cpuinfo_regs_init+0x0/0xd4 returned 0 after 9965 usecs
+[    3.034395] calling  aarch32_el0_sysfs_init+0x0/0x60 @ 1
+[    3.040267] initcall aarch32_el0_sysfs_init+0x0/0x60 returned 0 after 0 usecs
+[    3.048149] calling  proc_execdomains_init+0x0/0x34 @ 1
+[    3.053940] initcall proc_execdomains_init+0x0/0x34 returned 0 after 21 usecs
+[    3.061813] calling  register_warn_debugfs+0x0/0x38 @ 1
+[    3.067608] initcall register_warn_debugfs+0x0/0x38 returned 0 after 27 usecs
+[    3.075491] calling  cpuhp_sysfs_init+0x0/0xfc @ 1
+[    3.081033] initcall cpuhp_sysfs_init+0x0/0xfc returned 0 after 242 usecs
+[    3.088533] calling  ioresources_init+0x0/0x6c @ 1
+[    3.093837] initcall ioresources_init+0x0/0x6c returned 0 after 14 usecs
+[    3.101235] calling  irq_gc_init_ops+0x0/0x20 @ 1
+[    3.106436] initcall irq_gc_init_ops+0x0/0x20 returned 0 after 3 usecs
+[    3.113639] calling  proc_modules_init+0x0/0x30 @ 1
+[    3.119036] initcall proc_modules_init+0x0/0x30 returned 0 after 7 usecs
+[    3.126433] calling  timekeeping_init_ops+0x0/0x24 @ 1
+[    3.132109] initcall timekeeping_init_ops+0x0/0x24 returned 0 after 1 usecs
+[    3.139790] calling  init_clocksource_sysfs+0x0/0x54 @ 1
+[    3.145959] initcall init_clocksource_sysfs+0x0/0x54 returned 0 after 265 usecs
+[    3.154051] calling  init_timer_list_procfs+0x0/0x40 @ 1
+[    3.159933] initcall init_timer_list_procfs+0x0/0x40 returned 0 after 10 usecs
+[    3.167906] calling  alarmtimer_init+0x0/0x74 @ 1
+[    3.173207] initcall alarmtimer_init+0x0/0x74 returned 0 after 100 usecs
+[    3.180622] calling  clockevents_init_sysfs+0x0/0xf8 @ 1
+[    3.187331] initcall clockevents_init_sysfs+0x0/0xf8 returned 0 after 829 usecs
+[    3.195425] calling  sched_clock_syscore_init+0x0/0x24 @ 1
+[    3.201493] initcall sched_clock_syscore_init+0x0/0x24 returned 0 after 1 usecs
+[    3.209565] calling  kallsyms_init+0x0/0x30 @ 1
+[    3.214584] initcall kallsyms_init+0x0/0x30 returned 0 after 12 usecs
+[    3.221696] calling  pid_namespaces_init+0x0/0x88 @ 1
+[    3.227342] initcall pid_namespaces_init+0x0/0x88 returned 0 after 73 usecs
+[    3.235027] calling  ikconfig_init+0x0/0x54 @ 1
+[    3.240034] initcall ikconfig_init+0x0/0x54 returned 0 after 8 usecs
+[    3.247045] calling  seccomp_sysctl_init+0x0/0x34 @ 1
+[    3.252641] initcall seccomp_sysctl_init+0x0/0x34 returned 0 after 21 usecs
+[    3.260323] calling  utsname_sysctl_init+0x0/0x2c @ 1
+[    3.265914] initcall utsname_sysctl_init+0x0/0x2c returned 0 after 18 usecs
+[    3.273590] calling  kswapd_init+0x0/0x44 @ 1
+[    3.278723] initcall kswapd_init+0x0/0x44 returned 0 after 320 usecs
+[    3.285771] calling  mm_compute_batch_init+0x0/0x20 @ 1
+[    3.291556] initcall mm_compute_batch_init+0x0/0x20 returned 0 after 1 usecs
+[    3.299333] calling  workingset_init+0x0/0xd8 @ 1
+[    3.304531] workingset: timestamp_bits=46 max_order=21 bucket_order=0
+[    3.311641] initcall workingset_init+0x0/0xd8 returned 0 after 7109 usecs
+[    3.319131] calling  proc_vmalloc_init+0x0/0x34 @ 1
+[    3.324530] initcall proc_vmalloc_init+0x0/0x34 returned 0 after 11 usecs
+[    3.332017] calling  memblock_init_debugfs+0x0/0x88 @ 1
+[    3.337841] initcall memblock_init_debugfs+0x0/0x88 returned 0 after 54 usecs
+[    3.345720] calling  procswaps_init+0x0/0x34 @ 1
+[    3.350831] initcall procswaps_init+0x0/0x34 returned 0 after 9 usecs
+[    3.357939] calling  fcntl_init+0x0/0x48 @ 1
+[    3.362682] initcall fcntl_init+0x0/0x48 returned 0 after 20 usecs
+[    3.369512] calling  proc_filesystems_init+0x0/0x34 @ 1
+[    3.375288] initcall proc_filesystems_init+0x0/0x34 returned 0 after 7 usecs
+[    3.383076] calling  start_dirtytime_writeback+0x0/0x60 @ 1
+[    3.389254] initcall start_dirtytime_writeback+0x0/0x60 returned 0 after 19 usecs
+[    3.397557] calling  dio_init+0x0/0x4c @ 1
+[    3.402129] initcall dio_init+0x0/0x4c returned 0 after 37 usecs
+[    3.408770] calling  fanotify_user_setup+0x0/0x17c @ 1
+[    3.414505] initcall fanotify_user_setup+0x0/0x17c returned 0 after 62 usecs
+[    3.422284] calling  aio_setup+0x0/0xd4 @ 1
+[    3.427032] initcall aio_setup+0x0/0xd4 returned 0 after 130 usecs
+[    3.433866] calling  mbcache_init+0x0/0x54 @ 1
+[    3.438780] initcall mbcache_init+0x0/0x54 returned 0 after 7 usecs
+[    3.445695] calling  init_devpts_fs+0x0/0x48 @ 1
+[    3.450824] initcall init_devpts_fs+0x0/0x48 returned 0 after 32 usecs
+[    3.458026] calling  ext4_init_fs+0x0/0x180 @ 1
+[    3.463321] initcall ext4_init_fs+0x0/0x180 returned 0 after 293 usecs
+[    3.470549] calling  journal_init+0x0/0x160 @ 1
+[    3.475609] initcall journal_init+0x0/0x160 returned 0 after 57 usecs
+[    3.482728] calling  init_fat_fs+0x0/0x74 @ 1
+[    3.487562] initcall init_fat_fs+0x0/0x74 returned 0 after 19 usecs
+[    3.494480] calling  init_vfat_fs+0x0/0x1c @ 1
+[    3.499392] initcall init_vfat_fs+0x0/0x1c returned 0 after 4 usecs
+[    3.506313] calling  init_nls_cp437+0x0/0x20 @ 1
+[    3.511412] initcall init_nls_cp437+0x0/0x20 returned 0 after 2 usecs
+[    3.518516] calling  init_nls_iso8859_1+0x0/0x20 @ 1
+[    3.523998] initcall init_nls_iso8859_1+0x0/0x20 returned 0 after 1 usecs
+[    3.531487] calling  init_nls_utf8+0x0/0x3c @ 1
+[    3.536493] initcall init_nls_utf8+0x0/0x3c returned 0 after 2 usecs
+[    3.543499] calling  init_autofs_fs+0x0/0x38 @ 1
+[    3.548953] initcall init_autofs_fs+0x0/0x38 returned 0 after 350 usecs
+[    3.556285] calling  fuse_init+0x0/0x16c @ 1
+[    3.561006] fuse: init (API version 7.45)
+[    3.565734] initcall fuse_init+0x0/0x16c returned 0 after 4725 usecs
+[    3.572779] calling  ovl_init+0x0/0x84 @ 1
+[    3.577331] initcall ovl_init+0x0/0x84 returned 0 after 16 usecs
+[    3.583958] calling  ipc_init+0x0/0x30 @ 1
+[    3.588580] initcall ipc_init+0x0/0x30 returned 0 after 94 usecs
+[    3.595216] calling  ipc_sysctl_init+0x0/0x3c @ 1
+[    3.600472] initcall ipc_sysctl_init+0x0/0x3c returned 0 after 58 usecs
+[    3.607772] calling  init_mqueue_fs+0x0/0xe0 @ 1
+[    3.613024] initcall init_mqueue_fs+0x0/0xe0 returned 0 after 141 usecs
+[    3.620335] calling  key_proc_init+0x0/0x84 @ 1
+[    3.625354] initcall key_proc_init+0x0/0x84 returned 0 after 15 usecs
+[    3.632465] calling  bpf_crypto_skcipher_init+0x0/0x1c @ 1
+[    3.638521] initcall bpf_crypto_skcipher_init+0x0/0x1c returned 0 after 3 usecs
+[    3.646583] calling  cryptomgr_init+0x0/0x1c @ 1
+[    3.651722] initcall cryptomgr_init+0x0/0x1c returned 0 after 2 usecs
+[    3.658832] calling  crypto_sha256_mod_init+0x0/0x20 @ 1
+[    3.664722] initcall crypto_sha256_mod_init+0x0/0x20 returned 0 after 16 usecs
+[    3.672691] calling  crypto_ecb_module_init+0x0/0x1c @ 1
+[    3.678554] initcall crypto_ecb_module_init+0x0/0x1c returned 0 after 1 usecs
+[    3.686429] calling  aes_init+0x0/0x1c @ 1
+[    3.690959] initcall aes_init+0x0/0x1c returned 0 after 3 usecs
+[    3.697500] calling  af_alg_init+0x0/0x5c @ 1
+[    3.702321] NET: Registered PF_ALG protocol family
+[    3.707598] initcall af_alg_init+0x0/0x5c returned 0 after 5283 usecs
+[    3.714704] calling  algif_hash_init+0x0/0x1c @ 1
+[    3.719906] initcall algif_hash_init+0x0/0x1c returned 0 after 3 usecs
+[    3.727108] calling  algif_skcipher_init+0x0/0x1c @ 1
+[    3.732690] initcall algif_skcipher_init+0x0/0x1c returned 0 after 2 usecs
+[    3.740307] calling  blkdev_init+0x0/0x28 @ 1
+[    3.745190] initcall blkdev_init+0x0/0x28 returned 0 after 66 usecs
+[    3.752107] calling  proc_genhd_init+0x0/0x64 @ 1
+[    3.757333] initcall proc_genhd_init+0x0/0x64 returned 0 after 19 usecs
+[    3.764644] calling  bsg_init+0x0/0x80 @ 1
+[    3.769250] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 252)
+[    3.777394] initcall bsg_init+0x0/0x80 returned 0 after 8216 usecs
+[    3.784225] calling  deadline_init+0x0/0x1c @ 1
+[    3.789232] io scheduler mq-deadline registered
+[    3.794226] initcall deadline_init+0x0/0x1c returned 0 after 4995 usecs
+[    3.801532] calling  kyber_init+0x0/0x1c @ 1
+[    3.806260] io scheduler kyber registered
+[    3.810677] initcall kyber_init+0x0/0x1c returned 0 after 4419 usecs
+[    3.817704] calling  bfq_init+0x0/0x8c @ 1
+[    3.822290] io scheduler bfq registered
+[    3.826524] initcall bfq_init+0x0/0x8c returned 0 after 4279 usecs
+[    3.833355] calling  io_uring_init+0x0/0xa0 @ 1
+[    3.838480] initcall io_uring_init+0x0/0xa0 returned 0 after 113 usecs
+[    3.845700] calling  percpu_counter_startup+0x0/0x6c @ 1
+[    3.852801] initcall percpu_counter_startup+0x0/0x6c returned 0 after 1225 usecs
+[    3.860987] calling  gicv5_iwb_platform_driver_init+0x0/0x20 @ 1
+[    3.867805] initcall gicv5_iwb_platform_driver_init+0x0/0x20 returned 0 after 185 usecs
+[    3.876646] calling  sun50i_de2_bus_driver_init+0x0/0x20 @ 1
+[    3.882986] initcall sun50i_de2_bus_driver_init+0x0/0x20 returned 0 after 91 usecs
+[    3.891346] calling  sunxi_rsb_init+0x0/0x68 @ 1
+[    3.896616] initcall sunxi_rsb_init+0x0/0x68 returned 0 after 158 usecs
+[    3.903925] calling  simple_pm_bus_driver_init+0x0/0x20 @ 1
+[    3.910214] initcall simple_pm_bus_driver_init+0x0/0x20 returned 0 after 132 usecs
+[    3.918572] calling  phy_core_init+0x0/0x58 @ 1
+[    3.923638] initcall phy_core_init+0x0/0x58 returned 0 after 58 usecs
+[    3.930775] calling  t736_phy_driver_init+0x0/0x20 @ 1
+[    3.936517] probe of 4200800.phy returned -517 after 17 usecs
+[    3.942925] initcall t736_phy_driver_init+0x0/0x20 returned 0 after 6470 usecs
+[    3.950906] calling  a64_pinctrl_driver_init+0x0/0x20 @ 1
+[    3.956961] initcall a64_pinctrl_driver_init+0x0/0x20 returned 0 after 89 usecs
+[    3.965033] calling  sun50i_a64_r_pinctrl_driver_init+0x0/0x20 @ 1
+[    3.971946] initcall sun50i_a64_r_pinctrl_driver_init+0x0/0x20 returned 0 after 89 usecs
+[    3.979357] Freeing initrd memory: 11208K
+[    3.980914] calling  a100_pinctrl_driver_init+0x0/0x20 @ 1
+[    3.991430] initcall a100_pinctrl_driver_init+0x0/0x20 returned 0 after 92 usecs
+[    3.999597] calling  a100_r_pinctrl_driver_init+0x0/0x20 @ 1
+[    4.005957] initcall a100_r_pinctrl_driver_init+0x0/0x20 returned 0 after 104 usecs
+[    4.014415] calling  sun8i_h3_r_pinctrl_driver_init+0x0/0x20 @ 1
+[    4.021139] initcall sun8i_h3_r_pinctrl_driver_init+0x0/0x20 returned 0 after 89 usecs
+[    4.029878] calling  sun50i_h5_pinctrl_driver_init+0x0/0x20 @ 1
+[    4.036517] initcall sun50i_h5_pinctrl_driver_init+0x0/0x20 returned 0 after 94 usecs
+[    4.045164] calling  h6_pinctrl_driver_init+0x0/0x20 @ 1
+[    4.051116] initcall h6_pinctrl_driver_init+0x0/0x20 returned 0 after 86 usecs
+[    4.059102] calling  sun50i_h6_r_pinctrl_driver_init+0x0/0x20 @ 1
+[    4.065922] initcall sun50i_h6_r_pinctrl_driver_init+0x0/0x20 returned 0 after 87 usecs
+[    4.074756] calling  h616_pinctrl_driver_init+0x0/0x20 @ 1
+[    4.080903] initcall h616_pinctrl_driver_init+0x0/0x20 returned 0 after 85 usecs
+[    4.089070] calling  sun50i_h616_r_pinctrl_driver_init+0x0/0x20 @ 1
+[    4.096063] initcall sun50i_h616_r_pinctrl_driver_init+0x0/0x20 returned 0 after 84 usecs
+[    4.105093] calling  a523_pinctrl_driver_init+0x0/0x20 @ 1
+[    4.111240] initcall a523_pinctrl_driver_init+0x0/0x20 returned 0 after 85 usecs
+[    4.119406] calling  a523_r_pinctrl_driver_init+0x0/0x20 @ 1
+[    4.125742] initcall a523_r_pinctrl_driver_init+0x0/0x20 returned 0 after 84 usecs
+[    4.134102] calling  t736_r_driver_init+0x0/0x20 @ 1
+[    4.140104] gpio gpiochip0: Static allocation of GPIO base is deprecated, use dynamic allocation.
+[    4.154501] t736-r-pinctrl 7025000.pinctrl: initialized sunXi PIO driver
+[    4.161978] probe of 7025000.pinctrl returned 0 after 22358 usecs
+[    4.168785] initcall t736_r_driver_init+0x0/0x20 returned 0 after 29199 usecs
+[    4.176677] calling  t736_pio_driver_init+0x0/0x20 @ 1
+[    4.184159] gpio gpiochip1: Static allocation of GPIO base is deprecated, use dynamic allocation.
+[    4.214448] t736-pinctrl 2000000.pinctrl: initialized sunXi PIO driver
+[    4.221901] probe of 2000000.pinctrl returned 0 after 39502 usecs
+[    4.228702] initcall t736_pio_driver_init+0x0/0x20 returned 0 after 46349 usecs
+[    4.236809] calling  of_fixed_factor_clk_driver_init+0x0/0x20 @ 1
+[    4.243633] initcall of_fixed_factor_clk_driver_init+0x0/0x20 returned 0 after 91 usecs
+[    4.252481] calling  of_fixed_clk_driver_init+0x0/0x20 @ 1
+[    4.258628] initcall of_fixed_clk_driver_init+0x0/0x20 returned 0 after 87 usecs
+[    4.266799] calling  gpio_clk_driver_init+0x0/0x20 @ 1
+[    4.272577] initcall gpio_clk_driver_init+0x0/0x20 returned 0 after 97 usecs
+[    4.280364] calling  gated_fixed_clk_driver_init+0x0/0x24 @ 1
+[    4.286786] initcall gated_fixed_clk_driver_init+0x0/0x24 returned 0 after 79 usecs
+[    4.295239] calling  sun50i_a64_ccu_driver_init+0x0/0x20 @ 1
+[    4.301571] initcall sun50i_a64_ccu_driver_init+0x0/0x20 returned 0 after 78 usecs
+[    4.309929] calling  sun50i_a100_ccu_driver_init+0x0/0x20 @ 1
+[    4.316359] initcall sun50i_a100_ccu_driver_init+0x0/0x20 returned 0 after 80 usecs
+[    4.324816] calling  sun50i_a100_r_ccu_driver_init+0x0/0x20 @ 1
+[    4.331431] initcall sun50i_a100_r_ccu_driver_init+0x0/0x20 returned 0 after 79 usecs
+[    4.340075] calling  sun50i_h6_ccu_driver_init+0x0/0x20 @ 1
+[    4.346319] initcall sun50i_h6_ccu_driver_init+0x0/0x20 returned 0 after 86 usecs
+[    4.354588] calling  sun50i_h6_r_ccu_driver_init+0x0/0x20 @ 1
+[    4.361045] initcall sun50i_h6_r_ccu_driver_init+0x0/0x20 returned 0 after 103 usecs
+[    4.369597] calling  sun50i_h616_ccu_driver_init+0x0/0x20 @ 1
+[    4.376024] initcall sun50i_h616_ccu_driver_init+0x0/0x20 returned 0 after 80 usecs
+[    4.384483] calling  sun55i_a523_ccu_driver_init+0x0/0x20 @ 1
+[    4.390908] initcall sun55i_a523_ccu_driver_init+0x0/0x20 returned 0 after 79 usecs
+[    4.399361] calling  sun55i_a523_mcu_ccu_driver_init+0x0/0x20 @ 1
+[    4.406170] initcall sun55i_a523_mcu_ccu_driver_init+0x0/0x20 returned 0 after 79 usecs
+[    4.415007] calling  sun55i_a523_r_ccu_driver_init+0x0/0x20 @ 1
+[    4.421625] initcall sun55i_a523_r_ccu_driver_init+0x0/0x20 returned 0 after 78 usecs
+[    4.430277] calling  sun8i_h3_ccu_driver_init+0x0/0x20 @ 1
+[    4.436440] initcall sun8i_h3_ccu_driver_init+0x0/0x20 returned 0 after 100 usecs
+[    4.444705] calling  sunxi_de2_clk_driver_init+0x0/0x20 @ 1
+[    4.451074] initcall sunxi_de2_clk_driver_init+0x0/0x20 returned 0 after 215 usecs
+[    4.459433] calling  sun8i_r_ccu_driver_init+0x0/0x20 @ 1
+[    4.465524] initcall sun8i_r_ccu_driver_init+0x0/0x20 returned 0 after 117 usecs
+[    4.473697] calling  t736_usb_ccu_driver_init+0x0/0x20 @ 1
+[    4.480057] probe of 2003300.clock-controller returned 0 after 265 usecs
+[    4.487546] initcall t736_usb_ccu_driver_init+0x0/0x20 returned 0 after 7789 usecs
+[    4.496032] calling  t736_gmac_ccu_driver_init+0x0/0x20 @ 1
+[    4.502502] probe of 2003410.clock-controller returned 0 after 234 usecs
+[    4.509975] initcall t736_gmac_ccu_driver_init+0x0/0x20 returned 0 after 7763 usecs
+[    4.518526] calling  display_ccu_driver_init+0x0/0x20 @ 1
+[    4.528222] t736-display-ccu 2002a00.clock-controller: DE PLL locked at 600 MHz; HDMI PHY reference is board DCXO 26 MHz
+[    4.540436] probe of 2002a00.clock-controller returned 0 after 15862 usecs
+[    4.548083] initcall display_ccu_driver_init+0x0/0x20 returned 0 after 23567 usecs
+[    4.556456] calling  sunxi_sram_driver_init+0x0/0x28 @ 1
+[    4.562631] initcall sunxi_sram_driver_init+0x0/0x28 returned -19 after 307 usecs
+[    4.570906] calling  sun20i_ppu_driver_init+0x0/0x20 @ 1
+[    4.576902] initcall sun20i_ppu_driver_init+0x0/0x20 returned 0 after 122 usecs
+[    4.584976] calling  sunxi_pck600_driver_init+0x0/0x20 @ 1
+[    4.591119] initcall sunxi_pck600_driver_init+0x0/0x20 returned 0 after 81 usecs
+[    4.599286] calling  display_power_driver_init+0x0/0x20 @ 1
+[    4.605814] probe of t736-de-sys returned 0 after 65 usecs
+[    4.612036] probe of t736-vo1 returned 0 after 62 usecs
+[    4.617879] probe of 7061000.power-controller returned 0 after 12377 usecs
+[    4.625506] initcall display_power_driver_init+0x0/0x20 returned 0 after 20059 usecs
+[    4.634057] calling  sun20i_regulator_driver_init+0x0/0x20 @ 1
+[    4.640608] initcall sun20i_regulator_driver_init+0x0/0x20 returned 0 after 103 usecs
+[    4.649264] calling  reset_simple_driver_init+0x0/0x20 @ 1
+[    4.655580] initcall reset_simple_driver_init+0x0/0x20 returned 0 after 254 usecs
+[    4.663845] calling  n_null_init+0x0/0x24 @ 1
+[    4.668669] initcall n_null_init+0x0/0x24 returned 0 after 1 usecs
+[    4.675497] calling  pty_init+0x0/0x31c @ 1
+[    4.778602] initcall pty_init+0x0/0x31c returned 0 after 98479 usecs
+[    4.785679] calling  serial8250_init+0x0/0xfc @ 1
+[    4.790878] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[    4.798239] probe of serial8250:0 returned 0 after 43 usecs
+[    4.804548] probe of serial8250:0.0 returned 0 after 39 usecs
+[    4.811356] probe of serial8250 returned 0 after 64 usecs
+[    4.817386] initcall serial8250_init+0x0/0xfc returned 0 after 26509 usecs
+[    4.824991] calling  dw8250_platform_driver_init+0x0/0x20 @ 1
+[    4.832462] printk: legacy console [ttyS0] disabled
+[    4.838413] probe of 2500000.serial:0 returned 0 after 56 usecs
+[    4.845141] probe of 2500000.serial:0.0 returned 0 after 56 usecs
+[    4.872157] 2500000.serial: ttyS0 at MMIO 0x2500000 (irq = 409, base_baud = 1500000) is a 16550A
+[    4.881919] printk: legacy console [ttyS0] enabled
+[    4.881919] printk: legacy console [ttyS0] enabled
+[    4.892012] printk: legacy bootconsole [uart8250] disabled
+[    4.892012] printk: legacy bootconsole [uart8250] disabled
+[    4.904090] probe of 2500000.serial returned 0 after 72659 usecs
+[    4.910269] initcall dw8250_platform_driver_init+0x0/0x20 returned 0 after 78938 usecs
+[    4.918248] calling  of_platform_serial_driver_init+0x0/0x20 @ 1
+[    4.924622] initcall of_platform_serial_driver_init+0x0/0x20 returned 0 after 323 usecs
+[    4.932672] calling  random_sysctls_init+0x0/0x34 @ 1
+[    4.937788] initcall random_sysctls_init+0x0/0x34 returned 0 after 33 usecs
+[    4.944786] calling  drm_core_init+0x0/0xa4 @ 1
+[    4.949457] [drm:drm_core_init] Initialized
+[    4.953683] initcall drm_core_init+0x0/0xa4 returned 0 after 4333 usecs
+[    4.960334] calling  drm_display_helper_module_init+0x0/0x8 @ 1
+[    4.966284] initcall drm_display_helper_module_init+0x0/0x8 returned 0 after 0 usecs
+[    4.974058] calling  sunxi_drm_drv_init+0x0/0x80 @ 1
+[    4.979223] [drm] [TCON_TOP]sunxi_tcon_top_probe start
+[    4.984483] probe of 5510000.tcon-top returned 0 after 5332 usecs
+[    4.991209] [drm] [SUNXI-DE] offline_mode not found, used def val
+[    4.997452] [drm] de use no display sys
+[    5.003615] probe of 5000000.display-engine returned 0 after 12828 usecs
+[    5.010776] probe of 5520000.hdmi returned 0 after 244 usecs
+[    5.016656] [drm] [TCON] sunxi_tcon_probe start
+[    5.021249] [drm] [SUNXI-TCON] sunxi_tcon_of_get_id 4
+[    5.026628] [drm] [TCON] sunxi_tcon_probe ret = 0
+[    5.031651] probe of 5730000.tcon returned 0 after 15042 usecs
+[    5.037695] [drm] sunxi_drm_platform_probe start
+[    5.042383] [drm] sunxi_drm_match_add start
+[    5.047355] [drm] sunxi_drm_match_add finish
+[    5.051705] [drm] sunxi_drm_bind start
+[    5.055994] [drm] [TCON_TOP]sunxi_tcon_top_bind start
+[    5.061414] sunxi-drm sunxi-drm: bound 5510000.tcon-top (ops 0xffff8000806d7690)
+[    5.068889] [drm] [SUNXI-DE] sunxi_de_bind start
+[    5.073617] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.084898] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.096176] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.107444] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.118702] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.129961] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.141223] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.152483] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.163737] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.174995] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.186259] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.197527] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.208788] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.220044] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.231302] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.242560] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.253823] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    5.264146] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    5.274452] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.285713] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.296976] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.308245] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.319494] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    5.329799] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    5.340101] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    5.350405] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    5.360715] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    5.371018] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    5.381323] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    5.391623] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    5.401932] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    5.412246] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    5.422547] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    5.432852] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    5.443152] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    5.453456] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    5.463760] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.475022] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.486280] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.497540] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.508803] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.520084] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.531347] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.542607] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.553866] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.565125] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.576388] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.587644] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.598903] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.610163] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.621427] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.632692] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.643947] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    5.654251] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    5.664556] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.675810] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.687072] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.698332] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.709591] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    5.719893] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    5.730226] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    5.740540] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    5.750843] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    5.761148] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    5.771468] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    5.781774] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    5.792080] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    5.802386] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    5.812692] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    5.822994] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    5.833310] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    5.843619] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    5.853931] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    5.864238] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    5.874534] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    5.884840] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    5.895147] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    5.905453] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    5.915755] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    5.926060] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    5.936374] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    5.946681] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    5.956988] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    5.967288] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    5.977593] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    5.987895] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    5.998204] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    6.008510] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    6.018814] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001d
+[    6.030961] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001d
+[    6.043096] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001d
+[    6.055229] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001d
+[    6.067358] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001d
+[    6.079486] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001d
+[    6.091615] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    6.101920] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    6.112228] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001d
+[    6.124350] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001d
+[    6.136478] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001d
+[    6.148611] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001d
+[    6.160741] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    6.171047] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    6.181352] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    6.191654] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    6.201958] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    6.212261] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    6.222565] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    6.232869] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    6.243169] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    6.253480] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    6.263781] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    6.274089] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    6.284412] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    6.294716] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    6.305024] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001e
+[    6.317152] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001e
+[    6.329284] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001e
+[    6.341413] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001e
+[    6.353541] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001e
+[    6.365673] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001e
+[    6.377803] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    6.388107] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    6.398412] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001e
+[    6.410540] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001e
+[    6.422669] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001e
+[    6.434795] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001e
+[    6.446926] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    6.457231] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    6.467531] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    6.477840] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    6.488142] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    6.498452] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    6.508759] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    6.519059] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    6.529364] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    6.539684] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    6.549997] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    6.560304] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    6.570605] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    6.580915] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    6.591219] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001f
+[    6.603350] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001f
+[    6.615480] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001f
+[    6.627608] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001f
+[    6.639736] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001f
+[    6.651863] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001f
+[    6.663994] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    6.674300] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    6.684613] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001f
+[    6.696741] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001f
+[    6.708870] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001f
+[    6.721002] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001f
+[    6.733129] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    6.743431] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    6.753736] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    6.764036] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    6.774346] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    6.784652] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    6.794974] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    6.805281] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    6.815584] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    6.825893] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    6.836200] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    6.846496] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    6.856802] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    6.867102] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    6.877493] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    6.887800] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    6.898115] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    6.908421] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    6.918722] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    6.929032] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    6.939333] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    6.949639] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    6.959940] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    6.970245] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    6.980555] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    6.990856] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    7.001167] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    7.011468] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    7.021774] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    7.032079] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    7.042388] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001d
+[    7.054535] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001d
+[    7.066666] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001d
+[    7.078796] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001d
+[    7.090928] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001d
+[    7.103055] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001d
+[    7.115188] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    7.125495] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    7.135794] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001d
+[    7.147927] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001d
+[    7.160057] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001d
+[    7.172194] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001d
+[    7.184321] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    7.194621] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    7.204929] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    7.215230] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    7.225541] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    7.235843] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    7.246147] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    7.256455] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    7.266757] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    7.277062] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    7.287362] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    7.297666] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    7.307989] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    7.318296] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    7.328609] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001e
+[    7.340738] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001e
+[    7.352866] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001e
+[    7.364998] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001e
+[    7.377127] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001e
+[    7.389254] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001e
+[    7.401382] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    7.411685] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    7.421993] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001e
+[    7.434126] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001e
+[    7.446255] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001e
+[    7.458384] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001e
+[    7.470514] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    7.480823] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    7.491125] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    7.501431] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    7.511730] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    7.522036] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    7.532345] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    7.542653] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    7.552960] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    7.563280] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    7.573588] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    7.583894] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    7.594201] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    7.604505] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    7.614808] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001f
+[    7.626936] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001f
+[    7.639067] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001f
+[    7.651202] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001f
+[    7.663331] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001f
+[    7.675459] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001f
+[    7.687587] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    7.697895] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    7.708200] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001f
+[    7.720322] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001f
+[    7.732452] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001f
+[    7.744579] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001f
+[    7.756717] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    7.767019] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    7.777324] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    7.787625] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    7.797930] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    7.808239] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    7.818559] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    7.828865] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    7.839167] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    7.849471] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    7.859777] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    7.870089] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    7.880396] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    7.890699] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    7.901056] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    7.911367] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    7.921676] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001d
+[    7.933805] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001d
+[    7.945934] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001d
+[    7.958062] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001d
+[    7.970194] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001d
+[    7.982327] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001d
+[    7.994457] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    8.004764] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    8.015064] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001d
+[    8.027204] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001d
+[    8.039335] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001e
+[    8.051465] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001e
+[    8.063594] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001e
+[    8.075741] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001e
+[    8.087884] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001e
+[    8.100013] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001e
+[    8.112141] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    8.122446] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    8.132752] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001e
+[    8.144885] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001e
+[    8.157017] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001f
+[    8.169143] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001f
+[    8.181270] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001f
+[    8.193403] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001f
+[    8.205537] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001f
+[    8.217666] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001f
+[    8.229795] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    8.240096] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    8.250400] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001f
+[    8.262531] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001f
+[    8.274748] [drm] sunxi_de_bind crtc init for de 0 ok
+[    8.280337] sunxi-drm sunxi-drm: bound 5000000.display-engine (ops 0xffff8000806d4c50)
+[    8.288356] [drm] [SUNXI-TCON] sunxi_tcon_of_get_id 4
+[    8.294064] [drm] sunxi-hdmi: hdmi drv init dts done
+[    8.299645] [drm] sunxi-hdmi: [warn] not set hdmi notify node!
+[    8.305566] [drm] sunxi-hdmi: hdmi drv enable resource done
+[    8.311159] [drm] sunxi-hdmi: hdmi drv init resource done
+[    8.316688] [drm] sunxi-hdmi: hdmi drv init i2c adapter finish
+[    8.324270] [drm] sunxi-hdmi: drm hdmi connector create finish
+[    8.330142] [drm] sunxi-hdmi: hdmi devices bind done <<<<<<<<<<
+[    8.330142] 
+[    8.337565] sunxi-drm sunxi-drm: bound 5520000.hdmi (ops 0xffff8000806d7d48)
+[    8.344649] sunxi-drm sunxi-drm: bound 5730000.tcon (ops 0xffff8000806d7398)
+[    8.351792] [drm:drm_mode_object_get] OBJ ID: 128 (2)
+[    8.356894] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1]
+[    8.366328] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1] status updated from unknown to disconnected
+[    8.379590] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1] disconnected
+[    8.380174] [drm] sunxi-hdmi: hdmi drv detect hpd connect
+[    8.390152] [drm] HDMI-A-1 Not connected, start hot-plug monitoring
+[    8.401837] [drm:drm_mode_object_get] OBJ ID: 128 (2)
+[    8.406937] [drm] start HDMI-A-1 monitor monitoring, interval: 100ms
+[    8.413314] [drm:drm_mode_object_put] OBJ ID: 128 (3)
+[    8.418405] [drm:commit_init_connecting.isra.0] *ERROR* offline mode: init connecting not found sunxi_drm_offline_mode_pre_init
+[    8.429922] sunxi-drm sunxi-drm: [drm:drm_atomic_state_init] Allocated atomic state (____ptrval____)
+[    8.439095] sunxi-drm sunxi-drm: [drm:drm_atomic_check_only] checking (____ptrval____)
+[    8.447063] sunxi-drm sunxi-drm: [drm:drm_atomic_commit] committing (____ptrval____)
+[    8.454866] sunxi-drm sunxi-drm: [drm:drm_atomic_state_default_clear] Clearing atomic state (____ptrval____)
+[    8.464739] sunxi-drm sunxi-drm: [drm:__drm_atomic_state_free] Freeing atomic state (____ptrval____)
+[    8.473986] [drm:drm_minor_register] 
+[    8.477688] [drm:drm_minor_register] 
+[    8.481555] sunxi-drm sunxi-drm: [drm:drm_sysfs_hotplug_event] generating hotplug event
+[    8.481772] [drm:drm_minor_register] new minor registered 0
+[    8.495209] [drm:drm_minor_register] 
+[    8.499020] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_add] [CONNECTOR:122:Writeback-1] adding connector to sysfs
+[    8.509746] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:122:Writeback-1] generating connector hotplug event
+[    8.521994] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_add] [CONNECTOR:128:HDMI-A-1] adding connector to sysfs
+[    8.532505] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:128:HDMI-A-1] generating connector hotplug event
+[    8.544483] [drm] Initialized sunxi-drm 3.0.0 for sunxi-drm on minor 0
+[    8.551042] [drm] sunxi_drm_bind ok
+[    8.554610] probe of sunxi-drm returned 0 after 3516954 usecs
+[    8.560430] initcall sunxi_drm_drv_init+0x0/0x80 returned 0 after 3581374 usecs
+[    8.567781] calling  topology_sysfs_init+0x0/0x38 @ 1
+[    8.573370] initcall topology_sysfs_init+0x0/0x38 returned 0 after 502 usecs
+[    8.580458] calling  cacheinfo_sysfs_init+0x0/0x38 @ 1
+[    8.591712] initcall cacheinfo_sysfs_init+0x0/0x38 returned 0 after 6081 usecs
+[    8.598986] calling  brd_init+0x0/0x108 @ 1
+[    8.616982] brd: module loaded
+[    8.620055] initcall brd_init+0x0/0x108 returned 0 after 16856 usecs
+[    8.626471] calling  loop_init+0x0/0x100 @ 1
+[    8.642074] loop: module loaded
+[    8.645263] initcall loop_init+0x0/0x100 returned 0 after 14491 usecs
+[    8.651752] calling  init_sd+0x0/0x110 @ 1
+[    8.655996] initcall init_sd+0x0/0x110 returned 0 after 108 usecs
+[    8.662131] calling  blackhole_netdev_init+0x0/0x80 @ 1
+[    8.667427] initcall blackhole_netdev_init+0x0/0x80 returned 0 after 41 usecs
+[    8.674596] calling  phylink_init+0x0/0x4c @ 1
+[    8.679066] initcall phylink_init+0x0/0x4c returned 0 after 1 usecs
+[    8.685355] calling  fixed_mdio_bus_init+0x0/0x90 @ 1
+[    8.691081] initcall fixed_mdio_bus_init+0x0/0x90 returned 0 after 644 usecs
+[    8.698174] calling  phy_module_init+0x0/0x24 @ 1
+[    8.703912] initcall phy_module_init+0x0/0x24 returned 0 after 1002 usecs
+[    8.710743] calling  xpcs_plat_driver_init+0x0/0x20 @ 1
+[    8.716284] initcall xpcs_plat_driver_init+0x0/0x20 returned 0 after 284 usecs
+[    8.723541] calling  stmmac_init+0x0/0x50 @ 1
+[    8.727953] initcall stmmac_init+0x0/0x50 returned 0 after 26 usecs
+[    8.734255] calling  sun7i_dwmac_driver_init+0x0/0x20 @ 1
+[    8.739789] initcall sun7i_dwmac_driver_init+0x0/0x20 returned 0 after 108 usecs
+[    8.747234] calling  sun8i_dwmac_driver_init+0x0/0x20 @ 1
+[    8.752859] initcall sun8i_dwmac_driver_init+0x0/0x20 returned 0 after 193 usecs
+[    8.760297] calling  sun55i_gmac200_driver_init+0x0/0x20 @ 1
+[    8.766082] initcall sun55i_gmac200_driver_init+0x0/0x20 returned 0 after 98 usecs
+[    8.773688] calling  dwmac_generic_driver_init+0x0/0x20 @ 1
+[    8.779525] initcall dwmac_generic_driver_init+0x0/0x20 returned 0 after 236 usecs
+[    8.787133] calling  t736_dwmac_driver_init+0x0/0x20 @ 1
+[    8.793900] t736-dwmac 4500000.ethernet: IRQ eth_wake_irq not found
+[    8.800218] t736-dwmac 4500000.ethernet: IRQ sfty not found
+[    8.805992] t736-dwmac 4500000.ethernet: PTP uses main clock
+[    8.812223] t736-dwmac 4500000.ethernet: RGMII MAC delays TX=13 RX=10, PHY clock 25 MHz
+[    8.820892] t736-dwmac 4500000.ethernet: User ID: 0x20, Synopsys ID: 0x53
+[    8.827735] t736-dwmac 4500000.ethernet: 	DWMAC4/5
+[    8.832555] t736-dwmac 4500000.ethernet: DMA HW capability register supported
+[    8.839705] t736-dwmac 4500000.ethernet: RX Checksum Offload Engine supported
+[    8.846876] t736-dwmac 4500000.ethernet: TX Checksum insertion supported
+[    8.853601] t736-dwmac 4500000.ethernet: Wake-Up On Lan supported
+[    8.859717] t736-dwmac 4500000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+[    8.867415] t736-dwmac 4500000.ethernet: device MAC address e2:77:e3:ea:5c:73
+[    8.874576] t736-dwmac 4500000.ethernet: Enabled RFS Flow TC (entries=10)
+[    8.881386] t736-dwmac 4500000.ethernet: Using 32/40 bits DMA host/device width
+[    8.924221] [drm] sunxi-hdmi: dw edid unsupport parser desc type: 255
+[    8.930685] [drm] sunxi-hdmi: dw edid unsupport parser desc type: 253
+[    8.937148] [drm] sunxi-hdmi: sunxi hdmi edid parse block0 finish
+[    8.943266] [drm] sunxi-hdmi: [error] dw edid parse dtd timing pixel clock[0KHz] invalid!
+[    8.951456] [drm] sunxi-hdmi: sunxi hdmi edid parse block1 finish
+[    8.957586] sunxi-drm sunxi-drm: [drm:check_connector_changed] [CONNECTOR:128:HDMI-A-1] status updated from disconnected to connected
+[    8.969627] sunxi-drm sunxi-drm: [drm:check_connector_changed] [CONNECTOR:128:HDMI-A-1] Changed epoch counter 1 => 2
+[    8.980176] [drm:drm_mode_object_get] OBJ ID: 128 (3)
+[    8.985272] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:128:HDMI-A-1] generating connector hotplug event
+[    8.997248] [drm:drm_mode_object_put] OBJ ID: 128 (3)
+[    9.008206] [drm] HDMI-A-1 connection detected
+[    9.012688] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1]
+[    9.022153] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] HDMI: DVI dual 0, max TMDS clock 250000 kHz
+[    9.033673] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] No deep color support on this HDMI sink.
+[    9.044931] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] ELD monitor DELL U2518D
+[    9.054706] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] HDMI: latency present 0 0, video latency 0 0, audio latency 0 0
+[    9.067969] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] ELD size 36, SAD count 1
+[    9.079300] [drm] sunxi-hdmi: drm get edid support modes: 42
+[    9.085103] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "1152x864": 75 108000 1152 1216 1344 1600 864 865 868 900 0x40 0x5 (BAD)
+[    9.098556] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "640x480": 75 31500 640 656 720 840 480 481 484 500 0x40 0xa (BAD)
+[    9.111468] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x400": 70 28320 720 738 846 900 400 412 414 449 0x40 0x6 (BAD)
+[    9.124383] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "1280x1024": 75 135000 1280 1296 1440 1688 1024 1025 1028 1066 0x40 0x5 (BAD)
+[    9.138249] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "1024x768": 75 78750 1024 1040 1136 1312 768 769 772 800 0x40 0x5 (BAD)
+[    9.151597] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "800x600": 75 49500 800 816 896 1056 600 601 604 625 0x40 0x5 (BAD)
+[    9.164601] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x480i": 60 13500 720 739 801 858 480 488 494 525 0x40 0x101a (BAD)
+[    9.168274] probe of stmmac-0:01 returned 0 after 82594 usecs
+[    9.177857] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x576i": 50 13500 720 732 795 864 576 580 586 625 0x40 0x101a (BAD)
+[    9.185483] t736-dwmac 4500000.ethernet: RGMII configuration retained after MAC reset: 0x11545
+[    9.196828] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x480i": 60 13500 720 739 801 858 480 488 494 525 0x40 0x101a (BAD)
+[    9.205520] probe of 4500000.ethernet returned 0 after 412982 usecs
+[    9.218659] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x576i": 50 13500 720 732 795 864 576 580 586 625 0x40 0x101a (BAD)
+[    9.225025] initcall t736_dwmac_driver_init+0x0/0x20 returned 0 after 432547 usecs
+[    9.238150] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x480i": 60 13514 720 739 801 858 480 488 494 525 0x40 0x101a (BAD)
+[    9.245734] calling  ehci_hcd_init+0x0/0xa4 @ 1
+[    9.258962] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x480i": 60 13514 720 739 801 858 480 488 494 525 0x40 0x101a (BAD)
+[    9.263482] initcall ehci_hcd_init+0x0/0xa4 returned 0 after 1 usecs
+[    9.276716] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1] probed modes:
+[    9.283065] calling  ehci_platform_init+0x0/0x44 @ 1
+[    9.293672] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "2560x1440": 60 241500 2560 2608 2640 2720 1440 1443 1448 1481 0x48 0x9
+[    9.298858] initcall ehci_platform_init+0x0/0x44 returned 0 after 213 usecs
+[    9.300254] probe of 4200000.usb returned -517 after 16 usecs
+[    9.313243] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "2048x1080": 60 147180 2048 2096 2128 2208 1080 1083 1093 1111 0x40 0x9
+[    9.320219] calling  ohci_hcd_mod_init+0x0/0x68 @ 1
+[    9.325968] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "2048x1080": 24 58230 2048 2096 2128 2208 1080 1083 1093 1099 0x40 0x9
+[    9.340609] initcall ohci_hcd_mod_init+0x0/0x68 returned 0 after 18 usecs
+[    9.345451] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080": 60 148500 1920 2008 2052 2200 1080 1084 1089 1125 0x40 0x5
+[    9.359972] calling  ohci_platform_init+0x0/0x44 @ 1
+[    9.366768] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080": 60 148500 1920 2008 2052 2200 1080 1084 1089 1125 0x40 0x5
+[    9.381520] initcall ohci_platform_init+0x0/0x44 returned 0 after 155 usecs
+[    9.384255] probe of 4200400.usb returned -517 after 16 usecs
+[    9.386335] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080": 60 148352 1920 2008 2052 2200 1080 1084 1089 1125 0x40 0x5
+[    9.400961] calling  usb_storage_driver_init+0x0/0x44 @ 1
+[    9.407910] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080i": 60 74250 1920 2008 2052 2200 1080 1084 1094 1125 0x40 0x15
+[    9.413761] usbcore: registered new interface driver usb-storage
+[    9.428267] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080i": 60 74176 1920 2008 2052 2200 1080 1084 1094 1125 0x40 0x15
+[    9.433676] initcall usb_storage_driver_init+0x0/0x44 returned 0 after 20012 usecs
+[    9.448359] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080": 50 148500 1920 2448 2492 2640 1080 1084 1089 1125 0x40 0x5
+[    9.454375] calling  serport_init+0x0/0x3c @ 1
+[    9.469060] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080i": 50 74250 1920 2448 2492 2640 1080 1084 1094 1125 0x40 0x15
+[    9.476633] initcall serport_init+0x0/0x3c returned 0 after 1 usecs
+[    9.491233] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1600x1200": 60 162000 1600 1664 1856 2160 1200 1201 1204 1250 0x40 0x5
+[    9.495682] calling  evdev_init+0x0/0x1c @ 1
+[    9.510389] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x1024": 60 108000 1280 1328 1440 1688 1024 1025 1028 1066 0x40 0x5
+[    9.516651] initcall evdev_init+0x0/0x1c returned 0 after 3 usecs
+[    9.531246] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x720": 60 74250 1280 1390 1430 1650 720 725 730 750 0x40 0x5
+[    9.535525] calling  atkbd_init+0x0/0x2c @ 1
+[    9.550130] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x720": 60 74250 1280 1390 1430 1650 720 725 730 750 0x40 0x5
+[    9.556318] initcall atkbd_init+0x0/0x2c returned 0 after 93 usecs
+[    9.570302] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x720": 60 74176 1280 1390 1430 1650 720 725 730 750 0x40 0x5
+[    9.574597] calling  psmouse_init+0x0/0x90 @ 1
+[    9.588673] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x720": 50 74250 1280 1720 1760 1980 720 725 730 750 0x40 0x5
+[    9.595047] initcall psmouse_init+0x0/0x90 returned 0 after 167 usecs
+[    9.608939] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1024x768": 60 65000 1024 1048 1184 1344 768 771 777 806 0x40 0xa
+[    9.613400] calling  mmc_pwrseq_simple_driver_init+0x0/0x20 @ 1
+[    9.627478] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "800x600": 60 40000 800 840 968 1056 600 601 605 628 0x40 0x5
+[    9.634040] initcall mmc_pwrseq_simple_driver_init+0x0/0x20 returned 0 after 98 usecs
+[    9.648011] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x576": 50 27000 720 732 796 864 576 581 586 625 0x40 0xa
+[    9.653945] calling  mmc_pwrseq_emmc_driver_init+0x0/0x20 @ 1
+[    9.667678] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x576": 50 27000 720 732 796 864 576 581 586 625 0x40 0xa
+[    9.675603] initcall mmc_pwrseq_emmc_driver_init+0x0/0x20 returned 0 after 85 usecs
+[    9.689161] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x480": 60 27027 720 736 798 858 480 489 495 525 0x40 0xa
+[    9.694925] calling  mmc_blk_init+0x0/0x138 @ 1
+[    9.708573] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x480": 60 27027 720 736 798 858 480 489 495 525 0x40 0xa
+[    9.716339] initcall mmc_blk_init+0x0/0x138 returned 0 after 108 usecs
+[    9.729888] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x480": 60 27000 720 736 798 858 480 489 495 525 0x40 0xa
+[    9.734423] calling  t736_driver_init+0x0/0x20 @ 1
+[    9.748067] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x480": 60 27000 720 736 798 858 480 489 495 525 0x40 0xa
+[    9.786718] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "640x480": 60 25200 640 656 752 800 480 490 492 525 0x40 0xa
+[    9.792273] probe of 4023000.mmc returned 0 after 37601 usecs
+[    9.800411] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "640x480": 60 25175 640 656 752 800 480 490 492 525 0x40 0xa
+[    9.806242] initcall t736_driver_init+0x0/0x20 returned 0 after 51623 usecs
+[    9.819816] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "640x480": 60 25175 640 656 752 800 480 490 492 525 0x40 0xa
+[    9.826801] calling  smccc_devices_init+0x0/0x70 @ 1
+[    9.840444] [drm] HDMI-A-1: Configuration mode 2560x1440@60Hz
+[    9.845414] initcall smccc_devices_init+0x0/0x70 returned 0 after 1 usecs
+[    9.851160] [drm:drm_mode_object_put] OBJ ID: 128 (2)
+[    9.857973] calling  arch_timer_mmio_drv_init+0x0/0x20 @ 1
+[    9.868623] initcall arch_timer_mmio_drv_init+0x0/0x20 returned 0 after 94 usecs
+[    9.876065] calling  arch_timer_mmio_acpi_drv_init+0x0/0x24 @ 1
+[    9.882082] initcall arch_timer_mmio_acpi_drv_init+0x0/0x24 returned 0 after 55 usecs
+[    9.889957] calling  hid_init+0x0/0x48 @ 1
+[    9.894168] initcall hid_init+0x0/0x48 returned 0 after 83 usecs
+[    9.900222] calling  hid_generic_init+0x0/0x28 @ 1
+[    9.905154] initcall hid_generic_init+0x0/0x28 returned 0 after 97 usecs
+[    9.911889] calling  hid_init+0x0/0x70 @ 1
+[    9.916116] usbcore: registered new interface driver usbhid
+[    9.921719] usbhid: USB HID core driver
+[    9.925568] initcall hid_init+0x0/0x70 returned 0 after 9546 usecs
+[    9.931786] calling  sock_diag_init+0x0/0x40 @ 1
+[    9.936526] initcall sock_diag_init+0x0/0x40 returned 0 after 78 usecs
+[    9.943090] calling  gre_offload_init+0x0/0x58 @ 1
+[    9.947916] initcall gre_offload_init+0x0/0x58 returned 0 after 2 usecs
+[    9.954564] calling  sysctl_ipv4_init+0x0/0x5c @ 1
+[    9.959585] initcall sysctl_ipv4_init+0x0/0x5c returned 0 after 202 usecs
+[    9.966416] calling  tunnel4_init+0x0/0x64 @ 1
+[    9.970893] initcall tunnel4_init+0x0/0x64 returned 0 after 1 usecs
+[    9.977196] calling  inet_diag_init+0x0/0x94 @ 1
+[    9.981841] initcall inet_diag_init+0x0/0x94 returned 0 after 4 usecs
+[    9.988311] calling  tcp_diag_init+0x0/0x1c @ 1
+[    9.992872] initcall tcp_diag_init+0x0/0x1c returned 0 after 0 usecs
+[    9.999247] calling  cubictcp_register+0x0/0x80 @ 1
+[   10.004161] initcall cubictcp_register+0x0/0x80 returned 0 after 6 usecs
+[   10.010905] calling  unix_diag_init+0x0/0x1c @ 1
+[   10.015547] initcall unix_diag_init+0x0/0x1c returned 0 after 0 usecs
+[   10.022017] calling  inet6_init+0x0/0x370 @ 1
+[   10.026524] NET: Registered PF_INET6 protocol family
+[   10.034035] Segment Routing with IPv6
+[   10.037886] In-situ OAM (IOAM) with IPv6
+[   10.041943] initcall inet6_init+0x0/0x370 returned 0 after 15540 usecs
+[   10.048528] calling  sit_init+0x0/0xe4 @ 1
+[   10.051221] sunxi-drm sunxi-drm: [drm:drm_mode_addfb2] [FB:139]
+[   10.052659] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[   10.058588] [drm:drm_mode_object_put] OBJ ID: 139 (2)
+[   10.065558] initcall sit_init+0x0/0xe4 returned 0 after 12897 usecs
+[   10.075892] calling  packet_init+0x0/0x88 @ 1
+[   10.080312] NET: Registered PF_PACKET protocol family
+[   10.080314] [drm:sunxi_fbdev_plane_update] [SUNXI-DE] fbdev plane update
+[   10.085385] initcall packet_init+0x0/0x88 returned 0 after 5093 usecs
+[   10.092124] sunxi-drm sunxi-drm: [drm:drm_atomic_state_init] Allocated atomic state (____ptrval____)
+[   10.098554] calling  check_mmu_enabled_at_boot+0x0/0x28 @ 1
+[   10.107691] [drm:drm_mode_object_get] OBJ ID: 137 (1)
+[   10.113274] initcall check_mmu_enabled_at_boot+0x0/0x28 returned 0 after 1 usecs
+[   10.118326] sunxi-drm sunxi-drm: [drm:drm_atomic_get_crtc_state] Added [CRTC:101:DE-0] (____ptrval____) state to (____ptrval____)
+[   10.125947] entering initcall level: late
+[   10.137401] sunxi-drm sunxi-drm: [drm:drm_atomic_set_mode_for_crtc] Set [MODE:2560x1440] for [CRTC:101:DE-0] state (____ptrval____)
+[   10.141413] calling  kernel_do_mounts_initrd_sysctls_init+0x0/0x34 @ 1
+[   10.153238] [drm:drm_mode_object_get] OBJ ID: 128 (1)
+[   10.159788] initcall kernel_do_mounts_initrd_sysctls_init+0x0/0x34 returned 0 after 15 usecs
+[   10.164827] sunxi-drm sunxi-drm: [drm:drm_atomic_get_connector_state] Added [CONNECTOR:128:HDMI-A-1] (____ptrval____) state to (____ptrval____)
+[   10.173283] calling  kernel_panic_sysctls_init+0x0/0x34 @ 1
+[   10.186134] [drm:drm_mode_object_get] OBJ ID: 128 (2)
+[   10.191747] initcall kernel_panic_sysctls_init+0x0/0x34 returned 0 after 25 usecs
+[   10.196780] sunxi-drm sunxi-drm: [drm:drm_atomic_set_crtc_for_connector] Link [CONNECTOR:128:HDMI-A-1] state (____ptrval____) to [CRTC:101:DE-0]
+[   10.204272] calling  kernel_panic_sysfs_init+0x0/0x30 @ 1
+[   10.204308] initcall kernel_panic_sysfs_init+0x0/0x30 returned 0 after 13 usecs
+[   10.217257] [drm:drm_mode_object_get] OBJ ID: 133 (1)
+[   10.222669] calling  kernel_exit_sysctls_init+0x0/0x34 @ 1
+[   10.229977] sunxi-drm sunxi-drm: [drm:drm_atomic_get_plane_state] Added [PLANE:94:plane-0-vch0(0)] (____ptrval____) state to (____ptrval____)
+[   10.235054] initcall kernel_exit_sysctls_init+0x0/0x34 returned 0 after 7 usecs
+[   10.240536] sunxi-drm sunxi-drm: [drm:drm_atomic_set_fb_for_plane] Set [FB:139] for [PLANE:94:plane-0-vch0(0)] state (____ptrval____)
+[   10.253237] calling  kernel_exit_sysfs_init+0x0/0x2c @ 1
+[   10.260547] [drm:drm_mode_object_get] OBJ ID: 139 (1)
+[   10.272567] initcall kernel_exit_sysfs_init+0x0/0x2c returned 0 after 10 usecs
+[   10.277867] sunxi-drm sunxi-drm: [drm:drm_atomic_set_crtc_for_plane] Link [PLANE:94:plane-0-vch0(0)] state (____ptrval____) to [CRTC:101:DE-0]
+[   10.282938] calling  param_sysfs_builtin_init+0x0/0x178 @ 1
+[   10.290156] sunxi-drm sunxi-drm: [drm:drm_atomic_check_only] checking (____ptrval____)
+[   10.290195] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CRTC:101:DE-0] mode changed
+[   10.313828] initcall param_sysfs_builtin_init+0x0/0x178 returned 0 after 10863 usecs
+[   10.316461] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CRTC:101:DE-0] enable changed
+[   10.325530] calling  reboot_ksysfs_init+0x0/0x88 @ 1
+[   10.333283] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CRTC:101:DE-0] active changed
+[   10.342552] initcall reboot_ksysfs_init+0x0/0x88 returned 0 after 48 usecs
+[   10.347477] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] Updating routing for [CONNECTOR:128:HDMI-A-1]
+[   10.356712] calling  sched_core_sysctl_init+0x0/0x34 @ 1
+[   10.363583] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CONNECTOR:128:HDMI-A-1] using [ENCODER:127:TMDS-127] on [CRTC:101:DE-0]
+[   10.374118] initcall sched_core_sysctl_init+0x0/0x34 returned 0 after 5 usecs
+[   10.379424] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CRTC:101:DE-0] needs all connectors, enable: y, active: y
+[   10.392306] calling  sched_fair_sysctl_init+0x0/0x34 @ 1
+[   10.399435] sunxi-drm sunxi-drm: [drm:drm_atomic_add_affected_connectors] Adding all current connectors for [CRTC:101:DE-0] to (____ptrval____)
+[   10.411105] initcall sched_fair_sysctl_init+0x0/0x34 returned 0 after 9 usecs
+[   10.416417] sunxi-drm sunxi-drm: [drm:drm_atomic_add_affected_planes] Adding all current planes for [CRTC:101:DE-0] to (____ptrval____)
+[   10.429287] calling  sched_rt_sysctl_init+0x0/0x38 @ 1
+[   10.436425] sunxi-drm sunxi-drm: [drm:drm_atomic_add_encoder_bridges] Adding all bridges for [encoder:127:TMDS-127] to (____ptrval____)
+[   10.448617] initcall sched_rt_sysctl_init+0x0/0x38 returned 0 after 10 usecs
+[   10.453827] [drm] sunxi-hdmi: drm hdmi set mode change when disp info change
+[   10.465924] calling  sched_dl_sysctl_init+0x0/0x38 @ 1
+[   10.472972] [drm] sunxi-hdmi: drm hdmi check mode: change >>>>>>>>>>>>>>>>
+[   10.472986] sunxi-drm sunxi-drm: [drm:drm_atomic_normalize_zpos] [CRTC:101:DE-0] calculating normalized zpos values
+[   10.480040] initcall sched_dl_sysctl_init+0x0/0x38 returned 0 after 8 usecs
+[   10.485177] sunxi-drm sunxi-drm: [drm:drm_atomic_normalize_zpos] [PLANE:94:plane-0-vch0(0)] processing zpos value 0
+[   10.492062] calling  sched_init_debug+0x0/0x23c @ 1
+[   10.502495] sunxi-drm sunxi-drm: [drm:drm_atomic_normalize_zpos] [PLANE:94:plane-0-vch0(0)] normalized zpos value 0
+[   10.509756] initcall sched_init_debug+0x0/0x23c returned 0 after 281 usecs
+[   10.519986] sunxi-drm sunxi-drm: [drm:drm_atomic_commit] committing (____ptrval____)
+[   10.524811] calling  printk_late_init+0x0/0x154 @ 1
+[   10.535271] sunxi-drm sunxi-drm: [drm:drm_calc_timestamping_constants] crtc 101: hwmode: htotal 2720, vtotal 1481, vdisplay 1440
+[   10.542186] initcall printk_late_init+0x0/0x154 returned 0 after 32 usecs
+[   10.549879] sunxi-drm sunxi-drm: [drm:drm_calc_timestamping_constants] crtc 101: clock 241500 kHz framedur 16680414 linedur 11262
+[   10.554780] calling  init_srcu_module_notifier+0x0/0x40 @ 1
+[   10.566334] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_commit_crtc_set_mode] modeset on [ENCODER:127:TMDS-127]
+[   10.573141] initcall init_srcu_module_notifier+0x0/0x40 returned 0 after 4 usecs
+[   10.584960] [drm] sunxi-hdmi: sunxi hdmi select vic 0 use hdmi14 vsif
+[   10.590369] calling  kernel_rcu_stall_sysfs_init+0x0/0x30 @ 1
+[   10.600606] [drm] sunxi-hdmi: drm hdmi mode set: 2560*1440 >>>>>>>>>>>>>>>>
+[   10.607879] initcall kernel_rcu_stall_sysfs_init+0x0/0x30 returned 0 after 11 usecs
+[   10.614308] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_commit_crtc_enable] enabling [CRTC:101:DE-0]
+[   10.620073] calling  swiotlb_create_default_debugfs+0x0/0xa0 @ 1
+[   10.627026] [drm] [SUNXI-CRTC]sunxi_crtc_atomic_enable
+[   10.627037] [drm:drm_mode_object_get] OBJ ID: 140 (1)
+[   10.634753] initcall swiotlb_create_default_debugfs+0x0/0xa0 returned 0 after 52 usecs
+[   10.643830] [drm:drm_mode_object_put] OBJ ID: 140 (2)
+[   10.649861] calling  tk_debug_sleep_time_init+0x0/0x38 @ 1
+[   10.655010] [drm] sunxi_de_enable index 0
+[   10.660080] initcall tk_debug_sleep_time_init+0x0/0x38 returned 0 after 12 usecs
+[   10.668036] [drm] sunxi_de_enable finish sw en=0
+[   10.673051] calling  bpf_ksym_iter_register+0x0/0x20 @ 1
+[   10.678541] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_commit_encoder_bridge_pre_enable] pre-enabling bridges [ENCODER:127:TMDS-127]
+[   10.682583] initcall bpf_ksym_iter_register+0x0/0x20 returned 0 after 3 usecs
+[   10.689958] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_commit_encoder_bridge_enable] enabling [ENCODER:127:TMDS-127]
+[   10.694593] calling  bpf_rstat_kfunc_init+0x0/0x20 @ 1
+[   10.699916] [drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+[   10.711922] initcall bpf_rstat_kfunc_init+0x0/0x20 returned 0 after 2 usecs
+[   10.719255] [drm] sunxi-hdmi: dw audio get n = 6144
+[   10.729671] calling  bpf_global_ma_init+0x0/0x3c @ 1
+[   10.759530] initcall bpf_global_ma_init+0x0/0x3c returned 0 after 383 usecs
+[   10.761900] [drm] sunxi-hdmi: top phy auto calculate done
+[   10.766543] calling  bpf_syscall_sysctl_init+0x0/0x38 @ 1
+[   10.771921] [drm] sunxi-hdmi: [top phy]
+[   10.771928] [drm] sunxi-hdmi:  - pixel clock 241500KHz
+[   10.777356] initcall bpf_syscall_sysctl_init+0x0/0x38 returned 0 after 14 usecs
+[   10.781172] [drm] sunxi-hdmi:    - pll: 0xE8064000, 0x00035000, 0x00000000, 0x30000000
+[   10.786331] calling  unbound_reg_init+0x0/0x20 @ 1
+[   10.793654] [drm] sunxi-hdmi: top phy config done
+[   10.793678] [drm] sunxi-hdmi: [warn] snps phy check clk: 241500Hz is match in [237600Hz-288000Hz] and change use: 237600Hz
+[   10.801590] initcall unbound_reg_init+0x0/0x20 returned 0 after 1 usecs
+[   10.806711] [drm] sunxi-hdmi: [snps phy]
+[   10.811102] calling  kfunc_init+0x0/0xc8 @ 1
+[   10.822134] [drm] sunxi-hdmi:  - refer clock: 237600KHz, color bits: 8, repeat: 0
+[   10.822147] [drm] sunxi-hdmi:     - mpll: 0x0000, 0x3040, 0x0605
+[   10.828776] initcall kfunc_init+0x0/0xc8 returned 0 after 3 usecs
+[   10.832691] [drm] sunxi-hdmi:  - refer clock: 241500KHz. [185625KHz~340000KHz]
+[   10.836982] calling  bpf_map_iter_init+0x0/0x38 @ 1
+[   10.844476] [drm] sunxi-hdmi:     - drive: 0x0004, 0x8040, 0x8e85
+[   10.844945] [drm] sunxi-hdmi: snps phy state: lock
+[   10.850503] initcall bpf_map_iter_init+0x0/0x38 returned 0 after 3 usecs
+[   10.886336] calling  init_subsystem+0x0/0x24 @ 1
+[   10.890997] initcall init_subsystem+0x0/0x24 returned 0 after 1 usecs
+[   10.897479] calling  task_iter_init+0x0/0xdc @ 1
+[   10.902133] initcall task_iter_init+0x0/0xdc returned 0 after 6 usecs
+[   10.906612] [drm] sunxi-hdmi: dw audio check: triger cts re-calculate
+[   10.908608] calling  bpf_prog_iter_init+0x0/0x20 @ 1
+[   10.915036] [drm] sunxi-hdmi: hdmi drv enable output done
+[   10.915044] [drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[   10.920021] initcall bpf_prog_iter_init+0x0/0x20 returned 0 after 1 usecs
+[   10.925420] [drm:sunxi_crtc_atomic_begin] sunxi_crtc_atomic_begin
+[   10.931878] calling  bpf_link_iter_init+0x0/0x20 @ 1
+[   10.938664] [drm:sunxi_drm_crtc_enable_vblank] sunxi_drm_crtc_enable_vblank
+[   10.944778] initcall bpf_link_iter_init+0x0/0x20 returned 0 after 2 usecs
+[   10.949718] sunxi-drm sunxi-drm: [drm:drm_vblank_enable] enabling vblank on crtc 0, ret: 0
+[   10.956687] calling  rqspinlock_register_kfuncs+0x0/0x20 @ 1
+[   10.963498] [drm:sunxi_de_channel_update] [SUNXI-DE] sunxi_de_channel_update vch0 update
+[   10.971729] initcall rqspinlock_register_kfuncs+0x0/0x20 returned 0 after 0 usecs
+[   10.977396] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0000000000000000,not support tfbc modifier
+[   10.985499] calling  kfunc_init+0x0/0x20 @ 1
+[   10.992987] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0000000000000000,not support tfbc modifier
+[   11.004199] initcall kfunc_init+0x0/0x20 returned 0 after 0 usecs
+[   11.004221] calling  bpf_cgroup_iter_init+0x0/0x28 @ 1
+[   11.008499] [drm:de_tfbd_apply_lay] [SUNXI-DE] de_tfbd_disable 258 ch 0
+[   11.019716] initcall bpf_cgroup_iter_init+0x0/0x28 returned 0 after 2 usecs
+[   11.025833] [drm:de_frontend_apply] old enable 0 new enableffffb9ff now dirty ffffb9ff ffffb9ff
+[   11.030973] calling  crypto_kfunc_init+0x0/0x74 @ 1
+[   11.037582] [drm:de_frontend_apply] pq dirty ffffffff enable ffffb9ff
+[   11.044582] initcall crypto_kfunc_init+0x0/0x74 returned 0 after 2 usecs
+[   11.053262] [drm:de_fcm_enable] [SUNXI-DE] de_fcm_enable 105 
+[   11.058146] calling  bpf_kmem_cache_iter_init+0x0/0x28 @ 1
+[   11.064591] [drm:de35x_fcm_enable] de35x_fcm_enable 0
+[   11.071302] initcall bpf_kmem_cache_iter_init+0x0/0x28 returned 0 after 3 usecs
+[   11.077054] [drm:de_sharp_enable] [SUNXI-DE] de_sharp_enable 55 
+[   11.082546] calling  dmabuf_iter_init+0x0/0x20 @ 1
+[   11.087607] [drm:de35x_sharp_enable] de35x_sharp_enable 0
+[   11.094936] initcall dmabuf_iter_init+0x0/0x20 returned 0 after 1 usecs
+[   11.100959] [drm:de_scaler_asu_pq_enable] de_scaler_asu_pq_enable 0
+[   11.105760] calling  vmstat_late_init+0x0/0x24 @ 1
+[   11.111165] [drm:de_snr_enable] [SUNXI-DE] de_snr_enable 57 
+[   11.117799] initcall vmstat_late_init+0x0/0x24 returned 0 after 4 usecs
+[   11.124060] [drm:de35x_snr_enable] de35x_snr_enable 0
+[   11.128857] calling  fault_around_debugfs+0x0/0x38 @ 1
+[   11.134542] [drm:de_backend_apply] [SUNXI-DE] de_backend_apply 
+[   11.141175] initcall fault_around_debugfs+0x0/0x38 returned 0 after 19 usecs
+[   11.146204] [drm:de_backend_apply] old enable 0 new enableffffffff now dirty ffffffff ffffffff
+[   11.151354] calling  max_swapfiles_check+0x0/0x8 @ 1
+[   11.157278] [drm:de_dcsc_apply] [SUNXI-DE] bcsh dirty 1 enable 1 brightness 50 constants 50saturation 50 hue 50 ctm dirty 0 ctm enable 0 apply 0
+[   11.164350] initcall max_swapfiles_check+0x0/0x8 returned 0 after 0 usecs
+[   11.172953] [drm:de_backend_apply_csc.isra.0] [SUNXI-DE] de_backend_apply_csc gamma csc dirty
+[   11.177924] calling  check_early_ioremap_leak+0x0/0x5c @ 1
+[   11.190871] [drm:de_backend_apply] de_backend_apply_deband ffff0000c00eba58
+[   11.197685] initcall check_early_ioremap_leak+0x0/0x5c returned 0 after 1 usecs
+[   11.206204] [drm:de_backend_apply] de_backend_apply_smbl ffff0000c00eba58
+[   11.211697] calling  mg_debugfs_init+0x0/0x38 @ 1
+[   11.218662] [drm:de_dlc_update_regs] [SUNXI-DE] de_dlc_update_regs 936 blk_id:0
+[   11.225990] initcall mg_debugfs_init+0x0/0x38 returned 0 after 12 usecs
+[   11.232776] [drm:de_cdc_update_regs] [SUNXI-DE] de_cdc_update_regs 82 blk_id:0
+[   11.237487] calling  init_root_keyring+0x0/0x1c @ 1
+[   11.244796] [drm:de_sharp_update_regs] [SUNXI-DE] de_sharp_update_regs 107 blk_id:0
+[   11.251556] initcall init_root_keyring+0x0/0x1c returned 0 after 138 usecs
+[   11.258643] [drm:de_snr_update_regs] [SUNXI-DE] de_snr_update_regs 99 blk_id:0
+[   11.263543] calling  integrity_fs_init+0x0/0x64 @ 1
+[   11.271198] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_tmp_khz 338100 , c0/c1 1 , c0 100 , c1 100 , c2 241500 , c3 3381000
+[   11.278103] initcall integrity_fs_init+0x0/0x64 returned 0 after 19 usecs
+[   11.285306] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_tmp_khz 338100 , c0/c1 1 , c0 100 , c1 100 , c2 241500 , c3 3381000
+[   11.290195] calling  crypto_algapi_init+0x0/0x18 @ 1
+[   11.301583] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_tmp_khz 338100 , c0/c1 1 , c0 100 , c1 100 , c2 241500 , c3 3381000
+[   11.301617] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_tmp_khz 338100 , c0/c1 1 , c0 100 , c1 100 , c2 241500 , c3 3381000
+[   11.308425] initcall crypto_algapi_init+0x0/0x18 returned 0 after 10 usecs
+[   11.319794] [drm:sunxi_de_auto_calc_freq_and_apply] c0 600000 , c1 100 , c2 241500 
+[   11.324781] calling  blk_timeout_init+0x0/0x14 @ 1
+[   11.336161] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_ret_khz 338100 , m 6 , n 3
+[   11.347556] initcall blk_timeout_init+0x0/0x14 returned 0 after 0 usecs
+[   11.354451] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_ret_khz 338100 , ret clk 342857 , ret_clk 1
+[   11.362117] calling  clk_debug_init+0x0/0x124 @ 1
+[   11.380230] [drm:sunxi_crtc_atomic_flush] sunxi_crtc_atomic_flush finish
+[   11.383956] initcall clk_debug_init+0x0/0x124 returned 0 after 2574 usecs
+[   11.390690] sunxi-drm sunxi-drm: [drm:drm_atomic_state_default_clear] Clearing atomic state (____ptrval____)
+[   11.395405] calling  genpd_debug_init+0x0/0x88 @ 1
+[   11.402112] [drm:drm_mode_object_put] OBJ ID: 128 (3)
+[   11.409034] initcall genpd_debug_init+0x0/0x88 returned 0 after 122 usecs
+[   11.418733] [drm:drm_mode_object_put] OBJ ID: 137 (2)
+[   11.423541] calling  sync_state_resume_initcall+0x0/0x18 @ 1
+[   11.428595] [drm:drm_mode_object_put] OBJ ID: 133 (2)
+[   11.435390] initcall sync_state_resume_initcall+0x0/0x18 returned 0 after 2 usecs
+[   11.440451] sunxi-drm sunxi-drm: [drm:__drm_atomic_state_free] Freeing atomic state (____ptrval____)
+[   11.446116] calling  deferred_probe_initcall+0x0/0xb4 @ 1
+[   11.451172] [drm] HDMI-A-1: Configuration complete
+[   11.460622] probe of 4200800.phy returned -517 after 15 usecs
+[   11.464809] t736-r-pinctrl 7025000.pinctrl: supply vcc-pl not found, using dummy regulator
+[   11.465440] probe of regulator-usb1-vbus returned 0 after 895 usecs
+[   11.467815] [drm:de_cdc_update_local_param] [de_cdc_update_local_param]-518
+[   11.473946] probe of 4200000.usb returned -517 after 11 usecs
+[   11.476705] probe of 4200400.usb returned -517 after 16 usecs
+[   11.478522] probe of 4200800.phy returned 0 after 4903 usecs
+[   11.527422] initcall deferred_probe_initcall+0x0/0xb4 returned 0 after 68767 usecs
+[   11.535072] calling  psci_debugfs_init+0x0/0x64 @ 1
+[   11.536621] ehci-platform 4200000.usb: EHCI Host Controller
+[   11.536649] ohci-platform 4200400.usb: Generic Platform OHCI controller
+[   11.537052] ohci-platform 4200400.usb: new USB bus registered, assigned bus number 1
+[   11.538620] ohci-platform 4200400.usb: irq 417, io mem 0x04200400
+[   11.540082] initcall psci_debugfs_init+0x0/0x64 returned 0 after 95 usecs
+[   11.545639] ehci-platform 4200000.usb: new USB bus registered, assigned bus number 2
+[   11.552206] calling  of_fdt_raw_init+0x0/0x88 @ 1
+[   11.560326] ehci-platform 4200000.usb: irq 418, io mem 0x04200000
+[   11.566284] initcall of_fdt_raw_init+0x0/0x88 returned 0 after 218 usecs
+[   11.584229] ehci-platform 4200000.usb: USB 2.0 started, EHCI 1.00
+[   11.585321] calling  bpf_kfunc_init+0x0/0x134 @ 1
+[   11.592769] hub 2-0:1.0: USB hub found
+[   11.598130] initcall bpf_kfunc_init+0x0/0x134 returned 0 after 5 usecs
+[   11.604305] hub 2-0:1.0: 1 port detected
+[   11.608950] calling  init_subsystem+0x0/0x24 @ 1
+[   11.613069] probe of 2-0:1.0 returned 0 after 20326 usecs
+[   11.619252] initcall init_subsystem+0x0/0x24 returned 0 after 1 usecs
+[   11.623342] probe of usb2 returned 0 after 30847 usecs
+[   11.627815] calling  xdp_metadata_init+0x0/0x20 @ 1
+[   11.633405] probe of 4200000.usb returned 0 after 100828 usecs
+[   11.639679] initcall xdp_metadata_init+0x0/0x20 returned 0 after 1 usecs
+[   11.642545] hub 1-0:1.0: USB hub found
+[   11.643191] hub 1-0:1.0: 1 port detected
+[   11.646364] probe of 1-0:1.0 returned 0 after 4018 usecs
+[   11.649766] calling  bpf_sockmap_iter_init+0x0/0x2c @ 1
+[   11.649811] initcall bpf_sockmap_iter_init+0x0/0x2c returned 0 after 7 usecs
+[   11.649837] calling  bpf_sk_storage_map_iter_init+0x0/0x28 @ 1
+[   11.649863] initcall bpf_sk_storage_map_iter_init+0x0/0x28 returned 0 after 1 usecs
+[   11.649889] calling  bpf_prog_test_run_init+0x0/0x74 @ 1
+[   11.649916] initcall bpf_prog_test_run_init+0x0/0x74 returned 0 after 2 usecs
+[   11.649945] calling  tcp_congestion_default+0x0/0x24 @ 1
+[   11.649973] initcall tcp_congestion_default+0x0/0x24 returned 0 after 3 usecs
+[   11.657518] probe of usb1 returned 0 after 17427 usecs
+[   11.662615] calling  inet_blackhole_dev_init+0x0/0x38 @ 1
+[   11.662698] initcall inet_blackhole_dev_init+0x0/0x38 returned 0 after 43 usecs
+[   11.662735] calling  tcp_bpf_v4_build_proto+0x0/0xd0 @ 1
+[   11.667908] probe of 4200400.usb returned 0 after 138566 usecs
+[   11.670500] initcall tcp_bpf_v4_build_proto+0x0/0xd0 returned 0 after 3 usecs
+[   11.670533] calling  udp_bpf_v4_build_proto+0x0/0x6c @ 1
+[   11.670551] initcall udp_bpf_v4_build_proto+0x0/0x6c returned 0 after 1 usecs
+[   11.670570] calling  amba_stub_drv_init+0x0/0x20 @ 1
+[   11.670724] initcall amba_stub_drv_init+0x0/0x20 returned 0 after 129 usecs
+[   11.787350] calling  clk_disable_unused+0x0/0xe8 @ 1
+[   11.792367] clk: Not disabling unused clocks
+[   11.796657] initcall clk_disable_unused+0x0/0xe8 returned 0 after 4291 usecs
+[   11.803747] calling  genpd_power_off_unused+0x0/0x8c @ 1
+[   11.809106] PM: genpd: Disabling unused power domains
+[   11.814194] initcall genpd_power_off_unused+0x0/0x8c returned 0 after 5087 usecs
+[   11.821635] calling  regulator_init_complete+0x0/0x5c @ 1
+[   11.827082] initcall regulator_init_complete+0x0/0x5c returned 0 after 4 usecs
+[   11.834356] calling  of_platform_sync_state_init+0x0/0x18 @ 1
+[   11.840154] initcall of_platform_sync_state_init+0x0/0x18 returned 0 after 16 usecs
+[   11.849390] Freeing unused kernel memory: 448K
+[   11.854146] Run /init as init process
+[   11.857851]   with arguments:
+[   11.860838]     /init
+[   11.863118]   with environment:
+[   11.866271]     HOME=/
+[   11.868219] usb 2-1: new high-speed USB device number 2 using ehci-platform
+[   11.868648]     TERM=linux
+Loading, please wait...
+[   12.022092] hub 2-1:1.0: USB hub found
+[   12.026041] hub 2-1:1.0: 4 ports detected
+[   12.031507] probe of 2-1:1.0 returned 0 after 9469 usecs
+[   12.037068] probe of 2-1 returned 0 after 15412 usecs
+[   12.064332] mmc0: new MMC card at address 0001
+[   12.070151] mmcblk0: mmc0:0001 A31Y5C 58.2 GiB
+Starting systemd-udevd version 257.13-1~deb13u1
+
+[   12.086187] GPT:Primary header thinks Alt. header is not at the end of the disk.
+[   12.093649] GPT:16777215 != 122142719
+[   12.097338] GPT:Alternate GPT header not at the end of the disk.
+[   12.103354] GPT:16777215 != 122142719
+[   12.107034] GPT: Use GNU Parted to correct GPT errors.
+[   12.112233]  mmcblk0: p1 p2 p3 p4 p5 p6
+[   12.121074] mmcblk0boot0: mmc0:0001 A31Y5C 4.00 MiB
+[   12.133618] mmcblk0boot1: mmc0:0001 A31Y5C 4.00 MiB
+[   12.145297] probe of mmc0:0001 returned 0 after 76083 usecs
+[   12.420263] usb 2-1.3: new high-speed USB device number 3 using ehci-platform
+[   12.647877] usb-storage 2-1.3:1.0: USB Mass Storage device detected
+[   12.656776] scsi host0: usb-storage 2-1.3:1.0
+[   12.661868] probe of 2-1.3:1.0 returned 0 after 14079 usecs
+[   12.667877] probe of 2-1.3 returned 0 after 24030 usecs
+[   13.694613] scsi 0:0:0:0: Direct-Access     Generic- SD/MMC           1.00 PQ: 0 ANSI: 4
+[   13.705460] sd 0:0:0:0: [sda] Media removed, stopped polling
+[   13.737038] sd 0:0:0:0: [sda] Attached SCSI removable disk
+[   13.742735] probe of 0:0:0:0 returned 0 after 39203 usecs
+[   14.583590] t736-dwmac 4500000.ethernet end0: renamed from eth0
+Begin: Loading essential drivers ... done.
+Begin: Running /scripts/init-premount ... done.
+Begin: Mounting root file system ... Begin: Running /scripts/local-top ... done.
+Begin: Running /scripts/local-premount ... Scanning for Btrfs filesystems
+done.
+Begin: Will now check root file system ... fsck from util-linux 2.41.5
+[/sbin/fsck.ext4 (1) -- /dev/mmcblk0p4] fsck.ext4 -a -C0 /dev/mmcblk0p4 
+rootfs: clean, 21398/476720 files, 204390/1904960 blocks
+done.
+[   18.601378] EXT4-fs (mmcblk0p4): mounted filesystem 355deac2-71e0-4194-a1c2-f7d457b94137 r/w with ordered data mode. Quota mode: disabled.
+done.
+Begin: Running /scripts/local-bottom ... done.
+Begin: Running /scripts/init-bottom ... done.
+[   21.072940] systemd[1]: System time advanced to built-in epoch: Mon 2026-04-13 19:38:05 UTC
+[   21.444389] systemd[1]: systemd 257.13-1~deb13u1 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +IPE +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBCRYPTSETUP_PLUGINS +LIBFDISK +PCRE2 +PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD +BPF_FRAMEWORK +BTF -XKBCOMMON -UTMP +SYSVINIT +LIBARCHIVE)
+[   21.478787] systemd[1]: Detected architecture arm64.
+
+Welcome to Armbian 26.11.0-trunk.128 trixie!
+
+[   21.557238] systemd[1]: Hostname set to <t736>.
+[   21.598192] systemd[1]: Initializing machine ID from random generator.
+[   22.605010] systemd[1]: bpf-restrict-fs: BPF LSM hook not enabled in the kernel, BPF LSM not supported.
+[   24.022245] systemd[1]: Queued start job for default target multi-user.target.
+[   24.090754] systemd[1]: Created slice system-getty.slice - Slice /system/getty.
+[  OK  ] Created slice system-getty.slice - Slice /system/getty.
+
+[   24.115833] systemd[1]: Created slice system-modprobe.slice - Slice /system/modprobe.
+[  OK  ] Created slice system-modprobe.slice - Slice /system/modprobe.
+
+[   24.143717] systemd[1]: Created slice system-serial\x2dgetty.slice - Slice /system/serial-getty.
+[  OK  ] Created slice system-serial\x2dget…slice - Slice /system/serial-getty.
+
+[   24.170771] systemd[1]: Created slice user.slice - User and Session Slice.
+[  OK  ] Created slice user.slice - User and Session Slice.
+
+[   24.192930] systemd[1]: Started systemd-ask-password-console.path - Dispatch Password Requests to Console Directory Watch.
+[  OK  ] Started systemd-ask-password-conso…equests to Console Directory Watch.
+
+[   24.220848] systemd[1]: Started systemd-ask-password-wall.path - Forward Password Requests to Wall Directory Watch.
+[  OK  ] Started systemd-ask-password-wall.…d Requests to Wall Directory Watch.
+
+[   24.245816] systemd[1]: Set up automount proc-sys-fs-binfmt_misc.automount - Arbitrary Executable File Formats File System Automount Point.
+[  OK  ] Set up automount proc-sys-fs-binfm…ormats File System Automount Point.
+
+[   24.272477] systemd[1]: Expecting device dev-ttyS0.device - /dev/ttyS0...
+         Expecting device dev-ttyS0.device - /dev/ttyS0...
+
+[   24.292655] systemd[1]: Reached target paths.target - Path Units.
+[  OK  ] Reached target paths.target - Path Units.
+
+[   24.312498] systemd[1]: Reached target remote-fs.target - Remote File Systems.
+[  OK  ] Reached target remote-fs.target - Remote File Systems.
+
+[   24.332470] systemd[1]: Reached target slices.target - Slice Units.
+[  OK  ] Reached target slices.target - Slice Units.
+
+[   24.352541] systemd[1]: Reached target swap.target - Swaps.
+[  OK  ] Reached target swap.target - Swaps.
+
+[   24.369457] systemd[1]: Listening on syslog.socket - Syslog Socket.
+[  OK  ] Listening on syslog.socket - Syslog Socket.
+
+[   24.402754] systemd[1]: Listening on systemd-creds.socket - Credential Encryption/Decryption.
+[  OK  ] Listening on systemd-creds.socket - Credential Encryption/Decryption.
+
+[   24.425096] systemd[1]: Listening on systemd-initctl.socket - initctl Compatibility Named Pipe.
+[  OK  ] Listening on systemd-initctl.socke…- initctl Compatibility Named Pipe.
+
+[   24.449068] systemd[1]: Listening on systemd-journald-dev-log.socket - Journal Socket (/dev/log).
+[  OK  ] Listening on systemd-journald-dev-…socket - Journal Socket (/dev/log).
+
+[   24.473223] systemd[1]: Listening on systemd-journald.socket - Journal Sockets.
+[  OK  ] Listening on systemd-journald.socket - Journal Sockets.
+
+[   24.497496] systemd[1]: Listening on systemd-networkd.socket - Network Service Netlink Socket.
+[  OK  ] Listening on systemd-networkd.socket - Network Service Netlink Socket.
+
+[   24.520541] systemd[1]: systemd-pcrextend.socket - TPM PCR Measurements skipped, unmet condition check ConditionSecurity=measured-uki
+[   24.532759] systemd[1]: systemd-pcrlock.socket - Make TPM PCR Policy skipped, unmet condition check ConditionSecurity=measured-uki
+[   24.545333] systemd[1]: Listening on systemd-udevd-control.socket - udev Control Socket.
+[  OK  ] Listening on systemd-udevd-control.socket - udev Control Socket.
+
+[   24.568902] systemd[1]: Listening on systemd-udevd-kernel.socket - udev Kernel Socket.
+[  OK  ] Listening on systemd-udevd-kernel.socket - udev Kernel Socket.
+
+[   24.593227] systemd[1]: dev-hugepages.mount - Huge Pages File System skipped, unmet condition check ConditionPathExists=/sys/kernel/mm/hugepages
+[   24.620499] systemd[1]: Mounting dev-mqueue.mount - POSIX Message Queue File System...
+         Mounting dev-mqueue.mount - POSIX Message Queue File System...
+
+[   24.652172] systemd[1]: Mounting run-lock.mount - Legacy Locks Directory /run/lock...
+         Mounting run-lock.mount - Legacy Locks Directory /run/lock...
+
+[   24.679543] systemd[1]: Mounting sys-kernel-debug.mount - Kernel Debug File System...
+         Mounting sys-kernel-debug.mount - Kernel Debug File System...
+
+[   24.701172] systemd[1]: sys-kernel-tracing.mount - Kernel Trace File System skipped, unmet condition check ConditionPathExists=/sys/kernel/tracing
+[   24.737807] systemd[1]: Starting fake-hwclock-load.service - Restore the current clock...
+         Starting fake-hwclock-load.service - Restore the current clock...
+
+[   24.772696] systemd[1]: Starting keyboard-setup.service - Set the console keyboard layout...
+         Starting keyboard-setup.service - Set the console keyboard layout...
+
+[   24.796789] systemd[1]: kmod-static-nodes.service - Create List of Static Device Nodes skipped, unmet condition check ConditionFileNotEmpty=/lib/modules/6.18.63-t736-hdmi-v12/modules.devname
+[   24.827886] systemd[1]: Starting modprobe@configfs.service - Load Kernel Module configfs...
+         Starting modprobe@configfs.service - Load Kernel Module configfs...
+
+[   24.856659] systemd[1]: Starting modprobe@drm.service - Load Kernel Module drm...
+         Starting modprobe@drm.service - Load Kernel Module drm...
+
+[   24.884684] systemd[1]: Starting modprobe@efi_pstore.service - Load Kernel Module efi_pstore...
+         Starting modprobe@efi_pstore.servi… - Load Kernel Module efi_pstore...
+
+[   24.920584] systemd[1]: Starting modprobe@fuse.service - Load Kernel Module fuse...
+         Starting modprobe@fuse.service - Load Kernel Module fuse...
+
+[   24.945072] systemd[1]: systemd-hibernate-clear.service - Clear Stale Hibernate Storage Info skipped, unmet condition check ConditionPathExists=/sys/firmware/efi/efivars/HibernateLocation-8cf2644b-4b0b-428f-9387-6d876050dc67
+[   25.024917] systemd[1]: Starting systemd-journald.service - Journal Service...
+         Starting systemd-journald.service - Journal Service...
+
+[   25.054435] systemd[1]: Starting systemd-modules-load.service - Load Kernel Modules...
+         Starting systemd-modules-load.service - Load Kernel Modules...
+
+[   25.083792] systemd[1]: Starting systemd-network-generator.service - Generate Network Units from Kernel Command Line...
+         Starting systemd-network-generator…k Units from Kernel Command Line...
+
+[   25.112661] systemd[1]: systemd-pcrmachine.service - TPM PCR Machine ID Measurement skipped, unmet condition check ConditionSecurity=measured-uki
+[   25.134002] systemd[1]: Starting systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully...
+         Startin[   25.146437] systemd[1]: systemd-tpm2-setup-early.service - Early TPM SRK Setup skipped, unmet condition check ConditionSecurity=measured-uki
+g systemd-tmpfiles-setup-de… Device Nodes in /dev gracefully...
+
+[   25.168922] systemd[1]: Starting systemd-udev-load-credentials.service - Load udev Rules from Credentials...
+         Starting systemd-udev-load-credent…Load udev Rules from Credentials...
+
+[   25.204612] systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+         Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+
+[   25.232838] systemd[1]: Mounted dev-mqueue.mount - POSIX Message Queue File System.
+[  OK  ] Mounted dev-mqueue.mount - POSIX Message Queue File System.
+
+[   25.263074] systemd[1]: Mounted run-lock.mount - Legacy Locks Directory /run/lock.
+[  OK  ] Mounted run-lock.mount - Legacy Locks Directory /run/lock.
+
+[   25.286201] systemd[1]: Mounted sys-kernel-debug.mount - Kernel Debug File System.
+[  OK  ] Mounted sys-kernel-debug.mount - Kernel Debug File System.
+
+[   25.310822] systemd[1]: fake-hwclock-load.service: Deactivated successfully.
+[   25.319986] systemd[1]: Finished fake-hwclock-load.service - Restore the current clock.
+[  OK  ] Finished fake-hwclock-load.service - Restore the current clock.
+
+[   25.365380] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[   25.374548] systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+[  OK  ] Finished modprobe@drm.service - Load Kernel Module drm.
+
+[   25.398740] systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+[   25.407946] systemd[1]: Finished modprobe@efi_pstore.service - Load Kernel Module efi_pstore.
+[   25.410736] systemd-journald[241]: Collecting audit messages is disabled.
+[  OK  ] Finished modprobe@efi_pstore.service - Load Kernel Module efi_pstore.
+
+[   25.443579] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[   25.453137] systemd[1]: Finished modprobe@configfs.service - Load Kernel Module configfs.
+[  OK  ] Finished modprobe@configfs.service - Load Kernel Module configfs.
+
+[   25.479515] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[   25.488491] systemd[1]: Finished modprobe@fuse.service - Load Kernel Module fuse.
+[  OK  ] Finished modprobe@fuse.service - Load Kernel Module fuse.
+
+[   25.511397] systemd[1]: Finished systemd-modules-load.service - Load Kernel Modules.
+[  OK  ] Finished systemd-modules-load.service - Load Kernel Modules.
+
+[   25.537699] systemd[1]: Finished systemd-network-generator.service - Generate Network Units from Kernel Command Line.
+[  OK  ] Finished systemd-network-generator…ork Units from Kernel Command Line.
+
+[   25.576580] systemd[1]: Finished systemd-udev-load-credentials.service - Load udev Rules from Credentials.
+[  OK  ] Finished systemd-udev-load-credent…- Load udev Rules from Credentials.
+
+[   25.616747] systemd[1]: Finished systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully.
+[  OK  ] Finished systemd-tmpfiles-setup-de…ic Device Nodes in /dev gracefully.
+
+[   25.655936] systemd[1]: Reached target network-pre.target - Preparation for Network.
+[  OK  ] Reached target network-pre.target - Preparation for Network.
+
+[   25.691470] systemd[1]: Mounting sys-fs-fuse-connections.mount - FUSE Control File System...
+         Mounting sys-fs-fuse-connections.mount - FUSE Control File System...
+
+[   25.723099] systemd[1]: Mounting sys-kernel-config.mount - Kernel Configuration File System...
+         Mounting sys-kernel-config.mount - Kernel Configuration File System...
+
+[   25.748554] systemd[1]: systemd-fsck-root.service - File System Check on Root Device skipped, unmet condition check ConditionPathExists=!/run/initramfs/fsck-root
+[   25.770884] systemd[1]: Starting systemd-remount-fs.service - Remount Root and Kernel File Systems...
+         Starting systemd-remount-fs.servic…unt Root and Kernel File Systems...
+
+[   25.788458] systemd[1]: Starting systemd-sysctl.service - Apply Kernel Variables...
+
+         Starting systemd-sysctl.service - Apply Kernel Variables...
+
+[   25.861091] systemd[1]: Mounted sys-kernel-config.mount - Kernel Configuration File System.
+[  OK  ] Mounted sys-kernel-config.mount - Kernel Configuration File System.
+
+[   26.012973] EXT4-fs (mmcblk0p4): re-mounted 355deac2-71e0-4194-a1c2-f7d457b94137.
+[   26.023459] systemd[1]: Finished systemd-sysctl.service - Apply Kernel Variables.
+[  OK  ] Finished systemd-sysctl.service - Apply Kernel Variables.
+
+[   26.063682] systemd[1]: Started systemd-journald.service - Journal Service.
+[  OK  ] Started systemd-journald.service - Journal Service.
+
+[  OK  ] Finished systemd-remount-fs.servic…mount Root and Kernel File Systems.
+
+[  OK  ] Mounted sys-fs-fuse-connections.mount - FUSE Control File System.
+
+         Starting systemd-journal-flush.ser…sh Journal to Persistent Storage...
+
+         Starting systemd-random-seed.service - Load/Save OS Random Seed...
+
+         Starting systemd-sysusers.service - Create System Users...
+
+[  OK  ] Finished keyboard-setup.service - Set the console keyboard layout.
+
+[  OK  ] Finished systemd-sysusers.service - Create System Users.
+
+         Starting systemd-resolved.service - Network Name Resolution...
+
+         Starting systemd-tmpfiles-setup-de…eate Static Device Nodes in /dev...
+
+[  OK  ] Finished systemd-udev-trigger.service - Coldplug All udev Devices.
+
+[  OK  ] Finished systemd-tmpfiles-setup-de…Create Static Device Nodes in /dev.
+
+[  OK  ] Reached target local-fs-pre.target…Preparation for Local File Systems.
+
+[   27.236943] systemd-journald[241]: Received client request to flush runtime journal.
+         Starting systemd-udevd.service - R…ager for Device Events and Files...
+
+         Mounting tmp.mount - /tmp...
+
+[  OK  ] Mounted tmp.mount - /tmp.
+
+[  OK  ] Reached target local-fs.target - Local File Systems.
+
+[   27.660248] random: crng init done
+[  OK  ] Listening on systemd-sysext.socket… System Extension Image Management.
+
+         Starting armbian-zram-config.service - Armbian ZRAM config...
+
+         Starting console-setup.service - Set console font and keymap...
+
+[  OK  ] Finished systemd-random-seed.service - Load/Save OS Random Seed.
+
+[  OK  ] Finished systemd-journal-flush.ser…lush Journal to Persistent Storage.
+
+         Starting systemd-tmpfiles-setup.se…ate System Files and Directories...
+
+[  OK  ] Finished armbian-zram-config.service - Armbian ZRAM config.
+
+[  OK  ] Finished systemd-tmpfiles-setup.se…reate System Files and Directories.
+
+         Starting ldconfig.service - Rebuild Dynamic Linker Cache...
+
+         Starting systemd-journal-catalog-u…ervice - Rebuild Journal Catalog...
+
+[  OK  ] Started systemd-udevd.service - Ru…anager for Device Events and Files.
+
+         Starting systemd-networkd.service - Network Configuration...
+
+[  OK  ] Started systemd-resolved.service - Network Name Resolution.
+
+[  OK  ] Found device dev-ttyS0.device - /dev/ttyS0.
+
+[  OK  ] Reached target nss-lookup.target - Host and Network Name Lookups.
+
+[  OK  ] Finished systemd-journal-catalog-u….service - Rebuild Journal Catalog.
+
+[  OK  ] Started systemd-networkd.service - Network Configuration.
+
+[   33.299021] t736-dwmac 4500000.ethernet end0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[   33.420249] t736-dwmac 4500000.ethernet end0: PHY [stmmac-0:01] driver [RTL8211F Gigabit Ethernet] (irq=POLL)
+[   33.576286] t736-dwmac 4500000.ethernet end0: No Safety Features support found
+[   33.856907] t736-dwmac 4500000.ethernet end0: IEEE 1588-2008 Advanced Timestamp supported
+[   33.865153] t736-dwmac 4500000.ethernet end0: configuring for phy/rgmii-rxid link mode
+         Starting systemd-networkd-persiste…tent Storage in systemd-networkd...
+
+[  OK  ] Finished systemd-networkd-persiste…istent Storage in systemd-networkd.
+
+[  OK  ] Finished ldconfig.service - Rebuild Dynamic Linker Cache.
+
+         Starting systemd-update-done.service - Update is Completed...
+
+[  OK  ] Finished systemd-update-done.service - Update is Completed.
+
+[  OK  ] Reached target sysinit.target - System Initialization.
+
+[  OK  ] Started apt-daily.timer - Daily apt download activities.
+
+[  OK  ] Started apt-daily-upgrade.timer - …y apt upgrade and clean activities.
+
+[  OK  ] Started dpkg-db-backup.timer - Daily dpkg database backup timer.
+
+[  OK  ] Started e2scrub_all.timer - Period…Metadata Check for All Filesystems.
+
+[  OK  ] Started fake-hwclock-save.timer - Periodically save current clock.
+
+[  OK  ] Started fstrim.timer - Discard unused filesystem blocks once a week.
+
+[  OK  ] Started logrotate.timer - Daily rotation of log files.
+
+[  OK  ] Started man-db.timer - Daily man-db regeneration.
+
+[  OK  ] Started systemd-tmpfiles-clean.tim…y Cleanup of Temporary Directories.
+
+[  OK  ] Reached target timers.target - Timer Units.
+
+[  OK  ] Listening on dbus.socket - D-Bus System Message Bus Socket.
+
+[  OK  ] Listening on sshd-unix-local.socke…temd-ssh-generator, AF_UNIX Local).
+
+[  OK  ] Listening on systemd-hostnamed.socket - Hostname Service Socket.
+
+[  OK  ] Reached target sockets.target - Socket Units.
+
+         Starting armbian-hardware-monitor.…ce - Armbian hardware monitoring...
+
+         Starting armbian-hardware-optimize… - Armbian hardware optimization...
+
+         Starting armbian-led-state.service - Armbian leds state...
+
+[  OK  ] Finished armbian-hardware-monitor.…vice - Armbian hardware monitoring.
+
+[  OK  ] Finished armbian-led-state.service - Armbian leds state.
+
+[  OK  ] Finished armbian-hardware-optimize…ce - Armbian hardware optimization.
+
+[  OK  ] Reached target basic.target - Basic System.
+
+[  OK  ] Started cron.service - Regular background program processing daemon.
+
+         Starting dbus.service - D-Bus System Message Bus...
+
+         Starting e2scrub_reap.service - Re…ne ext4 Metadata Check Snapshots...
+
+         Starting rsyslog.service - System Logging Service...
+
+         Starting systemd-logind.service - User Login Management...
+
+[  OK  ] Started systemd-logind.service - User Login Management.
+
+[  OK  ] Started dbus.service - D-Bus System Message Bus.
+
+[  OK  ] Finished e2scrub_reap.service - Re…line ext4 Metadata Check Snapshots.
+
+         Starting wpa_supplicant.service - WPA supplicant...
+
+[  OK  ] Started rsyslog.service - System Logging Service.
+
+[   39.106902] systemd-journald[241]: Received client request to relinquish /var/log/journal/a078c9c19d134760a0c626f32fdc1256 access.
+[  OK  ] Started wpa_supplicant.service - WPA supplicant.
+
+[  OK  ] Reached target network.target - Network.
+
+         Starting ssh.service - OpenBSD Secure Shell server...
+
+         Starting systemd-user-sessions.service - Permit User Sessions...
+
+[  OK  ] Finished systemd-user-sessions.service - Permit User Sessions.
+
+[  OK  ] Started getty@tty1.service - Getty on tty1.
+
+[  OK  ] Started serial-getty@ttyS0.service - Serial Getty on ttyS0.
+
+[  OK  ] Reached target getty.target - Login Prompts.
+
+[  OK  ] Started ssh.service - OpenBSD Secure Shell server.
+
+[  OK  ] Reached target multi-user.target - Multi-User System.
+
+Armbian 26.11.0-trunk.128 trixie ttyS0 
+
+t736 login: [   47.460220] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[   47.488263] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx

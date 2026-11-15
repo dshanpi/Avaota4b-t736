@@ -1,0 +1,49 @@
+Subject: [PATCH] net: t736: enable RTL8211F receive delay
+
+MAC loopback passed but PHY loopback failed with CRC errors under plain
+RGMII. Of the four PHY delay combinations, RX-only passed all supported
+stmmac selftests, DHCP, ping and a 4 MiB bidirectional SHA256 round trip.
+Keep the tested MAC taps and express PHY RX delay with standard RGMII-RXID.
+
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c
+@@ -104,11 +104,13 @@
+ 	if (IS_ERR(plat))
+ 		return PTR_ERR(plat);
+ 	data->ahb_reset = plat->stmmac_ahb_rst;
+-	/* This initial path deliberately supports only this board's RGMII
+-	 * external-clock setup, with all delays applied at the MAC.
++	/* Board RGMII uses an external clock and MAC tap calibration. RXID
++	 * additionally requests the RTL8211F's 2 ns receive delay; validated
++	 * with PHY loopback and bidirectional traffic on this board.
+ 	 */
+-	if (plat->phy_interface != PHY_INTERFACE_MODE_RGMII)
+-		return dev_err_probe(dev, -EINVAL, "Only plain RGMII is implemented\n");
++	if (plat->phy_interface != PHY_INTERFACE_MODE_RGMII &&
++	    plat->phy_interface != PHY_INTERFACE_MODE_RGMII_RXID)
++		return dev_err_probe(dev, -EINVAL, "Only RGMII and RGMII-RXID are implemented\n");
+ 	data->cfg = devm_platform_ioremap_resource(pdev, 1);
+ 	if (IS_ERR(data->cfg))
+ 		return PTR_ERR(data->cfg);
+--- a/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
++++ b/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
+@@ -247,7 +247,7 @@
+ 		reset-names = "stmmaceth", "ahb";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gmac0_pins>;
+-		phy-mode = "rgmii";
++		phy-mode = "rgmii-rxid";
+ 		phy-handle = <&gmac0_phy>;
+ 		phy-supply = <&ph_supply>;
+ 		max-speed = <1000>;
+@@ -255,7 +255,9 @@
+ 		allwinner,rx-delay-taps = <10>;
+ 		snps,pbl = <8>;
+ 		snps,aal;
+-		/* The Realtek driver disables both PHY delays for plain rgmii. */
++		/* PHY RX delay is required in addition to the calibrated MAC taps.
++		 * PHY TX delay stays off; all four PHY-delay combinations tested.
++		 */
+ 		mdio {
+ 			compatible = "snps,dwmac-mdio";
+ 			#address-cells = <1>;

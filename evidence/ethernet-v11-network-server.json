@@ -1,0 +1,17 @@
+{
+  "bytes": 67108864,
+  "sha256": "33e6a6a99ed1fa731102bbec963d53079be1baa6040c372eb723931b6dfd42ad",
+  "requests": [
+    {
+      "method": "GET",
+      "client": "192.168.1.50"
+    },
+    {
+      "method": "POST",
+      "client": "192.168.1.50",
+      "bytes": 67108864,
+      "sha256": "33e6a6a99ed1fa731102bbec963d53079be1baa6040c372eb723931b6dfd42ad"
+    }
+  ],
+  "round_trip_match": true
+}

@@ -1,0 +1,17 @@
+{
+  "kernel_release": "6.18.63-t736-hdmi-v13",
+  "image_sha256": "944b8188a6a96b4dab129337d2c48cf378ed816bde0ceab06a3a50d6610fdf21",
+  "package_sha256": "bc2686f77ebee6a9aeeb040fc511c934fd5b4e0e6c25f83aa11ecec33b8f04da",
+  "dtb_sha256": "d81986f7035f252583ae30f861dc3e55675d296547f12704ba81678fd7fe03ed",
+  "compat_patch_sha256": "f286cb4cffd96eb7210cf4fb6fafc4274be1925ed57b0b8269bb22cc03e22351",
+  "fixed": [
+    "Provide upstream DMA framebuffer read/write and drawing ops unconditionally for CONFIG_FB",
+    "Select FB_DMAMEM_HELPERS",
+    "Set FBINFO_VIRTFB and framebuffer size",
+    "Register framebuffer after initial modeset and modeset locks released"
+  ],
+  "source_replay_files": 264,
+  "hardware_tested": true,
+  "reference_failure": "source-v5-late-fbcon-oops-20261114.log",
+  "hardware_acceptance": "evidence/source-v6-emmc-acceptance-20261114.json"
+}

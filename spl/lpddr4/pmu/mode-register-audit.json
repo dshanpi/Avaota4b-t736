@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "scope": "Controller-mediated diagnostic LPDDR4 MRR of immutable identity/geometry registers; not PHY training",
+  "implementation": "../mode_register.c",
+  "board_tested": true,
+  "board_test_scope": "Identity MRR under Linux with DRAM initialized by the existing legacy boot chain; not cold initialization",
+  "normal_boot_deployable": false,
+  "public_sources": [
+    {
+      "repository": "u-boot/u-boot",
+      "commit": "6487c50b8a40f2668ab98a892b9300ad5c181f38",
+      "path": "drivers/ddr/imx/imx8m/ddr_init.c",
+      "blob": "154e9d887465c736e16769a121970cef21864940",
+      "license": "GPL-2.0-or-later",
+      "facts": "lpddr4_mr_read: MRCTRL0 rank mask at bits5:4, read bit0, trigger bit31; MRCTRL1 MA at bits15:8; MRSTAT bit0 must be idle before commands. NXP receive monitor registers are NOT used on T736."
+    },
+    {
+      "repository": "ARM-software/arm-trusted-firmware",
+      "commit": "a881364e03b0c5b3a8c00f20ad6fbdda53a57031",
+      "path": "plat/imx/imx8m/ddr/dram.c",
+      "blob": "b5f697334e9187b656c5ffe62e469cb21227c9ed",
+      "license": "BSD-3-Clause",
+      "facts": "lpddr4_mr_read and dram_info_init read trained LP4 MRs without PHY mux changes, MR13 changes, or AXI disable. Polls MRSTAT after trigger, then an NXP-specific receive-valid bit. MSTR active ranks are bits25:24. This supports controller scheduling with initialized DRAM; it is not a T736 hardware test."
+    },
+    {
+      "repository": "ARM-software/arm-trusted-firmware",
+      "commit": "a881364e03b0c5b3a8c00f20ad6fbdda53a57031",
+      "path": "plat/imx/imx8m/ddr/lpddr4_dvfs.c",
+      "blob": "2f5f7b5c921c2586229fbc3bfa6690ba632f26e1",
+      "license": "BSD-3-Clause",
+      "facts": "Software MR transactions precede AXI port disable. STAT operating_mode1 is normal. MR13 bit7 FSP-OP, bit6 FSP-WR, bit3 VRCG are FSP/Vref control, not MRR enable."
+    }
+  ],
+  "read_only_sdk_register_reference": {
+    "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+    "symbol": "lp5_sw_mr_rd",
+    "binary_or_translated_code_linked": false,
+    "controller_base": "0x0a110000",
+    "channel_stride": "0x00400000",
+    "mrctrl0_offset": "0x080",
+    "mrctrl1_offset": "0x084",
+    "mrstat_offset": "0x090",
+    "transaction": "wait MRSTAT[0]=0; MRCTRL0=(1<<(rank+4))|1; MRCTRL1=MA<<8; MRCTRL0=(1<<(rank+4))|0x80000001; wait MRCTRL0[31]=0",
+    "type8_ch0_result": "0x0a02002c bits15:8",
+    "type8_ch1_result": "0x0a020040 bits7:0",
+    "other_type_ch1_result_not_supported": "0x0a020040 bits15:8",
+    "valid_or_error_bit": "None read by this helper; no independent T736 definition found",
+    "local_route_or_traffic_changes": "None in helper",
+    "caller_context": "save_phy_2d_training_result also reads PHY CSRs under mux0 and sets type8 MR13=0xc8 before MR14 readout, restoring MR13=0x80 and mux1 afterward. These are training/FSP/Vref operations, not part of the MRR helper; they are intentionally excluded from identity reads."
+  },
+  "implementation_guards": [
+    "MR5, MR6, MR8 only; no generic MRW or arbitrary-MMIO entry point",
+    "channel0/1, rank0/1; MSTR low type nibble2 and selected active-rank bit required",
+    "STAT normal required before command and after completion; nonnormal state rejected without mode changes",
+    "MRSTAT busy or MRCTRL0 trigger already set: return busy before writing",
+    "Exactly three writes restricted to channel MRCTRL0/MRCTRL1; MRCTRL0 read bit always1; only one rank selected",
+    "Both trigger-clear and busy-clear required; selected rank and read bit checked during completion",
+    "One global bounded wait1..10000us with callback failure handling; result unchanged on every failure",
+    "No timeout reset/retry/cleanup that could race a still-pending transaction",
+    "Returns raw32 plus board-type8 selected lane byte; does not infer manufacturer or memory density from an unvalidated response"
+  ],
+  "caller_prerequisites": [
+    "DRAM controller, DFI and PHY already initialized and trained",
+    "Caller owns and serializes software MR interface and prevents concurrent controller/DVFS reconfiguration",
+    "MMIO callbacks provide device memory ordering and report access failure",
+    "Repeat MR5/MR6/MR8 across ranks/channels and inspect raw values; idle completion alone cannot prove fresh receive latch"
+  ],
+  "not_established": [
+    "T736 receive-latch valid/error/clear bits and exact latching clock latency",
+    "Distinct physical rank/channel routing: all targets report identical manufacturer/revision/geometry",
+    "Alias-free capacity and DDR training quality",
+    "Full LP4 initialization, PHY CA executor, training firmware, and cold boot"
+  ],
+  "hardware_identity_observation_20261114": {
+    "log": "../../../evidence/lpddr4-mrr-hardware-20261114.log",
+    "analysis": "../../../evidence/lpddr4-mrr-hardware-analysis-20261114.json",
+    "analyzer": "analyze_mrr.py",
+    "unique_transactions": 24,
+    "duplicate_dmesg_records_excluded": 24,
+    "all_return_codes_zero": true,
+    "forward_reverse_results_match": true,
+    "all_requested_targets": {"MR5": "0xff", "MR6": "0x07", "MR8": "0x18"},
+    "raw_ch0": {"MR5": "0x0000ff00", "MR6": "0x00000700", "MR8": "0x00001800"},
+    "raw_ch1": {"MR5": "0x000000ff", "MR6": "0x00000007", "MR8": "0x00000018"},
+    "decode": "Micron; vendor revision ID1=7 (no exact part inference); MR8 S16/16n, x16 per channel, 16Gb per channel. Conditional on the already observed 2-channel/2-rank topology, 2*2*16Gb/8=8GiB.",
+    "freshness": "Distinct ff/07/18 values follow both MR request orders. This supports command-dependent fresh readout and excludes a single unchanged latch or simple one-request lag across these requests; it does not identify a receive-valid bit or independently distinguish identical physical ranks.",
+    "datasheet": "Micron z19m_embedded_lpddr4_lpddr4x.pdf Rev.G 04/2022, Tables35/37/41, pages55/56; source URL and independent U-Boot corroboration are in the analysis JSON.",
+    "normal_boot_deployable": false
+  }
+}

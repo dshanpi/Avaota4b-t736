@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-14",
+  "kind": "root-reviewed read-only raw result candidate probe",
+  "reason": "ZQCalCodeOvrPU/PD are override registers by NXP field names; zero readback alone does not establish that the live calibrator output is zero. Public A733 source reads two different halfwords at90040628/62a and converts each to(code<<8)|1.",
+  "source": {
+    "repository": "InfernoEmbedded/u-boot",
+    "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+    "path": "arch/arm/mach-sunxi/pmu/pmu_eye.c",
+    "lines": [
+      1244,
+      1279
+    ],
+    "header": "dwc_ddrphy_pmu_regs.h:371",
+    "operation": "Explicit volatile16-bit reads at PHY_REG_CLK_PHASE_DELAY90040628 plus0/2; no program data imported"
+  },
+  "candidate_host": [
+    "0x0a940628",
+    "0x0a94062a"
+  ],
+  "limits": "Logical20314/20315 identity and PU/PD semantics not independently named yet. Local MASTER halfword mapping is a hypothesis corroborated for adjacent20310/311/326/327; never infer complete bank alias. No hardware completion or calibration success claim.",
+  "experiment": "Existing guarded155-read state probe, replace only two raw companion observations with628/62a. Exact same source analog/context guards, Micro1, Mux0, clocks3,held controllers. No PHY/configuration writes; UART records each attempt. Stop without retry on any fault.",
+  "hardware_tested": false
+}

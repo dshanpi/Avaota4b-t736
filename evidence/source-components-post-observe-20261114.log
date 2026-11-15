@@ -1,0 +1,11 @@
+printf '\nSOURCE_COMPONENTS_POST_OBSERVE\n'; uname -r; lsmod | grep t736_lp4 || true; test ! -e /tmp/t736-transfer/lp4-timing-readonly-20261114.ko; echo TEMP_MODULE_ABSENT_RC=$?; systemctl --failed --no-pager --plain; cat /proc/sys/kernel/tainted; uptime
+
+SOURCE_COMPONENTS_POST_OBSERVE
+6.18.63-t736-armbian
+TEMP_MODULE_ABSENT_RC=0
+UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+4096
+ 20:50:13 up  5:02,  1 user,  load average: 0.06, 0.02, 0.00
+root@t736:~# 

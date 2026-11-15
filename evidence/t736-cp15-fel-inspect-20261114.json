@@ -1,0 +1,23 @@
+{
+  "kind": "fixed-t736-cp15-sram-probe",
+  "hardware_actions_started": false,
+  "storage_accessed": false,
+  "pmic_accessed": false,
+  "events": [],
+  "usb": {
+    "bus": 1,
+    "address": 18,
+    "ports": [
+      10,
+      2
+    ]
+  },
+  "external_preflight_attestation": {
+    "pnp_location": "pciroot(0)#pci(1400)#usbroot(0)#usb(10)#usb(2)",
+    "lynx_idle": true,
+    "fresh_fel": true
+  },
+  "success": false,
+  "error": "NotImplementedError: Operation not supported or unimplemented on this platform",
+  "automatic_retry": false
+}

@@ -1,0 +1,26 @@
+Subject: [PATCH] arm64: dts: t736: reset the MDIO bus before PHY discovery
+
+PH16 must be deasserted before the first PHY ID read. Child-level reset
+acquisition happens after that read. Use the standard bus reset with the
+board pulse and settling delays; keep PHY identification on the wire.
+
+--- a/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
++++ b/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
+@@ -259,11 +259,14 @@
+ 			compatible = "snps,dwmac-mdio";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			/* Release the sole PHY before reading its ID. A child reset
++			 * is only acquired after discovery and cannot bootstrap it.
++			 */
++			reset-gpios = <&pio 7 16 1>;
++			reset-delay-us = <10000>;
++			reset-post-delay-us = <150000>;
+ 			gmac0_phy: ethernet-phy@1 {
+ 				reg = <1>;
+-				reset-gpios = <&pio 7 16 1>;
+-				reset-assert-us = <10000>;
+-				reset-deassert-us = <150000>;
+ 			};
+ 		};
+ 	};

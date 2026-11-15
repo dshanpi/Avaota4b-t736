@@ -1,0 +1,13 @@
+gzip -dc /tmp/t736-transfer/ddr_runtime_check.gz > /root/.t736-ddr-runtime-check; printf "d5c774d5d036bcf6e512ebd4222f2461ec402374bcb2b1e3695f1f858a2ad5f8  /root/.t736-ddr-runtime-check\n" | sha256sum -c - && chmod 700 /root/.t736-ddr-runtime-check && /root/.t736-ddr-runtime-check; printf "MEMORY_RC=%s\n" "$?"; dd if=/dev/urandom of=/root/.t736-v3-fscheck.bin bs=1M count=16 conv=fsync status=none && sha256sum /root/.t736-v3-fscheck.bin && dd if=/root/.t736-v3-fscheck.bin bs=1M iflag=direct status=none | sha256sum; printf "V3_CHECK_END\n"
+
+/root/.t736-ddr-runtime-check: OK
+PASS 1: 256MiB allocated memory verified
+PASS 2: 256MiB allocated memory verified
+PASS 3: 256MiB allocated memory verified
+PASS 4: 256MiB allocated memory verified
+DDR_RUNTIME_256M_FOUR_PATTERNS_OK
+MEMORY_RC=0
+0bd54c02f1fb6eba20a356d60f24e94e50c068be2b994bd9f06c5547c091ee04  /root/.t736-v3-fscheck.bin
+0bd54c02f1fb6eba20a356d60f24e94e50c068be2b994bd9f06c5547c091ee04  -
+V3_CHECK_END
+root@t736:~# 

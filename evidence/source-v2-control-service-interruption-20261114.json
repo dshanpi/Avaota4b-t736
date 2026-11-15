@@ -1,0 +1,29 @@
+{
+  "observed_utc": "2026-11-14T09:32:08.621464+00:00",
+  "task_id": "flash-1794648459974727100",
+  "last_reported_state": "running",
+  "last_reported_phase": "raw_bootstrap_vendor_fes",
+  "last_reported_transferred_bytes": 0,
+  "last_reported_verify_state": "pending",
+  "final_task_outcome": "unavailable_after_LYNX_process_exit",
+  "original_mcp_port": 8771,
+  "original_service_connected": false,
+  "replacement_process_observed": "openixsuit-app.exe",
+  "last_verified_flash": {
+    "version": "source-v1",
+    "task_id": "flash-1794647810121298200",
+    "bytes": 8589934592,
+    "verify_state": "success"
+  },
+  "source_v2_download_verified": true,
+  "source_v2_flash_verified": false,
+  "source_emmc_cold_boot_attempted_by_agent": false,
+  "next_required": "Restore board-scoped MCP service and re-observe USB/serial/task state before any hardware action",
+  "resolved_control_service": true,
+  "interrupted_task_confirmed_failed": true,
+  "interrupted_task_reported_transferred_bytes": 0,
+  "resume_evidence": "source-v2-resume-lynx_workbench_task_status-20261114.json",
+  "manual_fel_restored": true,
+  "manual_fel_evidence": "source-manual-fel-success-20261114.json",
+  "resumed_flash_task": "flash-1794649744466260200"
+}

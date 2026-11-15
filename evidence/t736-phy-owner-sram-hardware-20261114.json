@@ -1,0 +1,10 @@
+{
+  "kind": "fixed-t736-cp15-sram-probe",
+  "success": false,
+  "error": "usbUDisc worker exceeded its 45-second deadline",
+  "worker": "termination not confirmed: TimeoutExpired: Command '['C:\\\\Python313\\\\python.exe', 'G:\\\\codex\\\\t736\\\\analysis\\\\t736_phy_owner_fel_probe.py', '--run', '--pnp-location', 'pciroot(0)#pci(1400)#usbroot(0)#usb(10)#usb(2)', '--lynx-idle', '--fresh-fel', '--_io-worker', 'b8d5810f928a5a7cf3fd5394c8f965cd']' timed out after 2 seconds",
+  "hardware_actions_started": null,
+  "storage_accessed": false,
+  "pmic_accessed": false,
+  "automatic_retry": false
+}

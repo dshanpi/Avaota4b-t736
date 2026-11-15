@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-14",
+  "authorization": "允许厂家 DDR 库，先打通启动",
+  "route": "FEL -> source SRAM host + pinned vendor libdram -> source ARM32/AArch64 handoff -> source TF-A -> source U-Boot -> installed Linux/Armbian",
+  "ddr_runs": [
+    {
+      "file": "vendor-ddr-v1-hardware-exec-20261114.json",
+      "success": true
+    },
+    {
+      "file": "vendor-ddr-v1-before-handoff-v2-20261114.json",
+      "success": true
+    },
+    {
+      "file": "vendor-ddr-maintenance-20261114.json",
+      "success": true
+    }
+  ],
+  "dram_mib": 8192,
+  "lpddr4_clock_mhz": 1800,
+  "aarch32_memory_test": {
+    "windows": 8,
+    "bytes_per_window": 65536,
+    "patterns": 4,
+    "word32_checks": 524288,
+    "runs": 3
+  },
+  "aarch64_memory_test": {
+    "windows": 8,
+    "bytes_per_window": 65536,
+    "patterns": 4,
+    "word64_checks": 262144,
+    "includes_above_4g_and_last_64k": true
+  },
+  "trained_parameters": {
+    "para2": "0x20001001",
+    "tpr13": "0x6063",
+    "mr1": "0xfc",
+    "mr2": "0x3f"
+  },
+  "tfa": "v2.15 debug, 7d322909",
+  "uboot": "2026.10 source candidate",
+  "linux": "6.18.63-t736-armbian #11",
+  "armbian": "26.11.0-trunk.128 trixie",
+  "cpus_online_from_boot_log": 8,
+  "rootfs": "/dev/mmcblk0p4 mounted read/write",
+  "systemd_multi_user_target": true,
+  "serial_login_prompt": true,
+  "authenticated_runtime_validation": true,
+  "emmc_independent_boot_image_written": true,
+  "cold_boot_acceptance": false,
+  "recovery_caveat": "FEL entry used existing vendor recovery boot via dedicated power cycle/efex. Early board power/pad state is not yet proven independent in cold boot. New DDR was initialized and tested by the source host plus authorized library.",
+  "first_handoff_attempt": "Images verified but no UART outcome; recovered by dedicated board method. Second instrumented handoff with complete execute status succeeded; exact cause of first attempt unconfirmed.",
+  "evidence": [
+    "source-boot-v2-serial-20261114.log",
+    "source-boot-v2-emmc-20261114.log",
+    "source-boot-v2-armbian-20261114.log",
+    "source-boot-v2-upload-20261114.json"
+  ],
+  "runtime_validation": {
+    "evidence": [
+      "source-root-login-20261114.log",
+      "source-runtime-preflight-20261114.log",
+      "source-ddr-runtime-memory-20261114.log",
+      "source-runtime-storage-services-20261114.log"
+    ],
+    "cpus_online": 8,
+    "memory_available_total_mib": 7749,
+    "allocated_memory_patterns": {
+      "mib": 256,
+      "patterns": 4,
+      "pass": true
+    },
+    "filesystem_fsync_direct_read_mib": 16,
+    "failed_systemd_units": 0,
+    "kernel_taint": 0,
+    "ethernet_mbps": 100,
+    "duplex": "full",
+    "boot_origin": "FEL/RAM source bootstrap"
+  },
+  "emmc_write": {
+    "version": "source-v1",
+    "task": "flash-1794647810121298200",
+    "verified": true,
+    "cold_boot_attempted": false,
+    "superseded_before_first_boot": "source-v2 repairs fixed efex ROM entry",
+    "evidence": "source-raw-v1-flash-uncontended-status-20261114.json"
+  }
+}

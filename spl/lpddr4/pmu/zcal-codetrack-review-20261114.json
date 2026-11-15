@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-14",
+  "baseline": "evidence/t736-phy-zcal-inflight-sram-hardware-20261114.json",
+  "raw_read_evidence": "evidence/t736-phy-zcal-rawcode-sram-hardware-20261114.json",
+  "source_review": "zcal-rawcode-read-review-20261114.json",
+  "kind": "root-reviewed raw candidate lifecycle observation",
+  "design": "Keep132-event inflight sequence and11 writes; add raw20314/20315 observations before first write, after reset1, while Run1 after100us, and after restoration.140events/11writes. No raw candidate write. Both registers observedff in prior155-read probe; determine whether reset/run changes them.",
+  "limits": "Raw observations only; not proof of PU/PD mapping, valid impedance, completion or working clock. Stop first failure, no cleanup."
+}

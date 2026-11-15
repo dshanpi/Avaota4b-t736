@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-14",
+  "kind": "target-hardware-mismatch-and-recovery-design-audit",
+  "runtime_changes": false,
+  "hardware_actions_by_this_agent": false,
+  "hardware_evidence": "evidence/t736-controller-static-sram-hardware-20261114.json",
+  "observation": {
+    "completed_events": 78,
+    "completed_writes": 6,
+    "component_stage": 4,
+    "component_result": -5,
+    "last_address": "0x0a110d04",
+    "write_value": "0x00580000",
+    "read_value": "0x00000000",
+    "successful_writes": ["CH0 SWCTL=0", "CH1 SWCTL=0", "CH0 SWCTLSTATIC=1", "CH1 SWCTLSTATIC=1", "CH0 INITTMG0=0x0001036f"],
+    "transaction_masks": {"swctl_maybe_open": 3, "static_maybe_open": 3},
+    "no_cleanup": true,
+    "meaning": "The attempted INITTMG1 update did not latch/read back in this context. Neither a write bus error nor a read-only implementation is uniquely established. The passing neighboring INITTMG0 write does not establish INITTMG1 compatibility."
+  },
+  "target_host_reinspection": {
+    "file": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+    "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+    "method": "Read-only disassembly of named ARM host controller functions only; no PMU/PIE or host-generated instruction programs decoded, copied or translated",
+    "symbols": ["mctl_com_init", "mctl_com_set_controller_config", "mctl_com_set_channel_timing", "mctl_com_set_channel_timing_after_phy", "mctl_com_set_controller_after_phy", "mctl_sys_init"],
+    "positive_facts": [
+      "mctl_com_set_channel_timing+0x08 loads literal+0xe8=0x0a110d00; +0x12 forms channel<<22 and +0x1c adds it; +0x1e stores the INITTMG0 pointer in stack slot192.",
+      "At+0x810/+0x812 that pointer is read; +0x85c reloads it and +0x86e writes offset0. This host timing path establishes INITTMG0 only, not INITTMG1 at pointer+4.",
+      "The apparent d04 accesses at+0x8c8/+0x8ea explicitly use base0x0a100000+channel stride constructed at+0x8c4. They are TIMING RANKTMG0, not CTL INITTMG1.",
+      "mctl_com_set_channel_timing_after_phy likewise constructs base0x0a100000+stride at+0x1da before its d04 reads/writes. It does not corroborate CTL INITTMG1."
+    ],
+    "negative_finding": "No direct0x0a110d04/0x0a510d04 literal or CTL+d04 use was identified in the listed functions. This limited host audit does not prove the register is absent from hardware or never accessed indirectly elsewhere."
+  },
+  "independent_manual": {
+    "source": "evidence/independent-reference/rockchip-rk3576-trm-part2-v1.2.pdf",
+    "sha256": "8a16671d228ee206012d9a3b8a976aec113f7ea2ea45fcabe8565b2d85e4f6cf",
+    "printed_pages": [672, 673],
+    "fact": "RK3576 INITTMG1 offset10d04 defines dram_rstn_x1024 bits25:16 RW Static, with a Synopsys PHY minimum1. SWCTLSTATIC bit0 permits static programming outside reset.",
+    "target_limit": "These are a different integration's register semantics. The T736 mismatch overrides the assumption that this field is writable through that sequence. Do not shift the value, write a smaller value or assert a new reset merely to force the expected manual behavior."
+  },
+  "smallest_next_observation": {
+    "writes": 0,
+    "fixed_reads": ["Both CH SWCTL/SWSTAT/SWCTLSTATIC", "Both CH INITTMG0/INITTMG1", "Previously validated controller held-state, zero common ports and PHY owner/Micro/MemReset/ZCal guards"],
+    "expected_partial_state": "CH0 INITTMG0=1036f, CH1 INITTMG0=2004e, both INITTMG1=0; both SWCTL/SWSTAT0 and SWCTLSTATIC1 if the already observed transaction state persists",
+    "implementation_boundary": "A dedicated failed-checkpoint reader must admit the known open state explicitly. Existing baseline guards expecting closed transactions must not be bypassed or silently weakened.",
+    "failure": "Record the first mismatch or bus fault, stop; no writes or speculative cleanup."
+  },
+  "recovery_recommendation": {
+    "preferred": "After preserving the failed checkpoint evidence, use the already established cold power/recovery route, then rerun only validated source stages. This resets both open transactions without assuming a software close is safe after incomplete configuration.",
+    "no_automatic_rollback": true,
+    "alternative_condition": "Any in-place rollback/close requires a separate exact-state recovery contract and explicit root review; it is not part of the failed component.",
+    "accepted_root_decision": "Root chose a separately authored exact-checkpoint rollback. Independent review of spl/controller_static_rollback_probe and a separately compiled ASan/UBSan run passed:58 exact failed-state reads before mutation,5 fixed writes,58 final baseline reads,128/134 total events, bounded timer/SWSTAT checks, no INITTMG1/PHY/MR/DFI writes and no repeat on restored state. Hardware execution/result belongs to root.",
+    "reviewed_rollback_binary_sha256": "e58e62e6dcdc7b07ddd3c93c87fb4e7c0846e2a8d58cc20798c1560ab727c433",
+    "root_hardware_result": "Root reports rollback passed128events5writes,pre252ticks,settle487ticks,poll_waits0,all58 final guards exact. Both INITTMG0=2004e,INITTMG1=0,SWCTL/SWSTAT1,SWCTLSTATIC0;PHY/MR/DFI unchanged."
+  },
+  "next_configuration_boundary": {
+    "accepted_root_scope": "Build a separately reviewed20-write component/experiment that omits both INITTMG1 writes and treats each readback0 as an observation/guard. Preserve the proven existing64 writes and all other configuration masks. Implemented separately as controller_static_v2.c; see controller-static-v2-contract-20261114.json.",
+    "not_permission_to_ignore_failure": "The original22-write experiment remains failed. A20-write transaction has a narrower contract and fresh tests/whitelist/build evidence; it must run from a recovered baseline.",
+    "reset_timing": "Do not claim hardware INITTMG1 supplies tINIT1. A future source DRAM reset sequence must own RESET_n and measure its low duration using the SRAM timer, with separate post-release tINIT3/CKE/tINIT5 qualification. The earlier MemResetL2 plus measured200us does not establish the later device initialization events.",
+    "success_scope": "Configured fields only; no DDR reset completion, training, memory usability or Armbian boot claim."
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-11-14",
+  "scope": "Type9 PHY pad impedance calibration; distinct from LPDDR4 DRAM-device ZQ commands and CA/DQS training",
+  "complete_t736_interface": false,
+  "runtime_implementation_added": true,
+  "runtime_scope": "Standalone explicit-call observation and timed experimental trigger only; not integrated into normal boot and not a calibration-success implementation",
+  "board_tested": false,
+  "vendor_executable_payload_used": false,
+  "radxa_sources_used": false,
+  "primary_sources": [
+    {
+      "repository": "nxp-imx/imx-sm",
+      "commit": "eec232878ab7dd460f5a8f3767d39dc7e9412efa",
+      "path": "drivers/ddr/fsl_ddr.c",
+      "git_blob": "c855e02301e157c73d92eeac3c74510a580fc328",
+      "license": "BSD-3-Clause",
+      "function": "DDR_PhyInit",
+      "lines": [413, 497],
+      "url": "https://github.com/nxp-imx/imx-sm/blob/eec232878ab7dd460f5a8f3767d39dc7e9412efa/drivers/ddr/fsl_ddr.c#L413",
+      "context": "Retention restoration with previously trained CSRs and saved impedance codes. This is not a cold-boot implementation."
+    },
+    {
+      "repository": "nxp-imx/imx-oei",
+      "commit": "9aea3350e643da86081c9dfaf3a6e1a84a583bfd",
+      "path": "oei/ddr/helper.c",
+      "git_blob": "719bd3bc2bed83329dfc7cc4a96f5000f22ade64",
+      "license": "BSD-3-Clause",
+      "lines": [337, 343],
+      "url": "https://github.com/nxp-imx/imx-oei/blob/9aea3350e643da86081c9dfaf3a6e1a84a583bfd/oei/ddr/helper.c#L337",
+      "finding": "Saves PU/PD calibration words by reading logical CSR 0x20326/0x20327 after training."
+    },
+    {
+      "repository": "SiMa-ai/sima-ai-uboot",
+      "commit": "5a026adbe2a54aeaae5dc50e1852d4b5c1884640",
+      "path": "arch/arm/mach-sima/qb_init_ddr_modalix.c",
+      "git_blob": "a8e82ed8734ab07d728da0ff23975bf943d6dc6c",
+      "license": "GPL-2.0-or-later OR MIT",
+      "lines": [4405, 4406],
+      "url": "https://github.com/SiMa-ai/sima-ai-uboot/blob/5a026adbe2a54aeaae5dc50e1852d4b5c1884640/arch/arm/mach-sima/qb_init_ddr_modalix.c#L4405",
+      "finding": "Independent host-register comments name 0x20310 ZCalReset and 0x20311 ZCalRun. No executable table, trained-CSR array or PIE program was imported or translated."
+    }
+  ],
+  "nxp_logical_csr_contract": [
+    {"csr": "0xd0000", "fact": "0 enables host APB access; 1 releases access in the inspected retention path."},
+    {"csr": "0xc0080", "fact": "3 enables Hclk and Ucclk; 2 disables Ucclk while retaining Hclk in the inspected path."},
+    {"csr": "0x20326", "name": "ZQCalCodeOvrPU", "fact": "bit0 override enable; bits7:1 reserved zero; bits15:8 pull-up impedance code. OEI saves the full read word; SM restores (saved & 0xff00) | 1, then clears override."},
+    {"csr": "0x20327", "name": "ZQCalCodeOvrPD", "fact": "bit0 override enable; bits7:1 reserved zero; bits15:8 pull-down impedance code. OEI saves the full read word; SM restores (saved & 0xff00) | 1, then clears override."},
+    {"csr": "0x20310", "name": "ZCalReset", "fact": "1 forces impedance calibration FSM idle; 0 releases reset."},
+    {"csr": "0x20311", "name": "ZCalRun", "fact": "Write 1 triggers impedance calibration sequence. Pulse/level and self-clearing semantics are not specified."},
+    {"csr": "0x20090", "name": "PwrOkDlyCtrl in NXP comment", "fact": "Set to 1 before starting calibration in the retention path. SiMa names this PorControl; do not infer a complete bitfield definition."},
+    {"csr": "0x2008b", "name": "PState", "fact": "Select state matching DfiClk; NXP retention path uses state 0."},
+    {"csr": "0x20004", "name": "ZcalDfiClkTicksPer1uS_p0", "fact": "bits10:0 count DfiClk cycles per microsecond; NXP retention path updates this when NumPState > 2. Its ceil(pstate_freq[0]/8) expression is platform-specific and is not a T736 clock formula."}
+  ],
+  "completion_evidence": {
+    "nxp_wait_us": 35,
+    "busy_register": null,
+    "done_register": null,
+    "error_register": null,
+    "freshness_handshake": null,
+    "interpretation": "NXP waits a fixed 35 microseconds after triggering a retention calibration. It does not poll status, check new codes, or report a calibration error. This establishes a public timed host sequence, not verified T736 cold calibration or a bounded success/failure contract."
+  },
+  "diagnostic_component": {
+    "files": ["spl/lpddr4/phy_calibration_diag.c", "spl/lpddr4/phy_calibration_diag.h"],
+    "default": "No automatic execution or normal-boot integration; caller first uses the separate read-only observation API.",
+    "observation_return": "Positive OBSERVED_ONLY=1, only confirms completion of diagnostic register reads.",
+    "trigger_return": "Positive TIMED_ONLY=2, only confirms the callback sequence and requested wait completed.",
+    "success_claim": false,
+    "reset_hold_us": 1,
+    "reset_hold_basis": "Locally chosen minimum hold for a controlled diagnostic, not a documented target minimum pulse width.",
+    "run_wait_range_us": [35, 10000],
+    "run_deassert_basis": "Public InfernoEmbedded LP5 pmu_clock.c::pmu_phy_clk_phase_toggle_pulse deasserts the matching ARC run register after its wait. This is an experiment boundary step, never cleanup after a failed operation.",
+    "preconditions": ["Explicit SRAM-only/exclusive-cold-context acknowledgement", "Explicit clock and analog-setup review acknowledgement", "Explicit candidate-address mapping review acknowledgement", "Host MuxSel=0", "PMU reset and stall asserted", "Timed trigger additionally requires NXP Hclk/Ucclk candidate value 3, reset value 0 or 1, run value 0, and PU/PD overrides disabled"],
+    "failures": "Stop at first failing callback, no retry or cleanup writes. Report attempted/completed writes separately because an error callback may already have affected hardware. Caller must use the controlled power-cycle path before another experiment.",
+    "not_modified": ["Voltages", "Analog range/resistor selection", "PState", "DfiClk tick count", "Clock gates", "PU/PD override", "Unknown 0x20303/0x2030d/0x20320 companion fields"]
+  },
+  "t736_address_candidates": {
+    "mapping_hypothesis": "host = 0x0a900000 + 2 * logical_csr; ARC = 0x90000000 + 2 * logical_csr",
+    "registers": [
+      {"csr": "0x20310", "host": "0x0a940620", "arc": "0x90040620", "name_candidate": "ZCalReset"},
+      {"csr": "0x20311", "host": "0x0a940622", "arc": "0x90040622", "name_candidate": "ZCalRun"},
+      {"csr": "0x20326", "host": "0x0a94064c", "arc": "0x9004064c", "name_candidate": "ZQCalCodeOvrPU"},
+      {"csr": "0x20327", "host": "0x0a94064e", "arc": "0x9004064e", "name_candidate": "ZQCalCodeOvrPD"}
+    ],
+    "hardware_semantics_confirmed": false,
+    "mapping_evidence_limit": "The SDK directly corroborates adjacent MASTER-region halfword addresses, not these four exact CSR identities. Public A733 host source independently defines PHY APB base 0x0a900000; NXP provides the logical CSR identities and the public A733 ARC helper provides matching local byte offsets for reset/run. This is sufficient to formulate an explicitly reviewed experiment, not to claim T736 register semantics are proved.",
+    "public_a733_host_source": {"repository": "InfernoEmbedded/u-boot", "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823", "path": "arch/arm/mach-sunxi/dram_sun60i_a733.c", "git_blob": "e228c7fe1d8d8a1da4635d1c8525da6c8cef4cce", "fact": "Line96 defines SUNXI_DRAM_PHY_APB_BASE=0x0a900000. No firmware/PIE/init table content from this file was imported."},
+    "cross_check": "Public InfernoEmbedded LP5 pmu_clock.c::pmu_phy_clk_phase_toggle_pulse writes ARC 0x90040620=1, then 0, then 0x90040622=1, waits, and writes 0x90040622=0. NXP names suggest this helper is impedance calibration despite its phase/PLL comment. This is address/sequence corroboration, not LP4 compatibility proof.",
+    "public_lp5_source_commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+    "unidentified_lp5_companion_writes": ["0x90040606 bit4", "0x9004061a pulse", "0x90040640 pulse"],
+    "delay_warning": "The LP5 helper passes 0x07bfa480 to a scaled delay helper. Its name does not make the argument an ordinary microsecond count; it was not used to derive a T736 wait."
+  },
+  "sdk_host_reference": {
+    "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+    "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+    "symbols_inspected": ["ddrphy_phyinit_C_initPhyConfig", "ddrphy_phyinit_C_initPhyConfigPsLoop", "mctl_phy_init"],
+    "facts": [
+      "C_initPhyConfig uses STRH accesses to host calibration-region registers 0x0a940600, 0x0a940602, 0x0a940604, 0x0a940606, 0x0a940616 and 0x0a940650. Their full bitfields are not established.",
+      "Limited direct-literal/host-code inspection did not independently identify ZCalReset/Run or PU/PD result accesses. This is not an exhaustive proof that no computed access exists.",
+      "No PMU IMEM, private DMEM command table or PIE program was decoded, imported, translated or used as a runtime implementation."
+    ]
+  },
+  "older_phy_sources_not_transplanted": [
+    {
+      "repository": "ARM-software/arm-trusted-firmware",
+      "commit": "a881364e03b0c5b3a8c00f20ad6fbdda53a57031",
+      "path": "drivers/st/ddr/phy/phyinit/include/ddrphy_csr_all_cdefines.h",
+      "git_blob": "99a8c4cc72ef6b2808f3205709ed84885edfd07e",
+      "fact": "Older layout: CalRate=0x88 (CalRun bit4, CalOnce bit5), CalZap=0x89 bit0, CalBusy=0x97 bit0. These are not corroborated Type9 offsets and must not be substituted for missing Type9 completion status."
+    },
+    {
+      "repository": "elvees/ddrinit",
+      "commit": "12ca43ab6964dece88c464f104af4d861a259a6b",
+      "path": "include/regs.h",
+      "git_blob": "17f4ff26ce54d269791dee1768f326a60ed4534b",
+      "fact": "Public older PHY register definitions and host calibration configuration do not close the Type9 ZCal status contract; no fields transplanted."
+    }
+  ],
+  "remaining_requirements": [
+    "Corroborate the T736 PHY revision, logical CSR mapping and reset/run/result semantics independently of a vendor executable payload.",
+    "Establish cold-state clock/power/reset prerequisites and required analog configuration, including DfiClk ticks, resistor/range selection and result-latch control.",
+    "Define either a documented completion/error/freshness protocol or a target-specific worst-case timed completion contract with electrical-result validation; fixed waiting alone must not return verified success.",
+    "Establish safe abort/reset handling and exclusive SRAM execution with no live DRAM access during calibration.",
+    "Validate cold-source initialization and independently measured memory/training margins before integrating a normal-boot image."
+  ]
+}

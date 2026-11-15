@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"action\":\"cycle\",\"deviceId\":9,\"response\":\"state=on;source=commanded;adapter=lynx_power;controllerIndex=0;channels=7;activeHigh=true\",\"state\":\"on\"}"
+    }
+  ],
+  "isError": false
+}

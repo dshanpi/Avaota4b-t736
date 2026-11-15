@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-14",
+  "scope": "Minimal host ACSM interface and explicit LP4 execution boundary",
+  "lp4_wire_encoder_implemented": true,
+  "lp4_hardware_executor_implemented": false,
+  "host_control_snapshot_implemented": true,
+  "vendor_instruction_arrays_used": false,
+  "radxa_sources_used": false,
+  "clean_room_claim": false,
+  "sources": {
+    "public_source": {
+      "repository": "InfernoEmbedded/u-boot",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+      "files": ["pmu_clock.c", "pmu_train.c", "dwc_ddrphy_pmu_regs.h"],
+      "local": "sources/audit/a733-pmu-source-2f5e45fa",
+      "use": "Register-access call relationships and bit packing; no source functions or executable payload copied into this snapshot"
+    },
+    "independent_debug_names": {
+      "repository": "SiMa-ai/sima-ai-uboot",
+      "commit": "5a026adbe2a54aeaae5dc50e1852d4b5c1884640",
+      "path": "arch/arm/mach-sima/ddr_phy_debug_modalix.c",
+      "blob": "b2a3c999c3a7ccc5044f453cb9a818e307b5c767",
+      "facts": [
+        "Debug ID 0x00240000 names acsm_poll_done(), corroborating ACSM completion rather than PLL lock for the matching public-source assertion path.",
+        "Debug text names separate LP4 CA sequences, LP5Mode programmed to LP4, MR13 CBT, and per-channel/per-DBYTE MRR results. These names do not specify slot timing or capture register fields."
+      ]
+    },
+    "host_names": "evidence/sima-type9-host-csr-map-20261114.json",
+    "wire_truth_tables": "spl/lpddr4/pmu/command-source-manifest.json",
+    "earlier_exact_packing_audit": "spl/lpddr4/pmu/sequencer-audit.json",
+    "direct_pin_boundary": "spl/lpddr4/pmu/cold-reset-hostmux-audit-20261114.json"
+  },
+  "fixed_snapshot": {
+    "source": "spl/phy_acsm_state_probe/probe.c",
+    "test": "spl/phy_acsm_state_probe/test_probe.c",
+    "builder": "tools/build_t736_phy_acsm_state_probe.py",
+    "binary": "build/phy-acsm-state-probe/t736-phy-acsm-state-probe.bin",
+    "sha256": "11f5323d6542a41cb056a2f9aa589a98c8d190b760a2fabb5d4a02bd076f5967",
+    "bytes": 3232,
+    "stack_frame_sum_bytes": 100,
+    "entry": "0x48c00",
+    "report": "0x4e000",
+    "report_bytes": 1968,
+    "report_magic": "0x5437414f",
+    "fault_record": "0x4ed00",
+    "fault_record_bytes": 128,
+    "events": "76 exact held-state preflight reads, 5 raw candidate reads, 76 final guards; 157 total",
+    "candidate_event_indices_zero_based": [76, 77, 78, 79, 80],
+    "candidates": [
+      {"host": "0x0a940040", "arc_source": "0x90040040", "role_candidate": "launch; source writes1 before polling,0 after completion"},
+      {"host": "0x0a940042", "arc_source": "0x90040042", "role_candidate": "completion; source polls nonzero"},
+      {"host": "0x0a940044", "arc_source": "0x90040044", "role_candidate": "start slot; source sets0 when resetting software markers"},
+      {"host": "0x0a940046", "arc_source": "0x90040046", "role_candidate": "stop slot; source sets(marker/4)-1"},
+      {"host": "0x0a94004e", "arc_source": "0x9004004e", "role_candidate": "timing/control argument"}
+    ],
+    "mapping_qualification": "These five host addresses are fixed experimental mapping hypotheses. They are not independently identified by the SiMa host name list, and nearby corroborated addresses do not establish a global ARC/host alias.",
+    "access_qualification": "16-bit loads only. Unknown clear-on-read or other side effects are not ruled out. SRAM fault record and UART progress make the attempted address observable.",
+    "interpretation": "Success means the fixed observation completed with held-state guards unchanged. Any five values, including all0 or allffff, are retained raw and do not prove readiness, completion, reset isolation or LP4 command functionality.",
+    "no_access": ["command RAM", "PIE", "PMU IMEM/DMEM", "DRAM contents", "storage", "PMIC"],
+    "mmio_writes_except_uart": 0,
+    "validation": "ASan/UBSan PASS; independent five-address test fixture; 157 UART failures; 152 pre/post guard drift positions; clock high-bit stability; zero/ffff raw values; explicit command-RAM and write rejection; ARM no undefined symbols; no unaligned access",
+    "independent_review": "spl_early independently checked source, linker/report/fault/stack bounds, builder input/output hashes, and recompiled/reran the final ASan/UBSan native suite in a separate temporary directory; PASS",
+    "hardware_tested": false
+  },
+  "smallest_command_feasibility": {
+    "NOP_or_deselect": "A zero descriptor is source-authorable, but not established as a no-command operation. Opcode7/39 yield CA0 in the public source; opcode0 is not NOP. d6/d7, mode bits and LP4 CS timing remain unspecified. Do not run the zero descriptor under the name safe LP4 NOP.",
+    "CKE": "Not determined by the JEDEC CA encoder. No evidence identifies d7 as CKE; direct HWT ownership and fields remain separate work.",
+    "MRW": "Four LP4 rising-edge CA/CS values are available. Packing each into repeated phases, or packing two consecutive rising-edge values into d3/d4, are distinct hypotheses. Public LP5 descriptors do not decide between them.",
+    "MRR": "Request encoding is available. A complete transaction also needs fresh receive-valid, lane routing and capture extraction. RxEn/RxVal/Rdcs pulse names do not provide the receive-data interface.",
+    "fresh_completion": "A future experiment can require initial Done0, launch1 and a newly observed nonzero Done before writing launch0, without inventing a status-clear write. That is an experimental acceptance criterion, not a proven register contract or abort mechanism.",
+    "reset_isolation": "MemResetL2 has ProtectMemReset/Value naming and an independent avoid-glitch usage. No established priority table proves it isolates RESET_n from unknown ACSM outputs. Raw engine execution would require explicitly accepting that unresolved output experiment and a board reset recovery path; this snapshot neither performs nor authorizes it."
+  },
+  "next_concrete_step": "Run only the fixed control snapshot from the already-held SRAM checkpoint. Use actual launch/status/start/stop/timing values to select a bounded control-CSR experiment; do not infer missing LP4 slot or capture semantics from an all-zero readback.",
+  "not_achieved": ["LP4 command execution", "CKE/RESET pin measurement", "MRW/MRR round trip", "DDR training", "source-only normal boot", "Armbian boot validation"]
+}

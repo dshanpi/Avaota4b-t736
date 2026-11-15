@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy": "No Radxa repository, patch, board code, image or firmware imports. Preserve shared upstream provenance. Do not claim zero code similarity or a formal clean-room process.",
+  "policy": "User authorized Radxa source reuse and pinned vendor DDR library including embedded training code on 2026-11-14. Other vendor boot stages remain excluded; preserve history and provenance.",
   "required_fields_for_each_patch": [
     "id",
     "component",
@@ -34,14 +34,17 @@
         "evidence/runtime-v3-recovered-coldboot-auto.log"
       ],
       "validation": "Compiled and cold-booted without input through compressed kernel, initrd and DTB to Armbian login; vendor U-Boot 2018.07 remains.",
-      "upstream_status": "Local experimental patch; not submitted upstream"
+      "upstream_status": "Local experimental patch; not submitted upstream",
+      "backup_file_sha256": {
+        "userpatches/u-boot/u-boot-t736-mainline/0001-t736-uart-memory-mmc.patch": "378d2bf542bdfbc470caede39f856b45a4231aaa01941a0bb5899b367c06a923"
+      }
     },
     {
       "id": "0001-t736-minimal-board",
       "component": "linux",
       "base_commit": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
       "source": "userpatches/kernel/t736-mainline-6.18/0001-t736-minimal-board.patch",
-      "sha256": "b395c01185280d925058f93f1589c05979de6943ae74ea467a1b22b6a86b843b",
+      "sha256": "86aec2dd2ea99fd73a1a91bab8c28a8aaf72c8b5b1016e804873877e9c34945f",
       "author": "Project-local implementation with Codex assistance",
       "license": "GPL-2.0-only",
       "independently_authored": true,
@@ -57,10 +60,15 @@
         "evidence/runtime-v3-recovered-validation.log",
         "evidence/usb1-v4-validation.log",
         "evidence/usb1-v4-hub-status.log",
-        "evidence/usb1-v4-reader-validation.log"
+        "evidence/usb1-v4-reader-validation.log",
+        "evidence/pio-v5-coldboot.log",
+        "evidence/pio-v5-validation.log"
       ],
-      "validation": "v3 runtime fixes and v4 unattended cold boot passed. USB1 clock/pinctrl/PHY and EHCI/OHCI bound; 1a40:0101 hub at 480 Mbps, control requests and EHCI IRQs passed. Realtek 0bda:0316 reader enumerated at 480 Mbps on port 3; user confirms no card, so storage I/O remains untested. Other peripherals unvalidated.",
-      "upstream_status": "Local experimental patch; not submitted upstream"
+      "validation": "v5 coldboot, main PIO/eMMC ownership and 16 MiB direct-read checksum passed; default Armbian series includes PIO integration.",
+      "upstream_status": "Local experimental patch; not submitted upstream",
+      "backup_file_sha256": {
+        "userpatches/kernel/t736-mainline-6.18/0001-t736-minimal-board.patch": "86aec2dd2ea99fd73a1a91bab8c28a8aaf72c8b5b1016e804873877e9c34945f"
+      }
     },
     {
       "id": "t736-aarch32-handoff-v1",
@@ -79,7 +87,8 @@
         "evidence/kernel-probe-v2-uboot.log"
       ],
       "validation": "ARM32 compile with -Wall -Wextra -Werror; disassembly and package checksum reviewed; candidate not hardware tested or installed as Boot1",
-      "upstream_status": "Local experiment"
+      "upstream_status": "Local experiment",
+      "backup_file_sha256": {}
     },
     {
       "id": "0002-t736-main-pio-layout",
@@ -94,9 +103,194 @@
         "Official Linux v6.18.63 pinctrl helpers",
         "T736 register definitions and read-only vendor layout tables; no vendor implementation copied"
       ],
+      "hardware_evidence": [
+        "evidence/pio-v5-validation.log"
+      ],
+      "validation": "85 host helper checks and v5 main PIO/eMMC ownership hardware validation passed.",
+      "upstream_status": "Experimental candidate; not submitted upstream",
+      "backup_file_sha256": {
+        "patches/linux/0002-t736-main-pio-layout.patch": "bf891a0283341fd2ba9cc3f6a883d651f9146d3d0e231d48e3ea792a11fff580"
+      }
+    },
+    {
+      "id": "0003-sunxi-first-populated-irq-bank",
+      "component": "linux",
+      "base_commit": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
+      "source": "patches/linux/0003-sunxi-first-populated-irq-bank.patch",
+      "sha256": "c8812d2a832ad65c9b6fdbbedcd1f3704545e1f81a423a8f152cc69be181960a",
+      "author": "Project-local implementation with Codex assistance",
+      "license": "GPL-2.0-only",
+      "independently_authored": true,
+      "derived_from": [
+        "Official upstream Linux APIs",
+        "Read-only board vendor register definitions; no Radxa imports"
+      ],
       "hardware_evidence": [],
-      "validation": "85 host checks of actual C helpers; ARM64 core/main/R-PIO object compilation; not enabled in default Armbian series or installed on board",
-      "upstream_status": "Experimental candidate; not submitted upstream"
+      "validation": "216 pins checked, including missing PA and R-PIO; v5 boot passed. GPIO IRQ delivery itself remains untested.",
+      "upstream_status": "Experimental local patch; not submitted",
+      "backup_file_sha256": {
+        "patches/linux/0003-sunxi-first-populated-irq-bank.patch": "c8812d2a832ad65c9b6fdbbedcd1f3704545e1f81a423a8f152cc69be181960a"
+      }
+    },
+    {
+      "id": "0004-t736-gmac0-candidate",
+      "component": "linux",
+      "base_commit": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
+      "source": "patches/linux/0004-t736-gmac0-candidate.patch",
+      "sha256": "26bb4074c7d2aa536715a8590d1cd9c75242900ee195762f8109a5de5138bdc9",
+      "author": "Project-local implementation with Codex assistance",
+      "license": "GPL-2.0-only",
+      "independently_authored": true,
+      "derived_from": [
+        "Official upstream Linux APIs",
+        "Read-only board vendor register definitions; no Radxa imports"
+      ],
+      "hardware_evidence": [],
+      "validation": "Build and fresh patch-application/DTB checks only; not hardware validated or enabled in default Armbian patch series.",
+      "upstream_status": "Experimental local patch; not submitted",
+      "backup_file_sha256": {
+        "patches/linux/0004-t736-gmac0-candidate.patch": "26bb4074c7d2aa536715a8590d1cd9c75242900ee195762f8109a5de5138bdc9"
+      }
+    },
+    {
+      "id": "t736-independent-tfa-dram-layout",
+      "component": "tf-a experimental candidate",
+      "base_commit": "7d322909068fc4bb4ee35e9e43c78ed68d98619b",
+      "source": "patches/tf-a/0001-t736-bl31-dram-layout.patch",
+      "sha256": "8ca4b5c15c23ce90620c5eb306b4d1d1f848a9a9b8265e9c545b7f21795aa078",
+      "author": "Project-local changes with Codex assistance",
+      "license": "BSD-3-Clause",
+      "independently_authored": true,
+      "derived_from": [
+        "InfernoEmbedded A733 TF-A community branch based on Jernej Skrabec NCAT2/A733 support",
+        "Existing project memory reservation and U-Boot load address"
+      ],
+      "hardware_evidence": [],
+      "validation": "Zero-fuzz patch applies; GCC13.3 compile; ELF entry/segments; no linked SCP/OP-TEE symbols. Not flashed or hardware tested.",
+      "upstream_status": "Local experimental change over community branch, not official mainline A733 support",
+      "backup_file_sha256": {
+        "patches/tf-a/0001-t736-bl31-dram-layout.patch": "8ca4b5c15c23ce90620c5eb306b4d1d1f848a9a9b8265e9c545b7f21795aa078"
+      }
+    },
+    {
+      "id": "t736-lpddr4-source-components",
+      "component": "independent SPL building blocks",
+      "base_commit": null,
+      "source": "spl/lpddr4/",
+      "author": "Project-local implementation with Codex assistance",
+      "license": "GPL-2.0-only",
+      "independently_authored": true,
+      "derived_from": [
+        "Reviewed SyterKit AXP8191 interface/register definitions, commit 7f539e17762639589897db835e58dd638b2bea80",
+        "AXP8191 Serial V1.0 register specification",
+        "Read-only vendor ABI/register-fact inspection corroborated by this board; no binary instruction translation or linked vendor library"
+      ],
+      "hardware_evidence": [
+        "evidence/lpddr4-register-observation.log",
+        "evidence/lpddr4-addressmap-observation.log"
+      ],
+      "validation": "22 layout words match actual two-channel reads; ASan/UBSan native tests and ARM32 freestanding compile passed. No hardware DDR/PMIC write test, independent SPL or boot test.",
+      "upstream_status": "Local partial implementation; not submitted",
+      "provenance": "spl/lpddr4/implementation.json",
+      "file_sha256": {
+        "spl/lpddr4/axp8191.c": "8e12ae0b3e3ec8b971a093c4c946dc44fd46dbf1b1ce7b013725970b7d114b31",
+        "spl/lpddr4/axp8191.h": "6e7a528f0a6c4163d9667bea6554c7f5c5db0a8a8ff423f24df43d19e3989ee7",
+        "spl/lpddr4/controller.c": "1017f4a0c37370a1a5aab45d05d84e8942ee5800cdb78b1d6a70ab5083afba47",
+        "spl/lpddr4/controller.h": "d42e7955af902cf11ecc4b7982bdb0357a56f235a381384f40504b1680bed339",
+        "spl/lpddr4/observe_linux.c": "9fd36dd6df28b55b20a069764b9b91eb7b8113441b5bd58e2804bd2c222b814b",
+        "spl/lpddr4/test_components.c": "bfd6108353a9c746e98b0cc7dad054e6fe0fb01fd68ad1dfd6f27934f2a75f4b"
+      },
+      "backup_file_sha256": {}
+    },
+    {
+      "id": "t736-source-spl-authorized-ddr-v2",
+      "date": "2026-11-14",
+      "files": [
+        "spl/vendor_ddr/entry_boot.S",
+        "spl/vendor_ddr/emmc_boot.c",
+        "spl/vendor_ddr/boot.ld",
+        "spl/vendor_ddr/probe.c",
+        "spl/vendor_ddr/handoff32.S",
+        "spl/vendor_ddr/stage64.S",
+        "spl/vendor_ddr/stage64.c",
+        "tools/build_t736_emmc_spl.py",
+        "tools/pack_t736_source_boot.py"
+      ],
+      "purpose": "Source boot stages with pinned authorized board LPDDR4 library, fixed eMMC load addresses and CRCs, early fixed ROM FEL recovery",
+      "vendor_ddr_sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+      "source_spl_sha256": "b643029ba6b5e4fa9b46623cae96235969488a2e4ce0f7bfb7d9491ba7bfe186",
+      "validation": "RAM DDR/source TF-A/U-Boot/Armbian runtime passed; v1 raw write verified; v2 offline and transfer passed; v2 flash and independent cold boots not verified",
+      "evidence": [
+        "evidence/vendor-ddr-source-boot-success-20261114.json",
+        "evidence/source-spl-recovery-review-20261114.json",
+        "evidence/source-raw-v2-preflight-20261114.json",
+        "evidence/source-v2-control-service-interruption-20261114.json"
+      ],
+      "backup_file_sha256": {}
+    },
+    {
+      "id": "t736-source-peripheral-power-v4",
+      "component": "source SPL",
+      "base_commit": "project emmc-spl-v3",
+      "source": "spl/peripheral/board_power.c",
+      "author": "Project-local implementation with Codex assistance",
+      "license": "Project source header",
+      "independently_authored": true,
+      "derived_from": [
+        "AXP8191 datasheet",
+        "T736 board schematics"
+      ],
+      "hardware_evidence": [
+        "evidence/source-v4-peripheral-acceptance-20261114.json"
+      ],
+      "validation": [
+        "ASan/UBSan tests and ARM32 -Werror build",
+        "PMIC readbacks on board; DDR VDDQ bit preserved",
+        "RTL8211F + DHCP + 3/3 gateway ping; 100 Mbps; gigabit pending",
+        "USB hub and card reader enumerated"
+      ],
+      "upstream_status": "not submitted",
+      "backup_file_sha256": {
+        "spl/peripheral/board_power.c": "973ef91632754a5623018d8f7899588006644f8294a022efa6663300603d849f"
+      }
+    },
+    {
+      "id": "t736-display-linux618-v13",
+      "component": "Linux DRM + board clock/power resources",
+      "base_commit": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
+      "source": [
+        "patches/t736-display-linux618-compat.patch",
+        "boards/clk-t736-display.c",
+        "boards/t736-display-power.c",
+        "boards/t736-hdmi.dtsi"
+      ],
+      "author": "Allwinner GPL driver authors; project compatibility and board adaptation with Codex assistance",
+      "license": "Original GPL source headers preserved",
+      "independently_authored": false,
+      "derived_from": [
+        "Tina bsp/drivers/drm (source-only import)",
+        "Tina ccu-sun60iw2.c and PCK600 domain descriptions",
+        "T736 board schematics"
+      ],
+      "hardware_evidence": [
+        "evidence/source-v6-emmc-acceptance-20261114.json",
+        "evidence/source-v5-late-fbcon-oops-20261114.log"
+      ],
+      "validation": [
+        "264 imported source/header files replay exactly",
+        "Complete Linux 6.18.63-13 package, DTB and isolated rootfs built",
+        "Three unattended boots; HDMI PHY lock, 2560x1440, progressing vblank, zero display errors",
+        "DMA framebuffer helpers fix NULL soft_cursor call; automatic fbcon and captured tty1 login",
+        "Physical screen appearance not observed remotely"
+      ],
+      "upstream_status": "local source port; board-tested; not submitted upstream",
+      "compat_patch_sha256": "f286cb4cffd96eb7210cf4fb6fafc4274be1925ed57b0b8269bb22cc03e22351",
+      "backup_file_sha256": {
+        "patches/t736-display-linux618-compat.patch": "f286cb4cffd96eb7210cf4fb6fafc4274be1925ed57b0b8269bb22cc03e22351",
+        "boards/clk-t736-display.c": "682d520a482a03f06ca7efc208d2f87756c44ec6f8380a6bab138b232a24f34e",
+        "boards/t736-display-power.c": "42c0f4930e3f71dadfd348128a05f78855cff4a02778e4961dec7d89559b1b5f",
+        "boards/t736-hdmi.dtsi": "5cb10e4d76c6b57c229fc3f70523853781b2c615a09fbb98293246b58d320a89"
+      }
     }
   ],
   "firmware_dependencies": [
@@ -105,35 +299,64 @@
       "source": "This board recovery package",
       "sha256": "0e2397669df804256505c786d7a9db6b40720203dd3e6b1ea33955486efa98c8",
       "role": "Persistent DDR and early storage initialization",
-      "status": "Retained for staged validation; not independently implemented"
+      "status": "Historical noncompliant boot-chain dependency; prohibited for new normal-boot deployment",
+      "normal_boot_allowed": false
     },
     {
       "component": "fes1.fex",
       "source": "This board recovery package",
       "sha256": "ab8618a40c51e381d2904dfb12ced567f3b2016bbb50e805980a463402a97994",
       "role": "RAM-only FES DDR initialization",
-      "status": "Retained for staged validation; not independently implemented"
+      "status": "Allowed only as an unmodified component of the RAM-only FES loader; not a normal-boot dependency",
+      "normal_boot_allowed": false,
+      "programming_ram_allowed": true
     },
     {
       "component": "u-boot.fex",
       "source": "This board recovery package",
       "sha256": "cdeb0be64b063a089797e9c385f0c6a20f70548e5540de3453308c53a4b546fd",
       "role": "RAM-only vendor FES transport",
-      "status": "Retained for staged validation; not independently implemented"
+      "status": "Allowed only as an unmodified component of the RAM-only FES loader; not a normal-boot dependency",
+      "normal_boot_allowed": false,
+      "programming_ram_allowed": true
     },
     {
       "component": "boot_package.fex",
       "source": "This board recovery package",
       "sha256": "b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3",
       "role": "Persistent vendor U-Boot 2018.07, BL31, SCP and OP-TEE",
-      "status": "Retained for staged validation; not independently implemented"
+      "status": "Historical noncompliant boot-chain dependency; prohibited for new normal-boot deployment",
+      "normal_boot_allowed": false
     },
     {
       "component": "vendor Android DTB",
       "source": "Board recovery boot.fex",
       "role": "Passed to vendor firmware before entering the new U-Boot; mainline kernel uses independent DTS",
-      "status": "Transitional dependency"
+      "status": "Historical noncompliant boot-chain dependency; prohibited for new normal-boot deployment",
+      "normal_boot_allowed": false
     }
   ],
-  "implementation_state": "Armbian recovered; v3/v4 unattended cold boot passed. USB1 controllers and real 480 Mbps hub communication passed. Downstream devices, other peripherals and independent persistent handoff remain."
+  "implementation_state": "source-v6 eMMC chain uses source SPL/handoff/TF-A/U-Boot plus authorized fixed DDR library. Three boots, HDMI tty1 framebuffer, memory and storage checks passed. Pure-source LPDDR4 ZCal remains unresolved; v11 is historical.",
+  "boot_policy": "config/boot-policy.json",
+  "source_compile_probes": [
+    {
+      "source": "https://github.com/InfernoEmbedded/u-boot",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+      "compiler": "arc-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+      "bytes": 53232,
+      "sha256": "a6d1e27718b28e9c26591cb1adb2c3c841c9bde8941468cebde6a3fbe4825df9",
+      "compile_pass": true,
+      "prebuilt_vendor_binary_input": false,
+      "missing_stub_used": false,
+      "t736_lpddr4_implemented": false,
+      "hardware_tested": false,
+      "deployable": false,
+      "evidence": "evidence/open-pmu-compile-probe.json",
+      "source_manifest": "sources/audit/a733-pmu-source-2f5e45fa/source-manifest.json",
+      "license": "GPL-2.0+",
+      "provenance": "Source author describes a clean-room implementation; this claim is recorded, not independently certified by this project.",
+      "build_script": "tools/build_open_pmu_probe.py"
+    }
+  ],
+  "radxa_source_authorization": "evidence/t736-radxa-a733-lp4-route-review-20261114.json"
 }

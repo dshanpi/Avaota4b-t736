@@ -1,0 +1,3287 @@
+{
+  "source": "https://raw.githubusercontent.com/SiMa-ai/sima-ai-uboot/5a026adbe2a54aeaae5dc50e1852d4b5c1884640/arch/arm/mach-sima/init_ddr_modalix.c",
+  "git_blob": "293179961431235b603a61c70dc5612446b91db2",
+  "scope": "Host CSR address/name comments only, restricted logical regions DBYTE/MASTER/AC/APBONLY/DRTUB. No register preset values, PMU or PIE instruction words retained or imported. Names require target corroboration.",
+  "register_names": [
+    {
+      "line": 894,
+      "logical_csr": "0x20060",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_MemResetL"
+    },
+    {
+      "line": 895,
+      "logical_csr": "0x200a5",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_LP5Mode"
+    },
+    {
+      "line": 896,
+      "logical_csr": "0xd0036",
+      "name_comment": "DWC_DDRPHYA_APBONLY0_NeverGateAcCsrClock"
+    },
+    {
+      "line": 897,
+      "logical_csr": "0x200bd",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PhyPerfCtrEnable"
+    },
+    {
+      "line": 898,
+      "logical_csr": "0x20300",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalRZN"
+    },
+    {
+      "line": 899,
+      "logical_csr": "0x20303",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalRate"
+    },
+    {
+      "line": 900,
+      "logical_csr": "0x20302",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalCompVref"
+    },
+    {
+      "line": 901,
+      "logical_csr": "0x20328",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_VrefDacRefCtl"
+    },
+    {
+      "line": 902,
+      "logical_csr": "0x20301",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalBaseCtrl"
+    },
+    {
+      "line": 903,
+      "logical_csr": "0x2030b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalCompCtrl"
+    },
+    {
+      "line": 904,
+      "logical_csr": "0x300a7",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_DFIPHYUPD"
+    },
+    {
+      "line": 905,
+      "logical_csr": "0x310a7",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_DFIPHYUPD"
+    },
+    {
+      "line": 906,
+      "logical_csr": "0x300ae",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_PClkAcLnDis"
+    },
+    {
+      "line": 907,
+      "logical_csr": "0x300ad",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_DfiClkAcLnDis"
+    },
+    {
+      "line": 908,
+      "logical_csr": "0x300ac",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_AcLnDisable"
+    },
+    {
+      "line": 909,
+      "logical_csr": "0x310ae",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_PClkAcLnDis"
+    },
+    {
+      "line": 910,
+      "logical_csr": "0x310ad",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_DfiClkAcLnDis"
+    },
+    {
+      "line": 911,
+      "logical_csr": "0x310ac",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_AcLnDisable"
+    },
+    {
+      "line": 912,
+      "logical_csr": "0xc0086",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_ArcPmuEccCtl"
+    },
+    {
+      "line": 913,
+      "logical_csr": "0x100a3",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_PptCtlStatic"
+    },
+    {
+      "line": 914,
+      "logical_csr": "0x110a3",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_PptCtlStatic"
+    },
+    {
+      "line": 915,
+      "logical_csr": "0x120a3",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_PptCtlStatic"
+    },
+    {
+      "line": 916,
+      "logical_csr": "0x130a3",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_PptCtlStatic"
+    },
+    {
+      "line": 918,
+      "logical_csr": "0xc00f1",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat1"
+    },
+    {
+      "line": 919,
+      "logical_csr": "0xc00f2",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat2"
+    },
+    {
+      "line": 920,
+      "logical_csr": "0xc00f3",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat3"
+    },
+    {
+      "line": 921,
+      "logical_csr": "0xc00f4",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat4"
+    },
+    {
+      "line": 922,
+      "logical_csr": "0xc00f5",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat5"
+    },
+    {
+      "line": 923,
+      "logical_csr": "0xc00f6",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat6"
+    },
+    {
+      "line": 924,
+      "logical_csr": "0xc00f7",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat7"
+    },
+    {
+      "line": 925,
+      "logical_csr": "0xc00f9",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat9"
+    },
+    {
+      "line": 926,
+      "logical_csr": "0xc00fa",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat10"
+    },
+    {
+      "line": 927,
+      "logical_csr": "0xc00fb",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat11"
+    },
+    {
+      "line": 928,
+      "logical_csr": "0xc00fd",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat13"
+    },
+    {
+      "line": 929,
+      "logical_csr": "0xc00ff",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_DfiFreqXlat15"
+    },
+    {
+      "line": 931,
+      "logical_csr": "0x10093",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_DxRxPowerDown"
+    },
+    {
+      "line": 932,
+      "logical_csr": "0x11093",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_DxRxPowerDown"
+    },
+    {
+      "line": 933,
+      "logical_csr": "0x12093",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_DxRxPowerDown"
+    },
+    {
+      "line": 934,
+      "logical_csr": "0x13093",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_DxRxPowerDown"
+    },
+    {
+      "line": 935,
+      "logical_csr": "0x20051",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_DfiMode"
+    },
+    {
+      "line": 938,
+      "logical_csr": "0x2004c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PllCtrl5_p0"
+    },
+    {
+      "line": 939,
+      "logical_csr": "0x2004d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PllCtrl6_p0"
+    },
+    {
+      "line": 940,
+      "logical_csr": "0x20002",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PclkPtrInitVal_p0"
+    },
+    {
+      "line": 941,
+      "logical_csr": "0x20000",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_DfiFreqRatio_p0"
+    },
+    {
+      "line": 944,
+      "logical_csr": "0x1005e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxWCKDcaCtrlTTg0_p0"
+    },
+    {
+      "line": 945,
+      "logical_csr": "0x10060",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxWCKDcaCtrlCTg0_p0"
+    },
+    {
+      "line": 946,
+      "logical_csr": "0x10062",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxWCKDcaCtrlTTg0_p0"
+    },
+    {
+      "line": 947,
+      "logical_csr": "0x10064",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxWCKDcaCtrlCTg0_p0"
+    },
+    {
+      "line": 948,
+      "logical_csr": "0x1005f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxWCKDcaCtrlTTg1_p0"
+    },
+    {
+      "line": 949,
+      "logical_csr": "0x10061",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxWCKDcaCtrlCTg1_p0"
+    },
+    {
+      "line": 950,
+      "logical_csr": "0x10063",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxWCKDcaCtrlTTg1_p0"
+    },
+    {
+      "line": 951,
+      "logical_csr": "0x10065",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxWCKDcaCtrlCTg1_p0"
+    },
+    {
+      "line": 952,
+      "logical_csr": "0x1105e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxWCKDcaCtrlTTg0_p0"
+    },
+    {
+      "line": 953,
+      "logical_csr": "0x11060",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxWCKDcaCtrlCTg0_p0"
+    },
+    {
+      "line": 954,
+      "logical_csr": "0x11062",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxWCKDcaCtrlTTg0_p0"
+    },
+    {
+      "line": 955,
+      "logical_csr": "0x11064",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxWCKDcaCtrlCTg0_p0"
+    },
+    {
+      "line": 956,
+      "logical_csr": "0x1105f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxWCKDcaCtrlTTg1_p0"
+    },
+    {
+      "line": 957,
+      "logical_csr": "0x11061",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxWCKDcaCtrlCTg1_p0"
+    },
+    {
+      "line": 958,
+      "logical_csr": "0x11063",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxWCKDcaCtrlTTg1_p0"
+    },
+    {
+      "line": 959,
+      "logical_csr": "0x11065",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxWCKDcaCtrlCTg1_p0"
+    },
+    {
+      "line": 960,
+      "logical_csr": "0x1205e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxWCKDcaCtrlTTg0_p0"
+    },
+    {
+      "line": 961,
+      "logical_csr": "0x12060",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxWCKDcaCtrlCTg0_p0"
+    },
+    {
+      "line": 962,
+      "logical_csr": "0x12062",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxWCKDcaCtrlTTg0_p0"
+    },
+    {
+      "line": 963,
+      "logical_csr": "0x12064",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxWCKDcaCtrlCTg0_p0"
+    },
+    {
+      "line": 964,
+      "logical_csr": "0x1205f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxWCKDcaCtrlTTg1_p0"
+    },
+    {
+      "line": 965,
+      "logical_csr": "0x12061",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxWCKDcaCtrlCTg1_p0"
+    },
+    {
+      "line": 966,
+      "logical_csr": "0x12063",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxWCKDcaCtrlTTg1_p0"
+    },
+    {
+      "line": 967,
+      "logical_csr": "0x12065",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxWCKDcaCtrlCTg1_p0"
+    },
+    {
+      "line": 968,
+      "logical_csr": "0x1305e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxWCKDcaCtrlTTg0_p0"
+    },
+    {
+      "line": 969,
+      "logical_csr": "0x13060",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxWCKDcaCtrlCTg0_p0"
+    },
+    {
+      "line": 970,
+      "logical_csr": "0x13062",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxWCKDcaCtrlTTg0_p0"
+    },
+    {
+      "line": 971,
+      "logical_csr": "0x13064",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxWCKDcaCtrlCTg0_p0"
+    },
+    {
+      "line": 972,
+      "logical_csr": "0x1305f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxWCKDcaCtrlTTg1_p0"
+    },
+    {
+      "line": 973,
+      "logical_csr": "0x13061",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxWCKDcaCtrlCTg1_p0"
+    },
+    {
+      "line": 974,
+      "logical_csr": "0x13063",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxWCKDcaCtrlTTg1_p0"
+    },
+    {
+      "line": 975,
+      "logical_csr": "0x13065",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxWCKDcaCtrlCTg1_p0"
+    },
+    {
+      "line": 976,
+      "logical_csr": "0x10005",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxDigStrbEn_p0"
+    },
+    {
+      "line": 977,
+      "logical_csr": "0x1000b",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_DxDigStrobeMode_p0"
+    },
+    {
+      "line": 978,
+      "logical_csr": "0x11005",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxDigStrbEn_p0"
+    },
+    {
+      "line": 979,
+      "logical_csr": "0x1100b",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_DxDigStrobeMode_p0"
+    },
+    {
+      "line": 980,
+      "logical_csr": "0x12005",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxDigStrbEn_p0"
+    },
+    {
+      "line": 981,
+      "logical_csr": "0x1200b",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_DxDigStrobeMode_p0"
+    },
+    {
+      "line": 982,
+      "logical_csr": "0x13005",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxDigStrbEn_p0"
+    },
+    {
+      "line": 983,
+      "logical_csr": "0x1300b",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_DxDigStrobeMode_p0"
+    },
+    {
+      "line": 984,
+      "logical_csr": "0x20007",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_DqsPreambleControl_p0"
+    },
+    {
+      "line": 985,
+      "logical_csr": "0x20013",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_DbyteRxDqsModeCntrl_p0"
+    },
+    {
+      "line": 986,
+      "logical_csr": "0x30038",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_RxModeCtlSE0_p0"
+    },
+    {
+      "line": 987,
+      "logical_csr": "0x30039",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_RxModeCtlSE1_p0"
+    },
+    {
+      "line": 988,
+      "logical_csr": "0x3003a",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_RxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 989,
+      "logical_csr": "0x31038",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_RxModeCtlSE0_p0"
+    },
+    {
+      "line": 990,
+      "logical_csr": "0x31039",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_RxModeCtlSE1_p0"
+    },
+    {
+      "line": 991,
+      "logical_csr": "0x3103a",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_RxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 992,
+      "logical_csr": "0x10038",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxModeCtlSE0_p0"
+    },
+    {
+      "line": 993,
+      "logical_csr": "0x1003a",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 994,
+      "logical_csr": "0x11038",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxModeCtlSE0_p0"
+    },
+    {
+      "line": 995,
+      "logical_csr": "0x1103a",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 996,
+      "logical_csr": "0x12038",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxModeCtlSE0_p0"
+    },
+    {
+      "line": 997,
+      "logical_csr": "0x1203a",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 998,
+      "logical_csr": "0x13038",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxModeCtlSE0_p0"
+    },
+    {
+      "line": 999,
+      "logical_csr": "0x1303a",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 1000,
+      "logical_csr": "0x1003b",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxModeCtlDIFF1_p0"
+    },
+    {
+      "line": 1001,
+      "logical_csr": "0x1103b",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxModeCtlDIFF1_p0"
+    },
+    {
+      "line": 1002,
+      "logical_csr": "0x1203b",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxModeCtlDIFF1_p0"
+    },
+    {
+      "line": 1003,
+      "logical_csr": "0x1303b",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxModeCtlDIFF1_p0"
+    },
+    {
+      "line": 1004,
+      "logical_csr": "0x10009",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxDfeModeCfg_p0"
+    },
+    {
+      "line": 1005,
+      "logical_csr": "0x10037",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxVrefCtl_p0"
+    },
+    {
+      "line": 1006,
+      "logical_csr": "0x11009",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxDfeModeCfg_p0"
+    },
+    {
+      "line": 1007,
+      "logical_csr": "0x11037",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxVrefCtl_p0"
+    },
+    {
+      "line": 1008,
+      "logical_csr": "0x12009",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxDfeModeCfg_p0"
+    },
+    {
+      "line": 1009,
+      "logical_csr": "0x12037",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxVrefCtl_p0"
+    },
+    {
+      "line": 1010,
+      "logical_csr": "0x13009",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxDfeModeCfg_p0"
+    },
+    {
+      "line": 1011,
+      "logical_csr": "0x13037",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxVrefCtl_p0"
+    },
+    {
+      "line": 1012,
+      "logical_csr": "0x10004",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_DxPClkDis_p0"
+    },
+    {
+      "line": 1013,
+      "logical_csr": "0x10003",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_DxDfiClkDis_p0"
+    },
+    {
+      "line": 1014,
+      "logical_csr": "0x11004",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_DxPClkDis_p0"
+    },
+    {
+      "line": 1015,
+      "logical_csr": "0x11003",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_DxDfiClkDis_p0"
+    },
+    {
+      "line": 1016,
+      "logical_csr": "0x12004",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_DxPClkDis_p0"
+    },
+    {
+      "line": 1017,
+      "logical_csr": "0x12003",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_DxDfiClkDis_p0"
+    },
+    {
+      "line": 1018,
+      "logical_csr": "0x13004",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_DxPClkDis_p0"
+    },
+    {
+      "line": 1019,
+      "logical_csr": "0x13003",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_DxDfiClkDis_p0"
+    },
+    {
+      "line": 1020,
+      "logical_csr": "0x20004",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalClkInfo_p0"
+    },
+    {
+      "line": 1021,
+      "logical_csr": "0x30050",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_AcVrefDAC0_p0"
+    },
+    {
+      "line": 1022,
+      "logical_csr": "0x30051",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_AcVrefDAC1_p0"
+    },
+    {
+      "line": 1023,
+      "logical_csr": "0x30052",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_AcVrefDAC2_p0"
+    },
+    {
+      "line": 1024,
+      "logical_csr": "0x30053",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_AcVrefDAC3_p0"
+    },
+    {
+      "line": 1025,
+      "logical_csr": "0x31050",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_AcVrefDAC0_p0"
+    },
+    {
+      "line": 1026,
+      "logical_csr": "0x31051",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_AcVrefDAC1_p0"
+    },
+    {
+      "line": 1027,
+      "logical_csr": "0x31052",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_AcVrefDAC2_p0"
+    },
+    {
+      "line": 1028,
+      "logical_csr": "0x31053",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_AcVrefDAC3_p0"
+    },
+    {
+      "line": 1029,
+      "logical_csr": "0x1004e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC0_r0_p0"
+    },
+    {
+      "line": 1030,
+      "logical_csr": "0x1004f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC1_r0_p0"
+    },
+    {
+      "line": 1031,
+      "logical_csr": "0x10050",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC2_r0_p0"
+    },
+    {
+      "line": 1032,
+      "logical_csr": "0x10051",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC3_r0_p0"
+    },
+    {
+      "line": 1033,
+      "logical_csr": "0x1014e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC0_r1_p0"
+    },
+    {
+      "line": 1034,
+      "logical_csr": "0x1014f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC1_r1_p0"
+    },
+    {
+      "line": 1035,
+      "logical_csr": "0x10150",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC2_r1_p0"
+    },
+    {
+      "line": 1036,
+      "logical_csr": "0x10151",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC3_r1_p0"
+    },
+    {
+      "line": 1037,
+      "logical_csr": "0x1024e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC0_r2_p0"
+    },
+    {
+      "line": 1038,
+      "logical_csr": "0x1024f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC1_r2_p0"
+    },
+    {
+      "line": 1039,
+      "logical_csr": "0x10250",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC2_r2_p0"
+    },
+    {
+      "line": 1040,
+      "logical_csr": "0x10251",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC3_r2_p0"
+    },
+    {
+      "line": 1041,
+      "logical_csr": "0x1034e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC0_r3_p0"
+    },
+    {
+      "line": 1042,
+      "logical_csr": "0x1034f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC1_r3_p0"
+    },
+    {
+      "line": 1043,
+      "logical_csr": "0x10350",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC2_r3_p0"
+    },
+    {
+      "line": 1044,
+      "logical_csr": "0x10351",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC3_r3_p0"
+    },
+    {
+      "line": 1045,
+      "logical_csr": "0x1044e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC0_r4_p0"
+    },
+    {
+      "line": 1046,
+      "logical_csr": "0x1044f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC1_r4_p0"
+    },
+    {
+      "line": 1047,
+      "logical_csr": "0x10450",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC2_r4_p0"
+    },
+    {
+      "line": 1048,
+      "logical_csr": "0x10451",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC3_r4_p0"
+    },
+    {
+      "line": 1049,
+      "logical_csr": "0x1054e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC0_r5_p0"
+    },
+    {
+      "line": 1050,
+      "logical_csr": "0x1054f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC1_r5_p0"
+    },
+    {
+      "line": 1051,
+      "logical_csr": "0x10550",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC2_r5_p0"
+    },
+    {
+      "line": 1052,
+      "logical_csr": "0x10551",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC3_r5_p0"
+    },
+    {
+      "line": 1053,
+      "logical_csr": "0x1064e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC0_r6_p0"
+    },
+    {
+      "line": 1054,
+      "logical_csr": "0x1064f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC1_r6_p0"
+    },
+    {
+      "line": 1055,
+      "logical_csr": "0x10650",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC2_r6_p0"
+    },
+    {
+      "line": 1056,
+      "logical_csr": "0x10651",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC3_r6_p0"
+    },
+    {
+      "line": 1057,
+      "logical_csr": "0x1074e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC0_r7_p0"
+    },
+    {
+      "line": 1058,
+      "logical_csr": "0x1074f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC1_r7_p0"
+    },
+    {
+      "line": 1059,
+      "logical_csr": "0x10750",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC2_r7_p0"
+    },
+    {
+      "line": 1060,
+      "logical_csr": "0x10751",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC3_r7_p0"
+    },
+    {
+      "line": 1061,
+      "logical_csr": "0x1084e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC0_r8_p0"
+    },
+    {
+      "line": 1062,
+      "logical_csr": "0x1084f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC1_r8_p0"
+    },
+    {
+      "line": 1063,
+      "logical_csr": "0x10850",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC2_r8_p0"
+    },
+    {
+      "line": 1064,
+      "logical_csr": "0x10851",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_VrefDAC3_r8_p0"
+    },
+    {
+      "line": 1065,
+      "logical_csr": "0x1104e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC0_r0_p0"
+    },
+    {
+      "line": 1066,
+      "logical_csr": "0x1104f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC1_r0_p0"
+    },
+    {
+      "line": 1067,
+      "logical_csr": "0x11050",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC2_r0_p0"
+    },
+    {
+      "line": 1068,
+      "logical_csr": "0x11051",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC3_r0_p0"
+    },
+    {
+      "line": 1069,
+      "logical_csr": "0x1114e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC0_r1_p0"
+    },
+    {
+      "line": 1070,
+      "logical_csr": "0x1114f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC1_r1_p0"
+    },
+    {
+      "line": 1071,
+      "logical_csr": "0x11150",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC2_r1_p0"
+    },
+    {
+      "line": 1072,
+      "logical_csr": "0x11151",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC3_r1_p0"
+    },
+    {
+      "line": 1073,
+      "logical_csr": "0x1124e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC0_r2_p0"
+    },
+    {
+      "line": 1074,
+      "logical_csr": "0x1124f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC1_r2_p0"
+    },
+    {
+      "line": 1075,
+      "logical_csr": "0x11250",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC2_r2_p0"
+    },
+    {
+      "line": 1076,
+      "logical_csr": "0x11251",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC3_r2_p0"
+    },
+    {
+      "line": 1077,
+      "logical_csr": "0x1134e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC0_r3_p0"
+    },
+    {
+      "line": 1078,
+      "logical_csr": "0x1134f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC1_r3_p0"
+    },
+    {
+      "line": 1079,
+      "logical_csr": "0x11350",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC2_r3_p0"
+    },
+    {
+      "line": 1080,
+      "logical_csr": "0x11351",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC3_r3_p0"
+    },
+    {
+      "line": 1081,
+      "logical_csr": "0x1144e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC0_r4_p0"
+    },
+    {
+      "line": 1082,
+      "logical_csr": "0x1144f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC1_r4_p0"
+    },
+    {
+      "line": 1083,
+      "logical_csr": "0x11450",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC2_r4_p0"
+    },
+    {
+      "line": 1084,
+      "logical_csr": "0x11451",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC3_r4_p0"
+    },
+    {
+      "line": 1085,
+      "logical_csr": "0x1154e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC0_r5_p0"
+    },
+    {
+      "line": 1086,
+      "logical_csr": "0x1154f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC1_r5_p0"
+    },
+    {
+      "line": 1087,
+      "logical_csr": "0x11550",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC2_r5_p0"
+    },
+    {
+      "line": 1088,
+      "logical_csr": "0x11551",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC3_r5_p0"
+    },
+    {
+      "line": 1089,
+      "logical_csr": "0x1164e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC0_r6_p0"
+    },
+    {
+      "line": 1090,
+      "logical_csr": "0x1164f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC1_r6_p0"
+    },
+    {
+      "line": 1091,
+      "logical_csr": "0x11650",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC2_r6_p0"
+    },
+    {
+      "line": 1092,
+      "logical_csr": "0x11651",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC3_r6_p0"
+    },
+    {
+      "line": 1093,
+      "logical_csr": "0x1174e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC0_r7_p0"
+    },
+    {
+      "line": 1094,
+      "logical_csr": "0x1174f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC1_r7_p0"
+    },
+    {
+      "line": 1095,
+      "logical_csr": "0x11750",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC2_r7_p0"
+    },
+    {
+      "line": 1096,
+      "logical_csr": "0x11751",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC3_r7_p0"
+    },
+    {
+      "line": 1097,
+      "logical_csr": "0x1184e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC0_r8_p0"
+    },
+    {
+      "line": 1098,
+      "logical_csr": "0x1184f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC1_r8_p0"
+    },
+    {
+      "line": 1099,
+      "logical_csr": "0x11850",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC2_r8_p0"
+    },
+    {
+      "line": 1100,
+      "logical_csr": "0x11851",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_VrefDAC3_r8_p0"
+    },
+    {
+      "line": 1101,
+      "logical_csr": "0x1204e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC0_r0_p0"
+    },
+    {
+      "line": 1102,
+      "logical_csr": "0x1204f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC1_r0_p0"
+    },
+    {
+      "line": 1103,
+      "logical_csr": "0x12050",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC2_r0_p0"
+    },
+    {
+      "line": 1104,
+      "logical_csr": "0x12051",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC3_r0_p0"
+    },
+    {
+      "line": 1105,
+      "logical_csr": "0x1214e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC0_r1_p0"
+    },
+    {
+      "line": 1106,
+      "logical_csr": "0x1214f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC1_r1_p0"
+    },
+    {
+      "line": 1107,
+      "logical_csr": "0x12150",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC2_r1_p0"
+    },
+    {
+      "line": 1108,
+      "logical_csr": "0x12151",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC3_r1_p0"
+    },
+    {
+      "line": 1109,
+      "logical_csr": "0x1224e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC0_r2_p0"
+    },
+    {
+      "line": 1110,
+      "logical_csr": "0x1224f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC1_r2_p0"
+    },
+    {
+      "line": 1111,
+      "logical_csr": "0x12250",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC2_r2_p0"
+    },
+    {
+      "line": 1112,
+      "logical_csr": "0x12251",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC3_r2_p0"
+    },
+    {
+      "line": 1113,
+      "logical_csr": "0x1234e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC0_r3_p0"
+    },
+    {
+      "line": 1114,
+      "logical_csr": "0x1234f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC1_r3_p0"
+    },
+    {
+      "line": 1115,
+      "logical_csr": "0x12350",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC2_r3_p0"
+    },
+    {
+      "line": 1116,
+      "logical_csr": "0x12351",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC3_r3_p0"
+    },
+    {
+      "line": 1117,
+      "logical_csr": "0x1244e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC0_r4_p0"
+    },
+    {
+      "line": 1118,
+      "logical_csr": "0x1244f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC1_r4_p0"
+    },
+    {
+      "line": 1119,
+      "logical_csr": "0x12450",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC2_r4_p0"
+    },
+    {
+      "line": 1120,
+      "logical_csr": "0x12451",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC3_r4_p0"
+    },
+    {
+      "line": 1121,
+      "logical_csr": "0x1254e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC0_r5_p0"
+    },
+    {
+      "line": 1122,
+      "logical_csr": "0x1254f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC1_r5_p0"
+    },
+    {
+      "line": 1123,
+      "logical_csr": "0x12550",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC2_r5_p0"
+    },
+    {
+      "line": 1124,
+      "logical_csr": "0x12551",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC3_r5_p0"
+    },
+    {
+      "line": 1125,
+      "logical_csr": "0x1264e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC0_r6_p0"
+    },
+    {
+      "line": 1126,
+      "logical_csr": "0x1264f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC1_r6_p0"
+    },
+    {
+      "line": 1127,
+      "logical_csr": "0x12650",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC2_r6_p0"
+    },
+    {
+      "line": 1128,
+      "logical_csr": "0x12651",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC3_r6_p0"
+    },
+    {
+      "line": 1129,
+      "logical_csr": "0x1274e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC0_r7_p0"
+    },
+    {
+      "line": 1130,
+      "logical_csr": "0x1274f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC1_r7_p0"
+    },
+    {
+      "line": 1131,
+      "logical_csr": "0x12750",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC2_r7_p0"
+    },
+    {
+      "line": 1132,
+      "logical_csr": "0x12751",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC3_r7_p0"
+    },
+    {
+      "line": 1133,
+      "logical_csr": "0x1284e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC0_r8_p0"
+    },
+    {
+      "line": 1134,
+      "logical_csr": "0x1284f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC1_r8_p0"
+    },
+    {
+      "line": 1135,
+      "logical_csr": "0x12850",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC2_r8_p0"
+    },
+    {
+      "line": 1136,
+      "logical_csr": "0x12851",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_VrefDAC3_r8_p0"
+    },
+    {
+      "line": 1137,
+      "logical_csr": "0x1304e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC0_r0_p0"
+    },
+    {
+      "line": 1138,
+      "logical_csr": "0x1304f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC1_r0_p0"
+    },
+    {
+      "line": 1139,
+      "logical_csr": "0x13050",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC2_r0_p0"
+    },
+    {
+      "line": 1140,
+      "logical_csr": "0x13051",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC3_r0_p0"
+    },
+    {
+      "line": 1141,
+      "logical_csr": "0x1314e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC0_r1_p0"
+    },
+    {
+      "line": 1142,
+      "logical_csr": "0x1314f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC1_r1_p0"
+    },
+    {
+      "line": 1143,
+      "logical_csr": "0x13150",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC2_r1_p0"
+    },
+    {
+      "line": 1144,
+      "logical_csr": "0x13151",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC3_r1_p0"
+    },
+    {
+      "line": 1145,
+      "logical_csr": "0x1324e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC0_r2_p0"
+    },
+    {
+      "line": 1146,
+      "logical_csr": "0x1324f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC1_r2_p0"
+    },
+    {
+      "line": 1147,
+      "logical_csr": "0x13250",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC2_r2_p0"
+    },
+    {
+      "line": 1148,
+      "logical_csr": "0x13251",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC3_r2_p0"
+    },
+    {
+      "line": 1149,
+      "logical_csr": "0x1334e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC0_r3_p0"
+    },
+    {
+      "line": 1150,
+      "logical_csr": "0x1334f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC1_r3_p0"
+    },
+    {
+      "line": 1151,
+      "logical_csr": "0x13350",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC2_r3_p0"
+    },
+    {
+      "line": 1152,
+      "logical_csr": "0x13351",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC3_r3_p0"
+    },
+    {
+      "line": 1153,
+      "logical_csr": "0x1344e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC0_r4_p0"
+    },
+    {
+      "line": 1154,
+      "logical_csr": "0x1344f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC1_r4_p0"
+    },
+    {
+      "line": 1155,
+      "logical_csr": "0x13450",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC2_r4_p0"
+    },
+    {
+      "line": 1156,
+      "logical_csr": "0x13451",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC3_r4_p0"
+    },
+    {
+      "line": 1157,
+      "logical_csr": "0x1354e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC0_r5_p0"
+    },
+    {
+      "line": 1158,
+      "logical_csr": "0x1354f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC1_r5_p0"
+    },
+    {
+      "line": 1159,
+      "logical_csr": "0x13550",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC2_r5_p0"
+    },
+    {
+      "line": 1160,
+      "logical_csr": "0x13551",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC3_r5_p0"
+    },
+    {
+      "line": 1161,
+      "logical_csr": "0x1364e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC0_r6_p0"
+    },
+    {
+      "line": 1162,
+      "logical_csr": "0x1364f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC1_r6_p0"
+    },
+    {
+      "line": 1163,
+      "logical_csr": "0x13650",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC2_r6_p0"
+    },
+    {
+      "line": 1164,
+      "logical_csr": "0x13651",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC3_r6_p0"
+    },
+    {
+      "line": 1165,
+      "logical_csr": "0x1374e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC0_r7_p0"
+    },
+    {
+      "line": 1166,
+      "logical_csr": "0x1374f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC1_r7_p0"
+    },
+    {
+      "line": 1167,
+      "logical_csr": "0x13750",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC2_r7_p0"
+    },
+    {
+      "line": 1168,
+      "logical_csr": "0x13751",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC3_r7_p0"
+    },
+    {
+      "line": 1169,
+      "logical_csr": "0x1384e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC0_r8_p0"
+    },
+    {
+      "line": 1170,
+      "logical_csr": "0x1384f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC1_r8_p0"
+    },
+    {
+      "line": 1171,
+      "logical_csr": "0x13850",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC2_r8_p0"
+    },
+    {
+      "line": 1172,
+      "logical_csr": "0x13851",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_VrefDAC3_r8_p0"
+    },
+    {
+      "line": 1173,
+      "logical_csr": "0x30030",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxModeCtlSE0_p0"
+    },
+    {
+      "line": 1174,
+      "logical_csr": "0x30031",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxModeCtlSE1_p0"
+    },
+    {
+      "line": 1175,
+      "logical_csr": "0x30035",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 1176,
+      "logical_csr": "0x31030",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxModeCtlSE0_p0"
+    },
+    {
+      "line": 1177,
+      "logical_csr": "0x31031",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxModeCtlSE1_p0"
+    },
+    {
+      "line": 1178,
+      "logical_csr": "0x31035",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 1179,
+      "logical_csr": "0x10030",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxModeCtlSE0_p0"
+    },
+    {
+      "line": 1180,
+      "logical_csr": "0x10035",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 1181,
+      "logical_csr": "0x10036",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxModeCtlDIFF1_p0"
+    },
+    {
+      "line": 1182,
+      "logical_csr": "0x11030",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxModeCtlSE0_p0"
+    },
+    {
+      "line": 1183,
+      "logical_csr": "0x11035",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 1184,
+      "logical_csr": "0x11036",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxModeCtlDIFF1_p0"
+    },
+    {
+      "line": 1185,
+      "logical_csr": "0x12030",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxModeCtlSE0_p0"
+    },
+    {
+      "line": 1186,
+      "logical_csr": "0x12035",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 1187,
+      "logical_csr": "0x12036",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxModeCtlDIFF1_p0"
+    },
+    {
+      "line": 1188,
+      "logical_csr": "0x13030",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxModeCtlSE0_p0"
+    },
+    {
+      "line": 1189,
+      "logical_csr": "0x13035",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxModeCtlDIFF0_p0"
+    },
+    {
+      "line": 1190,
+      "logical_csr": "0x13036",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxModeCtlDIFF1_p0"
+    },
+    {
+      "line": 1191,
+      "logical_csr": "0x3003c",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_RxGainCurrAdjDIFF0_p0"
+    },
+    {
+      "line": 1192,
+      "logical_csr": "0x3103c",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_RxGainCurrAdjDIFF0_p0"
+    },
+    {
+      "line": 1193,
+      "logical_csr": "0x1003c",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxGainCurrAdjDIFF0_p0"
+    },
+    {
+      "line": 1194,
+      "logical_csr": "0x1003d",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxGainCurrAdjDIFF1_p0"
+    },
+    {
+      "line": 1195,
+      "logical_csr": "0x1003e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxGainCurrAdjRxReplica_p0"
+    },
+    {
+      "line": 1196,
+      "logical_csr": "0x1103c",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxGainCurrAdjDIFF0_p0"
+    },
+    {
+      "line": 1197,
+      "logical_csr": "0x1103d",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxGainCurrAdjDIFF1_p0"
+    },
+    {
+      "line": 1198,
+      "logical_csr": "0x1103e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxGainCurrAdjRxReplica_p0"
+    },
+    {
+      "line": 1199,
+      "logical_csr": "0x1203c",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxGainCurrAdjDIFF0_p0"
+    },
+    {
+      "line": 1200,
+      "logical_csr": "0x1203d",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxGainCurrAdjDIFF1_p0"
+    },
+    {
+      "line": 1201,
+      "logical_csr": "0x1203e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxGainCurrAdjRxReplica_p0"
+    },
+    {
+      "line": 1202,
+      "logical_csr": "0x1303c",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxGainCurrAdjDIFF0_p0"
+    },
+    {
+      "line": 1203,
+      "logical_csr": "0x1303d",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxGainCurrAdjDIFF1_p0"
+    },
+    {
+      "line": 1204,
+      "logical_csr": "0x1303e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxGainCurrAdjRxReplica_p0"
+    },
+    {
+      "line": 1205,
+      "logical_csr": "0x20003",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_CmdFifoWrModeMaster_p0"
+    },
+    {
+      "line": 1206,
+      "logical_csr": "0x20001",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PclkDivRatio_p0"
+    },
+    {
+      "line": 1207,
+      "logical_csr": "0x20009",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_CkDisVal_p0"
+    },
+    {
+      "line": 1208,
+      "logical_csr": "0x20008",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_DMIPinPresent_p0"
+    },
+    {
+      "line": 1209,
+      "logical_csr": "0x200d9",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_EnPhyUpdZQCalUpdate"
+    },
+    {
+      "line": 1212,
+      "logical_csr": "0x20014",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_TrackingModeCntrl_p0"
+    },
+    {
+      "line": 1214,
+      "logical_csr": "0x10040",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxImpedanceSE0_p0"
+    },
+    {
+      "line": 1215,
+      "logical_csr": "0x10042",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1217,
+      "logical_csr": "0x10043",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1218,
+      "logical_csr": "0x10044",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxImpedanceDIFF1T_p0"
+    },
+    {
+      "line": 1219,
+      "logical_csr": "0x10045",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxImpedanceDIFF1C_p0"
+    },
+    {
+      "line": 1220,
+      "logical_csr": "0x11040",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxImpedanceSE0_p0"
+    },
+    {
+      "line": 1221,
+      "logical_csr": "0x11042",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1223,
+      "logical_csr": "0x11043",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1224,
+      "logical_csr": "0x11044",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxImpedanceDIFF1T_p0"
+    },
+    {
+      "line": 1225,
+      "logical_csr": "0x11045",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxImpedanceDIFF1C_p0"
+    },
+    {
+      "line": 1226,
+      "logical_csr": "0x12040",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxImpedanceSE0_p0"
+    },
+    {
+      "line": 1227,
+      "logical_csr": "0x12042",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1229,
+      "logical_csr": "0x12043",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1230,
+      "logical_csr": "0x12044",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxImpedanceDIFF1T_p0"
+    },
+    {
+      "line": 1231,
+      "logical_csr": "0x12045",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxImpedanceDIFF1C_p0"
+    },
+    {
+      "line": 1232,
+      "logical_csr": "0x13040",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxImpedanceSE0_p0"
+    },
+    {
+      "line": 1233,
+      "logical_csr": "0x13042",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1235,
+      "logical_csr": "0x13043",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1236,
+      "logical_csr": "0x13044",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxImpedanceDIFF1T_p0"
+    },
+    {
+      "line": 1237,
+      "logical_csr": "0x13045",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxImpedanceDIFF1C_p0"
+    },
+    {
+      "line": 1238,
+      "logical_csr": "0x30040",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxImpedanceSE0_p0"
+    },
+    {
+      "line": 1239,
+      "logical_csr": "0x30041",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxImpedanceSE1_p0"
+    },
+    {
+      "line": 1240,
+      "logical_csr": "0x30042",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1241,
+      "logical_csr": "0x30043",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1242,
+      "logical_csr": "0x30330",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxImpedanceCMOS0_p0"
+    },
+    {
+      "line": 1243,
+      "logical_csr": "0x31040",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxImpedanceSE0_p0"
+    },
+    {
+      "line": 1244,
+      "logical_csr": "0x31041",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxImpedanceSE1_p0"
+    },
+    {
+      "line": 1245,
+      "logical_csr": "0x31042",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1246,
+      "logical_csr": "0x31043",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1247,
+      "logical_csr": "0x31330",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxImpedanceCMOS0_p0"
+    },
+    {
+      "line": 1248,
+      "logical_csr": "0x20331",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_TxImpedanceCMOS1_p0"
+    },
+    {
+      "line": 1249,
+      "logical_csr": "0x10048",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_OdtImpedanceSE0_p0"
+    },
+    {
+      "line": 1250,
+      "logical_csr": "0x1004a",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_OdtImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1251,
+      "logical_csr": "0x1004b",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_OdtImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1252,
+      "logical_csr": "0x1004c",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_OdtImpedanceDIFF1T_p0"
+    },
+    {
+      "line": 1253,
+      "logical_csr": "0x1004d",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_OdtImpedanceDIFF1C_p0"
+    },
+    {
+      "line": 1254,
+      "logical_csr": "0x11048",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_OdtImpedanceSE0_p0"
+    },
+    {
+      "line": 1255,
+      "logical_csr": "0x1104a",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_OdtImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1256,
+      "logical_csr": "0x1104b",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_OdtImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1257,
+      "logical_csr": "0x1104c",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_OdtImpedanceDIFF1T_p0"
+    },
+    {
+      "line": 1258,
+      "logical_csr": "0x1104d",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_OdtImpedanceDIFF1C_p0"
+    },
+    {
+      "line": 1259,
+      "logical_csr": "0x12048",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_OdtImpedanceSE0_p0"
+    },
+    {
+      "line": 1260,
+      "logical_csr": "0x1204a",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_OdtImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1261,
+      "logical_csr": "0x1204b",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_OdtImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1262,
+      "logical_csr": "0x1204c",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_OdtImpedanceDIFF1T_p0"
+    },
+    {
+      "line": 1263,
+      "logical_csr": "0x1204d",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_OdtImpedanceDIFF1C_p0"
+    },
+    {
+      "line": 1264,
+      "logical_csr": "0x13048",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_OdtImpedanceSE0_p0"
+    },
+    {
+      "line": 1265,
+      "logical_csr": "0x1304a",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_OdtImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1266,
+      "logical_csr": "0x1304b",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_OdtImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1267,
+      "logical_csr": "0x1304c",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_OdtImpedanceDIFF1T_p0"
+    },
+    {
+      "line": 1268,
+      "logical_csr": "0x1304d",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_OdtImpedanceDIFF1C_p0"
+    },
+    {
+      "line": 1269,
+      "logical_csr": "0x30048",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_OdtImpedanceSE0_p0"
+    },
+    {
+      "line": 1270,
+      "logical_csr": "0x30049",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_OdtImpedanceSE1_p0"
+    },
+    {
+      "line": 1271,
+      "logical_csr": "0x3004a",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_OdtImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1272,
+      "logical_csr": "0x3004b",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_OdtImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1273,
+      "logical_csr": "0x31048",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_OdtImpedanceSE0_p0"
+    },
+    {
+      "line": 1274,
+      "logical_csr": "0x31049",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_OdtImpedanceSE1_p0"
+    },
+    {
+      "line": 1275,
+      "logical_csr": "0x3104a",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_OdtImpedanceDIFF0T_p0"
+    },
+    {
+      "line": 1276,
+      "logical_csr": "0x3104b",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_OdtImpedanceDIFF0C_p0"
+    },
+    {
+      "line": 1277,
+      "logical_csr": "0x30033",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxSlewSE0_p0"
+    },
+    {
+      "line": 1278,
+      "logical_csr": "0x30034",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxSlewSE1_p0"
+    },
+    {
+      "line": 1279,
+      "logical_csr": "0x3002e",
+      "name_comment": "DWC_DDRPHYA_AC0_p0_TxSlewDIFF0_p0"
+    },
+    {
+      "line": 1280,
+      "logical_csr": "0x31033",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxSlewSE0_p0"
+    },
+    {
+      "line": 1281,
+      "logical_csr": "0x31034",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxSlewSE1_p0"
+    },
+    {
+      "line": 1282,
+      "logical_csr": "0x3102e",
+      "name_comment": "DWC_DDRPHYA_AC1_p0_TxSlewDIFF0_p0"
+    },
+    {
+      "line": 1283,
+      "logical_csr": "0x10033",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxSlewSE0_p0"
+    },
+    {
+      "line": 1284,
+      "logical_csr": "0x1002e",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxSlewDIFF0_p0"
+    },
+    {
+      "line": 1285,
+      "logical_csr": "0x1002f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxSlewDIFF1_p0"
+    },
+    {
+      "line": 1286,
+      "logical_csr": "0x11033",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxSlewSE0_p0"
+    },
+    {
+      "line": 1287,
+      "logical_csr": "0x1102e",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxSlewDIFF0_p0"
+    },
+    {
+      "line": 1288,
+      "logical_csr": "0x1102f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxSlewDIFF1_p0"
+    },
+    {
+      "line": 1289,
+      "logical_csr": "0x12033",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxSlewSE0_p0"
+    },
+    {
+      "line": 1290,
+      "logical_csr": "0x1202e",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxSlewDIFF0_p0"
+    },
+    {
+      "line": 1291,
+      "logical_csr": "0x1202f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxSlewDIFF1_p0"
+    },
+    {
+      "line": 1292,
+      "logical_csr": "0x13033",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxSlewSE0_p0"
+    },
+    {
+      "line": 1293,
+      "logical_csr": "0x1302e",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxSlewDIFF0_p0"
+    },
+    {
+      "line": 1294,
+      "logical_csr": "0x1302f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxSlewDIFF1_p0"
+    },
+    {
+      "line": 1295,
+      "logical_csr": "0x20015",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_SingleEndedMode_p0"
+    },
+    {
+      "line": 1297,
+      "logical_csr": "0x100e8",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxDiffSeDIFF0_p0"
+    },
+    {
+      "line": 1298,
+      "logical_csr": "0x100e9",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxDiffSeVrefDACDIFF0_p0"
+    },
+    {
+      "line": 1299,
+      "logical_csr": "0x110e8",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxDiffSeDIFF0_p0"
+    },
+    {
+      "line": 1300,
+      "logical_csr": "0x110e9",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxDiffSeVrefDACDIFF0_p0"
+    },
+    {
+      "line": 1301,
+      "logical_csr": "0x120e8",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxDiffSeDIFF0_p0"
+    },
+    {
+      "line": 1302,
+      "logical_csr": "0x120e9",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxDiffSeVrefDACDIFF0_p0"
+    },
+    {
+      "line": 1303,
+      "logical_csr": "0x130e8",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxDiffSeDIFF0_p0"
+    },
+    {
+      "line": 1304,
+      "logical_csr": "0x130e9",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxDiffSeVrefDACDIFF0_p0"
+    },
+    {
+      "line": 1305,
+      "logical_csr": "0x10001",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_EnableWriteLinkEcc_p0"
+    },
+    {
+      "line": 1306,
+      "logical_csr": "0x11001",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_EnableWriteLinkEcc_p0"
+    },
+    {
+      "line": 1307,
+      "logical_csr": "0x12001",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_EnableWriteLinkEcc_p0"
+    },
+    {
+      "line": 1308,
+      "logical_csr": "0x13001",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_EnableWriteLinkEcc_p0"
+    },
+    {
+      "line": 1309,
+      "logical_csr": "0x20012",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_DllGainCtl_p0"
+    },
+    {
+      "line": 1310,
+      "logical_csr": "0x20017",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_DxDllLockParam_p0"
+    },
+    {
+      "line": 1311,
+      "logical_csr": "0x2000a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcDllLockParam_p0"
+    },
+    {
+      "line": 1312,
+      "logical_csr": "0x20186",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_RxReplicaDllGainCtl_p0"
+    },
+    {
+      "line": 1313,
+      "logical_csr": "0x20187",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_RxReplicaDllLockParam_p0"
+    },
+    {
+      "line": 1314,
+      "logical_csr": "0x20010",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PPTTrainSetup_p0"
+    },
+    {
+      "line": 1315,
+      "logical_csr": "0x20011",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PPTTrainSetup2_p0"
+    },
+    {
+      "line": 1318,
+      "logical_csr": "0x100a5",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxTrainPattern8BitMode_p0"
+    },
+    {
+      "line": 1319,
+      "logical_csr": "0x110a5",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxTrainPattern8BitMode_p0"
+    },
+    {
+      "line": 1320,
+      "logical_csr": "0x120a5",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxTrainPattern8BitMode_p0"
+    },
+    {
+      "line": 1321,
+      "logical_csr": "0x130a5",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxTrainPattern8BitMode_p0"
+    },
+    {
+      "line": 1322,
+      "logical_csr": "0x10014",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxReplicaRangeVal_p0"
+    },
+    {
+      "line": 1323,
+      "logical_csr": "0x11014",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxReplicaRangeVal_p0"
+    },
+    {
+      "line": 1324,
+      "logical_csr": "0x12014",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxReplicaRangeVal_p0"
+    },
+    {
+      "line": 1325,
+      "logical_csr": "0x13014",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxReplicaRangeVal_p0"
+    },
+    {
+      "line": 1326,
+      "logical_csr": "0x1000f",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxReplicaCtl04_p0"
+    },
+    {
+      "line": 1327,
+      "logical_csr": "0x1100f",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxReplicaCtl04_p0"
+    },
+    {
+      "line": 1328,
+      "logical_csr": "0x1200f",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxReplicaCtl04_p0"
+    },
+    {
+      "line": 1329,
+      "logical_csr": "0x1300f",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxReplicaCtl04_p0"
+    },
+    {
+      "line": 1330,
+      "logical_csr": "0x20035",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckWriteStaticLoPulse_p0"
+    },
+    {
+      "line": 1331,
+      "logical_csr": "0x20036",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckWriteStaticHiPulse_p0"
+    },
+    {
+      "line": 1332,
+      "logical_csr": "0x20037",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckWriteTogglePulse_p0"
+    },
+    {
+      "line": 1334,
+      "logical_csr": "0x20038",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckWriteFastTogglePulse_p0"
+    },
+    {
+      "line": 1335,
+      "logical_csr": "0x20039",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckReadStaticLoPulse_p0"
+    },
+    {
+      "line": 1336,
+      "logical_csr": "0x2003a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckReadStaticHiPulse_p0"
+    },
+    {
+      "line": 1337,
+      "logical_csr": "0x2003b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckReadTogglePulse_p0"
+    },
+    {
+      "line": 1338,
+      "logical_csr": "0x2003c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckReadFastTogglePulse_p0"
+    },
+    {
+      "line": 1339,
+      "logical_csr": "0x2003d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckFreqSwStaticLoPulse_p0"
+    },
+    {
+      "line": 1340,
+      "logical_csr": "0x2003e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckFreqSwStaticHiPulse_p0"
+    },
+    {
+      "line": 1341,
+      "logical_csr": "0x2003f",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckFreqSwTogglePulse_p0"
+    },
+    {
+      "line": 1342,
+      "logical_csr": "0x20040",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckFreqSwFastTogglePulse_p0"
+    },
+    {
+      "line": 1343,
+      "logical_csr": "0x2002c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMRxEnPulse_p0"
+    },
+    {
+      "line": 1344,
+      "logical_csr": "0x2002d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMRxValPulse_p0"
+    },
+    {
+      "line": 1345,
+      "logical_csr": "0x20030",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMRdcsPulse_p0"
+    },
+    {
+      "line": 1346,
+      "logical_csr": "0x2002e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMTxEnPulse_p0"
+    },
+    {
+      "line": 1347,
+      "logical_csr": "0x2002f",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWrcsPulse_p0"
+    },
+    {
+      "line": 1348,
+      "logical_csr": "0x2000c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcPipeEn_p0"
+    },
+    {
+      "line": 1349,
+      "logical_csr": "0x2001b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_InhibitTxRdPtrInit_p0"
+    },
+    {
+      "line": 1350,
+      "logical_csr": "0x10007",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_TxDcaMode_p0"
+    },
+    {
+      "line": 1351,
+      "logical_csr": "0x11007",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_TxDcaMode_p0"
+    },
+    {
+      "line": 1352,
+      "logical_csr": "0x12007",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_TxDcaMode_p0"
+    },
+    {
+      "line": 1353,
+      "logical_csr": "0x13007",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_TxDcaMode_p0"
+    },
+    {
+      "line": 1354,
+      "logical_csr": "0xc0080",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_UcclkHclkEnables"
+    },
+    {
+      "line": 1355,
+      "logical_csr": "0x2004a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PllCtrl1_p0"
+    },
+    {
+      "line": 1356,
+      "logical_csr": "0x2004b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PllCtrl4_p0"
+    },
+    {
+      "line": 1361,
+      "logical_csr": "0x20088",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PllUPllProg0"
+    },
+    {
+      "line": 1362,
+      "logical_csr": "0x20089",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PllUPllProg1"
+    },
+    {
+      "line": 1363,
+      "logical_csr": "0x2008a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PllUPllProg2"
+    },
+    {
+      "line": 1364,
+      "logical_csr": "0x2008c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_PllUPllProg3"
+    },
+    {
+      "line": 1365,
+      "logical_csr": "0xd0000",
+      "name_comment": "DWC_DDRPHYA_APBONLY0_MicroContMuxSel"
+    },
+    {
+      "line": 1394,
+      "logical_csr": "0xd0099",
+      "name_comment": "DWC_DDRPHYA_APBONLY0_MicroReset"
+    },
+    {
+      "line": 1591,
+      "logical_csr": "0x20041",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMWckFreeRunMode_p0"
+    },
+    {
+      "line": 1593,
+      "logical_csr": "0x20045",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMRptCntOverride_p0"
+    },
+    {
+      "line": 1594,
+      "logical_csr": "0x10057",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_RxClkCntl1_p0"
+    },
+    {
+      "line": 1595,
+      "logical_csr": "0x11057",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_RxClkCntl1_p0"
+    },
+    {
+      "line": 1596,
+      "logical_csr": "0x12057",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_RxClkCntl1_p0"
+    },
+    {
+      "line": 1597,
+      "logical_csr": "0x13057",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_RxClkCntl1_p0"
+    },
+    {
+      "line": 1609,
+      "logical_csr": "0x20072",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA"
+    },
+    {
+      "line": 1611,
+      "logical_csr": "0x20073",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB"
+    },
+    {
+      "line": 5171,
+      "logical_csr": "0xd00e7",
+      "name_comment": "DWC_DDRPHYA_APBONLY0_SequencerOverride"
+    },
+    {
+      "line": 5187,
+      "logical_csr": "0x2018a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ACSMNopAddr"
+    },
+    {
+      "line": 5188,
+      "logical_csr": "0x20124",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal0"
+    },
+    {
+      "line": 5189,
+      "logical_csr": "0x2018b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal0"
+    },
+    {
+      "line": 5190,
+      "logical_csr": "0x20125",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal1"
+    },
+    {
+      "line": 5191,
+      "logical_csr": "0x2018c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal1"
+    },
+    {
+      "line": 5192,
+      "logical_csr": "0x20126",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal2"
+    },
+    {
+      "line": 5193,
+      "logical_csr": "0x2018d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal2"
+    },
+    {
+      "line": 5194,
+      "logical_csr": "0x20127",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal3"
+    },
+    {
+      "line": 5195,
+      "logical_csr": "0x2018e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal3"
+    },
+    {
+      "line": 5196,
+      "logical_csr": "0x20128",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal4"
+    },
+    {
+      "line": 5197,
+      "logical_csr": "0x2018f",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal4"
+    },
+    {
+      "line": 5198,
+      "logical_csr": "0x20129",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal5"
+    },
+    {
+      "line": 5199,
+      "logical_csr": "0x20190",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal5"
+    },
+    {
+      "line": 5200,
+      "logical_csr": "0x2012a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal6"
+    },
+    {
+      "line": 5201,
+      "logical_csr": "0x20191",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal6"
+    },
+    {
+      "line": 5202,
+      "logical_csr": "0x2012b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal7"
+    },
+    {
+      "line": 5203,
+      "logical_csr": "0x20192",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal7"
+    },
+    {
+      "line": 5204,
+      "logical_csr": "0x2012c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal8"
+    },
+    {
+      "line": 5205,
+      "logical_csr": "0x20193",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal8"
+    },
+    {
+      "line": 5206,
+      "logical_csr": "0x2012d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal9"
+    },
+    {
+      "line": 5207,
+      "logical_csr": "0x20194",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal9"
+    },
+    {
+      "line": 5208,
+      "logical_csr": "0x2012e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal10"
+    },
+    {
+      "line": 5209,
+      "logical_csr": "0x20195",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal10"
+    },
+    {
+      "line": 5210,
+      "logical_csr": "0x2012f",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal11"
+    },
+    {
+      "line": 5211,
+      "logical_csr": "0x20196",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal11"
+    },
+    {
+      "line": 5212,
+      "logical_csr": "0x20130",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal12"
+    },
+    {
+      "line": 5213,
+      "logical_csr": "0x20197",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal12"
+    },
+    {
+      "line": 5214,
+      "logical_csr": "0x20131",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal13"
+    },
+    {
+      "line": 5215,
+      "logical_csr": "0x20198",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal13"
+    },
+    {
+      "line": 5216,
+      "logical_csr": "0x20132",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal14"
+    },
+    {
+      "line": 5217,
+      "logical_csr": "0x20199",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal14"
+    },
+    {
+      "line": 5218,
+      "logical_csr": "0x20133",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal15"
+    },
+    {
+      "line": 5219,
+      "logical_csr": "0x2019a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal15"
+    },
+    {
+      "line": 5220,
+      "logical_csr": "0x20134",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal16"
+    },
+    {
+      "line": 5221,
+      "logical_csr": "0x2019b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal16"
+    },
+    {
+      "line": 5222,
+      "logical_csr": "0x20135",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal17"
+    },
+    {
+      "line": 5223,
+      "logical_csr": "0x2019c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal17"
+    },
+    {
+      "line": 5224,
+      "logical_csr": "0x20136",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal18"
+    },
+    {
+      "line": 5225,
+      "logical_csr": "0x2019d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal18"
+    },
+    {
+      "line": 5226,
+      "logical_csr": "0x20137",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal19"
+    },
+    {
+      "line": 5227,
+      "logical_csr": "0x2019e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal19"
+    },
+    {
+      "line": 5228,
+      "logical_csr": "0x20138",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal20"
+    },
+    {
+      "line": 5229,
+      "logical_csr": "0x2019f",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal20"
+    },
+    {
+      "line": 5230,
+      "logical_csr": "0x20139",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal21"
+    },
+    {
+      "line": 5231,
+      "logical_csr": "0x201a0",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal21"
+    },
+    {
+      "line": 5232,
+      "logical_csr": "0x2013a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal22"
+    },
+    {
+      "line": 5233,
+      "logical_csr": "0x201a1",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal22"
+    },
+    {
+      "line": 5234,
+      "logical_csr": "0x2013b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal23"
+    },
+    {
+      "line": 5235,
+      "logical_csr": "0x201a2",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal23"
+    },
+    {
+      "line": 5236,
+      "logical_csr": "0x2013c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal24"
+    },
+    {
+      "line": 5237,
+      "logical_csr": "0x201a3",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal24"
+    },
+    {
+      "line": 5238,
+      "logical_csr": "0x2013d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal25"
+    },
+    {
+      "line": 5239,
+      "logical_csr": "0x201a4",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal25"
+    },
+    {
+      "line": 5240,
+      "logical_csr": "0x2013e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal26"
+    },
+    {
+      "line": 5241,
+      "logical_csr": "0x201a5",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal26"
+    },
+    {
+      "line": 5242,
+      "logical_csr": "0x2013f",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal27"
+    },
+    {
+      "line": 5243,
+      "logical_csr": "0x201a6",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal27"
+    },
+    {
+      "line": 5244,
+      "logical_csr": "0x20140",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal28"
+    },
+    {
+      "line": 5245,
+      "logical_csr": "0x201a7",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal28"
+    },
+    {
+      "line": 5246,
+      "logical_csr": "0x20141",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal29"
+    },
+    {
+      "line": 5247,
+      "logical_csr": "0x201a8",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal29"
+    },
+    {
+      "line": 5248,
+      "logical_csr": "0x20142",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal30"
+    },
+    {
+      "line": 5249,
+      "logical_csr": "0x201a9",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal30"
+    },
+    {
+      "line": 5250,
+      "logical_csr": "0x20143",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal31"
+    },
+    {
+      "line": 5251,
+      "logical_csr": "0x201aa",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal31"
+    },
+    {
+      "line": 5252,
+      "logical_csr": "0x20144",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal32"
+    },
+    {
+      "line": 5253,
+      "logical_csr": "0x201ab",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal32"
+    },
+    {
+      "line": 5254,
+      "logical_csr": "0x20145",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal33"
+    },
+    {
+      "line": 5255,
+      "logical_csr": "0x201ac",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal33"
+    },
+    {
+      "line": 5256,
+      "logical_csr": "0x20146",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal34"
+    },
+    {
+      "line": 5257,
+      "logical_csr": "0x201ad",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal34"
+    },
+    {
+      "line": 5258,
+      "logical_csr": "0x20147",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal35"
+    },
+    {
+      "line": 5259,
+      "logical_csr": "0x201ae",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal35"
+    },
+    {
+      "line": 5260,
+      "logical_csr": "0x20148",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal36"
+    },
+    {
+      "line": 5261,
+      "logical_csr": "0x201af",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal36"
+    },
+    {
+      "line": 5262,
+      "logical_csr": "0x20149",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal37"
+    },
+    {
+      "line": 5263,
+      "logical_csr": "0x201b0",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal37"
+    },
+    {
+      "line": 5264,
+      "logical_csr": "0x2014a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal38"
+    },
+    {
+      "line": 5265,
+      "logical_csr": "0x201b1",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal38"
+    },
+    {
+      "line": 5266,
+      "logical_csr": "0x2014b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal39"
+    },
+    {
+      "line": 5267,
+      "logical_csr": "0x201b2",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal39"
+    },
+    {
+      "line": 5268,
+      "logical_csr": "0x2014c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal40"
+    },
+    {
+      "line": 5269,
+      "logical_csr": "0x201b3",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal40"
+    },
+    {
+      "line": 5270,
+      "logical_csr": "0x2014d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal41"
+    },
+    {
+      "line": 5271,
+      "logical_csr": "0x201b4",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal41"
+    },
+    {
+      "line": 5272,
+      "logical_csr": "0x2014e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal42"
+    },
+    {
+      "line": 5273,
+      "logical_csr": "0x201b5",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal42"
+    },
+    {
+      "line": 5274,
+      "logical_csr": "0x2014f",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal43"
+    },
+    {
+      "line": 5275,
+      "logical_csr": "0x201b6",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal43"
+    },
+    {
+      "line": 5276,
+      "logical_csr": "0x20150",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal44"
+    },
+    {
+      "line": 5277,
+      "logical_csr": "0x201b7",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal44"
+    },
+    {
+      "line": 5278,
+      "logical_csr": "0x20151",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal45"
+    },
+    {
+      "line": 5279,
+      "logical_csr": "0x201b8",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal45"
+    },
+    {
+      "line": 5280,
+      "logical_csr": "0x20152",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal46"
+    },
+    {
+      "line": 5281,
+      "logical_csr": "0x201b9",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal46"
+    },
+    {
+      "line": 5282,
+      "logical_csr": "0x20153",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal47"
+    },
+    {
+      "line": 5283,
+      "logical_csr": "0x201ba",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal47"
+    },
+    {
+      "line": 5284,
+      "logical_csr": "0x20154",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal48"
+    },
+    {
+      "line": 5285,
+      "logical_csr": "0x201bb",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal48"
+    },
+    {
+      "line": 5286,
+      "logical_csr": "0x20155",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal49"
+    },
+    {
+      "line": 5287,
+      "logical_csr": "0x201bc",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal49"
+    },
+    {
+      "line": 5288,
+      "logical_csr": "0x20156",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal50"
+    },
+    {
+      "line": 5289,
+      "logical_csr": "0x201bd",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal50"
+    },
+    {
+      "line": 5290,
+      "logical_csr": "0x20157",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal51"
+    },
+    {
+      "line": 5291,
+      "logical_csr": "0x201be",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal51"
+    },
+    {
+      "line": 5292,
+      "logical_csr": "0x20158",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal52"
+    },
+    {
+      "line": 5293,
+      "logical_csr": "0x201bf",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal52"
+    },
+    {
+      "line": 5294,
+      "logical_csr": "0x20159",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal53"
+    },
+    {
+      "line": 5295,
+      "logical_csr": "0x201c0",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal53"
+    },
+    {
+      "line": 5296,
+      "logical_csr": "0x2015a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal54"
+    },
+    {
+      "line": 5297,
+      "logical_csr": "0x201c1",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal54"
+    },
+    {
+      "line": 5298,
+      "logical_csr": "0x2015b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal55"
+    },
+    {
+      "line": 5299,
+      "logical_csr": "0x201c2",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal55"
+    },
+    {
+      "line": 5300,
+      "logical_csr": "0x2015c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal56"
+    },
+    {
+      "line": 5301,
+      "logical_csr": "0x201c3",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal56"
+    },
+    {
+      "line": 5302,
+      "logical_csr": "0x2015d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal57"
+    },
+    {
+      "line": 5303,
+      "logical_csr": "0x201c4",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal57"
+    },
+    {
+      "line": 5304,
+      "logical_csr": "0x2015e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal58"
+    },
+    {
+      "line": 5305,
+      "logical_csr": "0x201c5",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal58"
+    },
+    {
+      "line": 5306,
+      "logical_csr": "0x2015f",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal59"
+    },
+    {
+      "line": 5307,
+      "logical_csr": "0x201c6",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal59"
+    },
+    {
+      "line": 5308,
+      "logical_csr": "0x20160",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal60"
+    },
+    {
+      "line": 5309,
+      "logical_csr": "0x201c7",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal60"
+    },
+    {
+      "line": 5310,
+      "logical_csr": "0x20161",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal61"
+    },
+    {
+      "line": 5311,
+      "logical_csr": "0x201c8",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal61"
+    },
+    {
+      "line": 5312,
+      "logical_csr": "0x20162",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal62"
+    },
+    {
+      "line": 5313,
+      "logical_csr": "0x201c9",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal62"
+    },
+    {
+      "line": 5314,
+      "logical_csr": "0x20163",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal63"
+    },
+    {
+      "line": 5315,
+      "logical_csr": "0x201ca",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal63"
+    },
+    {
+      "line": 5316,
+      "logical_csr": "0x20164",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal64"
+    },
+    {
+      "line": 5317,
+      "logical_csr": "0x201cb",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal64"
+    },
+    {
+      "line": 5318,
+      "logical_csr": "0x20165",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal65"
+    },
+    {
+      "line": 5319,
+      "logical_csr": "0x201cc",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal65"
+    },
+    {
+      "line": 5320,
+      "logical_csr": "0x20166",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal66"
+    },
+    {
+      "line": 5321,
+      "logical_csr": "0x201cd",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal66"
+    },
+    {
+      "line": 5322,
+      "logical_csr": "0x20167",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal67"
+    },
+    {
+      "line": 5323,
+      "logical_csr": "0x201ce",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal67"
+    },
+    {
+      "line": 5324,
+      "logical_csr": "0x20168",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal68"
+    },
+    {
+      "line": 5325,
+      "logical_csr": "0x201cf",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal68"
+    },
+    {
+      "line": 5326,
+      "logical_csr": "0x20169",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal69"
+    },
+    {
+      "line": 5327,
+      "logical_csr": "0x201d0",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal69"
+    },
+    {
+      "line": 5328,
+      "logical_csr": "0x2016a",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal70"
+    },
+    {
+      "line": 5329,
+      "logical_csr": "0x201d1",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal70"
+    },
+    {
+      "line": 5330,
+      "logical_csr": "0x2016b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal71"
+    },
+    {
+      "line": 5331,
+      "logical_csr": "0x201d2",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal71"
+    },
+    {
+      "line": 5332,
+      "logical_csr": "0x2016c",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal72"
+    },
+    {
+      "line": 5333,
+      "logical_csr": "0x201d3",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal72"
+    },
+    {
+      "line": 5334,
+      "logical_csr": "0x2016d",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal73"
+    },
+    {
+      "line": 5335,
+      "logical_csr": "0x201d4",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal73"
+    },
+    {
+      "line": 5336,
+      "logical_csr": "0x2016e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal74"
+    },
+    {
+      "line": 5337,
+      "logical_csr": "0x201d5",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal74"
+    },
+    {
+      "line": 5338,
+      "logical_csr": "0x2016f",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal75"
+    },
+    {
+      "line": 5339,
+      "logical_csr": "0x201d6",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal75"
+    },
+    {
+      "line": 5340,
+      "logical_csr": "0x20170",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal76"
+    },
+    {
+      "line": 5341,
+      "logical_csr": "0x201d7",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal76"
+    },
+    {
+      "line": 5342,
+      "logical_csr": "0x20171",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal77"
+    },
+    {
+      "line": 5343,
+      "logical_csr": "0x201d8",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal77"
+    },
+    {
+      "line": 5344,
+      "logical_csr": "0x20172",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal78"
+    },
+    {
+      "line": 5345,
+      "logical_csr": "0x201d9",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal78"
+    },
+    {
+      "line": 5346,
+      "logical_csr": "0x20173",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStartAddrXlatVal79"
+    },
+    {
+      "line": 5347,
+      "logical_csr": "0x201da",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_AcsmStopAddrXlatVal79"
+    },
+    {
+      "line": 5556,
+      "logical_csr": "0xc0001",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_PieInitVecSel"
+    },
+    {
+      "line": 5557,
+      "logical_csr": "0xc0002",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_PieInitVecSelB"
+    },
+    {
+      "line": 5558,
+      "logical_csr": "0xc0003",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_PieInitVecSelC"
+    },
+    {
+      "line": 5559,
+      "logical_csr": "0xc0000",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_PieVecCfg"
+    },
+    {
+      "line": 5560,
+      "logical_csr": "0xc0006",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_PieVecCfg1"
+    },
+    {
+      "line": 5561,
+      "logical_csr": "0xc0007",
+      "name_comment": "DWC_DDRPHYA_DRTUB0_PieVecCfg2"
+    },
+    {
+      "line": 5598,
+      "logical_csr": "0x200f0",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_FspSkipList"
+    },
+    {
+      "line": 5599,
+      "logical_csr": "0x200f1",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_FspSkipList1"
+    },
+    {
+      "line": 5600,
+      "logical_csr": "0x200f2",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_FspSkipList2"
+    },
+    {
+      "line": 5601,
+      "logical_csr": "0x100b9",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_DtsmGoodBar"
+    },
+    {
+      "line": 5602,
+      "logical_csr": "0x100b1",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_DtsmByteCtrl1"
+    },
+    {
+      "line": 5603,
+      "logical_csr": "0x100ba",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_DtsmErrBar"
+    },
+    {
+      "line": 5604,
+      "logical_csr": "0x100a2",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_PptRxEnEvnt"
+    },
+    {
+      "line": 5605,
+      "logical_csr": "0x100b5",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_DtsmLaneCtrl0_i0"
+    },
+    {
+      "line": 5606,
+      "logical_csr": "0x110b9",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_DtsmGoodBar"
+    },
+    {
+      "line": 5607,
+      "logical_csr": "0x110b1",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_DtsmByteCtrl1"
+    },
+    {
+      "line": 5608,
+      "logical_csr": "0x110ba",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_DtsmErrBar"
+    },
+    {
+      "line": 5609,
+      "logical_csr": "0x110a2",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_PptRxEnEvnt"
+    },
+    {
+      "line": 5610,
+      "logical_csr": "0x110b5",
+      "name_comment": "DWC_DDRPHYA_DBYTE1_p0_DtsmLaneCtrl0_i0"
+    },
+    {
+      "line": 5611,
+      "logical_csr": "0x120b9",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_DtsmGoodBar"
+    },
+    {
+      "line": 5612,
+      "logical_csr": "0x120b1",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_DtsmByteCtrl1"
+    },
+    {
+      "line": 5613,
+      "logical_csr": "0x120ba",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_DtsmErrBar"
+    },
+    {
+      "line": 5614,
+      "logical_csr": "0x120a2",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_PptRxEnEvnt"
+    },
+    {
+      "line": 5615,
+      "logical_csr": "0x120b5",
+      "name_comment": "DWC_DDRPHYA_DBYTE2_p0_DtsmLaneCtrl0_i0"
+    },
+    {
+      "line": 5616,
+      "logical_csr": "0x130b9",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_DtsmGoodBar"
+    },
+    {
+      "line": 5617,
+      "logical_csr": "0x130b1",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_DtsmByteCtrl1"
+    },
+    {
+      "line": 5618,
+      "logical_csr": "0x130ba",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_DtsmErrBar"
+    },
+    {
+      "line": 5619,
+      "logical_csr": "0x130a2",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_PptRxEnEvnt"
+    },
+    {
+      "line": 5620,
+      "logical_csr": "0x130b5",
+      "name_comment": "DWC_DDRPHYA_DBYTE3_p0_DtsmLaneCtrl0_i0"
+    },
+    {
+      "line": 5694,
+      "logical_csr": "0x2007e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal"
+    },
+    {
+      "line": 5695,
+      "logical_csr": "0x200ef",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_FspState"
+    },
+    {
+      "line": 5697,
+      "logical_csr": "0x20310",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalReset"
+    },
+    {
+      "line": 5698,
+      "logical_csr": "0x20311",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalRun"
+    },
+    {
+      "line": 5700,
+      "logical_csr": "0xd0003",
+      "name_comment": "DWC_DDRPHYA_APBONLY0_TDRDisable"
+    }
+  ]
+}

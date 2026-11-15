@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-15",
+  "timezone": "Asia/Shanghai",
+  "scope": "Organize and back up existing source-v6 implementation and observed evidence; no board operation or firmware replacement",
+  "checks": {
+    "source_uboot_patch_replay": true,
+    "existing_uboot_payload_matches_deployed": true,
+    "fresh_uboot_rebuild": false,
+    "new_uboot_builder_shell_syntax": true,
+    "gpt_validator_replayed_existing_raw_and_serial_log": true,
+    "gpt_snapshots_and_result_semantics_unchanged": true,
+    "python_sources_parsed": true,
+    "git_index_content_matches_backup_manifest": true,
+    "credential_and_private_key_scan_passed": true
+  },
+  "new_navigation": [
+    "docs/CODE_MAP.md",
+    "docs/BACKUP_SOURCE_V6.md"
+  ],
+  "validation_tools": "tools/validation/README.md",
+  "source_uboot_audit": "evidence/source-uboot-backup-audit-20261115.json",
+  "provenance": [
+    "config/sources.lock.json",
+    "config/patch-ledger.json",
+    "config/boot-policy.json"
+  ],
+  "not_bundled": [
+    "credentials",
+    "vendor executable firmware and DDR library",
+    "raw images and rootfs",
+    "SDK and full vendor manuals",
+    "generated objects and caches"
+  ],
+  "publication_receipt": "The final remote commit and archive hash are recorded separately after upload; this file records completed pre-publication checks."
+}

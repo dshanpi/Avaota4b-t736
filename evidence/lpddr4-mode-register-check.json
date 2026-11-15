@@ -1,0 +1,28 @@
+{
+  "checks_complete": true,
+  "native_address_undefined_sanitizers_pass": true,
+  "lane_channel_rank_id_vectors": 3072,
+  "all_callback_failures_tested": true,
+  "arm32_freestanding_compile_pass": true,
+  "undefined_symbols": "",
+  "allowed_mode_registers": [
+    5,
+    6,
+    8
+  ],
+  "mr_write_supported": false,
+  "vendor_binaries_linked": false,
+  "board_tested": false,
+  "receive_valid_bit_identified": false,
+  "ddr_training_implemented": false,
+  "boot_firmware_deployable": false,
+  "inputs_and_objects": {
+    "spl/lpddr4/mode_register.c": "6253cdd36c7262c4dc633e3d3013809c85e0320ccb44d4bd37282edf3d1fed47",
+    "spl/lpddr4/mode_register.h": "549eba68c4e1989e589cfcbe4ba437b001625dc74e36b859123f8e66729ad562",
+    "spl/lpddr4/test_mode_register.c": "b5d0fa3fc82e3e5f23db5cae98d57c0d03e430ebdb4609a1b4d0f9d1acdb8dbe",
+    "spl/lpddr4/check_mode_register.py": "d7d782c8aea8fc8f34be9edd20459b08389bf3e326746891977550fe3addb942",
+    "spl/lpddr4/controller.h": "d42e7955af902cf11ecc4b7982bdb0357a56f235a381384f40504b1680bed339",
+    "spl/lpddr4/pmu/mode-register-audit.json": "542538b659984ef025fbe66c9c521c1b0778e0c0ab1be329697f42eb58aa32c4",
+    "build/lpddr4-mode-register/mode_register.o": "cfd7f804504faa33e2c1bb9815cdc82ba048c2c08d49edf850974733808c1282"
+  }
+}

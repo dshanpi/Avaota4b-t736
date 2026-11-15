@@ -1,0 +1,56 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "e2eea64c65155fa179b72a9574ab7adcdc3fa9425d8f1cc55267eb0d04372cd4",
+      "remote_match": true
+    },
+    {
+      "path": "docs/BOOT_CHAIN.md",
+      "sha256": "e2f6080761b89b6308a0a5d3879240d1412567ae4a13f81fcc5fc0ae20365dd6",
+      "remote_match": true
+    },
+    {
+      "path": "status.json",
+      "sha256": "3ad357ee1a926c832a0f9e75d0aabdb25c23fcd229538ab2fdcfe89f15f12393",
+      "remote_match": true
+    },
+    {
+      "path": "config/boot-policy.json",
+      "sha256": "780907d67b7e117ee0f038cd4071046dd4e8df149526e0e9b201ce58bf956e4c",
+      "remote_match": true
+    },
+    {
+      "path": "config/patch-ledger.json",
+      "sha256": "bf38e30b17bd62df33d95d6b936bf8521ec4a74d6742b96eb14adfa0ea48a09e",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/independent-boot-audit.json",
+      "sha256": "60e7d9b131f8b3e52b23d9670f523a6a10521439eb47f373a10d617d57874c17",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/lpddr4-source-feasibility.json",
+      "sha256": "2678815d0e6d89add1d99acd7703d31c8ee2f2c5720dcc68341a9ed745c0b8a4",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/lpddr4-source-followup.json",
+      "sha256": "613232463bbf6dbdad1b895cc16c8ebcf47e885389ebe4d96aab9e82b7deaec4",
+      "remote_match": true
+    },
+    {
+      "path": "tools/build_open_pmu_probe.py",
+      "sha256": "e1b1449cad72933d683be47a6e0b52068cbbcf2fe5ef77f62f7492c2075dcdea",
+      "remote_match": true
+    },
+    {
+      "path": "tools/pack_armbian_raw_v6.py",
+      "sha256": "00a811351fd180a3ace131f619cd33f7f0328218f79a848299162f7b7f3d34e9",
+      "remote_match": true
+    }
+  ],
+  "pmu_audit_sources_remote_match": true,
+  "firmware_uploaded": false
+}

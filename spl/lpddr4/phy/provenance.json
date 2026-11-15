@@ -1,0 +1,137 @@
+{
+  "scope": "Source-authored T736 LPDDR4 host components, not complete PHY electrical initialization or training",
+  "vendor_instruction_streams_imported": false,
+  "vendor_executable_dependencies": false,
+  "radxa_sources_used": false,
+  "clean_room_claim": false,
+  "validation": {
+    "command": "python3 spl/lpddr4/phy/check.py",
+    "build_directory": "build/lpddr4-phy-host",
+    "report": "evidence/lpddr4-phy-host-check.json",
+    "log": "evidence/lpddr4-phy-host-check.log",
+    "historical_outputs": "Earlier spl/lpddr4/phy/build and check-result.json are retained as history, excluded from source inputs and current validation evidence"
+  },
+  "sources": [
+    {
+      "repository": "InfernoEmbedded/u-boot",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+      "path": "arch/arm/mach-sunxi/dram_sun60i_a733.c",
+      "blob": "e228c7fe1d8d8a1da4635d1c8525da6c8cef4cce",
+      "url": "https://github.com/InfernoEmbedded/u-boot/blob/2f5e45fa7993ce8a4a59b638e539a06d8454f823/arch/arm/mach-sunxi/dram_sun60i_a733.c",
+      "license": "GPL-2.0-or-later",
+      "use": "Read-only corroboration of shared T736 host APB widths, reset/stall bits, DQ selector addresses, and PLL bit24/clock sequencing. No LP5 presets, tables, PIE words or PMU algorithms imported."
+    },
+    {
+      "title": "T736 User Manual v0.90",
+      "local_text": "evidence/vendor-reference/reference-1.txt",
+      "use": "PLL_DDR enable/LDO/lock/output and N/P0/M1 fields; CCU clock update (including gates), NSI/MBUS/DRAM0 source/divider/gate and NSI/DRAM0 BGR reset/gate. PLL bit24 is reserved in this manual and has no invented semantic name.",
+      "sections": ["4.1.4.1", "4.1.4.4", "4.1.4.5", "4.1.6.73", "4.1.6.74", "4.1.6.75", "4.1.6.122", "4.1.6.123"]
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+      "use": "Read-only inspection of host-interface code, not execution or import",
+      "symbols": ["_ccm_set_pll_ddr_clk", "mctl_sys_init", "mctl_channel_init", "mctl_com_init", "dwc_ddrphy_phyinit_E_setDfiClk", "dwc_ddrphy_phyinit_G_execFW", "mctl_phy_set_data_remapping", "ddrphy_phyinit_C_initPhyConfig"],
+      "excluded": ["IMEM contents", "PIE instruction streams", "host-generated PIE/shadow sequencer programs", "opaque training DMEM", "LP5 presets"]
+    },
+    {
+      "repository": "open-power/hostboot",
+      "commit": "a7d36910b6c0cd01ce8b7202425d5faee07f4a72",
+      "path": "src/import/chips/ocmb/odyssey/procedures/hwp/memory/lib/phy/ody_ddrphy_csr_defines.H",
+      "blob": "8a70e91e541058cc9c72e16922be32626db35c08",
+      "license": "Apache-2.0",
+      "use": "Only corroborates MicroContMuxSel CSR d0000 and MicroReset d0099 nomenclature, Stall bit0/Reset bit3. Other DDR5 register layouts conflict and are not used as Type9 definitions."
+    }
+  ],
+  "confirmed_host_mapping": {
+    "rule": "These are confirmed host physical addresses, not a universal ARC-to-host arithmetic mapping",
+    "MicroContMuxSel": {"address": "0x0aaa0000", "access_bits": 16, "host_value": 0, "pmu_value": 1, "read_clears": false},
+    "MicroReset": {"address": "0x0aaa0132", "access_bits": 16, "stall_mask": "0x0001", "reset_mask": "0x0008", "read_clears": false},
+    "DQ_selectors": {"base": "0x0a920100", "access_bits": 16, "slice_stride": "0x2000", "slices": 4, "slots_per_slice": 8, "slot_stride": 2, "mapping_direction": "Caller must supply verified PHY CSR selector order; no schematic conversion inferred"},
+    "DFIMISC": {"base": "0x0a110510", "channel_stride": "0x400000", "access_bits": 32, "pstate_mask": "0x00001f00", "supported_pstate": 0}
+  },
+  "pll_1800_profile": {
+    "input_mhz": 24,
+    "n_encoded": 74,
+    "p0_encoded": 0,
+    "m1_encoded": 0,
+    "opaque_bit24": {
+      "value": 1,
+      "meaning": "Not established",
+      "public_corroboration": "Same-SoC mctl_ccu_init writes 0x11000000|N, 0xd1000000|N, 0xf1000000|N, 0xf9000000|N",
+      "sdk_corroboration": "_ccm_set_pll_ddr_clk ORs 0x01000000 before PLL/LDO enable",
+      "board_observation": "PLL_DDR=0xf9004a00; DRAM0_CLK=0x80000003",
+      "limit": "Board-specific opaque control, not a generic documented bit or proof of LP4 PHY readiness"
+    },
+    "safety_contract": "SRAM-only with all DRAM clients stopped; DRAM0 clock/configuration bus gates off before PLL writes. NSI source SYS24M or PERI0_600M and MBUS source SYS24M or PERI0_400M, with DFS/update idle; fabric registers are preserved. PERI0 must already be valid when selected.",
+    "sequence": ["disable PLL output", "disable PLL enable and lock detection", "bounded lock-clear check", "enable LDO", "confirmed 5us LDO settling margin", "set N/P0/M1 and opaque bit24", "enable PLL", "enable lock detect", "bounded three-consecutive-lock qualification with confirmed 1us gaps", "confirmed 20us delay AFTER lock qualification", "reject lost lock", "enable output while downstream consumers remain gated"],
+    "manual_priority_correction": "Manual 4.1.4.1 Method2 requires LDO before parameters/PLL_EN and a post-lock 20us interval; the SDK/public host trace delays before polling and is not followed for this timing. The manual's three-time lock wording is implemented as conservative consecutive status observations, not an invented analog adjustment.",
+    "output_gate_caution": "Manual warns Method2 output gating can glitch at startup. DRAM0 is gated and NSI/MBUS must use accepted independent sources until the transition completes.",
+    "timer_failure_behavior": "Abort immediately without advancing the sequence; callback must report actual elapsed time or a failure",
+    "not_included": ["full MBUS/SMC glitch-workaround/reset sequence", "PRCM DMC clock/feature/reset setup", "memory isolation release", "PHY PLL electrical calibration", "DRAM RESET_n/CKE sequencing"]
+  },
+  "ccu_cold_component": {
+    "function": "t736_phy_ccu_cold_start",
+    "implemented": true,
+    "hardware_tested": true,
+    "hardware_evidence": {
+      "log": "evidence/t736-ccu-cold-sram-hardware-20261114.json",
+      "context": "SRAM/FEL after early Boot0, retaining existing independent PERI0 fabric clocks; not a pristine ROM-to-source boot",
+      "payload_sha256": "6639bc0d331f20b28ae2bb7aa16752fe31dbcb0bada2ff4f4fd8c9a92f6ee01d",
+      "raw_rom_id": "0x190300",
+      "completed_stage": 6,
+      "result": 0,
+      "PLL_DDR": {"before": "0x41304700", "after": "0xf9004a00", "writes": 7},
+      "DRAM0_CLK": {"before": "0x00000000", "after": "0x80000003", "writes": 2},
+      "DRAM0_BGR": {"before": "0x00000001", "after": "0x00010001", "writes": 4},
+      "all_three_fabric_registers_preserved": true,
+      "ten_us_delay_ticks": 318,
+      "effective_counter_hz": 24000000,
+      "raw_cntfrq": 0,
+      "returned_to_fel": true,
+      "phy_or_dram_or_storage_access": false
+    },
+    "registers_written": {
+      "PLL_DDR": "0x02002020",
+      "DRAM0_CLK": "0x02002c00",
+      "DRAM0_BGR": "0x02002c0c"
+    },
+    "register_name_correction": "Inspected public driver calls 0x2580/0x2584 MBUS and 0x2588 DRAM_MUX. Manual confirms NSI_CLK/NSI_BGR/MBUS_CLK; current macros use those names.",
+    "preconditions": ["SRAM-only early cold context with interrupts/DMA/DRAM clients stopped", "main NSI running SYS24M or PERI0_600M with main/configuration resets deasserted and configuration gate on", "MBUS running SYS24M or PERI0_400M", "selected PERI0 clock already valid; its initialization is outside this component", "no NSI/MBUS DFS and no in-flight CCU update", "if controllers are already clocked/out of reset, both STAT modes must be INIT"],
+    "stages": ["preflight", "DRAM0 clock and configuration bus isolated", "1800MHz DDRPLL locked", "DRAM0 source/divider configured", "DRAM0 configuration reset released before gate", "DRAM0 clock enabled"],
+    "main_nsi_never_gated_or_reset": true,
+    "clock_update_required_for_gating": true,
+    "unchanged_clock_configuration": "Skip UPD when active readback already equals requested value; avoids a redundant DRAM0 req/ack before the selected DDRPLL is running",
+    "initial_clock_mhz": {"DDRPLL": 1800, "DRAM0": 450},
+    "fabric_preserved_registers": ["0x02002580", "0x02002584", "0x02002588"],
+    "fabric_rationale": "Real early-Boot0 FEL uses NSI source3 PERI0_600M and MBUS source4 PERI0_400M, both documented independent sources. Preserve all values and the communication path; do not force SYS24M or reset NSI. SYS24M is also accepted for a later fully source-initialized path.",
+    "real_fel_observation": {"raw_rom_id": "0x190300", "PLL_DDR": "0x41304700", "DRAM0_CLK": "0x00000000", "DRAM0_BGR": "0x00000001", "NSI_CLK": "0xc3000000", "NSI_BGR": "0x00010001", "MBUS_CLK": "0x84000000", "logs": ["evidence/t736-ccu-ddr-sram-hardware-20261114.json", "evidence/t736-ccu-fabric-sram-hardware-20261114.json"], "actual_peri0_frequency_measured": false},
+    "not_claimed": ["independent PERI0 initialization or completed cold clock tree", "PRCM/DRAMC reset/feature setup", "SMC configuration or secure-chip workaround", "PHY electrical readiness", "DRAM usable or trained", "cold boot verified"]
+  },
+  "next_domain_contract_findings": {
+    "sdk_lp4_dramc_sys_cfg": "mctl_channel_init uses 0x0a020010: clears 0x14 and 0x28, updates 0x3f3f mask to dual-channel 0x2728, later performs reset/clock transitions in the same register",
+    "sdk_type_channel": "0x0a020014 bit1 selects the dual-channel branch; bit0 is set only for SDK dram_type==9. Existing board observation is 2. SDK dram_type numbering is separate from the PHY Type9 revision, and dram_type==9 must not be labelled LP4.",
+    "public_prcm_candidate_conflict": "Public sun60i_a733_dmc_clock_setup applies 0x2728 and feature fields to 0x07010310/+314 and 0x07410310/+314. That additional PRCM mapping is not corroborated by the inspected LP4 host path; it is not a runtime write here.",
+    "sdk_memory_isolation": "mctl_channel_init sets 0x07010250 bit0, then waits 10000us before controller/PHY init",
+    "smc_workaround_source": "/home/ubuntu/t736-aiot/tina/brandy/arisc/ar100s/service/standby/standby-sun60iw2p1/plat_standby.c: sunxi_smc_en_with_glitch_workaround only acts when chip is secure, clearing SMC_ACTION_REG in both SMC instances",
+    "smc_source_use": "Read-only register-interface facts. Source header is All Rights Reserved; no code is copied. Addresses, chip-security precondition and warm/cold applicability need a separate corroborated contract.",
+    "requires_real_lp4_executor": ["DRAM RESET_n/CKE timing and LP4 device command initialization", "PHY impedance/DQS/CA/data training measurement", "PMU/PIE final LP4 handoff"]
+  },
+  "read_only_board_probe": {
+    "log": "evidence/lpddr4-phy-host-readonly-20261114.log",
+    "source": "spl/lpddr4/observe_phy_linux.c",
+    "result": "MuxSel=1; probe stopped before MicroReset/internal CSR reads; no writes; insmod/rmmod succeeded",
+    "does_not_validate": ["cold_claim writes", "PLL cold-start sequence", "DQ selector writes", "DFI selection writes"]
+  },
+  "calibration_and_command_interface": {
+    "implemented": false,
+    "reason": "Type9 electrical/command field definitions remain to be corroborated; raw LP5 constants and vendor sequencer words are not substitutes",
+    "sdk_dram_type_branch_facts_only": [
+      {"address": "0x0a94014a", "finding": "C_initPhyConfig writes 1 only when dram_type==9", "semantic_name": null},
+      {"address": "0x0a940604", "finding": "dram_type==9 writes 0x26; other path writes 0x129", "semantic_name": null},
+      {"address": "0x0a940650", "finding": "dram_type==9 writes 0; other path writes 1", "semantic_name": null},
+      {"address": "0x0a920126", "finding": "all four DBYTE slices: dram_type==9 writes 0; other path writes 0x400", "semantic_name": null}
+    ],
+    "candidate_policy": "Facts only, not included as runtime writes. SDK dram_type==9 is not the PHY Type9 revision and is not established as the board's LP4 type. No claim that these establish CA SDR/DDR mode, command-RAM descriptor format, RESET_n or CKE controls."
+  }
+}

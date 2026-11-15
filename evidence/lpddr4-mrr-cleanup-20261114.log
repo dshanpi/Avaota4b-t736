@@ -1,0 +1,30 @@
+rmmod t736_lp4_mrr
+
+sg | tail -8
+printf 'MRR_CLEANUP_END\n'
+root@t736:~# printf 'MRR_RMMOD_RC=%s\n' "$?"
+
+MRR_RMMOD_RC=0
+root@t736:~# rm -f /tmp/t736-transfer/lp4-mrr-20261114.ko
+
+root@t736:~# cat /proc/modules
+
+root@t736:~# systemctl --failed --no-legend
+
+root@t736:~# cat /proc/sys/kernel/tainted
+
+4096
+root@t736:~# dmesg | tail -8
+
+[  110.372836] t736-lp4-mrr: pass=1 ch=0 rank=1 mr=6 rc=0 raw=00000700 value=07
+[  110.378579] t736-lp4-mrr: pass=1 ch=0 rank=1 mr=5 rc=0 raw=0000ff00 value=ff
+[  110.384323] t736-lp4-mrr: pass=1 ch=1 rank=0 mr=8 rc=0 raw=00000018 value=18
+[  110.390066] t736-lp4-mrr: pass=1 ch=1 rank=0 mr=6 rc=0 raw=00000007 value=07
+[  110.395810] t736-lp4-mrr: pass=1 ch=1 rank=0 mr=5 rc=0 raw=000000ff value=ff
+[  110.401552] t736-lp4-mrr: pass=1 ch=1 rank=1 mr=8 rc=0 raw=00000018 value=18
+[  110.407294] t736-lp4-mrr: pass=1 ch=1 rank=1 mr=6 rc=0 raw=00000007 value=07
+[  110.413038] t736-lp4-mrr: pass=1 ch=1 rank=1 mr=5 rc=0 raw=000000ff value=ff
+root@t736:~# printf 'MRR_CLEANUP_END\n'
+
+MRR_CLEANUP_END
+root@t736:~# 

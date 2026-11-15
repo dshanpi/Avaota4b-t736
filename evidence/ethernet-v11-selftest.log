@@ -1,0 +1,49 @@
+printf 'V11_KERNEL_NETWORK_SELFTEST_NOT_BOOT_CHAIN_ACCEPTANCE\n'; perl /tmp/t736-transfer/ethernet-v11-selftest.pl; printf 'SELFTEST_PROCESS_RC=%s\n' "$?"; ip -4 -o addr show dev end0; cat /sys/class/net/end0/carrier; ping -c 3 -W 2 10.0.0.1
+
+V11_KERNEL_NETWORK_SELFTEST_NOT_BOOT_CHAIN_ACCEPTANCE
+t736-dwmac 4500000.ethernet end0: entered promiscuous mode
+t736-dwmac 4500000.ethernet end0: left promiscuous mode
+STMMAC_SELFTEST_FLAGS=1
+ 1. MAC Loopback               : 0
+ 2. PHY Loopback               : 0
+ 3. MMC Counters               : 0
+ 4. EEE                        : -95
+ 5. Hash Filter MC             : 0
+ 6. Perfect Filter UC          : -95
+ 7. MC Filter                  : -95
+ 8. UC Filter                  : -95
+ 9. Flow Control               : 0
+10. RSS                        : -95
+11. VLAN Filtering             : 0
+12. VLAN Filtering (perf)      : -95
+13. Double VLAN Filter         : 0
+14. Double VLAN Filter (perf)  : -95
+15. Flexible RX Parser         : -95
+16. SA Insertion (desc)        : 0
+17. SA Replacement (desc)      : 0
+18. SA Insertion (reg)         : 0
+19. SA Replacement (reg)       : 0
+20. VLAN TX Insertion          : 0
+21. SVLAN TX Insertion         : -95
+22. L3 DA Filtering            : -95
+23. L3 SA Filtering            : -95
+24. L4 DA TCP Filtering        : -95
+25. L4 SA TCP Filtering        : -95
+26. L4 DA UDP Filtering        : -95
+27. L4 SA UDP Filtering        : -95
+28. ARP Offload                : -95
+29. Jumbo Frame                : 0
+30. Multichannel Jumbo         : -95
+31. Split Header               : -95
+32. TBS (ETF Scheduler)        : -95
+SELFTEST_PROCESS_RC=0
+2: end0    inet 10.0.0.230/24 metric 1024 brd 10.0.0.255 scope global dynamic end0\       valid_lft 42349sec preferred_lft 42349sec
+1
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+t736-dwmac 4500000.ethernet end0: Link is Down
+t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+
+--- 10.0.0.1 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2046ms
+
+root@t736:~# 

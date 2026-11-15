@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-14",
+  "scope": "Read-only interface research for cold LPDDR4 reset, CKE and host transaction ownership. No hardware execution, opaque sequencer descriptors, firmware or vendor executable imports.",
+  "independent_old_generation_reference": {
+    "nxp": "zephyrproject-rtos/hal_nxp e07b15c3eceae2f853db5c1308c23db6b30c6f20 mcux/mcux-sdk-ng/devices/i.MX/i.MX91/periph/PERI_DWC_DDRPHYA_MASTER.h, blob01ae82c65ddad6df749185b1af35992a96ed021a. This is an older generation and is auxiliary evidence only.",
+    "st": "ARM-software/arm-trusted-firmware a881364e03b0c5b3a8c00f20ad6fbdda53a57031 drivers/st/ddr/phy/phyinit/include/ddrphy_csr_all_cdefines.h",
+    "limits": "The current Type9 master map differs at known registers. Matching offsets do not authorize transplanting complete fields or pin layouts."
+  },
+  "reset": {
+    "logical": "0x20060",
+    "host": "0x0a9400c0",
+    "public_arc": "0x900400c0",
+    "independent_name": "MemResetL; older named fields bit0 MemResetLValue and bit1 ProtectMemReset",
+    "public_target_direct_access": "InfernoEmbedded/u-boot2f5e45fa7993ce8a4a59b638e539a06d8454f823 dwc_ddrphy_pmu_regs.h348 calls it PHY_REG_PHY_STATUS; pmu_train.c1556 writes2 and pmu_eye.c2808 writes3 with waits around the transition, optionally writing1 at2812.",
+    "candidate": "A source-measured2->3 transition has same-SoC public direct-CSR precedent. It does not establish physical CKE, clock stability or ownership of DRAM command pins.",
+    "physical_waits": "Preserve JEDEC reset-low minimum200us after supplies, reset-high to CKE minimum2ms, clock stable at least5cycles before CKE and CKE-high to commands minimum2us. Public helper delay constants are scaled values, not literal microseconds."
+  },
+  "transaction_mux": {
+    "candidate_logical": "0x2006e",
+    "candidate_host": "0x0a9400dc",
+    "public_arc": "0x900400dc",
+    "correction": "Do not use logical20061 as PUBMODE; that earlier tentative association was incorrect.",
+    "old_generation_definition": "NXP PUBMODE register offset0xdc: HwtMemSrc bit0=1 switches the memory-transaction source mux from DCT to HWT. ST independently names logical6e and bit0.",
+    "target_access_fact": "Public target header names900400dc PHY_REG_MASTER_CAL_CTRL; pmu_train.c1395 writes1. The macro's calibration name is not authoritative.",
+    "status": "Candidate cross-generation correlation; no independently named Type9 PubMode/HwtMemSrc field was found. No direct write or handoff is implemented by this audit."
+  },
+  "direct_control": {
+    "type9_confirmed_name": "SiMa-ai/sima-ai-uboot5a026adbe2a54aeaae5dc50e1852d4b5c1884640 init_ddr_modalix.c independently labels logical2007e HwtControlVal. Host presets are33 for two ranks and11 for one rank. These values do not establish individual pin fields.",
+    "host_values": ["0x0a9400f4 override candidate", "0x0a9400fc HwtControlVal"],
+    "target_direct_access": "Public pmu_telemetry.c pmu_ac_lane_profile_setup saves900400f4 and900400fc via halfword reads, writes Val0 then Ovrff, performs analog configuration and restores both saved values. Those ordinary direct registers are separate from sequencer memory.",
+    "old_generation_fields": "ST logical7a HwtControlOvr0 and7e HwtControlVal0 have CS0..3 bits0..3, CKE0..3 bits4..7, ODT0..3 bits8..11 and parity bit12. A second DFI register exists at7b/7f. NXP identifies the pair as overriding ACSM outputs for DFI0/1, but leaves full13-bit fields RFU.",
+    "critical_limit": "Type9 SiMa names one combined HwtControlVal without suffix0/1. The older CS/CKE field layout must not be treated as established for the target.33/11 are compatible with more than one pin/rank interpretation.",
+    "related_named_type9_csrs": ["20009 CkDisVal_p0", "20072 HwtLpCsEnA", "20073 HwtLpCsEnB"],
+    "read_observation_value": "A future source-held raw snapshot of0dc/0f4/0fc/012/0e4/0e6 could characterize a checkpoint, subject to hardware-owner review. Readback alone would not establish pin state or a working clock."
+  },
+  "separation_from_sequence_generation": {
+    "strobe_init": "Public pmu_cal_strobe_pulse_init at pmu_clock.c129 only clears two descriptor positions and software markers; it does not itself drive CKE.",
+    "ownership": "ACSM command encoding and permitted source-authored sequences are investigated separately. No sequencer array or opaque descriptor has been translated in this audit.",
+    "dfi_complete": "No transferable Type9 DfiInitComplete output control address/mask is established. The older logical200f9 and shadowd00fa addresses must not be transplanted or forced solely to satisfy a controller status check."
+  }
+}

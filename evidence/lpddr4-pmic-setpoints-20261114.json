@@ -1,0 +1,40 @@
+{
+  "scope": "PMIC configured setpoints decoded from actual source-driver SRAM reads; no voltage measurement or PMIC writes",
+  "input": "t736-early-v2-sram-hardware-20261114.json",
+  "input_sha256": "0ec9707cb46911b6389f998d687678ad696470d5adada1832a73fb70a6bc0bc9",
+  "decoder_reference": "spl/lpddr4/axp8191.c and AXP8191 datasheet v1.0 sections6.10.2/7.1",
+  "rails": [
+    {
+      "rail": "DCDC8",
+      "voltage_register": "0x19",
+      "raw": "0xbc",
+      "voltage_code": 60,
+      "enable_register": "0x10",
+      "enable_bit": 7,
+      "enabled": true,
+      "configured_mv": 1100
+    },
+    {
+      "rail": "ALDO4",
+      "voltage_register": "0x27",
+      "raw": "0xd",
+      "voltage_code": 13,
+      "enable_register": "0x20",
+      "enable_bit": 3,
+      "enabled": true,
+      "configured_mv": 1800
+    },
+    {
+      "rail": "ELDO1",
+      "voltage_register": "0x3a",
+      "raw": "0x6",
+      "voltage_code": 6,
+      "enable_register": "0x22",
+      "enable_bit": 6,
+      "enabled": true,
+      "configured_mv": 650
+    }
+  ],
+  "board_power_profile_complete": false,
+  "rails_measured_electrically": false
+}

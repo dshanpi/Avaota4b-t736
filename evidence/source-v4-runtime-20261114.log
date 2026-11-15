@@ -1,0 +1,36 @@
+uname -a; ip -br address; ip route; cat /sys/class/net/end0/{carrier,speed}; ping -c 3 -W 2 10.0.0.1; systemctl --failed --no-pager; dd if=/dev/mmcblk0 bs=512 skip=16 count=432 status=none | sha256sum; dmesg | tail -12
+
+Linux t736 6.18.63-t736-armbian #11 SMP Fri Nov 13 06:30:23 EST 2026 aarch64 GNU/Linux
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+end0             UP             10.0.0.168/24 metric 1024 fd67:b33e:a9c2:0:7438:abff:fedb:4cfe/64 fe80::7438:abff:fedb:4cfe/64 
+sit0@NONE        DOWN           
+default via 10.0.0.1 dev end0 proto dhcp src 10.0.0.168 metric 1024 
+10.0.0.0/24 dev end0 proto kernel scope link src 10.0.0.168 metric 1024 
+10.0.0.1 dev end0 proto dhcp scope link src 10.0.0.168 metric 1024 
+1
+100
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.501 ms
+64 bytes from 10.0.0.1: icmp_seq=2 ttl=64 time=0.368 ms
+64 bytes from 10.0.0.1: icmp_seq=3 ttl=64 time=0.395 ms
+
+--- 10.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2037ms
+rtt min/avg/max/mdev = 0.368/0.421/0.501/0.057 ms
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea  -
+[   18.212194] systemd-journald[237]: Received client request to flush runtime journal.
+[   18.454613] random: crng init done
+[   23.723157] t736-dwmac 4500000.ethernet end0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[   23.866987] t736-dwmac 4500000.ethernet end0: PHY [stmmac-0:01] driver [RTL8211F Gigabit Ethernet] (irq=POLL)
+[   24.018826] t736-dwmac 4500000.ethernet end0: No Safety Features support found
+[   24.405704] t736-dwmac 4500000.ethernet end0: IEEE 1588-2008 Advanced Timestamp supported
+[   24.413013] t736-dwmac 4500000.ethernet end0: configuring for phy/rgmii-rxid link mode
+[   28.032498] systemd-journald[237]: Received client request to relinquish /var/log/journal/e989ceaa6c144713bc900be23934e154 access.
+[   34.887078] t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+[   35.931067] t736-dwmac 4500000.ethernet end0: Link is Down
+[   48.246826] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[   48.271415] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+root@t736:~# 

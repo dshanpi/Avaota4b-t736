@@ -1,0 +1,59 @@
+SDK=/home/ubuntu/t736-aiot/tina
+Linux ubuntu2404 7.0.0-28-generic #28~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jul  1 15:50:57 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv 1006G  788G  177G  82% /
+Filesystem                          Inodes    IUsed    IFree IUse% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv 66977792 10609897 56367895   16% /
+/usr/bin/git
+/usr/bin/make
+/usr/bin/gcc
+/usr/bin/aarch64-linux-gnu-gcc
+/usr/bin/dtc
+/usr/bin/python3
+/usr/bin/bison
+/usr/bin/flex
+-rw-rw-r-- 1 ubuntu ubuntu 283059 Nov 11 09:59 /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot-bak/debian/.sunxi.dts
+d3159cd3a61b077c7effa123bccca9a5a19de641a0e99f2384ae1507fa626957  /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot-bak/debian/.sunxi.dts
+-rw-rw-r-- 1 ubuntu ubuntu 213741 Nov 11 09:46 /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot-bak/debian/sunxi.dtb
+504a05d1ba100c26b663f3729b62bbebeb77eff66cf0752a172a2a8eb649c560  /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot-bak/debian/sunxi.dtb
+-rwxrwxr-x 1 ubuntu ubuntu 1867776 Nov 11 09:59 /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot-bak/pack_out/boot_package.fex
+b6dbcfb96ebac121218d30afe1d028aaad8a1a471063f05c5c1c8aaade419df3  /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot-bak/pack_out/boot_package.fex
+-rw-rw-r-- 1 ubuntu ubuntu 225728 Nov 11 09:59 /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot-bak/pack_out/fes1.fex
+ab8618a40c51e381d2904dfb12ced567f3b2016bbb50e805980a463402a97994  /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot-bak/pack_out/fes1.fex
+Preflight finished; missing tools/files are not a successful build.
+
+test_corrupt_capture_rejected (test_live_evidence.LiveEvidenceTests.test_corrupt_capture_rejected) ... ok
+test_different_evidence_cannot_overwrite (test_live_evidence.LiveEvidenceTests.test_different_evidence_cannot_overwrite) ... ok
+test_missing_hash_rejected (test_live_evidence.LiveEvidenceTests.test_missing_hash_rejected) ... ok
+test_repeated_or_truncated_capture_rejected (test_live_evidence.LiveEvidenceTests.test_repeated_or_truncated_capture_rejected) ... ok
+test_trailing_bytes_rejected (test_live_evidence.LiveEvidenceTests.test_trailing_bytes_rejected) ... ok
+test_valid_serial_crlf_and_64bit_memory (test_live_evidence.LiveEvidenceTests.test_valid_serial_crlf_and_64bit_memory) ... ok
+test_wrong_board_rejected (test_live_evidence.LiveEvidenceTests.test_wrong_board_rejected) ... ok
+test_wrong_hash_rejected (test_live_evidence.LiveEvidenceTests.test_wrong_hash_rejected) ... ok
+test_hash_mismatch_writes_nothing (test_packed_dtb.DtbTests.test_hash_mismatch_writes_nothing) ... ok
+test_memory_cells_remain_numeric (test_packed_dtb.DtbTests.test_memory_cells_remain_numeric) ... ok
+test_missing_end_rejected (test_packed_dtb.DtbTests.test_missing_end_rejected) ... ok
+test_string_list (test_packed_dtb.DtbTests.test_string_list) ... ok
+test_truncated_fdt_rejected (test_packed_dtb.DtbTests.test_truncated_fdt_rejected) ... ok
+test_zero_cell_is_not_empty_strings (test_packed_dtb.DtbTests.test_zero_cell_is_not_empty_strings) ... ok
+test_sdk_markers_rejected (test_packed_dtb.WorkspaceTests.test_sdk_markers_rejected) ... ok
+test_separate_sibling_allowed (test_packed_dtb.WorkspaceTests.test_separate_sibling_allowed) ... ok
+test_tina_child_rejected (test_packed_dtb.WorkspaceTests.test_tina_child_rejected) ... ok
+test_interrupted_fetch_can_resume_without_reset (test_source_resume.ResumeTests.test_interrupted_fetch_can_resume_without_reset) ... ok
+test_unborn_repo_with_ignored_file_refused (test_source_resume.ResumeTests.test_unborn_repo_with_ignored_file_refused) ... ok
+test_boundary_spanning_banner (test_tools.ComponentTests.test_boundary_spanning_banner) ... ok
+test_old_kernel_rejected (test_tools.ComponentTests.test_old_kernel_rejected) ... ok
+test_old_runtime_rejected_but_transport_distinguished (test_tools.ComponentTests.test_old_runtime_rejected_but_transport_distinguished) ... ok
+test_path_traversal_refused (test_tools.ComponentTests.test_path_traversal_refused) ... ok
+test_tampered_binary (test_tools.ComponentTests.test_tampered_binary) ... ok
+test_version_banner_is_not_provenance (test_tools.ComponentTests.test_version_banner_is_not_provenance) ... ok
+test_destination_confinement (test_tools.SourceTests.test_destination_confinement) ... ok
+test_real_lock_valid (test_tools.SourceTests.test_real_lock_valid) ... ok
+test_reject_duplicate_component (test_tools.SourceTests.test_reject_duplicate_component) ... ok
+test_reject_moving_ref (test_tools.SourceTests.test_reject_moving_ref) ... ok
+test_reject_vendor_or_shell_remote (test_tools.SourceTests.test_reject_vendor_or_shell_remote) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.021s
+
+OK

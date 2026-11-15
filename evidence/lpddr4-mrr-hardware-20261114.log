@@ -1,0 +1,68 @@
+printf 'LP4_MRR_TEST_START\n'
+
+LP4_MRR_TEST_START
+sg | grep 't736-lp4-mrr:'
+printf 'LP4_MRR_TEST_END\n'
+root@t736:~# sha256sum /tmp/t736-transfer/lp4-mrr-20261114.ko
+
+19392780fd2ff9902430c2e920241d872b92ba3069679a9619051c0d1ec3bbfe  /tmp/t736-transfer/lp4-mrr-20261114.ko
+root@t736:~# insmod /tmp/t736-transfer/lp4-mrr-20261114.ko
+
+t736_lp4_mrr: loading out-of-tree module taints kernel.
+t736-lp4-mrr: pass=0 ch=0 rank=0 mr=5 rc=0 raw=0000ff00 value=ff
+t736-lp4-mrr: pass=0 ch=0 rank=0 mr=6 rc=0 raw=00000700 value=07
+t736-lp4-mrr: pass=0 ch=0 rank=0 mr=8 rc=0 raw=00001800 value=18
+t736-lp4-mrr: pass=0 ch=0 rank=1 mr=5 rc=0 raw=0000ff00 value=ff
+t736-lp4-mrr: pass=0 ch=0 rank=1 mr=6 rc=0 raw=00000700 value=07
+t736-lp4-mrr: pass=0 ch=0 rank=1 mr=8 rc=0 raw=00001800 value=18
+t736-lp4-mrr: pass=0 ch=1 rank=0 mr=5 rc=0 raw=000000ff value=ff
+t736-lp4-mrr: pass=0 ch=1 rank=0 mr=6 rc=0 raw=00000007 value=07
+t736-lp4-mrr: pass=0 ch=1 rank=0 mr=8 rc=0 raw=00000018 value=18
+t736-lp4-mrr: pass=0 ch=1 rank=1 mr=5 rc=0 raw=000000ff value=ff
+t736-lp4-mrr: pass=0 ch=1 rank=1 mr=6 rc=0 raw=00000007 value=07
+t736-lp4-mrr: pass=0 ch=1 rank=1 mr=8 rc=0 raw=00000018 value=18
+t736-lp4-mrr: pass=1 ch=0 rank=0 mr=8 rc=0 raw=00001800 value=18
+t736-lp4-mrr: pass=1 ch=0 rank=0 mr=6 rc=0 raw=00000700 value=07
+t736-lp4-mrr: pass=1 ch=0 rank=0 mr=5 rc=0 raw=0000ff00 value=ff
+t736-lp4-mrr: pass=1 ch=0 rank=1 mr=8 rc=0 raw=00001800 value=18
+t736-lp4-mrr: pass=1 ch=0 rank=1 mr=6 rc=0 raw=00000700 value=07
+t736-lp4-mrr: pass=1 ch=0 rank=1 mr=5 rc=0 raw=0000ff00 value=ff
+t736-lp4-mrr: pass=1 ch=1 rank=0 mr=8 rc=0 raw=00000018 value=18
+t736-lp4-mrr: pass=1 ch=1 rank=0 mr=6 rc=0 raw=00000007 value=07
+t736-lp4-mrr: pass=1 ch=1 rank=0 mr=5 rc=0 raw=000000ff value=ff
+t736-lp4-mrr: pass=1 ch=1 rank=1 mr=8 rc=0 raw=00000018 value=18
+t736-lp4-mrr: pass=1 ch=1 rank=1 mr=6 rc=0 raw=00000007 value=07
+t736-lp4-mrr: pass=1 ch=1 rank=1 mr=5 rc=0 raw=000000ff value=ff
+root@t736:~# printf 'MRR_INSMOD_RC=%s\n' "$?"
+
+MRR_INSMOD_RC=0
+root@t736:~# dmesg | grep 't736-lp4-mrr:'
+
+[  110.280913] t736-lp4-mrr: pass=0 ch=0 rank=0 mr=5 rc=0 raw=0000ff00 value=ff
+[  110.286678] t736-lp4-mrr: pass=0 ch=0 rank=0 mr=6 rc=0 raw=00000700 value=07
+[  110.292428] t736-lp4-mrr: pass=0 ch=0 rank=0 mr=8 rc=0 raw=00001800 value=18
+[  110.298171] t736-lp4-mrr: pass=0 ch=0 rank=1 mr=5 rc=0 raw=0000ff00 value=ff
+[  110.303917] t736-lp4-mrr: pass=0 ch=0 rank=1 mr=6 rc=0 raw=00000700 value=07
+[  110.309659] t736-lp4-mrr: pass=0 ch=0 rank=1 mr=8 rc=0 raw=00001800 value=18
+[  110.315404] t736-lp4-mrr: pass=0 ch=1 rank=0 mr=5 rc=0 raw=000000ff value=ff
+[  110.321147] t736-lp4-mrr: pass=0 ch=1 rank=0 mr=6 rc=0 raw=00000007 value=07
+[  110.326890] t736-lp4-mrr: pass=0 ch=1 rank=0 mr=8 rc=0 raw=00000018 value=18
+[  110.332634] t736-lp4-mrr: pass=0 ch=1 rank=1 mr=5 rc=0 raw=000000ff value=ff
+[  110.338376] t736-lp4-mrr: pass=0 ch=1 rank=1 mr=6 rc=0 raw=00000007 value=07
+[  110.344120] t736-lp4-mrr: pass=0 ch=1 rank=1 mr=8 rc=0 raw=00000018 value=18
+[  110.349864] t736-lp4-mrr: pass=1 ch=0 rank=0 mr=8 rc=0 raw=00001800 value=18
+[  110.355608] t736-lp4-mrr: pass=1 ch=0 rank=0 mr=6 rc=0 raw=00000700 value=07
+[  110.361351] t736-lp4-mrr: pass=1 ch=0 rank=0 mr=5 rc=0 raw=0000ff00 value=ff
+[  110.367093] t736-lp4-mrr: pass=1 ch=0 rank=1 mr=8 rc=0 raw=00001800 value=18
+[  110.372836] t736-lp4-mrr: pass=1 ch=0 rank=1 mr=6 rc=0 raw=00000700 value=07
+[  110.378579] t736-lp4-mrr: pass=1 ch=0 rank=1 mr=5 rc=0 raw=0000ff00 value=ff
+[  110.384323] t736-lp4-mrr: pass=1 ch=1 rank=0 mr=8 rc=0 raw=00000018 value=18
+[  110.390066] t736-lp4-mrr: pass=1 ch=1 rank=0 mr=6 rc=0 raw=00000007 value=07
+[  110.395810] t736-lp4-mrr: pass=1 ch=1 rank=0 mr=5 rc=0 raw=000000ff value=ff
+[  110.401552] t736-lp4-mrr: pass=1 ch=1 rank=1 mr=8 rc=0 raw=00000018 value=18
+[  110.407294] t736-lp4-mrr: pass=1 ch=1 rank=1 mr=6 rc=0 raw=00000007 value=07
+[  110.413038] t736-lp4-mrr: pass=1 ch=1 rank=1 mr=5 rc=0 raw=000000ff value=ff
+root@t736:~# printf 'LP4_MRR_TEST_END\n'
+
+LP4_MRR_TEST_END
+root@t736:~# 

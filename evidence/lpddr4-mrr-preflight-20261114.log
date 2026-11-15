@@ -1,0 +1,92 @@
+printf 'MRR_PREFLIGHT_START\n'
+
+MRR_PREFLIGHT_START
+ndepth 1 -maxdepth 2 -print 2>/dev/null
+ls /sys/bus/platform/drivers
+find /sys/firmware/devicetree/base -type d | grep -Ei 'dram|ddr|dmc|scmi|scpi|thermal|opp|edac|firmware' || true
+grep -E 'CONFIG_(PM|CPU_FREQ|PM_DEVFREQ|THERMAL|ARM_SCMI_PROTOCOL|EDAC)=' /boot/config-$(uname -r) || true
+systemctl --failed --no-legend
+cat /proc/sys/kernel/tainted
+printf 'MRR_PREFLIGHT_END\n'
+root@t736:~# uname -a
+
+Linux t736 6.18.63-t736-armbian #11 SMP Fri Nov 13 06:30:23 EST 2026 aarch64 GNU/Linux
+root@t736:~# cat /proc/modules
+
+root@t736:~# find /sys/class/devfreq /sys/devices/system/edac /sys/class/thermal /sys/devices/system/cpu/cpufreq -mindepth 1 -maxdepth 2 -print 2>/dev/null
+
+root@t736:~# ls /sys/bus/platform/drivers
+
+ alarmtimer	   gated-fixed-clk	 ohci-platform	     stmmaceth		     sun50i-a64-pinctrl      sun50i-h6-ccu	   sun55i-a523-r-ccu	   sunxi-rsb	    t736-usb-ccu
+ arch-timer-mmio  'GICv5 IWB'		 pwrseq_emmc	     sun20i-regulator	     sun50i-a64-r-pinctrl    sun50i-h6-pinctrl	   sun55i-a523-r-pinctrl   t736-dwmac
+ dw-apb-uart	   gpio-clk		 pwrseq_simple	     sun50i-a100-ccu	     sun50i-de2-bus	     sun50i-h6-r-ccu	   sun7i-dwmac		   t736-gmac-ccu
+ dwmac-sun55i	   gtdt-arm-mmio-timer	 reg-fixed-voltage   sun50i-a100-pinctrl     sun50i-h5-pinctrl	     sun50i-h6-r-pinctrl   sun8i-h3-ccu		   t736-pinctrl
+ dwmac-sun8i	   of_fixed_clk		 serial8250	     sun50i-a100-r-ccu	     sun50i-h616-ccu	     sun55i-a523-ccu	   sun8i-h3-r-pinctrl	   t736-r-pinctrl
+ dwxpcs		   of_fixed_factor_clk	 simple-pm-bus	     sun50i-a100-r-pinctrl   sun50i-h616-pinctrl     sun55i-a523-mcu-ccu   sun8i-r-ccu		   t736-smhc3-pio
+ ehci-platform	   of_serial		 simple-reset	     sun50i-a64-ccu	     sun50i-h616-r-pinctrl   sun55i-a523-pinctrl   sunxi-de2-clks	   t736-usb1-phy
+root@t736:~# find /sys/firmware/devicetree/base -type d | grep -Ei 'dram|ddr|dmc|scmi|scpi|thermal|opp|edac|firmware' || true
+
+/sys/firmware/devicetree/base
+/sys/firmware/devicetree/base/clock-peri150-firmware
+/sys/firmware/devicetree/base/regulator-pc-firmware
+/sys/firmware/devicetree/base/memory@40000000
+/sys/firmware/devicetree/base/ethernet@4500000
+/sys/firmware/devicetree/base/ethernet@4500000/mdio
+/sys/firmware/devicetree/base/ethernet@4500000/mdio/ethernet-phy@1
+/sys/firmware/devicetree/base/regulator-ph-firmware
+/sys/firmware/devicetree/base/usb@4200400
+/sys/firmware/devicetree/base/clock-controller@2003410
+/sys/firmware/devicetree/base/phy@4200800
+/sys/firmware/devicetree/base/serial@2500000
+/sys/firmware/devicetree/base/dcxo
+/sys/firmware/devicetree/base/psci
+/sys/firmware/devicetree/base/usb@4200000
+/sys/firmware/devicetree/base/regulator-usb1-vbus
+/sys/firmware/devicetree/base/timer
+/sys/firmware/devicetree/base/clock-controller@2003300
+/sys/firmware/devicetree/base/aliases
+/sys/firmware/devicetree/base/pinctrl@2000000
+/sys/firmware/devicetree/base/pinctrl@2000000/emmc-pins
+/sys/firmware/devicetree/base/pinctrl@2000000/gmac0-pins
+/sys/firmware/devicetree/base/mmc@4023000
+/sys/firmware/devicetree/base/chosen
+/sys/firmware/devicetree/base/interrupt-controller@3400000
+/sys/firmware/devicetree/base/clock-apb0-firmware
+/sys/firmware/devicetree/base/osc32k
+/sys/firmware/devicetree/base/cpus
+/sys/firmware/devicetree/base/cpus/cpu@300
+/sys/firmware/devicetree/base/cpus/cpu@600
+/sys/firmware/devicetree/base/cpus/cpu@200
+/sys/firmware/devicetree/base/cpus/cpu@500
+/sys/firmware/devicetree/base/cpus/cpu@0
+/sys/firmware/devicetree/base/cpus/cpu@100
+/sys/firmware/devicetree/base/cpus/cpu@400
+/sys/firmware/devicetree/base/cpus/cpu@700
+/sys/firmware/devicetree/base/pinctrl@7025000
+/sys/firmware/devicetree/base/clock-ahb-firmware
+/sys/firmware/devicetree/base/clock-mbus-firmware
+/sys/firmware/devicetree/base/osc24m
+root@t736:~# grep -E 'CONFIG_(PM|CPU_FREQ|PM_DEVFREQ|THERMAL|ARM_SCMI_PROTOCOL|EDAC)=' /boot/config-$(uname -r) || true
+
+root@t736:~# systemctl --failed --no-legend
+
+root@t736:~# cat /proc/sys/kernel/tainted
+
+0
+root@t736:~# printf 'MRR_PREFLIGHT_END\n'
+
+MRR_PREFLIGHT_END
+root@t736:~# grep -E 'CONFIG_(PM|CPU_FREQ|PM_DEVFREQ|THERMAL|ARM_SCMI_PROTOCOL|EDAC)(=| )' /boot/config-$(uname -r)
+
+# CONFIG_PM is not set
+# CONFIG_CPU_FREQ is not set
+# CONFIG_ARM_SCMI_PROTOCOL is not set
+# CONFIG_THERMAL is not set
+# CONFIG_PM_DEVFREQ is not set
+root@t736:~# sha256sum /boot/config-$(uname -r)
+
+defbf843f511fd0b54a0db94d942f841e26da4501003b5a2c7a6d98dd9cdfc15  /boot/config-6.18.63-t736-armbian
+root@t736:~# printf 'MRR_CONFIG_END\n'
+
+MRR_CONFIG_END
+root@t736:~# 

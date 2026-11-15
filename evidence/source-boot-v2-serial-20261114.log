@@ -1,0 +1,37 @@
+H00c50838 81000000 47000000 00000001 00000000 
+AT736 A64 source handoff EL=000000000000000c
+A64 MEM PASS 262144 x 64-bit checks, including RAM above 4GiB and final 64KiB
+Entering source TF-A 0x48000000
+
+NOTICE:  BL31: v2.15.0(debug):t736-independent-candidate-7d322909
+NOTICE:  BL31: Built : 06:57:46, Nov 13 2026
+INFO:    GICv3 without legacy support detected.
+INFO:    ARM GICv3 driver initialized in EL3
+INFO:    Maximum SPI INTID supported: 287
+NOTICE:  BL31: Detected Allwinner A733 SoC (1903)
+NOTICE:  BL31: Found U-Boot DTB at 0x5203cbd8, model: T736 custom board RAM bring-up
+INFO:    Configuring SPC Controller
+INFO:    BL31: Platform setup done
+INFO:    BL31: Initializing runtime services
+INFO:    BL31: cortex_a55: CPU workaround for erratum 1530923 was applied
+INFO:    PSCI: Suspend is unavailable
+INFO:    BL31: Preparing for EL3 exit to normal world
+INFO:    Entry point address = 0x52000000
+INFO:    SPSR = 0x3c9
+INFO:    Changed devicetree.
+
+<debug_uart>
+
+U-Boot 2026.10-t736-bringup (Nov 14 2026 - 03:45:23 -0500)
+
+Model: T736 custom board RAM bring-up
+Board: T736 source boot candidate; authorized vendor DDR library
+DRAM:  8 GiB
+Core:  4 devices, 4 uclasses, devicetree: separate
+MMC:   T736 SMHC3 read-only PIO: 0
+Loading Environment from nowhere...
+Loading Environment from nowhere... OK
+In:    serial@2500000
+Out:   serial@2500000
+Err:   serial@2500000
+T736-mainline=> 

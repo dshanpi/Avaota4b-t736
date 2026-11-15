@@ -1,0 +1,21 @@
+{
+  "flash_task": "flash-1794652936285058600",
+  "flash_state": "success",
+  "verify_state": "success",
+  "spl_readback_sha256": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea",
+  "board_power_rc": 0,
+  "dc1sw1": "0x17 -> 0x1f",
+  "dldo2_voltage": "0x0d -> 0x0d (1.8 V)",
+  "ldo_enable3": "0x40 -> 0x42",
+  "ethernet_phy": "RTL8211F",
+  "ethernet_ipv4": "10.0.0.168",
+  "ethernet_link_mbps": 100,
+  "gigabit_validated": false,
+  "gateway_ping": "3/3; 0% loss",
+  "systemd_failed": 0,
+  "evidence": [
+    "evidence/source-raw-v4-flash-status-20261114.json",
+    "evidence/source-v4-coldboot-1-20261114.log",
+    "evidence/source-v4-runtime-20261114.log"
+  ]
+}

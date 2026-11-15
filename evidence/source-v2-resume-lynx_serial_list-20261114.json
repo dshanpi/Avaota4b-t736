@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"configuredPort\": \"COM17\",\n  \"online\": true,\n  \"ports\": [\n    {\n      \"port\": \"COM17\",\n      \"type\": \"UsbPort(UsbPortInfo { vid: 0x1a86, pid: 0x55d5, serial_number: Some(\\\"0123456789\\\"), manufacturer: Some(\\\"wch.cn\\\"), product: Some(\\\"USB-Enhanced-SERIAL-A CH344 (COM17)\\\"), interface: Some(0) })\"\n    }\n  ],\n  \"state\": \"online\"\n}"
+    }
+  ],
+  "isError": false
+}

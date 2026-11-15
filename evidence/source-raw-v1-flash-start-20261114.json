@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "HARDWARE_TASK_ACTIVE:已有冲突的硬件任务正在运行，已拒绝执行Allwinner 进入 FEL 并烧录；请等待目标资源释放"
+    }
+  ],
+  "isError": true
+}

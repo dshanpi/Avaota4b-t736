@@ -1,0 +1,10 @@
+gzip -dc /tmp/t736-transfer/ddr_runtime_check.gz > /root/.t736-ddr-runtime-check && chmod 700 /root/.t736-ddr-runtime-check && echo "d5c774d5d036bcf6e512ebd4222f2461ec402374bcb2b1e3695f1f858a2ad5f8  /root/.t736-ddr-runtime-check" | sha256sum -c && /root/.t736-ddr-runtime-check; printf "MEMORY_RC=%s\n" "$?"
+
+/root/.t736-ddr-runtime-check: OK
+PASS 1: 256MiB allocated memory verified
+PASS 2: 256MiB allocated memory verified
+PASS 3: 256MiB allocated memory verified
+PASS 4: 256MiB allocated memory verified
+DDR_RUNTIME_256M_FOUR_PATTERNS_OK
+MEMORY_RC=0
+root@t736:~# 

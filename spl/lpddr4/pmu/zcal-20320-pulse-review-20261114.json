@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-14",
+  "kind": "readonly design review for a source-host CSR diagnostic",
+  "hardware_operated_by_reviewer": false,
+  "baseline": {
+    "artifact": "mainline/evidence/t736-phy-zcal-rate-sram-hardware-20261114.json",
+    "reported_observation": "113 MMIO events, six writes; reset/run deasserted and both observed PU/PD pairs remained zero. The measured 100us run interval is timed-only, not calibration success or failure.",
+    "frozen_state": "MicroReset=1 (stalled), MuxSel=0, UcclkHclkEnables=3, MemResetL=2, ZCalRate=9 before and after, PclkDivRatio=0x1111. Controller remains held and DFI initialization is not triggered."
+  },
+  "address_and_provenance": {
+    "logical_csr": "0x20320",
+    "host_halfword": "0x0a940640",
+    "public_arc_halfword": "0x90040640",
+    "public_source_commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+    "public_source_repository": "InfernoEmbedded/u-boot",
+    "direct_interface_evidence": "pmu_clock.c pmu_phy_clk_phase_toggle_pulse, lines 371-390, writes p[32]=0,1,0 after p[17]=0 and before restoring p[3]. dwc_ddrphy_pmu_regs.h line370 defines the halfword base as 0x90040600. Independently named surrounding CSRs identify p[16]/p[17] as ZCal reset/run; the helper's clock-phase comment does not establish register semantics.",
+    "independent_host_evidence": "SiMa PUB220 and NXP PUB230 ordinary CSR SAVE address lists both include logical20320. Their host loops read this CSR through the APB path. See zcal-companion-microreset-review.json for exact commits, blobs and source lines.",
+    "allowed_use": "Non-program host CSR address and direct access-order facts only. No vendor binary, ARC execution, PMU IMEM, PIE program or opaque executable descriptor is imported.",
+    "unknown": "The complete bitfield definition and electrical effect of20320 remain unknown. Result latch is only a hypothesis. Existing zero readback alone did not justify a write; the separately documented public direct-write precedent is the additional basis for this bounded experiment."
+  },
+  "recommended_isolation": {
+    "reference": "Reproduce the already tested Rate113 six-write sequence and measured waits, adding only the20320 pulse between Run=0 and successful-path Rate=9 restoration.",
+    "sequence": [
+      "Validate the exact current source-held controller, PHY ownership, clock and analog baseline; read20320=0 and2030d=0 before any write.",
+      "ZCalReset=1; measured reset interval and readback.",
+      "ZCalRate=0x19; exact readback.",
+      "ZCalReset=0; ZCalRun=1; measured100us; ZCalRun=0.",
+      "Require exact Reset=0 and Run=0; capture PU/PD as raw observations before the new pulse.",
+      "Write20320 halfword0, then1, then0, with exact readback after each write. Keep all other bits zero because the complete initial halfword must have been zero.",
+      "Capture PU/PD raw observations after the pulse, while Rate remains0x19.",
+      "Only after all prior steps succeed, restore ZCalRate=9 with exact readback; require Reset=0, Run=0 and20320=0, capture PU/PD once more, and verify the complete frozen context."
+    ],
+    "write_count": 9,
+    "why_rate19": "Relative to the nearest hardware baseline,20320 is the only added mutation. Leaving Rate at9 would also change the Rate113 condition and would need a different reference experiment.",
+    "not_included": [
+      "No2030d/host61a pulse: it is a separate untested factor.",
+      "No PLL, clock gate, MicroReset, MemResetL, voltage, range or override changes.",
+      "No MR commands, DFI completion forcing, instruction memory, DRAM data or storage access."
+    ]
+  },
+  "stop_and_interpretation": {
+    "failure": "Any guard, timer, UART, access or readback failure stops immediately. Do not pulse remaining values, restore Rate or issue speculative cleanup after failure. A failed write may already have changed hardware.",
+    "self_clearing_unknown": "No evidence establishes whether writing1 must persist. A readback other than1 is an observed mismatch and stops this exact contract; do not silently classify it as a successful self-clearing strobe.",
+    "timing_limit": "APB writes, barriers, readbacks and UART logging space the edges. No minimum or maximum20320 pulse width is established. A negative result does not exclude a timing-sensitive role.",
+    "zero_result": "Unchanged PU/PD zero remains ambiguous; this does not prove calibration failure.",
+    "changed_result": "Changed PU/PD would establish a correlation with this controlled host operation, not DDR training, valid impedance, DRAM access or Armbian boot.",
+    "success_label": "Timed pulse completed and observed only; never calpass or trained."
+  }
+}

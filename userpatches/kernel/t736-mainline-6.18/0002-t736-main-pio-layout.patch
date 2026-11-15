@@ -1,0 +1,137 @@
+Subject: [CANDIDATE] pinctrl: sunxi: describe T736 main PIO register layout
+
+T736 main PIO uses 0x80-byte banks with an initial 0x80 offset,
+interleaved IRQ registers, and a drive register at bank+0x20.
+R-PIO retains the existing D1 layout. Preserve the default paths for
+other SoCs, including the separate bank K placement.
+
+Not enabled in the running v4 kernel; requires eMMC ownership migration
+and board DT/clock integration before hardware use.
+
+diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+--- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
++++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+@@ -135,12 +135,24 @@
+ 	struct sunxi_desc_function	*functions;
+ };
+ 
++/* Optional regular bank layout; NULL preserves the existing SoC layouts. */
++struct sunxi_pinctrl_reg_layout {
++	u32 bank_offset;
++	u32 bank_stride;
++	u32 drive_offset;
++	u32 drive_width;
++	u32 pull_offset;
++	u32 irq_offset;
++	u32 irq_stride;
++};
++
+ struct sunxi_pinctrl_desc {
+ 	const struct sunxi_desc_pin	*pins;
+ 	int				npins;
+ 	unsigned			pin_base;
+ 	unsigned			irq_banks;
+ 	const unsigned int		*irq_bank_map;
++	const struct sunxi_pinctrl_reg_layout *reg_layout;
+ 	bool				irq_read_needs_mux;
+ 	bool				disable_strict_mode;
+ 	enum sunxi_desc_bias_voltage	io_bias_cfg_variant;
+@@ -187,6 +199,7 @@
+ 	u32				bank_mem_size;
+ 	u32				pull_regs_offset;
+ 	u32				dlevel_field_width;
++	u32				dlevel_regs_offset;
+ 	u32				pow_mod_sel_offset;
+ };
+ 
+@@ -241,14 +254,24 @@
+ 		return desc->irq_bank_map[bank];
+ }
+ 
++static inline u32 sunxi_irq_bank_base(const struct sunxi_pinctrl_desc *desc, u8 bank)
++{
++	u32 hw_bank = sunxi_irq_hw_bank_num(desc, bank);
++
++	if (desc->reg_layout)
++		return desc->reg_layout->irq_offset +
++		       hw_bank * desc->reg_layout->irq_stride;
++
++	return IRQ_CFG_REG + hw_bank * IRQ_MEM_SIZE;
++}
++
+ static inline u32 sunxi_irq_cfg_reg(const struct sunxi_pinctrl_desc *desc,
+ 				    u16 irq)
+ {
+ 	u8 bank = irq / IRQ_PER_BANK;
+ 	u8 reg = (irq % IRQ_PER_BANK) / IRQ_CFG_IRQ_PER_REG * 0x04;
+ 
+-	return IRQ_CFG_REG +
+-	       sunxi_irq_hw_bank_num(desc, bank) * IRQ_MEM_SIZE + reg;
++	return sunxi_irq_bank_base(desc, bank) + reg;
+ }
+ 
+ static inline u32 sunxi_irq_cfg_offset(u16 irq)
+@@ -259,7 +282,7 @@
+ 
+ static inline u32 sunxi_irq_ctrl_reg_from_bank(const struct sunxi_pinctrl_desc *desc, u8 bank)
+ {
+-	return IRQ_CTRL_REG + sunxi_irq_hw_bank_num(desc, bank) * IRQ_MEM_SIZE;
++	return sunxi_irq_bank_base(desc, bank) + IRQ_CTRL_REG - IRQ_CFG_REG;
+ }
+ 
+ static inline u32 sunxi_irq_ctrl_reg(const struct sunxi_pinctrl_desc *desc,
+@@ -278,14 +301,12 @@
+ 
+ static inline u32 sunxi_irq_debounce_reg_from_bank(const struct sunxi_pinctrl_desc *desc, u8 bank)
+ {
+-	return IRQ_DEBOUNCE_REG +
+-	       sunxi_irq_hw_bank_num(desc, bank) * IRQ_MEM_SIZE;
++	return sunxi_irq_bank_base(desc, bank) + IRQ_DEBOUNCE_REG - IRQ_CFG_REG;
+ }
+ 
+ static inline u32 sunxi_irq_status_reg_from_bank(const struct sunxi_pinctrl_desc *desc, u8 bank)
+ {
+-	return IRQ_STATUS_REG +
+-	       sunxi_irq_hw_bank_num(desc, bank) * IRQ_MEM_SIZE;
++	return sunxi_irq_bank_base(desc, bank) + IRQ_STATUS_REG - IRQ_CFG_REG;
+ }
+ 
+ static inline u32 sunxi_irq_status_reg(const struct sunxi_pinctrl_desc *desc,
+diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+--- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
++++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+@@ -67,6 +67,10 @@
+ {
+ 	u32 offset = 0;
+ 
++	if (pctl->desc->reg_layout)
++		return pctl->desc->reg_layout->bank_offset +
++		       (pin / PINS_PER_BANK) * pctl->bank_mem_size;
++
+ 	if (pin >= PK_BASE) {
+ 		pin -= PK_BASE;
+ 		offset = PIO_BANK_K_OFFSET;
+@@ -102,7 +106,7 @@
+ {
+ 	u32 offset = pin % PINS_PER_BANK * pctl->dlevel_field_width;
+ 
+-	*reg   = sunxi_bank_offset(pctl, pin) + DLEVEL_REGS_OFFSET +
++	*reg   = sunxi_bank_offset(pctl, pin) + pctl->dlevel_regs_offset +
+ 		 offset / BITS_PER_TYPE(u32) * sizeof(u32);
+ 	*shift = offset % BITS_PER_TYPE(u32);
+ 	*mask  = (BIT(pctl->dlevel_field_width) - 1) << *shift;
+@@ -1550,7 +1554,13 @@
+ 	pctl->dev = &pdev->dev;
+ 	pctl->desc = desc;
+ 	pctl->variant = flags & SUNXI_PINCTRL_VARIANT_MASK;
+-	if (flags & SUNXI_PINCTRL_NEW_REG_LAYOUT) {
++	pctl->dlevel_regs_offset = DLEVEL_REGS_OFFSET;
++	if (desc->reg_layout) {
++		pctl->bank_mem_size = desc->reg_layout->bank_stride;
++		pctl->pull_regs_offset = desc->reg_layout->pull_offset;
++		pctl->dlevel_field_width = desc->reg_layout->drive_width;
++		pctl->dlevel_regs_offset = desc->reg_layout->drive_offset;
++	} else if (flags & SUNXI_PINCTRL_NEW_REG_LAYOUT) {
+ 		pctl->bank_mem_size = D1_BANK_MEM_SIZE;
+ 		pctl->pull_regs_offset = D1_PULL_REGS_OFFSET;
+ 		pctl->dlevel_field_width = D1_DLEVEL_FIELD_WIDTH;

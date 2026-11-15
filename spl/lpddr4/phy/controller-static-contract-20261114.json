@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-14",
+  "kind": "source-controller-static-configuration-component-contract",
+  "implementation": "spl/lpddr4/phy/controller_static.c",
+  "design_audit": "spl/lpddr4/phy/controller-init-timing-audit-20261114.json",
+  "actual_read_baseline": "evidence/t736-controller-init-read-sram-hardware-20261114.json",
+  "static_writes_hardware_tested": true,
+  "hardware_result": {
+    "record": "evidence/t736-controller-static-sram-hardware-20261114.json",
+    "result": "FAILED_VERIFY, controlled return, no observed bus hang",
+    "writes_attempted_and_completed": 6,
+    "events_completed": 78,
+    "accepted_data": "CH0 INITTMG0 accepted0x0001036f after both SWCTL0 and SWCTLSTATIC1 were read back",
+    "failure": "CH0 INITTMG1 write0x00580000 read back0; cross-SoC writable-field assumption is not established on T736",
+    "left_open": "Both SWCTL and SWCTLSTATIC transaction masks remain3; no cleanup or retry was attempted",
+    "next_audit": "spl/lpddr4/phy/controller-inittmg1-mismatch-audit-20261114.json",
+    "deployment_status": "Original22-write component is retained as the failed experiment artifact and must not be retried as a working configuration path"
+  },
+  "MR_commands_sent": false,
+  "DDR_initialized_or_trained": false,
+  "normal_boot_ready": false,
+  "source_boundaries": "Scalar host register configuration and independent LPDDR4 encodings only. No Tina/vendor executable, DDR library, PMU/PIE instruction stream, trained-data replay mechanism or Radxa-derived implementation is linked. Historical electrical MR seeds are explicitly selected starting parameters, not claimed source-trained results.",
+  "accepted_root_decisions": {
+    "ck_mhz": 1800,
+    "counter_mhz": 450,
+    "counter_qualification": "Explicit T736 host-interface assumption corresponding to CK/4, corroborated by current clock configuration. Not generalized to all controller field families or other chips.",
+    "TMGCFG": "Set only TIMING+0xd00 bit0 to select1:4; preserve all other bits. This was0 on both channels and is a separate quasi-dynamic field from global INITTMG.",
+    "latencies": "Retain existing RL36/WL18/nWR40 and the accepted64-write subset; final fitted-device/frequency qualification remains unresolved.",
+    "micro_reset": "Caller must explicitly freeze expectedMicro=1 or9. MicroReset bit0 is StallToMicro and bit3 is ResetToMicro: 1 releases reset while retaining stall; 9 retains reset and stall. Both prohibit ARC execution through stall; this component never changes the PHY."
+  },
+  "pure_profile": {
+    "pre_cke_ticks": 879,
+    "post_cke_ticks": 1,
+    "reset_low_ticks": 88,
+    "counter_quantum": 1024,
+    "INITTMG0_mask_value": ["0x03ff1fff", "0x0001036f"],
+    "INITTMG1_mask_value": ["0x03ff0000", "0x00580000"],
+    "INITMR_values": ["0x00fc003f", "0x00330008", "0x00040072", "0x0024001d"],
+    "interpretation": "Timer fields and MR images are configuration only. INITMR2/3 do not guarantee automatic-init transmission of MR11/12/22/14. MR13 bit3 isVRCG; DM-disable bit5 remains clear."
+  },
+  "transaction": {
+    "before_any_write": "Validate clock/domain/timer configuration, zero common ports, both controllers heldINIT, SWCTL/SWSTAT1, staticunlock0, MRCTRL0=0x30/MRSTAT0, PHY owner0, selectedMicro, clocks3, MemResetL2 and ZCalReset/Run0. Read and validate all14 prospective configuration fields before either channel changes.",
+    "write_order": ["SWCTL=0 on both channels with bounded SWSTAT0", "SWCTLSTATIC=1 on both channels", "Seven configuration words onCH0 thenCH1, each immediate full readback", "SWCTLSTATIC=0 on both channels", "SWCTL=1 on both channels with bounded SWSTAT1", "Measured20us settle then repeat held/owner guards and all14 configured fields"],
+    "word_writes": 22,
+    "reads_when_SWSTAT_immediate": 142,
+    "MMIO_events_when_SWSTAT_immediate": 164,
+    "component_report_bytes": 164,
+    "failure_policy": "Stop immediately; do not issue cleanup or retry. Record read/write attempts and completions, last operation and values, channel completion and conservative maybe-open masks. A failed callback can have changed hardware. Host owns recovery from a stalled bus.",
+    "success_code": "T736_INIT_CONFIGURED_ONLY=1, not DDR initialization or training success"
+  },
+  "wrapper_requirements": [
+    "Run entirely from SRAM with interrupts/DMA/DRAM clients quiesced.",
+    "Before calling the component, independently verify the timer actually advances over1us or10us; a nominal timer frequency register is insufficient.",
+    "Freeze micro1 or9 to the actual hardware checkpoint.",
+    "Use32-bit aligned CTL/TIMING and16-bit PHY reads; UART-progress and exception evidence should precede unknown bus transactions.",
+    "Provide event capacity for164 baselineMMIO events plus any bounded SWSTAT polls. CAP160 is insufficient; CAP192 plus164B component report fits below independent fault record0x4ed00 for short poll budgets.",
+    "Static configuration must precede cold_mr_arm because its preflight requiresMRCTRL0=0x30, without sw_init_int(bit3).",
+    "Compile all SRAM C with-mno-unaligned-access, keep fault/normal report/stack regions distinct, and verify final linked payload again."
+  ],
+  "offline_validation": {
+    "command": "python3 spl/lpddr4/phy/check_controller_static.py",
+    "record": "build/controller-static/build-record.json",
+    "native_ASan_UBSan": "PASS",
+    "coverage": "Checked whole-us1024-cycle rounding and boundaries; latency/MR packing; explicit450MHz restriction; micro1/9; exact22-write whitelist;165 callback failure points;22 readback failures;58 preflight drifts;4 bounded SWSTAT timeouts; no speculative cleanup; preserved unrelated fields.",
+    "ARM_undefined_symbols": [],
+    "unaligned_access_disabled": true,
+    "conservative_stack_frame_sum_bytes": 444,
+    "object_sha256": "e49484591455f57753f1788bf1b272dea74508e2f002d754cf6256f2d603f53b",
+    "independent_review": "PMU peer checked controller semantics, encodings, masks, transaction order and failure reporting; READY for wrapper integration within CONFIGURED_ONLY scope."
+  }
+}

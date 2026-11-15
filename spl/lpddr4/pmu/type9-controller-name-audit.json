@@ -1,0 +1,529 @@
+{
+  "date": "2026-11-14",
+  "scope": "Host controller address/name comments only, no register values or executable words retained",
+  "source": {
+    "repository": "SiMa-ai/sima-ai-uboot",
+    "commit": "5a026adbe2a54aeaae5dc50e1852d4b5c1884640",
+    "path": "arch/arm/mach-sima/init_ddr_modalix.c",
+    "blob": "293179961431235b603a61c70dc5612446b91db2"
+  },
+  "target_corroboration": "The named DRAMSET1TMG atrelative0x0, MSTR0 at0x10000, ADDRMAP at0x30000 and DFIMISC at0x10510 match independently inspected T736 host register groups relative to0x0a100000. This is local register-name evidence; SiMa channel stride is0x01000000 whereas T736 stride is0x00400000. Do not transplant channel offsets, bitfields or values.",
+  "register_names": [
+    {
+      "line": 11,
+      "address": "0x00010b84",
+      "name": "OPCTRL1"
+    },
+    {
+      "line": 12,
+      "address": "0x00010000",
+      "name": "MSTR0"
+    },
+    {
+      "line": 13,
+      "address": "0x00010010",
+      "name": "MSTR4"
+    },
+    {
+      "line": 14,
+      "address": "0x00010100",
+      "name": "DERATECTL0"
+    },
+    {
+      "line": 15,
+      "address": "0x00010104",
+      "name": "DERATECTL1"
+    },
+    {
+      "line": 16,
+      "address": "0x00010108",
+      "name": "DERATECTL2"
+    },
+    {
+      "line": 17,
+      "address": "0x00010114",
+      "name": "DERATECTL5"
+    },
+    {
+      "line": 18,
+      "address": "0x00010118",
+      "name": "DERATECTL6"
+    },
+    {
+      "line": 19,
+      "address": "0x00010180",
+      "name": "PWRCTL"
+    },
+    {
+      "line": 20,
+      "address": "0x00010184",
+      "name": "HWLPCTL"
+    },
+    {
+      "line": 21,
+      "address": "0x0001018c",
+      "name": "CLKGATECTL"
+    },
+    {
+      "line": 22,
+      "address": "0x00010200",
+      "name": "RFSHMOD0"
+    },
+    {
+      "line": 23,
+      "address": "0x00010220",
+      "name": "RFMMOD0"
+    },
+    {
+      "line": 24,
+      "address": "0x00010224",
+      "name": "RFMMOD1"
+    },
+    {
+      "line": 25,
+      "address": "0x00010c94",
+      "name": "DBICTL"
+    },
+    {
+      "line": 26,
+      "address": "0x00010280",
+      "name": "ZQCTL0"
+    },
+    {
+      "line": 27,
+      "address": "0x00010288",
+      "name": "ZQCTL2"
+    },
+    {
+      "line": 28,
+      "address": "0x00010300",
+      "name": "DQSOSCRUNTIME"
+    },
+    {
+      "line": 29,
+      "address": "0x00010308",
+      "name": "DQSOSCCFG0"
+    },
+    {
+      "line": 30,
+      "address": "0x00010380",
+      "name": "SCHED0"
+    },
+    {
+      "line": 31,
+      "address": "0x00010384",
+      "name": "SCHED1"
+    },
+    {
+      "line": 32,
+      "address": "0x0001038C",
+      "name": "SCHED3"
+    },
+    {
+      "line": 33,
+      "address": "0x00010390",
+      "name": "SCHED4"
+    },
+    {
+      "line": 34,
+      "address": "0x00010394",
+      "name": "SCHED5"
+    },
+    {
+      "line": 35,
+      "address": "0x00010500",
+      "name": "DFILPCFG0"
+    },
+    {
+      "line": 36,
+      "address": "0x00010508",
+      "name": "DFIUPD0"
+    },
+    {
+      "line": 37,
+      "address": "0x00010510",
+      "name": "DFIMISC"
+    },
+    {
+      "line": 38,
+      "address": "0x00010518",
+      "name": "DFIPHYMSTR"
+    },
+    {
+      "line": 39,
+      "address": "0x00010600",
+      "name": "ECCCFG0"
+    },
+    {
+      "line": 40,
+      "address": "0x00010604",
+      "name": "ECCCFG1"
+    },
+    {
+      "line": 41,
+      "address": "0x00010648",
+      "name": "ECCPOISONADDR0"
+    },
+    {
+      "line": 42,
+      "address": "0x0001064c",
+      "name": "ECCPOISONADDR1"
+    },
+    {
+      "line": 43,
+      "address": "0x00010658",
+      "name": "ECCPOISONPAT0"
+    },
+    {
+      "line": 44,
+      "address": "0x00010660",
+      "name": "ECCPOISONPAT2"
+    },
+    {
+      "line": 45,
+      "address": "0x00010980",
+      "name": "LNKECCCTL0"
+    },
+    {
+      "line": 46,
+      "address": "0x00010b80",
+      "name": "OPCTRL0"
+    },
+    {
+      "line": 47,
+      "address": "0x00010d00",
+      "name": "INITTMG0"
+    },
+    {
+      "line": 48,
+      "address": "0x00010d04",
+      "name": "INITTMG1"
+    },
+    {
+      "line": 49,
+      "address": "0x00020000",
+      "name": "PCCFG"
+    },
+    {
+      "line": 50,
+      "address": "0x00020004",
+      "name": "PCFGR"
+    },
+    {
+      "line": 51,
+      "address": "0x00020008",
+      "name": "PCFGW"
+    },
+    {
+      "line": 52,
+      "address": "0x00020094",
+      "name": "PCFGQOS0"
+    },
+    {
+      "line": 53,
+      "address": "0x00020098",
+      "name": "PCFGQOS1"
+    },
+    {
+      "line": 54,
+      "address": "0x0002009c",
+      "name": "PCFGWQOS0"
+    },
+    {
+      "line": 55,
+      "address": "0x000200a0",
+      "name": "PCFGWQOS1"
+    },
+    {
+      "line": 56,
+      "address": "0x000200e0",
+      "name": "SBRCTL"
+    },
+    {
+      "line": 57,
+      "address": "0x000200f0",
+      "name": "SBRSTART0"
+    },
+    {
+      "line": 58,
+      "address": "0x000200f8",
+      "name": "SBRRANGE0"
+    },
+    {
+      "line": 59,
+      "address": "0x00000000",
+      "name": "DRAMSET1TMG0"
+    },
+    {
+      "line": 60,
+      "address": "0x00000004",
+      "name": "DRAMSET1TMG1"
+    },
+    {
+      "line": 61,
+      "address": "0x00000008",
+      "name": "DRAMSET1TMG2"
+    },
+    {
+      "line": 62,
+      "address": "0x0000000c",
+      "name": "DRAMSET1TMG3"
+    },
+    {
+      "line": 63,
+      "address": "0x00000010",
+      "name": "DRAMSET1TMG4"
+    },
+    {
+      "line": 64,
+      "address": "0x00000014",
+      "name": "DRAMSET1TMG5"
+    },
+    {
+      "line": 65,
+      "address": "0x00000018",
+      "name": "DRAMSET1TMG6"
+    },
+    {
+      "line": 66,
+      "address": "0x0000001c",
+      "name": "DRAMSET1TMG7"
+    },
+    {
+      "line": 67,
+      "address": "0x00000024",
+      "name": "DRAMSET1TMG9"
+    },
+    {
+      "line": 68,
+      "address": "0x00000030",
+      "name": "DRAMSET1TMG12"
+    },
+    {
+      "line": 69,
+      "address": "0x00000034",
+      "name": "DRAMSET1TMG13"
+    },
+    {
+      "line": 70,
+      "address": "0x00000038",
+      "name": "DRAMSET1TMG14"
+    },
+    {
+      "line": 71,
+      "address": "0x0000005c",
+      "name": "DRAMSET1TMG23"
+    },
+    {
+      "line": 72,
+      "address": "0x00000060",
+      "name": "DRAMSET1TMG24"
+    },
+    {
+      "line": 73,
+      "address": "0x00000064",
+      "name": "DRAMSET1TMG25"
+    },
+    {
+      "line": 74,
+      "address": "0x00000078",
+      "name": "DRAMSET1TMG30"
+    },
+    {
+      "line": 75,
+      "address": "0x00000580",
+      "name": "DFITMG0"
+    },
+    {
+      "line": 76,
+      "address": "0x00000584",
+      "name": "DFITMG1"
+    },
+    {
+      "line": 77,
+      "address": "0x00000588",
+      "name": "DFITMG2"
+    },
+    {
+      "line": 78,
+      "address": "0x00000590",
+      "name": "DFITMG4"
+    },
+    {
+      "line": 79,
+      "address": "0x00000594",
+      "name": "DFITMG5"
+    },
+    {
+      "line": 80,
+      "address": "0x000005a0",
+      "name": "DFILPTMG0"
+    },
+    {
+      "line": 81,
+      "address": "0x000005a4",
+      "name": "DFILPTMG1"
+    },
+    {
+      "line": 82,
+      "address": "0x000005a8",
+      "name": "DFIUPDTMG0"
+    },
+    {
+      "line": 83,
+      "address": "0x000005ac",
+      "name": "DFIUPDTMG1"
+    },
+    {
+      "line": 84,
+      "address": "0x00000600",
+      "name": "RFSHSET1TMG0"
+    },
+    {
+      "line": 85,
+      "address": "0x00000604",
+      "name": "RFSHSET1TMG1"
+    },
+    {
+      "line": 86,
+      "address": "0x00000608",
+      "name": "RFSHSET1TMG2"
+    },
+    {
+      "line": 87,
+      "address": "0x0000060c",
+      "name": "RFSHSET1TMG3"
+    },
+    {
+      "line": 88,
+      "address": "0x00000650",
+      "name": "RFMSET1TMG0"
+    },
+    {
+      "line": 89,
+      "address": "0x00000800",
+      "name": "ZQSET1TMG0"
+    },
+    {
+      "line": 90,
+      "address": "0x00000804",
+      "name": "ZQSET1TMG1"
+    },
+    {
+      "line": 91,
+      "address": "0x00000a80",
+      "name": "DQSOSCCTL0"
+    },
+    {
+      "line": 92,
+      "address": "0x00000b00",
+      "name": "DERATEINT"
+    },
+    {
+      "line": 93,
+      "address": "0x00000b04",
+      "name": "DERATEVAL0"
+    },
+    {
+      "line": 94,
+      "address": "0x00000b08",
+      "name": "DERATEVAL1"
+    },
+    {
+      "line": 95,
+      "address": "0x00000b80",
+      "name": "HWLPTMG0"
+    },
+    {
+      "line": 96,
+      "address": "0x00000c00",
+      "name": "SCHEDTMG0"
+    },
+    {
+      "line": 97,
+      "address": "0x00000d00",
+      "name": "TMGCFG"
+    },
+    {
+      "line": 98,
+      "address": "0x00000d04",
+      "name": "RANKTMG0"
+    },
+    {
+      "line": 99,
+      "address": "0x00000d08",
+      "name": "RANKTMG1"
+    },
+    {
+      "line": 100,
+      "address": "0x00000d0c",
+      "name": "PWRTMG"
+    },
+    {
+      "line": 101,
+      "address": "0x00030004",
+      "name": "ADDRMAP1"
+    },
+    {
+      "line": 102,
+      "address": "0x0003000c",
+      "name": "ADDRMAP3"
+    },
+    {
+      "line": 103,
+      "address": "0x00030010",
+      "name": "ADDRMAP4"
+    },
+    {
+      "line": 104,
+      "address": "0x00030014",
+      "name": "ADDRMAP5"
+    },
+    {
+      "line": 105,
+      "address": "0x00030018",
+      "name": "ADDRMAP6"
+    },
+    {
+      "line": 106,
+      "address": "0x0003001c",
+      "name": "ADDRMAP7"
+    },
+    {
+      "line": 107,
+      "address": "0x00030020",
+      "name": "ADDRMAP8"
+    },
+    {
+      "line": 108,
+      "address": "0x00030024",
+      "name": "ADDRMAP9"
+    },
+    {
+      "line": 109,
+      "address": "0x00030028",
+      "name": "ADDRMAP10"
+    },
+    {
+      "line": 110,
+      "address": "0x0003002c",
+      "name": "ADDRMAP11"
+    },
+    {
+      "line": 111,
+      "address": "0x00030030",
+      "name": "ADDRMAP12"
+    },
+    {
+      "line": 113,
+      "address": "0x00020090",
+      "name": "PCTRL"
+    },
+    {
+      "line": 114,
+      "address": "0x00010208",
+      "name": "RFSHCTL0"
+    }
+  ],
+  "warning": "RFSHMOD0 atrelative0x10200 is not the older-controller INIT0. NXP old-controller INIT0.skip_dram_init and SW_INIT_INT cannot be assumed to exist with identical fields on T736."
+}

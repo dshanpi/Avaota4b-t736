@@ -1,0 +1,27 @@
+{
+  "checks_complete": true,
+  "lp4_mrw_rank_mr_operand_vectors": 32768,
+  "lp4_mrr_rank_mr_vectors": 128,
+  "lp4_mpc_rank_opcode_inputs": 256,
+  "lp5_descriptor_mrw_wire_matches": 32768,
+  "lp5_descriptor_mrr_wire_matches": 128,
+  "lp5_descriptor_mpc_wire_matches": 256,
+  "native_address_undefined_sanitizers_pass": true,
+  "inputs": {
+    "spl/lpddr4/pmu/reference/litedram-lpddr4-commands.py": "d35984653bba3a57559becbed72993d992f59d957b714525ba2b237c079e9d1b",
+    "spl/lpddr4/pmu/reference/litedram-lpddr5-commands.py": "2ef7b0dad58a81eeda69b85fd83ee5633f24cacf5f96efad095965465382c08c",
+    "sources/audit/a733-pmu-source-2f5e45fa/pmu_train.c": "ccf40e04285c627946337c4b9e3e26a6baa9c2d0514caf84addc847af81d653d",
+    "build/lpddr4-pmu-commands/command_vectors.h": "2da88b1c5c8b474398ea4dfcbc85414d40f0f36db3b0070de1b244f1a0ac0978",
+    "build/lpddr4-pmu-commands/inferno_encoder_extract.h": "5b92d6f623f40c05109418f38c3b7fe30ce64cb04302b92fd4b5ccf00e114768",
+    "spl/lpddr4/pmu/commands.c": "9bd2baa12bb31fe4758496012069769d71cf393d644c8490f8bdf9eda62e3e1f",
+    "spl/lpddr4/pmu/commands.h": "a14483e8b906a60bc9da2925afdee2dcf7cbb76aba83020706421be7e9742d0a",
+    "spl/lpddr4/pmu/test_commands.c": "45978b23650ef17ab1b7bb09bc5391f4c46cd36782a93dcf38105dd7fb536661",
+    "spl/lpddr4/pmu/check_commands.py": "61838fe218582471cc7cf99db823c49450d2da9977c0d602637bfdbd4d240143"
+  },
+  "established": "Public LP4 CA/CS pin encoding; public LP5 descriptor d3/d4 encode CA phases.",
+  "type9_lp4_clock_mapping_established": false,
+  "type9_lp4_executor_implemented": false,
+  "pmu_executable_built": false,
+  "hardware_executed": false,
+  "deployable": false
+}

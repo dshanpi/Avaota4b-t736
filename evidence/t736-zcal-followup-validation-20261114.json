@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-14",
+  "kind": "validation record from completed build/test invocations",
+  "native_asan_ubsan_passed": true,
+  "host_test_cases_passed": 74,
+  "experiments": [
+    {
+      "name": "precompanion",
+      "host_test_cases": 9,
+      "native_output": "PASS: 129 ordered events,11 writes,three PU/PD pairs;129 UART faults;60 preflight/40 final drifts;three timer stalls;stuck reset/run;all2030d/20320 edge mismatches including self-clear;zero and changed results remain timed-only;no cleanup\n",
+      "build_record": "build\\phy-zcal-precompanion-probe\\build-record.json",
+      "host_script_sha256": "d98eac7c33476d93f97fc35cca94ba5b7ccdda3519e52410d0ec0ca9e8ecd871",
+      "host_test_sha256": "a0bde254594ed83728d0775cd2a9733c4b17835f66af5a92501752b6b6f9417a"
+    },
+    {
+      "name": "inflight",
+      "host_test_cases": 10,
+      "native_output": "PASS: 132 ordered events,11 writes,three PU/PD pairs;132 UART faults;60 preflight/40 final drifts;three timer stalls;stuck reset/run;all2030d/20320 edge mismatches including self-clear;zero and changed results remain timed-only;no cleanup\n",
+      "build_record": "build\\phy-zcal-inflight-probe\\build-record.json",
+      "host_script_sha256": "06b11e6d317e1d39b1c6d9610a2992bf2ff6d819d89c1758ab91561ae05d6754",
+      "host_test_sha256": "a75c43f74cc8f35248e454096bfb49a8044194c2f676cf58292407442d95aa88"
+    },
+    {
+      "name": "rawcode",
+      "host_test_cases": 8,
+      "native_output": "PASS: 155 read-only events; 155 UART faults; 152 pre/post guard drifts; full clock high-bit stability; arbitrary three candidate values; strict widths and forbidden write/program/DDR rejection\n",
+      "build_record": "build\\phy-zcal-rawcode-probe\\build-record.json",
+      "host_script_sha256": "be5ad487db30425e8860bb4a418da1a816d21989294e8597afa7bd3168b242d3",
+      "host_test_sha256": "454ae57cb7f1fe2612c38c84c2f42daef4606760110759e7adb1a8e135d03117"
+    },
+    {
+      "name": "codetrack",
+      "host_test_cases": 10,
+      "native_output": "PASS: 140 ordered events,11 writes,three PU/PD pairs;140 UART faults;60 preflight/40 final drifts;three timer stalls;stuck reset/run;all2030d/20320 edge mismatches including self-clear;zero and changed results remain timed-only;no cleanup\n",
+      "build_record": "build\\phy-zcal-codetrack-probe\\build-record.json",
+      "host_script_sha256": "ab4d51e1c39083b7d160e774ed9e37e52da355eb51402de189ed85b3eab2a2db",
+      "host_test_sha256": "d2124e167852ddf272b99a34ca45b06834d52fbebfa7417719c2a9a8ca6cbb7c"
+    },
+    {
+      "name": "longwait",
+      "host_test_cases": 11,
+      "native_output": "PASS: 140 ordered events,11 writes,three PU/PD pairs;140 UART faults;60 preflight/40 final drifts;three timer stalls;stuck reset/run;all2030d/20320 edge mismatches including self-clear;zero and changed results remain timed-only;no cleanup\n",
+      "build_record": "build\\phy-zcal-longwait-probe\\build-record.json",
+      "host_script_sha256": "4116d38f9ff1e4febe0d3be70c78d6b58aecf4154a25c4f199a68d1448805cfa",
+      "host_test_sha256": "34fd0a4045df13b65eb6f649cecfbdedc437cd122a9f8b98a48b28562633d2bb"
+    },
+    {
+      "name": "pubmode_read",
+      "host_test_cases": 8,
+      "native_output": "PASS: 155 read-only events; 155 UART faults; 152 pre/post guard drifts; full clock high-bit stability; arbitrary three candidate values; strict widths and forbidden write/program/DDR rejection\n",
+      "build_record": "build\\phy-zcal-pubmode-read-probe\\build-record.json",
+      "host_script_sha256": "288faa016c757eb6c89eae4b655e2b12a309a86a0309c2989653bbe4c7f8fcdd",
+      "host_test_sha256": "314b0ef8a8040cfbb4038bbd644f1616172637e6d1852fd05877e1b7586c54f5"
+    },
+    {
+      "name": "pubmode",
+      "host_test_cases": 10,
+      "native_output": "PASS:145 events/13 ordered writes;145 UART faults;61 initial and40 final guard faults;mode entry/restore mismatches;companion mismatches;3 timer stalls;zero codes stay timed-only;no failure cleanup\n",
+      "build_record": "build\\phy-zcal-pubmode-probe\\build-record.json",
+      "host_script_sha256": "dd6fef868a3682e3a33a2d4001063fc9eb50fefe6ea628a153302553a102ea1a",
+      "host_test_sha256": "ebb6e26919d1cf104fe1c2e8b6e92bc76e3fcfef41c499876fa2726f7fc1f7df"
+    },
+    {
+      "name": "clock_read",
+      "host_test_cases": 8,
+      "native_output": "PASS: 155 read-only events; 155 UART faults; 152 pre/post guard drifts; full clock high-bit stability; arbitrary three candidate values; strict widths and forbidden write/program/DDR rejection\n",
+      "build_record": "build\\phy-zcal-clock-read-probe\\build-record.json",
+      "host_script_sha256": "75a1b26a7d8de1b8a82e4024eb1f1e8e2f202a24b7818635d76752ec4cbb3335",
+      "host_test_sha256": "2dd98301ef067fe6e5463e1e3815443deca31f88171b0dfe1248f2e8a938c475"
+    }
+  ],
+  "all_source_and_binary_pins_verified_before_freezing": true,
+  "calibration_verified": false
+}

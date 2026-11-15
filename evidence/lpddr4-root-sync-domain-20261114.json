@@ -1,0 +1,53 @@
+{
+  "scope": "Root-owned state and new hardware evidence only, not a full project manifest",
+  "files": [
+    {
+      "path": "status.json",
+      "bytes": 26961,
+      "sha256": "feec245ed410577fa9f53014f9dea14d8d10c0a419e60f65bd17c875f8c903f6",
+      "readback_matches": true
+    },
+    {
+      "path": "config/independent-boot-plan.json",
+      "bytes": 9928,
+      "sha256": "88fc1c9036434dfb6d380fc0540a91bdf8dd846c896f9d655a6fa7c461da4666",
+      "readback_matches": true
+    },
+    {
+      "path": "config/board-facts.json",
+      "bytes": 4722,
+      "sha256": "2ba26430436aeef8c079b21fb4fd01c347e08f2047c4b4cdfd7474bd54bc8fa1",
+      "readback_matches": true
+    },
+    {
+      "path": "spl/lpddr4/implementation.json",
+      "bytes": 7105,
+      "sha256": "d68d55d5bf628d38e5e9cc0f54acd9c4904f046da4d108a7520e8184162e5a2f",
+      "readback_matches": true
+    },
+    {
+      "path": "spl/lpddr4/README.md",
+      "bytes": 6160,
+      "sha256": "de9f9fa2953d8a9e0334a11a25bf0a9465a4d47b144c4330ad733446e242e5e4",
+      "readback_matches": true
+    },
+    {
+      "path": "evidence/t736-ccu-cold-sram-hardware-20261114.json",
+      "bytes": 5226,
+      "sha256": "00435c40fec9816280742d4b6f81b04f49763b901e218c79bbd2ce66eee80561",
+      "readback_matches": true
+    },
+    {
+      "path": "evidence/t736-domain-sram-hardware-20261114.json",
+      "bytes": 5558,
+      "sha256": "2e593bb2336208ca6c5621cfa4037cd984eb8efa63a182a97ca0caf07ed4430e",
+      "readback_matches": true
+    },
+    {
+      "path": "evidence/t736-domain-setup-sram-hardware-20261114.json",
+      "bytes": 5447,
+      "sha256": "8563e68736a8cfb28b67628464028fe566cb6dad82491b37a8c4ede067979b00",
+      "readback_matches": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "checks_complete": true,
+  "native_address_undefined_sanitizers_pass": true,
+  "timed_vectors": 19932,
+  "all_23_callback_failures_tested": true,
+  "arm32_freestanding_compile_pass": true,
+  "undefined_symbols": "",
+  "runtime_default": "No integration or automatic execution; standalone diagnostic only",
+  "successful_return_meaning": "OBSERVED_ONLY or TIMED_ONLY; never calibration success",
+  "vendor_binaries_linked": false,
+  "board_tested": false,
+  "target_register_semantics_confirmed": false,
+  "ddr_training_implemented": false,
+  "boot_firmware_deployable": false,
+  "inputs_and_objects": {
+    "spl/lpddr4/phy_calibration_diag.c": "ae5acafd0936ddae6cda330829e2d46efabe5f3404f5c979711f09d44e2eda56",
+    "spl/lpddr4/phy_calibration_diag.h": "9175f4f07468de91fb17ce6fb925100e2d8e2f11875b8361184f34907b95209c",
+    "spl/lpddr4/test_phy_calibration_diag.c": "2e3b589bc65a5fe7faba5e447305c85a3287c1714f7591042ee1968401cdf9f5",
+    "spl/lpddr4/check_phy_calibration_diag.py": "5dcca4134228c831da55b0cb51858db890959544842f4d68645b96a861f0bc4c",
+    "spl/lpddr4/phy/host.h": "256d672f20ac3f634de15d3f9565706ccf47c96abbfd274c5f21d977c6117c32",
+    "spl/lpddr4/pmu/phy-calibration-audit.json": "d5c90a0cf6317f3fe521b843fd31b3baf9f9b8eb118ed4b1624042da600fb38d",
+    "build/lpddr4-phy-calibration-diag/phy_calibration_diag.o": "8fdbfc5ff3e8b1c45bf9f553a579b8decdf1bfea5bfee8ce056c0cc2fc9d6938"
+  }
+}

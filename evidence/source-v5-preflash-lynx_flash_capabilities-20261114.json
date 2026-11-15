@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"capabilities\":{\"artifactFormats\":[\"allwinner_vendor_package\",\"mainline_raw_disk_image\",\"mainline_nand_component_package\"],\"auditRequired\":true,\"chipVendor\":\"allwinner\",\"defaultMode\":\"full_erase\",\"flasherKind\":\"openixcli\",\"mainlineWorkflow\":\"Use a board-matched loader only in RAM to enter FES. NAND and SPI NAND require a component package, partition_erase (FES policy 0x1) for MBR/layout replacement, and strict Boot0/Boot1/partition verification; SD/SD NAND, eMMC and UFS may use whole-disk raw after the runtime storage-type preflight. SPI NOR requires the supported F101 RAM Loader, a runtime-verified physical-address contract and independent full-flash readback; unsupported or unverified profiles are blocked before destructive commands.\",\"modes\":[\"command\",\"partition\",\"partition_erase\",\"full_erase\"],\"postFlashActions\":[\"none\",\"reboot\",\"poweroff\"],\"safetyPolicy\":{\"bootEntry\":\"physical FEL key/boot strap, or configured reliable hardware reset/power controller\",\"bootProtocol\":\"FEL / FES\",\"eraseStrategy\":\"full_erase by default; verify enabled; override only when preserving data is intentional\",\"softwareBootTransitionAllowed\":false},\"supportsVerify\":true,\"vendorOptions\":{\"loaderPath\":{\"description\":\"Board-matched loader used only in RAM to initialize DRAM and enter FES for either raw or NAND component flashing\",\"type\":\"string\"},\"medium\":{\"description\":\"Explicit physical SPI NOR route; requires a supported loader, verified physical mapping and independent readback\",\"enum\":[\"spinor\"]},\"raw\":{\"description\":\"Treat firmwarePath as the mainline whole-disk logical raw image\",\"type\":\"boolean\"}}},\"deviceId\":9,\"target\":\"location:pciroot(0)#pci(1400)#usbroot(0)#usb(10)#usb(2)\"}"
+    }
+  ],
+  "isError": false
+}

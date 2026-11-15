@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "status": "source_timing_components_with_readonly_board_comparison_not_bootable",
+  "implemented": [
+    "Overflow-checked nanosecond to CK rounding with explicit minimum cycles",
+    "T736 LPDDR4 1800 MHz high-speed timing profile calculation for 21 registers per channel",
+    "Separate timing 0x0a100000 and controller 0x0a110000 apertures with 0x400000 channel stride",
+    "Both-channel init-mode and exact MSTR preflight before timing writes",
+    "Masked refresh-register writes preserving unrelated fields and readback verification",
+    "SRAM-only DFI handoff with bounded SWCTL, DFI completion and normal-mode waits",
+    "DFI control-bit write verification; failures require caller to abort initialization"
+  ],
+  "profile": {
+    "ck_mhz": 1800,
+    "frequency_scaling_supported": false,
+    "lpddr4_rl_ck": 36,
+    "lpddr4_wl_ck": 18,
+    "lpddr4_write_recovery_ck": 40,
+    "geometry_mstr": "0x03081002",
+    "timing_units": "Full CK cycles. Refresh interval counters divide the rounded CK count by 32. Older A523/H616 half-rate timing functions cannot be substituted.",
+    "minimum_ns": {
+      "tFAW": 40,
+      "tRRD": 10,
+      "tRCD": 18,
+      "tRP": 21,
+      "tRAS": 42,
+      "tXP": 8,
+      "tWTR": 10,
+      "tMRW": 14,
+      "tRFCab": 380,
+      "tRFCpb": 190,
+      "tXSR": 388,
+      "all_bank_reference_interval": 3904,
+      "programmed_per_bank_refresh_interval": 488
+    },
+    "pipeline_scope": "Fixed controller and DFI latency fields are constrained to the observed board frequency and LP4 high-speed mode. They are not claimed as generic JEDEC constants.",
+    "source_generated_offsets": [
+      "000", "004", "008", "00c", "010", "014", "018", "01c",
+      "024", "030", "034", "038", "05c", "060", "064", "580",
+      "584", "588", "600", "604", "608"
+    ]
+  },
+  "sources": [
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+      "inspection": "Read-only symbols and disassembly of auto_cal_timing, mctl_com_set_channel_timing, mctl_com_init, mctl_channel_init and mctl_dfi_init.",
+      "use": "Register layout, timing-unit and LPDDR4 branch semantics; re-expressed as checked C calculations and explicit state transitions. No vendor object, PMU/PIE firmware, opcode array or library is linked or copied to artifacts.",
+      "clean_room_claim": false
+    },
+    {
+      "path": "evidence/lpddr4-timing-board-observation.log",
+      "use": "Independent read-only runtime observation supplied by root agent after the expected timing values had been derived. All 42 generated timing/DFI/refresh register fields match both channels under masks. MR-init observations are retained as facts but not replayed by this component."
+    },
+    {
+      "path": "sources/u-boot/arch/arm/mach-sunxi/dram_timings/a523_lpddr4.c",
+      "use": "Read-only comparison of LPDDR4 timing concepts. Not copied: its half-rate timing units and contiguous controller register layout differ from this T736."
+    }
+  ],
+  "dfi_handoff_preconditions": [
+    "Execution and stack in SRAM; no DRAM clients active",
+    "Ordered device MMIO callbacks; stable initialized clocks and supplies",
+    "Both channels have exact MSTR 0x03081002 and report init state",
+    "PWRCTL bit 11 asserted on both channels",
+    "Actual source-built PHY training has succeeded",
+    "PRCM memory isolation already released and settled by caller"
+  ],
+  "not_implemented_here": [
+    "Complete controller reset/configuration and initialization delay fields",
+    "LPDDR4 mode register initialization and refresh-policy configuration outside generated fields",
+    "LPDDR4 PHY/PIE programming or ARC training",
+    "Early clock/reset/voltage sequencing",
+    "Any claim of memory correctness or available capacity after normal-mode handshake"
+  ],
+  "validation": "evidence/lpddr4-timing-check.json",
+  "actual_hardware_timing_writes": false,
+  "actual_hardware_dfi_handoff": false,
+  "cold_boot_tested": false,
+  "deployable": false
+}

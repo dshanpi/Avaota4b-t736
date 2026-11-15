@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/ubuntu/t736-mainline/sources/audit/a733-pmu-source-2f5e45fa/build_pmu_fw.py",
+    "--cross-compile",
+    "arc-linux-gnu-",
+    "--src-dir",
+    "/home/ubuntu/t736-mainline/sources/audit/a733-pmu-source-2f5e45fa",
+    "--out",
+    "/home/ubuntu/t736-mainline/build/pmu-source-probe/dram_sun60i_a733_pmu_fw.h"
+  ],
+  "source_commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823"
+}
+{"bytes": 53232, "sha256": "a6d1e27718b28e9c26591cb1adb2c3c841c9bde8941468cebde6a3fbe4825df9", "compile_pass": true, "deployable": false}

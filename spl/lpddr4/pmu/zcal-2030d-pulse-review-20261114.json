@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-14",
+  "kind": "readonly design review; no hardware operated by reviewer",
+  "baseline": {
+    "evidence": "mainline/evidence/t736-phy-zcal-companion-sram-hardware-20261114.json",
+    "raw_sha256": "3a7614da7cb3a19b2429f335973df7686c863422a8b8b7cdeb5d7da8063f7d59",
+    "observed": "125events/9writes; reset42ticks and run2414ticks;20320 exact0/1/0 readback; three PU/PD pairs remained0/0; Rate restored9;2030d/20320 ended0; Micro1 and MemResetL2 held.",
+    "meaning": "The20320 addition did not change the visible PU/PD observations in this controlled state. Neither zero nor exact readback establishes calibrated impedance, training success/failure, a working PHY clock or usable DRAM."
+  },
+  "candidate": {
+    "logical": "0x2030d",
+    "host_halfword": "0x0a94061a",
+    "public_arc_halfword": "0x9004061a",
+    "source": "InfernoEmbedded/u-boot2f5e45fa7993ce8a4a59b638e539a06d8454f823 pmu_clock.c pmu_phy_clk_phase_toggle_pulse writes p[13]=1 then0 between p[16]=0 and p[17]=1, with halfword base0x90040600.",
+    "independent_host_identity": "SiMa PUB220 and NXP PUB230 ordinary CSR SAVE lists contain2030d. Exact commits/blobs are recorded in zcal-companion-microreset-review.json.",
+    "interpretation_limit": "Direct non-program CSR access and ordering facts only. No bitfield name, latch purpose or complete electrical semantics are established. Do not adopt the public helper's clock-phase label as authoritative."
+  },
+  "controlled_comparison": {
+    "proposed": "Reproduce the exact successful companion125 contract and add only2030d halfword1 then0, each with exact readback, immediately after Reset0 and before Run1.",
+    "events": 129,
+    "writes": 11,
+    "unchanged": "Same Micro1, MemResetL2, held controllers, analog state, Rate19 during reset/run/20320, measured100us run, post-run20320 pulse0/1/0, three raw PU/PD observation groups and final Rate9 restoration.2030d begins and ends exactly0.",
+    "stop": "Any UART, access, timer or readback failure stops immediately. If2030d1 reads0, including a possible self-clearing effect, treat it as an exact-contract mismatch; do not write the remaining edge, start Run, pulse20320 or restore Rate.",
+    "remaining_uncertainty": "This would exercise the remaining companion pulse in that public helper as one additional factor. It does not prove the helper's timing, clock setup, LP4 suitability or all upstream prerequisites are satisfied. Logging and readback stretch the pulse; no hardware minimum/maximum width is documented.",
+    "authorization": "Proposal for root review only. The reviewer has not operated hardware."
+  }
+}

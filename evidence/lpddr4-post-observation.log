@@ -1,0 +1,11 @@
+printf '\nLP4_OBSERVATION_CLEANUP_CHECK\n'; if grep -q '^t736_lp4_observe ' /proc/modules; then echo OBSERVER_STILL_LOADED; else echo OBSERVER_REMOVED; fi; test ! -e /tmp/t736-transfer/lp4-readonly-20261113.ko && test ! -e /tmp/t736-transfer/lp4-readonly-addressmap-20261113.ko && echo TEMP_MODULE_FILES_REMOVED; systemctl --failed --no-pager; cat /proc/sys/kernel/tainted; printf 'LP4_OBSERVATION_CLEANUP_DONE\n'
+
+LP4_OBSERVATION_CLEANUP_CHECK
+OBSERVER_REMOVED
+TEMP_MODULE_FILES_REMOVED
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+4096
+LP4_OBSERVATION_CLEANUP_DONE
+root@t736:~# 

@@ -1,0 +1,41 @@
+["cc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-g", "-fsanitize=address,undefined", "-fno-omit-frame-pointer", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/common_message.c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/mailbox.c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/eye.c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/commands.c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/test_pmu.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/test_pmu"]
+["/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/test_pmu"]
+PASS: LP4 common offsets, bounded mailbox, 40960 eye cases; no hardware training
+["arm-linux-gnueabi-gcc", "--version"]
+arm-linux-gnueabi-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+["arm-linux-gnueabi-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-mcpu=cortex-a55", "-marm", "-mfloat-abi=soft", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/common_message.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-common_message.o"]
+["arm-linux-gnueabi-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-mcpu=cortex-a55", "-marm", "-mfloat-abi=soft", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/mailbox.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-mailbox.o"]
+["arm-linux-gnueabi-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-mcpu=cortex-a55", "-marm", "-mfloat-abi=soft", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/eye.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-eye.o"]
+["arm-linux-gnueabi-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-mcpu=cortex-a55", "-marm", "-mfloat-abi=soft", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/commands.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-commands.o"]
+["arc-linux-gnu-gcc", "--version"]
+arc-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+["arc-linux-gnu-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-mcpu=em4", "-mno-sdata", "-mmpy-option=mpy", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/common_message.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-common_message.o"]
+["arc-linux-gnu-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-mcpu=em4", "-mno-sdata", "-mmpy-option=mpy", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/mailbox.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-mailbox.o"]
+["arc-linux-gnu-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-mcpu=em4", "-mno-sdata", "-mmpy-option=mpy", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/eye.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-eye.o"]
+["arc-linux-gnu-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-Os", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-mcpu=em4", "-mno-sdata", "-mmpy-option=mpy", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/commands.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-commands.o"]
+["arm-linux-gnueabi-nm", "-u", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-commands.o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-common_message.o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-eye.o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-mailbox.o"]
+
+/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-commands.o:
+
+/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-common_message.o:
+
+/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-eye.o:
+
+/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arm-mailbox.o:
+["arc-linux-gnu-nm", "-u", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-commands.o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-common_message.o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-eye.o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-mailbox.o"]
+
+/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-commands.o:
+
+/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-common_message.o:
+
+/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-eye.o:
+
+/home/ubuntu/t736-mainline/build/lpddr4-pmu-components/arc-mailbox.o:

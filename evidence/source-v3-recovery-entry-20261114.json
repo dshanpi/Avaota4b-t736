@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"deviceId\":9,\"efexBytesWritten\":6,\"felOnline\":true,\"method\":\"uboot_serial_efex\",\"next\":\"The scoped Allwinner FEL/FES USB device is online; flashing may start.\",\"port\":\"COM17\",\"promptObserved\":true,\"serialHandlesClosed\":0,\"serialMonitorRetained\":true,\"state\":\"fel-device-online\"}"
+    }
+  ],
+  "isError": false
+}

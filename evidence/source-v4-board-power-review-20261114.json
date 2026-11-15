@@ -1,0 +1,24 @@
+{
+  "state": "compiled_candidate_not_hardware_tested",
+  "purpose": "Independent board peripheral supply enable for Ethernet/USB and HDMI bring-up",
+  "source": "spl/peripheral/board_power.c",
+  "source_sha256": "973ef91632754a5623018d8f7899588006644f8294a022efa6663300603d849f",
+  "references": [
+    "T736 schematic power tree: DC1SW1 feeds PH/PHY/3V3; DLDO2 feeds HDMI 1V8",
+    "Tina GPL axp2101-regulator.c: DC1SW1 reg0x11 bit3; DLDO2 voltage0x35 and enable0x22 bit1",
+    "AXP8191 DCDC1 1000mV + code*100mV; DLDO2 500mV + code*100mV"
+  ],
+  "preconditions": [
+    "PMIC ID 0x03",
+    "DCDC1 already enabled and code23=3300mV",
+    "No live DLDO2 voltage change"
+  ],
+  "allowed_writes": [
+    "0x35 low5bits=13 while preserving upper bits",
+    "0x22 bit1 set preserving ELDO1 VDDQ enable",
+    "0x11 bit3 set preserving every other switch bit"
+  ],
+  "ddr_shared_dcdc_voltage_writes": false,
+  "tests": "ASan/UBSan guard/readback/bit-preservation/idempotence; ARM32 warning-clean compile",
+  "spl_sha256": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea"
+}

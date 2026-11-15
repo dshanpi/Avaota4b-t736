@@ -1,0 +1,3 @@
+["cc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-O1", "-g", "-fsanitize=address,undefined", "-fno-omit-frame-pointer", "-I", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu", "-I", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-commands", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/commands.c", "/home/ubuntu/t736-mainline/spl/lpddr4/pmu/test_commands.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-pmu-commands/test_commands"]
+["/home/ubuntu/t736-mainline/build/lpddr4-pmu-commands/test_commands"]
+PASS: LP4 MRW/MRR/MPC wire vectors; LP5 descriptor CA fields independently matched

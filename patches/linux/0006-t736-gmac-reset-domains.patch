@@ -1,0 +1,95 @@
+Subject: [PATCH] net: t736: preserve RGMII configuration across MAC reset
+
+The AHB reset was incorrectly assigned as the core AXI reset, clearing
+the RGMII extension after platform init (readback 0x8000). Assign AXI
+bit 17 to stmmaceth and AHB bit 16 to ahb, release AHB before config,
+and check that configuration survives core initialization.
+
+--- a/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
++++ b/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
+@@ -242,7 +242,8 @@
+ 		interrupt-names = "macirq", "eth_lpi", "tx0_irq", "rx0_irq";
+ 		clocks = <&gmac_ccu 0>, <&gmac_ccu 1>, <&gmac_ccu 2>;
+ 		clock-names = "stmmaceth", "phy", "mbus";
+-		resets = <&gmac_ccu 0>, <&gmac_ccu 1>;
++		/* stmmac pulses AXI; AHB must stay released for the extension. */
++		resets = <&gmac_ccu 1>, <&gmac_ccu 0>;
+ 		reset-names = "stmmaceth", "ahb";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gmac0_pins>;
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c
+@@ -7,6 +7,7 @@
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
+ #include <linux/regulator/consumer.h>
++#include <linux/reset.h>
+ #include "stmmac.h"
+ #include "stmmac_platform.h"
+ 
+@@ -14,6 +15,8 @@
+ 	void __iomem *cfg;
+ 	struct clk *phy_clock, *mbus_clock;
+ 	struct regulator *phy_supply;
++	struct reset_control *ahb_reset;
++	u32 config;
+ 	u32 tx_taps, rx_taps;
+ };
+ 
+@@ -43,6 +46,17 @@
+ 		regulator_disable(data->phy_supply);
+ 		return dev_err_probe(&pdev->dev, -EINVAL, "PHY requires 25 MHz\n");
+ 	}
++	/* The extension register belongs to the AHB reset domain. Release it
++	 * before programming RGMII; the core later pulses only the AXI reset.
++	 * Balance this shared reference in exit, including probe failures.
++	 */
++	ret = reset_control_deassert(data->ahb_reset);
++	if (ret) {
++		clk_disable_unprepare(data->phy_clock);
++		clk_disable_unprepare(data->mbus_clock);
++		regulator_disable(data->phy_supply);
++		return ret;
++	}
+ 	/* RGMII with external transmit clock. Delay values are hardware taps,
+ 	 * not picoseconds; preserve all unrelated bits in the extension block.
+ 	 */
+@@ -53,6 +67,7 @@
+ 	value |= FIELD_PREP(GENMASK(12, 10), data->tx_taps & 7);
+ 	value |= FIELD_PREP(GENMASK(9, 5), data->rx_taps);
+ 	writel(value, data->cfg);
++	data->config = value;
+ 	dev_info(&pdev->dev, "RGMII MAC delays TX=%u RX=%u, PHY clock 25 MHz\n",
+ 		 data->tx_taps, data->rx_taps);
+ 	return 0;
+@@ -62,6 +77,7 @@
+ {
+ 	struct t736_dwmac *data = private;
+ 
++	reset_control_assert(data->ahb_reset);
+ 	clk_disable_unprepare(data->phy_clock);
+ 	clk_disable_unprepare(data->mbus_clock);
+ 	regulator_disable(data->phy_supply);
+@@ -84,6 +100,7 @@
+ 	plat = devm_stmmac_probe_config_dt(pdev, resources.mac);
+ 	if (IS_ERR(plat))
+ 		return PTR_ERR(plat);
++	data->ahb_reset = plat->stmmac_ahb_rst;
+ 	/* This initial path deliberately supports only this board's RGMII
+ 	 * external-clock setup, with all delays applied at the MAC.
+ 	 */
+@@ -126,7 +143,13 @@
+ 	 * The selected CSR divisor is 102, keeping MDC below 2.5 MHz.
+ 	 */
+ 	plat->clk_csr = 4;
+-	return devm_stmmac_pltfr_probe(pdev, plat, &resources);
++	ret = devm_stmmac_pltfr_probe(pdev, plat, &resources);
++	if (ret)
++		return ret;
++	if (readl(data->cfg) != data->config)
++		return dev_err_probe(dev, -EIO, "RGMII configuration lost during MAC reset\n");
++	dev_info(dev, "RGMII configuration retained after MAC reset: %#x\n", data->config);
++	return 0;
+ }
+ 
+ static const struct of_device_id t736_dwmac_match[] = {

@@ -20,6 +20,7 @@ REQUIRED = {
     "DEVTMPFS": "early device nodes",
     "ZONE_DMA32": "32-bit USB DMA allocations below 4 GiB on this 8 GiB board",
     "PINCTRL_T736_R": "USB1 PL6 VBUS enable GPIO",
+    "PINCTRL_T736": "eMMC PC pin ownership through the main PIO controller",
     "REGULATOR_FIXED_VOLTAGE": "USB1 VBUS regulator",
     "CLK_T736_USB": "USB1 clock and reset control",
     "PHY_T736_USB2": "USB1 host PHY",

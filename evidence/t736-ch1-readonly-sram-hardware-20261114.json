@@ -1,0 +1,382 @@
+{
+  "kind": "fixed-t736-ch1-read-sram-experiment",
+  "hardware_actions_started": true,
+  "mmio_writes": false,
+  "storage_accessed": false,
+  "phy_accessed": false,
+  "ddr_initialized": false,
+  "events": [
+    {
+      "operation": "version",
+      "address": "0x0",
+      "length": 0,
+      "stage": "ddr-prerequisite"
+    },
+    {
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 168,
+      "stage": "ddr-prerequisite"
+    },
+    {
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 168,
+      "stage": "ddr-prerequisite"
+    },
+    {
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0,
+      "stage": "ddr-prerequisite"
+    },
+    {
+      "operation": "report",
+      "address": "0x48c80",
+      "length": 40,
+      "stage": "ddr-prerequisite"
+    },
+    {
+      "operation": "version",
+      "address": "0x0",
+      "length": 0,
+      "stage": "common-domain"
+    },
+    {
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 168,
+      "stage": "common-domain"
+    },
+    {
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 168,
+      "stage": "common-domain"
+    },
+    {
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0,
+      "stage": "common-domain"
+    },
+    {
+      "operation": "report",
+      "address": "0x48c80",
+      "length": 40,
+      "stage": "common-domain"
+    },
+    {
+      "operation": "version",
+      "address": "0x0",
+      "length": 0,
+      "stage": "ch0-read-experiment"
+    },
+    {
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 168,
+      "stage": "ch0-read-experiment"
+    },
+    {
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 168,
+      "stage": "ch0-read-experiment"
+    },
+    {
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0,
+      "stage": "ch0-read-experiment"
+    },
+    {
+      "operation": "report",
+      "address": "0x48c80",
+      "length": 40,
+      "stage": "ch0-read-experiment"
+    },
+    {
+      "operation": "version",
+      "address": "0x0",
+      "length": 0,
+      "stage": "ch1-read-experiment"
+    },
+    {
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 168,
+      "stage": "ch1-read-experiment"
+    },
+    {
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 168,
+      "stage": "ch1-read-experiment"
+    },
+    {
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0,
+      "stage": "ch1-read-experiment"
+    },
+    {
+      "operation": "report",
+      "address": "0x48c80",
+      "length": 40,
+      "stage": "ch1-read-experiment"
+    }
+  ],
+  "usb": {
+    "backend": "usbUDisc-overlapped",
+    "interface_path": "\\\\?\\usb#vid_1f3a&pid_efe8#6&2bcccfa4&0&2#{a5dcbf10-6530-11d2-901f-00c04fb951ed}",
+    "instance_id": "USB\\VID_1F3A&PID_EFE8\\6&2BCCCFA4&0&2",
+    "hardware_ids": [
+      "USB\\VID_1F3A&PID_EFE8&REV_02;3",
+      "USB\\VID_1F3A&PID_EFE8"
+    ],
+    "service": "usbUDisc",
+    "location_paths": [
+      "PCIROOT(0)#PCI(1400)#USBROOT(0)#USB(10)#USB(2)",
+      "ACPI(_SB_)#ACPI(PC00)#ACPI(XHCI)#ACPI(RHUB)#ACPI(HS10)#ACPI(PRT2)"
+    ],
+    "bulk_out": "0x01",
+    "bulk_in": "0x82",
+    "driver_selects_bulk_pipes": true
+  },
+  "ch1_access_attempted": true,
+  "ch1_access_completed": true,
+  "prerequisite": {
+    "controller_access_attempted": true,
+    "controller_access_completed": true,
+    "prerequisite": {
+      "ddr_prerequisite": {
+        "version": {
+          "raw_chip_id": "0x190300",
+          "firmware": "0x1",
+          "mode": 1,
+          "data_flag": 68,
+          "data_length_field": 8,
+          "scratchpad": "0xee800",
+          "reserved": "0000000000000000",
+          "scratch_guard": {
+            "pointer": "0xee800",
+            "excluded_start": "0xee800",
+            "excluded_end": "0xef800",
+            "extent": "0x1000",
+            "extent_basis": "local conservative exclusion policy; actual ROM scratch size unconfirmed",
+            "pointer_valid": true,
+            "overlaps_fixed_probe": false,
+            "allows_fixed_probe": true
+          }
+        },
+        "probe": {
+          "group": "ddr",
+          "status": 2,
+          "cpsr": "0x60000153",
+          "sctlr": "0xc50838",
+          "entry": "0x48c00",
+          "guard_passed": true,
+          "registers": [
+            {
+              "name": "PLL_DDR",
+              "address": "0x2002020",
+              "value": "0xf9004a00"
+            },
+            {
+              "name": "DRAM0_CLK",
+              "address": "0x2002c00",
+              "value": "0x80000003"
+            },
+            {
+              "name": "DRAM0_BGR",
+              "address": "0x2002c0c",
+              "value": "0x10001"
+            }
+          ],
+          "mmio_writes": false,
+          "cp15_writes": false,
+          "stack_used": false,
+          "ddr_initialized": false,
+          "storage_accessed": false,
+          "pmic_accessed": false
+        },
+        "report_hex": "314337540100000002000000530100603808c500004a00f90300008001000100008c040000000000",
+        "upload_readback_sha256": "430c994361992fc11aac343f5ed7d6f9eaec80c2f28295e6f7c22774bc717e77"
+      },
+      "ddr_prerequisite_passed": true,
+      "version": {
+        "raw_chip_id": "0x190300",
+        "firmware": "0x1",
+        "mode": 1,
+        "data_flag": 68,
+        "data_length_field": 8,
+        "scratchpad": "0xee800",
+        "reserved": "0000000000000000",
+        "scratch_guard": {
+          "pointer": "0xee800",
+          "excluded_start": "0xee800",
+          "excluded_end": "0xef800",
+          "extent": "0x1000",
+          "extent_basis": "local conservative exclusion policy; actual ROM scratch size unconfirmed",
+          "pointer_valid": true,
+          "overlaps_fixed_probe": false,
+          "allows_fixed_probe": true
+        }
+      },
+      "probe": {
+        "group": "common-domain",
+        "status": 2,
+        "cpsr": "0x60000153",
+        "sctlr": "0xc50838",
+        "entry": "0x48c00",
+        "guard_passed": true,
+        "registers": [
+          {
+            "name": "DRAMC_SYS_CFG",
+            "address": "0xa020010",
+            "value": "0x2728"
+          },
+          {
+            "name": "DRAMC_CHANNEL_TYPE",
+            "address": "0xa020014",
+            "value": "0x2"
+          },
+          {
+            "name": "PRCM_MEM_ISOLATION",
+            "address": "0x7010250",
+            "value": "0x1"
+          }
+        ],
+        "mmio_writes": false,
+        "cp15_writes": false,
+        "stack_used": false,
+        "controller_accessed": false,
+        "phy_accessed": false,
+        "ddr_initialized": false,
+        "storage_accessed": false,
+        "pmic_accessed": false,
+        "calibration_success_claimed": false
+      },
+      "report_hex": "000000d10100000002000000530100603808c500282700000200000001000000008c040000000000",
+      "upload_readback_sha256": "a84df39d268dbde6216533ed72cf833959d8f2b40818b7152f0f2d8fa036cfdd"
+    },
+    "exact_prerequisite_passed": true,
+    "version": {
+      "raw_chip_id": "0x190300",
+      "firmware": "0x1",
+      "mode": 1,
+      "data_flag": 68,
+      "data_length_field": 8,
+      "scratchpad": "0xee800",
+      "reserved": "0000000000000000",
+      "scratch_guard": {
+        "pointer": "0xee800",
+        "excluded_start": "0xee800",
+        "excluded_end": "0xef800",
+        "extent": "0x1000",
+        "extent_basis": "local conservative exclusion policy; actual ROM scratch size unconfirmed",
+        "pointer_valid": true,
+        "overlaps_fixed_probe": false,
+        "allows_fixed_probe": true
+      }
+    },
+    "probe": {
+      "group": "ch0-three-registers",
+      "status": 2,
+      "guard_passed": true,
+      "cpsr": "0x60000153",
+      "sctlr": "0xc50838",
+      "entry": "0x48c00",
+      "registers": [
+        {
+          "name": "CH0_MSTR",
+          "address": "0xa110000",
+          "value": "0x3040000"
+        },
+        {
+          "name": "CH0_STAT",
+          "address": "0xa110014",
+          "value": "0x0"
+        },
+        {
+          "name": "CH0_MRSTAT",
+          "address": "0xa110090",
+          "value": "0x0"
+        }
+      ],
+      "result_meaning": "Three CH0 CSR reads only; no controller initialization or DDR success claim",
+      "controller_access_completed": true,
+      "controller_initialized": false,
+      "mmio_writes": false,
+      "cp15_writes": false,
+      "stack_used": false,
+      "ch1_accessed": false,
+      "phy_accessed": false,
+      "ddr_initialized": false,
+      "storage_accessed": false,
+      "pmic_accessed": false
+    },
+    "report_hex": "000000d40100000002000000530100603808c500000004030000000000000000008c040000000000",
+    "upload_readback_sha256": "c9fe9db1d4d9b07eb18627fb5a6ac88221c049f2526b65d222524b3839ac906a"
+  },
+  "exact_prerequisite_passed": true,
+  "version": {
+    "raw_chip_id": "0x190300",
+    "firmware": "0x1",
+    "mode": 1,
+    "data_flag": 68,
+    "data_length_field": 8,
+    "scratchpad": "0xee800",
+    "reserved": "0000000000000000",
+    "scratch_guard": {
+      "pointer": "0xee800",
+      "excluded_start": "0xee800",
+      "excluded_end": "0xef800",
+      "extent": "0x1000",
+      "extent_basis": "local conservative exclusion policy; actual ROM scratch size unconfirmed",
+      "pointer_valid": true,
+      "overlaps_fixed_probe": false,
+      "allows_fixed_probe": true
+    }
+  },
+  "probe": {
+    "group": "ch1-three-registers",
+    "status": 2,
+    "guard_passed": true,
+    "cpsr": "0x60000153",
+    "sctlr": "0xc50838",
+    "entry": "0x48c00",
+    "registers": [
+      {
+        "name": "CH1_MSTR",
+        "address": "0xa510000",
+        "value": "0x3040000"
+      },
+      {
+        "name": "CH1_STAT",
+        "address": "0xa510014",
+        "value": "0x0"
+      },
+      {
+        "name": "CH1_MRSTAT",
+        "address": "0xa510090",
+        "value": "0x0"
+      }
+    ],
+    "result_meaning": "Three CH1 CSR reads only; no controller initialization or DDR success claim",
+    "ch1_access_completed": true,
+    "controller_initialized": false,
+    "mmio_writes": false,
+    "cp15_writes": false,
+    "stack_used": false,
+    "ch0_accessed_by_payload": false,
+    "phy_accessed": false,
+    "ddr_initialized": false,
+    "storage_accessed": false,
+    "pmic_accessed": false
+  },
+  "report_hex": "000000d50100000002000000530100603808c500000004030000000000000000008c040000000000",
+  "upload_readback_sha256": "8b49f6cf83a1ee897aba869e12991efd3496e62787fde219cd1c727e32d39f6c",
+  "success": true
+}

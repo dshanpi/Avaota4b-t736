@@ -11,7 +11,7 @@ diff --git a/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts b/arch/arm6
 new file mode 100644
 --- /dev/null
 +++ b/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
-@@ -0,0 +1,162 @@
+@@ -0,0 +1,202 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/dts-v1/;
 +
@@ -151,13 +151,53 @@ new file mode 100644
 +		phy-names = "usb";
 +	};
 +
-+	/* Initial PIO driver owns these registers until CCU/pinctrl integration. */
++	/* Firmware keeps APB0 at 100 MHz and these rails on. No PMIC control yet. */
++	apb0_fw: clock-apb0-firmware {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
++	};
++
++	pc_supply: regulator-pc-firmware {
++		compatible = "regulator-fixed";
++		regulator-name = "pc-1v8-firmware";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++	};
++
++	pio: pinctrl@2000000 {
++		compatible = "allwinner,t736-pinctrl";
++		reg = <0 0x02000000 0 0x600>;
++		interrupts = <0 69 4>, <0 71 4>, <0 73 4>, <0 75 4>,
++			     <0 77 4>, <0 79 4>, <0 81 4>, <0 83 4>,
++			     <0 85 4>, <0 87 4>;
++		clocks = <&apb0_fw>, <&dcxo>, <&osc32k>;
++		clock-names = "apb", "hosc", "losc";
++		vcc-pc-supply = <&pc_supply>;
++		gpio-controller;
++		#gpio-cells = <3>;
++		interrupt-controller;
++		#interrupt-cells = <3>;
++		#address-cells = <0>;
++
++		emmc_pins: emmc-pins {
++			pins = "PC0", "PC1", "PC5", "PC6", "PC8", "PC9",
++			       "PC10", "PC11", "PC13", "PC14", "PC15", "PC16";
++			function = "sdc3";
++			allwinner,pinmux = <4>;
++			/* Preserve the firmware's drive strength and pull settings. */
++		};
++	};
++
++	/* Initial PIO driver still owns this CCU subset, but no GPIO registers. */
 +	mmc0: mmc@4023000 {
 +		compatible = "allwinner,t736-smhc3-pio";
 +		reg = <0 0x04023000 0 0x1000>,
 +		      <0 0x02002d30 0 4>,
-+		      <0 0x02002d3c 0 4>,
-+		      <0 0x02000180 0 12>;
++		      <0 0x02002d3c 0 4>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&emmc_pins>;
 +		bus-width = <8>;
 +		non-removable;
 +	};
@@ -206,6 +246,7 @@ new file mode 100644
 +#include <linux/iopoll.h>
 +#include <linux/mmc/host.h>
 +#include <linux/module.h>
++#include <linux/pinctrl/consumer.h>
 +#include <linux/platform_device.h>
 +#include <linux/scatterlist.h>
 +#include <linux/workqueue.h>
@@ -230,7 +271,7 @@ new file mode 100644
 +
 +struct t736_host {
 +	struct mmc_host *mmc;
-+	void __iomem *regs, *clock, *gate, *pins;
++	void __iomem *regs, *clock, *gate;
 +	struct work_struct work;
 +	struct mmc_request *request;
 +	int ios_error;
@@ -394,11 +435,17 @@ new file mode 100644
 +
 +static int t736_probe(struct platform_device *pdev)
 +{
-+	static const u8 pins[] = { 0, 1, 5, 6, 8, 9, 10, 11, 13, 14, 15, 16 };
 +	struct mmc_host *mmc;
 +	struct t736_host *host;
-+	u32 value, shift;
-+	int i, ret;
++	struct pinctrl *pinctrl;
++	u32 value;
++	int ret;
++
++	/* Claim the PC pins before touching the storage controller. */
++	pinctrl = devm_pinctrl_get_select_default(&pdev->dev);
++	if (IS_ERR(pinctrl))
++		return dev_err_probe(&pdev->dev, PTR_ERR(pinctrl),
++				     "eMMC pinctrl unavailable\n");
 +
 +	mmc = mmc_alloc_host(sizeof(*host), &pdev->dev);
 +	if (!mmc)
@@ -409,18 +456,11 @@ new file mode 100644
 +	host->regs = devm_platform_ioremap_resource(pdev, 0);
 +	host->clock = devm_platform_ioremap_resource(pdev, 1);
 +	host->gate = devm_platform_ioremap_resource(pdev, 2);
-+	host->pins = devm_platform_ioremap_resource(pdev, 3);
-+	if (IS_ERR(host->regs) || IS_ERR(host->clock) || IS_ERR(host->gate) || IS_ERR(host->pins)) {
++	if (IS_ERR(host->regs) || IS_ERR(host->clock) || IS_ERR(host->gate)) {
 +		ret = -ENODEV;
 +		goto free_host;
 +	}
-+	/* Power rails and pad drive remain configured by board firmware. */
-+	for (i = 0; i < ARRAY_SIZE(pins); i++) {
-+		shift = (pins[i] % 8) * 4;
-+		value = readl(host->pins + (pins[i] / 8) * 4);
-+		writel((value & ~(0xfU << shift)) | (4U << shift),
-+		       host->pins + (pins[i] / 8) * 4);
-+	}
++	/* Power rails, pad drive and pulls remain configured by board firmware. */
 +	writel(BIT(31), host->clock);
 +	writel(readl(host->gate) & ~BIT(16), host->gate);
 +	udelay(10);
@@ -484,22 +524,29 @@ new file mode 100644
 diff --git a/drivers/pinctrl/sunxi/Makefile b/drivers/pinctrl/sunxi/Makefile
 --- a/drivers/pinctrl/sunxi/Makefile
 +++ b/drivers/pinctrl/sunxi/Makefile
-@@ -31,3 +31,5 @@
+@@ -31,3 +31,7 @@
  obj-$(CONFIG_PINCTRL_SUN55I_A523_R)	+= pinctrl-sun55i-a523-r.o
  obj-$(CONFIG_PINCTRL_SUN9I_A80)		+= pinctrl-sun9i-a80.o
  obj-$(CONFIG_PINCTRL_SUN9I_A80_R)	+= pinctrl-sun9i-a80-r.o
 +
 +obj-$(CONFIG_PINCTRL_T736_R) += pinctrl-t736-r.o
++
++obj-$(CONFIG_PINCTRL_T736) += pinctrl-t736.o
 diff --git a/drivers/pinctrl/sunxi/Kconfig b/drivers/pinctrl/sunxi/Kconfig
 --- a/drivers/pinctrl/sunxi/Kconfig
 +++ b/drivers/pinctrl/sunxi/Kconfig
-@@ -142,3 +142,8 @@
+@@ -142,3 +142,13 @@
  	select PINCTRL_SUNXI
  
  endif
 +
 +config PINCTRL_T736_R
 +	bool "T736 always-on GPIO banks"
++	depends on ARCH_SUNXI && OF
++	select PINCTRL_SUNXI
++
++config PINCTRL_T736
++	bool "T736 main GPIO banks"
 +	depends on ARCH_SUNXI && OF
 +	select PINCTRL_SUNXI
 diff --git a/drivers/pinctrl/sunxi/pinctrl-t736-r.c b/drivers/pinctrl/sunxi/pinctrl-t736-r.c
@@ -884,3 +931,55 @@ new file mode 100644
 +	.driver = { .name = "t736-usb1-phy", .of_match_table = t736_phy_match },
 +};
 +builtin_platform_driver(t736_phy_driver);
+diff --git a/drivers/pinctrl/sunxi/pinctrl-t736.c b/drivers/pinctrl/sunxi/pinctrl-t736.c
+new file mode 100644
+--- /dev/null
++++ b/drivers/pinctrl/sunxi/pinctrl-t736.c
+@@ -0,0 +1,47 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Main PIO support, first enabled for eMMC pin ownership in the v5 candidate. */
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/pinctrl/pinctrl.h>
++#include <linux/platform_device.h>
++#include "pinctrl-sunxi.h"
++
++/* Bank A is absent; B..K counts are verified against the board SoC reference. */
++static const u8 t736_pins[SUNXI_PINCTRL_MAX_BANKS] = {
++	0, 11, 17, 24, 16, 7, 15, 20, 17, 28, 26
++};
++static const u8 t736_irq_muxes[SUNXI_PINCTRL_MAX_BANKS] = {
++	0, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14
++};
++static const unsigned int t736_irq_map[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
++/* Main PIO differs from R-PIO: PB starts at 0x100, PC at 0x180. */
++static const struct sunxi_pinctrl_reg_layout t736_pio_layout = {
++	.bank_offset = 0x80,
++	.bank_stride = 0x80,
++	.drive_offset = 0x20,
++	.drive_width = 4,
++	.pull_offset = 0x30,
++	.irq_offset = 0xc0,
++	.irq_stride = 0x80,
++};
++static struct sunxi_pinctrl_desc t736_desc = {
++	.irq_banks = ARRAY_SIZE(t736_irq_map),
++	.irq_bank_map = t736_irq_map,
++	.reg_layout = &t736_pio_layout,
++	/* Initial pad-voltage configuration remains owned by vendor firmware. */
++};
++
++static int t736_pio_probe(struct platform_device *pdev)
++{
++	return sunxi_pinctrl_dt_table_init(pdev, t736_pins, t736_irq_muxes,
++					 &t736_desc, 0);
++}
++
++static const struct of_device_id t736_pio_match[] = {
++	{ .compatible = "allwinner,t736-pinctrl" }, { }
++};
++static struct platform_driver t736_pio_driver = {
++	.probe = t736_pio_probe,
++	.driver = { .name = "t736-pinctrl", .of_match_table = t736_pio_match },
++};
++builtin_platform_driver(t736_pio_driver);

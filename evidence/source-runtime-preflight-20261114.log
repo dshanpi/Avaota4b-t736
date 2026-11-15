@@ -1,0 +1,15 @@
+[?2004hroot@t736:~# id; uname -a; cat /sys/devices/system/cpu/online; free -m; ip -4 addr show dev end0; systemctl --failed --no-pager; command -v python3; command -v memtester
+
+uid=0(root) gid=0(root) groups=0(root)
+Linux t736 6.18.63-t736-armbian #11 SMP Fri Nov 13 06:30:23 EST 2026 aarch64 GNU/Linux
+0-7
+               total        used        free      shared  buff/cache   available
+Mem:            7749         149        7544           9         129        7599
+Swap:              0           0           0
+2: end0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 10.0.0.230/24 metric 1024 brd 10.0.0.255 scope global dynamic end0
+       valid_lft 43126sec preferred_lft 43126sec
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+root@t736:~# 

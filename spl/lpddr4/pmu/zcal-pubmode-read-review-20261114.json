@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-14",
+  "kind": "root-reviewed read-only PubMode candidate",
+  "source": {
+    "repository": "InfernoEmbedded/u-boot",
+    "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+    "path": "arch/arm/mach-sunxi/pmu/pmu_train.c",
+    "lines": [
+      1396,
+      1425
+    ],
+    "fact": "Writes PHY_REG_MASTER_CAL_CTRL900400dc=1 before ZCal helper. Macro label not trusted."
+  },
+  "independent_name": {
+    "repository": "open-power/hostboot",
+    "commit": "a7d36910b6c0cd01ce8b7202425d5faee07f4a72",
+    "path": "src/import/chips/ocmb/odyssey/common/include/ody_scom_mp_mastr_b0.H",
+    "fact": "Logical2006e is PUBMODE.HWTMEMSRC bit0 in Odyssey. Different PHY generation; candidate identity only."
+  },
+  "candidate_host": "0x0a9400dc",
+  "design": "Replace one raw observation in proven155-read guarded probe. No PHY writes. Remaining Pclk/raw20315 observations retained. Exact static state, owner,stall,clocks andheldcontrollers required.",
+  "limits": "No target bitfield or electrical effect established by readable value alone."
+}

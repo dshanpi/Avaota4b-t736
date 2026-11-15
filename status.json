@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-13",
-  "updated_utc": "2026-11-13T05:16:34.297468+00:00",
-  "state": "v4_usb1_hub_and_empty_reader_validated_pio_layout_candidate_corrected",
+  "date": "2026-11-14",
+  "updated_utc": "2026-11-14T11:44:37.720654+00:00",
+  "state": "source_v6_emmc_three_boots_hdmi_fbcon_and_runtime_passed",
   "versions": {
     "u_boot": "2026.10-t736-bringup",
-    "linux": "6.18.63-t736-armbian",
+    "linux": "6.18.63-t736-hdmi-v13",
     "armbian": "26.11.0-trunk / Debian 13 trixie minimal"
   },
   "board_level_code_implemented": true,
@@ -12,35 +12,31 @@
   "validation_image_built": true,
   "validation_image_flashed_and_verified": true,
   "final_mainline_armbian_firmware_complete": false,
-  "runtime_vendor_uboot_retained": true,
+  "runtime_vendor_uboot_retained": false,
   "hardware_passed": [
-    "U-Boot ARM64 console and relocation",
-    "8 GiB memory description and >4 GiB RAM spot check",
-    "Linux 8 CPU SMP and initramfs /init",
-    "eMMC six GPT partitions",
-    "8.3 MB Image read SHA256 matches",
-    "64 KiB write, cache-drop readback and scratch restore",
-    "U-Boot ext4 kernel/initrd/DTB reads at 5.3 MiB/s",
-    "Debian initramfs mounted ext4 rootfs read/write",
-    "Armbian systemd reached multi-user.target and serial login",
-    "Unattended cold boot through v3/v4 kernel to Armbian login",
-    "initramfs fsck.ext4 clean, real tmpfs and systemd-resolved active",
-    "USB1 EHCI/OHCI registered; PL6 VBUS high; 1a40:0101 four-port hub enumerated at 480 Mbps; hub control requests and EHCI interrupts observed",
-    "USB1 Realtek 0bda:0316 reader enumerates at 480 Mbps on 1-1.3; usb-storage and SCSI inquiry work; user confirms no TF card present"
+    "source-v6 complete 8 GiB raw/FES write and tool verification; SPL readback hash matches",
+    "Fixed 8 GiB LPDDR4x initialization and low/high address boot memory checks on all three boots",
+    "Three unattended eMMC boots through source SPL/handoff/TF-A/U-Boot to Armbian; authorized DDR library",
+    "HDMI 2560x1440, PHY lock, active CRTC, progressing vblank, zero display errors",
+    "fbcon automatically binds; captured tty1 Armbian login; no kernel Oops or taint",
+    "256 MiB four-pattern memory test; 16 MiB fsync/O_DIRECT hash and persistence across two reboots",
+    "GPT backup relocation, primary/secondary CRC and vendor mirror verified; partitions unchanged",
+    "Eight CPUs; zero failed services; RTL8211F DHCP and gateway ping at 100 Mbps",
+    "Two clean shutdowns confirmed before subsequent controlled relay cycles"
   ],
   "rootfs": "Restored with user authorization; GPT rootfs start 368640 size 15239680 sectors; ext4 mounted read/write.",
-  "rootfs_sparse_sha256": "370b531cf5dd10a1f5177756ca407ee7e33ac391f15a92acca2891a804f49bb1",
   "boot_chain": [
-    "vendor Boot0",
-    "vendor BL31/OP-TEE/SCP",
-    "vendor U-Boot 2018.07",
-    "upstream U-Boot 2026.10 + board patch",
-    "upstream Linux 6.18.63 + board patch"
+    "source eGON SPL + explicitly authorized DDR library",
+    "source ARM32 to ARM64 handoff",
+    "source TF-A",
+    "source U-Boot 2026.10",
+    "Linux 6.18.63",
+    "Armbian 26.11"
   ],
   "next": [
-    "Test USB storage read/write when media is available; empty reader is expected and needs no troubleshooting",
-    "Integrate corrected main PIO layout and eMMC PC pin ownership, then GMAC clock/reset and RGMII candidates",
-    "Continue other peripherals and independent boot handoff"
+    "Observe physical HDMI screen when user returns",
+    "Investigate Ethernet gigabit downshift; bulk network acceptance remains",
+    "Extend storage/memory/peripheral support as separate follow-up work"
   ],
   "workspace": {
     "local": "G:\\codex\\t736\\mainline",
@@ -68,24 +64,111 @@
     "evidence/usb1-v4-transfer.json",
     "evidence/schematic-review-runtime.log",
     "evidence/usb1-v4-reader-validation.log",
-    "evidence/pio-layout-candidate-build.log"
+    "evidence/pio-layout-candidate-build.log",
+    "evidence/pio-v5-install.log",
+    "evidence/pio-v5-coldboot.log",
+    "evidence/pio-v5-validation.log",
+    "evidence/ethernet-v6-build.log",
+    "evidence/ethernet-v6-patch-validation.log",
+    "evidence/raw-v6-preflight.log",
+    "evidence/raw-v6-flash-fes-status.json",
+    "evidence/raw-v6-coldboot.log",
+    "docs/FES_RAW.md",
+    "evidence/raw-v6-login.log",
+    "evidence/raw-v6-gpt-relocation.log",
+    "evidence/raw-v6-gpt-verification.json",
+    "evidence/raw-v6-installed-hashes.log",
+    "evidence/raw-v6-runtime-validation.log",
+    "evidence/raw-v6-runtime-verification.json",
+    "evidence/raw-v6-gpt-fixed-coldboot.log",
+    "evidence/raw-v6-post-coldboot-login.log",
+    "evidence/raw-v6-post-coldboot-validation.log",
+    "evidence/independent-boot-audit.json",
+    "evidence/independent-boot-media-audit.log",
+    "evidence/independent-boot-selection.log",
+    "evidence/tfa-independent-candidate-build.log",
+    "evidence/ethernet-v11-selftest.log",
+    "evidence/ethernet-v11-network.log",
+    "evidence/ethernet-v11-network-server.json",
+    "evidence/raw-v11-runtime-reuse-check.log",
+    "config/boot-policy.json",
+    "evidence/open-pmu-compile-probe.json",
+    "evidence/open-pmu-compile-probe.log",
+    "evidence/arc-toolchain-install.log",
+    "evidence/lpddr4-source-feasibility.json",
+    "evidence/lpddr4-source-followup.json",
+    "spl/lpddr4/implementation.json",
+    "evidence/lpddr4-register-observation.log",
+    "evidence/lpddr4-addressmap-observation.log",
+    "evidence/lpddr4-components-check.json",
+    "evidence/lpddr4-components-check.log",
+    "evidence/lpddr4-timing-board-observation.log",
+    "evidence/lpddr4-timing-check.json",
+    "evidence/lpddr4-pmu-components-check.json",
+    "evidence/spl-emmc-check.json",
+    "evidence/source-components-post-observe-20261114.log",
+    "evidence/lpddr4-phy-host-check.json",
+    "evidence/lpddr4-phy-host-readonly-20261114.log",
+    "evidence/lpddr4-pmu-commands-check.json",
+    "evidence/lpddr4-mode-register-check.json",
+    "evidence/t736-cp15-fel-usbudisc-inspect-20261114.json",
+    "evidence/t736-cp15-sram-hardware-20261114.json",
+    "evidence/t736-cp15-probe-recovery-power-20261114.json",
+    "evidence/t736-cp15-probe-recovery-boot-20261114.log",
+    "evidence/lpddr4-mrr-preflight-20261114.log",
+    "evidence/lpddr4-mrr-hardware-20261114.log",
+    "evidence/lpddr4-mrr-cleanup-20261114.log",
+    "evidence/lpddr4-mrr-hardware-analysis-20261114.json",
+    "evidence/t736-ccu-fel-inspect-20261114.json",
+    "evidence/t736-ccu-ddr-sram-hardware-20261114.json",
+    "evidence/t736-ccu-fabric-sram-hardware-20261114.json",
+    "evidence/t736-early-fel-inspect-20261114.json",
+    "evidence/t736-early-sram-hardware-20261114.json",
+    "evidence/t736-early-sram-serial-20261114.log",
+    "evidence/t736-early-v2-sram-hardware-20261114.json",
+    "evidence/t736-early-v2-sram-serial-20261114.log",
+    "evidence/lpddr4-pmic-setpoints-20261114.json",
+    "evidence/lpddr4-phy-calibration-diag-check.json",
+    "spl/lpddr4/pmu/domain-access-audit.json",
+    "evidence/t736-ccu-cold-sram-hardware-20261114.json",
+    "evidence/t736-domain-sram-hardware-20261114.json",
+    "evidence/lpddr4-domain-prepare-diag-check.json",
+    "evidence/t736-domain-setup-sram-hardware-20261114.json",
+    "evidence/t736-common-ports-sram-hardware-20261114.json",
+    "evidence/t736-ch0-readonly-sram-hardware-20261114.json",
+    "evidence/t736-ch1-readonly-sram-hardware-20261114.json",
+    "spl/lpddr4/pmu/arm-host-training-audit.json",
+    "evidence/sima-type9-host-csr-map-20261114.json",
+    "evidence/t736-controller-config-sram-hardware-20261114.json",
+    "evidence/t736-phy-owner-sram-hardware-20261114.json",
+    "evidence/t736-phy-owner-recovery-power-20261114.json",
+    "evidence/t736-phy-owner-recovery-enter-fel-20261114.json",
+    "evidence/t736-ccu-cold-after-phy-recovery-20261114.json",
+    "evidence/t736-domain-setup-after-phy-recovery-20261114.json",
+    "evidence\\vendor-ddr-source-boot-success-20261114.json",
+    "evidence/source-v2-emmc-acceptance-20261114.json",
+    "evidence/source-v3-emmc-acceptance-20261114.json",
+    "evidence/display-kernel-build-20261114.json",
+    "evidence/board-power-check-20261114.log",
+    "evidence/source-v6-emmc-acceptance-20261114.json"
   ],
   "handoff_candidate": {
     "path": "output/t736-handoff-ram-v1.bin",
     "state": "compiled_and_host_checksum_verified_not_hardware_tested",
     "sha256": "e35c28ac83f83003e6e343c69adf97bb84006db419f161cc7f5c068825c91c90"
   },
-  "packaged_kernel_uncompressed_sha256": "a4d95f771d1237fae125d59127d3d0f7d212bc5b4271a7f0be2bc1b09cc7a7b6",
+  "packaged_kernel_uncompressed_sha256": "944b8188a6a96b4dab129337d2c48cf378ed816bde0ceab06a3a50d6610fdf21",
   "known_issues": [
-    "Old vendor U-Boot 2018.07 remains before new U-Boot",
-    "eMMC remains 12 MHz 8-bit PIO; no full stress test",
-    "R-APB/pad supplies/UART and platform clocks still partly depend on vendor firmware",
-    "Ethernet, PCIe, Wi-Fi, Bluetooth and HDMI not hardware supported yet",
-    "USB reader is empty as confirmed by user; actual storage I/O and HID remain untested"
+    "Physical screen appearance awaits user observation; framebuffer and HDMI software/hardware state verified remotely",
+    "Ethernet downshifts from 1 Gbps to 100 Mbps; gigabit unresolved",
+    "Bounded memory checks and three boots are not full memory/stability certification",
+    "eMMC remains 12 MHz 8-bit PIO; PCIe/Wi-Fi/Bluetooth unverified",
+    "Authorized vendor DDR library remains; pure-source ZCal is unresolved",
+    "Bootloader video, graphical desktop, HDMI audio, CEC, HDCP and hotplug are not validated"
   ],
-  "coldboot": "After corrected layout flash and saved vendor bootcmd, no-input hardware power cycle reached Armbian login via U-Boot 2026.10 and Linux 6.18.63 #3.",
+  "coldboot": "source-v6: three controlled 10-second relay-off boots reached Armbian and HDMI tty1; no physical voltage measurement",
   "authenticated_armbian_login": true,
-  "authenticated_armbian_login_note": "Recovered v3 root login succeeded; user-provided password restored without storing it in project files.",
+  "authenticated_armbian_login_note": "source-v6 root authenticated on all three boots; credential outside project",
   "runtime_v3": {
     "kernel_package": "6.18.63-3",
     "kernel_sha256": "aed23b21be8e647a9cf7eb00922cf9a839658d71f62489fba9b8c5d0849d150d",
@@ -161,5 +244,1149 @@
     "packaged_kernel_uncompressed_sha256": "a4d95f771d1237fae125d59127d3d0f7d212bc5b4271a7f0be2bc1b09cc7a7b6"
   },
   "schematic_review": "docs/HARDWARE_MAP.md",
-  "main_pio_candidate": "Register layout corrected and compile-only validated; not part of installed v4 or default build"
+  "main_pio_candidate": "v5 hardware validated: 12 PC pins owned by 4023000.mmc, 12 MHz 8-bit PIO, 16 MiB O_DIRECT readback SHA256 match",
+  "runtime_v5": {
+    "kernel_package": "6.18.63-5",
+    "kernel_banner": "#5 SMP Fri Nov 13 01:11:29 EST 2026",
+    "package_sha256": "06bda18a5365f090404e8b53213970c676fd6bbfb07ee5c6760676492e32eb3c",
+    "kernel_sha256": "1441eef3fcff68f6b9a81d26e701c04c421b072eda97c046913eb26110debf68",
+    "dtb_sha256": "6a610cc0b3750fb14e1e1db8cfb011ae8d8b90638273898c2a504467e5b0824a",
+    "coldboot": "Unattended power cycle reached Armbian login",
+    "pio": "PC0,PC1,PC5,PC6,PC8,PC9,PC10,PC11,PC13,PC14,PC15,PC16 owned by 4023000.mmc/sdc3",
+    "emmc": "12 MHz, 8-bit, legacy PIO; 16 MiB file write/fsync and O_DIRECT readback SHA256 match",
+    "systemd_failed_units": 0,
+    "deferred_probes": 0,
+    "rollback_boot_files": "/boot/t736-v4-recovery",
+    "notes": [
+      "MMC ios reports 3.3V OCR/default signal voltage; PC supply declaration is 1.8V firmware-owned. No measured pad voltage or voltage transition was tested."
+    ]
+  },
+  "runtime_v6_candidate": {
+    "state": "installed_fes_raw_coldboot_authenticated_runtime_validated",
+    "kernel_package": "6.18.63-6",
+    "package_sha256": "717f9e6778884294a5563f21b003446af9d4f3d888a0aa3991db3ffa38a20b7a",
+    "kernel_sha256": "47ffe1952daebd3f04cbea294a4c8ef251c122dfc8a2efac29d1984361ff9d4f",
+    "dtb_sha256": "020ee57ead39f4535a3945165ddb7eef513d1facdaa8496f62a9f6c387d5f2b4",
+    "build": "tools/build_ethernet_kernel.sh",
+    "validation": [
+      "85 PIO register checks",
+      "216-pin IRQ table checks",
+      "fresh upstream patch series applies",
+      "DTB rebuilt from exported patches exactly matches packaged DTB"
+    ],
+    "ethernet_hardware_passed": [
+      "GMAC registers identified: Synopsys ID 0x53, DWMAC4/5; end0 created"
+    ],
+    "remaining": [
+      "PHY power/reset/clock/address investigation, then link and data"
+    ],
+    "ethernet_failure": "MDIO address 1 missing; cannot attach to PHY (-19)",
+    "runtime_verification": "evidence/raw-v6-runtime-verification.json"
+  },
+  "raw_v6_install": {
+    "state": "complete_with_runtime_validation",
+    "task_id": "flash-1794563107553214100",
+    "raw_path": "output/t736-armbian-v6.raw.img",
+    "raw_sha256": "d0d099b5dbeb57f455e1934828fafd623fcbd32e310f60394940ca57db483756",
+    "loader_path": "output/t736-tina-fes-loader.img",
+    "loader_components_modified": false,
+    "address_contract": "OpenixCLI wraps physical sector - 40960; original Tina loader adds 40960",
+    "initial_attempt": "An unnecessary zero-offset loader was rejected at chunk 0 after temporary MBR submission; discarded and original Tina components restored. See evidence/raw-v6-offset-rejected-status.json.",
+    "verify_state": "success",
+    "transferred_bytes": 8589934592,
+    "coldboot": "3-second hardware off/on; U-Boot 2026.10, Linux #6, Armbian 26.11.0-trunk.128 trixie login",
+    "rootfs": "fsck clean; mounted read/write",
+    "authenticated_login": true,
+    "gpt_relocation": "complete: secondary header at actual final LBA 122142719; vendor mirror synced; six partition entries unchanged",
+    "evidence": [
+      "evidence/raw-v6-flash-fes-status.json",
+      "evidence/raw-v6-coldboot.log",
+      "evidence/raw-v6-login.log",
+      "evidence/raw-v6-gpt-relocation.log",
+      "evidence/raw-v6-gpt-verification.json",
+      "evidence/raw-v6-installed-hashes.log",
+      "evidence/raw-v6-runtime-validation.log",
+      "evidence/raw-v6-runtime-verification.json",
+      "evidence/raw-v6-gpt-fixed-coldboot.log",
+      "evidence/raw-v6-post-coldboot-login.log",
+      "evidence/raw-v6-post-coldboot-validation.log"
+    ],
+    "gpt_crc_verified": true,
+    "partition_expansion": false,
+    "remaining_space": "unallocated",
+    "gpt_metadata_backup_on_board": "/root/t736-v6-gpt-before-20261113",
+    "post_relocation_coldboot": "unattended login passed; no GPT warnings; root login succeeded",
+    "systemd_failed_units": 0,
+    "installed_boot_sha256_verified": true,
+    "v4_fallback_verified": true,
+    "emmc_io_16m_fsync_direct_read": "SHA256 equal"
+  },
+  "raw_v7_install": {
+    "raw_path": "output/t736-armbian-v7.raw.img",
+    "raw_sha256": "8c1f0990b3c2ecdb54d044dc38d86376b1ab48a7462c13ec1d061f835d696e33",
+    "task_id": "flash-1794565260734178000",
+    "state": "flash_verified_coldboot_authenticated_phy_missing",
+    "verify_state": "success",
+    "transferred_bytes": 8589934592,
+    "kernel_package": "6.18.63-7",
+    "gpt_relocation": "pending; next full image replacement being built",
+    "phy_reset": "PH16 owned, output high",
+    "ethernet": "All 32 MDIO addresses read ffff:ffff; RGMII config lost to reset, GMAC_EXT=0x8000",
+    "diagnostics": "Read-only module loaded from /run; not installed in rootfs"
+  },
+  "raw_v8_install": {
+    "task_id": "flash-1794566410769428000",
+    "verify_state": "success",
+    "transferred_bytes": 8589934592,
+    "coldboot": false,
+    "state": "superseded_before_boot_by_v9_external_phy_select_fix",
+    "raw_sha256": "f021201beb4818eaf401327fa7fb757740376d612c048bef830a0a5334660202"
+  },
+  "runtime_v9": {
+    "kernel_package": "6.18.63-9",
+    "flash_task": "flash-1794566911583840100",
+    "flash_verify": "success",
+    "coldboot_and_root_login": true,
+    "phy_id": "0x001cc916",
+    "link": "1000Mbps full duplex",
+    "network_data_validation": false,
+    "diagnosis": "No valid RX at 1000 or 100 Mbps; PHY clock enabled; MAC clocks ungated; PH pads left at reset drive=20 and bias disabled."
+  },
+  "runtime_v10": {
+    "kernel_package": "6.18.63-10",
+    "flash_task": "flash-1794568671641374000",
+    "flash_verify": "success",
+    "coldboot_and_root_login": true,
+    "baseline_network": false,
+    "mac_loopback": "pass",
+    "phy_loopback_plain_rgmii": "timeout",
+    "phy_loopback_rx_delay_only": "pass",
+    "all_supported_selftests_rx_delay_only": "pass",
+    "temporary_rx_delay_dhcp": true,
+    "temporary_rx_delay_ping": "3/3 replies",
+    "temporary_rx_delay_http_bytes_each_way": 4194304,
+    "temporary_rx_delay_http_sha256_match": true,
+    "temporary_rx_delay_new_crc_errors": 0,
+    "temporary_module_restored_and_removed": true
+  },
+  "user_required_boot_boundary": "No Tina vendor binaries in normal boot, including DDR initialization library and DDR PMU firmware. Tina allowed only as RAM FES loader.",
+  "runtime_v11": {
+    "kernel_package": "6.18.63-11",
+    "flash_task": "flash-1794569785944191200",
+    "flash_verify": "success",
+    "boot_chain_compliant": false,
+    "observed": "Reached Armbian login through vendor Boot0/BL31/SCP/OPTEE/U-Boot2018 and upstream U-Boot; first cold-start sequence also contained an unexplained reset before systemd.",
+    "authenticated_root_login": true,
+    "installed_kernel_initrd_dtb_sha256_verified": true,
+    "v4_v6_fallback_hashes_verified": true,
+    "kernel_tainted": 0,
+    "systemd_failed_units": 0,
+    "emmc_io_16m_fsync_direct_read": true,
+    "gpt_relocated": false,
+    "network": {
+      "dhcp_ipv4": "10.0.0.230",
+      "link": "1000 Mbps/full",
+      "supported_stmmac_selftests": "pass",
+      "unsupported_selftests": "-95 (not counted as pass)",
+      "post_selftest_link_recovery": "First ping during re-negotiation failed; later ping 3/3 passed",
+      "http_bytes_each_way": 67108864,
+      "roundtrip_sha256": "33e6a6a99ed1fa731102bbec963d53079be1baa6040c372eb723931b6dfd42ad",
+      "new_crc_align_fifo_bus_errors": 0,
+      "temporary_phy_module_required": false
+    }
+  },
+  "independent_boot_audit": "evidence/independent-boot-audit.json",
+  "independent_tfa_candidate": {
+    "compiled": true,
+    "hardware_validated": false,
+    "sha256": "81f53c1d1f571c74bd907317d813a5ed56c64382479caa75edd3cec43ada6dc6",
+    "manifest": "evidence/independent-boot-audit.json"
+  },
+  "boot_policy": "config/boot-policy.json",
+  "ddr_scope_clarification": {
+    "resolved": true,
+    "vendor_library_allowed": false,
+    "pending_user_input": false
+  },
+  "independent_pmu_source_probe": {
+    "source": "https://github.com/InfernoEmbedded/u-boot",
+    "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+    "compiler": "arc-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "bytes": 53232,
+    "sha256": "a6d1e27718b28e9c26591cb1adb2c3c841c9bde8941468cebde6a3fbe4825df9",
+    "compile_pass": true,
+    "prebuilt_vendor_binary_input": false,
+    "missing_stub_used": false,
+    "t736_lpddr4_implemented": false,
+    "hardware_tested": false,
+    "deployable": false,
+    "evidence": "evidence/open-pmu-compile-probe.json",
+    "source_manifest": "sources/audit/a733-pmu-source-2f5e45fa/source-manifest.json"
+  },
+  "normal_boot_release_eligible": false,
+  "lpddr4_source_feasibility": "evidence/lpddr4-source-feasibility.json",
+  "lpddr4_source_followup": "evidence/lpddr4-source-followup.json",
+  "current_implementation_blocker": {
+    "description": "LPDDR4 Type9 PHY sequencer/training/PIE execution contract is unavailable in the inspected source/specifications; no working source-built LP4 trainer exists in this project.",
+    "details": "spl/lpddr4/pmu/backend-audit.json",
+    "prohibited_fallback_used": false,
+    "pending_user_input": false
+  },
+  "lpddr4_source_components": {
+    "path": "spl/lpddr4",
+    "status": "partial_controller_pmic_timing_phy_host_commands_mrr",
+    "validation": "evidence/lpddr4-components-check.json",
+    "provenance": "spl/lpddr4/implementation.json",
+    "arm32_compiled": true,
+    "native_sanitized_tests_pass": true,
+    "layout_matches_readonly_board_words": 22,
+    "full_lpddr4_initialization": false,
+    "independent_spl": false,
+    "flashed": false,
+    "coldboot_tested": false,
+    "deployable": false,
+    "timing_validation": "evidence/lpddr4-timing-check.json",
+    "timing_fields_match_readonly_board": 42,
+    "pmu_helper_validation": "evidence/lpddr4-pmu-components-check.json",
+    "phy_host_validation": "evidence/lpddr4-phy-host-check.json",
+    "lp4_command_validation": "evidence/lpddr4-pmu-commands-check.json",
+    "mrr_validation": "evidence/lpddr4-mode-register-check.json",
+    "mrr_hardware_log": "evidence/lpddr4-mrr-hardware-20261114.log",
+    "mrr_transactions": 24,
+    "mrr_hardware_scope": "Initialized DRAM under existing legacy boot; control MR read requests only. No new PHY initialization or training.",
+    "phy_calibration_diagnostic": "spl/lpddr4/pmu/phy-calibration-audit.json",
+    "phy_calibration_hardware_tested": false
+  },
+  "board_current_diagnostic_state": {
+    "rootfs": "/dev/mmcblk0p4 ext4 rw,noatime",
+    "linux_memory_mib": 7747,
+    "online_cpus": "0-7",
+    "kernel_taint": 0,
+    "failed_services": 0,
+    "final_state": "Armbian running; tty1 login available",
+    "firmware": "source-v6",
+    "mode": "Linux",
+    "independent_coldboot_tested": true,
+    "postcheck": "evidence/source-v6-runtime-3-20261114.log"
+  },
+  "independent_boot_plan": "config/independent-boot-plan.json",
+  "source_sram_probe": {
+    "record": "build/sram-probe/build-record.json",
+    "hardware_tested": true,
+    "full_spl": false,
+    "cp15_minimal_probe": {
+      "bytes": 168,
+      "entry": "0x48c00",
+      "board_executed": true,
+      "upload_readback_verified": true,
+      "report_validated": true,
+      "rom_raw_id": "0x190300",
+      "scratchpad": "0xee800",
+      "midr": "0x412fd050",
+      "sctlr": "0xc50838",
+      "mmu": false,
+      "dcache": false,
+      "icache": false,
+      "evidence": "evidence/t736-cp15-sram-hardware-20261114.json",
+      "scope": "Stackless CPU context observation; does not establish full early probe SRAM bounds or DDR initialization."
+    },
+    "ccu_register_observations": {
+      "hardware_tested": true,
+      "registers": 6,
+      "mmio_writes": false,
+      "source": "config/board-facts.json"
+    },
+    "hardware_passed": true,
+    "hardware_scope": "v2 source SRAM entry, stack, timestamp metadata initialization, advancing counter, bounded delay, UART and AXP8191 register reads; returned to FEL",
+    "hardware_evidence": "evidence/t736-early-v2-sram-hardware-20261114.json",
+    "timer_initialization_fix_pending": false,
+    "prior_failed_attempt": "evidence/t736-early-sram-hardware-20261114.json",
+    "pmic_writes": 0
+  },
+  "source_early_emmc": {
+    "record": "evidence/spl-emmc-check.json",
+    "hardware_tested": false,
+    "board_prerequisites_integrated": false
+  },
+  "current_focus": "LPDDR4 only: validate controller static init configuration, then cold MR command path and real PHY stimulus/capture; PIE is DDR initialization engine, unrelated to PCIe",
+  "source_ddr_ccu": {
+    "hardware_tested": true,
+    "evidence": "evidence/t736-ccu-cold-sram-hardware-20261114.json",
+    "binary_sha256": "6639bc0d331f20b28ae2bb7aa16752fe31dbcb0bada2ff4f4fd8c9a92f6ee01d",
+    "registers": [
+      {
+        "name": "PLL_DDR",
+        "address": "0x2002020",
+        "before": "0x41304700",
+        "after": "0xf9004a00",
+        "write_count": 7
+      },
+      {
+        "name": "DRAM0_CLK",
+        "address": "0x2002c00",
+        "before": "0x0",
+        "after": "0x80000003",
+        "write_count": 2
+      },
+      {
+        "name": "DRAM0_BGR",
+        "address": "0x2002c0c",
+        "before": "0x1",
+        "after": "0x10001",
+        "write_count": 4
+      },
+      {
+        "name": "NSI_CLK",
+        "address": "0x2002580",
+        "before": "0xc3000000",
+        "after": "0xc3000000",
+        "write_count": 0
+      },
+      {
+        "name": "NSI_BGR",
+        "address": "0x2002584",
+        "before": "0x10001",
+        "after": "0x10001",
+        "write_count": 0
+      },
+      {
+        "name": "MBUS_CLK",
+        "address": "0x2002588",
+        "before": "0x84000000",
+        "after": "0x84000000",
+        "write_count": 0
+      }
+    ],
+    "scope": "Only DDR PLL, clock and reset sequence; no controller, PHY or memory access"
+  },
+  "source_ddr_common_domain": {
+    "initial_observation_hardware_tested": true,
+    "evidence": "evidence/t736-domain-sram-hardware-20261114.json",
+    "registers": [
+      {
+        "name": "DRAMC_SYS_CFG",
+        "address": "0xa020010",
+        "value": "0x3200"
+      },
+      {
+        "name": "DRAMC_CHANNEL_TYPE",
+        "address": "0xa020014",
+        "value": "0x0"
+      },
+      {
+        "name": "PRCM_MEM_ISOLATION",
+        "address": "0x7010250",
+        "value": "0x0"
+      }
+    ],
+    "setup_hardware_tested": true,
+    "setup_passed": true,
+    "setup_evidence": "evidence/t736-domain-setup-sram-hardware-20261114.json",
+    "scope": "Only three common-domain write/readbacks and 10ms delay; controller/PHY still untested"
+  },
+  "source_controller_observation": {
+    "evidence": [
+      "evidence/t736-common-ports-sram-hardware-20261114.json",
+      "evidence/t736-ch0-readonly-sram-hardware-20261114.json",
+      "evidence/t736-ch1-readonly-sram-hardware-20261114.json"
+    ],
+    "four_ports": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ch0": {
+      "MSTR": "0x03040000",
+      "STAT": 0,
+      "MRSTAT": 0
+    },
+    "ch1": {
+      "MSTR": "0x03040000",
+      "STAT": 0,
+      "MRSTAT": 0
+    },
+    "scope": "Both channel CSR apertures observed in source-prepared FEL/SRAM context; no controller writes, PHY access or DDR initialization"
+  },
+  "source_controller_configuration": {
+    "passed": true,
+    "evidence": "evidence/t736-controller-config-sram-hardware-20261114.json",
+    "writes": 64,
+    "readbacks": 64,
+    "layout_writes": 22,
+    "static_timing_writes": 42,
+    "both_stat_init": true,
+    "both_mrstat_idle": true,
+    "full_controller_initialization": false,
+    "phy_initialized": false
+  },
+  "phy_outer_read_attempt": {
+    "evidence": "evidence/t736-phy-owner-sram-hardware-20261114.json",
+    "success": false,
+    "result": "45-second worker deadline; exact stalled step unknown because supervisor did not retain worker progress",
+    "formal_power_recovery_completed": true,
+    "recovery_boot": "Legacy installed runtime reached multi-user and login; not independent boot acceptance",
+    "subsequent_fel_confirmed": true,
+    "automatically_retried": false
+  },
+  "source_phy_domain_release_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-phy-release-sram-hardware-20261114.json",
+    "serial": "evidence/t736-phy-release-sram-serial-20261114.log",
+    "controller_hold_and_common_writes": 17,
+    "mmio_completed": 117,
+    "sys_cfg": "0x273f",
+    "both_controller_stat": 0,
+    "both_mrstat": 0,
+    "both_dfistat": 0,
+    "mux": 0,
+    "micro_reset": 1,
+    "release_delay_ticks": [
+      45,
+      42
+    ],
+    "counter_hz": 24000000,
+    "phy_written": false,
+    "phy_internal_read": false,
+    "ddr_initialized": false,
+    "flash_written": false,
+    "scope": "Source SRAM PHY domain release and outer APB reads; not PHY training or independent boot"
+  },
+  "source_phy_static_read_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-phy-static-read-sram-hardware-20261114.json",
+    "completed_reads": 109,
+    "static_plus_clock_halfwords": 37,
+    "phy_written": false,
+    "ddr_initialized": false,
+    "registers": [
+      {
+        "address": "0xaa80100",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa940094",
+        "value": "0x2c18"
+      },
+      {
+        "address": "0xa940096",
+        "value": "0x3c1f"
+      },
+      {
+        "address": "0xa940110",
+        "value": "0x124"
+      },
+      {
+        "address": "0xa940098",
+        "value": "0xbce"
+      },
+      {
+        "address": "0xa94009a",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa94014a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa940000",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa940004",
+        "value": "0x2"
+      },
+      {
+        "address": "0xa9400a2",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa9400c0",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa940600",
+        "value": "0x808"
+      },
+      {
+        "address": "0xa940606",
+        "value": "0x9"
+      },
+      {
+        "address": "0xa940604",
+        "value": "0x40"
+      },
+      {
+        "address": "0xa940650",
+        "value": "0x2"
+      },
+      {
+        "address": "0xa940602",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa940616",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa920126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa922126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa924126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa926126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa920146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa922146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa924146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa926146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96015c",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96215c",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96015a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96215a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa960158",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa962158",
+        "value": "0x0"
+      },
+      {
+        "address": "0xaaa006c",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa94017a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa940620",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa940622",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa94064c",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa94064e",
+        "value": "0x0"
+      }
+    ]
+  },
+  "source_phy_analog_zcal_20261114": {
+    "analog_configuration": {
+      "passed": true,
+      "evidence": "evidence/t736-phy-analog-setup-after-zcal-recovery-20261114.json",
+      "events": 179,
+      "halfword_writes": 13,
+      "clkinfo": "0x1c2",
+      "dram_reset_asserted": true
+    },
+    "timed_zcal": {
+      "executed": true,
+      "verified_calibration": false,
+      "evidence": "evidence/t736-phy-zcal-v2-sram-hardware-20261114.json",
+      "events": 111,
+      "halfword_writes": 4,
+      "reset_ticks": 42,
+      "run_ticks": 2419,
+      "tick_hz": 24000000,
+      "pu_before": 0,
+      "pd_before": 0,
+      "pu_after": 0,
+      "pd_after": 0,
+      "result": "TIMED_ONLY; no observed impedance code change"
+    },
+    "failure_and_fix": {
+      "first_attempt": "evidence/t736-phy-zcal-sram-hardware-20261114.json",
+      "strong_software_fault_candidate": "Unaligned ARM STR to SRAM 0x4ffda before first component callback",
+      "fix": "Strict alignment ARM build and explicit halfword snapshot copy",
+      "interference_caveat": "First attempt erroneously continued after background USB scan busy; fixed by return-code gating before every subsequent hardware command",
+      "power_recovery": "evidence/t736-zcal-recovery-power-20261114.json",
+      "source_stages_reestablished": true
+    },
+    "board_state": {
+      "mode": "FEL",
+      "micro_reset": 1,
+      "host_mux": 0,
+      "memresetl": 2,
+      "clken": 3,
+      "zcal_reset": 0,
+      "zcal_run": 0,
+      "controller_stat": [
+        0,
+        0
+      ],
+      "mrstat": [
+        0,
+        0
+      ],
+      "dfistat": [
+        0,
+        0
+      ]
+    },
+    "normal_boot_release_eligible": false,
+    "ddr_initialized": false,
+    "new_emmc_flash": false
+  },
+  "source_phy_zcal_stall_comparison_20261114": {
+    "evidence": "evidence/t736-phy-zcal-stall-sram-hardware-20261114.json",
+    "completed": 109,
+    "writes": 5,
+    "micro_reset_before": 9,
+    "micro_reset_after": 1,
+    "arc_program_executed": false,
+    "reset_ticks": 37,
+    "run_ticks": 2414,
+    "pu_after": "0x0",
+    "pd_after": "0x0",
+    "calibration_verified": false,
+    "ddr_initialized": false,
+    "result": "TIMED_ONLY; releasing micro reset while retaining stall did not change zero PU/PD observation"
+  },
+  "source_phy_zcal_state_20261114": {
+    "evidence": "evidence/t736-phy-zcal-state-sram-hardware-20261114.json",
+    "completed_reads": 155,
+    "PclkDivRatio": "0x1111",
+    "candidate_2030d": "0x0",
+    "candidate_20320": "0x0",
+    "phy_written": false,
+    "ddr_initialized": false
+  },
+  "source_phy_zcal_rate_comparison_20261114": {
+    "evidence": "evidence/t736-phy-zcal-rate-sram-hardware-20261114.json",
+    "completed": 113,
+    "writes": 6,
+    "rate_before": 9,
+    "rate_during": 25,
+    "rate_after": 9,
+    "reset_ticks": 35,
+    "run_ticks": 2415,
+    "tick_hz": 24000000,
+    "pu_during": 0,
+    "pd_during": 0,
+    "pu_after": 0,
+    "pd_after": 0,
+    "calibration_verified": false,
+    "ddr_initialized": false,
+    "result": "TIMED_ONLY; ZCalRate bit4 alone did not change PU/PD zero observations"
+  },
+  "source_controller_static_attempt_20261114": {
+    "passed": false,
+    "evidence": "evidence/t736-controller-static-sram-hardware-20261114.json",
+    "completed": 78,
+    "writes": 6,
+    "failure": "INITTMG1 write 0x580000 read back 0",
+    "last_address": "0x0a110d04",
+    "swctl_maybe_open": 3,
+    "static_maybe_open": 3,
+    "ch0_inittmg0": "0x1036f",
+    "ch1_inittmg0": "0x2004e",
+    "automatic_retry": false,
+    "cleanup_attempted": false,
+    "board_returned_to_fel": true,
+    "ddr_initialized": false
+  },
+  "source_controller_static_rollback_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-controller-static-rollback-sram-hardware-20261114.json",
+    "completed": 128,
+    "writes": 5,
+    "pre_ticks": 252,
+    "settle_ticks": 487,
+    "poll_waits": 0,
+    "visible_checkpoint_restored": true,
+    "scope": "Restores visible registers only; does not prove the earlier INITTMG1 attempt had no hidden effect",
+    "ddr_initialized": false
+  },
+  "source_controller_static_v2_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-controller-static-v2-sram-hardware-20261114.json",
+    "completed": 166,
+    "writes": 20,
+    "reads": 146,
+    "pre_ticks": 249,
+    "settle_ticks": 481,
+    "tick_hz": 24000000,
+    "both_config_transactions_closed": true,
+    "both_channels_configured": true,
+    "profile": [
+      "0x1036f",
+      "0xfc003f",
+      "0x330008",
+      "0x40072",
+      "0x24001d",
+      "0x1"
+    ],
+    "inittmg1_untouched": [
+      0,
+      0
+    ],
+    "commands_sent": false,
+    "result": "CONFIGURED_ONLY",
+    "ddr_initialized": false
+  },
+  "source_phy_zcal_followup_20261114": {
+    "evidence": "evidence/t736-zcal-followup-summary-20261114.json",
+    "experiments": 8,
+    "register_events": 1151,
+    "writes": 57,
+    "calibration_verified": false,
+    "ddr_initialized": false,
+    "raw20326_20327": [
+      0,
+      0
+    ],
+    "candidate20314_20315": [
+      255,
+      255
+    ],
+    "run_10000us_ticks": 240014,
+    "normal_boot_release_eligible": false,
+    "new_emmc_flash": false,
+    "result": "Pulse additions,Run-high sampling,100x wait andPubMode candidate did not produce a verified calibration. Target internal clock/status contract remains unresolved."
+  },
+  "source_phy_zcal_clock_followup_20261114": {
+    "evidence": "evidence/t736-zcal-clock-followup-summary-20261114.json",
+    "hardware_runs": 3,
+    "register_events": 387,
+    "writes": 25,
+    "ucclkfull_restored": 3,
+    "dram0_clk_restored": "0x80000003",
+    "candidate20314_20315": [
+      255,
+      255
+    ],
+    "override20326_20327": [
+      0,
+      0
+    ],
+    "calibration_verified": false,
+    "ddr_initialized": false,
+    "new_emmc_flash": false
+  },
+  "radxa_a733_lp4_route_20261114": {
+    "review": "evidence/t736-radxa-a733-lp4-route-review-20261114.json",
+    "radxa_source_allowed": true,
+    "a7z_lp4_configuration_located": true,
+    "radxa_dramlib_identical_to_tina": true,
+    "tina_parameter_overlay": "config/t736-lp4-radxa-dram-overlay.fex",
+    "hardware_executed": false,
+    "full_source_lp4_port_complete": false
+  },
+  "vendor_ddr_library_authorized": true,
+  "ram_boot_chain": "FEL -> source SRAM host + pinned vendor libdram -> source ARM32/AArch64 handoff -> source TF-A -> source U-Boot -> installed Linux/Armbian",
+  "current_ddr_validation": "Fixed 8 GiB LPDDR4x, no geometry/capacity autoscan; PHY training and bounded memory tests passed",
+  "source_ddr_authenticated_runtime_passed": true,
+  "source_emmc_cold_boot_validated": true,
+  "last_verified_deployment": "source-v6",
+  "pending_deployment": null,
+  "source_emmc_runtime_result": "evidence/source-v6-emmc-acceptance-20261114.json",
+  "source_v2_acceptance": {
+    "date": "2026-11-14",
+    "image": "source-v2",
+    "flash_task": "flash-1794649744466260200",
+    "write_bytes": 8589934592,
+    "flash_success": true,
+    "verify_success": true,
+    "source_spl_readback_sha256": "b643029ba6b5e4fa9b46623cae96235969488a2e4ce0f7bfb7d9491ba7bfe186",
+    "emmc_unattended_boot_to_root": true,
+    "power_off_requested_ms": 10000,
+    "actual_supply_voltage_measured": false,
+    "boot_id": "43091f50-f59c-4017-99c1-80f2d6f5e107",
+    "dram_mib": 8192,
+    "cpus_online": "0-7",
+    "linux_memory_mib": 7749,
+    "rootfs": "/dev/mmcblk0p4 ext4 rw,noatime",
+    "failed_units": 0,
+    "kernel_taint": 0,
+    "memory_check": {
+      "mib": 256,
+      "patterns": 4,
+      "exit_code": 0
+    },
+    "filesystem_check": {
+      "mib": 16,
+      "fsync": true,
+      "direct_read": true,
+      "sha256_match": true,
+      "sha256": "69372779fa456b251826cd79e0551e3929f49536214a690791fdb4f5c878eeaf"
+    },
+    "runtime_uptime_observed_seconds": 229.1,
+    "clean_shutdown": true,
+    "recovery": {
+      "success": false,
+      "observed_prompt": "T736-SPL=> ",
+      "diagnosis": "Dedicated tool did not recognize custom prompt (11 bytes); efex was not sent. Direct ROM entry remains untested.",
+      "candidate_fix": "v3 standalone => prompt"
+    },
+    "ethernet": {
+      "works": false,
+      "error": "Generic Clause45 PHY, DMA reset failed"
+    },
+    "hdmi": {
+      "works": false,
+      "drm_built": false,
+      "fb_built": false,
+      "devices_absent": [
+        "/sys/class/drm",
+        "/dev/dri",
+        "/dev/fb0"
+      ]
+    },
+    "controlled_three_boot_acceptance": false,
+    "evidence": [
+      "source-raw-v2-physical-fel-flash-status-20261114.json",
+      "source-v2-coldboot-1-20261114.log",
+      "source-v2-root-login-20261114.log",
+      "source-v2-runtime-20261114.log",
+      "source-v2-runtime-memory-20261114.log",
+      "source-v2-clean-shutdown-20261114.log",
+      "source-v2-recovery-prompt-20261114.log"
+    ]
+  },
+  "source_v3_acceptance": {
+    "date": "2026-11-14",
+    "image": "t736-armbian-source-v3.raw.img",
+    "image_sha256": "911951b5cbcbc667a68506bc0bc1bdd4929e3edcafff136af3d42cccd3b721a6",
+    "flash_task": "flash-1794651648165782700",
+    "flashed_bytes": 8589934592,
+    "write_state": "success",
+    "verify_state": "success",
+    "spl_media_sha256": "7a3b30d3a0349e2b62d06fa07699cf1284af1e60a5704d4f1330aaf5011532db",
+    "ddr": {
+      "fixed_board": "8 GiB LPDDR4x",
+      "para1": "0x311a",
+      "para2": "0xa0001001",
+      "tpr13": "0x6063",
+      "auto_geometry_scan": false,
+      "phy_training_retained": true,
+      "reported_mib": 8192,
+      "a32_memory_word_checks": 524288,
+      "a64_memory_checks": 262144,
+      "linux_256m_four_patterns_rc": 0
+    },
+    "controlled_emmc_boots": 3,
+    "boot_input_required": false,
+    "power_cycle_off_ms": 10000,
+    "physical_voltage_measured": false,
+    "root_authenticated": true,
+    "online_cpus": "0-7",
+    "linux_memory_mib": 7749,
+    "failed_services": 0,
+    "kernel_taint": 0,
+    "fs_16m_direct_read_sha256": "0bd54c02f1fb6eba20a356d60f24e94e50c068be2b994bd9f06c5547c091ee04",
+    "file_hash_persisted_across_boots": true,
+    "gpt_relocated_verified": true,
+    "partition_definitions_unchanged": true,
+    "recovery": {
+      "method": "lynx_allwinner_enter_fel/uboot_serial_efex",
+      "promptObserved": true,
+      "efexBytesWritten": 6,
+      "felOnline": true,
+      "physical_button_required": false
+    },
+    "ccu_after_ddr": {
+      "peri0": "0xff126310",
+      "ahb": "0x03000002",
+      "apb0": "0x03000005"
+    },
+    "limitations": [
+      "HDMI absent from deployed kernel; source display Image links but board resources pending",
+      "Ethernet still Generic Clause 45 PHY / DMA reset failure",
+      "Pure-source ZCal still unresolved; authorized DDR library used",
+      "Three bounded boots and 256 MiB test are not full memory certification"
+    ],
+    "evidence": [
+      "source-raw-v3-flash-retry-status-20261114.json",
+      "source-v3-coldboot-1-20261114.log",
+      "source-v3-runtime-20261114.log",
+      "source-v3-runtime-memory-20261114.log",
+      "source-v3-gpt-verification.json",
+      "source-v3-recovery-entry-20261114.json",
+      "source-v3-coldboot-2-20261114.log",
+      "source-v3-clean-shutdown-2-20261114.log",
+      "source-v3-coldboot-3-20261114.log",
+      "source-v3-runtime-3-20261114.log"
+    ]
+  },
+  "source_v4": {
+    "flash_task": "flash-1794652936285058600",
+    "flash_state": "success",
+    "verify_state": "success",
+    "spl_readback_sha256": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea",
+    "board_power_rc": 0,
+    "dc1sw1": "0x17 -> 0x1f",
+    "dldo2_voltage": "0x0d -> 0x0d (1.8 V)",
+    "ldo_enable3": "0x40 -> 0x42",
+    "ethernet_phy": "RTL8211F",
+    "ethernet_ipv4": "10.0.0.168",
+    "ethernet_link_mbps": 100,
+    "gigabit_validated": false,
+    "gateway_ping": "3/3; 0% loss",
+    "systemd_failed": 0,
+    "evidence": [
+      "evidence/source-raw-v4-flash-status-20261114.json",
+      "evidence/source-v4-coldboot-1-20261114.log",
+      "evidence/source-v4-runtime-20261114.log"
+    ]
+  },
+  "source_v5": {
+    "flash_state": "success",
+    "verify_state": "success",
+    "unattended_boot_passed": false,
+    "temporary_boot_args": "initcall_debug ignore_loglevel printk.time=1 drm.debug=0x1f fbcon=map:1",
+    "temporary_boot_to_armbian": true,
+    "hdmi_status": "connected",
+    "hdmi_enabled": true,
+    "mode": "2560x1440@59.933Hz",
+    "supported_modes": 42,
+    "snps_phy_pll": "locked",
+    "vsync_count": 11728,
+    "display_errors": 0,
+    "late_console_mapping_result": "NULL call from soft_cursor; fb_imageblit callback absent behind undefined CONFIG_AW_FB_CONSOLE",
+    "kernel_taint_after_diagnostic": 128,
+    "physical_screen_observed": false,
+    "evidence": [
+      "evidence/source-v5-coldboot-1-20261114.log",
+      "evidence/source-v5-diagnostic-boot-20261114.log",
+      "evidence/source-v5-display-state-20261114.log",
+      "evidence/source-v5-late-fbcon-oops-20261114.log"
+    ]
+  },
+  "current_acceptance": "evidence/source-v6-emmc-acceptance-20261114.json",
+  "historical_hardware_passed_before_source_v6": [
+    "U-Boot ARM64 console and relocation",
+    "8 GiB memory description and >4 GiB RAM spot check",
+    "Linux 8 CPU SMP and initramfs /init",
+    "eMMC six GPT partitions",
+    "8.3 MB Image read SHA256 matches",
+    "64 KiB write, cache-drop readback and scratch restore",
+    "U-Boot ext4 kernel/initrd/DTB reads at 5.3 MiB/s",
+    "Debian initramfs mounted ext4 rootfs read/write",
+    "Armbian systemd reached multi-user.target and serial login",
+    "Unattended cold boot through v3/v4 kernel to Armbian login",
+    "initramfs fsck.ext4 clean, real tmpfs and systemd-resolved active",
+    "USB1 EHCI/OHCI registered; PL6 VBUS high; 1a40:0101 four-port hub enumerated at 480 Mbps; hub control requests and EHCI interrupts observed",
+    "USB1 Realtek 0bda:0316 reader enumerates at 480 Mbps on 1-1.3; usb-storage and SCSI inquiry work; user confirms no TF card present",
+    "v5 main PIO initialization and 12 eMMC PC pins owned by pinctrl",
+    "v5 16 MiB filesystem write and direct-read SHA256 match",
+    "v6 complete 8 GiB Armbian raw FES write and verification",
+    "v6 unattended hardware cold boot to Armbian serial login",
+    "v6 GPT relocation with primary/secondary CRC and vendor mirror verification",
+    "v6 root login after post-relocation clean hardware cold boot",
+    "v6 16 MiB fsync and O_DIRECT SHA256 match; zero failed systemd units"
+  ],
+  "historical_board_diagnostic_state": {
+    "firmware": "Installed v11 legacy image remains unchanged; CPU currently in FEL with source DDR CCU enabled",
+    "module_present": false,
+    "temporary_module_removed": true,
+    "kernel_taint": 4096,
+    "taint_cause": "Out-of-tree MRR identity diagnostic; module unloaded",
+    "failed_systemd_units": 0,
+    "postcheck": "evidence/lpddr4-mrr-cleanup-20261114.log",
+    "new_flash_attempted": false,
+    "independent_coldboot_tested": false,
+    "mode": "FEL after official power recovery; source CCU/common rebuilt; both MSTR03081002 STAT0 MRSTAT0 and 64 geometry/timing readbacks passed; no successful internal PHY access",
+    "last_linux_postcheck": "evidence/lpddr4-mrr-cleanup-20261114.log"
+  },
+  "source_v6_acceptance": {
+    "date": "2026-11-14",
+    "recorded_utc": "2026-11-14T11:44:37.720654+00:00",
+    "variant": "source-v6",
+    "image": "t736-armbian-source-v6.raw.img",
+    "image_sha256": "5e36cd917e6c49c51e5946faecd838394dce0161dd0926c095b848236729d377",
+    "flash_task": "flash-1794655456082512500",
+    "written_bytes": 8589934592,
+    "flash_state": "success",
+    "verify_state": "success",
+    "kernel": "6.18.63-t736-hdmi-v13",
+    "spl_media_sha256": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea",
+    "normal_boot": "Source SPL + authorized fixed DDR library -> source handoff -> source TF-A -> source U-Boot -> Linux -> Armbian",
+    "ddr": {
+      "fixed_board": "8 GiB LPDDR4x",
+      "reported_mib": 8192,
+      "para1": "0x311a",
+      "para2": "0xa0001001",
+      "tpr13": "0x6063",
+      "geometry_capacity_scan": false,
+      "phy_training_retained": true,
+      "a32_word_checks_per_boot": 524288,
+      "a64_checks_per_boot": 262144,
+      "above_4gib_and_last_64k_checked": true,
+      "linux_allocated_memory_mib": 256,
+      "linux_patterns": 4,
+      "linux_test_rc": 0,
+      "pure_source_zcal_resolved": false
+    },
+    "boots": [
+      {
+        "boot": 1,
+        "boot_id": "2bcdbe7f-c4c4-4abc-a722-de98dccbcd2c",
+        "unattended": true,
+        "root_authenticated": true,
+        "hdmi_console": true,
+        "evidence": "evidence/source-v6-coldboot-1-20261114.log"
+      },
+      {
+        "boot": 2,
+        "boot_id": "bff97411-350d-41a0-ba5e-f1b1856bd659",
+        "unattended": true,
+        "root_authenticated": true,
+        "hdmi_console": true,
+        "evidence": "evidence/source-v6-coldboot-2-20261114.log"
+      },
+      {
+        "boot": 3,
+        "boot_id": "403577e6-4b20-443e-82f8-20a31a16137b",
+        "unattended": true,
+        "root_authenticated": true,
+        "hdmi_console": true,
+        "evidence": "evidence/source-v6-coldboot-3-20261114.log"
+      }
+    ],
+    "relay_off_ms": 10000,
+    "physical_voltage_measured": false,
+    "clean_shutdowns_confirmed": 2,
+    "temporary_diagnostic_bootargs": false,
+    "runtime": {
+      "rootfs": "/dev/mmcblk0p4 ext4 rw,noatime",
+      "linux_memory_mib": 7747,
+      "online_cpus": "0-7",
+      "kernel_taint": 0,
+      "failed_services": 0,
+      "final_state": "Armbian running; tty1 login available"
+    },
+    "storage": {
+      "write_mib": 16,
+      "fsync": true,
+      "direct_read_match": true,
+      "sha256": "8d9e1d5d5f5e70ca4c9f298f117620edfbbda968d3e4416a3c027734c74ce7a4",
+      "persisted_across_two_reboots": true,
+      "gpt_primary_secondary_crc_passed": true,
+      "gpt_mirror_matches": true,
+      "six_partitions_and_partuuids_unchanged": true,
+      "post_reboot_gpt_warning": false,
+      "emmc_clock_hz": 12000000,
+      "emmc_bus_width": 8,
+      "pio": true
+    },
+    "hdmi": {
+      "status": "connected",
+      "enabled": true,
+      "phy_pll": "locked",
+      "mode": "2560x1440@approximately59.93Hz",
+      "edid_bytes": 256,
+      "edid_sha256": "75ecf4dfe66e41e302ca8f9512e04658b3f7a9940c85b3610f176d29b40cf895",
+      "drm_active": true,
+      "vblank_progresses": true,
+      "display_errors": 0,
+      "fb0": "t736-drm-fb",
+      "fbcon_bound": true,
+      "tty1_getty_active": true,
+      "captured_content": "Armbian 26.11.0-trunk.128 trixie tty1 / t736 login:",
+      "framebuffer_capture": "evidence/source-v6-hdmi-framebuffer-20261114.png",
+      "physical_screen_observed": false,
+      "fix": "DMA framebuffer drawing/read/write callbacks; register after initial modeset locks are released"
+    },
+    "ethernet": {
+      "phy": "RTL8211F",
+      "dhcp": true,
+      "ipv4": "10.0.0.249",
+      "speed_mbps": 100,
+      "duplex": "full",
+      "gateway_ping": "3/3; 0% loss",
+      "gigabit_validated": false,
+      "v6_bidirectional_bulk_checksum_tested": false
+    },
+    "recovery": {
+      "dedicated_software_fel_previously_verified": true,
+      "spl_unchanged_from_tested_v4": true,
+      "v6_retested": false
+    },
+    "limitations": [
+      "Physical screen appearance awaits user observation; framebuffer and HDMI software/hardware state verified remotely",
+      "Ethernet downshifts from 1 Gbps to 100 Mbps; gigabit unresolved",
+      "Bounded memory checks and three boots are not full memory/stability certification",
+      "eMMC remains 12 MHz 8-bit PIO; PCIe/Wi-Fi/Bluetooth unverified",
+      "Authorized vendor DDR library remains; pure-source ZCal is unresolved",
+      "Bootloader video, graphical desktop, HDMI audio, CEC, HDCP and hotplug are not validated"
+    ],
+    "evidence": [
+      "evidence/source-v6-boot-file-hashes.json",
+      "evidence/source-v6-boot-power-cycle-20261114.json",
+      "evidence/source-v6-boot-serial-open-20261114.json",
+      "evidence/source-v6-build-pack-20261114.log",
+      "evidence/source-v6-clean-shutdown-1-20261114.log",
+      "evidence/source-v6-clean-shutdown-2-20261114.log",
+      "evidence/source-v6-coldboot-1-20261114.log",
+      "evidence/source-v6-coldboot-2-20261114.log",
+      "evidence/source-v6-coldboot-2-power-20261114.json",
+      "evidence/source-v6-coldboot-3-20261114.log",
+      "evidence/source-v6-coldboot-3-power-20261114.json",
+      "evidence/source-v6-display-state-20261114.log",
+      "evidence/source-v6-download-status-20261114.json",
+      "evidence/source-v6-flash-start-20261114.json",
+      "evidence/source-v6-flash-status-20261114.json",
+      "evidence/source-v6-framebuffer-capture-20261114.log",
+      "evidence/source-v6-gpt-after-mirror.bin",
+      "evidence/source-v6-gpt-after-primary.bin",
+      "evidence/source-v6-gpt-after-tail.bin",
+      "evidence/source-v6-gpt-readback.log",
+      "evidence/source-v6-gpt-verification.json",
+      "evidence/source-v6-hdmi-framebuffer-20261114.png",
+      "evidence/source-v6-preflash-lynx_allwinner_enter_fel-20261114.json",
+      "evidence/source-v6-preflash-lynx_download_firmware-20261114.json",
+      "evidence/source-v6-preflash-lynx_flash_capabilities-20261114.json",
+      "evidence/source-v6-preflash-lynx_scan_flash_devices-20261114.json",
+      "evidence/source-v6-root-login-2-20261114.log",
+      "evidence/source-v6-root-login-20261114.log",
+      "evidence/source-v6-root-login-3-20261114.log",
+      "evidence/source-v6-runtime-2-20261114.log",
+      "evidence/source-v6-runtime-20261114.log",
+      "evidence/source-v6-runtime-3-20261114.log",
+      "evidence/source-v6-runtime-memory-20261114.log",
+      "evidence/source-v6-final-state-20261114.log"
+    ]
+  },
+  "historical_rootfs_sparse_sha256": "370b531cf5dd10a1f5177756ca407ee7e33ac391f15a92acca2891a804f49bb1",
+  "current_rootfs_raw_sha256": "b68942b741988cef35a8bece83a3c3209498ba111aec6e7bf58056c6ef5e187f"
 }

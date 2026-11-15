@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-14",
+  "kind": "root-reviewed single-variable PubMode candidate experiment",
+  "baseline": "evidence/t736-phy-zcal-codetrack-sram-hardware-20261114.json",
+  "read_preflight": "evidence/t736-phy-zcal-pubmode-read-sram-hardware-20261114.json",
+  "provenance": "zcal-pubmode-read-review-20261114.json",
+  "fact": "A733 public source writes1 to900400dc before the ZCal helper; current host0a9400dc reads0. Independent Odyssey name is PubMode.HwtMemSrc; target bit identity remains provisional.",
+  "design": "Add exact PubMode0 guard,write1/read1 before ZCal,restore0/read0 only after successful baseline140-event experiment.145events/13writes.100us baseline wait. All DRAM clients held,MemResetL2,Micro1,Mux0,clocks3. No ACSM/HWT start,command program,MRcommand,ARC execution or DRAM access.",
+  "rationale": "Tests the omitted source selection preceding ZCal without importing a training program or unknown gate sequences. No completion claim from changed raw codes.",
+  "failure": "Immediate stop without subsequent edges/restoration on mismatch,UART,timer,transport or contextfailure; diagnostic state and evidence retained."
+}

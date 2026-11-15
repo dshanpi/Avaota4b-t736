@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"localPath\":\"C:\\\\Users\\\\\u4e16\u7389\u8f69\\\\AppData\\\\Local\\\\com.dshanpi.lynx\\\\firmware\\\\project-9\\\\t736-armbian-source-v1.raw.img\",\"next\":\"Poll lynx_workbench_task_status with this taskId from this or any later MCP session until state is success, failed, or cancelled. If LYNX itself restarts, call lynx_download_firmware again to resume its .part file.\",\"projectId\":9,\"remotePath\":\"/home/ubuntu/t736-mainline/output/t736-armbian-source-v1.raw.img\",\"resumable\":true,\"status\":\"started\",\"taskId\":\"transfer-1794647469357208500\",\"taskLifetime\":\"LYNX application process; independent of the MCP session that started it\",\"verifySha256\":true}"
+    }
+  ],
+  "isError": false
+}

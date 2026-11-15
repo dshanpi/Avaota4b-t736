@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-11-14",
+  "lpddr4_training_backend_implemented": false,
+  "deployable": false,
+  "vendor_instruction_arrays_copied": false,
+  "radxa_sources_used": false,
+  "sources": [
+    {
+      "repository": "elvees/ddrinit",
+      "commit": "12ca43ab6964dece88c464f104af4d861a259a6b",
+      "license": "GPL-2.0-or-later",
+      "header": "https://github.com/elvees/ddrinit/blob/12ca43ab6964dece88c464f104af4d861a259a6b/include/dram/lpddr4/phy-training-params-lpddr4.h",
+      "header_git_blob": "See source-manifest.json",
+      "host_code": "https://github.com/elvees/ddrinit/blob/12ca43ab6964dece88c464f104af4d861a259a6b/src/phy/phy.c",
+      "finding": "Public LP4 mailbox parameter definitions and PHY host setup. Training loads fw-imem/fw-dmem arrays; no ARC algorithm located in inspected source. Only message definition/COPYING imported for tests."
+    },
+    {
+      "repository": "InfernoEmbedded/u-boot",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+      "license": "GPL-2.0-or-later",
+      "local": "sources/audit/a733-pmu-source-2f5e45fa",
+      "finding": "Source-built LPDDR5 PMU exists. Its author states a clean-room provenance; this task has not independently certified that claim. No executable or source functions copied into the new LP4 components."
+    },
+    {
+      "repository": "ARM-software/arm-trusted-firmware",
+      "license": "BSD-3-Clause",
+      "source": "https://github.com/ARM-software/arm-trusted-firmware/blob/master/drivers/st/ddr/phy/phyinit/src/ddrphy_phyinit_progcsrskiptrain.c",
+      "git_blob": "883c70605c0e6ccc39ec1a4077b6b37afe80e833",
+      "loader_git_blob": "8bec30ba3e9635b30fc7266afa75c13a1e9281cf",
+      "csr_header_git_blob": "99a8c4cc72ef6b2808f3205709ed84885edfd07e",
+      "finding": "Public ST host PHY init and calculated skip-training delays. Normal training still loads external IMEM at STM32MP_DDR_FW_BASE. Older CSR layout and PHY insertion-delay assumptions do not establish T736 Type9 compatibility. Inspected only; no code imported."
+    },
+    {
+      "repository": "sunplus-plus1/draminit_q654",
+      "commit": "543008f0d9db94736ccac4c5d72d8f16188041de",
+      "source": "https://github.com/sunplus-plus1/draminit_q654/blob/543008f0d9db94736ccac4c5d72d8f16188041de/dwc/software/lpddr4/src/dwc_ddrphy_phyinit_progCsrSkipTrain.c",
+      "finding": "Skip-training source warns it only supports a zero-board-delay model. No licensing basis for importing this file was established. Not imported or used to generate runtime settings."
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "use": "Read-only host register/ABI reference",
+      "symbols_inspected": ["lpddr4_phyinit_F_loadDMEM", "dwc_ddrphy_phyinit_G_execFW"],
+      "finding": "16-bit access width, host mailbox offsets and common LP4 DMEM addresses corroborated. IMEM, DMEM private command data, PIE arrays and translated executable instructions were not imported."
+    }
+  ],
+  "corroborated_common_fields": {
+    "data_rate_mts_le16": "0x006",
+    "sequence_le16": "0x010",
+    "channel0_width_rank_mask": ["0x024", "0x025"],
+    "channel1_width_rank_mask": ["0x057", "0x058"],
+    "mr_group_bases_A0_A1_B0_B1": ["0x032", "0x03e", "0x065", "0x071"],
+    "mr_group_order": [1, 2, 3, 4, 11, 12, 13, 14, 16, 17, 22, 24],
+    "scope": "Offsets only; neither MR electrical settings nor full DMEM initialization is established by this component."
+  },
+  "specific_lp5_incompatibilities": [
+    "LP5 channel1 width/rank offsets 0x3f/0x40 collide with LP4 channel0 rank1 MR data; LP4 channel1 uses 0x57/0x58.",
+    "LP5 groups MR values by MR across four slices from 0x5a, while LP4 groups 12 MRs per channel/rank at 0x32/0x3e/0x65/0x71.",
+    "LP5 pmu_cal_rank_offset_get reads MR2 low nibble and returns zero for index >=12. Board-observed LP4 MR2=0x3f gives index 15, despite actual LP4 RL=36 at 1800 MHz.",
+    "LP5 pmu_cbt_delay_offset_lookup reads MR1 high nibble and returns zero for index >=12. Board-observed LP4 MR1=0xfc gives index 15, despite actual LP4 WL=18.",
+    "pmu_is_lpddr4 and pmu_is_lpddr5 inspect different LP5 MR19/MR20 fields and are not a mutually exclusive protocol selector.",
+    "pmu_rx_en_build_swizzle_map handles seven CA signals per slice; LPDDR4 has six CA signals and different command encoding.",
+    "LP5 eye/clock flows program WCK/RDQS paths and restore WCK delay registers; LPDDR4 uses DQS without a WCK interface.",
+    "The LP5 full sequence mask 0x125f contains bit6, reserved in the public LP4 1D sequence definition. Merely reusing the mask is invalid."
+  ],
+  "reuse_assessment": {
+    "can_reuse_after_target_review": [
+      "ARC reset/vector/exception scaffolding and compiler integration from reviewed source",
+      "Plain memory utilities and pure bounded arithmetic/window-selection algorithms",
+      "Host/ARC mailbox transport using corroborated APB offsets and 16-bit accesses"
+    ],
+    "cannot_reuse_as_lp4_without_new_specification": [
+      "Full dispatcher, internal descriptor schema and fixed DMEM scratch layout",
+      "MR latency decode and JEDEC command encoding",
+      "WCK/RDQS synchronization, CA7 swizzle and LP5 Vref/training mode transitions",
+      "LP5 final delay values, PLL assumptions and PIE images"
+    ],
+    "complete_lp4_backend_from_current_evidence": false
+  },
+  "remaining_backend_contracts": [
+    {
+      "operation": "PHY command sequencer",
+      "known_candidates": ["pmu_cal_sequence_pulse_send", "pmu_cal_multi_branch_dispatch", "ARC 0x90082000 command RAM", "ARC 0x90040040/42 control/status candidates"],
+      "missing": "See sequencer-audit.json for new independent CA truth-table matches and exact bit-level findings. LP4 pin encoding is now implemented. Type9 LP4 slot-to-SDR-clock and CS mapping, remaining control bits, receive path and fresh-completion/reset semantics remain unknown. Existing LP5 source is not a documented LP4 executor.",
+      "next_validation": "Obtain a Type9 LP4 programmer specification or derive independent command-level specifications; prove NOP, reset and per-rank MRW/MRR first from SRAM."
+    },
+    {
+      "operation": "LP4 device initialization and CBT",
+      "known_candidates": ["ARC 0x90040144 CBT control", "ARC 0x90040180/182/184 CBT status", "ARC 0x90060120 and 0x90062120 CA swizzle candidates"],
+      "missing": "LP4 six-CA pin routing, MR13 CBT/FSP transition and feedback encoding, CKE timing, Vref settlement, reset/ZQ command generation and channel/rank isolation. Candidate address names come from the LP5 source and are not independent LP4 validation.",
+      "next_validation": "Establish board CA wiring and PHY LP4 register bitfields; run bounded per-rank command/feedback tests before any eye sweep."
+    },
+    {
+      "operation": "Write leveling and read gate",
+      "known_candidates": ["ARC 0x9002009c eye-delay candidate", "ARC 0x90020154 coarse-delay candidate", "ARC 0x9002016a sample-ready candidate", "ARC 0x90020176 calibration-trigger candidate"],
+      "missing": "LP4 DQS phase/coarse/fine units, tap ranges and timing-group mapping, MR2 write-leveling entry/exit, edge detector validity, gate comparator semantics, latch order and timeout rollback. LP5 WCK delay use is not evidence these values transfer.",
+      "next_validation": "Characterize one channel/rank/lane with measured transitions and failing/pass boundary data, then restore and verify all ranks."
+    },
+    {
+      "operation": "Read/write data eyes and per-bit deskew",
+      "known_candidates": ["ARC 0x900e00c0 pattern-control candidate", "ARC 0x900ffe4c/4e BIST pattern candidates", "ARC 0x90020160 delay candidate", "ARC 0x90082000 result-stream candidate"],
+      "missing": "LP4 pattern writer/reader, lane error mask semantics, result validity, reset/settlement order, per-bit delay programming and Vref transfer. Eye selection code cannot supply physical measurements.",
+      "next_validation": "Prove known pass/fail injection and sample capture before centering each bit and enforcing minimum margins."
+    },
+    {
+      "operation": "Post-training handoff",
+      "known_candidates": ["PHY PIE sequencer", "uMCTL2 DFI init/latency handoff", "PMU major result 7"],
+      "missing": "Source-authored LP4 PIE command program, final delay commit/DFI reset order, trained CDD/max-read-latency propagation and retention behavior. A firmware completion message alone is insufficient.",
+      "next_validation": "Verify SRAM memory tests across ranks/channels and full address range, warm reset, then real power-cycle boot before permitting a raw image."
+    }
+  ]
+}

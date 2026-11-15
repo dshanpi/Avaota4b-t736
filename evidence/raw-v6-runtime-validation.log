@@ -1,0 +1,21 @@
+( set -eu; f=$(mktemp /var/tmp/t736-v6-io-XXXXXX); trap 'rm -f -- "$f"' EXIT; dd if=/dev/urandom of="$f" bs=1M count=16 conv=fsync status=none; expected=$(sha256sum "$f" | cut -d' ' -f1); actual=$(dd if="$f" bs=1M count=16 iflag=direct status=none | sha256sum | cut -d' ' -f1); test "$expected" = "$actual"; 
+ printf 'V6_IO_16M_FSYNC_DIRECT_READ_OK %s\n' "$actual" ); cat /sys/kernel/debug 
+/mmc0/ios; ip -br link; systemctl --failed --no-pager
+
+V6_IO_16M_FSYNC_DIRECT_READ_OK a8e1245eaf76f94c602d495b4794f289492bf3b76ab7128322ffd3eb15c60694
+clock:		12000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	0 (legacy)
+signal voltage:	0 (3.30 V)
+driver type:	0 (driver type B)
+lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP> 
+end0             DOWN           fa:7a:40:35:c3:3b <BROADCAST,MULTICAST> 
+sit0@NONE        DOWN           0.0.0.0 <NOARP> 
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+root@t736:~# 

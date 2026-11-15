@@ -1,0 +1,58 @@
+{
+  "native_sanitizer_tests_pass": true,
+  "arm32_compile_pass": true,
+  "undefined_symbols": "",
+  "stack_usage": "/home/ubuntu/t736-mainline/spl/storage/emmc.c:33:17:rd\t0\tstatic\n/home/ubuntu/t736-mainline/spl/storage/emmc.c:38:13:wr\t0\tstatic\n/home/ubuntu/t736-mainline/spl/storage/emmc.c:43:12:clear_wait\t24\tstatic\n/home/ubuntu/t736-mainline/spl/storage/emmc.c:55:12:update_clock\t16\tstatic\n/home/ubuntu/t736-mainline/spl/storage/emmc.c:84:12:command\t48\tstatic\n/home/ubuntu/t736-mainline/spl/storage/emmc.c:68:12:set_clock\t16\tstatic\n/home/ubuntu/t736-mainline/spl/storage/emmc.c:143:5:t736_emmc_open\t48\tstatic\n/home/ubuntu/t736-mainline/spl/storage/emmc.c:218:5:t736_emmc_read\t32\tstatic\n",
+  "inputs_and_object_sha256": {
+    "spl/storage/emmc.c": "5b7081a6c532f6a8c0012cc76ba66f19407ae723a5f5dc09db94d4ceaad2d116",
+    "spl/storage/emmc.h": "2a836887bcf91f4d350f03daf811f06e5441fb6fdd8d913908bb60fb47d5b616",
+    "spl/storage/test_emmc.c": "f733f730b819c392df540c6b9786a7045a75a5750f16ab8d697bae24f25707b9",
+    "tools/check_spl_emmc.py": "19ac52df62692822e27dfe2f60b0f2d346d37f2b8bd9f230fbf9320b5a4112c7",
+    "build/spl-emmc/emmc.o": "36f6a1b7e6426763a5e5f801a1b7db89db4a9cd08f990d6d53d3317218d3ab26"
+  },
+  "board_power_pad_pinmux_prerequisites_implemented": false,
+  "hardware_tested": false,
+  "independent_boot_tested": false,
+  "deployable": false,
+  "commands": [
+    [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-Wconversion",
+      "-Os",
+      "-fsanitize=address,undefined",
+      "/home/ubuntu/t736-mainline/spl/storage/emmc.c",
+      "/home/ubuntu/t736-mainline/spl/storage/test_emmc.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/spl-emmc/test_emmc"
+    ],
+    [
+      "/home/ubuntu/t736-mainline/build/spl-emmc/test_emmc"
+    ],
+    [
+      "arm-linux-gnueabi-gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-Wconversion",
+      "-Os",
+      "-mcpu=cortex-a55",
+      "-marm",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-fstack-usage",
+      "-c",
+      "/home/ubuntu/t736-mainline/spl/storage/emmc.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/spl-emmc/emmc.o"
+    ]
+  ]
+}

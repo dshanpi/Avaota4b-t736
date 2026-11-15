@@ -1,0 +1,16 @@
+{
+  "local_project": "G:\\codex\\t736\\mainline",
+  "linux_project": "/home/ubuntu/t736-mainline",
+  "linux_project_created": true,
+  "existing_sdk": "/home/ubuntu/t736-aiot/tina",
+  "existing_sdk_access": "read_only_reference_when_authorized_connection_is_available",
+  "subdirectories": {
+    "sources": "Pinned official upstream repositories",
+    "patches": "Independent T736 patches with provenance",
+    "build": "Out-of-source compiler output",
+    "output": "Candidate images and checksums",
+    "evidence": "Board facts and test evidence",
+    "userpatches": "Armbian board integration"
+  },
+  "constraint": "Do not create sources, compiler output, rootfs or flash images inside the existing Tina SDK."
+}

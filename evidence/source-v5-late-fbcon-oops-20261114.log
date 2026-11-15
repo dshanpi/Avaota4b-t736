@@ -1,0 +1,94 @@
+dmesg | tail -90; cat /proc/sys/kernel/tainted
+
+[   25.112661] systemd[1]: systemd-pcrmachine.service - TPM PCR Machine ID Measurement skipped, unmet condition check ConditionSecurity=measured-uki
+[   25.134002] systemd[1]: Starting systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully...
+[   25.146437] systemd[1]: systemd-tpm2-setup-early.service - Early TPM SRK Setup skipped, unmet condition check ConditionSecurity=measured-uki
+[   25.168922] systemd[1]: Starting systemd-udev-load-credentials.service - Load udev Rules from Credentials...
+[   25.204612] systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+[   25.232838] systemd[1]: Mounted dev-mqueue.mount - POSIX Message Queue File System.
+[   25.263074] systemd[1]: Mounted run-lock.mount - Legacy Locks Directory /run/lock.
+[   25.286201] systemd[1]: Mounted sys-kernel-debug.mount - Kernel Debug File System.
+[   25.310822] systemd[1]: fake-hwclock-load.service: Deactivated successfully.
+[   25.319986] systemd[1]: Finished fake-hwclock-load.service - Restore the current clock.
+[   25.365380] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[   25.374548] systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+[   25.398740] systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+[   25.407946] systemd[1]: Finished modprobe@efi_pstore.service - Load Kernel Module efi_pstore.
+[   25.410736] systemd-journald[241]: Collecting audit messages is disabled.
+[   25.443579] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[   25.453137] systemd[1]: Finished modprobe@configfs.service - Load Kernel Module configfs.
+[   25.479515] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[   25.488491] systemd[1]: Finished modprobe@fuse.service - Load Kernel Module fuse.
+[   25.511397] systemd[1]: Finished systemd-modules-load.service - Load Kernel Modules.
+[   25.537699] systemd[1]: Finished systemd-network-generator.service - Generate Network Units from Kernel Command Line.
+[   25.576580] systemd[1]: Finished systemd-udev-load-credentials.service - Load udev Rules from Credentials.
+[   25.616747] systemd[1]: Finished systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully.
+[   25.655936] systemd[1]: Reached target network-pre.target - Preparation for Network.
+[   25.691470] systemd[1]: Mounting sys-fs-fuse-connections.mount - FUSE Control File System...
+[   25.723099] systemd[1]: Mounting sys-kernel-config.mount - Kernel Configuration File System...
+[   25.748554] systemd[1]: systemd-fsck-root.service - File System Check on Root Device skipped, unmet condition check ConditionPathExists=!/run/initramfs/fsck-root
+[   25.770884] systemd[1]: Starting systemd-remount-fs.service - Remount Root and Kernel File Systems...
+[   25.788458] systemd[1]: Starting systemd-sysctl.service - Apply Kernel Variables...
+[   25.861091] systemd[1]: Mounted sys-kernel-config.mount - Kernel Configuration File System.
+[   26.012973] EXT4-fs (mmcblk0p4): re-mounted 355deac2-71e0-4194-a1c2-f7d457b94137.
+[   26.023459] systemd[1]: Finished systemd-sysctl.service - Apply Kernel Variables.
+[   26.063682] systemd[1]: Started systemd-journald.service - Journal Service.
+[   27.236943] systemd-journald[241]: Received client request to flush runtime journal.
+[   27.660248] random: crng init done
+[   33.299021] t736-dwmac 4500000.ethernet end0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[   33.420249] t736-dwmac 4500000.ethernet end0: PHY [stmmac-0:01] driver [RTL8211F Gigabit Ethernet] (irq=POLL)
+[   33.576286] t736-dwmac 4500000.ethernet end0: No Safety Features support found
+[   33.856907] t736-dwmac 4500000.ethernet end0: IEEE 1588-2008 Advanced Timestamp supported
+[   33.865153] t736-dwmac 4500000.ethernet end0: configuring for phy/rgmii-rxid link mode
+[   39.106902] systemd-journald[241]: Received client request to relinquish /var/log/journal/a078c9c19d134760a0c626f32fdc1256 access.
+[   47.460220] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[   47.488263] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+[  226.372821] Console: switching to colour frame buffer device 320x90
+[  226.372884] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+[  226.372898] Mem abort info:
+[  226.372903]   ESR = 0x0000000086000004
+[  226.372910]   EC = 0x21: IABT (current EL), IL = 32 bits
+[  226.372922]   SET = 0, FnV = 0
+[  226.372931]   EA = 0, S1PTW = 0
+[  226.372938]   FSC = 0x04: level 0 translation fault
+[  226.372947] user pgtable: 4k pages, 48-bit VAs, pgdp=00000001032a2000
+[  226.372961] [0000000000000000] pgd=0000000000000000, p4d=0000000000000000
+[  226.372984] Internal error: Oops: 0000000086000004 [#1]  SMP
+[  226.372997] Modules linked in:
+[  226.373013] CPU: 1 UID: 0 PID: 1316 Comm: .t736-fbmap Not tainted 6.18.63-t736-hdmi-v12 #12 NONE 
+[  226.373035] Hardware name: T736 custom board mainline bring-up (DT)
+[  226.373046] pstate: 60000009 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[  226.373066] pc : 0x0
+[  226.373080] lr : soft_cursor+0x184/0x1a0
+[  226.373108] sp : ffff800083a038f0
+[  226.373115] x29: ffff800083a038f0 x28: 00000000ffffffff x27: 0000000000000010
+[  226.373143] x26: ffff0000c134a950 x25: ffff0000c045e000 x24: 0000000000000010
+[  226.373169] x23: 0000000000000001 x22: 0000000000000001 x21: ffff800083a039c8
+[  226.373195] x20: ffff0000c134a900 x19: ffff0000c045a000 x18: 000000000000000a
+[  226.373221] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000000
+[  226.373246] x14: ffff8000806a65a8 x13: 0000000000000000 x12: 0000000000000000
+[  226.373271] x11: 0000000000000000 x10: 0000000000000000 x9 : 0000000000000001
+[  226.373295] x8 : 0000000000000007 x7 : 0000000000000000 x6 : 0000000000000001
+[  226.373320] x5 : 0000000000000001 x4 : 00000000ffffffff x3 : 0000000000000001
+[  226.373344] x2 : 0000000000000000 x1 : ffff0000c134a900 x0 : ffff0000c045a000
+[  226.373370] Call trace:
+[  226.373377]  0x0 (P)
+[  226.373392]  bit_cursor+0x2b8/0x3dc
+[  226.373415]  fbcon_cursor+0xb8/0xd4
+[  226.373436]  hide_cursor+0x38/0x80
+[  226.373461]  redraw_screen+0xfc/0x170
+[  226.373485]  do_bind_con_driver.isra.0+0x18c/0x2ac
+[  226.373511]  do_take_over_console+0x180/0x1c4
+[  226.373535]  do_fbcon_takeover+0x64/0xc4
+[  226.373556]  set_con2fb_map+0xb0/0x2a0
+[  226.373577]  fbcon_set_con2fb_map_ioctl+0x78/0xac
+[  226.373598]  do_fb_ioctl+0x27c/0x2d4
+[  226.373626]  fb_ioctl+0x24/0x34
+[  226.373651]  __arm64_sys_ioctl+0x5c8/0x768
+[  226.373681]  do_el0_svc+0xa8/0xd0
+[  226.373706]  el0_svc+0x18/0x48
+[  226.373728]  el0t_64_sync_handler+0x58/0x134
+[  226.373751]  el0t_64_sync+0x154/0x158
+[  226.373776] ---[ end trace 0000000000000000 ]---
+128
+root@t736:~# 

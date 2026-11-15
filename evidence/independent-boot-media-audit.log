@@ -1,0 +1,24 @@
+printf 'INDEPENDENT_BOOT_MEDIA_AUDIT\n'; uname -a; id; ls -l /dev/mmcblk0*; command -v mmc || true; for p in /sys/block/mmcblk0boot*/size /sys/block/mmcblk0boot*/force_ro; do printf '%s: ' "$p"; cat "$p"; done; for p in /dev/mmcblk0boot0 /dev/mmcblk0boot1; do printf '%s first sector: ' "$p"; dd if="$p" bs=512 count=1 status=none | od -An -tx1 -N48; done
+
+INDEPENDENT_BOOT_MEDIA_AUDIT
+Linux t736 6.18.63-t736-armbian #11 SMP Fri Nov 13 06:30:23 EST 2026 aarch64 GNU/Linux
+uid=0(root) gid=0(root) groups=0(root)
+brw-rw---- 1 root disk 179,  0 Nov 11 15:48 /dev/mmcblk0
+brw-rw---- 1 root disk 179,  8 Nov 11 15:48 /dev/mmcblk0boot0
+brw-rw---- 1 root disk 179, 16 Nov 11 15:48 /dev/mmcblk0boot1
+brw-rw---- 1 root disk 179,  1 Nov 11 15:48 /dev/mmcblk0p1
+brw-rw---- 1 root disk 179,  2 Nov 11 15:48 /dev/mmcblk0p2
+brw-rw---- 1 root disk 179,  3 Nov 11 15:48 /dev/mmcblk0p3
+brw-rw---- 1 root disk 179,  4 Nov 11 15:48 /dev/mmcblk0p4
+brw-rw---- 1 root disk 179,  5 Nov 11 15:48 /dev/mmcblk0p5
+brw-rw---- 1 root disk 179,  6 Nov 11 15:48 /dev/mmcblk0p6
+/usr/bin/mmc
+/sys/block/mmcblk0boot0/size: 8192
+/sys/block/mmcblk0boot1/size: 8192
+/sys/block/mmcblk0boot0/force_ro: 1
+/sys/block/mmcblk0boot1/force_ro: 1
+/dev/mmcblk0boot0 first sector:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+*
+/dev/mmcblk0boot1 first sector:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+*
+root@t736:~# 

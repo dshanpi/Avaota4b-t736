@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-14",
+  "kind": "source-v1-emmc-boot-observed-on-resume",
+  "board_source_spl_readback_sha256": "ee77604a0e818a57c676ec4c3fe3043bf928c19fffd3662f344cf7b0bda7f230",
+  "dram_mib": 8192,
+  "emmc_open_sectors": 122142720,
+  "all_source_payload_crcs_passed": true,
+  "aarch64_memory_spot_checks": 262144,
+  "source_tfa_and_uboot": true,
+  "armbian_serial_root_login": true,
+  "cpus_online": 8,
+  "linux_total_memory_mib": 7749,
+  "rootfs": "/dev/mmcblk0p4 ext4 rw",
+  "failed_systemd_units": 0,
+  "kernel_taint": 0,
+  "ethernet_failed": "PHY misidentified Generic Clause45; DMA reset failed in cold source boot",
+  "uncommanded_reset_seen": true,
+  "reset_cause": "unconfirmed; boot sequence captured while user restored hardware tools",
+  "controlled_cold_boot_acceptance": false,
+  "evidence": [
+    "source-v2-resume-serial-20261114.log",
+    "source-v1-reset-observation-20261114.log",
+    "source-v1-emmc-root-login-20261114.log",
+    "source-v1-emmc-runtime-20261114.log"
+  ]
+}

@@ -1,0 +1,44 @@
+printf 'RAW_PREFLIGHT\n'; lsblk -b -o NAME,SIZE,START,TYPE,FSTYPE,MOUNTPOINTS; cat  
+/sys/block/mmcblk0/device/type; cat /proc/cmdline; ls -l /boot/t736-v4-recovery; command -v gzip 
+ base64 dd sfdisk; sfdisk -d /dev/mmcblk0
+
+RAW_PREFLIGHT
+NAME                SIZE    START TYPE FSTYPE MOUNTPOINTS
+sda                    0          disk        
+mmcblk0      62537072640          disk        
+├─mmcblk0p1     33554432    73728 part vfat   
+├─mmcblk0p2     16777216   139264 part        
+├─mmcblk0p3    100663296   172032 part        
+├─mmcblk0p4   7802716160   368640 part ext4   /
+├─mmcblk0p5     16777216 15608320 part        
+└─mmcblk0p6  54528818688 15641088 part        
+mmcblk0boot0     4194304          disk        
+mmcblk0boot1     4194304          disk        
+MMC
+earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused
+total 15280
+-rw-r--r-- 1 root root    79347 Nov 13  2026 config-6.18.63-t736-armbian
+-rw-r--r-- 1 root root 11471937 Nov 11 16:22 initrd.img-6.18.63-t736-armbian
+-rw-r--r-- 1 root root      379 Nov 11 18:21 SHA256SUMS
+-rw-r--r-- 1 root root     4044 Nov 11 16:22 t736-mainline-bringup.dtb
+-rw-r--r-- 1 root root  4080109 Nov 13  2026 vmlinuz-6.18.63-t736-armbian
+/usr/bin/gzip
+/usr/bin/base64
+/usr/bin/dd
+/usr/sbin/sfdisk
+label: gpt
+label-id: AB6F3888-569A-4926-9668-80941DCB40BC
+device: /dev/mmcblk0
+unit: sectors
+first-lba: 73728
+last-lba: 122142686
+table-length: 6
+sector-size: 512
+
+/dev/mmcblk0p1 : start=       73728, size=       65536, type=EBD0A0A2-B9E5-4433-87C0-68B6B72699C7, uuid=A0085546-4166-744A-A353-FCA9272B8E45, name="boot-resource", attrs="GUID:63"
+/dev/mmcblk0p2 : start=      139264, size=       32768, type=EBD0A0A2-B9E5-4433-87C0-68B6B72699C7, uuid=A0085546-4166-744A-A353-FCA9272B8E46, name="env", attrs="GUID:63"
+/dev/mmcblk0p3 : start=      172032, size=      196608, type=EBD0A0A2-B9E5-4433-87C0-68B6B72699C7, uuid=A0085546-4166-744A-A353-FCA9272B8E47, name="boot", attrs="GUID:63"
+/dev/mmcblk0p4 : start=      368640, size=    15239680, type=EBD0A0A2-B9E5-4433-87C0-68B6B72699C7, uuid=A0085546-4166-744A-A353-FCA9272B8E48, name="rootfs", attrs="GUID:63"
+/dev/mmcblk0p5 : start=    15608320, size=       32768, type=EBD0A0A2-B9E5-4433-87C0-68B6B72699C7, uuid=A0085546-4166-744A-A353-FCA9272B8E49, name="private", attrs="GUID:63"
+/dev/mmcblk0p6 : start=    15641088, size=   106501599, type=EBD0A0A2-B9E5-4433-87C0-68B6B72699C7, uuid=A0085546-4166-744A-A353-FCA9272B8E4A, name="UDISK", attrs="GUID:63"
+root@t736:~# 

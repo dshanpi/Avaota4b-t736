@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"baudRate\":115200,\"handle\":\"serial-4\",\"port\":\"COM17\",\"settings\":\"8N1\"}"
+    }
+  ],
+  "isError": false
+}

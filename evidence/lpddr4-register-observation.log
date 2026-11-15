@@ -1,0 +1,43 @@
+printf '\nLP4_REGISTER_OBSERVATION_BEGIN\n'; uname -v; cat /proc/sys/kernel/tainted; insmod /tmp/t736-transfer/lp4-readonly-20261113.ko; echo INSMOD_RC=$?; dmesg | tail -22; rmmod t736_lp4_observe; echo RMMOD_RC=$?; cat /proc/sys/kernel/tainted; printf 'LP4_REGISTER_OBSERVATION_END\n'
+
+LP4_REGISTER_OBSERVATION_BEGIN
+#11 SMP Fri Nov 13 06:30:23 EST 2026
+0
+t736_lp4_observe: loading out-of-tree module taints kernel.
+t736-lp4-observe: PLL_DDR @0x0000000002002020 = f9004a00
+t736-lp4-observe: DRAM0_CLK @0x0000000002002c00 = 80000003
+t736-lp4-observe: DRAMC_SYS_CFG @0x000000000a020010 = 0000273f
+t736-lp4-observe: DRAMC_CH_EN @0x000000000a020014 = 00000002
+t736-lp4-observe: CH0_MSTR @0x000000000a110000 = 03081002
+t736-lp4-observe: CH1_MSTR @0x000000000a510000 = 03081002
+t736-lp4-observe: CH0_STAT @0x000000000a110014 = 00000001
+t736-lp4-observe: CH1_STAT @0x000000000a510014 = 00000001
+t736-lp4-observe: CH0_SWSTAT @0x000000000a110c84 = 00000001
+t736-lp4-observe: CH1_SWSTAT @0x000000000a510c84 = 00000001
+INSMOD_RC=0
+[   25.158920] t736-dwmac 4500000.ethernet end0: configuring for phy/rgmii-rxid link mode
+[   27.999722] systemd-journald[239]: Received client request to relinquish /var/log/journal/b166a1e78068488e879e1e5c426bb91b access.
+[   28.362776] t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+[  881.422729] t736-dwmac 4500000.ethernet end0: entered promiscuous mode
+[  881.634848] t736-dwmac 4500000.ethernet end0: left promiscuous mode
+[  883.678753] t736-dwmac 4500000.ethernet end0: Link is Down
+[  886.794759] t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+[  940.638757] t736-dwmac 4500000.ethernet end0: Link is Down
+[  946.826760] t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+[ 4735.742737] t736-dwmac 4500000.ethernet end0: Link is Down
+[ 4741.930742] t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+[14563.384014] t736_lp4_observe: loading out-of-tree module taints kernel.
+[14563.390052] t736-lp4-observe: PLL_DDR @0x0000000002002020 = f9004a00
+[14563.395153] t736-lp4-observe: DRAM0_CLK @0x0000000002002c00 = 80000003
+[14563.400399] t736-lp4-observe: DRAMC_SYS_CFG @0x000000000a020010 = 0000273f
+[14563.405989] t736-lp4-observe: DRAMC_CH_EN @0x000000000a020014 = 00000002
+[14563.411410] t736-lp4-observe: CH0_MSTR @0x000000000a110000 = 03081002
+[14563.416566] t736-lp4-observe: CH1_MSTR @0x000000000a510000 = 03081002
+[14563.421720] t736-lp4-observe: CH0_STAT @0x000000000a110014 = 00000001
+[14563.426880] t736-lp4-observe: CH1_STAT @0x000000000a510014 = 00000001
+[14563.432038] t736-lp4-observe: CH0_SWSTAT @0x000000000a110c84 = 00000001
+[14563.437367] t736-lp4-observe: CH1_SWSTAT @0x000000000a510c84 = 00000001
+RMMOD_RC=0
+4096
+LP4_REGISTER_OBSERVATION_END
+root@t736:~# 

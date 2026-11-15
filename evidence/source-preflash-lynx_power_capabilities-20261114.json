@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"actions\":[\"on\",\"off\",\"cycle\"],\"adapter\":\"lynx_power\",\"configured\":true,\"deviceId\":9,\"platformAvailable\":true,\"powerChannel\":\"7\",\"powerOffWaitMs\":1000,\"profile\":{\"activeHigh\":true,\"channel\":7,\"controllerIndex\":0,\"controllerInterface\":4,\"controllerPid\":\"55de\",\"controllerSerial\":\"USB\\\\VID_1A86&PID_55DE&MI_04#7&4AAA180&0&0004#\",\"controllerVid\":\"1a86\",\"roleMode\":\"singleRelay\",\"secondaryPowerChannel\":null},\"stateRead\":\"last_known (the controller channel is write-only)\",\"unavailableReason\":null}"
+    }
+  ],
+  "isError": false
+}

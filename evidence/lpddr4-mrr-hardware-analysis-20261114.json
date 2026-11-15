@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "scope": "Independent offline analysis of parent-executed identity MRR under initialized Linux",
+  "input_log": "evidence\\lpddr4-mrr-hardware-20261114.log",
+  "input_log_sha256": "a8e797e1d5265cf8d003a16b98677a94e6ac9d90b95719b71955d99c2ba05914",
+  "analyzer_sha256": "db5db653734ed820a2eba8fa5ed531182c2a52883d4344ad7c1291834057045d",
+  "reported_module_sha256": "19392780fd2ff9902430c2e920241d872b92ba3069679a9619051c0d1ec3bbfe",
+  "raw_record_count": 48,
+  "unique_hardware_transactions": 24,
+  "duplicate_dmesg_records_excluded": 24,
+  "console_dmesg_identical": true,
+  "expected_forward_reverse_order_confirmed": true,
+  "all_return_codes_zero": true,
+  "all_12_channel_rank_mr_values_match_reverse_pass": true,
+  "observed_channel0_data_lane": "raw bits15:8; all other bits zero in these samples",
+  "observed_channel1_data_lane": "raw bits7:0; all other bits zero in these samples",
+  "targets": [
+    {
+      "channel": 0,
+      "rank_requested": 0,
+      "mr5": "0xff",
+      "mr6": "0x07",
+      "mr8": "0x18",
+      "s16_type_code": 0,
+      "density_code": 6,
+      "density_gibits_per_channel_rank": 16,
+      "device_io_bits_per_channel": 16
+    },
+    {
+      "channel": 0,
+      "rank_requested": 1,
+      "mr5": "0xff",
+      "mr6": "0x07",
+      "mr8": "0x18",
+      "s16_type_code": 0,
+      "density_code": 6,
+      "density_gibits_per_channel_rank": 16,
+      "device_io_bits_per_channel": 16
+    },
+    {
+      "channel": 1,
+      "rank_requested": 0,
+      "mr5": "0xff",
+      "mr6": "0x07",
+      "mr8": "0x18",
+      "s16_type_code": 0,
+      "density_code": 6,
+      "density_gibits_per_channel_rank": 16,
+      "device_io_bits_per_channel": 16
+    },
+    {
+      "channel": 1,
+      "rank_requested": 1,
+      "mr5": "0xff",
+      "mr6": "0x07",
+      "mr8": "0x18",
+      "s16_type_code": 0,
+      "density_code": 6,
+      "density_gibits_per_channel_rank": 16,
+      "device_io_bits_per_channel": 16
+    }
+  ],
+  "interpretation": {
+    "manufacturer": "MR5=0xff identifies Micron",
+    "revision": "MR6=0x07 is vendor-specific revision ID1=7; exact part/generation not identified",
+    "mr8": "0x18: S16/16n prefetch, x16/channel, 16Gibits per channel (32Gibits for a dual-channel die)",
+    "capacity_if_existing_topology_is_correct": {
+      "channels": 2,
+      "ranks_per_channel": 2,
+      "device_io_width_bits": 16,
+      "controller_channel_width_bits": 16,
+      "formula": "2 channels * 2 ranks * 16 Gibits / 8 = 8 GiB",
+      "bytes": 8589934592,
+      "caution": "Conditional consistency with existing topology, not an independent rank-routing/capacity test"
+    }
+  },
+  "freshness_assessment": {
+    "credible_command_dependent_readout": true,
+    "basis": "Three distinct correct MR values follow both forward and reversed request order for every requested channel/rank.",
+    "excludes": [
+      "one invariant stale latch throughout the run",
+      "a simple one-transaction-old response across these differing MR requests"
+    ],
+    "does_not_establish": [
+      "receive-valid/error/clear bit semantics or freshness for arbitrary requests",
+      "distinct physical rank routing: both ranks report identical IDs",
+      "independent physical channel routing: both channels report identical IDs",
+      "memory alias-free capacity, training quality, or cold initialization"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Micron z19m_embedded_lpddr4_lpddr4x.pdf Rev.G 04/2022",
+      "url": "https://www.avnet.com/wcm/connect/3baa3889-1af3-47e9-ba83-fa7aad7c7f8e/micron-lpddr4-lpddr4x-sdram-datasheet.pdf",
+      "tables": [
+        35,
+        37,
+        41
+      ],
+      "printed_pages": [
+        55,
+        56
+      ],
+      "facts_used": "MR5 ff=Micron; MR6 is vendor-specific; MR8 type00=S16, width00=x16/channel, density0110=16Gb/channel or32Gb/dual-channel die."
+    },
+    {
+      "repository": "u-boot/u-boot",
+      "commit": "6487c50b8a40f2668ab98a892b9300ad5c181f38",
+      "path": "board/gateworks/venice/spl.c",
+      "blob": "2c303211d3280a1735f9aab9a1152d7bf5ee73d7",
+      "license": "GPL-2.0-or-later",
+      "facts_used": "Independent public LP4 readout recognizes ff=Micron, width code0=x16/code1=x8 and density code6=32Gb per dual-channel die."
+    }
+  ],
+  "vendor_binary_used_for_this_diagnostic": false,
+  "dram_preinitialized_by_existing_legacy_boot_chain": true,
+  "open_source_cold_initialization_demonstrated": false,
+  "full_lp4_training_demonstrated": false,
+  "normal_boot_deployable": false
+}

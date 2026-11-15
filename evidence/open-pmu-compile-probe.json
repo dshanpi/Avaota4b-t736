@@ -1,0 +1,92 @@
+{
+  "source": "https://github.com/InfernoEmbedded/u-boot",
+  "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+  "compiler": "arc-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "command": [
+    "/usr/bin/python3",
+    "/home/ubuntu/t736-mainline/sources/audit/a733-pmu-source-2f5e45fa/build_pmu_fw.py",
+    "--cross-compile",
+    "arc-linux-gnu-",
+    "--src-dir",
+    "/home/ubuntu/t736-mainline/sources/audit/a733-pmu-source-2f5e45fa",
+    "--out",
+    "/home/ubuntu/t736-mainline/build/pmu-source-probe/dram_sun60i_a733_pmu_fw.h"
+  ],
+  "inputs": [
+    {
+      "path": "arch/arm/mach-sunxi/pmu/build_pmu_fw.py",
+      "git_blob": "8ce2bfdcd6cb2800cef06bd97998373aa308a60b",
+      "sha256": "47f48ef9bb30c8706edb9e06950aa374632fe5b1c3d814d3855421ca0e4ddcd1"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/dwc_ddrphy_pmu_regs.h",
+      "git_blob": "119fbc9c644c2d6316226d29d7fb1ff9ccfcc1a0",
+      "sha256": "51783b857dcd58594f935dcfe8a7277b36481cfe948c89f602ba539a05251349"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu.ld",
+      "git_blob": "79ff0f8c0c4cd366b2880c3e40de6e3c3227a866",
+      "sha256": "5977631019b3a0bc5c590dec93bbb42008ba1b5691ec7128b1cdfdf977546f75"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu_cbt.c",
+      "git_blob": "6c97ad8532ec75b08f8447e9ddb496598fc3ca7c",
+      "sha256": "bf69dcdd7ff489fef0369bdcaad73c94b3ea05a37f3a9bcf8152cf51cdc9a7fa"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu_clock.c",
+      "git_blob": "0ba564bb10be3b2edbc978b32d547ba550c2c8fb",
+      "sha256": "15712f8214708cf84eae84f866176b2f5300c8ac39703aae5eeb7a8ec76bb179"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu_deskew.c",
+      "git_blob": "e624c30dd805af2f13691140a5562e593b143019",
+      "sha256": "25c92d382a64ceb9f9ee3e6b437d1c8119dc06bd7ce2ef1c51178fae2b06b49e"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu_eye.c",
+      "git_blob": "1c1ebb353632432191cf8cd39b0d1682f6a8fa82",
+      "sha256": "d534d5a80de5842aec35a404c71da5d6af8625162218cd617b6783e9fbffb45c"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu_fw.h",
+      "git_blob": "e71955bdf5c43b3755dafee062fe4d85af0eebac",
+      "sha256": "186d906dceebbd685b4f2a4e7f1eccb614b8cacb98db46529f0be0f016bcc424"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu_primitives.c",
+      "git_blob": "23277c7f7d36512f5626f28569f06f5a812486c3",
+      "sha256": "93d703d649a6f4d2acd23d93df3903bc1dbd714d656fdc3ec2fc9e0b694d7bfb"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu_telemetry.c",
+      "git_blob": "ea47e991fcf1af67a68c5c88634bc7d3a9b755fa",
+      "sha256": "20d7174d601a0b3b5c884f3583dbb1ff7eaec86a30c3c79b12d0079f1c65cdde"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu_train.c",
+      "git_blob": "c0b5e1d7dd1396af7721d860ad8e1cb9800e4fe3",
+      "sha256": "ccf40e04285c627946337c4b9e3e26a6baa9c2d0514caf84addc847af81d653d"
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/sunxi_pmu_abi.h",
+      "git_blob": "0625a6f46dda15c7a3e85be76911c1eb3eb8e14d",
+      "sha256": "dd31f06056c567a96870ba2f9a092897730a848b8d72c0642e196b243715ff8c"
+    },
+    {
+      "path": "doc/board/allwinner/a733-pmu.rst",
+      "git_blob": "1509c2b9a265cfc02d12ff30e0817d76b75df17f",
+      "sha256": "b17b489ff2e3937eef6e092417a5ce915033da941f6436c5bbeced8fb20fa338"
+    }
+  ],
+  "binary": "build/pmu-source-probe/lpddr5-pmu-compile-probe.bin",
+  "bytes": 53232,
+  "sha256": "a6d1e27718b28e9c26591cb1adb2c3c841c9bde8941468cebde6a3fbe4825df9",
+  "prebuilt_vendor_binary_input": false,
+  "missing_stub_used": false,
+  "compile_pass": true,
+  "supported_by_source_documentation": "LPDDR5",
+  "t736_lpddr4_implemented": false,
+  "hardware_tested": false,
+  "deployable": false
+}

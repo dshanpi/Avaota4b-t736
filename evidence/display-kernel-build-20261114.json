@@ -1,0 +1,19 @@
+{
+  "state": "complete_Image_DTB_package_and_raw_build_passed_hardware_pending",
+  "kernel_release": "6.18.63-t736-hdmi-v12",
+  "kernel_package": "linux-image-6.18.63-t736-hdmi-v12_6.18.63-12_arm64.deb",
+  "image_sha256": "cfbf8a12d36b30ae7ff2a7e1315924ddf97bc7bd7c5e0acf75fbe0704ed6de32",
+  "dtb_sha256": "d81986f7035f252583ae30f861dc3e55675d296547f12704ba81678fd7fe03ed",
+  "package_sha256": "cc9f76b04486c7e458d06f3bf10ba55d643402304fe780de249a3370c1bea9cc",
+  "hardware_tested": false,
+  "display_power_driver_linked": true,
+  "display_ccu_driver_linked": true,
+  "source_replay_files": 252,
+  "source_replay_matches": true,
+  "patch_sha256": "9892227b111b8ffb136fdebf81e250ceb78c3a019e9226a44d405fe47a95bd6b",
+  "resolved_config": "userpatches/linux-t736-hdmi-v12.config",
+  "build_command": "sh tools/build_display_kernel.sh",
+  "rootfs_command": "sudo -n unshare --mount sh tools/build_source_rootfs_v5.sh",
+  "pack_command": "python3 tools/pack_t736_source_boot.py --variant v5",
+  "build_log": "evidence/source-v5-build-pack-20261114.log"
+}

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-only
-/* Next-stage main PIO candidate. Not enabled in the USB1 v4 kernel. */
+/* Main PIO support, first enabled for eMMC pin ownership in the v5 candidate. */
 #include <linux/module.h>
 #include <linux/of.h>
 #include <linux/pinctrl/pinctrl.h>

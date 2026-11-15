@@ -1,0 +1,30 @@
+{
+  "checks_complete": true,
+  "native_address_undefined_sanitizers_pass": true,
+  "initial_state_bit_guards": 192,
+  "all_19_callback_failures_tested": true,
+  "drift_or_readback_mismatch_points": 9,
+  "arm32_freestanding_compile_pass": true,
+  "undefined_symbols": "",
+  "runtime_default": "No integration or automatic execution; standalone three-write diagnostic",
+  "successful_return_meaning": "WRITES_OBSERVED_ONLY=1; not controller accessibility or training success",
+  "register_write_allowlist": [
+    "0x0a020010",
+    "0x0a020014",
+    "0x07010250"
+  ],
+  "maximum_writes": 3,
+  "controller_or_phy_accessed": false,
+  "vendor_binaries_linked": false,
+  "board_tested": false,
+  "boot_firmware_deployable": false,
+  "inputs_and_objects": {
+    "spl/lpddr4/domain_prepare_diag.c": "b1c25c4feb5c0ea79414e4deb97b2664963c54d4874c57c849e5471d69397957",
+    "spl/lpddr4/domain_prepare_diag.h": "33239fc112bc23a2fdf8b26fe116886c646e29328dcb59c7c175caea910322d0",
+    "spl/lpddr4/test_domain_prepare_diag.c": "c203e76cfd885e969c97e089b8a4776df898b099b3e2b95065cf7c2025131c85",
+    "spl/lpddr4/check_domain_prepare_diag.py": "17a90cb51f30773155f930a785cf28076d50e3dd699613c2338f4d71ab30f3f0",
+    "spl/lpddr4/phy/host.h": "256d672f20ac3f634de15d3f9565706ccf47c96abbfd274c5f21d977c6117c32",
+    "spl/lpddr4/pmu/domain-access-audit.json": "077bda1c1f0d9193a8bb468c95a832e160d0746856a342343c34a1c0f7ded1d7",
+    "build/lpddr4-domain-prepare-diag/domain_prepare_diag.o": "96769d738e1eabffd67005ff32bc21b03e4a64f0dc26d0356326b2afdce5e0a4"
+  }
+}

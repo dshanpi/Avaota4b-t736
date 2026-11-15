@@ -1,0 +1,26 @@
+{
+  "primary": {
+    "current_lba": 1,
+    "backup_lba": 122142719,
+    "first_usable": 73728,
+    "last_usable": 122142716,
+    "entries_lba": 2,
+    "partition_count": 6,
+    "header_crc_valid": true,
+    "entries_crc_valid": true,
+    "entries_sha256": "750938222976776900b49d1782ee976c52db16fc42f1ab04ceeaffb3aaa4125f"
+  },
+  "secondary": {
+    "current_lba": 122142719,
+    "backup_lba": 1,
+    "first_usable": 73728,
+    "last_usable": 122142716,
+    "entries_lba": 122142717,
+    "partition_count": 6,
+    "header_crc_valid": true,
+    "entries_crc_valid": true,
+    "entries_sha256": "750938222976776900b49d1782ee976c52db16fc42f1ab04ceeaffb3aaa4125f"
+  },
+  "vendor_mirror_identical": true,
+  "all_partition_definitions_unchanged": true
+}

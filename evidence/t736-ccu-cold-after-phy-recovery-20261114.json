@@ -1,0 +1,192 @@
+{
+  "kind": "fixed-t736-ccu-cold-sram-probe",
+  "hardware_actions_started": true,
+  "storage_accessed": false,
+  "pmic_accessed": false,
+  "ddr_initialized": false,
+  "events": [
+    {
+      "operation": "version",
+      "address": "0x0",
+      "length": 0
+    },
+    {
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 168
+    },
+    {
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 168
+    },
+    {
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0
+    },
+    {
+      "operation": "report",
+      "address": "0x48c80",
+      "length": 40
+    },
+    {
+      "phase": "ccu-cold",
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 4072
+    },
+    {
+      "phase": "ccu-cold",
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 4072
+    },
+    {
+      "phase": "ccu-cold",
+      "operation": "clear_report",
+      "address": "0x4e000",
+      "length": 128
+    },
+    {
+      "phase": "ccu-cold",
+      "operation": "check_report",
+      "address": "0x4e000",
+      "length": 128
+    },
+    {
+      "phase": "ccu-cold",
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0
+    },
+    {
+      "phase": "ccu-cold",
+      "operation": "report",
+      "address": "0x4e000",
+      "length": 128
+    }
+  ],
+  "usb": {
+    "backend": "usbUDisc-overlapped",
+    "interface_path": "\\\\?\\usb#vid_1f3a&pid_efe8#6&2bcccfa4&0&2#{a5dcbf10-6530-11d2-901f-00c04fb951ed}",
+    "instance_id": "USB\\VID_1F3A&PID_EFE8\\6&2BCCCFA4&0&2",
+    "hardware_ids": [
+      "USB\\VID_1F3A&PID_EFE8&REV_02;3",
+      "USB\\VID_1F3A&PID_EFE8"
+    ],
+    "service": "usbUDisc",
+    "location_paths": [
+      "PCIROOT(0)#PCI(1400)#USBROOT(0)#USB(10)#USB(2)",
+      "ACPI(_SB_)#ACPI(PC00)#ACPI(XHCI)#ACPI(RHUB)#ACPI(HS10)#ACPI(PRT2)"
+    ],
+    "bulk_out": "0x01",
+    "bulk_in": "0x82",
+    "driver_selects_bulk_pipes": true
+  },
+  "cpu_preflight": {
+    "version": {
+      "raw_chip_id": "0x190300",
+      "firmware": "0x1",
+      "mode": 1,
+      "data_flag": 68,
+      "data_length_field": 8,
+      "scratchpad": "0xee800",
+      "reserved": "0000000000000000",
+      "scratch_guard": {
+        "pointer": "0xee800",
+        "excluded_start": "0xee800",
+        "excluded_end": "0xef800",
+        "extent": "0x1000",
+        "extent_basis": "local conservative exclusion policy; actual ROM scratch size unconfirmed",
+        "pointer_valid": true,
+        "overlaps_fixed_probe": false,
+        "allows_fixed_probe": true
+      }
+    },
+    "probe": {
+      "status": 2,
+      "cpsr": "0x60000153",
+      "sp": "0xf2200",
+      "lr": "0x1a138",
+      "sctlr": "0xc50838",
+      "midr": "0x412fd050",
+      "entry": "0x48c00",
+      "mmu_enabled": false,
+      "dcache_enabled": false,
+      "icache_enabled": false,
+      "cp15_read": true,
+      "ddr_initialized": false,
+      "storage_accessed": false,
+      "pmic_accessed": false
+    },
+    "report_hex": "5043375401000000020000005301006000220f0038a101003808c50050d02f41008c040000000000",
+    "upload_readback_sha256": "2b1dd03fb26940103c057f7f40cd20874566314da3e7f50a78dd2f9f5d2d88d9"
+  },
+  "probe": {
+    "status": "0x2",
+    "passed": true,
+    "completed_stage": 6,
+    "result": 0,
+    "entry_sctlr": "0xc50838",
+    "effective_hw_hz": 24000000,
+    "raw_cntfrq": 0,
+    "timestamp_ctrl": "0x1",
+    "timestamp_freqid": 24000000,
+    "ten_us_delay_ticks": 319,
+    "before_valid_mask": "0x3f",
+    "after_valid_mask": "0x3f",
+    "registers": [
+      {
+        "name": "PLL_DDR",
+        "address": "0x2002020",
+        "before": "0x41304700",
+        "after": "0xf9004a00",
+        "write_count": 7
+      },
+      {
+        "name": "DRAM0_CLK",
+        "address": "0x2002c00",
+        "before": "0x0",
+        "after": "0x80000003",
+        "write_count": 2
+      },
+      {
+        "name": "DRAM0_BGR",
+        "address": "0x2002c0c",
+        "before": "0x1",
+        "after": "0x10001",
+        "write_count": 4
+      },
+      {
+        "name": "NSI_CLK",
+        "address": "0x2002580",
+        "before": "0xc3000000",
+        "after": "0xc3000000",
+        "write_count": 0
+      },
+      {
+        "name": "NSI_BGR",
+        "address": "0x2002584",
+        "before": "0x10001",
+        "after": "0x10001",
+        "write_count": 0
+      },
+      {
+        "name": "MBUS_CLK",
+        "address": "0x2002588",
+        "before": "0x84000000",
+        "after": "0x84000000",
+        "write_count": 0
+      }
+    ],
+    "denied_address": "0x0",
+    "ddr_initialized": false,
+    "phy_accessed": false,
+    "storage_accessed": false,
+    "pmic_accessed": false
+  },
+  "report_hex": "4343375401000000020000003808c50000366e013f0100000600000000000000004730410000000001000000000000c30100010000000084004a00f90300008001000100000000c30100010000000084070000000200000004000000000000003f0000003f000000000000000100000000366e01000000000000000000000000",
+  "upload_readback_sha256": "6639bc0d331f20b28ae2bb7aa16752fe31dbcb0bada2ff4f4fd8c9a92f6ee01d",
+  "success": true
+}

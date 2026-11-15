@@ -1,0 +1,52 @@
+{
+  "kind": "fixed-t736-early-sram-probe",
+  "hardware_actions_started": true,
+  "storage_accessed": false,
+  "pmic_writes": 0,
+  "mmio_scope": "UART/TWI clock, pinmux and controller setup; PMIC register reads only",
+  "events": [
+    {
+      "phase": "early",
+      "operation": "version",
+      "address": "0x0",
+      "length": 0
+    }
+  ],
+  "usb": {
+    "backend": "usbUDisc-overlapped",
+    "interface_path": "\\\\?\\usb#vid_1f3a&pid_efe8#6&2bcccfa4&0&2#{a5dcbf10-6530-11d2-901f-00c04fb951ed}",
+    "instance_id": "USB\\VID_1F3A&PID_EFE8\\6&2BCCCFA4&0&2",
+    "hardware_ids": [
+      "USB\\VID_1F3A&PID_EFE8&REV_02;3",
+      "USB\\VID_1F3A&PID_EFE8"
+    ],
+    "service": "usbUDisc",
+    "location_paths": [
+      "PCIROOT(0)#PCI(1400)#USBROOT(0)#USB(10)#USB(2)",
+      "ACPI(_SB_)#ACPI(PC00)#ACPI(XHCI)#ACPI(RHUB)#ACPI(HS10)#ACPI(PRT2)"
+    ],
+    "bulk_out": "0x01",
+    "bulk_in": "0x82",
+    "driver_selects_bulk_pipes": true
+  },
+  "version": {
+    "raw_chip_id": "0x190300",
+    "firmware": "0x1",
+    "mode": 1,
+    "data_flag": 68,
+    "data_length_field": 8,
+    "scratchpad": "0xee800",
+    "reserved": "0000000000000000",
+    "scratch_guard": {
+      "pointer": "0xee800",
+      "excluded_start": "0xee800",
+      "excluded_end": "0xef800",
+      "extent": "0x1000",
+      "extent_basis": "local conservative exclusion policy; actual ROM scratch size unconfirmed",
+      "pointer_valid": true,
+      "overlaps_fixed_probe": false,
+      "allows_fixed_probe": true
+    }
+  },
+  "success": true
+}

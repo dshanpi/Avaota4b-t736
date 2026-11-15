@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"deviceId\":9,\"efexBytesWritten\":6,\"felOnline\":false,\"method\":\"uboot_serial_efex\",\"next\":\"The fixed transition recipe completed, but the bound FEL/FES USB device did not appear. Do not start flashing and do not retry automatically.\",\"port\":\"COM17\",\"promptObserved\":true,\"serialHandlesClosed\":0,\"serialMonitorRetained\":true,\"state\":\"fel-device-not-found\"}"
+    }
+  ],
+  "isError": false
+}

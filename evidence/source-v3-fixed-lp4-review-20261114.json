@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-14",
+  "user_instruction": "本板固定LPDDR4x，不再自动探测",
+  "vendor_library_sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+  "basis": "source-v2 linked library disassembly and hardware geometry",
+  "changes": {
+    "dram_type": {
+      "value": 8,
+      "note": "Existing library LPDDR4 ABI; unchanged for this LPDDR4x board"
+    },
+    "dram_para1": {
+      "value": "0x311a",
+      "note": "unchanged and observed"
+    },
+    "dram_para2": {
+      "before": "0x1001",
+      "after": "0xa0001001",
+      "observed": "0x20001001",
+      "note": "set bit31 and encode 8192 MiB in bits30:16; low geometry unchanged"
+    },
+    "dram_tpr13": {
+      "before": "0x60",
+      "after": "0x6063",
+      "note": "actual auto-scan result flags; bit0 bypasses automatic rank/width/size scan"
+    }
+  },
+  "disassembly_evidence": {
+    "init_DRAM_0x56190": "load parameter[30], test bit0: 0 calls auto_scan_dram_config; 1 goes directly to mctl_core_init",
+    "init_DRAM_0x561e0": "load parameter[7], bit31 set selects bits30:16 as MiB; otherwise calls DRAMC_get_dram_size",
+    "auto_scan_0x560f4": "successful scan sets 0x6003 flags unless bit15 set"
+  },
+  "phy_training_preserved": true,
+  "dram_electrical_parameters_changed": false,
+  "hardware_validated": false
+}

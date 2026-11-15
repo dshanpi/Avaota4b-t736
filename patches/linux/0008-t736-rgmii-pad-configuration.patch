@@ -1,0 +1,17 @@
+Subject: [PATCH] arm64: dts: t736: configure RGMII pad drive and pull
+
+Use the board reference electrical configuration for PH0-PH15 instead
+of depending on firmware which has not initialized Ethernet.
+
+--- a/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
++++ b/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
+@@ -280,6 +280,8 @@
+ 		       "PH8", "PH9", "PH10", "PH11", "PH12", "PH13", "PH14", "PH15";
+ 		function = "gmac0";
+ 		allwinner,pinmux = <5>;
+-		/* Keep existing pad drive strengths and pull configuration. */
++		/* Match the board's documented RGMII electrical configuration. */
++		drive-strength = <40>;
++		bias-pull-up;
+ 	};
+ };

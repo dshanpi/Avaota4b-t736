@@ -1,0 +1,33 @@
+root@t736:~# id; uptime; cat /sys/devices/system/cpu/online; free -m; findmnt -n -o SOURCE,FSTYPE,OPTIONS /; systemctl --failed --no-pager; cat /proc/sys/kernel/tainted; dd if=/dev/mmcblk0 bs=512 skip=16 count=432 status=none | sha256sum; ls /sys/class/net/end0/phydev; cat /sys/class/net/end0/phydev/phy_id; dmesg | tail -16
+
+uid=0(root) gid=0(root) groups=0(root)
+ 15:49:54 up 2 min,  1 user,  load average: 2.78, 1.36, 0.52
+0-7
+               total        used        free      shared  buff/cache   available
+Mem:            7749         153        7426           9         242        7595
+Swap:              0           0           0
+/dev/mmcblk0p4 ext4 rw,noatime
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+0
+ee77604a0e818a57c676ec4c3fe3043bf928c19fffd3662f344cf7b0bda7f230  -
+ls: cannot access '/sys/class/net/end0/phydev': No such file or directory
+cat: /sys/class/net/end0/phydev/phy_id: No such file or directory
+[   15.665959] systemd[1]: Starting systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully...
+[   15.666337] systemd-journald[244]: Collecting audit messages is disabled.
+[   15.705460] systemd[1]: systemd-tpm2-setup-early.service - Early TPM SRK Setup skipped, unmet condition check ConditionSecurity=measured-uki
+[   15.777236] systemd[1]: Starting systemd-udev-load-credentials.service - Load udev Rules from Credentials...
+[   15.871280] systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+[   16.046571] systemd[1]: Started systemd-journald.service - Journal Service.
+[   16.767500] EXT4-fs (mmcblk0p4): re-mounted 355deac2-71e0-4194-a1c2-f7d457b94137.
+[   16.963364] systemd-journald[244]: Received client request to flush runtime journal.
+[   16.997605] systemd-journald[244]: File /var/log/journal/d786b79a6954432b9c697a6bc683d06c/system.journal corrupted or uncleanly shut down, renaming and replacing.
+[   18.159510] random: crng init done
+[   23.212794] t736-dwmac 4500000.ethernet end0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[   23.254881] t736-dwmac 4500000.ethernet end0: PHY [stmmac-0:01] driver [Generic Clause 45 PHY] (irq=POLL)
+[   24.290616] t736-dwmac 4500000.ethernet end0: Failed to reset the dma
+[   24.298620] t736-dwmac 4500000.ethernet end0: stmmac_hw_setup: DMA engine initialization failed
+[   24.306037] t736-dwmac 4500000.ethernet end0: __stmmac_open: Hw setup failed
+[   31.291544] systemd-journald[244]: Received client request to relinquish /var/log/journal/d786b79a6954432b9c697a6bc683d06c access.
+root@t736:~# 

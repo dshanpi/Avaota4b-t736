@@ -1,0 +1,10 @@
+cat /sys/block/mmcblk0/device/type; cat /sys/block/mmcblk0/size; cat /sys/block/mmcblk0/device/name; findmnt -n -o SOURCE,FSTYPE,OPTIONS /; sync
+
+-bash: syntax error near unexpected token `;'
+root@t736:~# cat /sys/block/mmcblk0/device/type; cat /sys/block/mmcblk0/size; cat /sys/block/mmcblk0/device/name; findmnt -n -o SOURCE,FSTYPE,OPTIONS /; sync
+
+MMC
+122142720
+A31Y5C
+/dev/mmcblk0p4 ext4 rw,noatime
+root@t736:~# 

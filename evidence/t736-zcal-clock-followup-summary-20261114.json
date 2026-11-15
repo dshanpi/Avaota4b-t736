@@ -1,0 +1,168 @@
+{
+  "date": "2026-11-14",
+  "kind": "hardware-executed clock comparisons following prior eight experiments",
+  "resolved": false,
+  "calibration_verified": false,
+  "ddr_initialized": false,
+  "dram_commands_sent": false,
+  "storage_accessed": false,
+  "experiments": [
+    {
+      "experiment": "ucclkfull",
+      "evidence": "evidence/t736-phy-zcal-ucclkfull-sram-hardware-20261114.json",
+      "passed_execution_contract": true,
+      "calibration_verified": false,
+      "completed": 145,
+      "writes": 13,
+      "reset_ticks": 37,
+      "run_or_settle_ticks": 2419,
+      "tick_hz": 24000000,
+      "upload_readback_sha256": "f4ee4cdfcd265a60a86e8b1662f282468347ba187516bebe3566e815879256c6",
+      "observations": {
+        "0x2002c00": [
+          "0x80000003",
+          "0x80000003"
+        ],
+        "0xaa80100": [
+          "0x3",
+          "0x3",
+          "0x7",
+          "0x3",
+          "0x3"
+        ],
+        "0xa940628": [
+          "0xff",
+          "0xff",
+          "0xff",
+          "0xff"
+        ],
+        "0xa94062a": [
+          "0xff",
+          "0xff",
+          "0xff",
+          "0xff"
+        ],
+        "0xa94064c": [
+          "0x0",
+          "0x0",
+          "0x0",
+          "0x0",
+          "0x0"
+        ],
+        "0xa94064e": [
+          "0x0",
+          "0x0",
+          "0x0",
+          "0x0",
+          "0x0"
+        ]
+      }
+    },
+    {
+      "experiment": "dfi-update",
+      "evidence": "evidence/t736-phy-zcal-dfi-update-sram-hardware-20261114.json",
+      "passed_execution_contract": true,
+      "calibration_verified": false,
+      "completed": 102,
+      "writes": 1,
+      "reset_ticks": 36,
+      "run_or_settle_ticks": 24011,
+      "tick_hz": 24000000,
+      "upload_readback_sha256": "82436f88467d8d9e0d92c3231b48be6218ecf186f6b9d122453e31c0341a0a68",
+      "observations": {
+        "0x2002c00": [
+          "0x80000003",
+          "0x80000003",
+          "0x80000003"
+        ],
+        "0xaa80100": [
+          "0x3",
+          "0x3"
+        ],
+        "0xa940628": [],
+        "0xa94062a": [],
+        "0xa94064c": [
+          "0x0"
+        ],
+        "0xa94064e": [
+          "0x0"
+        ]
+      }
+    },
+    {
+      "experiment": "after-dfi-update",
+      "evidence": "evidence/t736-phy-zcal-after-dfi-update-sram-hardware-20261114.json",
+      "passed_execution_contract": true,
+      "calibration_verified": false,
+      "completed": 140,
+      "writes": 11,
+      "reset_ticks": 37,
+      "run_or_settle_ticks": 2416,
+      "tick_hz": 24000000,
+      "upload_readback_sha256": "93a3373f6d161dd1c78b4ddc68b4fd051e051a734ee6f4df6b37e5c3b3cdf9c9",
+      "observations": {
+        "0x2002c00": [
+          "0x80000003",
+          "0x80000003"
+        ],
+        "0xaa80100": [
+          "0x3",
+          "0x3"
+        ],
+        "0xa940628": [
+          "0xff",
+          "0xff",
+          "0xff",
+          "0xff"
+        ],
+        "0xa94062a": [
+          "0xff",
+          "0xff",
+          "0xff",
+          "0xff"
+        ],
+        "0xa94064c": [
+          "0x0",
+          "0x0",
+          "0x0",
+          "0x0",
+          "0x0"
+        ],
+        "0xa94064e": [
+          "0x0",
+          "0x0",
+          "0x0",
+          "0x0",
+          "0x0"
+        ]
+      }
+    }
+  ],
+  "total_new_events": 387,
+  "total_new_writes_except_uart": 25,
+  "findings": [
+    "UcclkHclkEnables3->7->3 exact readback;candidate raw20314/20315 remainff/ff and override20326/20327 remain0/0.",
+    "After PHY configuration,DRAM0_CLK update88000003 returns80000003 after24011ticks at24MHz (~1000.46us);same source/divider/gate retained. Subsequent baseline ZCal/codetrack result unchanged.",
+    "Neither experiment establishes that all functional clocks are present; it only records no feedback change under these controlled interventions.",
+    "NXP labels20326/20327 override configuration;zero alone remains insufficient to prove a stopped state machine. Raw20314/20315 validity and completion/error indication remain unverified."
+  ],
+  "source_facts": "evidence/t736-zcal-dfi-update-host-facts-20261114.log",
+  "validation": "evidence/t736-zcal-clock-followup-validation-20261114.json",
+  "final_state": {
+    "transport": "FEL",
+    "PLL_DDR": "0xf9004a00",
+    "DRAM0_CLK": "0x80000003",
+    "SYS_CFG": "0x273f",
+    "MicroReset": 1,
+    "MuxSel": 0,
+    "UcclkHclkEnables": 3,
+    "MemResetL": 2,
+    "ZCalReset": 0,
+    "ZCalRun": 0,
+    "ZCalRate": 9,
+    "raw2030d": 0,
+    "raw20320": 0,
+    "controllers": "Init,MRidle,DFIhandoffdisabled,portsclosed"
+  },
+  "remaining": "Target-specific ZCal enable/completion/raw-feedback path is unresolved. No justified new analog/PLL bitfield mutation was established by the host-interface review; target-generation CSR evidence or independent clock/reference measurement is needed to discriminate remaining causes. Training,standalone memory testing andindependent Armbian acceptance remain incomplete."
+}

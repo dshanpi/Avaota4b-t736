@@ -1,0 +1,50 @@
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+  GEN     Makefile
+#
+# No change to .config
+#
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+  GEN     Makefile
+  DTC     arch/arm64/boot/dts/allwinner/t736-hdmi-candidate.dtb
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  CC      drivers/clk/clk-t736-display.o
+  AR      drivers/clk/built-in.a
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.c: In function ‘sunxi_hdmi_disp_select_format’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.c:587:25: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  587 |                         if (info->bits == DISP_DATA_8BITS ||
+      |                         ^~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.c:591:33: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  591 |                                 return 0;
+      |                                 ^~~~~~
+  AR      drivers/gpu/drm/t736-bsp/built-in.a
+  AR      drivers/gpu/drm/built-in.a
+  AR      drivers/gpu/built-in.a
+  AR      drivers/built-in.a
+  AR      built-in.a
+  AR      vmlinux.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'

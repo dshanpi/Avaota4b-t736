@@ -1,0 +1,106 @@
+{
+  "date": "2026-11-14",
+  "scope": "Cold SRAM Type9 ZCal controlled experiment review; non-executable host MMIO facts only",
+  "hardware_actions": false,
+  "source_instructions_or_sequencer_words_imported": false,
+  "radxa_sources_used": false,
+  "sources": {
+    "sdk": {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+      "symbol": "ddrphy_phyinit_C_initPhyConfigPsLoop",
+      "use": "Only host address and scalar non-executable ZCalClkInfo write."
+    },
+    "nxp": {
+      "repository": "nxp-imx/imx-sm",
+      "commit": "eec232878ab7dd460f5a8f3767d39dc7e9412efa",
+      "path": "drivers/ddr/fsl_ddr.c",
+      "blob": "c855e02301e157c73d92eeac3c74510a580fc328",
+      "lines": [
+        413,
+        497
+      ],
+      "context": "Retention restoration with known trained state, not proof of target cold startup; explicit host interface remains useful for staged experiment."
+    },
+    "sima": {
+      "repository": "SiMa-ai/sima-ai-uboot",
+      "commit": "5a026adbe2a54aeaae5dc50e1852d4b5c1884640",
+      "path": "arch/arm/mach-sima/qb_init_ddr_modalix.c",
+      "blob": "a8e82ed8734ab07d728da0ff23975bf943d6dc6c",
+      "use": "Host CSR name and PorControl=1 corroboration only; no executable arrays or saved training data imported."
+    },
+    "sima_static_names": "evidence/sima-type9-host-csr-map-20261114.json",
+    "public_source": {
+      "repository": "InfernoEmbedded/u-boot",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+      "path": "arch/arm/mach-sunxi/pmu/pmu_train.c",
+      "lines": [
+        1706
+      ],
+      "use": "Public source performs halfword write1 to90040120, locally supporting PorControl write; not a whole-PMU port."
+    }
+  },
+  "local_tick_count": {
+    "host": "0x0a940008",
+    "logical": "0x20004",
+    "sima_name": "ZCalClkInfo_p0",
+    "nxp_field": "ZcalDfiClkTicksPer1uS_p0[10:0]",
+    "input_dram_clk_mhz": 1800,
+    "expected_dfi_mhz": 450,
+    "value": 450,
+    "value_hex": "0x01c2",
+    "derivation": "SDK PsLoop13f4 loads r1 from literal149c=0x0a940008. At13f6 it reads lowspeed_1b2_mode; zero branches at13fc to168e. At1690 UBFX r0,r7,#2,#16; at1694 STRH r0,[r1]. r7 is original dram_clk from entry ldrd r7,r5,[r1], with no frequency scaling for board tpr13bit2 clear and lowspeed flag0. Thus floor(1800/4)=450. Other frequency and lowspeed branches must be recomputed.",
+    "agreement": "NXP names the low11 bits as DFI clock cycles per microsecond. 450MHz therefore implies450 ticks/us. This target-specific host write independently confirms the units and value, avoiding transplantation of NXP pstate_freq/8 formula.",
+    "nonexecutability": "This is a scalar MASTER configuration CSR, not descriptor, IMEM, DMEM or PIE instruction storage."
+  },
+  "candidate_additional_controls": [
+    {
+      "host": "0x0a940116",
+      "logical": "0x2008b",
+      "name": "PState",
+      "candidate_value": 0,
+      "basis": "NXP host explicitly selects the PState corresponding to DfiClk, using0. Public source writes a state selector to local ARC90040116; its RFIFO_SUPPRESS label is not trusted as semantic evidence.",
+      "action": "Read before changes. For this single-PState cold experiment, write0 and verify before pulse."
+    },
+    {
+      "host": "0x0a940120",
+      "logical": "0x20090",
+      "name": "PorControl / PwrOkDlyCtrl",
+      "candidate_value": 1,
+      "basis": "NXP host writes1 before ZCal. SiMa quickboot host names20090 PorControl and writes1. Public source pmu_train.c1706 writes90040120=1 before stage dispatch.",
+      "action": "Read before changes, then separate recorded halfword write1/readback; full bitfields and target POR electrical timing are not claimed."
+    },
+    {
+      "host": "0x0aa80100",
+      "logical": "0xc0080",
+      "name": "UcclkHclkEnables",
+      "candidate_value": 3,
+      "basis": "NXP host3 enables Hclk/Ucclk,2 leaves Hclk only; SiMa separately corroborates CSR name. Keep PMU reset+stall9 when enabling clocks so no executable runs.",
+      "action": "Read before writing. Record exact prior value and use reviewed source fixed setting; do not clear unrelated observed bits by accidental RMW assumptions."
+    }
+  ],
+  "practical_stages": [
+    {
+      "stage": "baseline",
+      "action": "After SYS_CFG273f and both controllers held, mux0/micro1 permit readonly static observation. No prerequisite write9 is required solely for these reads. Read20004/2008b/20090 plus20310/20311/20326/20327 as explicit candidates."
+    },
+    {
+      "stage": "source_configuration",
+      "action": "Keep both controllers held and all DRAM clients off. Assert MicroReset9, verify mux0. Configure approved source PLL/analog static fields separately, establish Hclk/Ucclk3, assert ZCalReset1, and set tick count450, PState0, PorControl1 with per-write readback. Preserve reset-held DRAM context; no DDR-device MR/ZQ command is issued."
+    },
+    {
+      "stage": "timed_pulse",
+      "action": "Require ZCalRun0 and PU/PD override bits0 clear. Write ZCalReset0, ZCalRun1, wait a measured interval at least35us (100us is a conservative experiment choice), write ZCalRun0, and collect raw reset/run/PU/PD and context values. Stop on the first failing access; no automatic retry or cleanup writes."
+    },
+    {
+      "stage": "interpretation",
+      "action": "Return TIMED_ONLY. Changed or stable nonzero PU/PD codes are observations, not proof of fresh calibration completion or valid ohms. No DDR reads, training success, boot integration or storage writes follow solely from this result."
+    }
+  ],
+  "completion_interface": {
+    "busy_done_error": "No stronger independently corroborated Type9 busy/done/error field was found in the queried public sources. NXP uses35us timed wait.",
+    "code_read_source": "nxp-imx/imx-oei helper.c337..343 reads20326/20327 as saved ZQ calibration codes; NXP SM describes upper8 code bits and bit0 override. This supports useful pre/post code observation without importing saved codes.",
+    "avoid_wrong_generation": "Older DDRPHYA CalBusy atMASTER97 conflicts with this generation and is not used.",
+    "public_source_companions": "Public LP5 helper also alters20303 bit4 and pulses2030d/20320. Their exact electrical meanings remain unknown and they are not silently added to the minimal NXP-backed timed experiment."
+  }
+}

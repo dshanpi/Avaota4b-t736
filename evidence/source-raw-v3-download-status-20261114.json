@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"bytesTransferred\": 1030800000,\n  \"deviceId\": null,\n  \"error\": \"SFTP_READ:Error waiting for SFTP packet\",\n  \"exitCode\": null,\n  \"finishedAt\": 1794650824,\n  \"kind\": \"transfer\",\n  \"localPath\": \"C:\\\\Users\\\\世玉轩\\\\AppData\\\\Local\\\\com.dshanpi.lynx\\\\firmware\\\\project-9\\\\t736-armbian-source-v3.raw.img\",\n  \"phase\": \"transfer\",\n  \"progressPct\": 12.00009137392044,\n  \"projectId\": 9,\n  \"sha256\": null,\n  \"startedAt\": 1794650809,\n  \"state\": \"failed\",\n  \"taskId\": \"transfer-1794650808816228100\",\n  \"totalBytes\": 8589934592\n}"
+    }
+  ],
+  "isError": false
+}

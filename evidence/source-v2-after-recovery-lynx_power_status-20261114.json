@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"deviceId\":9,\"source\":\"last_known_command\",\"state\":\"on\"}"
+    }
+  ],
+  "isError": false
+}

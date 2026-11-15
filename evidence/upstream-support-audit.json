@@ -1,0 +1,249 @@
+{
+  "recorded_utc": "2026-11-12T06:25:12.730771+00:00",
+  "scope": "identifier_search_in_explicit_paths_at_locked_commits",
+  "components": [
+    {
+      "name": "u-boot",
+      "origin": "https://github.com/u-boot/u-boot.git",
+      "commit": "5508406582f6f7120dce0c4b3059819a41788db2",
+      "checkout_clean": true,
+      "worktree_status": [],
+      "queries": [
+        {
+          "id": "soc_boot_support",
+          "pattern": "a733|sun60i|(^|[^a-z0-9])t736([^a-z0-9]|$)",
+          "paths": [
+            "arch/arm/mach-sunxi",
+            "arch/arm/include/asm/arch-sunxi",
+            "configs"
+          ],
+          "matches": []
+        },
+        {
+          "id": "soc_clock_pinctrl_mmc",
+          "pattern": "a733|sun60i|(^|[^a-z0-9])t736([^a-z0-9]|$)",
+          "paths": [
+            "drivers/clk/sunxi",
+            "drivers/pinctrl/sunxi",
+            "drivers/mmc"
+          ],
+          "matches": []
+        },
+        {
+          "id": "soc_dts",
+          "pattern": "a733|sun60i|(^|[^a-z0-9])t736([^a-z0-9]|$)",
+          "paths": [
+            "arch/arm/dts",
+            "dts/upstream/src/arm64/allwinner"
+          ],
+          "matches": []
+        },
+        {
+          "id": "packed_pmic_model",
+          "pattern": "axp8191",
+          "paths": [
+            "drivers/power",
+            "include"
+          ],
+          "matches": []
+        }
+      ]
+    },
+    {
+      "name": "linux",
+      "origin": "https://github.com/gregkh/linux.git",
+      "commit": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
+      "checkout_clean": false,
+      "worktree_status": [
+        "M include/uapi/linux/netfilter/xt_CONNMARK.h",
+        " M include/uapi/linux/netfilter/xt_DSCP.h",
+        " M include/uapi/linux/netfilter/xt_MARK.h",
+        " M include/uapi/linux/netfilter/xt_RATEEST.h",
+        " M include/uapi/linux/netfilter/xt_TCPMSS.h",
+        " M include/uapi/linux/netfilter_ipv4/ipt_ECN.h",
+        " M include/uapi/linux/netfilter_ipv4/ipt_TTL.h",
+        " M include/uapi/linux/netfilter_ipv6/ip6t_HL.h",
+        " M net/netfilter/xt_DSCP.c",
+        " M net/netfilter/xt_HL.c",
+        " M net/netfilter/xt_RATEEST.c",
+        " M net/netfilter/xt_TCPMSS.c",
+        " M tools/memory-model/litmus-tests/Z6.0+pooncelock+poonceLock+pombonce.litmus"
+      ],
+      "queries": [
+        {
+          "id": "soc_dts_and_board_binding",
+          "pattern": "a733|sun60i|(^|[^a-z0-9])t736([^a-z0-9]|$)",
+          "paths": [
+            "arch/arm64/boot/dts/allwinner",
+            "Documentation/devicetree/bindings/arm/sunxi.yaml"
+          ],
+          "matches": []
+        },
+        {
+          "id": "soc_clocks",
+          "pattern": "a733|sun60i|(^|[^a-z0-9])t736([^a-z0-9]|$)",
+          "paths": [
+            "drivers/clk/sunxi-ng",
+            "include/dt-bindings/clock",
+            "include/dt-bindings/reset"
+          ],
+          "matches": []
+        },
+        {
+          "id": "soc_pinctrl",
+          "pattern": "a733|sun60i|(^|[^a-z0-9])t736([^a-z0-9]|$)",
+          "paths": [
+            "drivers/pinctrl/sunxi"
+          ],
+          "matches": []
+        },
+        {
+          "id": "soc_mmc_and_packed_compatibles",
+          "pattern": "a733|sun60i|(^|[^a-z0-9])t736([^a-z0-9]|$)|sunxi-mmc-v4p6x|sunxi-mmc-v5p6x",
+          "paths": [
+            "drivers/mmc/host/sunxi-mmc.c",
+            "Documentation/devicetree/bindings/mmc"
+          ],
+          "matches": []
+        },
+        {
+          "id": "packed_pmic_model",
+          "pattern": "axp8191",
+          "paths": [
+            "drivers/mfd",
+            "drivers/regulator",
+            "include/linux/mfd",
+            "Documentation/devicetree/bindings/mfd"
+          ],
+          "matches": []
+        }
+      ]
+    },
+    {
+      "name": "armbian-build",
+      "origin": "https://github.com/armbian/build.git",
+      "commit": "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736",
+      "checkout_clean": true,
+      "worktree_status": [],
+      "queries": [
+        {
+          "id": "board_and_family_declarations",
+          "pattern": "a733|sun60i|(^|[^a-z0-9])t736([^a-z0-9]|$)",
+          "paths": [
+            "config/boards",
+            "config/sources/families"
+          ],
+          "matches": [
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/armsom-sige6.csc:1:# Allwinner A733 octa-core 2-16GB LPDDR5 WiFi6/BT GBE USB3 NVMe soldered eMMC",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/armsom-sige6.csc:4:BOARDFAMILY=\"sun60iw2\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/armsom-sige6.csc:11:BOOT_FDT_FILE=\"allwinner/sun60i-a733-armsom-sige6.dtb\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/armsom-sige6.csc:14:SUN60IW2_UART_BT=\"yes\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/armsom-sige6.csc:19:SUNXI_BOOT0_SDCARD_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/boot0_sdcard_armsom-sige6.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/armsom-sige6.csc:20:SUNXI_BOOT0_SPINOR_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/boot0_spinor_armsom-sige6.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/armsom-sige6.csc:21:SUNXI_SYS_CONFIG_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/sys_config_armsom-sige6.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/cubie-a7z.csc:1:# Allwinner A733 (sun60iw2) octa-core 1-16GB, WiFi6/BT (USB), NPU, GPU, UFS",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/cubie-a7z.csc:4:BOARDFAMILY=\"sun60iw2\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/cubie-a7z.csc:13:BOOT_FDT_FILE=\"allwinner/sun60i-a733-cubie-a7z.dtb\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/cubie-a7z.csc:24:SUNXI_BOOT0_SDCARD_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/boot0_cubie-a7z.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/cubie-a7z.csc:25:SUNXI_BOOT0_SPINOR_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/boot0_cubie-a7z.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/cubie-a7z.csc:26:SUNXI_SYS_CONFIG_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/sys_config_cubie-a7z.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepi4pro.csc:1:# Allwinner A733 octa core 2-16GB RAM GBE USB3 WiFi/BT NVMe eMMC",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepi4pro.csc:4:BOARDFAMILY=\"sun60iw2\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepi4pro.csc:11:BOOT_FDT_FILE=\"allwinner/sun60i-a733-orangepi-4-pro.dtb\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepi4pro.csc:12:SUNXI_BOOT0_SDCARD_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/boot0_sdcard_orangepi4pro.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepi4pro.csc:13:SUNXI_BOOT0_SPINOR_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/boot0_spinor_orangepi4pro.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepi4pro.csc:14:SUNXI_SYS_CONFIG_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/sys_config_orangepi.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepi4pro.csc:17:SUN60IW2_UART_BT=\"yes\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepizero3w.conf:1:# Allwinner A733 octa core 1-16GB RAM WiFi6/BT UFS/eMMC microSD",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepizero3w.conf:4:BOARDFAMILY=\"sun60iw2\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepizero3w.conf:12:BOOT_FDT_FILE=\"allwinner/sun60i-a733-orangepi-zero3w.dtb\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepizero3w.conf:14:SUNXI_BOOT0_SDCARD_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/boot0_sdcard_orangepizero3w.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepizero3w.conf:15:SUNXI_BOOT0_SPINOR_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/boot0_sdcard_orangepizero3w.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepizero3w.conf:16:SUNXI_SYS_CONFIG_FEX=\"${SRC}/packages/blobs/sunxi/sun60iw2/sys_config_orangepi.fex\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/boards/orangepizero3w.conf:19:SUN60IW2_UART_BT=\"yes\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:9:# Allwinner A733 (sun60iw2) SoC family.",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:11:declare -g LINUXFAMILY=\"sun60iw2\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:18:declare -g BOOTSCRIPT=\"boot-sun60iw2.cmd:boot.cmd\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:19:declare -g BOOTENV_FILE=\"sun60iw2.txt\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:24:# pvrsrvkm is the out-of-tree IMG BXM (PowerVR) GPU driver, built by pre_package_kernel_image__sun60iw2_gpu_module",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:29:declare -g KERNELBRANCH=\"branch:orange-pi-6.6-sun60iw2\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:31:declare -g LINUXCONFIG=\"linux-sun60iw2-vendor\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:32:declare -g KERNELPATCHDIR=\"archive/sun60iw2-opi-vendor\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:33:declare -g OVERLAY_PREFIX=\"${OVERLAY_PREFIX:-\"sun60i-a733\"}\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:36:declare -g BOOTBRANCH=\"commit:b791be842935b27268ae3d00e943a9075495f30a\" # branch v2018.05-sun60iw2",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:37:declare -g BOOTDIR=\"u-boot-orangepi-sun60iw2\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:39:declare -g BOOTCONFIG=\"sun60iw2p1_t736_defconfig\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:45:# sun60iw2_packages repo. Switches, all default \"yes\":",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:46:#   SUN60IW2_GPU_USERSPACE  - PowerVR EGL/GLES/GBM/Vulkan/OpenCL libs, RGX firmware",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:47:#   SUN60IW2_NPU_USERSPACE  - VIPLite NPU runtime + demos",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:48:#   SUN60IW2_MEDIA_USERSPACE- Allwinner CedarC (video enc/dec), ISP (camera) libs, GStreamer OMX plugin",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:49:declare -g SUN60IW2_PACKAGES_REPO=\"https://github.com/orangepi-xunlong/rk-rootfs-build.git\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:50:declare -g SUN60IW2_PACKAGES_REF=\"7b6d78d4f5eaefd5456777fbea5057a0876e8f4d\" # branch sun60iw2_packages",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:52:declare -g SUN60IW2_OPI_BUILD_REPO=\"https://github.com/orangepi-xunlong/orangepi-build.git\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:53:declare -g SUN60IW2_OPI_BUILD_REF=\"7f776a209b72b92e8c6a06abc83b1e7597eef5af\" # branch next",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:60:function add_host_dependencies__sun60iw2_uboot_xxd() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:65:function post_config_uboot_target__sun60iw2_vendor_quirks() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:74:\t\t\texit_with_error \"sun60iw2: native scripts/dtc rebuild failed\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:78:function uboot_make_config__sun60iw2_pwd() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:98:\t\texit_with_error \"sun60iw2: board must set SUNXI_BOOT0_SDCARD_FEX / SUNXI_BOOT0_SPINOR_FEX / SUNXI_SYS_CONFIG_FEX in its fetch_custom_uboot hook\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:120:\t[[ -d \"${pack_dir}/sun60iw2/bin\" && -d \"${pack_dir}/tools\" ]] || exit_with_error \"uboot_custom_postprocess: pack-uboot layout missing in orangepi-build @ ${opi_build_ref}\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:124:\trun_host_command_logged cp -r \"${pack_dir}/sun60iw2/bin/.\" \"${work_dir}/\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:169:function custom_kernel_config__sun60iw2_dirty_frag() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:173:function post_family_tweaks__sun60iw2() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:174:\tdisplay_alert \"sun60iw2 rootfs tweaks\" \"${BOARD}\" \"info\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:188:\tif [[ \"${SUN60IW2_UART_BT:-no}\" == \"yes\" ]]; then",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:196:function pre_package_kernel_headers__sun60iw2_bsp_include() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:205:function pre_package_kernel_image__sun60iw2_gpu_module() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:210:\t[[ -d \"${gpu_dir}\" ]] || exit_with_error \"sun60iw2: required bsp/modules/gpu is missing from the kernel tree; cannot build pvrsrvkm\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:217:\tgpu_ld=\"$(command -v \"${KERNEL_COMPILER}ld\")\" || exit_with_error \"sun60iw2: ${KERNEL_COMPILER}ld not found\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:237:\trun_host_command_logged \"${gpu_make[@]}\" -j\"$(nproc)\" || exit_with_error \"sun60iw2: pvrsrvkm build failed\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:238:\trun_host_command_logged \"${gpu_make[@]}\" modules_install || exit_with_error \"sun60iw2: pvrsrvkm install failed\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:239:\t[[ -f \"${gpu_out}/pvrsrvkm.ko\" ]] || exit_with_error \"sun60iw2: pvrsrvkm.ko was not produced\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:256:#   sun60iw2_sparse_fetch <out_dir_var> <cache_key> <repo_url> <ref> <sparse_path>...",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:257:function sun60iw2_sparse_fetch() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:288:\t\texit_with_error \"sun60iw2: could not fetch ${cache_key} @ ${ref}\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:293:# Vendor packages: GPU/NPU/video/camera userspace libs (checkout in SUN60IW2_PACKAGES_DIR).",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:294:function sun60iw2_fetch_vendor_packages() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:295:\tsun60iw2_sparse_fetch SUN60IW2_PACKAGES_DIR sun60iw2_packages \\",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:296:\t\t\"${SUN60IW2_PACKAGES_REPO}\" \"${SUN60IW2_PACKAGES_REF}\" \\",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:302:# (checkout in SUN60IW2_OPI_BSP_DIR).",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:303:function sun60iw2_fetch_opi_bsp() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:304:\tsun60iw2_sparse_fetch SUN60IW2_OPI_BSP_DIR sun60iw2_opi_bsp \\",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:305:\t\t\"${SUN60IW2_OPI_BUILD_REPO}\" \"${SUN60IW2_OPI_BUILD_REF}\" \\",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:306:\t\t\"external/packages/bsp/sun60iw2/*\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:311:function post_family_tweaks__sun60iw2_userspace() {",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:312:\tlocal gpu=\"${SUN60IW2_GPU_USERSPACE:-yes}\" npu=\"${SUN60IW2_NPU_USERSPACE:-yes}\" media=\"${SUN60IW2_MEDIA_USERSPACE:-yes}\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:315:\tsun60iw2_fetch_vendor_packages",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:316:\tlocal pkgs=\"${SUN60IW2_PACKAGES_DIR}\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:319:\t\tdisplay_alert \"sun60iw2 GPU userspace\" \"PowerVR EGL/GLES/GBM/Vulkan/OpenCL + RGX firmware\" \"info\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:339:\t\trsync -a --chown=root:root \"${gpu_excludes[@]}\" \"${gpu_tmp}/\" \"${SDCARD}/\" || exit_with_error \"sun60iw2: installing GPU userspace failed\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:346:\t\t\tdisplay_alert \"sun60iw2 desktop\" \"IMG-patched Xorg 1.21.1 + glamor on PowerVR\" \"info\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:365:\t\t\t\tssl_tmp_deb=\"$(mktemp \"${ssl_deb}.XXXXXX.tmp\")\" || exit_with_error \"sun60iw2: could not create libssl1.1 temp file\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:368:\t\t\t\t\texit_with_error \"sun60iw2: could not download libssl1.1 (Xorg compat)\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:372:\t\t\t\t\texit_with_error \"sun60iw2: libssl1.1 download does not match expected sha1 ${ssl_sha1}\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:378:\t\t\trun_host_command_logged install -d \"${SDCARD}/usr/lib/sun60iw2-xorg-compat\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:379:\t\t\trun_host_command_logged install -m 644 \"${ssl_tmp}/usr/lib/aarch64-linux-gnu/libcrypto.so.1.1\" \"${SDCARD}/usr/lib/sun60iw2-xorg-compat/\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:381:\t\t\techo \"/usr/lib/sun60iw2-xorg-compat\" > \"${SDCARD}/etc/ld.so.conf.d/zz-sun60iw2-xorg-compat.conf\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:414:\t\tdisplay_alert \"sun60iw2 NPU userspace\" \"VIPLite runtime + demos\" \"info\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:417:\t\trun_host_command_logged mkdir -p \"${SDCARD}/usr/lib/sun60iw2-npu\" \"${SDCARD}/usr/include\" \"${SDCARD}/opt\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:418:\t\trun_host_command_logged cp -a \"${pkgs}\"/npu/usr/lib/. \"${SDCARD}/usr/lib/sun60iw2-npu/\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:421:\t\techo \"/usr/lib/sun60iw2-npu\" > \"${SDCARD}/etc/ld.so.conf.d/zz-sun60iw2-npu.conf\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:425:\t\tdisplay_alert \"sun60iw2 media userspace\" \"CedarC (VE), AWIspApi, GStreamer OMX\" \"info\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:430:\t\t\t[[ -f \"${deb}\" ]] || exit_with_error \"sun60iw2: missing media package ${deb}\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:447:\t\t\t[[ -f \"${deb}\" ]] || exit_with_error \"sun60iw2: missing media package ${deb}\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:459:\t\tdisplay_alert \"sun60iw2 camera tools\" \"csi_test_mplane, v4l2_opencv_demo\" \"info\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:460:\t\tsun60iw2_fetch_opi_bsp",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:461:\t\tlocal bsp=\"${SUN60IW2_OPI_BSP_DIR}/external/packages/bsp/sun60iw2\"",
+            "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736:config/sources/families/sun60iw2.conf:472:\tcat <<- 'EOF' > \"${SDCARD}/etc/udev/rules.d/99-sun60iw2-permissions.rules\""
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No hardware execution or compiler test was performed by this audit.",
+    "An absent match means only that the selected identifiers are absent from the selected paths.",
+    "The packed DTB reports AXP8191; the physical PMIC and live configuration still need confirmation.",
+    "No Armbian board configuration or vendor patch series has been selected or executed."
+  ]
+}

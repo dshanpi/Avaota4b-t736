@@ -1,0 +1,20 @@
+Subject: [PATCH] pinctrl: sunxi: number IRQ banks from the first populated bank
+
+The first populated bank need not be PA. Start the last-bank and IRQ
+bank counters before their first valid index so PB starts at IRQ bank 0.
+This also handles leading populated banks that have no IRQ support.
+
+diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c b/drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c
+--- a/drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c
++++ b/drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c
+@@ -208,8 +208,8 @@
+ 	 * Assign the function's memory and fill in GPIOs, IRQ and a sentinel.
+ 	 * The extra functions will be filled in later.
+ 	 */
+-	irq_bank = 0;
+-	last_bank = 0;
++	irq_bank = -1;
++	last_bank = -1;
+ 	for (i = 0; i < npins; i++) {
+ 		struct sunxi_desc_pin *pin = &pins[i];
+ 		int bank = (pin->pin.number - pin_base) / PINS_PER_BANK;

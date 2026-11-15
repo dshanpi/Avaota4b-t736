@@ -1,0 +1,19 @@
+T736 SRAM source probe v2; NO DDR INITIALIZATION
+stack.bottom=0004f000
+stack.top=00050000
+counter.raw_cntfrq=00000000
+timestamp.ctrl.before=00000001
+timestamp.freqid.before=00000000
+timestamp.advanced.before=00000001
+timestamp.ctrl.after=00000001
+timestamp.freqid.after=016e3600
+counter.effective_hw_hz=016e3600
+pmic.id=00000003
+pmic.reg=00000010 value=000000ff
+pmic.reg=00000019 value=000000bc
+pmic.reg=00000020 value=0000000f
+pmic.reg=00000027 value=0000000d
+pmic.reg=00000022 value=00000046
+pmic.reg=0000003a value=00000006
+probe.status=00000002
+PMIC writes: 0; DDR tested: NO; returning to FEL caller

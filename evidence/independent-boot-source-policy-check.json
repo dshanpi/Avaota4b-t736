@@ -1,0 +1,34 @@
+{
+  "checks": [
+    {
+      "input": "PMU_FW",
+      "returncode": 1,
+      "rejected": true,
+      "message": "PMU_FW is forbidden for this source-only probe"
+    },
+    {
+      "input": "BINMAN_ALLOW_MISSING",
+      "returncode": 1,
+      "rejected": true,
+      "message": "BINMAN_ALLOW_MISSING is forbidden for this source-only probe"
+    },
+    {
+      "input": "ALLOW_MISSING",
+      "returncode": 1,
+      "rejected": true,
+      "message": "ALLOW_MISSING is forbidden for this source-only probe"
+    },
+    {
+      "input": "legacy packer without override",
+      "returncode": 2,
+      "rejected": true,
+      "before_input_file_access": true
+    }
+  ],
+  "existing_pmu_compile_artifact_sha256_match": true,
+  "pmu_sha256": "a6d1e27718b28e9c26591cb1adb2c3c841c9bde8941468cebde6a3fbe4825df9",
+  "lpddr4_implemented": false,
+  "hardware_tested": false,
+  "firmware_built": false,
+  "flashed": false
+}

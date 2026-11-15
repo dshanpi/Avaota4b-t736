@@ -1,0 +1,591 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "objective": "Source SPL + authorized vendor LPDDR4 library -> source TF-A -> source U-Boot -> Armbian",
+  "constraints": "config/boot-policy.json",
+  "overall_complete": false,
+  "stages": [
+    {
+      "id": "source_contract",
+      "state": "complete",
+      "deliverable": "Pinned source provenance and read-only board register facts",
+      "acceptance": [
+        "Pinned DDR library and embedded training firmware allowed; other vendor boot stages excluded",
+        "Radxa A733 source reuse authorized2026-11-14; record provenance andadapt LP4 protocol",
+        "Current noncompliant v11 and v4/v6 recovery artifacts retained as documented historical state"
+      ]
+    },
+    {
+      "id": "ddr_training",
+      "state": "authorized_library_fixed_lp4x_three_emmc_boots_passed_pure_source_training_incomplete",
+      "owner": "lpddr4_pmu",
+      "deliverable": "Source SRAM host + pinned libdram + board LPDDR4 parameters",
+      "acceptance": [
+        "Authorized libdram hash and source host provenance recorded",
+        "LPDDR4 command/timing semantics established",
+        "Bounded failures and training errors handled",
+        "Reproducible ARM/ARC artifacts"
+      ],
+      "completed": [
+        "Common LP4 message-field editor",
+        "Bounded mailbox protocol",
+        "Eye-window selection core with 40960 oracle cases",
+        "ARM32 and ARC EM4 object compilation",
+        "Bounded PHY host PLL/PMU reset/mux/DQ map/Pstate source components; fault-injection tests",
+        "LP4 MRW/MRR/MPC CA/CS truth-table encoder, independently checked against LiteDRAM",
+        "Controller MRR source component executed on board: 24 MR5/MR6/MR8 reads, both orders consistent",
+        "DDR CCU source sequence now preserves observed independent NSI/MBUS fabric sources; fault tests include actual 0x190300 FEL initial values",
+        "Experimental ZCal observation/timed trigger component compiled and simulated; neither hardware-tested nor a calibration-success API",
+        "Source DDR CCU cold-start tested in SRAM; PLL lock and output/readbacks verified; independent NSI/MBUS unchanged",
+        "Cold common-domain initial registers observed from SRAM: SYS_CFG=0x3200, CHANNEL_TYPE=0, PRCM250=0",
+        "Three-write common-domain SRAM experiment passed; 10ms before/after delay and readbacks verified; no controller or PHY access",
+        "Both controller MSTR/STAT/MRSTAT apertures independently read successfully; INIT state and idle MR engine observed, with common ports still zero"
+      ],
+      "missing": [
+        "LP4 PHY command sequencer and register semantics",
+        "CBT, write leveling, read gate and deskew execution",
+        "Source-built PIE/post-training program"
+      ],
+      "evidence": [
+        "spl/lpddr4/pmu/backend-audit.json",
+        "evidence/lpddr4-pmu-components-check.json",
+        "evidence/lpddr4-phy-host-check.json",
+        "evidence/lpddr4-pmu-commands-check.json",
+        "evidence/lpddr4-mrr-hardware-20261114.log",
+        "evidence/t736-ccu-cold-sram-hardware-20261114.json",
+        "evidence/t736-domain-sram-hardware-20261114.json",
+        "evidence/t736-domain-setup-sram-hardware-20261114.json",
+        "evidence/t736-common-ports-sram-hardware-20261114.json",
+        "evidence/t736-ch0-readonly-sram-hardware-20261114.json",
+        "evidence/t736-ch1-readonly-sram-hardware-20261114.json"
+      ]
+    },
+    {
+      "id": "controller_timing",
+      "state": "geometry_and_static_timing_subset_hardware_passed",
+      "owner": "lpddr4_timing",
+      "deliverable": "LPDDR4 controller timing and DFI implementation",
+      "acceptance": [
+        "Correct sun60iw2 layout",
+        "Board clock/geometry/MR facts accounted for",
+        "Timing/unit and range tests",
+        "No hardware writes until sequence reviewed"
+      ],
+      "completed": [
+        "1800 MHz timing generation",
+        "42 generated fields matched against two-channel read-only hardware observations",
+        "Bounded DFI state handoff source and failure tests",
+        "Source64-register geometry/static timing configuration passed real SRAM execution/readback; both controllers stayed INIT and MR idle"
+      ],
+      "missing": [
+        "Complete controller reset/configuration and mode-register initialization",
+        "Hardware initialization after successful PHY training"
+      ],
+      "evidence": [
+        "evidence/lpddr4-timing-check.json",
+        "evidence/lpddr4-timing-board-observation.log",
+        "evidence/t736-controller-config-sram-hardware-20261114.json"
+      ]
+    },
+    {
+      "id": "sram_early",
+      "state": "source_uart_timer_pmic_read_diagnostic_hardware_passed",
+      "owner": "spl_early",
+      "deliverable": "Independent SRAM startup, UART, timer, physical R-I2C",
+      "acceptance": [
+        "No dependence on initialized DDR",
+        "Image header/load/stack/BSS fit verified SRAM",
+        "All errors terminate with observable diagnostics"
+      ],
+      "completed": [
+        "SRAM entry/stack/BSS/UART/timer/R-TWI",
+        "3088-byte probe; SRAM bounds, no undefined symbols, 260-byte static stack-frame sum",
+        "TWI success/failure simulation",
+        "Location-bound usbUDisc overlapped Windows transport; BootROM version/status verified",
+        "168-byte stackless source probe uploaded/readback/exec/report validated; MMU/I/D caches off",
+        "Larger SRAM window corroborated by exact prior FES continuous load and actual independent probe execution",
+        "v1 reported CNTFRQ=0; v2 initializes missing timestamp frequency metadata without clearing counter",
+        "v2 SRAM stack/UART/timer/TWI and AXP8191 ID+six-register reads passed; returned to FEL"
+      ],
+      "missing": [
+        "Normal-boot SPL integration and source DDR initialization"
+      ],
+      "evidence": [
+        "build/sram-probe/build-record.json",
+        "spl/early/README.md",
+        "evidence/t736-cp15-sram-hardware-20261114.json",
+        "evidence/t736-early-sram-hardware-20261114.json",
+        "evidence/t736-early-v2-sram-hardware-20261114.json",
+        "evidence/t736-early-v2-sram-serial-20261114.log"
+      ]
+    },
+    {
+      "id": "normal_boot_integration",
+      "state": "source_chain_with_authorized_ddr_library_passed",
+      "owner": "root",
+      "depends_on": [
+        "ddr_training",
+        "controller_timing",
+        "sram_early"
+      ],
+      "deliverable": "Source-built eMMC SPL -> independent TF-A -> U-Boot -> Armbian",
+      "acceptance": [
+        "Early storage reads bounded",
+        "ARM32/ARM64 handoff and memory reservations correct",
+        "Executable inputs have source/build provenance",
+        "No legacy Tina boot stage used"
+      ],
+      "completed": [
+        "eMMC PIO protocol core with bounded failures and no storage write API",
+        "Source-built TF-A candidate already compiled",
+        "Fixed LPDDR4x SPL, payload CRC, source ARM32/ARM64 handoff, TF-A and U-Boot verified on eMMC",
+        "Independent board peripheral power initialization verified"
+      ],
+      "evidence": [
+        "evidence/spl-emmc-check.json",
+        "spl/storage/implementation.json",
+        "evidence/source-v6-emmc-acceptance-20261114.json"
+      ],
+      "historical_source_only_missing": [
+        "Board storage power/pads/pinmux/clock integration",
+        "Complete source DDR initializer",
+        "Boot payload load and ARM32-to-ARM64 transition"
+      ]
+    },
+    {
+      "id": "raw_fes_test",
+      "state": "source_v6_8gib_written_and_verified",
+      "owner": "root",
+      "depends_on": [
+        "normal_boot_integration"
+      ],
+      "deliverable": "Complete Armbian raw written and verified using original Tina RAM FES loader",
+      "acceptance": [
+        "Physical/FES offset contract maintained",
+        "Boot layout and GPT verified before writing",
+        "Exact target board/USB identity matched",
+        "FES write and readback verification complete"
+      ]
+    },
+    {
+      "id": "coldboot_acceptance",
+      "state": "source_v6_three_boots_hdmi_console_storage_memory_passed_bulk_network_pending",
+      "owner": "root",
+      "depends_on": [
+        "raw_fes_test"
+      ],
+      "deliverable": "Unattended cold boot and authenticated Armbian runtime validation",
+      "acceptance": [
+        "At least 3 full power-off/on boots without Tina runtime",
+        "Root login successful, no credentials in project",
+        "8 GiB identification and allocated-RAM test",
+        "eMMC filesystem fsync/O_DIRECT hash check",
+        "DHCP and bidirectional network checksum check",
+        "GPT backup relocated and CRC validated",
+        "No failed systemd units; unexplained reset investigated"
+      ]
+    }
+  ],
+  "reporting": "Only actual hardware results count as acceptance; compilation or read-only observations cannot be relabeled as cold-boot success.",
+  "updated_utc": "2026-11-14T11:44:37.720654+00:00",
+  "actual_board_work_this_iteration": {
+    "phy_owner_mux_read": 1,
+    "phy_csr_or_reset_written": false,
+    "minimal_sram_probe_executed": true,
+    "mrr_control_register_writes": true,
+    "mrr_transactions": 24,
+    "mrr_targets": [
+      5,
+      6,
+      8
+    ],
+    "mrw_or_voltage_changes": false,
+    "flash_attempted": false,
+    "independent_boot_attempted": false,
+    "temporary_module_removed": true,
+    "failed_systemd_units_after_mrr": 0,
+    "early_source_sram_probe_passed": true,
+    "uart_twi_pinmux_and_controller_writes": true,
+    "timestamp_frequency_metadata_initialized": true,
+    "pmic_register_reads": 7,
+    "pmic_voltage_writes": false,
+    "source_ddr_ccu_hardware_passed": true,
+    "ddr_ccu_write_counts": {
+      "PLL_DDR": 7,
+      "DRAM0_CLK": 2,
+      "DRAM0_BGR": 4
+    },
+    "fabric_writes": false,
+    "common_domain_readonly_passed": true,
+    "common_domain_three_write_experiment_passed": true,
+    "both_controller_csr_observations_passed": true,
+    "common_ports_observed": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "controller_geometry_timing_64_hardware_passed": true,
+    "phy_outer_read_failed_worker_deadline": true,
+    "formal_power_recovery_completed": true,
+    "phy_domain_release_and_outer_read_passed": true
+  },
+  "current_focus": "LPDDR4 only: validate controller static init configuration, then cold MR command path and real PHY stimulus/capture; PIE is DDR initialization engine, unrelated to PCIe",
+  "next_hardware_sequence": [
+    "Controller static 22-write transaction and measured settling",
+    "Cold MR arm only after static config; no command until reset/CKE/clock prerequisites established",
+    "Source PHY stimulus/capture and actual memory tests",
+    "Independent boot integration, complete raw FES flash, cold boot acceptance"
+  ],
+  "source_phy_domain_release_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-phy-release-sram-hardware-20261114.json",
+    "serial": "evidence/t736-phy-release-sram-serial-20261114.log",
+    "controller_hold_and_common_writes": 17,
+    "mmio_completed": 117,
+    "sys_cfg": "0x273f",
+    "both_controller_stat": 0,
+    "both_mrstat": 0,
+    "both_dfistat": 0,
+    "mux": 0,
+    "micro_reset": 1,
+    "release_delay_ticks": [
+      45,
+      42
+    ],
+    "counter_hz": 24000000,
+    "phy_written": false,
+    "phy_internal_read": false,
+    "ddr_initialized": false,
+    "flash_written": false,
+    "scope": "Source SRAM PHY domain release and outer APB reads; not PHY training or independent boot"
+  },
+  "source_phy_static_read_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-phy-static-read-sram-hardware-20261114.json",
+    "completed_reads": 109,
+    "static_plus_clock_halfwords": 37,
+    "phy_written": false,
+    "ddr_initialized": false,
+    "registers": [
+      {
+        "address": "0xaa80100",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa940094",
+        "value": "0x2c18"
+      },
+      {
+        "address": "0xa940096",
+        "value": "0x3c1f"
+      },
+      {
+        "address": "0xa940110",
+        "value": "0x124"
+      },
+      {
+        "address": "0xa940098",
+        "value": "0xbce"
+      },
+      {
+        "address": "0xa94009a",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa94014a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa940000",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa940004",
+        "value": "0x2"
+      },
+      {
+        "address": "0xa9400a2",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa9400c0",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa940600",
+        "value": "0x808"
+      },
+      {
+        "address": "0xa940606",
+        "value": "0x9"
+      },
+      {
+        "address": "0xa940604",
+        "value": "0x40"
+      },
+      {
+        "address": "0xa940650",
+        "value": "0x2"
+      },
+      {
+        "address": "0xa940602",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa940616",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa920126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa922126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa924126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa926126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa920146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa922146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa924146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa926146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96015c",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96215c",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96015a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96215a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa960158",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa962158",
+        "value": "0x0"
+      },
+      {
+        "address": "0xaaa006c",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa94017a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa940620",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa940622",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa94064c",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa94064e",
+        "value": "0x0"
+      }
+    ]
+  },
+  "source_phy_analog_zcal_20261114": {
+    "analog_configuration": {
+      "passed": true,
+      "evidence": "evidence/t736-phy-analog-setup-after-zcal-recovery-20261114.json",
+      "events": 179,
+      "halfword_writes": 13,
+      "clkinfo": "0x1c2",
+      "dram_reset_asserted": true
+    },
+    "timed_zcal": {
+      "executed": true,
+      "verified_calibration": false,
+      "evidence": "evidence/t736-phy-zcal-v2-sram-hardware-20261114.json",
+      "events": 111,
+      "halfword_writes": 4,
+      "reset_ticks": 42,
+      "run_ticks": 2419,
+      "tick_hz": 24000000,
+      "pu_before": 0,
+      "pd_before": 0,
+      "pu_after": 0,
+      "pd_after": 0,
+      "result": "TIMED_ONLY; no observed impedance code change"
+    },
+    "failure_and_fix": {
+      "first_attempt": "evidence/t736-phy-zcal-sram-hardware-20261114.json",
+      "strong_software_fault_candidate": "Unaligned ARM STR to SRAM 0x4ffda before first component callback",
+      "fix": "Strict alignment ARM build and explicit halfword snapshot copy",
+      "interference_caveat": "First attempt erroneously continued after background USB scan busy; fixed by return-code gating before every subsequent hardware command",
+      "power_recovery": "evidence/t736-zcal-recovery-power-20261114.json",
+      "source_stages_reestablished": true
+    },
+    "board_state": {
+      "mode": "FEL",
+      "micro_reset": 1,
+      "host_mux": 0,
+      "memresetl": 2,
+      "clken": 3,
+      "zcal_reset": 0,
+      "zcal_run": 0,
+      "controller_stat": [
+        0,
+        0
+      ],
+      "mrstat": [
+        0,
+        0
+      ],
+      "dfistat": [
+        0,
+        0
+      ]
+    },
+    "normal_boot_release_eligible": false,
+    "ddr_initialized": false,
+    "new_emmc_flash": false
+  },
+  "source_phy_zcal_stall_comparison_20261114": {
+    "evidence": "evidence/t736-phy-zcal-stall-sram-hardware-20261114.json",
+    "completed": 109,
+    "writes": 5,
+    "micro_reset_before": 9,
+    "micro_reset_after": 1,
+    "arc_program_executed": false,
+    "reset_ticks": 37,
+    "run_ticks": 2414,
+    "pu_after": "0x0",
+    "pd_after": "0x0",
+    "calibration_verified": false,
+    "ddr_initialized": false,
+    "result": "TIMED_ONLY; releasing micro reset while retaining stall did not change zero PU/PD observation"
+  },
+  "source_phy_zcal_state_20261114": {
+    "evidence": "evidence/t736-phy-zcal-state-sram-hardware-20261114.json",
+    "completed_reads": 155,
+    "PclkDivRatio": "0x1111",
+    "candidate_2030d": "0x0",
+    "candidate_20320": "0x0",
+    "phy_written": false,
+    "ddr_initialized": false
+  },
+  "source_phy_zcal_rate_comparison_20261114": {
+    "evidence": "evidence/t736-phy-zcal-rate-sram-hardware-20261114.json",
+    "completed": 113,
+    "writes": 6,
+    "rate_before": 9,
+    "rate_during": 25,
+    "rate_after": 9,
+    "reset_ticks": 35,
+    "run_ticks": 2415,
+    "tick_hz": 24000000,
+    "pu_during": 0,
+    "pd_during": 0,
+    "pu_after": 0,
+    "pd_after": 0,
+    "calibration_verified": false,
+    "ddr_initialized": false,
+    "result": "TIMED_ONLY; ZCalRate bit4 alone did not change PU/PD zero observations"
+  },
+  "source_controller_static_attempt_20261114": {
+    "passed": false,
+    "evidence": "evidence/t736-controller-static-sram-hardware-20261114.json",
+    "completed": 78,
+    "writes": 6,
+    "failure": "INITTMG1 write 0x580000 read back 0",
+    "last_address": "0x0a110d04",
+    "swctl_maybe_open": 3,
+    "static_maybe_open": 3,
+    "ch0_inittmg0": "0x1036f",
+    "ch1_inittmg0": "0x2004e",
+    "automatic_retry": false,
+    "cleanup_attempted": false,
+    "board_returned_to_fel": true,
+    "ddr_initialized": false
+  },
+  "source_controller_static_rollback_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-controller-static-rollback-sram-hardware-20261114.json",
+    "completed": 128,
+    "writes": 5,
+    "pre_ticks": 252,
+    "settle_ticks": 487,
+    "poll_waits": 0,
+    "visible_checkpoint_restored": true,
+    "scope": "Restores visible registers only; does not prove the earlier INITTMG1 attempt had no hidden effect",
+    "ddr_initialized": false
+  },
+  "source_controller_static_v2_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-controller-static-v2-sram-hardware-20261114.json",
+    "completed": 166,
+    "writes": 20,
+    "reads": 146,
+    "pre_ticks": 249,
+    "settle_ticks": 481,
+    "tick_hz": 24000000,
+    "both_config_transactions_closed": true,
+    "both_channels_configured": true,
+    "profile": [
+      "0x1036f",
+      "0xfc003f",
+      "0x330008",
+      "0x40072",
+      "0x24001d",
+      "0x1"
+    ],
+    "inittmg1_untouched": [
+      0,
+      0
+    ],
+    "commands_sent": false,
+    "result": "CONFIGURED_ONLY",
+    "ddr_initialized": false
+  },
+  "current_route": {
+    "authorization": "允许厂家 DDR 库，先打通启动",
+    "state": "source_v6_three_emmc_boots_hdmi_console_runtime_passed",
+    "historical_source_only_stages_below": "prior research; not blockers for the authorized library route",
+    "evidence": "evidence/source-v6-emmc-acceptance-20261114.json",
+    "last_verified_flash": "source-v6",
+    "candidate": null,
+    "blocker": null,
+    "cold_boot_validated": true,
+    "pure_source_zcal_issue_resolved": false
+  },
+  "latest_acceptance": "evidence/source-v6-emmc-acceptance-20261114.json",
+  "remaining_acceptance": [
+    "Independent-chain bulk network checksum acceptance and gigabit downshift",
+    "Physical HDMI screen observation and broader stress/peripheral validation"
+  ]
+}

@@ -1,0 +1,235 @@
+diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
+index 1b474a34..74991546 100644
+--- a/arch/arm/Kconfig
++++ b/arch/arm/Kconfig
+@@ -2203,6 +2203,20 @@ config TARGET_XENGUEST_ARM64
+ 	select XEN_SERIAL
+ 	imply OF_HAS_PRIOR_STAGE
+ 
++config TARGET_T736_BRINGUP
++	bool "T736 custom board RAM bring-up"
++	select ARM64
++	select DM
++	select DM_SERIAL
++	select OF_CONTROL
++	select SYS_NS16550
++	select SYS_NS16550_MEM32
++	select LINUX_KERNEL_IMAGE_HEADER
++	select HAS_CUSTOM_SYS_INIT_SP_ADDR
++	help
++	  RAM payload for the independently maintained T736 board port.
++	  A prior firmware stage must initialize DRAM, power and UART0.
++
+ config ARCH_GXP
+ 	bool "Support HPE GXP SoCs"
+ 	select DM
+@@ -2474,6 +2488,7 @@ source "board/phytium/durian/Kconfig"
+ source "board/phytium/pomelo/Kconfig"
+ source "board/phytium/pe2201/Kconfig"
+ source "board/xen/xenguest_arm64/Kconfig"
++source "board/t736/bringup/Kconfig"
+ 
+ source "arch/arm/Kconfig.debug"
+ 
+diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
+index 37d3b6fd..229b757f 100644
+--- a/arch/arm/dts/Makefile
++++ b/arch/arm/dts/Makefile
+@@ -1170,6 +1170,8 @@ dtb-$(CONFIG_TARGET_CORSTONE1000) += corstone1000-mps3.dtb \
+ 
+ dtb-$(CONFIG_TARGET_COREPRIMEVELTE) += pxa1908-samsung-coreprimevelte.dtb
+ 
++dtb-$(CONFIG_TARGET_T736_BRINGUP) += t736-bringup.dtb
++
+ include $(srctree)/scripts/Makefile.dts
+ 
+ # Add any required device tree compiler flags here
+diff --git a/arch/arm/dts/t736-bringup.dts b/arch/arm/dts/t736-bringup.dts
+new file mode 100644
+index 00000000..29447c02
+--- /dev/null
++++ b/arch/arm/dts/t736-bringup.dts
+@@ -0,0 +1,26 @@
++// SPDX-License-Identifier: GPL-2.0+
++/dts-v1/;
++
++/ {
++	model = "T736 custom board RAM bring-up";
++	compatible = "allwinner,t736";
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases { serial0 = &uart0; };
++	chosen { stdout-path = "serial0:115200n8"; };
++
++	memory@40000000 {
++		device_type = "memory";
++		reg = <0 0x40000000 2 0>;
++	};
++
++	uart0: serial@2500000 {
++		compatible = "snps,dw-apb-uart";
++		reg = <0 0x02500000 0 0x400>;
++		reg-shift = <2>;
++		reg-io-width = <4>;
++		clock-frequency = <24000000>;
++		bootph-all;
++	};
++};
+diff --git a/board/t736/bringup/Kconfig b/board/t736/bringup/Kconfig
+new file mode 100644
+index 00000000..6630894c
+--- /dev/null
++++ b/board/t736/bringup/Kconfig
+@@ -0,0 +1,18 @@
++if TARGET_T736_BRINGUP
++
++config SYS_BOARD
++	default "bringup"
++
++config SYS_VENDOR
++	default "t736"
++
++config SYS_CONFIG_NAME
++	default "t736-bringup"
++
++config TEXT_BASE
++	default 0x52000000
++
++config LNX_KRNL_IMG_TEXT_OFFSET_BASE
++	default 0x40000000
++
++endif
+diff --git a/board/t736/bringup/Makefile b/board/t736/bringup/Makefile
+new file mode 100644
+index 00000000..bcca1a9f
+--- /dev/null
++++ b/board/t736/bringup/Makefile
+@@ -0,0 +1,2 @@
++# SPDX-License-Identifier: GPL-2.0+
++obj-y += board.o
+diff --git a/board/t736/bringup/board.c b/board/t736/bringup/board.c
+new file mode 100644
+index 00000000..0f75fc8a
+--- /dev/null
++++ b/board/t736/bringup/board.c
+@@ -0,0 +1,66 @@
++// SPDX-License-Identifier: GPL-2.0+
++/* Independently authored from the T736 running FDT and memory evidence. */
++#include <config.h>
++#include <cpu_func.h>
++#include <init.h>
++#include <asm/global_data.h>
++#include <asm/armv8/mmu.h>
++
++DECLARE_GLOBAL_DATA_PTR;
++
++static struct mm_region t736_mem_map[] = {
++	{ .virt = 0, .phys = 0, .size = 0x40000000,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_DEVICE_NGNRNE) |
++		   PTE_BLOCK_NON_SHARE | PTE_BLOCK_PXN | PTE_BLOCK_UXN },
++	{ .virt = 0x40000000, .phys = 0x40000000, .size = 0x08000000,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) | PTE_BLOCK_INNER_SHARE },
++	/* Leave the observed BL31 reservation unmapped. */
++	{ .virt = 0x49000000, .phys = 0x49000000, .size = 0x69800000,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) | PTE_BLOCK_INNER_SHARE },
++	/* Leave the observed secure DRAM reservation unmapped. */
++	{ .virt = 0xc0000000, .phys = 0xc0000000, .size = 0x3b800000,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) | PTE_BLOCK_INNER_SHARE },
++	{ .virt = 0x100000000ULL, .phys = 0x100000000ULL,
++	  .size = 0x140000000ULL,
++	  .attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) | PTE_BLOCK_INNER_SHARE },
++	{ 0 }
++};
++
++struct mm_region *mem_map = t736_mem_map;
++
++int dram_init(void)
++{
++	/* No destructive sizing probe across firmware-owned memory. */
++	gd->ram_size = 0x200000000ULL;
++	return 0;
++}
++
++int dram_init_banksize(void)
++{
++	gd->bd->bi_dram[0].start = 0x40000000;
++	gd->bd->bi_dram[0].size = gd->ram_size;
++	return 0;
++}
++
++phys_addr_t board_get_usable_ram_top(phys_size_t total_size)
++{
++	/* Keep relocation below all observed high firmware reservations. */
++	return 0xb0000000;
++}
++
++int board_init(void)
++{
++	return 0;
++}
++
++int checkboard(void)
++{
++	puts("Board: T736 custom RAM bring-up; vendor DDR/BL31/SCP retained\n");
++	return 0;
++}
++
++void enable_caches(void)
++{
++	icache_enable();
++	dcache_enable();
++}
+diff --git a/configs/t736_bringup_defconfig b/configs/t736_bringup_defconfig
+new file mode 100644
+index 00000000..faaebde0
+--- /dev/null
++++ b/configs/t736_bringup_defconfig
+@@ -0,0 +1,36 @@
++CONFIG_ARM=y
++CONFIG_TARGET_T736_BRINGUP=y
++CONFIG_TEXT_BASE=0x52000000
++CONFIG_CUSTOM_SYS_INIT_SP_ADDR=0x51f00000
++CONFIG_SYS_LOAD_ADDR=0x60000000
++CONFIG_SYS_MALLOC_LEN=0x800000
++CONFIG_DEFAULT_DEVICE_TREE="t736-bringup"
++# CONFIG_OF_UPSTREAM is not set
++CONFIG_POSITION_INDEPENDENT=y
++CONFIG_COUNTER_FREQUENCY=0
++CONFIG_LOCALVERSION="-t736-bringup"
++CONFIG_BOOTDELAY=-1
++# CONFIG_BOOTSTD is not set
++# CONFIG_DISPLAY_CPUINFO is not set
++CONFIG_DISPLAY_BOARDINFO=y
++CONFIG_ENV_IS_NOWHERE=y
++CONFIG_CMD_BDI=y
++CONFIG_CMD_MEMINFO=y
++CONFIG_CMD_MEMORY=y
++CONFIG_CMD_CRC32=y
++CONFIG_CMD_CACHE=y
++CONFIG_CMD_FDT=y
++CONFIG_CMD_BOOTI=y
++CONFIG_LEGACY_IMAGE_FORMAT=y
++CONFIG_SYS_PROMPT="T736-mainline=> "
++CONFIG_DEBUG_UART=y
++CONFIG_DEBUG_UART_NS16550=y
++CONFIG_DEBUG_UART_BASE=0x02500000
++CONFIG_DEBUG_UART_CLOCK=24000000
++CONFIG_DEBUG_UART_SHIFT=2
++CONFIG_DEBUG_UART_ANNOUNCE=y
++CONFIG_SYS_NS16550=y
++CONFIG_SYS_NS16550_MEM32=y
++# CONFIG_NET is not set
++# CONFIG_MMC is not set
++# CONFIG_EFI_LOADER is not set
+diff --git a/include/configs/t736-bringup.h b/include/configs/t736-bringup.h
+new file mode 100644
+index 00000000..53617350
+--- /dev/null
++++ b/include/configs/t736-bringup.h
+@@ -0,0 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
++#ifndef __T736_BRINGUP_H
++#define __T736_BRINGUP_H
++#define CFG_SYS_SDRAM_BASE 0x40000000
++#endif

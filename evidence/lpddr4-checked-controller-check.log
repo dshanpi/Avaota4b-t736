@@ -1,0 +1,9 @@
+["cc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-O2", "-fsanitize=address,undefined", "-fno-omit-frame-pointer", "/home/ubuntu/t736-mainline/spl/lpddr4/phy/checked_controller.c", "/home/ubuntu/t736-mainline/spl/lpddr4/controller.c", "/home/ubuntu/t736-mainline/spl/lpddr4/timing.c", "/home/ubuntu/t736-mainline/spl/lpddr4/phy/test_checked_controller.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-checked-controller/test_checked_controller"]
+["/home/ubuntu/t736-mainline/build/lpddr4-checked-controller/test_checked_controller"]
+Checked layout: 52 IO fault positions, 22 corrupted readbacks; immediate stop
+Checked timing: 136 IO fault positions, 42 corrupted readbacks; immediate stop
+Checked controller: cold reset MSTR accepted by observation/layout; no PHY, clock, domain, port, DFI-init handshake, training or normal-mode entry
+["arm-linux-gnueabi-gcc", "-std=c11", "-Wall", "-Wextra", "-Werror", "-Wconversion", "-Wshadow", "-O2", "-mcpu=cortex-a55", "-marm", "-mfloat-abi=soft", "-ffreestanding", "-fno-builtin", "-fno-stack-protector", "-c", "/home/ubuntu/t736-mainline/spl/lpddr4/phy/checked_controller.c", "-o", "/home/ubuntu/t736-mainline/build/lpddr4-checked-controller/checked_controller.o"]
+["arm-linux-gnueabi-nm", "-u", "/home/ubuntu/t736-mainline/build/lpddr4-checked-controller/checked_controller.o"]
+         U t736_lp4_build_layout
+         U t736_lp4_build_timing

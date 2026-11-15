@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-14",
+  "finding": "RTC FEL magic is checked and cleared by vendor Boot0; reset-only source SPL recovery is incomplete. Replace before first source cold boot.",
+  "reference": "analysis/golden-image-components/boot0_sdcard.fex",
+  "sha256": "0e2397669df804256505c786d7a9db6b40720203dd3e6b1ea33955486efa98c8",
+  "rom_fel_address": "0x20",
+  "mode": "AArch32 ARM",
+  "proof": [
+    {
+      "address": "0x5eeaa",
+      "instructions": [
+        "0005eeaa: bl #0x4b340",
+        "0005eeae: cbz r0, #0x5eed8",
+        "0005eeb0: bl #0x4b3b8",
+        "0005eeb4: ldr r0, [pc, #0x280]",
+        "0005eeb6: bl #0x499f0",
+        "0005eeba: bl #0x490ce",
+        "0005eebe: bl #0x49574",
+        "0005eec2: bl #0x48e8c",
+        "0005eec6: movs r0, #0xa",
+        "0005eec8: bl #0x48da4",
+        "0005eecc: movs r0, #0x20",
+        "0005eece: bl #0x48ec6"
+      ]
+    },
+    {
+      "address": "0x48e8c",
+      "instructions": [
+        "00048e8c: push {r4, lr}",
+        "00048e8e: mrc p15, #0, r4, c1, c0, #0",
+        "00048e92: movs r0, #0x64",
+        "00048e94: bl #0x48d80",
+        "00048e98: bic r3, r4, #0x1000",
+        "00048e9c: bic r3, r3, #7",
+        "00048ea0: mcr p15, #0, r3, c1, c0, #0",
+        "00048ea4: isb sy",
+        "00048ea8: movs r3, #0",
+        "00048eaa: mcr p15, #0, r3, c7, c5, #0",
+        "00048eae: mcr p15, #0, r3, c7, c5, #6",
+        "00048eb2: dsb sy",
+        "00048eb6: isb sy",
+        "00048eba: pop {r4, pc}",
+        "00048ebc: dsb sy",
+        "00048ec0: isb sy",
+        "00048ec4: bx lr",
+        "00048ec6: mov.w r2, #0",
+        "00048eca: mcr p15, #0, r2, c7, c5, #6",
+        "00048ece: bx r0"
+      ]
+    },
+    {
+      "address": "0x4b35e",
+      "instructions": [
+        "0004b35e: movs r0, #2",
+        "0004b360: bl #0x4b30c",
+        "0004b364: ldr r3, [pc, #0x38]",
+        "0004b366: cmp r0, r3",
+        "0004b368: bne #0x4b374",
+        "0004b36a: ldr r0, [pc, #0x38]",
+        "0004b36c: bl #0x499f0",
+        "0004b370: movs r0, #1",
+        "0004b372: pop {r3, r4, r5, pc}"
+      ]
+    }
+  ],
+  "source_fix": [
+    "spl/vendor_ddr/emmc_boot.c",
+    "spl/vendor_ddr/entry_boot.S"
+  ],
+  "new_spl_sha256": "b643029ba6b5e4fa9b46623cae96235969488a2e4ce0f7bfb7d9491ba7bfe186",
+  "vendor_boot0_copied_into_candidate": false,
+  "new_recovery_hardware_verified": false,
+  "v1_written_verified_but_never_cold_booted": true
+}

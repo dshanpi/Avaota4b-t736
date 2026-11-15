@@ -1,0 +1,40 @@
+printf 'V11_RUNTIME_REUSE_CHECK_NOT_BOOT_ACCEPTANCE\n'; sh /tmp/t736-transfer/raw-v11-runtime-check.sh; printf 'V11_RUNTIME_PROCESS_RC=%s\n' "$?"
+
+V11_RUNTIME_REUSE_CHECK_NOT_BOOT_ACCEPTANCE
+cat: /sys/kernel/tainted: No such file or directory
+V11_RUNTIME_PROCESS_RC=1
+root@t736:~# t736-dwmac 4500000.ethernet end0: Link is Down
+t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+sh /tmp/t736-transfer/raw-v11-runtime-check-fixed.sh; printf 'V11_RUNTIME_PROCESS_RC=%s\n' "$?"
+
+/boot/vmlinuz-6.18.63-t736-armbian: OK
+/boot/initrd.img-6.18.63-t736-armbian: OK
+/boot/dtb/allwinner/t736-mainline-bringup.dtb: OK
+vmlinuz-6.18.63-t736-armbian: OK
+initrd.img-6.18.63-t736-armbian: OK
+config-6.18.63-t736-armbian: OK
+t736-mainline-bringup.dtb: OK
+vmlinuz-6.18.63-t736-armbian: OK
+initrd.img-6.18.63-t736-armbian: OK
+config-6.18.63-t736-armbian: OK
+t736-mainline-bringup.dtb: OK
+V11_IO_16M_FSYNC_DIRECT_READ_OK 2a1ccb4081dbcdcc5a3eb57c07e9bf3962cc42a021752e89f60261a1d649f7da
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+2: end0    inet 10.0.0.230/24 metric 1024 brd 10.0.0.255 scope global dynamic end0\       valid_lft 43129sec preferred_lft 43129sec
+default via 10.0.0.1 dev end0 proto dhcp src 10.0.0.230 metric 1024 
+10.0.0.0/24 dev end0 proto kernel scope link src 10.0.0.230 metric 1024 
+10.0.0.1 dev end0 proto dhcp scope link src 10.0.0.230 metric 1024 
+clock:		12000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	0 (legacy)
+signal voltage:	0 (3.30 V)
+driver type:	0 (driver type B)
+V11_RUNTIME_HASHES_FALLBACK_IO_NETWORK_PREFLIGHT_OK
+V11_RUNTIME_PROCESS_RC=0
+root@t736:~# 

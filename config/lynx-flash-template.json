@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "TEMPLATE_REQUIRES_CURRENT_BINDING_AND_VERIFIED_ARTIFACT_PATHS",
+  "discovered_from": "Live T736 LYNX MCP tools/list and lynx_flash_capabilities on 2026-11-12",
+  "channel_observed": {
+    "projectId": 9,
+    "deviceId": 9,
+    "serialPort": "COM17",
+    "busy": false
+  },
+  "tool": "lynx_start_flash",
+  "request_template": {
+    "firmwarePath": "<verified absolute source-v6 raw path on LYNX host>",
+    "confirmDestructive": true,
+    "options": {
+      "mode": "command",
+      "verify": true,
+      "postFlashAction": "none",
+      "vendorOptions": {
+        "raw": true,
+        "loaderPath": "<verified absolute RAM-only FES loader path on LYNX host>"
+      }
+    }
+  },
+  "before_execution": [
+    "Build and audit a T736 mainline whole-disk image; retain source and component hashes",
+    "Audit a T736-matched RAM-only DRAM/FES loader from the existing user/vendor source",
+    "Re-read current channel binding and flasher capabilities",
+    "Enter and detect FEL only after artifacts are ready using the channel-supported fixed recipe",
+    "Require runtime FES confirmation of eMMC and actual capacity",
+    "Validate logical address mapping and ensure the RAM loader's old persistent boot stages are not written",
+    "Fill actual verified absolute firmwarePath and loaderPath on the LYNX host"
+  ],
+  "completion_evidence": [
+    "same taskId reaches success",
+    "verifyState success and meaningful committedBytes",
+    "independent boot area/partition readback where supported",
+    "serial evidence of new U-Boot and new Linux",
+    "actual cold power boot"
+  ],
+  "do_not_use_for_t736": "lynx_allwinner_boot_mainline: its current artifacts schema explicitly requires an R528/T113-S3 SPL",
+  "historical_execution": {
+    "variant": "legacy raw-v6",
+    "task_id": "flash-1794563107553214100",
+    "executed": true
+  },
+  "last_verified_deployment": {
+    "variant": "source-v6",
+    "task_id": "flash-1794655456082512500",
+    "evidence": "evidence/source-v6-emmc-acceptance-20261114.json"
+  }
+}

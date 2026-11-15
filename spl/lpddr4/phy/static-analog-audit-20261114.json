@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-14",
+  "kind": "non-executable-LP4-PHY-host-register-facts",
+  "runtime_implementation": false,
+  "hardware_actions": false,
+  "vendor_instruction_streams_imported": false,
+  "radxa_sources_used": false,
+  "clean_room_claim": false,
+  "sources": {
+    "SDK_host_interface": {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+      "symbols": ["ddrphy_phyinit_C_initPhyConfig", "ddrphy_phyinit_C_initPhyConfigPsLoop"],
+      "use": "Only non-executable static host register facts. Program writes seen within these functions are excluded, not translated into source arrays."
+    },
+    "independent_names": "evidence/sima-type9-host-csr-map-20261114.json",
+    "parameter_layout": "/home/ubuntu/t736-aiot/tina/brandy/arisc/ar100s/include/driver/dram.h",
+    "LP4_board_parameter_reference": "/home/ubuntu/t736-aiot/tina/device/config/chips/t736/configs/demo_aiot-bak/sys_config.fex",
+    "reference_limit": "The current demo_aiot file contains LP5 parameters; demo_aiot-bak contains the LP4 profile matching clock/type/geometry and selected historical MR observations. It is a reference, not proof that every field exactly equals the prior boot's mutable runtime parameter block."
+  },
+  "address_name_policy": "Physical addresses below come from this SoC's host MMIO code. Logical names are separately corroborated in SiMa source comments. No global ARC/host address alias is asserted and no SiMa register preset is imported.",
+  "parameter_facts": {
+    "dram_clk_offset": 0,
+    "dram_type_offset": 4,
+    "dram_para2_offset": 28,
+    "dram_tpr3_offset": 100,
+    "dram_tpr13_offset": 120,
+    "board_clock_mhz": 1800,
+    "board_type": 8,
+    "board_para2_historical": "0x20001001",
+    "board_tpr13_historical": "0x6063",
+    "LP4_reference_tpr3": "0x00110000",
+    "required_decisions": "para2 bit12 is set; tpr13 bit6 is set and bit2 is clear; (tpr3>>16)&0xf is1 in LP4 reference. Type9 in SDK dram_type means LP5, not the PHY revision."
+  },
+  "static_groups": {
+    "PLL_configuration": [
+      {"physical": "0x0a940094", "logical": "0x2004a", "name": "PllCtrl1_p0", "access_bits": 16, "LP4_1800_host_value": "0x0402", "source_offset": "C_initPhyConfig0x48..0x50 selects0x160 branch, store0x7a", "meaning": "Board-frequency-specific opaque PLL control; bitfields not invented"},
+      {"physical": "0x0a940096", "logical": "0x2004b", "name": "PllCtrl4_p0", "access_bits": 16, "LP4_1800_host_value": "0x123e", "source_offset": "C_initPhyConfig0x160..0x168 and store0x8e", "meaning": "Opaque PLL control paired with above"},
+      {"physical": "0x0a940110", "logical": "0x20088", "name": "PllUPllProg0", "access_bits": 16, "LP4_1800_host_value": "0x0101", "source_offset": "C_initPhyConfig0x90..0x94", "meaning": "Static PLL configuration CSR; despite Prog in its name, this is a named PLL register, not PMU/PIE instruction RAM"},
+      {"physical": "0x0a940098", "logical": "0x2004c", "name": "PllCtrl5_p0", "access_bits": 16, "LP4_1800_host_value": "0x2a8b", "source_offset": "PsLoop0x1fa..0x1fc to0x1ee, then0x106..0x118", "precondition": "tpr13bit2 clear and lowspeed_1b2_mode0; not a universal preset"},
+      {"physical": "0x0a94009a", "logical": "0x2004d", "name": "PllCtrl6_p0", "access_bits": 16, "LP4_1800_host_value": "0x0000", "source_offset": "PsLoop0x11a..0x120", "meaning": "Opaque PLL host configuration; name corroborated by independent map line939"}
+    ],
+    "LP4_mode_and_DFI": [
+      {"physical": "0x0a94014a", "logical": "0x200a5", "name": "LP5Mode", "access_bits": 16, "LP4_host_action": "No write in LP4 branch; SDK writes1 only for type9", "proposal": "Read after host ownership is established. A source LP4 setup must establish0 explicitly or verify reset0; do not silently accept a stale1."},
+      {"physical": "0x0a940000", "logical": "0x20000", "name": "DfiFreqRatio_p0", "access_bits": 16, "LP4_1800_host_value": "0x0002", "source_offset": "PsLoop0x14c..0x15c", "precondition": "lowspeed_1b2_mode0", "meaning": "Encoding2 observed for full-speed configuration; do not infer the encoding's ratio solely from its integer value"},
+      {"physical": "0x0a940004", "logical": "0x20002", "name": "PclkPtrInitVal_p0", "access_bits": 16, "LP4_host_value": "0x0002", "source_offset": "PsLoop0x10e and0x122", "meaning": "0x0a94009a minus150(decimal)=0x0a940004; this is not ZCalClkInfo at0x0a940008"},
+      {"physical": "0x0a9400a2", "logical": "0x20051", "name": "DfiMode", "access_bits": 16, "LP4_1800_host_value": "0x0003", "source_offset": "C_initPhyConfig0x244..0x266", "precondition": "tpr13bit6 set (this board)"},
+      {"physical": "0x0a9400c0", "logical": "0x20060", "name": "MemResetL", "access_bits": 16, "LP4_host_value": "0x0002", "source_offset": "C_initPhyConfig0x98..0x9c", "meaning": "Name is corroborated, field/pin-level interpretation is not. Treat as a reset-affecting operation requiring a separate cold-sequence checkpoint, not ordinary harmless timing data."}
+    ],
+    "ZCal_analog_prerequisites": [
+      {"physical": "0x0a940600", "logical": "0x20300", "name": "ZCalRZN", "access_bits": 16, "LP4_host_value": "0x0808", "source_offset": "C_initPhyConfig0xba..0xbe"},
+      {"physical": "0x0a940606", "logical": "0x20303", "name": "ZCalRate", "access_bits": 16, "LP4_host_value": "0x0009", "source_offset": "C_initPhyConfig0xc2..0xc4"},
+      {"physical": "0x0a940604", "logical": "0x20302", "name": "ZCalCompVref", "access_bits": 16, "LP4_host_value": "0x0129", "source_offset": "C_initPhyConfig0xc8..0xde", "contrast_in_source": "LP5 branch uses0x26; not imported as a candidate"},
+      {"physical": "0x0a940650", "logical": "0x20328", "name": "VrefDacRefCtl", "access_bits": 16, "LP4_host_value": "0x0001", "source_offset": "C_initPhyConfig0xd2..0xea"},
+      {"physical": "0x0a940602", "logical": "0x20301", "name": "ZCalBaseCtrl", "access_bits": 16, "LP4_host_value": "0x0003", "source_offset": "C_initPhyConfig0xe4..0xf6"},
+      {"physical": "0x0a940616", "logical": "0x2030b", "name": "ZCalCompCtrl", "access_bits": 16, "LP4_host_value": "0x0000", "source_offset": "C_initPhyConfig0xf8..0xfc"}
+    ],
+    "Rx_power_and_lanes": [
+      {"physical_base": "0x0a920126", "stride": "0x2000", "count": 4, "logical_base": "0x10093", "name": "DxRxPowerDown", "access_bits": 16, "LP4_host_value": "0x0400", "source_offset": "C_initPhyConfig0x238..0x25a"},
+      {"physical_base": "0x0a920146", "stride": "0x2000", "count": 4, "logical_base": "0x100a3", "name": "PptCtlStatic", "access_bits": 16, "LP4_reference_values": ["0x070f", "0x0703", "0x0703", "0x070f"], "source_offset": "C_initPhyConfig0x122..0x13c and0x19c..0x1b2", "precondition": "para2bit12 set and (tpr3>>16)&0xf in0,1,4. Confirm runtime board parameter or observe before applying."},
+      {"physical": ["0x0a96015c", "0x0a96215c"], "logical": ["0x300ae", "0x310ae"], "name": "PClkAcLnDis", "access_bits": 16, "LP4_host_value": "0x0000", "precondition": "para2bit12 set, LP4 and tpr13bit6 set"},
+      {"physical": ["0x0a96015a", "0x0a96215a"], "logical": ["0x300ad", "0x310ad"], "name": "DfiClkAcLnDis", "access_bits": 16, "LP4_host_value": "0x0000", "precondition": "same board branch"},
+      {"physical": ["0x0a960158", "0x0a962158"], "logical": ["0x300ac", "0x310ac"], "name": "AcLnDisable", "access_bits": 16, "LP4_host_value": "0x0000", "precondition": "same board branch"}
+    ],
+    "host_clock_observation": [
+      {"physical": "0x0aaa006c", "logical": "0xd0036", "name": "NeverGateAcCsrClock", "access_bits": 16, "host_value": "0x0000", "source_offset": "C_initPhyConfig0xac..0xb4", "caution": "Do not clear a diagnostic force-on setting merely to match this preset before CSR reachability is proved."},
+      {"physical": "0x0a94017a", "logical": "0x200bd", "name": "PhyPerfCtrEnable", "access_bits": 16, "host_value": "0x00ff", "source_offset": "C_initPhyConfig0xae..0xb8", "priority": "Not necessary to establish LP4 mode, analog prerequisites or APB reachability"}
+    ]
+  },
+  "strict_exclusions": [
+    "C_initPhyConfig includes generated PIE/shadow instruction writes at0x0aa801e2 and nearby addresses. The instruction region0x1b4..0x22c of that host function is excluded from implementation and presets in this audit.",
+    "Other PIE control/program registers at0x0aa8010c and0x0aa80242 are not treated as analog initialization simply because the host writes them.",
+    "PsLoop also contains ACSM/program/shadow descriptors. Only named MASTER PLL/DFI/ZCal facts listed here are retained; descriptor values and generation are excluded.",
+    "No vendor IMEM/PIE contents, training result DMEM, delay sweeps or sequencer algorithm is translated into C or an array."
+  ],
+  "next_source_work": [
+    "Once outer ownership and internal access are established, observe LP5Mode, DfiMode and selected static CSRs in a fixed guarded SRAM probe.",
+    "Author source configuration from these individually reviewed non-executable register contracts, recording unknown field semantics as opaque board controls and checking each write/readback. Keep reset-affecting MemResetL separate.",
+    "Use small staged electrical changes and actual timer/readback evidence. A preset match is not a calibration pass.",
+    "Implement independent ZCal start/result and LP4 command/measurement operations with the separate host-training work; do not substitute copied sequencer programs."
+  ]
+}

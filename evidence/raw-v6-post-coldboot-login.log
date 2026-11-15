@@ -1,0 +1,39 @@
+root
+
+Password: 
+
+    _             _    _                             __  __ _    _      _ 
+
+   /_\  _ _ _ __ | |__(_)__ _ _ _ ___ _  _ _ _  ___ / _|/ _(_)__(_)__ _| |
+
+  / _ \| '_| '  \| '_ \ / _` | ' \___| || | ' \/ _ \  _|  _| / _| / _` | |
+
+ /_/ \_\_| |_|_|_|_.__/_\__,_|_||_|   \_,_|_||_\___/_| |_| |_\__|_\__,_|_|
+
+                                                                          
+
+ v26.11 rolling for T736 custom mainline running Armbian Linux 6.18.63-t736-armbian
+
+ Packages:     Debian stable (trixie)
+
+ Updates:      Kernel upgrade enabled and 1 package available for upgrade 
+
+ Support:      DIY (custom image)
+
+Linux t736 6.18.63-t736-armbian #6 SMP Fri Nov 13 02:43:39 EST 2026 aarch64
+
+ Performance:  
+
+ Load:         14%           	 Uptime:         1m	
+
+ Memory usage: 1% of 7.57G  	
+
+ Usage of /:   9% of 7.1G   	
+
+ Commands: 
+
+ Upgrade   : armbian-upgrade
+
+ Monitoring: htop
+
+root@t736:~# 

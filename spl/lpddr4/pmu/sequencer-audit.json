@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-11-14",
+  "scope": "New source-level Type9 command encoding facts; no hardware operation",
+  "lp4_wire_encoder_implemented": true,
+  "lp4_phy_executor_implemented": false,
+  "deployable": false,
+  "independent_sources": {
+    "type9": {
+      "repository": "InfernoEmbedded/u-boot",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+      "license": "GPL-2.0-or-later",
+      "files": ["pmu_train.c", "pmu_clock.c", "pmu_fw.h"]
+    },
+    "wire_truth_tables": {
+      "repository": "enjoy-digital/litedram",
+      "commit": "60b5ae1b1ee5bc16ea695a93399434919797ff31",
+      "license": "BSD-2-Clause",
+      "files": ["litedram/phy/lpddr4/commands.py", "litedram/phy/lpddr5/commands.py"]
+    }
+  },
+  "newly_established_by_independent_truth_table_tests": [
+    "Inferno opcode 6 with flag_mode=0 produces LP5 MRW-1 CA positive/negative phases; mode=1 produces MRW-2. All 128 MA x 256 OP cases match LiteDRAM.",
+    "Inferno opcode 15 produces LP5 MRR CA phases for all 128 MA values.",
+    "Inferno opcode 25 produces LP5 MPC CA phases for all 256 OP values at the truth-table level.",
+    "Descriptor d3 and d4 are CA phase bitmaps, not opaque ARC instructions. Their lower seven bits form the first and second CA phases of LP5's DDR command bus.",
+    "A type6 fast-path tracker holds MRW-1 in slot0 and MRW-2 in slot1 for the same rank selection. The header's channel0/channel1 slot labels are not reliable semantic documentation.",
+    "LP4 MRW uses four successive rising CK edges, CS=1,0,1,0. Its CA values are 0x06|OP7<<5, MA[5:0], 0x16|OP6<<5, OP[5:0].",
+    "LP4 MPC uses two successive rising CK edges, CS=1,0. ZQ start operand is 0x4f and latch is 0x51, unlike LP5 operands 0x85/0x86."
+  ],
+  "software_descriptor_fields": {
+    "d0": "Set to 1 by flags[6] or val_arg1[1]; physical meaning not independently identified.",
+    "d1": "Initialized to zero by pmu_cal_multi_branch_dispatch; can be altered by tracker flow. Physical meaning unknown.",
+    "d2": "Set to 1 by flags[15]. Physical meaning unknown.",
+    "d3": "First 7-bit LP5 CA phase, independently corroborated for MRW/MRR/MPC.",
+    "d4": "Second 7-bit LP5 CA phase, independently corroborated for MRW/MRR/MPC.",
+    "d5": "val_arg1[1:0], unless flags[16] or opcode40 second phase suppresses it. Rank-selection input at callers; correspondence to active-high physical CS pins in LP4 is not established.",
+    "d6_bit0": "Set on selected read paths when flags[3:2]==3, or by flags[18]. Physical function unknown.",
+    "d6_bit1": "Set on selected read opcodes unless flags[3], or by flags[18]. Read-enable candidate, not independently proved.",
+    "d6_bit2": "Set for LP5 write opcodes 3/4/28 and WFF opcode41. Write-enable candidate, not independently proved.",
+    "d6_bit3": "Mirrors flags[12]. Physical function unknown.",
+    "d6_bits15_4": "Zero in this encoder.",
+    "d7_bits11_0": "Priority selection from flags[20..27]: 0x00d,0x0d0,0xd00,0x008,0x080,0x400,0x100,0x200; otherwise zero. Physical controls unknown, cannot assume they are RESET_n or CKE.",
+    "d7_bit12": "Mirrors flags[19]. Physical function unknown.",
+    "d7_bits15_13": "Zero in this encoder."
+  },
+  "packed_command_ram_bits": {
+    "word0_bits6_0": "d3[6:0]: first LP5 CA phase",
+    "word0_bits13_7": "d4[6:0]: second LP5 CA phase",
+    "word0_bits15_14": "d5[1:0]: caller rank selection, physical CS semantics in LP4 unproved",
+    "word1_bits3_0": "d6[3:0]: data/control flags with only call-site correlations",
+    "word1_bits15_4": "d7[11:0]: unknown physical controls",
+    "word2_bit0": "d7[12], source flags[19]: unknown physical control",
+    "word2_bits15_1": "Zero",
+    "word3_bits3_0": "Zero",
+    "word3_bit4": "d0[0]: flags[6] or input rank-selection bit1; unknown hardware purpose",
+    "word3_bits6_5": "d1[1:0]: unknown hardware purpose",
+    "word3_bit7": "d2[0]: flags[15], unknown hardware purpose",
+    "word3_bits9_8": "slot0 uses tracker[18][1:0], slot1 uses tracker[16][1:0]: unknown step modes",
+    "word3_bit10_slot0": "Nonzero cbt_step_ext converted to 1; physical timing interpretation unknown",
+    "word3_bit11_slot0": "tracker[20][0] commit flag; physical timing interpretation unknown",
+    "word3_bits14_12_slot0": "tracker[17][2:0], software repeat count minus one",
+    "word3_bits14_10_slot1": "tracker[17][7:3], remainder of software repeat count minus one",
+    "word3_bit15": "Zero"
+  },
+  "execution_path_source_facts": {
+    "arc_command_ram": "0x90082000 | (halfword_marker << 1)",
+    "commit": "Two slots, eight packed halfwords, marker += 8; marker/4 is number of slots.",
+    "start_candidate": "ARC 0x90040044 + (active_csr_offset << 1), set to 0 in pulse init",
+    "stop_candidate": "ARC 0x90040046 + (active_csr_offset << 1), set to (marker >> 2) - 1",
+    "timing_control_candidate": "ARC 0x9004004e, caller timing parameter",
+    "launch_candidate": "ARC 0x90040040, write 1",
+    "completion_candidate": "ARC 0x90040042, poll nonzero with 25000-iteration bound in public source",
+    "acknowledgement_candidate": "ARC 0x90040040, write 0 after nonzero poll",
+    "qualification": "Source-level behavior established; names start/stop/launch/completion are inferred from call relationships, not validated against an authoritative Type9 register manual or T736 measurements.",
+    "host_mapping": "Not established for command RAM. Known mailbox host/ARC addresses do not justify a global linear mapping. No host writes generated."
+  },
+  "operations_status": {
+    "MRW": "LP4 pin encoding implemented and exhaustively checked. Type9 LP4 SDR timing/rank control not established.",
+    "MRR": "LP4 request pin encoding mirrors public DFI adapter and is exhaustively checked. Type9 read capture, validity and DQ extraction are absent.",
+    "ZQ": "LP4 ZQ start/latch MPC pin encodings implemented. Timing, shared-resistor serialization and execution remain caller/backend obligations.",
+    "RESET": "Not a CA command. RESET_n/CKE physical CSR control and LP4 power-up timing cannot be inferred from d7 flags; no reset executor added.",
+    "CBT": "MR13 can be encoded as an ordinary MRW. This does not implement CBT: CKE transitions, FSP selection, DQ Vref/CA feedback control, training and safe exit are unimplemented."
+  },
+  "critical_unresolved_mapping": [
+    "Does LP4 mode expand one d3/d4 pair into two SDR cycles, or must each CA value occupy a full slot with repeated positive/negative phases?",
+    "How is LP4 CS high/low alternation represented? LP5 has a single SDR CS value per two DDR CA phases; a rank mask is insufficient to infer LP4 behavior.",
+    "Which mode/ratio register establishes command period and descriptor repeat-count units?",
+    "What are every d6/d7 control flag's physical side effects, and which values are required for plain LP4 MRW without disturbing reset/CKE/data lanes?",
+    "How are completion status stale bits cleared and failures recovered before a new sequence? Public source only polls nonzero; first hardware executor must establish fresh completion semantics."
+  ],
+  "followup_execution_audit": {
+    "scope": "Host upload ABI and existing public-source call graph only; no vendor PMU/PIE payload inspection or translation, no hardware operation",
+    "sdk_host_upload_aperture": {
+      "sdk_file": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+      "symbols": ["lpddr4_phyinit_I_loadPIEImage", "lpddr5_phyinit_I_loadPIEImage"],
+      "observed_host_interface": "Both routines set host PHY mux0, then clear eight consecutive 16-bit locations at 0x0a982000..0x0a98200e before their program upload. LP4 literal pool offsets0x304/0x308 identify mux0x0aaa0000 and destination0x0a982000.",
+      "payload_used": false,
+      "conclusion": "0x0a982000 is a directly observed host command/program upload aperture. It is a stronger candidate for the ARC0x90082000 command RAM than a global mailbox-derived delta, but this does not independently prove host/ARC aliasing or LP4 instruction semantics.",
+      "forbidden_inference": "Do not treat the uploaded opaque program's words as source, decode it into executable tables, or assume the host aperture can be written during live DRAM operation."
+    },
+    "fresh_done_source_audit": {
+      "references": ["pmu_clock.c:139", "pmu_clock.c:160", "pmu_clock.c:250", "pmu_clock.c:799", "pmu_clock.c:871"],
+      "facts": "All identified reads of PHY_REG_CLK_GATE_STAT/ARC0x90040042 only test nonzero. The public source writes1 to ARC0x90040040 before polling and0 after nonzero; no status-clear write, low-state precondition, generation counter, or low-to-high completion edge is established.",
+      "conclusion": "A zero-then-launch-then-nonzero executor would still invent the low/clear semantics. No executor or recovery sequence added."
+    },
+    "mrr_capture_source_audit": {
+      "reference": "pmu_eye.c:1427 pmu_vref_signed_direction_pulse_dispatch",
+      "facts": "The identified literal opcode15 call sets flags18 (d6=3), supplies slice_target as MR-address operand, passes rank-mask argument0, and repeats through extra=vref_step. Surrounding operations toggle a DBYTE broadcast control and a secondary calibration strobe. The function returns void and reads no receive-data/valid register.",
+      "conclusion": "This is not a complete per-rank MRR response helper. Neither the read-enable correlation of d6 nor this call supplies LP4 capture, validity, or DQ extraction semantics. The separate controller MRR diagnostic cannot replace a first PHY training receive path."
+    },
+    "misleading_public_names": {
+      "reference": "pmu_telemetry.c:262",
+      "fact": "pmu_is_lpddr4() only evaluates (DMEM MR19 byte0x8a &3)==1; pmu_is_lpddr5() similarly checks MR20 byte0x8e bits1:0. These helper names do not establish a DRAM-type switch or an LP4 command backend.",
+      "conclusion": "Do not select LP4 execution based on these names."
+    },
+    "rejected_cross_version_mapping": {
+      "repository": "open-power/hostboot",
+      "commit": "a7d36910b6c0cd01ce8b7202425d5faee07f4a72",
+      "path": "src/import/chips/ocmb/odyssey/procedures/hwp/memory/lib/phy/ody_ddrphy_csr_defines.H",
+      "blob": "8a70e91e541058cc9c72e16922be32626db35c08",
+      "facts": "Public Odyssey D5ACSM Run/Done are CSR0x11d/0x11e, Start/Stop0x12b/0x12c, RxEn/RxVal/TxEn pulses0x120/0x121/0x122. These differ from the Type9 candidate offsets0x20/0x21/0x22/0x23; no field mapping was imported.",
+      "additional_search_result": "Targeted public ACSM/LP4-mode searches found older ST/NXP/Tesla DfiCAMode/AcsmCtrl interfaces, not an independently documented Type9 LP4 slot layout. Opaque public PIE programs were not used."
+    },
+    "new_complete_hardware_interface": false,
+    "remaining_minimum_specification": [
+      "LP4 CA/CS timing per four-halfword slot, including the effect of PHY LP4 mode and clock ratio",
+      "d6/d7 physical outputs and safe inactive values for CKE/RESET/data drivers",
+      "Launch/status ownership and fresh-completion/abort semantics",
+      "Per-lane receive capture trigger, freshness/error bits and byte routing"
+    ]
+  },
+  "hardware_test_gate": "Do not execute or flash the LP5 program or a guessed LP4 slot mapping. Establish the above mapping, then validate from SRAM with source-built firmware and observable MRW/MRR results."
+}

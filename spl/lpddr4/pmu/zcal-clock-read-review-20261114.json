@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-14",
+  "kind": "root-reviewed read-only clock candidate snapshot",
+  "addresses": [
+    "0x0a940092",
+    "0x0a94018c",
+    "0x0a94009c"
+  ],
+  "logical": [
+    "0x20049",
+    "0x200c6",
+    "0x2004e"
+  ],
+  "basis": "All three are ordinary host-read CSRs in pinned SiMa PUB220 qb_reg_list.c and NXP PUB230 qb_p230_rldb4.h.20049 is also assigned496 by public A733 pmu_clock.c.200c6 is PllCtrl0 in another Odyssey generation; target name/bitfields are not assumed.",
+  "sources": [
+    {
+      "repo": "SiMa-ai/sima-ai-uboot",
+      "commit": "5a026adbe2a54aeaae5dc50e1852d4b5c1884640",
+      "path": "arch/arm/mach-sima/qb_reg_list.c",
+      "blob": "1a4a3c957de1ea19f790337dc60fc2bb62483b5e"
+    },
+    {
+      "repo": "nxp-imx/imx-oei",
+      "commit": "9aea3350e643da86081c9dfaf3a6e1a84a583bfd",
+      "path": "oei/ddr/qb_p230_rldb4.h",
+      "blob": "e88a916e6cc0aa96910db6e562842e2eaf2793e5"
+    }
+  ],
+  "design": "Replace only3rawobservations in155-read state probe. No configuration write or lock-success assertion."
+}

@@ -1,0 +1,75 @@
+00000000 <dwc_ddrphy_phyinit_E_setDfiClk>:
+   0:	b470      	push	{r4, r5, r6}
+   2:	2600      	movs	r6, #0
+   4:	4c19      	ldr	r4, [pc, #100]	@ (6c <dwc_ddrphy_phyinit_E_setDfiClk+0x6c>)
+   6:	0203      	lsls	r3, r0, #8
+   8:	4d19      	ldr	r5, [pc, #100]	@ (70 <dwc_ddrphy_phyinit_E_setDfiClk+0x70>)
+   a:	6026      	str	r6, [r4, #0]
+   c:	682a      	ldr	r2, [r5, #0]
+   e:	f422 52f8 	bic.w	r2, r2, #7936	@ 0x1f00
+  12:	431a      	orrs	r2, r3
+  14:	602a      	str	r2, [r5, #0]
+  16:	2501      	movs	r5, #1
+  18:	6025      	str	r5, [r4, #0]
+  1a:	f504 0480 	add.w	r4, r4, #4194304	@ 0x400000
+  1e:	6026      	str	r6, [r4, #0]
+  20:	4e14      	ldr	r6, [pc, #80]	@ (74 <dwc_ddrphy_phyinit_E_setDfiClk+0x74>)
+  22:	6832      	ldr	r2, [r6, #0]
+  24:	f422 52f8 	bic.w	r2, r2, #7936	@ 0x1f00
+  28:	4313      	orrs	r3, r2
+  2a:	4a13      	ldr	r2, [pc, #76]	@ (78 <dwc_ddrphy_phyinit_E_setDfiClk+0x78>)
+  2c:	6033      	str	r3, [r6, #0]
+  2e:	6025      	str	r5, [r4, #0]
+  30:	6813      	ldr	r3, [r2, #0]
+  32:	f023 63e0 	bic.w	r3, r3, #117440512	@ 0x7000000
+  36:	6013      	str	r3, [r2, #0]
+  38:	6f8c      	ldr	r4, [r1, #120]	@ 0x78
+  3a:	6813      	ldr	r3, [r2, #0]
+  3c:	0764      	lsls	r4, r4, #29
+  3e:	bf44      	itt	mi
+  40:	00c4      	lslmi	r4, r0, #3
+  42:	6e08      	ldrmi	r0, [r1, #96]	@ 0x60
+  44:	f023 031f 	bic.w	r3, r3, #31
+  48:	bf54      	ite	pl
+  4a:	f043 0303 	orrpl.w	r3, r3, #3
+  4e:	40e0      	lsrmi	r0, r4
+  50:	bc70      	pop	{r4, r5, r6}
+  52:	bf44      	itt	mi
+  54:	f000 001f 	andmi.w	r0, r0, #31
+  58:	4303      	orrmi	r3, r0
+  5a:	f44f 707a 	mov.w	r0, #1000	@ 0x3e8
+  5e:	6013      	str	r3, [r2, #0]
+  60:	f043 6300 	orr.w	r3, r3, #134217728	@ 0x8000000
+  64:	6013      	str	r3, [r2, #0]
+  66:	f7ff bffe 	b.w	0 <udelay>
+			66: R_ARM_THM_JUMP24	udelay
+  6a:	bf00      	nop
+  6c:	0a110c80 	.word	0x0a110c80
+  70:	0a110510 	.word	0x0a110510
+  74:	0a510510 	.word	0x0a510510
+  78:	02002c00 	.word	0x02002c00
+
+ 760:	4e1a      	ldr	r6, [pc, #104]	@ (7cc <mctl_phy_init+0x7cc>)
+ 762:	4621      	mov	r1, r4
+ 764:	4628      	mov	r0, r5
+ 766:	f7ff fffe 	bl	0 <mctl_phy_init>
+			766: R_ARM_THM_CALL	ddrphy_phyinit_C_initPhyConfigPsLoop
+ 76a:	4621      	mov	r1, r4
+ 76c:	4628      	mov	r0, r5
+ 76e:	f7ff fffe 	bl	0 <mctl_phy_init>
+			76e: R_ARM_THM_CALL	dwc_ddrphy_phyinit_E_setDfiClk
+ 772:	4621      	mov	r1, r4
+ 774:	4628      	mov	r0, r5
+ 776:	f7ff fffe 	bl	0 <mctl_phy_init>
+			776: R_ARM_THM_CALL	dwc_ddrphy_phyinit_F_loadDMEM
+ 77a:	8035      	strh	r5, [r6, #0]
+ 77c:	4620      	mov	r0, r4
+ 77e:	f7ff fffe 	bl	0 <mctl_phy_init>
+			77e: R_ARM_THM_CALL	mctl_phy_set_address_remapping
+ 782:	4620      	mov	r0, r4
+ 784:	f7ff fffe 	bl	0 <mctl_phy_init>
+			784: R_ARM_THM_CALL	mctl_phy_set_data_remapping
+ 788:	2301      	movs	r3, #1
+ 78a:	4628      	mov	r0, r5
+ 78c:	8033      	strh	r3, [r6, #0]
+ 78e:	f7ff fffe 	bl	0 <mctl_phy_init>

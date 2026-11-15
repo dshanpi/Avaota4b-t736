@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"chipVendor\": \"allwinner\",\n  \"configuredBinding\": \"location:pciroot(0)#pci(1400)#usbroot(0)#usb(10)#usb(2)\",\n  \"devices\": [],\n  \"flasherKind\": \"openixcli\",\n  \"online\": false,\n  \"protocol\": \"FEL / FES\",\n  \"state\": \"not_found\"\n}"
+    }
+  ],
+  "isError": false
+}

@@ -1,0 +1,463 @@
+Subject: [PATCH] T736: GMAC0 candidate, apply after the v5 PIO series
+
+Build and host checks only; no target Ethernet validation yet.
+
+diff --git a/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts b/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
+--- a/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
++++ b/arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
+@@ -200,3 +200,82 @@
+ 		status = "okay";
+ 	};
+ };
++// SPDX-License-Identifier: GPL-2.0-only
++/* Append to the validated PIO board tree for the Ethernet candidate. */
++/ {
++	aliases { ethernet0 = &gmac0; };
++
++	/* Existing firmware configuration, not an independent PLL driver. */
++	ahb_fw: clock-ahb-firmware {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <200000000>;
++	};
++	pll_peri150_fw: clock-peri150-firmware {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <150000000>;
++	};
++	mbus_fw: clock-mbus-firmware {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <600000000>;
++	};
++	ph_supply: regulator-ph-firmware {
++		compatible = "regulator-fixed";
++		regulator-name = "ph-phy-3v3-firmware";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++	};
++	gmac_ccu: clock-controller@2003410 {
++		compatible = "allwinner,t736-gmac-ccu";
++		reg = <0 0x02003410 0 0x10>, <0 0x020025e4 0 4>;
++		clocks = <&ahb_fw>, <&pll_peri150_fw>, <&mbus_fw>;
++		#clock-cells = <1>;
++		#reset-cells = <1>;
++	};
++	gmac0: ethernet@4500000 {
++		compatible = "allwinner,t736-dwmac";
++		reg = <0 0x04500000 0 0x8000>, <0 0x04508000 0 4>;
++		interrupts = <0 172 4>, <0 178 4>, <0 173 4>, <0 174 4>;
++		interrupt-names = "macirq", "eth_lpi", "tx0_irq", "rx0_irq";
++		clocks = <&gmac_ccu 0>, <&gmac_ccu 1>, <&gmac_ccu 2>;
++		clock-names = "stmmaceth", "phy", "mbus";
++		resets = <&gmac_ccu 0>, <&gmac_ccu 1>;
++		reset-names = "stmmaceth", "ahb";
++		pinctrl-names = "default";
++		pinctrl-0 = <&gmac0_pins>;
++		phy-mode = "rgmii";
++		phy-handle = <&gmac0_phy>;
++		phy-supply = <&ph_supply>;
++		max-speed = <1000>;
++		allwinner,tx-delay-taps = <13>;
++		allwinner,rx-delay-taps = <10>;
++		snps,pbl = <8>;
++		snps,aal;
++		/* The Realtek driver disables both PHY delays for plain rgmii. */
++		mdio {
++			compatible = "snps,dwmac-mdio";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			gmac0_phy: ethernet-phy@1 {
++				reg = <1>;
++				reset-gpios = <&pio 7 16 1>;
++				reset-assert-us = <10000>;
++				reset-deassert-us = <150000>;
++			};
++		};
++	};
++};
++
++&pio {
++	vcc-ph-supply = <&ph_supply>;
++	gmac0_pins: gmac0-pins {
++		pins = "PH0", "PH1", "PH2", "PH3", "PH4", "PH5", "PH6", "PH7",
++		       "PH8", "PH9", "PH10", "PH11", "PH12", "PH13", "PH14", "PH15";
++		function = "gmac0";
++		allwinner,pinmux = <5>;
++		/* Keep existing pad drive strengths and pull configuration. */
++	};
++};
+diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+--- a/drivers/clk/Makefile
++++ b/drivers/clk/Makefile
+@@ -170,3 +170,5 @@
+ obj-$(CONFIG_COMMON_CLK_ZYNQMP)         += zynqmp/
+ 
+ obj-$(CONFIG_CLK_T736_USB) += clk-t736-usb.o
++
++obj-$(CONFIG_CLK_T736_GMAC) += clk-t736-gmac.o
+diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+--- a/drivers/clk/Kconfig
++++ b/drivers/clk/Kconfig
+@@ -589,3 +589,8 @@
+ 	bool "T736 USB1 initial clock/reset subset"
+ 	depends on ARCH_SUNXI && OF && COMMON_CLK
+ 	select RESET_CONTROLLER
++
++config CLK_T736_GMAC
++	bool "T736 GMAC0 initial clock/reset subset"
++	depends on ARCH_SUNXI && OF && COMMON_CLK
++	select RESET_CONTROLLER
+diff --git a/drivers/clk/clk-t736-gmac.c b/drivers/clk/clk-t736-gmac.c
+new file mode 100644
+--- /dev/null
++++ b/drivers/clk/clk-t736-gmac.c
+@@ -0,0 +1,176 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* GMAC0 clock/reset subset. Parent PLL and bus rates are firmware-owned. */
++#include <linux/clk-provider.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/reset-controller.h>
++#include <linux/spinlock.h>
++
++#define N_CLOCKS 3
++#define N_RESETS 2
++#define MBUS_KEY 0x40302
++
++struct t736_gmac_ccu;
++struct t736_gmac_gate {
++	struct clk_hw hw;
++	struct t736_gmac_ccu *ccu;
++	void __iomem *reg;
++	u32 mask, key;
++	bool phy;
++};
++
++struct t736_gmac_ccu {
++	void __iomem *gmac, *mbus;
++	spinlock_t lock;
++	struct reset_controller_dev reset;
++	struct t736_gmac_gate gates[N_CLOCKS];
++	struct clk_hw_onecell_data *clocks;
++};
++
++static int t736_gmac_gate_enable(struct clk_hw *hw)
++{
++	struct t736_gmac_gate *gate = container_of(hw, struct t736_gmac_gate, hw);
++	unsigned long flags;
++	u32 value;
++
++	spin_lock_irqsave(&gate->ccu->lock, flags);
++	value = readl(gate->reg);
++	/* 150 MHz / (5 + 1) = 25 MHz. Do not change the shared PLL. */
++	if (gate->phy)
++		value = (value & ~GENMASK(4, 0)) | 5;
++	writel(value | gate->key | gate->mask, gate->reg);
++	spin_unlock_irqrestore(&gate->ccu->lock, flags);
++	return 0;
++}
++
++static void t736_gmac_gate_disable(struct clk_hw *hw)
++{
++	struct t736_gmac_gate *gate = container_of(hw, struct t736_gmac_gate, hw);
++	unsigned long flags;
++
++	spin_lock_irqsave(&gate->ccu->lock, flags);
++	writel((readl(gate->reg) | gate->key) & ~gate->mask, gate->reg);
++	spin_unlock_irqrestore(&gate->ccu->lock, flags);
++}
++
++static int t736_gmac_gate_enabled(struct clk_hw *hw)
++{
++	struct t736_gmac_gate *gate = container_of(hw, struct t736_gmac_gate, hw);
++
++	return !!(readl(gate->reg) & gate->mask);
++}
++
++static unsigned long t736_gmac_gate_rate(struct clk_hw *hw, unsigned long parent)
++{
++	struct t736_gmac_gate *gate = container_of(hw, struct t736_gmac_gate, hw);
++
++	return gate->phy ? parent / ((readl(gate->reg) & GENMASK(4, 0)) + 1) : parent;
++}
++
++static const struct clk_ops t736_gmac_gate_ops = {
++	.enable = t736_gmac_gate_enable,
++	.disable = t736_gmac_gate_disable,
++	.is_enabled = t736_gmac_gate_enabled,
++	.recalc_rate = t736_gmac_gate_rate,
++};
++
++static int t736_gmac_reset_update(struct reset_controller_dev *rc,
++				  unsigned long id, bool assert)
++{
++	struct t736_gmac_ccu *ccu = container_of(rc, struct t736_gmac_ccu, reset);
++	unsigned long flags;
++	u32 value, mask;
++
++	if (id >= N_RESETS)
++		return -EINVAL;
++	mask = BIT(16 + id);
++	spin_lock_irqsave(&ccu->lock, flags);
++	value = readl(ccu->gmac + 0xc);
++	writel(assert ? value & ~mask : value | mask, ccu->gmac + 0xc);
++	spin_unlock_irqrestore(&ccu->lock, flags);
++	return 0;
++}
++
++static int t736_gmac_reset_assert(struct reset_controller_dev *rc, unsigned long id)
++{
++	return t736_gmac_reset_update(rc, id, true);
++}
++
++static int t736_gmac_reset_deassert(struct reset_controller_dev *rc, unsigned long id)
++{
++	return t736_gmac_reset_update(rc, id, false);
++}
++
++static const struct reset_control_ops t736_gmac_reset_ops = {
++	.assert = t736_gmac_reset_assert,
++	.deassert = t736_gmac_reset_deassert,
++};
++
++static int t736_gmac_ccu_probe(struct platform_device *pdev)
++{
++	static const char * const names[] = {
++		"t736-gmac0-bus", "t736-gmac0-phy", "t736-gmac0-mbus"
++	};
++	static const u32 masks[] = { BIT(0), BIT(31), BIT(11) };
++	struct device *dev = &pdev->dev;
++	struct t736_gmac_ccu *ccu;
++	void __iomem *regs[N_CLOCKS];
++	int i, ret;
++
++	ccu = devm_kzalloc(dev, sizeof(*ccu), GFP_KERNEL);
++	if (!ccu)
++		return -ENOMEM;
++	spin_lock_init(&ccu->lock);
++	ccu->gmac = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(ccu->gmac))
++		return PTR_ERR(ccu->gmac);
++	ccu->mbus = devm_platform_ioremap_resource(pdev, 1);
++	if (IS_ERR(ccu->mbus))
++		return PTR_ERR(ccu->mbus);
++	regs[0] = ccu->gmac + 0xc;
++	regs[1] = ccu->gmac;
++	regs[2] = ccu->mbus;
++	ccu->clocks = devm_kzalloc(dev, struct_size(ccu->clocks, hws, N_CLOCKS), GFP_KERNEL);
++	if (!ccu->clocks)
++		return -ENOMEM;
++	ccu->clocks->num = N_CLOCKS;
++	for (i = 0; i < N_CLOCKS; i++) {
++		struct t736_gmac_gate *gate = &ccu->gates[i];
++		struct clk_parent_data parent = { .index = i };
++		struct clk_init_data init = {
++			.name = names[i], .ops = &t736_gmac_gate_ops,
++			.parent_data = &parent, .num_parents = 1,
++			.flags = CLK_GET_RATE_NOCACHE,
++		};
++
++		gate->ccu = ccu;
++		gate->reg = regs[i];
++		gate->mask = masks[i];
++		gate->key = i == 2 ? MBUS_KEY : 0;
++		gate->phy = i == 1;
++		gate->hw.init = &init;
++		ret = devm_clk_hw_register(dev, &gate->hw);
++		if (ret)
++			return ret;
++		ccu->clocks->hws[i] = &gate->hw;
++	}
++	ccu->reset.owner = THIS_MODULE;
++	ccu->reset.ops = &t736_gmac_reset_ops;
++	ccu->reset.nr_resets = N_RESETS;
++	ccu->reset.of_node = dev->of_node;
++	ret = devm_reset_controller_register(dev, &ccu->reset);
++	if (ret)
++		return ret;
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, ccu->clocks);
++}
++
++static const struct of_device_id t736_gmac_ccu_match[] = {
++	{ .compatible = "allwinner,t736-gmac-ccu" }, { }
++};
++static struct platform_driver t736_gmac_ccu_driver = {
++	.probe = t736_gmac_ccu_probe,
++	.driver = { .name = "t736-gmac-ccu", .of_match_table = t736_gmac_ccu_match },
++};
++builtin_platform_driver(t736_gmac_ccu_driver);
+diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
+--- a/drivers/net/ethernet/stmicro/stmmac/Makefile
++++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+@@ -47,3 +47,5 @@
+ obj-$(CONFIG_DWMAC_INTEL)	+= dwmac-intel.o
+ obj-$(CONFIG_DWMAC_LOONGSON)	+= dwmac-loongson.o
+ stmmac-pci-objs:= stmmac_pci.o
++
++obj-$(CONFIG_DWMAC_T736) += dwmac-t736.o
+diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+--- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
++++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+@@ -371,3 +371,7 @@
+ 
+ 	  If unsure, say N.
+ endif
++
++config DWMAC_T736
++	tristate "T736 board DWMAC glue"
++	depends on ARCH_SUNXI && OF && STMMAC_PLATFORM && COMMON_CLK && REGULATOR
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c
+new file mode 100644
+--- /dev/null
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c
+@@ -0,0 +1,146 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* T736 RGMII glue candidate; not enabled in the USB1 v4 kernel. */
++#include <linux/bitfield.h>
++#include <linux/clk.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/regulator/consumer.h>
++#include "stmmac.h"
++#include "stmmac_platform.h"
++
++struct t736_dwmac {
++	void __iomem *cfg;
++	struct clk *phy_clock, *mbus_clock;
++	struct regulator *phy_supply;
++	u32 tx_taps, rx_taps;
++};
++
++static int t736_dwmac_init(struct platform_device *pdev, void *private)
++{
++	struct t736_dwmac *data = private;
++	u32 value;
++	int ret;
++
++	ret = regulator_enable(data->phy_supply);
++	if (ret)
++		return ret;
++	ret = clk_prepare_enable(data->mbus_clock);
++	if (ret) {
++		regulator_disable(data->phy_supply);
++		return ret;
++	}
++	ret = clk_prepare_enable(data->phy_clock);
++	if (ret) {
++		clk_disable_unprepare(data->mbus_clock);
++		regulator_disable(data->phy_supply);
++		return ret;
++	}
++	if (clk_get_rate(data->phy_clock) != 25000000) {
++		clk_disable_unprepare(data->phy_clock);
++		clk_disable_unprepare(data->mbus_clock);
++		regulator_disable(data->phy_supply);
++		return dev_err_probe(&pdev->dev, -EINVAL, "PHY requires 25 MHz\n");
++	}
++	/* RGMII with external transmit clock. Delay values are hardware taps,
++	 * not picoseconds; preserve all unrelated bits in the extension block.
++	 */
++	value = readl(data->cfg);
++	value &= ~(GENMASK(17, 16) | BIT(13) | GENMASK(12, 5) | GENMASK(2, 0));
++	value |= BIT(2) | 1;
++	value |= FIELD_PREP(GENMASK(17, 16), data->tx_taps >> 3);
++	value |= FIELD_PREP(GENMASK(12, 10), data->tx_taps & 7);
++	value |= FIELD_PREP(GENMASK(9, 5), data->rx_taps);
++	writel(value, data->cfg);
++	dev_info(&pdev->dev, "RGMII MAC delays TX=%u RX=%u, PHY clock 25 MHz\n",
++		 data->tx_taps, data->rx_taps);
++	return 0;
++}
++
++static void t736_dwmac_exit(struct platform_device *pdev, void *private)
++{
++	struct t736_dwmac *data = private;
++
++	clk_disable_unprepare(data->phy_clock);
++	clk_disable_unprepare(data->mbus_clock);
++	regulator_disable(data->phy_supply);
++}
++
++static int t736_dwmac_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct stmmac_resources resources;
++	struct plat_stmmacenet_data *plat;
++	struct t736_dwmac *data;
++	int ret;
++
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++	ret = stmmac_get_platform_resources(pdev, &resources);
++	if (ret)
++		return ret;
++	plat = devm_stmmac_probe_config_dt(pdev, resources.mac);
++	if (IS_ERR(plat))
++		return PTR_ERR(plat);
++	/* This initial path deliberately supports only this board's RGMII
++	 * external-clock setup, with all delays applied at the MAC.
++	 */
++	if (plat->phy_interface != PHY_INTERFACE_MODE_RGMII)
++		return dev_err_probe(dev, -EINVAL, "Only plain RGMII is implemented\n");
++	data->cfg = devm_platform_ioremap_resource(pdev, 1);
++	if (IS_ERR(data->cfg))
++		return PTR_ERR(data->cfg);
++	data->phy_clock = devm_clk_get(dev, "phy");
++	if (IS_ERR(data->phy_clock))
++		return dev_err_probe(dev, PTR_ERR(data->phy_clock), "PHY clock unavailable\n");
++	data->mbus_clock = devm_clk_get(dev, "mbus");
++	if (IS_ERR(data->mbus_clock))
++		return dev_err_probe(dev, PTR_ERR(data->mbus_clock), "MBUS clock unavailable\n");
++	data->phy_supply = devm_regulator_get(dev, "phy");
++	if (IS_ERR(data->phy_supply))
++		return dev_err_probe(dev, PTR_ERR(data->phy_supply), "PHY supply unavailable\n");
++	ret = of_property_read_u32(dev->of_node, "allwinner,tx-delay-taps", &data->tx_taps);
++	if (ret || data->tx_taps > 31)
++		return -EINVAL;
++	ret = of_property_read_u32(dev->of_node, "allwinner,rx-delay-taps", &data->rx_taps);
++	if (ret || data->rx_taps > 31)
++		return -EINVAL;
++	resources.tx_irq[0] = platform_get_irq_byname(pdev, "tx0_irq");
++	if (resources.tx_irq[0] < 0)
++		return resources.tx_irq[0];
++	resources.rx_irq[0] = platform_get_irq_byname(pdev, "rx0_irq");
++	if (resources.rx_irq[0] < 0)
++		return resources.rx_irq[0];
++	if (plat->tx_queues_to_use != 1 || plat->rx_queues_to_use != 1)
++		return dev_err_probe(dev, -EINVAL, "Only queue 0 is wired on this path\n");
++	plat->bsp_priv = data;
++	plat->init = t736_dwmac_init;
++	plat->exit = t736_dwmac_exit;
++	plat->host_dma_width = 32;
++	plat->core_type = DWMAC_CORE_GMAC4;
++	plat->pmt = 1;
++	plat->flags |= STMMAC_FLAG_SPH_DISABLE | STMMAC_FLAG_MULTI_MSI_EN;
++	/* Board AHB is presently initialized to 200 MHz by vendor firmware.
++	 * The selected CSR divisor is 102, keeping MDC below 2.5 MHz.
++	 */
++	plat->clk_csr = 4;
++	return devm_stmmac_pltfr_probe(pdev, plat, &resources);
++}
++
++static const struct of_device_id t736_dwmac_match[] = {
++	{ .compatible = "allwinner,t736-dwmac" }, { }
++};
++MODULE_DEVICE_TABLE(of, t736_dwmac_match);
++
++static struct platform_driver t736_dwmac_driver = {
++	.probe = t736_dwmac_probe,
++	.driver = {
++		.name = "t736-dwmac", .of_match_table = t736_dwmac_match,
++		.pm = &stmmac_pltfr_pm_ops,
++	},
++};
++module_platform_driver(t736_dwmac_driver);
++MODULE_DESCRIPTION("T736 board initial RGMII integration");
++MODULE_LICENSE("GPL");

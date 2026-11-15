@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-14",
+  "baseline": "evidence/t736-phy-zcal-codetrack-sram-hardware-20261114.json",
+  "kind": "root-reviewed single-variable wait extension",
+  "design": "Same140events/11writes/address order and raw code observation. Increase measured Run wait from100us to10000us (100x),within existing diagnostic API maximum10000us. Record lower bound240000ticks at24MHz. No clock/voltage/impedance/mode changes.",
+  "limits": "A 10ms negative result only rules out a result appearing by this observation under this configuration; not a universal worst-case bound or calibration result."
+}

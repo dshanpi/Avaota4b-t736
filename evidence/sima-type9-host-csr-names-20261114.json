@@ -1,0 +1,187 @@
+{
+  "source": "https://raw.githubusercontent.com/SiMa-ai/sima-ai-uboot/5a026adbe2a54aeaae5dc50e1852d4b5c1884640/arch/arm/mach-sima/init_ddr_modalix.c",
+  "git_blob": "293179961431235b603a61c70dc5612446b91db2",
+  "scope": "Host CSR address/name comments only. No register preset values, PMU or PIE instruction words retained or imported. Names require target corroboration.",
+  "register_names": [
+    {
+      "line": 894,
+      "logical_csr": "0x20060",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_MemResetL"
+    },
+    {
+      "line": 895,
+      "logical_csr": "0x200a5",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_LP5Mode"
+    },
+    {
+      "line": 898,
+      "logical_csr": "0x20300",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalRZN"
+    },
+    {
+      "line": 899,
+      "logical_csr": "0x20303",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalRate"
+    },
+    {
+      "line": 900,
+      "logical_csr": "0x20302",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalCompVref"
+    },
+    {
+      "line": 901,
+      "logical_csr": "0x20328",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_VrefDacRefCtl"
+    },
+    {
+      "line": 902,
+      "logical_csr": "0x20301",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalBaseCtrl"
+    },
+    {
+      "line": 903,
+      "logical_csr": "0x2030b",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalCompCtrl"
+    },
+    {
+      "line": 931,
+      "logical_csr": "0x10093",
+      "name_comment": "DWC_DDRPHYA_DBYTE0_p0_DxRxPowerDown"
+    },
+    {
+      "line": 1248,
+      "logical_csr": "0x20331",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_TxImpedanceCMOS1_p0"
+    },
+    {
+      "line": 1609,
+      "logical_csr": "0x20072",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA"
+    },
+    {
+      "line": 1611,
+      "logical_csr": "0x20073",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB"
+    },
+    {
+      "line": 5694,
+      "logical_csr": "0x2007e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal"
+    },
+    {
+      "line": 5697,
+      "logical_csr": "0x20310",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalReset"
+    },
+    {
+      "line": 5698,
+      "logical_csr": "0x20311",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_ZCalRun"
+    },
+    {
+      "line": 5835,
+      "logical_csr": "0x20072",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA"
+    },
+    {
+      "line": 5837,
+      "logical_csr": "0x20073",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB"
+    },
+    {
+      "line": 7658,
+      "logical_csr": "0x2007e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal"
+    },
+    {
+      "line": 7792,
+      "logical_csr": "0x20072",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA"
+    },
+    {
+      "line": 7794,
+      "logical_csr": "0x20073",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB"
+    },
+    {
+      "line": 9615,
+      "logical_csr": "0x2007e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal"
+    },
+    {
+      "line": 9749,
+      "logical_csr": "0x20072",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA"
+    },
+    {
+      "line": 9751,
+      "logical_csr": "0x20073",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB"
+    },
+    {
+      "line": 11572,
+      "logical_csr": "0x2007e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal"
+    },
+    {
+      "line": 11706,
+      "logical_csr": "0x20072",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA"
+    },
+    {
+      "line": 11708,
+      "logical_csr": "0x20073",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB"
+    },
+    {
+      "line": 13529,
+      "logical_csr": "0x2007e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal"
+    },
+    {
+      "line": 13663,
+      "logical_csr": "0x20072",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA"
+    },
+    {
+      "line": 13665,
+      "logical_csr": "0x20073",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB"
+    },
+    {
+      "line": 15486,
+      "logical_csr": "0x2007e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal"
+    },
+    {
+      "line": 15620,
+      "logical_csr": "0x20072",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA"
+    },
+    {
+      "line": 15622,
+      "logical_csr": "0x20073",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB"
+    },
+    {
+      "line": 17443,
+      "logical_csr": "0x2007e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal"
+    },
+    {
+      "line": 17577,
+      "logical_csr": "0x20072",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnA"
+    },
+    {
+      "line": 17579,
+      "logical_csr": "0x20073",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtLpCsEnB"
+    },
+    {
+      "line": 19400,
+      "logical_csr": "0x2007e",
+      "name_comment": "DWC_DDRPHYA_MASTER0_p0_HwtControlVal"
+    }
+  ]
+}

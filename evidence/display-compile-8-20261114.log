@@ -1,0 +1,60 @@
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp22.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_log.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_auth.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_code.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_exceptions.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_mailbox.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c:308:6: warning: no previous prototype for ‘esm_image_read_base_config’ [-Wmissing-prototypes]
+  308 | void esm_image_read_base_config(uint8_t *ptr, esm_hdmi_hdcp_controls *i_hdcp_c)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c:518:12: warning: no previous prototype for ‘esm_get_configuration’ [-Wmissing-prototypes]
+  518 | ESM_STATUS esm_get_configuration(esm_instance_t *esm, esm_config_t *returned_config)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c: In function ‘esm_get_configuration’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c:529:17: warning: variable ‘ctrl’ set but not used [-Wunused-but-set-variable]
+  529 |         uint8_t ctrl = 0;
+      |                 ^~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp22.c:65:6: warning: no previous prototype for ‘_dw_hdcp2x_data_enable’ [-Wmissing-prototypes]
+   65 | void _dw_hdcp2x_data_enable(u8 enable)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_exceptions.c:14:6: warning: no previous prototype for ‘esm_hostlib_put_exception’ [-Wmissing-prototypes]
+   14 | void esm_hostlib_put_exception(esm_instance_t *esm, uint32_t c)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_status.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:421:6: warning: no previous prototype for ‘_dw_fc_video_set_preamble_filter’ [-Wmissing-prototypes]
+  421 | void _dw_fc_video_set_preamble_filter(u8 value, u8 channel)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:479:6: warning: no previous prototype for ‘dw_fc_set_tmds_mode’ [-Wmissing-prototypes]
+  479 | void dw_fc_set_tmds_mode(dw_tmds_mode_t mode)
+      |      ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:567:6: warning: no previous prototype for ‘_dw_avi_set_color_metry’ [-Wmissing-prototypes]
+  567 | void _dw_avi_set_color_metry(u8 value)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:572:6: warning: no previous prototype for ‘_dw_avi_set_extend_color_metry’ [-Wmissing-prototypes]
+  572 | void _dw_avi_set_extend_color_metry(u8 extColor)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:592:6: warning: no previous prototype for ‘_dw_packet_gmd_config’ [-Wmissing-prototypes]
+  592 | void _dw_packet_gmd_config(struct dw_video_s *video)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:649:5: warning: no previous prototype for ‘_dw_packet_vsi_config’ [-Wmissing-prototypes]
+  649 | int _dw_packet_vsi_config(void)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:682:6: warning: no previous prototype for ‘_dw_packet_avi_config’ [-Wmissing-prototypes]
+  682 | void _dw_packet_avi_config(struct dw_video_s *video)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:821:6: warning: no previous prototype for ‘dw_drm_packet_config’ [-Wmissing-prototypes]
+  821 | void dw_drm_packet_config(dw_fc_drm_pb_t *pb)
+      |      ^~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_trace.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_status.c:13:6: warning: no previous prototype for ‘boot_fail_check’ [-Wmissing-prototypes]
+   13 | void boot_fail_check(esm_instance_t *esm)
+      |      ^~~~~~~~~~~~~~~
+  AR      drivers/gpu/drm/t736-bsp/built-in.a
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'

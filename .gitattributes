@@ -2,3 +2,6 @@
 *.patch text eol=lf -whitespace
 *.config text eol=lf
 *.log text eol=lf -whitespace
+evidence/*.txt text eol=lf -whitespace
+spl/lpddr4/pmu/reference/** -whitespace
+*.png binary

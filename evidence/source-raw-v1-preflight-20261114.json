@@ -1,0 +1,17 @@
+{
+  "source_spl_bytes": 221184,
+  "bootrom_load": "0x47000",
+  "arm_branch_target": "0x47060",
+  "egon_checksum_verified_by_packer": true,
+  "boot_package_header_crc_verified": true,
+  "three_payload_hashes_verified": true,
+  "raw_sha256": "fc6044e2b25a74c7405c66dfd6464885fb26af0b329959c7f17a22a0c017f079",
+  "rootfs_fsck": "passed in pack log",
+  "rootfs_shadow_format": "22 valid lines; root SHA512 crypt field",
+  "runtime_storage": "MMC A31Y5C 122142720 sectors, mmcblk0p4 ext4",
+  "runtime_memory_test": "256MiB x 4 patterns passed",
+  "runtime_storage_test": "16MiB fsync/direct read hash passed",
+  "failed_services": 0,
+  "kernel_taint": 0,
+  "cold_boot_hardware_tested": false
+}

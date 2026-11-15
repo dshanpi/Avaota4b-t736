@@ -1,0 +1,6 @@
+gzip -dc /tmp/t736-transfer/fbmap.gz > /root/.t736-fbmap; chmod 700 /root/.t736-fbmap; sync; /root/.t736-fbmap; echo FBMAP_RC=$?
+
+Framebuffer 2560x1440 virtual 2560x2880 bpp 32
+Segmentation fault
+FBMAP_RC=139
+root@t736:~# 

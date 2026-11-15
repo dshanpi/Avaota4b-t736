@@ -1,0 +1,203 @@
+{
+  "all_match": true,
+  "files": {
+    "build/spl-emmc/emmc.o": {
+      "sha256": "36f6a1b7e6426763a5e5f801a1b7db89db4a9cd08f990d6d53d3317218d3ab26",
+      "bytes": 3092
+    },
+    "build/sram-probe/build-record.json": {
+      "sha256": "d13b5a6b4604e5c4625641631b3d2dd164c5f093fda0795b7f4d46055c58e286",
+      "bytes": 6029
+    },
+    "build/sram-probe/t736-sram-probe.bin": {
+      "sha256": "6cb1752b8d4aba4cd2f4f87ffa8d27a467fe12cf3c3fe3d2ddadbf1fd999ef74",
+      "bytes": 3088
+    },
+    "build/sram-probe/t736-sram-probe.elf": {
+      "sha256": "7065a925678c6e6ed695534cc591089e419eb86ed264f8fc9ab0155b5e81f542",
+      "bytes": 26452
+    },
+    "config/independent-boot-plan.json": {
+      "sha256": "a2c3d403940b1b5ad49ca88a7549d2d5d98944b513051b2e0ed4ea296c9b402f",
+      "bytes": 6384
+    },
+    "evidence/lpddr4-pmu-components-check.json": {
+      "sha256": "2536f8cb8d15b5ad8859e553b6283ffcfb863415695eb46ac8a0601e77ec0c7e",
+      "bytes": 8161
+    },
+    "evidence/lpddr4-timing-check.json": {
+      "sha256": "490ce6a84bd4af598e4ed81c4fc9e4cbc518d82273c4407929accdbeb9c5302e",
+      "bytes": 2571
+    },
+    "evidence/spl-emmc-check.json": {
+      "sha256": "4af1238b344724ea5bc1436f5ede3cb658f1fbec4cd7f87e5e6127d17e6d2a4c",
+      "bytes": 2312
+    },
+    "spl/early/entry.S": {
+      "sha256": "b9a7118d4a13da0cba99e9523c75cf46521a5b7357040a5fced77edd8069633a",
+      "bytes": 1396
+    },
+    "spl/early/platform.c": {
+      "sha256": "451dedbaeaa1a3eac77944fb3cb39eb7635f020f4270338f33cb16708a76d0cf",
+      "bytes": 1228
+    },
+    "spl/early/platform.h": {
+      "sha256": "8dad12ad6168ff53442e2bf8602aaf8ff50f27c5af4e94ae8922c7eadcd75f33",
+      "bytes": 1024
+    },
+    "spl/early/probe.c": {
+      "sha256": "999b4f197e3d6f18d5bc0f02c5b42f06fa0f0c7d6844ad81a37df9698f1c6c62",
+      "bytes": 4468
+    },
+    "spl/early/probe.ld": {
+      "sha256": "57baa339040f0e52fd9e77f1e643382097c98db8f82c70b0c129c14338f3dfef",
+      "bytes": 954
+    },
+    "spl/early/README.md": {
+      "sha256": "e48a017984ae102a23f93b7ac852a64943f079de507c3b9ddca1a258955ff85f",
+      "bytes": 6232
+    },
+    "spl/early/test_twi.c": {
+      "sha256": "9a502d85b2fd7f051c4cdcbc283e89c0dd1c3ab9ded3e5411eba0a07c9e84ac6",
+      "bytes": 4605
+    },
+    "spl/early/twi.c": {
+      "sha256": "a9d9fac6ca5841549a07f6a6eaf8531fe4d0b3f144b691bb4452329224ea6758",
+      "bytes": 3928
+    },
+    "spl/early/twi.h": {
+      "sha256": "e9e7fc586fcb535131e4134230880d3820a58dd72085c0be9c36598b2dccfc63",
+      "bytes": 1006
+    },
+    "spl/lpddr4/axp8191.c": {
+      "sha256": "8e12ae0b3e3ec8b971a093c4c946dc44fd46dbf1b1ce7b013725970b7d114b31",
+      "bytes": 3780
+    },
+    "spl/lpddr4/axp8191.h": {
+      "sha256": "6e7a528f0a6c4163d9667bea6554c7f5c5db0a8a8ff423f24df43d19e3989ee7",
+      "bytes": 972
+    },
+    "spl/lpddr4/controller.c": {
+      "sha256": "1017f4a0c37370a1a5aab45d05d84e8942ee5800cdb78b1d6a70ab5083afba47",
+      "bytes": 3965
+    },
+    "spl/lpddr4/controller.h": {
+      "sha256": "d42e7955af902cf11ecc4b7982bdb0357a56f235a381384f40504b1680bed339",
+      "bytes": 2058
+    },
+    "spl/lpddr4/implementation.json": {
+      "sha256": "4d3217957d13ffa5b8ff10fc65191136746e068a8a9a81b70f2df54f56db2f9f",
+      "bytes": 5412
+    },
+    "spl/lpddr4/observe_linux.c": {
+      "sha256": "9fd36dd6df28b55b20a069764b9b91eb7b8113441b5bd58e2804bd2c222b814b",
+      "bytes": 2049
+    },
+    "spl/lpddr4/observe_timing_linux.c": {
+      "sha256": "08a63d10d43beb8a26c0af4cab0ee0412f4820bf959966ba346dc56e13a2de73",
+      "bytes": 1458
+    },
+    "spl/lpddr4/pmu/backend-audit.json": {
+      "sha256": "26331b8e65502aa62c45be5d351ec801f8352186ecde9e5f2ad14751380c8046",
+      "bytes": 8561
+    },
+    "spl/lpddr4/pmu/check.py": {
+      "sha256": "e17fa447e46606ea7c0df598aaf07062e87595a098f35b0193e9429f77056784",
+      "bytes": 3960
+    },
+    "spl/lpddr4/pmu/common_message.c": {
+      "sha256": "40a2c4e8b5e0cb56e99d6674388c02c58662c97fa2be48985b969f382aef39d3",
+      "bytes": 1613
+    },
+    "spl/lpddr4/pmu/common_message.h": {
+      "sha256": "5a62e8e0b8185952c8f0329de67fd520d896a9dddc605056c78f6526c9bf6b6c",
+      "bytes": 1537
+    },
+    "spl/lpddr4/pmu/eye.c": {
+      "sha256": "896175c7d680f32c3db0eb034f98551262c5d5506dc6853f1956d190b284babd",
+      "bytes": 1445
+    },
+    "spl/lpddr4/pmu/eye.h": {
+      "sha256": "e5b16ec1f103a2a0824f6d149c0bfbf0d2b657e6081f8b19a99b7fe511a09da8",
+      "bytes": 1075
+    },
+    "spl/lpddr4/pmu/mailbox.c": {
+      "sha256": "1f94ea125ea600a908a857e1a0af59548293368080a364a77293f2f450b7441f",
+      "bytes": 3552
+    },
+    "spl/lpddr4/pmu/mailbox.h": {
+      "sha256": "40d9175f3096d91cc8cc46152c5ec01c2501d7828e4046395f4350a52d5588d4",
+      "bytes": 2066
+    },
+    "spl/lpddr4/pmu/README.md": {
+      "sha256": "97b674df87d691c48b5e41ff9b93f03f9f18084083a12ce57b994ac2ecedc753",
+      "bytes": 2976
+    },
+    "spl/lpddr4/pmu/reference/phy-training-params-lpddr4.h": {
+      "sha256": "79e90e8e3513a07b903450e98f476d222d946da4a2096b15ea93c99cf95c36ac",
+      "bytes": 20339
+    },
+    "spl/lpddr4/pmu/source-manifest.json": {
+      "sha256": "bc72e894f325cfb1cabaed73fb694e0261ba2194af780c4b196cdfcef0a919a0",
+      "bytes": 703
+    },
+    "spl/lpddr4/pmu/test_pmu.c": {
+      "sha256": "38cce5b4b63c4e70f9937762304a1f4636500d4544c43451fd16cedbb3e5fbc2",
+      "bytes": 10847
+    },
+    "spl/lpddr4/README.md": {
+      "sha256": "74472a7c11bf87decca14efdc9624805c3a7b38fdc65dc410bc179a7eaf2085a",
+      "bytes": 3265
+    },
+    "spl/lpddr4/test_components.c": {
+      "sha256": "bfd6108353a9c746e98b0cc7dad054e6fe0fb01fd68ad1dfd6f27934f2a75f4b",
+      "bytes": 6926
+    },
+    "spl/lpddr4/test_timing.c": {
+      "sha256": "37769082e55c356991b716ae0eabdf2c35aa8fd1bce851f228378577efd57086",
+      "bytes": 7066
+    },
+    "spl/lpddr4/timing.c": {
+      "sha256": "194fd176e4fb78a4e1398e9f3f4a61e29754c056666ee5588b91929af2e4ae57",
+      "bytes": 7523
+    },
+    "spl/lpddr4/timing.h": {
+      "sha256": "674f8fbcf14ace8e50848da4e8be8950ac359f0a415dedd20dd62cd21fe76468",
+      "bytes": 2137
+    },
+    "spl/storage/emmc.c": {
+      "sha256": "5b7081a6c532f6a8c0012cc76ba66f19407ae723a5f5dc09db94d4ceaad2d116",
+      "bytes": 6321
+    },
+    "spl/storage/emmc.h": {
+      "sha256": "2a836887bcf91f4d350f03daf811f06e5441fb6fdd8d913908bb60fb47d5b616",
+      "bytes": 1399
+    },
+    "spl/storage/implementation.json": {
+      "sha256": "5de39f9bba54c8f17bf57e50c026b4475adf3f1e6939ebeef1b302cf0f212c48",
+      "bytes": 2182
+    },
+    "spl/storage/test_emmc.c": {
+      "sha256": "f733f730b819c392df540c6b9786a7045a75a5750f16ab8d697bae24f25707b9",
+      "bytes": 5305
+    },
+    "status.json": {
+      "sha256": "8faa5d507ab4e349cb4d02b48cebb5eafa1cbe6f7d59e37cb340e74f680a4795",
+      "bytes": 21131
+    },
+    "tools/build_t736_sram_probe.py": {
+      "sha256": "1fd1732edfb152f6b3fa063ab12484d97b61342ba9081877e86ba87f770a4d41",
+      "bytes": 5028
+    },
+    "tools/check_lpddr4_timing.py": {
+      "sha256": "45d0305d2e736175fff93c8f03eed39245d3b1865425f9fe9df98fbde70ed02d",
+      "bytes": 4144
+    },
+    "tools/check_spl_emmc.py": {
+      "sha256": "19ac52df62692822e27dfe2f60b0f2d346d37f2b8bd9f230fbf9320b5a4112c7",
+      "bytes": 1867
+    }
+  },
+  "complete_ddr_initializer": false,
+  "deployable": false
+}

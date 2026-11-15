@@ -1,0 +1,9 @@
+(set -eu; f=$(mktemp /var/tmp/t736-source-io-XXXXXX); trap 'rm -f "$f"' EXIT; dd if=/dev/urandom of="$f" bs=1M count=16 conv=fsync status=none; a=$(sha256sum "$f" | cut -d' ' -f1); b=$(dd if="$f" bs=1M count=16 iflag=direct status=none | sha256sum | cut -d' ' -f1); test "$a" = "$b"; printf 'SOURCE_EMMC_16M_FSYNC_DIRECT_READ_OK %s\n' "$b"; test "$(cat /proc/sys/kernel/tainted)" = 0; test "$(systemctl --failed --no-legend --plain | wc -l)" = 0; printf 'SOURCE_RUNTIME_SERVICES_AND_TAINT_OK\n'); printf 'RUNTIME_RC=%s\n' "$?"; cat /sys/class/net/end0/speed; cat /sys/class/net/end0/duplex; uptime
+
+SOURCE_EMMC_16M_FSYNC_DIRECT_READ_OK 0122f028662bd25f092a3110e82ca9a00b4a2222f2d5ecc43e4e8374c4d41e65
+SOURCE_RUNTIME_SERVICES_AND_TAINT_OK
+RUNTIME_RC=0
+100
+full
+ 07:05:07 up 7 min,  1 user,  load average: 0.36, 0.76, 0.44
+root@t736:~# ;1R;96R;96R;96R

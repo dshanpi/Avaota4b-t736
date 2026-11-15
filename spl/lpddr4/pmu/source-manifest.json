@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "repository": "elvees/ddrinit",
+  "commit": "12ca43ab6964dece88c464f104af4d861a259a6b",
+  "license": "GPL-2.0-or-later",
+  "usage": "Test-only ABI reference; no firmware arrays imported",
+  "files": [
+    {
+      "path": "reference/phy-training-params-lpddr4.h",
+      "upstream_path": "include/dram/lpddr4/phy-training-params-lpddr4.h",
+      "git_blob": "bc1ed0d1e55395a1eb0643f94ef86dd6a9810b10"
+    },
+    {
+      "path": "reference/COPYING",
+      "upstream_path": "LICENSE",
+      "git_blob": "7d5393a1212da0841e28e2f74883cb40fbd75a1f"
+    }
+  ],
+  "note": "Exact local input SHA256 values are recorded by check.py; Git blob identifiers preserve upstream provenance."
+}

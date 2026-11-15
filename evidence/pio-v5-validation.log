@@ -1,0 +1,80 @@
+sh /tmp/t736-transfer/validate-pio-v5.sh
+
+Linux t736 6.18.63-t736-armbian #5 SMP Fri Nov 13 01:11:29 EST 2026 aarch64 GNU/Linux
+TARGET SOURCE         FSTYPE OPTIONS
+/      /dev/mmcblk0p4 ext4   rw,noatime
+pin 64 (PC0): device 4023000.mmc function sdc3 group PC0
+pin 65 (PC1): device 4023000.mmc function sdc3 group PC1
+pin 69 (PC5): device 4023000.mmc function sdc3 group PC5
+pin 70 (PC6): device 4023000.mmc function sdc3 group PC6
+pin 72 (PC8): device 4023000.mmc function sdc3 group PC8
+pin 73 (PC9): device 4023000.mmc function sdc3 group PC9
+pin 74 (PC10): device 4023000.mmc function sdc3 group PC10
+pin 75 (PC11): device 4023000.mmc function sdc3 group PC11
+pin 77 (PC13): device 4023000.mmc function sdc3 group PC13
+pin 78 (PC14): device 4023000.mmc function sdc3 group PC14
+pin 79 (PC15): device 4023000.mmc function sdc3 group PC15
+pin 80 (PC16): device 4023000.mmc function sdc3 group PC16
+PIO_PC_OWNERSHIP_OK
+clock:		12000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	0 (legacy)
+signal voltage:	0 (3.30 V)
+driver type:	0 (driver type B)
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+vmlinuz-6.18.63-t736-armbian: OK
+initrd.img-6.18.63-t736-armbian: OK
+config-6.18.63-t736-armbian: OK
+t736-mainline-bringup.dtb: OK
+16+0 records in
+16+0 records out
+16777216 bytes (17 MB, 16 MiB) copied, 4.19898 s, 4.0 MB/s
+16+0 records in
+16+0 records out
+16777216 bytes (17 MB, 16 MiB) copied, 3.89679 s, 4.3 MB/s
+expected=b93e044945aa36bfe58b7abcb2ef4edd8bd710eba3d727c15b5a9b6ab4d69bd5
+readback=b93e044945aa36bfe58b7abcb2ef4edd8bd710eba3d727c15b5a9b6ab4d69bd5
+PIO_V5_16M_DIRECT_READBACK_OK
+[    9.058808] systemd[1]: Listening on syslog.socket - Syslog Socket.
+[    9.083820] systemd[1]: Listening on systemd-creds.socket - Credential Encryption/Decryption.
+[    9.106597] systemd[1]: Listening on systemd-initctl.socket - initctl Compatibility Named Pipe.
+[    9.130652] systemd[1]: Listening on systemd-journald-dev-log.socket - Journal Socket (/dev/log).
+[    9.154723] systemd[1]: Listening on systemd-journald.socket - Journal Sockets.
+[    9.174361] systemd[1]: systemd-pcrextend.socket - TPM PCR Measurements skipped, unmet condition check ConditionSecurity=measured-uki
+[    9.185148] systemd[1]: systemd-pcrlock.socket - Make TPM PCR Policy skipped, unmet condition check ConditionSecurity=measured-uki
+[    9.196042] systemd[1]: Listening on systemd-udevd-control.socket - udev Control Socket.
+[    9.218530] systemd[1]: Listening on systemd-udevd-kernel.socket - udev Kernel Socket.
+[    9.238708] systemd[1]: dev-hugepages.mount - Huge Pages File System skipped, unmet condition check ConditionPathExists=/sys/kernel/mm/hugepages
+[    9.260590] systemd[1]: Mounting dev-mqueue.mount - POSIX Message Queue File System...
+[    9.286429] systemd[1]: Mounting run-lock.mount - Legacy Locks Directory /run/lock...
+[    9.309966] systemd[1]: Mounting sys-kernel-debug.mount - Kernel Debug File System...
+[    9.330727] systemd[1]: sys-kernel-tracing.mount - Kernel Trace File System skipped, unmet condition check ConditionPathExists=/sys/kernel/tracing
+[    9.346957] systemd[1]: Starting fake-hwclock-load.service - Restore the current clock...
+[    9.374274] systemd[1]: Starting keyboard-setup.service - Set the console keyboard layout...
+[    9.394487] systemd[1]: kmod-static-nodes.service - Create List of Static Device Nodes skipped, unmet condition check ConditionFileNotEmpty=/lib/modules/6.18.63-t736-armbian/modules.devname
+[    9.414357] systemd[1]: Starting modprobe@configfs.service - Load Kernel Module configfs...
+[    9.438382] systemd[1]: Starting modprobe@drm.service - Load Kernel Module drm...
+[    9.462392] systemd[1]: Starting modprobe@efi_pstore.service - Load Kernel Module efi_pstore...
+[    9.490359] systemd[1]: Starting modprobe@fuse.service - Load Kernel Module fuse...
+[    9.510586] systemd[1]: systemd-hibernate-clear.service - Clear Stale Hibernate Storage Info skipped, unmet condition check ConditionPathExists=/sys/firmware/efi/efivars/HibernateLocation-8cf2644b-4b0b-428f-9387-6d876050dc67
+[    9.662379] systemd[1]: Starting systemd-journald.service - Journal Service...
+[    9.723099] systemd[1]: Starting systemd-modules-load.service - Load Kernel Modules...
+[    9.746387] systemd[1]: systemd-pcrmachine.service - TPM PCR Machine ID Measurement skipped, unmet condition check ConditionSecurity=measured-uki
+[    9.787201] systemd[1]: Starting systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully...
+[    9.810429] systemd[1]: systemd-tpm2-setup-early.service - Early TPM SRK Setup skipped, unmet condition check ConditionSecurity=measured-uki
+[    9.825779] systemd[1]: Starting systemd-udev-load-credentials.service - Load udev Rules from Credentials...
+[    9.837785] systemd-journald[221]: Collecting audit messages is disabled.
+[    9.858217] systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+[    9.887918] systemd[1]: Started systemd-journald.service - Journal Service.
+[   10.218382] EXT4-fs (mmcblk0p4): re-mounted 0694d921-75c3-44e2-85f5-03c2f6f0e139.
+[   10.446389] systemd-journald[221]: Received client request to flush runtime journal.
+[   11.522182] random: crng init done
+[   20.474875] systemd-journald[221]: Received client request to relinquish /var/log/journal/644e54b3be754d4a9f5e7ed72f1a1c56 access.
+T736_PIO_V5_VALIDATION_OK
+root@t736:~# 

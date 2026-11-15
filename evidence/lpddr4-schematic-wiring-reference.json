@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "scope": "Reference schematic visually reviewed for LPDDR4 training routing, NOT verified installed-board PHY register mapping",
+  "source": {
+    "path": "evidence\\vendor-reference\\reference-3.pdf",
+    "sha256": "8e9bef9afa78a88490951e82b4afd707528ed36cb499d4d24cfc20a8305ff748",
+    "page": 8,
+    "visual": "evidence/vendor-reference/lp4-core-08.png"
+  },
+  "dram_dq_index_to_soc_sdq_net": {
+    "A": [
+      8,
+      10,
+      11,
+      9,
+      13,
+      12,
+      14,
+      15,
+      6,
+      4,
+      7,
+      5,
+      0,
+      1,
+      2,
+      3
+    ],
+    "B": [
+      17,
+      22,
+      16,
+      19,
+      23,
+      18,
+      21,
+      20,
+      29,
+      31,
+      24,
+      30,
+      28,
+      25,
+      26,
+      27
+    ]
+  },
+  "dram_dqs_to_soc_sdqs_net": {
+    "A0": 1,
+    "A1": 0,
+    "B0": 2,
+    "B1": 3
+  },
+  "dram_dm_to_soc_sdqm_net": {
+    "A0": 1,
+    "A1": 0,
+    "B0": 2,
+    "B1": 3
+  },
+  "dram_ca_net_labels": {
+    "A": [
+      "SCA0-A",
+      "SCA1-A",
+      "SCA2-A",
+      "SCA3-A",
+      "SCA4-A",
+      "SCA5-A"
+    ],
+    "B": [
+      "SCA0-B",
+      "SCA1-B",
+      "SCA2-B",
+      "SCA3-B",
+      "SCA4-B",
+      "SCA5-B"
+    ]
+  },
+  "soc_ball_for_lp4_ca_signal": {
+    "A": [
+      "AH20",
+      "AL19",
+      "AJ20",
+      "AM19",
+      "AH18",
+      "AJ18"
+    ],
+    "B": [
+      "AM15",
+      "AF16",
+      "AF14",
+      "AJ12",
+      "AM12",
+      "AL12"
+    ]
+  },
+  "notes": [
+    "SoC symbol pin names include LPDDR5 naming; use the LPDDR4 column rather than assuming old CAD label is the LP4 logical signal.",
+    "Reference includes mixed revision/assembly notes; exact installed PCB/BOM has not been fully matched.",
+    "DQ indices above are schematic SDQ net names, not established PHY DBYTE/DQS routing-CSR values.",
+    "No controller or PHY MMIO mapping is inferred from this file; do not program these values without independent board/CSR validation."
+  ],
+  "hardware_verified": false,
+  "register_writes": false,
+  "impedance_reference_resistors": {
+    "scope": "Visually reviewed reference sheet 8; installed BOM not independently confirmed",
+    "soc_phy": {
+      "signal": "SZQ",
+      "soc_ball": "AH16",
+      "component": "RD5",
+      "resistance_ohms": 120,
+      "tolerance_percent": 1,
+      "connection": "SZQ through RD5 to GND"
+    },
+    "dram_device": [
+      {
+        "signal": "ZQ0",
+        "dram_ball": "A5",
+        "component": "RD3",
+        "resistance_ohms": 240,
+        "tolerance_percent": 1,
+        "connection": "ZQ0 through RD3 to VCC-VDDQ"
+      },
+      {
+        "signal": "ZQ1",
+        "dram_ball": "A8",
+        "component": "RD4",
+        "resistance_ohms": 240,
+        "tolerance_percent": 1,
+        "connection": "ZQ1 through RD4 to VCC-VDDQ"
+      }
+    ],
+    "not_inferred": [
+      "No PHY CSR encoding or analog range derived from these resistor values",
+      "No assumption that SoC pad calibration and DRAM ZQ MPC are interchangeable",
+      "No installed-board resistance or voltage measurement"
+    ]
+  }
+}

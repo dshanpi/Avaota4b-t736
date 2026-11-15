@@ -1,0 +1,302 @@
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon_top.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_mc.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_phy.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_top.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.c:33:19: warning: no previous prototype for ‘dw_get_i2cm’ [-Wmissing-prototypes]
+   33 | struct dw_i2cm_s *dw_get_i2cm(void)
+      |                   ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.c:79:5: warning: no previous prototype for ‘_dw_i2cm_read’ [-Wmissing-prototypes]
+   79 | int _dw_i2cm_read(unsigned char *buf, unsigned int length)
+      |     ^~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.c:148:5: warning: no previous prototype for ‘_dw_i2cm_write’ [-Wmissing-prototypes]
+  148 | int _dw_i2cm_write(unsigned char *buf, unsigned int length)
+      |     ^~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_top.c:173:6: warning: no previous prototype for ‘top_phy_pll_set_output’ [-Wmissing-prototypes]
+  173 | void top_phy_pll_set_output(u8 state)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon.c:643:5: warning: no previous prototype for ‘sunxi_tcon_hdmi_mode_init’ [-Wmissing-prototypes]
+  643 | int sunxi_tcon_hdmi_mode_init(struct device *dev)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon.c:687:5: warning: no previous prototype for ‘sunxi_tcon_hdmi_mode_exit’ [-Wmissing-prototypes]
+  687 | int sunxi_tcon_hdmi_mode_exit(struct device *tcon_dev)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_aw.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_mc.c:83:6: warning: no previous prototype for ‘_dw_mc_set_csc_bypass’ [-Wmissing-prototypes]
+   83 | void _dw_mc_set_csc_bypass(u8 bit)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_snps.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:420:6: warning: no previous prototype for ‘_dw_fc_video_set_preamble_filter’ [-Wmissing-prototypes]
+  420 | void _dw_fc_video_set_preamble_filter(u8 value, u8 channel)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:478:6: warning: no previous prototype for ‘dw_fc_set_tmds_mode’ [-Wmissing-prototypes]
+  478 | void dw_fc_set_tmds_mode(dw_tmds_mode_t mode)
+      |      ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_reg_read_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1827:1: note: in expansion of macro ‘sysfs_store_func’
+ 1827 | sysfs_store_func(reg_read)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_reg_write_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1891:1: note: in expansion of macro ‘sysfs_store_func’
+ 1891 | sysfs_store_func(reg_write)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_reg_bank_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1959:1: note: in expansion of macro ‘sysfs_store_func’
+ 1959 | sysfs_store_func(reg_bank)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_pattern_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1989:1: note: in expansion of macro ‘sysfs_store_func’
+ 1989 | sysfs_store_func(pattern)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_debug_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2038:1: note: in expansion of macro ‘sysfs_store_func’
+ 2038 | sysfs_store_func(debug)
+      | ^~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdmi_source_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2115:1: note: in expansion of macro ‘sysfs_store_func’
+ 2115 | sysfs_store_func(hdmi_source)
+      | ^~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_cec.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdmi_sink_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2167:1: note: in expansion of macro ‘sysfs_store_func’
+ 2167 | sysfs_store_func(hdmi_sink)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hpd_mask_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2188:1: note: in expansion of macro ‘sysfs_store_func’
+ 2188 | sysfs_store_func(hpd_mask)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_set_ddc_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2223:1: note: in expansion of macro ‘sysfs_store_func’
+ 2223 | sysfs_store_func(set_ddc)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_edid_debug_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2274:1: note: in expansion of macro ‘sysfs_store_func’
+ 2274 | sysfs_store_func(edid_debug)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_edid_data_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2299:1: note: in expansion of macro ‘sysfs_store_func’
+ 2299 | sysfs_store_func(edid_data)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_edid_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2362:1: note: in expansion of macro ‘sysfs_store_func’
+ 2362 | sysfs_store_func(edid)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdcp_enable_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2376:1: note: in expansion of macro ‘sysfs_store_func’
+ 2376 | sysfs_store_func(hdcp_enable)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdcp_type_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2402:1: note: in expansion of macro ‘sysfs_store_func’
+ 2402 | sysfs_store_func(hdcp_type)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdcp_status_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2418:1: note: in expansion of macro ‘sysfs_store_func’
+ 2418 | sysfs_store_func(hdcp_status)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdcp_loader_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2440:1: note: in expansion of macro ‘sysfs_store_func’
+ 2440 | sysfs_store_func(hdcp_loader)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c: In function ‘dw_fc_video_config’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:506:57: error: ‘HDMI_3D_STRUCTURE_FRAME_PACKING’ undeclared (first use in this function)
+  506 |                                 (video->m3dStructure == HDMI_3D_STRUCTURE_FRAME_PACKING)) {
+      |                                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:506:57: note: each undeclared identifier is reported only once for each function it appears in
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:566:6: warning: no previous prototype for ‘_dw_avi_set_color_metry’ [-Wmissing-prototypes]
+  566 | void _dw_avi_set_color_metry(u8 value)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:571:6: warning: no previous prototype for ‘_dw_avi_set_extend_color_metry’ [-Wmissing-prototypes]
+  571 | void _dw_avi_set_extend_color_metry(u8 extColor)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:591:6: warning: no previous prototype for ‘_dw_packet_gmd_config’ [-Wmissing-prototypes]
+  591 | void _dw_packet_gmd_config(struct dw_video_s *video)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:648:5: warning: no previous prototype for ‘_dw_packet_vsi_config’ [-Wmissing-prototypes]
+  648 | int _dw_packet_vsi_config(void)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:681:6: warning: no previous prototype for ‘_dw_packet_avi_config’ [-Wmissing-prototypes]
+  681 | void _dw_packet_avi_config(struct dw_video_s *video)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:820:6: warning: no previous prototype for ‘dw_drm_packet_config’ [-Wmissing-prototypes]
+  820 | void dw_drm_packet_config(dw_fc_drm_pb_t *pb)
+      |      ^~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp.o
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:15:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:188:36: warning: no previous prototype for ‘sunxi_get_soc_ver’ [-Wmissing-prototypes]
+  188 | unsigned int __attribute__((weak)) sunxi_get_soc_ver(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:189:27: warning: no previous prototype for ‘sunxi_get_sid_ver’ [-Wmissing-prototypes]
+  189 | int __attribute__((weak)) sunxi_get_sid_ver(u32 *ver) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:190:36: warning: no previous prototype for ‘sunxi_get_soc_ver_from_reg’ [-Wmissing-prototypes]
+  190 | unsigned int __attribute__((weak)) sunxi_get_soc_ver_from_reg(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:191:36: warning: no previous prototype for ‘sunxi_get_platform_id’ [-Wmissing-prototypes]
+  191 | unsigned int __attribute__((weak)) sunxi_get_platform_id(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:192:27: warning: no previous prototype for ‘sunxi_get_soc_chipid’ [-Wmissing-prototypes]
+  192 | int __attribute__((weak)) sunxi_get_soc_chipid(unsigned char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:193:27: warning: no previous prototype for ‘sunxi_get_soc_chipid_str’ [-Wmissing-prototypes]
+  193 | int __attribute__((weak)) sunxi_get_soc_chipid_str(char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:194:27: warning: no previous prototype for ‘sunxi_get_soc_chipid_origin’ [-Wmissing-prototypes]
+  194 | int __attribute__((weak)) sunxi_get_soc_chipid_origin(char *chipid_origin) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:195:27: warning: no previous prototype for ‘sunxi_get_soc_ft_zone_str’ [-Wmissing-prototypes]
+  195 | int __attribute__((weak)) sunxi_get_soc_ft_zone_str(char *serial) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:196:27: warning: no previous prototype for ‘sunxi_get_soc_rotpk_status_str’ [-Wmissing-prototypes]
+  196 | int __attribute__((weak)) sunxi_get_soc_rotpk_status_str(char *status) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:197:27: warning: no previous prototype for ‘sunxi_get_pmu_chipid’ [-Wmissing-prototypes]
+  197 | int __attribute__((weak)) sunxi_get_pmu_chipid(unsigned char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:198:27: warning: no previous prototype for ‘sunxi_get_serial’ [-Wmissing-prototypes]
+  198 | int __attribute__((weak)) sunxi_get_serial(unsigned char *serial) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:199:36: warning: no previous prototype for ‘sunxi_get_soc_bin’ [-Wmissing-prototypes]
+  199 | unsigned int __attribute__((weak)) sunxi_get_soc_bin(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:200:27: warning: no previous prototype for ‘sunxi_soc_is_secure’ [-Wmissing-prototypes]
+  200 | int __attribute__((weak)) sunxi_soc_is_secure(void) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:201:27: warning: no previous prototype for ‘sunxi_get_platform’ [-Wmissing-prototypes]
+  201 | s32 __attribute__((weak)) sunxi_get_platform(s8 *buf, s32 size) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:202:27: warning: no previous prototype for ‘sunxi_efuse_readn’ [-Wmissing-prototypes]
+  202 | s32 __attribute__((weak)) sunxi_efuse_readn(s8 *key_name, void *buf, u32 n) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:203:27: warning: no previous prototype for ‘sunxi_get_module_param_from_sid’ [-Wmissing-prototypes]
+  203 | int __attribute__((weak)) sunxi_get_module_param_from_sid(u32 *dst, u32 offset, u32 len) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:204:36: warning: no previous prototype for ‘sunxi_get_soc_markid’ [-Wmissing-prototypes]
+  204 | unsigned int __attribute__((weak)) sunxi_get_soc_markid(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:205:26: warning: no previous prototype for ‘sunxi_sid_sram_read32’ [-Wmissing-prototypes]
+  205 | int __attribute__((weak))sunxi_sid_sram_read32(const char *key, u32 *data) { return -ENOSYS; }
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:206:27: warning: no previous prototype for ‘sunxi_sid_get_ecc_status’ [-Wmissing-prototypes]
+  206 | int __attribute__((weak)) sunxi_sid_get_ecc_status(void) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:207:27: warning: no previous prototype for ‘sunxi_get_soc_dvfs’ [-Wmissing-prototypes]
+  207 | int __attribute__((weak)) sunxi_get_soc_dvfs(u32 *dvfs) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:245:6: warning: no previous prototype for ‘_inno_phy_config_4k60’ [-Wmissing-prototypes]
+  245 | void _inno_phy_config_4k60(void)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:274:6: warning: no previous prototype for ‘_inno_phy_config_4k30’ [-Wmissing-prototypes]
+  274 | void _inno_phy_config_4k30(void)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:587:6: warning: no previous prototype for ‘inno_phy_set_reg_base’ [-Wmissing-prototypes]
+  587 | void inno_phy_set_reg_base(uintptr_t base)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:592:11: warning: no previous prototype for ‘inno_phy_get_reg_base’ [-Wmissing-prototypes]
+  592 | uintptr_t inno_phy_get_reg_base(void)
+      |           ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_cec.c:63:14: warning: no previous prototype for ‘dw_cec_get_logic_addr’ [-Wmissing-prototypes]
+   63 | unsigned int dw_cec_get_logic_addr(void)
+      |              ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp.c:410:4: warning: no previous prototype for ‘_dw_hdcp1x_status_handler’ [-Wmissing-prototypes]
+  410 | u8 _dw_hdcp1x_status_handler(int *param, u32 irq_stat)
+      |    ^~~~~~~~~~~~~~~~~~~~~~~~~
+make[6]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu/drm/t736-bsp] Error 2
+make[5]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu/drm] Error 2
+make[4]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu] Error 2
+make[3]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers] Error 2
+make[2]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:2051: .] Error 2
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+make[1]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'

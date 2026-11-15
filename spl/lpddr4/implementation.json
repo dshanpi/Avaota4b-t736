@@ -1,0 +1,512 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "status": "partial_source_components_not_bootable",
+  "implemented": [
+    "LPDDR4 type recognition for this T736 controller (low type nibble 0x2)",
+    "8 GiB dual-channel/dual-rank MSTR and address-map construction",
+    "Layout programming with both-channel init-mode precheck and readback verification",
+    "Bounded SWCTL/SWSTAT update handshake",
+    "AXP8191 DCDC8, ALDO4 and ELDO1 exact voltage encode/decode and I2C register operations",
+    "1800 MHz timing calculation and bounded DFI handoff components; 42 fields match board reads",
+    "LP4 common message fields, mailbox protocol and eye-window selection components",
+    "PHY host ownership/reset, PLL, validated DQ selector and Pstate components; see phy/provenance.json",
+    "LPDDR4 MRW/MRR/MPC wire truth-table encoder; Type9 execution not included",
+    "Bounded controller MRR identity reads reused unchanged in Linux hardware wrapper; 24 successful requests",
+    "Source SRAM analog configuration and timed ZCal probes hardware-tested; no valid calibration result yet"
+  ],
+  "not_implemented": [
+    "Complete controller reset/configuration and mode-register initialization",
+    "Complete PHY analog/CA configuration and source-authored PIE execution; selector writer exists but board swizzle not fully validated",
+    "LPDDR4 ARC PMU training backend",
+    "Complete cold-start board power/clocks and early storage integration",
+    "ARM32-to-ARM64 handoff and deployable independent SPL"
+  ],
+  "sources": [
+    {
+      "repository": "YuzukiHD/SyterKit",
+      "commit": "7f539e17762639589897db835e58dd638b2bea80",
+      "path": "drivers/pmu/axp8191.c",
+      "sha": "f570139275a576625139488c249996042b1e66e2",
+      "use": "GPL-2.0+ register/interface reference, inspected online; no whole source file imported."
+    },
+    {
+      "repository": "YuzukiHD/SyterKit",
+      "commit": "7f539e17762639589897db835e58dd638b2bea80",
+      "path": "drivers/dram/dram-sun60iw2.c",
+      "sha": "8dd73fb4aa4342aa19e0a38c68e79d835afe0f89",
+      "use": "Call-chain inspection; this wrapper delegates init_DRAM to a precompiled library, not used by the new component sources."
+    },
+    {
+      "repository": "YuzukiHD/SyterKit",
+      "commit": "7f539e17762639589897db835e58dd638b2bea80",
+      "path": "soc/sun60iw2/app_efex/init_dram/main.c",
+      "sha": "c2c0a29490079c5d0e08bdfd2d1dca63610b6b76",
+      "use": "Early-interface inspection only; stock board DRAM/power presets not imported."
+    },
+    {
+      "document": "AXP8191 Serial Datasheet V1.0",
+      "path": "evidence/vendor-reference/reference-2.pdf",
+      "sha256": "eb1a647b23fff839b176fcf6ff89e364e73f598918c91e046407eace8d6afec4",
+      "sections": [
+        "6.10.2.14 DCDC8 voltage encoding",
+        "6.10.2 LDO/enable register definitions",
+        "7.1 live voltage-range restriction"
+      ],
+      "use": "Primary register specification; DCDC8 middle range 1220..1840 mV, unlike the inspected SyterKit table's 1540 mV endpoint."
+    },
+    {
+      "document": "T736 LPDDR4/4X core schematic",
+      "path": "evidence/vendor-reference/reference-3.pdf",
+      "sha256": "8e9bef9afa78a88490951e82b4afd707528ed36cb499d4d24cfc20a8305ff748",
+      "pages": [
+        7,
+        8
+      ],
+      "use": "Visually inspected rail routing/assembly options. No unverified whole-board voltage preset implemented."
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "use": "Read-only symbol/disassembly inspection to identify controller register semantics, independently corroborated on the board. Not linked, copied, translated into an instruction array or included in a boot artifact. No formal clean-room claim."
+    },
+    {
+      "path": "evidence/lpddr4-register-observation.log",
+      "use": "Actual MSTR/type/init-state reads under v11 legacy boot chain."
+    },
+    {
+      "path": "evidence/lpddr4-addressmap-observation.log",
+      "use": "Actual two-channel MSTR/address-map reads; used as external test oracle."
+    }
+  ],
+  "hardware": {
+    "mode": "Legacy Linux register observation and controller MRR diagnostic; standalone 168-byte SRAM CPU context probe is separately recorded",
+    "read_only_module_source": "spl/lpddr4/observe_linux.c",
+    "control_registers_written": true,
+    "pmic_changed": false,
+    "flashed": false,
+    "diagnostic_loaded_and_removed": true,
+    "temporary_board_module_files_removed": true,
+    "kernel_taint_before": 0,
+    "kernel_taint_after": 4096,
+    "taint_reason": "Out-of-tree GPL observation module; the O taint remains until reboot even after module removal.",
+    "mstr_ch0": "0x03081002",
+    "mstr_ch1": "0x03081002",
+    "new_initialization_hardware_tested": false,
+    "timing_observation": "evidence/lpddr4-timing-board-observation.log",
+    "timing_and_dfi_register_words_read": 62,
+    "post_observation": "evidence/lpddr4-mrr-cleanup-20261114.log",
+    "control_register_write_scope": "Only MRR MRCTRL0/1 for immutable MR5/MR6/MR8 read commands; no MRW, PHY configuration, reset, clock, or PMIC writes",
+    "mrr_hardware_log": "evidence/lpddr4-mrr-hardware-20261114.log",
+    "mrr_transactions": 24,
+    "phy_owner_mux": 1,
+    "phy_internal_csr_read_aborted_on_external_ownership": true,
+    "early_source_diagnostic": "evidence/t736-early-v2-sram-hardware-20261114.json",
+    "pmic_configured_mv_observed": {
+      "DCDC8": 1100,
+      "ALDO4": 1800,
+      "ELDO1": 650
+    },
+    "pmic_setpoints_are_voltage_measurements": false
+  },
+  "corrections": [
+    "Inspected A733 source labels MSTR bit19 as LPDDR5. It is set on this observed LPDDR4 configuration too and cannot distinguish these types.",
+    "Old H616 LPDDR4 type bit5 and contiguous address-map layout cannot be applied to sun60iw2. This board uses low type nibble 0x2 and a separate address-map block.",
+    "Observed CS address map returns 0x18, not a general older-controller 0x3f18 constant. Only the observed board topology is currently supported."
+  ],
+  "validation": "evidence/lpddr4-components-check.json",
+  "complete_lpddr4_initialization": false,
+  "independent_spl": false,
+  "deployable": false,
+  "related_source_components": {
+    "early": "spl/early/README.md",
+    "pmu": "spl/lpddr4/pmu/backend-audit.json",
+    "storage": "spl/storage/implementation.json",
+    "timing": "evidence/lpddr4-timing-contract.json",
+    "phy": "spl/lpddr4/phy/provenance.json",
+    "lp4_commands": "spl/lpddr4/pmu/sequencer-audit.json",
+    "mrr": "spl/lpddr4/pmu/mode-register-audit.json"
+  },
+  "source_ccu_hardware": {
+    "evidence": "evidence/t736-ccu-cold-sram-hardware-20261114.json",
+    "passed": true,
+    "ddr_initialized": false
+  },
+  "common_domain_hardware": {
+    "evidence": "evidence/t736-domain-sram-hardware-20261114.json",
+    "readonly_passed": true,
+    "setup_passed": true,
+    "setup_evidence": "evidence/t736-domain-setup-sram-hardware-20261114.json"
+  },
+  "source_controller_observation_20261114": {
+    "evidence": [
+      "evidence/t736-common-ports-sram-hardware-20261114.json",
+      "evidence/t736-ch0-readonly-sram-hardware-20261114.json",
+      "evidence/t736-ch1-readonly-sram-hardware-20261114.json"
+    ],
+    "four_ports": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ch0": {
+      "MSTR": "0x03040000",
+      "STAT": 0,
+      "MRSTAT": 0
+    },
+    "ch1": {
+      "MSTR": "0x03040000",
+      "STAT": 0,
+      "MRSTAT": 0
+    },
+    "scope": "Both channel CSR apertures observed in source-prepared FEL/SRAM context; no controller writes, PHY access or DDR initialization"
+  },
+  "source_controller_configuration": {
+    "passed": true,
+    "evidence": "evidence/t736-controller-config-sram-hardware-20261114.json",
+    "writes": 64,
+    "readbacks": 64,
+    "layout_writes": 22,
+    "static_timing_writes": 42,
+    "both_stat_init": true,
+    "both_mrstat_idle": true,
+    "full_controller_initialization": false,
+    "phy_initialized": false
+  },
+  "source_phy_domain_release_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-phy-release-sram-hardware-20261114.json",
+    "serial": "evidence/t736-phy-release-sram-serial-20261114.log",
+    "controller_hold_and_common_writes": 17,
+    "mmio_completed": 117,
+    "sys_cfg": "0x273f",
+    "both_controller_stat": 0,
+    "both_mrstat": 0,
+    "both_dfistat": 0,
+    "mux": 0,
+    "micro_reset": 1,
+    "release_delay_ticks": [
+      45,
+      42
+    ],
+    "counter_hz": 24000000,
+    "phy_written": false,
+    "phy_internal_read": false,
+    "ddr_initialized": false,
+    "flash_written": false,
+    "scope": "Source SRAM PHY domain release and outer APB reads; not PHY training or independent boot"
+  },
+  "updated_utc": "2026-11-14T06:22:30.095780+00:00",
+  "source_phy_static_read_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-phy-static-read-sram-hardware-20261114.json",
+    "completed_reads": 109,
+    "static_plus_clock_halfwords": 37,
+    "phy_written": false,
+    "ddr_initialized": false,
+    "registers": [
+      {
+        "address": "0xaa80100",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa940094",
+        "value": "0x2c18"
+      },
+      {
+        "address": "0xa940096",
+        "value": "0x3c1f"
+      },
+      {
+        "address": "0xa940110",
+        "value": "0x124"
+      },
+      {
+        "address": "0xa940098",
+        "value": "0xbce"
+      },
+      {
+        "address": "0xa94009a",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa94014a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa940000",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa940004",
+        "value": "0x2"
+      },
+      {
+        "address": "0xa9400a2",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa9400c0",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa940600",
+        "value": "0x808"
+      },
+      {
+        "address": "0xa940606",
+        "value": "0x9"
+      },
+      {
+        "address": "0xa940604",
+        "value": "0x40"
+      },
+      {
+        "address": "0xa940650",
+        "value": "0x2"
+      },
+      {
+        "address": "0xa940602",
+        "value": "0x3"
+      },
+      {
+        "address": "0xa940616",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa920126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa922126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa924126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa926126",
+        "value": "0x400"
+      },
+      {
+        "address": "0xa920146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa922146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa924146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa926146",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96015c",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96215c",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96015a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa96215a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa960158",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa962158",
+        "value": "0x0"
+      },
+      {
+        "address": "0xaaa006c",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa94017a",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa940620",
+        "value": "0x1"
+      },
+      {
+        "address": "0xa940622",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa94064c",
+        "value": "0x0"
+      },
+      {
+        "address": "0xa94064e",
+        "value": "0x0"
+      }
+    ]
+  },
+  "source_phy_analog_zcal_20261114": {
+    "analog_configuration": {
+      "passed": true,
+      "evidence": "evidence/t736-phy-analog-setup-after-zcal-recovery-20261114.json",
+      "events": 179,
+      "halfword_writes": 13,
+      "clkinfo": "0x1c2",
+      "dram_reset_asserted": true
+    },
+    "timed_zcal": {
+      "executed": true,
+      "verified_calibration": false,
+      "evidence": "evidence/t736-phy-zcal-v2-sram-hardware-20261114.json",
+      "events": 111,
+      "halfword_writes": 4,
+      "reset_ticks": 42,
+      "run_ticks": 2419,
+      "tick_hz": 24000000,
+      "pu_before": 0,
+      "pd_before": 0,
+      "pu_after": 0,
+      "pd_after": 0,
+      "result": "TIMED_ONLY; no observed impedance code change"
+    },
+    "failure_and_fix": {
+      "first_attempt": "evidence/t736-phy-zcal-sram-hardware-20261114.json",
+      "strong_software_fault_candidate": "Unaligned ARM STR to SRAM 0x4ffda before first component callback",
+      "fix": "Strict alignment ARM build and explicit halfword snapshot copy",
+      "interference_caveat": "First attempt erroneously continued after background USB scan busy; fixed by return-code gating before every subsequent hardware command",
+      "power_recovery": "evidence/t736-zcal-recovery-power-20261114.json",
+      "source_stages_reestablished": true
+    },
+    "board_state": {
+      "mode": "FEL",
+      "micro_reset": 1,
+      "host_mux": 0,
+      "memresetl": 2,
+      "clken": 3,
+      "zcal_reset": 0,
+      "zcal_run": 0,
+      "controller_stat": [
+        0,
+        0
+      ],
+      "mrstat": [
+        0,
+        0
+      ],
+      "dfistat": [
+        0,
+        0
+      ]
+    },
+    "normal_boot_release_eligible": false,
+    "ddr_initialized": false,
+    "new_emmc_flash": false
+  },
+  "source_phy_zcal_stall_comparison_20261114": {
+    "evidence": "evidence/t736-phy-zcal-stall-sram-hardware-20261114.json",
+    "completed": 109,
+    "writes": 5,
+    "micro_reset_before": 9,
+    "micro_reset_after": 1,
+    "arc_program_executed": false,
+    "reset_ticks": 37,
+    "run_ticks": 2414,
+    "pu_after": "0x0",
+    "pd_after": "0x0",
+    "calibration_verified": false,
+    "ddr_initialized": false,
+    "result": "TIMED_ONLY; releasing micro reset while retaining stall did not change zero PU/PD observation"
+  },
+  "source_phy_zcal_state_20261114": {
+    "evidence": "evidence/t736-phy-zcal-state-sram-hardware-20261114.json",
+    "completed_reads": 155,
+    "PclkDivRatio": "0x1111",
+    "candidate_2030d": "0x0",
+    "candidate_20320": "0x0",
+    "phy_written": false,
+    "ddr_initialized": false
+  },
+  "source_phy_zcal_rate_comparison_20261114": {
+    "evidence": "evidence/t736-phy-zcal-rate-sram-hardware-20261114.json",
+    "completed": 113,
+    "writes": 6,
+    "rate_before": 9,
+    "rate_during": 25,
+    "rate_after": 9,
+    "reset_ticks": 35,
+    "run_ticks": 2415,
+    "tick_hz": 24000000,
+    "pu_during": 0,
+    "pd_during": 0,
+    "pu_after": 0,
+    "pd_after": 0,
+    "calibration_verified": false,
+    "ddr_initialized": false,
+    "result": "TIMED_ONLY; ZCalRate bit4 alone did not change PU/PD zero observations"
+  },
+  "source_controller_static_attempt_20261114": {
+    "passed": false,
+    "evidence": "evidence/t736-controller-static-sram-hardware-20261114.json",
+    "completed": 78,
+    "writes": 6,
+    "failure": "INITTMG1 write 0x580000 read back 0",
+    "last_address": "0x0a110d04",
+    "swctl_maybe_open": 3,
+    "static_maybe_open": 3,
+    "ch0_inittmg0": "0x1036f",
+    "ch1_inittmg0": "0x2004e",
+    "automatic_retry": false,
+    "cleanup_attempted": false,
+    "board_returned_to_fel": true,
+    "ddr_initialized": false
+  },
+  "source_controller_static_rollback_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-controller-static-rollback-sram-hardware-20261114.json",
+    "completed": 128,
+    "writes": 5,
+    "pre_ticks": 252,
+    "settle_ticks": 487,
+    "poll_waits": 0,
+    "visible_checkpoint_restored": true,
+    "scope": "Restores visible registers only; does not prove the earlier INITTMG1 attempt had no hidden effect",
+    "ddr_initialized": false
+  },
+  "source_controller_static_v2_20261114": {
+    "passed": true,
+    "evidence": "evidence/t736-controller-static-v2-sram-hardware-20261114.json",
+    "completed": 166,
+    "writes": 20,
+    "reads": 146,
+    "pre_ticks": 249,
+    "settle_ticks": 481,
+    "tick_hz": 24000000,
+    "both_config_transactions_closed": true,
+    "both_channels_configured": true,
+    "profile": [
+      "0x1036f",
+      "0xfc003f",
+      "0x330008",
+      "0x40072",
+      "0x24001d",
+      "0x1"
+    ],
+    "inittmg1_untouched": [
+      0,
+      0
+    ],
+    "commands_sent": false,
+    "result": "CONFIGURED_ONLY",
+    "ddr_initialized": false
+  }
+}

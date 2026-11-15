@@ -1,0 +1,44 @@
+
+
+root@t736:~# sh /tmp/t736-transfer/source_v6_runtime_check.sh; printf "RUNTIME_RC=%s\n" "$?"
+
+/boot/vmlinuz-6.18.63-t736-hdmi-v13: OK
+/boot/initrd.img-6.18.63-t736-hdmi-v13: OK
+/boot/dtb/allwinner/t736-mainline-bringup.dtb: OK
+vmlinuz-6.18.63-t736-armbian: OK
+initrd.img-6.18.63-t736-armbian: OK
+config-6.18.63-t736-armbian: OK
+System.map-6.18.63-t736-armbian: OK
+t736-mainline-bringup.dtb: OK
+SOURCE_V6_IO_16M_FSYNC_DIRECT_READ_OK 8d9e1d5d5f5e70ca4c9f298f117620edfbbda968d3e4416a3c027734c74ce7a4
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+0-7
+               total        used        free      shared  buff/cache   available
+Mem:            7747         192        7335           9         293        7555
+Swap:              0           0           0
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+end0             UP             10.0.0.249/24 metric 1024 fd67:b33e:a9c2:0:c884:85ff:fe01:e58e/64 fe80::c884:85ff:fe01:e58e/64 
+sit0@NONE        DOWN           
+default via 10.0.0.1 dev end0 proto dhcp src 10.0.0.249 metric 1024 
+10.0.0.0/24 dev end0 proto kernel scope link src 10.0.0.249 metric 1024 
+10.0.0.1 dev end0 proto dhcp scope link src 10.0.0.249 metric 1024 
+clock:		12000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	0 (legacy)
+signal voltage:	0 (3.30 V)
+driver type:	0 (driver type B)
+active
+0 t736-drm-fb
+(S) dummy device
+(M) frame buffer device
+0
+1
+SOURCE_V6_RUNTIME_OK
+RUNTIME_RC=0
+root@t736:~# 

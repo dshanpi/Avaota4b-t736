@@ -1,0 +1,177 @@
+{"display_source_replay_files": 264, "all_match_compiled_tree": true}
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v13'
+  GEN     Makefile
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v13'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v13'
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+  GEN     Makefile
+  DTC     arch/arm64/boot/dts/allwinner/t736-hdmi-candidate.dtb
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  CC      drivers/video/fbdev/core/sysfillrect.o
+  CC      drivers/video/fbdev/core/syscopyarea.o
+  CC      drivers/video/fbdev/core/sysimgblt.o
+  UPD     kernel/config_data
+  CC      drivers/video/fbdev/core/fb_sys_fops.o
+  CC      drivers/clk/clk-t736-display.o
+  GZIP    kernel/config_data.gz
+  CC      kernel/configs.o
+  CC      drivers/pmdomain/sunxi/t736-display-power.o
+  AR      kernel/built-in.a
+  AR      drivers/clk/built-in.a
+  AR      drivers/video/fbdev/core/built-in.a
+  AR      drivers/video/fbdev/built-in.a
+  AR      drivers/video/built-in.a
+  AR      drivers/pmdomain/sunxi/built-in.a
+  AR      drivers/pmdomain/built-in.a
+  CC      drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:68:5: warning: no previous prototype for ‘sunxi_fbdev_init’ [-Wmissing-prototypes]
+   68 | int sunxi_fbdev_init(struct drm_device *drm, struct display_channel_state *out_state, int de_id)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:80:5: warning: no previous prototype for ‘sunxi_fbdev_exit’ [-Wmissing-prototypes]
+   80 | int sunxi_fbdev_exit(void)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:96:5: warning: no previous prototype for ‘sunxi_fb_pan_display’ [-Wmissing-prototypes]
+   96 | int sunxi_fb_pan_display(struct fb_var_screeninfo *var,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:111:5: warning: no previous prototype for ‘sunxi_fb_wait_for_vsync’ [-Wmissing-prototypes]
+  111 | int sunxi_fb_wait_for_vsync(struct fb_info *info)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:289:17: warning: no previous prototype for ‘sunxi_get_fb_info’ [-Wmissing-prototypes]
+  289 | struct fb_info *sunxi_get_fb_info(int fb_id)
+      |                 ^~~~~~~~~~~~~~~~~
+  AR      drivers/gpu/drm/t736-bsp/built-in.a
+  AR      drivers/gpu/drm/built-in.a
+  AR      drivers/gpu/built-in.a
+  AR      drivers/built-in.a
+  AR      built-in.a
+  AR      vmlinux.a
+  LD      vmlinux.o
+  MODPOST Module.symvers
+  CC      .vmlinux.export.o
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v13'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v13'
+  GEN     debian
+dpkg-buildpackage --build=binary --no-pre-clean --unsigned-changes -R'make -f debian/rules' -j1 -a$(cat debian/arch)
+dpkg-buildpackage: info: source package linux-upstream
+dpkg-buildpackage: info: source version 6.18.63-13
+dpkg-buildpackage: info: source distribution noble
+dpkg-buildpackage: info: source changed by ubuntu <ubuntu@ubuntu2404>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture arm64
+ make -f debian/rules binary
+  GEN     Makefile
+#
+# No change to .config
+#
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  GZIP    arch/arm64/boot/Image.gz
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-amarula-relic.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-bananapi-m64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-nanopi-a64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-oceanic-5205-5inmfd.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-olinuxino.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-olinuxino-emmc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-orangepi-win.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-pine64-lts.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-pine64-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-pine64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-pinebook.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-pinephone-1.0.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-pinephone-1.1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-pinephone-1.2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-pinetab.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-pinetab-early-adopter.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-sopine-baseboard.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a64-teres-i.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h64-remix-mini-pc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a100-allwinner-perf1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-a133-liontron-h-a133l.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-bananapi-m2-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-emlid-neutis-n5-devboard.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-libretech-all-h3-cc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-libretech-all-h3-it.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-libretech-all-h5-cc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-nanopi-neo2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-nanopi-neo-plus2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-nanopi-r1s-h5.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-orangepi-pc2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-orangepi-prime.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-orangepi-zero-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h5-orangepi-zero-plus2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h6-beelink-gs1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h6-orangepi-3.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h6-orangepi-one-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h6-orangepi-lite2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h6-pine-h64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h6-pine-h64-model-b.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h6-tanix-tx6.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h6-tanix-tx6-mini.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h313-tanix-tx1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h313-x96q.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h616-bigtreetech-cb1-manta.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h616-bigtreetech-pi.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h616-orangepi-zero2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h616-x96-mate.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h618-longanpi-3h.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h618-orangepi-zero2w.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h618-orangepi-zero3.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h618-yuzukihd-chameleon.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h618-transpeed-8k618-t.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h700-anbernic-rg35xx-2024.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h700-anbernic-rg35xx-h.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h700-anbernic-rg35xx-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun55i-a527-cubie-a5e.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun55i-h728-x96qpro+.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun55i-t527-avaota-a1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/sun55i-t527-orangepi-4a.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/t736-mainline-bringup.dtb
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/usr/lib/linux-image-6.18.63-t736-hdmi-v13/allwinner/t736-hdmi-candidate.dtb
+  SYMLINK debian/linux-image-6.18.63-t736-hdmi-v13/lib/modules/6.18.63-t736-hdmi-v13/build
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/lib/modules/6.18.63-t736-hdmi-v13/modules.order
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/lib/modules/6.18.63-t736-hdmi-v13/modules.builtin
+  INSTALL debian/linux-image-6.18.63-t736-hdmi-v13/lib/modules/6.18.63-t736-hdmi-v13/modules.builtin.modinfo
+  DEPMOD  debian/linux-image-6.18.63-t736-hdmi-v13/lib/modules/6.18.63-t736-hdmi-v13
+  INSTALL debian/linux-libc-dev/usr/include
+dpkg-deb: building package 'linux-image-6.18.63-t736-hdmi-v13' in '../linux-image-6.18.63-t736-hdmi-v13_6.18.63-13_arm64.deb'.
+dpkg-deb: building package 'linux-libc-dev' in '../linux-libc-dev_6.18.63-13_arm64.deb'.
+ dpkg-genbuildinfo --build=binary -O../linux-upstream_6.18.63-13_arm64.buildinfo
+ dpkg-genchanges --build=binary -O../linux-upstream_6.18.63-13_arm64.changes
+dpkg-genchanges: info: binary-only upload (no source code included)
+ dpkg-source --after-build .
+dpkg-buildpackage: info: binary-only upload (no source included)
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v13'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'
+944b8188a6a96b4dab129337d2c48cf378ed816bde0ceab06a3a50d6610fdf21  /home/ubuntu/t736-mainline/build/linux-hdmi-v13/arch/arm64/boot/Image
+d81986f7035f252583ae30f861dc3e55675d296547f12704ba81678fd7fe03ed  /home/ubuntu/t736-mainline/build/linux-hdmi-v13/arch/arm64/boot/dts/allwinner/t736-hdmi-candidate.dtb
+bc2686f77ebee6a9aeeb040fc511c934fd5b4e0e6c25f83aa11ecec33b8f04da  /home/ubuntu/t736-mainline/build/linux-image-6.18.63-t736-hdmi-v13_6.18.63-13_arm64.deb

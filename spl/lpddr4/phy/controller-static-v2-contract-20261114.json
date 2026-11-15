@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-14",
+  "kind": "source-controller-static-v2-configuration-component-contract",
+  "implementation": "spl/lpddr4/phy/controller_static_v2.c",
+  "design_audits": ["spl/lpddr4/phy/controller-init-timing-audit-20261114.json", "spl/lpddr4/phy/controller-inittmg1-mismatch-audit-20261114.json"],
+  "v1_result": "The frozen22-write original failed target INITTMG1 readback at write6. V2 has a narrower contract and must not be described as having fixed or implemented the INITTMG1 counter.",
+  "static_v2_writes_hardware_tested": true,
+  "hardware_result": {
+    "record": "evidence/t736-controller-static-v2-sram-hardware-20261114.json",
+    "root_reported_result": "PASS_CONFIGURED_ONLY",
+    "events": 166,
+    "writes": 20,
+    "component_reads": 140,
+    "pre_ticks_24MHz": 249,
+    "settle_ticks_24MHz": 481,
+    "both_channels_configured": ["0x0001036f", "0x00fc003f", "0x00330008", "0x00040072", "0x0024001d", "0x00000001"],
+    "INITTMG1_before_after": "Both channels remained0; no writes to this register",
+    "transactions": "Both SWCTL/SWSTAT1 and SWCTLSTATIC0 verified; maybe-open masks cleared",
+    "meaning": "Source configuration/readback and bounded transaction completion passed. No MR commands, DFI initialization release, DDR training or memory test performed."
+  },
+  "MR_commands_sent": false,
+  "DDR_initialized_or_trained": false,
+  "normal_boot_ready": false,
+  "source_boundaries": "Source scalar host MMIO only. No vendor executable, DDR library, PMU/PIE/shadow instruction array or Radxa-derived implementation linked. No clean-room claim.",
+  "accepted_root_decisions": {
+    "ck_mhz": 1800,
+    "counter_mhz": 450,
+    "counter_qualification": "Explicit target host-interface CK/4 assumption for INITTMG0. Not independently measured internal counter frequency.",
+    "INITTMG1": "Never written. Both channels must read exactly0 in initial and final held-state guards. Nonzero any bit rejects the experiment. Unknown reason for ignored v1 write remains unresolved.",
+    "tINIT1_owner": "Source PHY reset-low operation plus measured SRAM timer must supply at least200us. profile.reset_low_min_us=200 is an external requirement, not a controller counter value and not a wait implemented by this component. Post-release tINIT3/CKE/tINIT5 remain separate obligations.",
+    "TMGCFG": "Set only TIMING+d00 bit0, preserving all others.",
+    "latencies": "Retain accepted RL36/WL18/nWR40 and existing64-write subset; electrical/frequency qualification remains separate.",
+    "micro_reset": "Explicit expectedMicro1 or9. Bit0 retains stall in both; bit3 reset is asserted only in9. No ARC execution permitted."
+  },
+  "profile": {
+    "pre_cke_ticks": 879,
+    "post_cke_ticks": 1,
+    "external_reset_low_min_us": 200,
+    "counter_quantum": 1024,
+    "config_fields_per_channel": 6,
+    "values_in_order": ["0x0001036f", "0x00fc003f", "0x00330008", "0x00040072", "0x0024001d", "0x00000001"],
+    "addresses_CH0_in_order": ["0x0a110d00", "0x0a100500", "0x0a100504", "0x0a100508", "0x0a10050c", "0x0a100d00"],
+    "masks_in_order": ["0x03ff1fff", "0xffffffff", "0xffffffff", "0xffffffff", "0xffffffff", "0x00000001"],
+    "channel_stride": "0x00400000",
+    "MR_limit": "INITMR2/3 HWFFC images are not evidence of MR11/12/22/14 device transmission; MR13 bit3 is VRCG."
+  },
+  "transaction": {
+    "preflight_reads": 58,
+    "before_any_write": "Validate12 platform/timer/zero-port words,14 controller held-state words per channel including INITTMG1=0,6 PHY guards, then all12 prospective configuration words. Must start at recovered closed baseline, never the failed-open v1 checkpoint.",
+    "write_order": ["Both SWCTL0 with immediate readback and bounded SWSTAT0", "Both SWCTLSTATIC1 with immediate readback", "Six configuration fieldsCH0 thenCH1, preserving masked unrelated bits and immediate full readback", "Both SWCTLSTATIC0 with immediate readback", "Both SWCTL1 with immediate readback and bounded SWSTAT1"],
+    "writes": 20,
+    "reads_immediate_SWSTAT": 140,
+    "MMIO_events_immediate_SWSTAT": 160,
+    "callbacks_including_settle": 161,
+    "post_commit": "Measured caller delay20us, repeat held-state/PHY guards including both INITTMG1=0, and read all12 programmed configuration words.",
+    "failure": "Immediate return, no cleanup/retry. Attempted/completed counts and maybe-open masks persist. A failed write callback may have affected hardware.",
+    "success": "T736_INIT_V2_CONFIGURED_ONLY=1, not DDR initialization/training success."
+  },
+  "report": {
+    "bytes": 164,
+    "warning": "Same total size as v1 but different internal layout. Wrapper must identify v2 explicitly and never decode with v1 array dimensions.",
+    "prefix_words": 13,
+    "before_2x6_offset": 52,
+    "programmed_2x6_offset": 100,
+    "inittmg1_before_2_offset": 148,
+    "inittmg1_after_2_offset": 156,
+    "observation_validity": "Use stage, read counts and final_valid to establish which observations occurred. Zero-filled unexecuted slots are not reads."
+  },
+  "wrapper_requirements": [
+    "Freeze expectedMicro1 to current root checkpoint; underlying component supports exactly1 or9.",
+    "Execute entirely from SRAM with MMU/cache disabled and no DMA/DRAM clients.",
+    "Independently verify a live timer over10us before any component mutation.",
+    "Whitelist the exact20-write order and masks independently of component-generated outputs; do not admit INITTMG1 writes.",
+    "With6 wrapper preflight reads, normal166MMIO and timeout3 maximum178MMIO. CAP192 plus164B report still fits below fault record4ed00.",
+    "Compile with-mno-unaligned-access; keep normal report, stack and independent fault record disjoint; re-audit final linked payload.",
+    "Must run before cold_mr_arm, since MRCTRL0 baseline remains30."
+  ],
+  "offline_validation": {
+    "command": "python3 spl/lpddr4/phy/check_controller_static_v2.py",
+    "record": "build/controller-static-v2/build-record.json",
+    "native_ASan_UBSan": "PASS",
+    "coverage": "20 exact writes,140 reads,161 callback failures,20 readback failures,58 preflight drifts,all64 individual INITTMG1 bit mutations rejected before writes,2 final INITTMG1 drift failures,4 bounded SWSTAT timeouts,explicitMicro1/9,unrelated-bit preservation,no cleanup",
+    "ARM_undefined_symbols": [],
+    "unaligned_access_disabled": true,
+    "conservative_stack_frame_sum_bytes": 444,
+    "object_sha256": "25d4df392622e5b8664cc18e77a18cf836a405e8a4b2cb50d6c80bf8083bc4e0",
+    "independent_review": "PMU peer verified six configuration addresses exclude INITTMG1, exact read-only INITTMG1 guards before/after,20writes140reads/report164B,Micro1/9 and compiler alignment flags; READY within CONFIGURED_ONLY scope. Wrapper/hardware separately owned by early/root."
+  }
+}

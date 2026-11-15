@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-14",
+  "kind": "root-reviewed bounded in-flight ZCal observation",
+  "baseline": "evidence/t736-phy-zcal-precompanion-sram-hardware-20261114.json",
+  "finding": "All existing PU/PD observation groups occur after ZCalRun=0. NXP retention leaves Run=1 while waiting35us; the A733 public helper clears Run after delay. Current observations cannot exclude loss of a transient code on the falling edge.",
+  "primary_source": {
+    "repository": "nxp-imx/imx-sm",
+    "commit": "eec232878ab7dd460f5a8f3767d39dc7e9412efa",
+    "path": "drivers/ddr/fsl_ddr.c",
+    "blob": "c855e02301e157c73d92eeac3c74510a580fc328",
+    "lines": [
+      487,
+      497
+    ]
+  },
+  "experiment": "Keep all129 baseline events and11 writes; insert only three raw halfword reads Run,PU,PD after measured100us and before Run0.132events/11writes. No added configuration write. Raw Run permits0/1; neither value is a completion assertion.",
+  "risk_limit": "UART/readback extends Run high duration beyond100us just as previous UART-before-Run0 already did. Timestamp is a minimum wait, not total pulse width. This diagnostic does not establish electrical calibration or usableDRAM.",
+  "stop": "Stop at first access/UART/timer/context/readback failure without cleanup; report raw evidence.",
+  "calibration_verified": false,
+  "vendor_executable_payload_used": false
+}

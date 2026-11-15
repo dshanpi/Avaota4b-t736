@@ -1,0 +1,19 @@
+curl --fail --connect-timeout 5 --max-time 30 http://192.168.1.228:18738/ddr_runtime_check -o /run/t736-ddr-runtime-check && printf '%s\n' 'd5c774d5d036bcf6e512ebd4222f2461ec402374bcb2b1e3695f1f858a2ad5f8  /run/t736-ddr-runtime-check' | sha256sum -c - && chmod 700 /run/t736-ddr-runtime-check && /run/t736-ddr-runtime-check; printf 'MEMCHECK_RC=%s\n' "$?"
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 70800  100 70800    0     0  5939k      0 --:--:-- --:--:-- --:--:-- 6285k
+/run/t736-ddr-runtime-check: OK
+-bash: /run/t736-ddr-runtime-check: Permission denied
+MEMCHECK_RC=126
+root@t736:~# install -m 700 /run/t736-ddr-runtime-check /root/.t736-ddr-runtime-check && /root/.t736-ddr-runtime-check; printf "MEMCHECK_RC=%s\n" "$?"; rm -f /root/.t736-ddr-runtime-check /run/t736-ddr-runtime-check
+
+PASS 1: 256MiB allocated memory verified
+PASS 2: 256MiB allocated memory verified
+PASS 3: 256MiB allocated memory verified
+PASS 4: 256MiB allocated memory verified
+DDR_RUNTIME_256M_FOUR_PATTERNS_OK
+MEMCHECK_RC=0
+root@t736:~# 

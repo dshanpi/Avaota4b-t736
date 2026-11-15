@@ -1,0 +1,240 @@
+[3500]Training result is = 7
+[3503]DRAM Pstate 0 training, frequency is 1800 Mhz
+[3510]Actual DRAM SIZE =8192 M
+[3513]DRAM SIZE =8192 MBytes, para1 = 311a, para2 = 20001001, dram_tpr13 = 6063
+[3523]DRAM simple test OK.
+[3572]error: dtb not found for scp
+[3576]tunning data addr:0x4a0003e8
+can't find the part boot_log
+get boot_log patition info is error
+can't find the part boot_log
+get boot_log patition info is error
+[3609]sunxi_amp_boot_init cant't find node "/sunxi-amp" 
+[3615]Jump to ATF: monitor_base = 0x48000000, uboot_base = 0x4a000000, optee_base = 0x48600000
+NOTICE:  BL31: OP-TEE 64bit detected
+NOTICE:  BL31: U-BOOT 32bit detected
+NOTICE:  BL31: dram size is 8589934592 bytes
+NOTICE:  BL31: v2.5(debug):4c445c8de
+NOTICE:  BL31: Built : 18:04:04, Sep 17 2025
+NOTICE:  BL31: No DTB found.
+E/TC:0 0 init_external_dt:1034 Device Tree missing
+M/TC: OP-TEE version: feeea313 (gcc version 9.2.1 20191025 (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10))) #1 Mon Sep  8 12:19:32 UTC 2025 aarch64
+M/TC: OP-TEE 64bit
+E/TC:0 0 plat_rng_init:459 prng seed by trng
+
+U-Boot 2018.07-g3357ad4 (Jul 15 2026 - 11:58:50 +0000) Allwinner Technology
+
+[03.719]CPU:   Allwinner Family
+[03.722]Model: sun60iw2
+I2C:   ready
+[03.782]DRAM:  E/TC:0   sunxi_drm_get_area:548 Incorrect DRM region config: DRM_START_REG = 0x0, DRM_END_REG = 0x0. Fix it now
+8 GiB
+[03.801]Relocation Offset is: 6e58b000
+[03.850]secure enable bit: 0
+CACHE: Misaligned operation at range [b44eae38, b456ae38]
+[03.874]PMU: AXP8191
+[03.876]PMU: AXP8191 VER_A
+[03.882]bmu_axp515_probe pmic_bus_read fail
+[03.886][AXP8191] onoff status: 0x50 = 0x1, 0x51 = 0x0
+[03.890][AXP8191] power-on source: PS_L_to_H
+[03.894][AXP8191] power-off source: none
+[03.898][AXP8191] charge status: 0x4 = 0x0
+[03.902]CPU=1014 MHz,PLL6=1200 Mhz,AHB=200 Mhz, APB1=24Mhz  MBus=600Mhz
+[03.908]gic: sec monitor mode
+SPI ALL:   ready
+[03.953]flash init start
+[03.955]workmode = 0,storage type = 2
+[03.958][mmc]: mmc driver ver uboot2018:2024-10-18 9:01:00 -- uboot2018:2025-03-28 10:03:00
+[03.970][mmc]: SUNXI SDMMC Controller Version:0x50610
+[03.979][mmc]: 200 MHz...
+[03.982][mmc]: sample: 26 - 96(ps)
+[03.985][mmc]: ds: 26 - 96(ps)
+[04.003][mmc]: Best spd md: 4-HS400, freq: 5-200000000, Bus width: 8
+[04.009]sunxi flash init ok
+[04.013]Loading Environment from SUNXI_FLASH... OK
+No ethernet found.
+pwmchip aliases count is: 3
+main name is pwmchip0
+main name is pwmchip1
+pwm_request: err: get clk bypass 25m err.
+[04.100]NOT support bridge yet
+[04.102]Warn: no find panel or bridge
+[04.131]Using display timing dts
+lvds0@0001000:  detailed mode clock 74871 kHz, flags[0]
+    H: 1280 1363 1381 1451
+    V: 0800 0837 0847 0860
+bus_format: 1011
+[04.146]hdmi0@5520000 disconnected
+[04.149]bad framebuffer width 0
+partno erro : can't find partition bootloader
+[04.163]bootloader is not found!
+partno erro : can't find partition bootloader
+[04.183]bootloader is not found!
+FDT ERROR:get function err returned FDT_ERR_NOTFOUND
+[04.252]sunxi_lvds_connector_enable:pinctrl_select_state fail!:-1
+partno erro : can't find partition bootloader
+[04.290]bootloader is not found!
+partno erro : can't find partition bootloader
+[04.309]bootloader is not found!
+[04.324]failed to display uboot logo for disp -1269110432
+[04.336]the secure storage item0 copy0 magic is bad
+[04.347]the secure storage item0 copy1 magic is bad
+[04.352]usb burn from boot
+delay time 0
+[04.358]usb prepare ok
+[04.590]usb sof ok
+[04.592]usb probe ok
+[04.594]usb setup ok
+set address 0x24
+set address 0x24 ok
+[05.000]do_burn_from_boot usb : have no handshake
+skip update boot_param
+cann't get the boot_base from the env
+[05.014]update part info
+[05.019]battery temp is -1
+[05.022]update bootcmd
+[05.024]libfdt fdt_check_header(): FDT_ERR_BADMAGIC
+[05.029][mmc]: can't find node "sunxi-mmc2" try "mmc"
+[05.034][mmc]: can't find node "mmc2" 
+[05.037][mmc]: fdt err returned <no error>
+[05.043][mmc]: get sunxi-mmc2 string failed
+[05.048]The storage not support sample function
+[05.054]## error: update_fdt_dram_para_from_bootpara : FDT_ERR_NOTFOUND
+ret 0
+[05.066]no battery, disabled battery functons
+[05.070]Could not find nodeoffset for bat_supply
+[05.074]update dts
+Hit any key to stop autoboot:  2  1  0 
+avb_footer.c:22: ERROR: Footer magic is incorrect.
+[07.103]no vendor_boot partition is found
+Android's image name: t736-uboot-probe
+fdt  addr 0x41000000 0x41080000 exceed ramdisk scope
+ramdisk  addr 0x41000000 0x41000000
+[07.130]Starting kernel ...
+
+[07.132]total: 7132 ms
+
+[07.135][mmc]: mmc exit start
+[07.153][mmc]: mmc 2 exit ok
+NOTICE:  [SCP] :wait arisc ready....
+NOTICE:  [SCP] :arisc version: []
+NOTICE:  [SCP] :arisc startup ready
+NOTICE:  [SCP] :arisc startup notify message feedback
+NOTICE:  [SCP] :sunxi-arisc driver is starting
+NOTICE:  BL3-1: Next image address = 0x52000000
+NOTICE:  BL3-1: Next image spsr = 0x3c5
+
+<debug_uart>
+
+U-Boot 2026.10-t736-bringup (Nov 12 2026 - 14:35:23 -0500)
+
+Model: T736 custom board RAM bring-up
+Board: T736 custom RAM bring-up; vendor DDR/BL31/SCP retained
+DRAM:  8 GiB
+Core:  4 devices, 4 uclasses, devicetree: separate
+MMC:   T736 SMHC3 read-only PIO: 0
+Loading Environment from nowhere...
+Loading Environment from nowhere... OK
+In:    serial@2500000
+Out:   serial@2500000
+Err:   serial@2500000
+
+Hit any key to stop autoboot: 3
+Hit any key to stop autoboot: 2
+Hit any key to stop autoboot: 1
+Hit any key to stop autoboot: 0
+switch to partitions #0, OK
+mmc0(part 0) is current device
+4234637 bytes read in 766 ms (5.3 MiB/s)
+11476105 bytes read in 2074 ms (5.3 MiB/s)
+6723 bytes read in 3 ms (2.1 MiB/s)
+   Uncompressing Kernel Image to 0
+## Flattened Device Tree blob at 63000000
+   Booting using the fdt blob at 0x63000000
+Working FDT set to 63000000
+   Loading Ramdisk to adca0000, end ae791c89 ... OK
+   Loading Device Tree to 00000000adc9b000, end 00000000adc9fa42 ... OK
+Working FDT set to adc9b000
+
+Starting kernel ...
+
+Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+Linux version 6.18.63-t736-armbian (ubuntu@ubuntu2404) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #11 SMP Fri Nov 13 06:30:23 EST 2026
+Machine model: T736 custom board mainline bring-up
+earlycon: uart8250 at MMIO32 0x0000000002500000 (options '')
+printk: legacy bootconsole [uart8250] enabled
+OF: reserved mem: Reserved memory: No reserved-memory node in the DT
+Zone ranges:
+  DMA      [mem 0x0000000040000000-0x00000000ffffffff]
+  DMA32    empty
+  Normal   [mem 0x0000000100000000-0x000000023fffffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000040000000-0x000000023fffffff]
+Initmem setup node 0 [mem 0x0000000040000000-0x000000023fffffff]
+psci: probing for conduit method from DT.
+psci: PSCIv1.1 detected in firmware.
+psci: Using standard PSCI v0.2 function IDs
+psci: Trusted OS migration not required
+psci: SMC Calling Convention v1.2
+percpu: Embedded 17 pages/cpu s32728 r8192 d28712 u69632
+Detected VIPT I-cache on CPU0
+CPU features: detected: GICv3 CPU interface
+CPU features: kernel page table isolation disabled by kernel configuration
+alternatives: applying boot alternatives
+Kernel command line: earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused
+printk: log buffer data + meta data: 131072 + 458752 = 589824 bytes
+Dentry cache hash table entries: 1048576 (order: 11, 8388608 bytes, linear)
+Inode-cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+software IO TLB: area num 8.
+software IO TLB: mapped [mem 0x00000000f7800000-0x00000000fb800000] (64MB)
+Built 1 zonelists, mobility grouping on.  Total pages: 2097152
+mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+SLUB: HWalign=64, Order=0-1, MinObjects=0, CPUs=8, Nodes=1
+rcu: Hierarchical RCU implementation.
+	Tracing variant of Tasks RCU enabled.
+rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+RCU Tasks Trace: Setting shift to 3 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=8.
+NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+GICv3: 256 SPIs implemented
+GICv3: 0 Extended SPIs implemented
+Root IRQ handler: gic_handle_irq
+GICv3: GICv3 features: 16 PPIs
+GICv3: GICD_CTLR.DS=0, SCR_EL3.FIQ=1
+GICv3: CPU0: found redistributor 0 region 0:0x0000000003460000
+ITS: No ITS available, not enabling LPIs
+rcu: srcu_init: Setting srcu_struct sizes based on contention.
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+arch_timer: cp15 timer running at 24.00MHz (virt).
+clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+Console: colour dummy device 80x25
+Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=96000)
+pid_max: default: 32768 minimum: 301
+LSM: initializing lsm=capability
+Mount-cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
+Mountpoint-cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
+rcu: Hierarchical SRCU implementation.
+rcu: 	Max phase no-delay instances is 1000.
+smp: Bringing up secondary CPUs ...
+Detected VIPT I-cache on CPU1
+GICv3: CPU1: found redistributor 100 region 0:0x0000000003480000
+CPU1: Booted secondary processor 0x0000000100 [0x412fd050]
+Detected VIPT I-cache on CPU2
+GICv3: CPU2: found redistributor 200 region 0:0x00000000034a0000
+CPU2: Booted secondary processor 0x0000000200 [0x412fd050]
+Detected VIPT I-cache on CPU3
+GICv3: CPU3: found redistributor 300 region 0:0x00000000034c0000
+CPU3: Booted secondary processor 0x0000000300 [0x412fd050]
+Detected VIPT I-cache on CPU4
+GICv3: CPU4: found redistributor 400 region 0:0x00000000034e0000
+CPU4: Booted secondary processor 0x0000000400 [0x412fd050]
+Detected VIPT I-cache on CPU5
+GICv3: CPU5: found redistributor 500 region 0:0x0000000003500000
+CPU5: Booted secondary processor 0x0000000500 [0x412fd050]
+CPU features: detected: Spectre-v4
+CPU features: detected: Spectre-BHB
+Detected PIPT I-cache on CPU6
+GICv3: CPU6: found redistributor 600 region 0:0x0000000003520000
+CPU6: Booted secondary processor 0x0000000600 [0x414fd0b1]
+Detected 

@@ -1,0 +1,180 @@
+{
+  "date": "2026-11-14",
+  "kind": "root-executed ZCal follow-up hardware investigation",
+  "resolved": false,
+  "calibration_verified": false,
+  "ddr_initialized": false,
+  "storage_accessed": false,
+  "experiments": [
+    {
+      "experiment": "precompanion",
+      "evidence": "evidence/t736-phy-zcal-precompanion-sram-hardware-20261114.json",
+      "completed": 129,
+      "writes": 11,
+      "reset_ticks": 42,
+      "run_ticks": 2415,
+      "binary_sha256": "fd87a631bddcc4c182a2f65a282ed640bba4618e1ddc4a5ba61455f256764874",
+      "hardware_contract_passed": true,
+      "calibration_verified": false,
+      "observed_registers": []
+    },
+    {
+      "experiment": "inflight",
+      "evidence": "evidence/t736-phy-zcal-inflight-sram-hardware-20261114.json",
+      "completed": 132,
+      "writes": 11,
+      "reset_ticks": 43,
+      "run_ticks": 2414,
+      "binary_sha256": "ad5b837a553ba6af5aba3f8fed27d57048937f37dff512ab3f86b6fd0faec5e4",
+      "hardware_contract_passed": true,
+      "calibration_verified": false,
+      "observed_registers": []
+    },
+    {
+      "experiment": "rawcode",
+      "evidence": "evidence/t736-phy-zcal-rawcode-sram-hardware-20261114.json",
+      "completed": 155,
+      "writes": 0,
+      "reset_ticks": null,
+      "run_ticks": null,
+      "binary_sha256": "4426460be974a011c96815ba4e8451f8513e194ca2b419bf2320a2c781766b94",
+      "hardware_contract_passed": true,
+      "calibration_verified": false,
+      "observed_registers": [
+        {
+          "address": "0xa940002",
+          "value": "0x1111"
+        },
+        {
+          "address": "0xa940628",
+          "value": "0xff"
+        },
+        {
+          "address": "0xa94062a",
+          "value": "0xff"
+        }
+      ]
+    },
+    {
+      "experiment": "codetrack",
+      "evidence": "evidence/t736-phy-zcal-codetrack-sram-hardware-20261114.json",
+      "completed": 140,
+      "writes": 11,
+      "reset_ticks": 37,
+      "run_ticks": 2416,
+      "binary_sha256": "93a3373f6d161dd1c78b4ddc68b4fd051e051a734ee6f4df6b37e5c3b3cdf9c9",
+      "hardware_contract_passed": true,
+      "calibration_verified": false,
+      "observed_registers": []
+    },
+    {
+      "experiment": "longwait",
+      "evidence": "evidence/t736-phy-zcal-longwait-sram-hardware-20261114.json",
+      "completed": 140,
+      "writes": 11,
+      "reset_ticks": 37,
+      "run_ticks": 240014,
+      "binary_sha256": "71be4501ef7a4d7723337cac0dce5b8bf108427a5eb641e81d075d2acbbcec29",
+      "hardware_contract_passed": true,
+      "calibration_verified": false,
+      "observed_registers": []
+    },
+    {
+      "experiment": "pubmode_read",
+      "evidence": "evidence/t736-phy-zcal-pubmode-read-sram-hardware-20261114.json",
+      "completed": 155,
+      "writes": 0,
+      "reset_ticks": null,
+      "run_ticks": null,
+      "binary_sha256": "6ed94526e19662fe0212277e8fc7c17105718ae6c6b6c2a3909a68f799cbaf55",
+      "hardware_contract_passed": true,
+      "calibration_verified": false,
+      "observed_registers": [
+        {
+          "address": "0xa940002",
+          "value": "0x1111"
+        },
+        {
+          "address": "0xa9400dc",
+          "value": "0x0"
+        },
+        {
+          "address": "0xa94062a",
+          "value": "0xff"
+        }
+      ]
+    },
+    {
+      "experiment": "pubmode",
+      "evidence": "evidence/t736-phy-zcal-pubmode-sram-hardware-20261114.json",
+      "completed": 145,
+      "writes": 13,
+      "reset_ticks": 42,
+      "run_ticks": 2416,
+      "binary_sha256": "77228248412692aa15a872d461624fd6a2d0a54d69cf8ecdf887e245481edf78",
+      "hardware_contract_passed": true,
+      "calibration_verified": false,
+      "observed_registers": []
+    },
+    {
+      "experiment": "clock_read",
+      "evidence": "evidence/t736-phy-zcal-clock-read-sram-hardware-20261114.json",
+      "completed": 155,
+      "writes": 0,
+      "reset_ticks": null,
+      "run_ticks": null,
+      "binary_sha256": "37a9a0344b8d964993ea23c2711f7c047d8a7ebbb9bd3b8b4783a1b75b9812f3",
+      "hardware_contract_passed": true,
+      "calibration_verified": false,
+      "observed_registers": [
+        {
+          "address": "0xa940092",
+          "value": "0x1f0"
+        },
+        {
+          "address": "0xa94018c",
+          "value": "0x10"
+        },
+        {
+          "address": "0xa94009c",
+          "value": "0x0"
+        }
+      ]
+    }
+  ],
+  "total_new_diagnostic_events": 1151,
+  "total_new_diagnostic_writes_except_uart": 57,
+  "findings": [
+    "2030d pulse1->0 added to prior20320 pulse: exact readback, no change in20326/20327 zero values.",
+    "Run read1 after measured100us, before Run0;20326/20327 still0/0. Post-stop-only observation blind spot closed for this sample.",
+    "New raw20314/20315 candidate registers readff/ff; same values before reset, during reset1, during Run1 and afterrestore. They are not independently named valid impedance codes.",
+    "Increasing measured Run interval100x to10000us gave240014ticks at24MHz with no changed observations.",
+    "Raw2006e0->1->0 candidate PubMode source selection readback succeeded; calibration observations unchanged.",
+    "Read-only clock candidates20049=1f0,200c6=10,2004e=0. Do not transplant Odyssey PLLreset bit meanings: itsPllCtrl1/4 are200c7/200cc whereas this generation uses2004a/2004b.",
+    "Zero20326/20327 override words are insufficient alone to diagnose an inactive calibration state machine. No clock/done/error/freshness evidence closes the electrical success contract."
+  ],
+  "prerequisite_replay": "Fresh bound U-Boot efex/FEL, sourceCCU/domain/controllerlayout,PHYrelease,analogsetup,ZCalv2,Microstall-onlyrelease,controllerstaticv2 andcompanionbaseline all reproduced with checked reports.",
+  "intermediate_guard_stop": {
+    "evidence": "evidence/t736-precompanion-prereq-order-guard-20261114.json",
+    "cause": "Root initially invoked analog setup before PHYrelease. Guard stopped afterfour context reads atSYS_CFG2728,zero configuration writes andno PHYreads. Corrected ordering,then allreplay stages passed; original failure preserved."
+  },
+  "test_note": "PubMode read host test initially had an underscore/hyphen mismatch in its expected journal label. Read-only hardware run completed before that test-label correction; corrected eight tests passed afterward. No payload changes resulted.",
+  "final_board_state": {
+    "transport": "BootROMFEL afterdiagnostics",
+    "MuxSel": 0,
+    "MicroReset": 1,
+    "MemResetL": 2,
+    "UcclkHclkEnables": 3,
+    "ZCalReset": 0,
+    "ZCalRun": 0,
+    "ZCalRate": 9,
+    "raw2030d": 0,
+    "raw20320": 0,
+    "raw2006e": 0,
+    "controllers": "heldInit,MRidle",
+    "new_emmc_flash": false
+  },
+  "remaining_work": "Establish target-generation internal DFI/ZCal clock and reset/enable/status contracts; distinguish default/saturation/readback in20314/20315. Requires target-specific register evidence or independent hardware clock/reference/power measurement. Existing clock/companion fields should not be changed from other-generation bitfield guesses. Training,standalone memory tests,andindependent Armbianflash acceptance remain incomplete.",
+  "validation": "evidence/t736-zcal-followup-validation-20261114.json",
+  "serial_capture_note": "Dedicated precompanion capture contains129lines. Later serial read returnedno bufferedtext; full sequenced MMIO records are retained in SRAM JSON reports; no completefollow-upUARTcapture claim."
+}

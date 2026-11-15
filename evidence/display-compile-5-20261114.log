@@ -1,0 +1,286 @@
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_drv.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.o
+  CC      drivers/gpu/drm/t736-bsp/kernel_panic_printf.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.o
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:144:7: warning: no previous prototype for ‘fb_map_kernel’ [-Wmissing-prototypes]
+  144 | void *fb_map_kernel(unsigned long phys_addr, unsigned long size)
+      |       ^~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c: In function ‘fb_map_kernel’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:147:31: error: implicit declaration of function ‘vmalloc’; did you mean ‘kvmalloc’? [-Werror=implicit-function-declaration]
+  147 |         struct page **pages = vmalloc(sizeof(struct page *) * npages);
+      |                               ^~~~~~~
+      |                               kvmalloc
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:147:31: warning: initialization of ‘struct page **’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:161:17: error: implicit declaration of function ‘vmap’; did you mean ‘kmap’? [-Werror=implicit-function-declaration]
+  161 |         vaddr = vmap(pages, npages, VM_MAP, pgprot);
+      |                 ^~~~
+      |                 kmap
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:161:37: error: ‘VM_MAP’ undeclared (first use in this function); did you mean ‘VM_MTE’?
+  161 |         vaddr = vmap(pages, npages, VM_MAP, pgprot);
+      |                                     ^~~~~~
+      |                                     VM_MTE
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:161:37: note: each undeclared identifier is reported only once for each function it appears in
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:163:9: error: implicit declaration of function ‘vfree’; did you mean ‘kvfree’? [-Werror=implicit-function-declaration]
+  163 |         vfree(pages);
+      |         ^~~~~
+      |         kvfree
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:167:7: warning: no previous prototype for ‘fb_map_kernel_cache’ [-Wmissing-prototypes]
+  167 | void *fb_map_kernel_cache(unsigned long phys_addr, unsigned long size)
+      |       ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c: In function ‘fb_map_kernel_cache’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:187:37: error: ‘VM_MAP’ undeclared (first use in this function); did you mean ‘VM_MTE’?
+  187 |         vaddr = vmap(pages, npages, VM_MAP, pgprot);
+      |                                     ^~~~~~
+      |                                     VM_MTE
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:192:6: warning: no previous prototype for ‘Fb_unmap_kernel’ [-Wmissing-prototypes]
+  192 | void Fb_unmap_kernel(void *vaddr)
+      |      ^~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c: In function ‘Fb_unmap_kernel’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:194:9: error: implicit declaration of function ‘vunmap’; did you mean ‘kunmap’? [-Werror=implicit-function-declaration]
+  194 |         vunmap(vaddr);
+      |         ^~~~~~
+      |         kunmap
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:197:5: warning: no previous prototype for ‘logo_display_file’ [-Wmissing-prototypes]
+  197 | int logo_display_file(struct fb_hw_info *info, unsigned long phy_addr)
+      |     ^~~~~~~~~~~~~~~~~
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.c:17:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:188:36: warning: no previous prototype for ‘sunxi_get_soc_ver’ [-Wmissing-prototypes]
+  188 | unsigned int __attribute__((weak)) sunxi_get_soc_ver(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:189:27: warning: no previous prototype for ‘sunxi_get_sid_ver’ [-Wmissing-prototypes]
+  189 | int __attribute__((weak)) sunxi_get_sid_ver(u32 *ver) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:190:36: warning: no previous prototype for ‘sunxi_get_soc_ver_from_reg’ [-Wmissing-prototypes]
+  190 | unsigned int __attribute__((weak)) sunxi_get_soc_ver_from_reg(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:191:36: warning: no previous prototype for ‘sunxi_get_platform_id’ [-Wmissing-prototypes]
+  191 | unsigned int __attribute__((weak)) sunxi_get_platform_id(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:192:27: warning: no previous prototype for ‘sunxi_get_soc_chipid’ [-Wmissing-prototypes]
+  192 | int __attribute__((weak)) sunxi_get_soc_chipid(unsigned char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:193:27: warning: no previous prototype for ‘sunxi_get_soc_chipid_str’ [-Wmissing-prototypes]
+  193 | int __attribute__((weak)) sunxi_get_soc_chipid_str(char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:194:27: warning: no previous prototype for ‘sunxi_get_soc_chipid_origin’ [-Wmissing-prototypes]
+  194 | int __attribute__((weak)) sunxi_get_soc_chipid_origin(char *chipid_origin) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:195:27: warning: no previous prototype for ‘sunxi_get_soc_ft_zone_str’ [-Wmissing-prototypes]
+  195 | int __attribute__((weak)) sunxi_get_soc_ft_zone_str(char *serial) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:196:27: warning: no previous prototype for ‘sunxi_get_soc_rotpk_status_str’ [-Wmissing-prototypes]
+  196 | int __attribute__((weak)) sunxi_get_soc_rotpk_status_str(char *status) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:197:27: warning: no previous prototype for ‘sunxi_get_pmu_chipid’ [-Wmissing-prototypes]
+  197 | int __attribute__((weak)) sunxi_get_pmu_chipid(unsigned char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:198:27: warning: no previous prototype for ‘sunxi_get_serial’ [-Wmissing-prototypes]
+  198 | int __attribute__((weak)) sunxi_get_serial(unsigned char *serial) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:199:36: warning: no previous prototype for ‘sunxi_get_soc_bin’ [-Wmissing-prototypes]
+  199 | unsigned int __attribute__((weak)) sunxi_get_soc_bin(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:200:27: warning: no previous prototype for ‘sunxi_soc_is_secure’ [-Wmissing-prototypes]
+  200 | int __attribute__((weak)) sunxi_soc_is_secure(void) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:201:27: warning: no previous prototype for ‘sunxi_get_platform’ [-Wmissing-prototypes]
+  201 | s32 __attribute__((weak)) sunxi_get_platform(s8 *buf, s32 size) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:202:27: warning: no previous prototype for ‘sunxi_efuse_readn’ [-Wmissing-prototypes]
+  202 | s32 __attribute__((weak)) sunxi_efuse_readn(s8 *key_name, void *buf, u32 n) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:203:27: warning: no previous prototype for ‘sunxi_get_module_param_from_sid’ [-Wmissing-prototypes]
+  203 | int __attribute__((weak)) sunxi_get_module_param_from_sid(u32 *dst, u32 offset, u32 len) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:204:36: warning: no previous prototype for ‘sunxi_get_soc_markid’ [-Wmissing-prototypes]
+  204 | unsigned int __attribute__((weak)) sunxi_get_soc_markid(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:205:26: warning: no previous prototype for ‘sunxi_sid_sram_read32’ [-Wmissing-prototypes]
+  205 | int __attribute__((weak))sunxi_sid_sram_read32(const char *key, u32 *data) { return -ENOSYS; }
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:206:27: warning: no previous prototype for ‘sunxi_sid_get_ecc_status’ [-Wmissing-prototypes]
+  206 | int __attribute__((weak)) sunxi_sid_get_ecc_status(void) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:207:27: warning: no previous prototype for ‘sunxi_get_soc_dvfs’ [-Wmissing-prototypes]
+  207 | int __attribute__((weak)) sunxi_get_soc_dvfs(u32 *dvfs) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.c:342:27: warning: no previous prototype for ‘get_de_top_desc’ [-Wmissing-prototypes]
+  342 | const struct de_top_desc *get_de_top_desc(const struct module_create_info *info)
+      |                           ^~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.c:747:5: warning: no previous prototype for ‘de_top_get_out_size’ [-Wmissing-prototypes]
+  747 | int de_top_get_out_size(struct de_top_handle *hdl, u32 disp, u32 *width, u32 *height)
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.c:1007:5: warning: no previous prototype for ‘de_top_enable_irq’ [-Wmissing-prototypes]
+ 1007 | int de_top_enable_irq(struct de_top_handle *hdl, u32 disp, u32 irq_flag, u32 en)
+      |     ^~~~~~~~~~~~~~~~~
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_mm.h:51,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_vma_manager.h:26,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_gem.h:43,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_gem_dma_helper.h:7,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.c:21:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.c: In function ‘drm_framebuffer_print_info’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.c:823:21: error: implicit declaration of function ‘drm_framebuffer_plane_width’; did you mean ‘drm_framebuffer_print_info’? [-Werror=implicit-function-declaration]
+  823 |                     drm_framebuffer_plane_width(fb[0]->width,  fb[0], 0), fb[0]->pitches[0],
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_print.h:228:70: note: in definition of macro ‘drm_printf_indent’
+  228 |         drm_printf((printer), "%.*s" fmt, (indent), "\t\t\t\t\tX", ##__VA_ARGS__)
+      |                                                                      ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c: In function ‘platform_fb_memory_free’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:329:9: error: implicit declaration of function ‘drm_client_framebuffer_delete’; did you mean ‘drm_client_framebuffer_create’? [-Werror=implicit-function-declaration]
+  329 |         drm_client_framebuffer_delete(info->buffer);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |         drm_client_framebuffer_create
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c:413:16: warning: no previous prototype for ‘de_rtmx_exit_rcq’ [-Wmissing-prototypes]
+  413 | /*static*/ int de_rtmx_exit_rcq(struct sunxi_display_engine *de)
+      |                ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c:531:6: warning: no previous prototype for ‘sunxi_de_reg_buffer_free’ [-Wmissing-prototypes]
+  531 | void sunxi_de_reg_buffer_free(struct sunxi_display_engine *de,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c:549:6: warning: no previous prototype for ‘sunxi_de_reg_mem_deinit’ [-Wmissing-prototypes]
+  549 | void sunxi_de_reg_mem_deinit(struct sunxi_display_engine *de)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1164:5: warning: no previous prototype for ‘sunxi_drm_plane_property_create’ [-Wmissing-prototypes]
+ 1164 | int sunxi_drm_plane_property_create(struct sunxi_drm_private *private)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c: In function ‘sunxi_de_probe’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1565:22: warning: no previous prototype for ‘sunxi_drm_wb_init_one’ [-Wmissing-prototypes]
+ 1565 | struct sunxi_drm_wb *sunxi_drm_wb_init_one(struct sunxi_de_wb_info *wb_info)
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c:1547:17: error: implicit declaration of function ‘hrtimer_init’; did you mean ‘hrtimers_init’? [-Werror=implicit-function-declaration]
+ 1547 |                 hrtimer_init(&display_out->rcq_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+      |                 ^~~~~~~~~~~~
+      |                 hrtimers_init
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1600:6: warning: no previous prototype for ‘sunxi_drm_wb_destory’ [-Wmissing-prototypes]
+ 1600 | void sunxi_drm_wb_destory(struct sunxi_drm_wb *wb)
+      |      ^~~~~~~~~~~~~~~~~~~~
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c:1705:19: error: initialization of ‘void (*)(struct platform_device *)’ from incompatible pointer type ‘int (*)(struct platform_device *)’ [-Werror=incompatible-pointer-types]
+ 1705 |         .remove = sunxi_de_remove,
+      |                   ^~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c:1705:19: note: (near initialization for ‘sunxi_de_platform_driver.remove’)
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1828:5: warning: no previous prototype for ‘sunxi_get_fpsraw_and_vblankcnt’ [-Wmissing-prototypes]
+ 1828 | u64 sunxi_get_fpsraw_and_vblankcnt(struct drm_crtc *crtc)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1846:6: warning: no previous prototype for ‘sunxi_crtc_atomic_print_state’ [-Wmissing-prototypes]
+ 1846 | void sunxi_crtc_atomic_print_state(struct drm_printer *p,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:2172:5: warning: no previous prototype for ‘commit_task_thread’ [-Wmissing-prototypes]
+ 2172 | s32 commit_task_thread(void *parg)
+      |     ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:115:1: warning: no previous prototype for ‘sunxi_drm_gem_fb_create’ [-Wmissing-prototypes]
+  115 | sunxi_drm_gem_fb_create(struct drm_device *dev, struct drm_file *file,
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:2477:24: warning: no previous prototype for ‘sunxi_drm_crtc_init_one’ [-Wmissing-prototypes]
+ 2477 | struct sunxi_drm_crtc *sunxi_drm_crtc_init_one(struct sunxi_de_info *info)
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: In function ‘sunxi_drm_atomic_helper_commit’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:130:51: warning: variable ‘new_plane_state’ set but not used [-Wunused-but-set-variable]
+  130 |         struct drm_plane_state *old_plane_state, *new_plane_state;
+      |                                                   ^~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:128:54: warning: variable ‘new_conn_state’ set but not used [-Wunused-but-set-variable]
+  128 |         struct drm_connector_state *old_conn_state, *new_conn_state;
+      |                                                      ^~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:226:6: warning: no previous prototype for ‘sunxi_drm_unload’ [-Wmissing-prototypes]
+  226 | void sunxi_drm_unload(struct drm_device *dev)
+      |      ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:231:23: warning: no previous prototype for ‘drm_get_disp_connector’ [-Wmissing-prototypes]
+  231 | struct drm_connector *drm_get_disp_connector(struct drm_device *dev, int index)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:2579:6: warning: no previous prototype for ‘sunxi_drm_crtc_destory’ [-Wmissing-prototypes]
+ 2579 | void sunxi_drm_crtc_destory(struct sunxi_drm_crtc *scrtc)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: In function ‘sunxi_drm_mode_monitor_work_handler’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:794:13: warning: variable ‘modes_count’ set but not used [-Wunused-but-set-variable]
+  794 |         int modes_count;
+      |             ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:66:5: warning: no previous prototype for ‘sunxi_fbdev_init’ [-Wmissing-prototypes]
+   66 | int sunxi_fbdev_init(struct drm_device *drm, struct display_channel_state *out_state, int de_id)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:78:5: warning: no previous prototype for ‘sunxi_fbdev_exit’ [-Wmissing-prototypes]
+   78 | int sunxi_fbdev_exit(void)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:94:5: warning: no previous prototype for ‘sunxi_fb_pan_display’ [-Wmissing-prototypes]
+   94 | int sunxi_fb_pan_display(struct fb_var_screeninfo *var,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:109:5: warning: no previous prototype for ‘sunxi_fb_wait_for_vsync’ [-Wmissing-prototypes]
+  109 | int sunxi_fb_wait_for_vsync(struct fb_info *info)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.c:824:21: error: implicit declaration of function ‘drm_framebuffer_plane_height’; did you mean ‘drm_framebuffer_print_info’? [-Werror=implicit-function-declaration]
+  824 |                     drm_framebuffer_plane_height(fb[0]->height, fb[0], 0),
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_print.h:228:70: note: in definition of macro ‘drm_printf_indent’
+  228 |         drm_printf((printer), "%.*s" fmt, (indent), "\t\t\t\t\tX", ##__VA_ARGS__)
+      |                                                                      ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c: In function ‘dsi_notify_tp_work’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:298:32: error: ‘FB_EVENT_BLANK’ undeclared (first use in this function); did you mean ‘DRM_EVENT_VBLANK’?
+  298 |         fb_notifier_call_chain(FB_EVENT_BLANK, &event);
+      |                                ^~~~~~~~~~~~~~
+      |                                DRM_EVENT_VBLANK
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:298:32: note: each undeclared identifier is reported only once for each function it appears in
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:300:6: warning: no previous prototype for ‘dsi_notify_call_chain’ [-Wmissing-prototypes]
+  300 | void dsi_notify_call_chain(int cmd, int flag)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c: In function ‘dsi_notify_call_chain’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:309:40: error: ‘FB_EVENT_BLANK’ undeclared (first use in this function); did you mean ‘DRM_EVENT_VBLANK’?
+  309 |                 fb_notifier_call_chain(FB_EVENT_BLANK, &event);
+      |                                        ^~~~~~~~~~~~~~
+      |                                        DRM_EVENT_VBLANK
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:316:17: warning: no previous prototype for ‘sunxi_get_fb_info’ [-Wmissing-prototypes]
+  316 | struct fb_info *sunxi_get_fb_info(int fb_id)
+      |                 ^~~~~~~~~~~~~~~~~
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.o] Error 1
+cc1: some warnings being treated as errors
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.o] Error 1
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:37:6: warning: no previous prototype for ‘draw_color’ [-Wmissing-prototypes]
+   37 | void draw_color(struct graphic_buffer *img, u32 color)
+      |      ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:49:6: warning: no previous prototype for ‘draw_pixel’ [-Wmissing-prototypes]
+   49 | void draw_pixel(struct graphic_buffer *img, int x, int y, u32 color)
+      |      ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:56:6: warning: no previous prototype for ‘draw_img’ [-Wmissing-prototypes]
+   56 | void draw_img(struct graphic_buffer *img, int px, int py,
+      |      ^~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:74:20: warning: no previous prototype for ‘glyph_find’ [-Wmissing-prototypes]
+   74 | struct glyph_info *glyph_find(unsigned char t)
+      |                    ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:87:6: warning: no previous prototype for ‘draw_glyph’ [-Wmissing-prototypes]
+   87 | void draw_glyph(struct graphic_buffer *img, int px, int py,
+      |      ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:102:6: warning: no previous prototype for ‘glyph_reander_string’ [-Wmissing-prototypes]
+  102 | void glyph_reander_string(char *str, int px, int *py, struct graphic_buffer *img)
+      |      ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:246:6: warning: no previous prototype for ‘sunxi_kernel_panic_printf’ [-Wmissing-prototypes]
+  246 | void sunxi_kernel_panic_printf(const char *str, ...)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c: In function ‘sunxi_kernel_panic_printf’:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:261:9: warning: function ‘sunxi_kernel_panic_printf’ might be a candidate for ‘gnu_printf’ format attribute [-Wsuggest-attribute=format]
+  261 |         i = vsnprintf(string, 512, str, args);
+      |         ^
+cc1: some warnings being treated as errors
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.o] Error 1
+make[6]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu/drm/t736-bsp] Error 2
+make[5]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu/drm] Error 2
+make[4]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu] Error 2
+make[3]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers] Error 2
+make[2]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:2051: .] Error 2
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+make[1]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'

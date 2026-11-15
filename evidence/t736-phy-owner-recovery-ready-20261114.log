@@ -1,0 +1,125 @@
+[  OK  ] Finished armbian-zram-config.service - Armbian ZRAM config.
+
+[  OK  ] Started systemd-udevd.service - Ru…anager for Device Events and Files.
+
+         Starting systemd-networkd.service - Network Configuration...
+
+[  OK  ] Started systemd-resolved.service - Network Name Resolution.
+
+[  OK  ] Found device dev-ttyS0.device - /dev/ttyS0.
+
+[  OK  ] Reached target nss-lookup.target - Host and Network Name Lookups.
+
+[  OK  ] Started systemd-networkd.service - Network Configuration.
+
+         Starting systemd-networkd-persiste…tent Storage in systemd-networkd...
+
+t736-dwmac 4500000.ethernet end0: Register MEM_TYPE_PAGE_POOL RxQ-0
+t736-dwmac 4500000.ethernet end0: PHY [stmmac-0:01] driver [RTL8211F Gigabit Ethernet] (irq=POLL)
+t736-dwmac 4500000.ethernet end0: No Safety Features support found
+t736-dwmac 4500000.ethernet end0: IEEE 1588-2008 Advanced Timestamp supported
+t736-dwmac 4500000.ethernet end0: configuring for phy/rgmii-rxid link mode
+[  OK  ] Finished systemd-networkd-persiste…istent Storage in systemd-networkd.
+
+[  OK  ] Finished systemd-journal-flush.ser…lush Journal to Persistent Storage.
+
+         Starting systemd-tmpfiles-setup.se…ate System Files and Directories...
+
+[  OK  ] Finished systemd-tmpfiles-setup.se…reate System Files and Directories.
+
+[  OK  ] Reached target sysinit.target - System Initialization.
+
+[  OK  ] Started apt-daily.timer - Daily apt download activities.
+
+[  OK  ] Started apt-daily-upgrade.timer - …y apt upgrade and clean activities.
+
+[  OK  ] Started dpkg-db-backup.timer - Daily dpkg database backup timer.
+
+[  OK  ] Started e2scrub_all.timer - Period…Metadata Check for All Filesystems.
+
+[  OK  ] Started fake-hwclock-save.timer - Periodically save current clock.
+
+[  OK  ] Started fstrim.timer - Discard unused filesystem blocks once a week.
+
+[  OK  ] Started logrotate.timer - Daily rotation of log files.
+
+[  OK  ] Started man-db.timer - Daily man-db regeneration.
+
+[  OK  ] Started systemd-tmpfiles-clean.tim…y Cleanup of Temporary Directories.
+
+[  OK  ] Reached target timers.target - Timer Units.
+
+[  OK  ] Listening on dbus.socket - D-Bus System Message Bus Socket.
+
+[  OK  ] Listening on sshd-unix-local.socke…temd-ssh-generator, AF_UNIX Local).
+
+[  OK  ] Listening on systemd-hostnamed.socket - Hostname Service Socket.
+
+[  OK  ] Reached target sockets.target - Socket Units.
+
+         Starting armbian-hardware-monitor.…ce - Armbian hardware monitoring...
+
+         Starting armbian-hardware-optimize… - Armbian hardware optimization...
+
+         Starting armbian-led-state.service - Armbian leds state...
+
+[  OK  ] Finished armbian-hardware-monitor.…vice - Armbian hardware monitoring.
+
+[  OK  ] Finished armbian-led-state.service - Armbian leds state.
+
+[  OK  ] Finished armbian-hardware-optimize…ce - Armbian hardware optimization.
+
+[  OK  ] Reached target basic.target - Basic System.
+
+[  OK  ] Started cron.service - Regular background program processing daemon.
+
+         Starting dbus.service - D-Bus System Message Bus...
+
+         Starting e2scrub_reap.service - Re…ne ext4 Metadata Check Snapshots...
+
+         Starting rsyslog.service - System Logging Service...
+
+         Starting systemd-logind.service - User Login Management...
+
+[  OK  ] Finished e2scrub_reap.service - Re…line ext4 Metadata Check Snapshots.
+
+[  OK  ] Started systemd-logind.service - User Login Management.
+
+systemd-journald[235]: Received client request to relinquish /var/log/journal/b166a1e78068488e879e1e5c426bb91b access.
+[  OK  ] Started dbus.service - D-Bus System Message Bus.
+
+         Starting wpa_supplicant.service - WPA supplicant...
+
+[  OK  ] Started rsyslog.service - System Logging Service.
+
+[*     ] Job wpa_supplicant.service/start running (14s / 1min 42s)
+
+[**    ] Job wpa_supplicant.service/start running (15s / 1min 42s)
+
+[***   ] Job wpa_supplicant.service/start running (15s / 1min 42s)
+
+[ ***  ] Job wpa_supplicant.service/start running (16s / 1min 42s)
+
+[  OK  ] Started wpa_supplicant.service - WPA supplicant.
+
+[  OK  ] Reached target network.target - Network.
+
+         Starting ssh.service - OpenBSD Secure Shell server...
+
+         Starting systemd-user-sessions.service - Permit User Sessions...
+
+[  OK  ] Finished systemd-user-sessions.service - Permit User Sessions.
+
+[  OK  ] Started getty@tty1.service - Getty on tty1.
+
+[  OK  ] Started serial-getty@ttyS0.service - Serial Getty on ttyS0.
+
+[  OK  ] Reached target getty.target - Login Prompts.
+
+[  OK  ] Started ssh.service - OpenBSD Secure Shell server.
+
+[  OK  ] Reached target multi-user.target - Multi-User System.
+
+Armbian 26.11.0-trunk.128 trixie ttyS0 
+
+t736 login: 

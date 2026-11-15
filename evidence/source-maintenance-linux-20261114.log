@@ -1,0 +1,224 @@
+setenv kernel_comp_addr_r 0x68000000; mmc dev 0 && ext4load mmc 0:4 0x60000000 /boot/vmlinuz-6.18.63-t736-armbian && setenv kernel_comp_size ${filesize} && ext4load mmc 0:4 0x64000000 /boot/initrd.img-6.18.63-t736-armbian && setenv rdsize ${filesize} && ext4load mmc 0:4 0x63000000 /boot/dtb/allwinner/t736-mainline-bringup.dtb && setenv bootargs earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused init=/bin/sh && booti 0x60000000 0x64000000:${rdsize} 0x63000000
+switch to partitions #0, OK
+mmc0(part 0) is current device
+4234637 bytes read in 976 ms (4.1 MiB/s)
+11476105 bytes read in 2641 ms (4.1 MiB/s)
+6723 bytes read in 4 ms (1.6 MiB/s)
+   Uncompressing Kernel Image to 0
+## Flattened Device Tree blob at 63000000
+   Booting using the fdt blob at 0x63000000
+Working FDT set to 63000000
+   Loading Ramdisk to adca1000, end ae792c89 ... OK
+   Loading Device Tree to 00000000adc9c000, end 00000000adca0a42 ... OK
+Working FDT set to adc9c000
+
+Starting kernel ...
+
+Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+Linux version 6.18.63-t736-armbian (ubuntu@ubuntu2404) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #11 SMP Fri Nov 13 06:30:23 EST 2026
+Machine model: T736 custom board mainline bring-up
+earlycon: uart8250 at MMIO32 0x0000000002500000 (options '')
+printk: legacy bootconsole [uart8250] enabled
+OF: reserved mem: Reserved memory: No reserved-memory node in the DT
+Zone ranges:
+  DMA      [mem 0x0000000040000000-0x00000000ffffffff]
+  DMA32    empty
+  Normal   [mem 0x0000000100000000-0x000000023fffffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000040000000-0x000000023fffffff]
+Initmem setup node 0 [mem 0x0000000040000000-0x000000023fffffff]
+psci: probing for conduit method from DT.
+psci: PSCIv1.1 detected in firmware.
+psci: Using standard PSCI v0.2 function IDs
+psci: MIGRATE_INFO_TYPE not supported.
+psci: SMC Calling Convention v1.5
+percpu: Embedded 17 pages/cpu s32728 r8192 d28712 u69632
+Detected VIPT I-cache on CPU0
+CPU features: detected: GICv3 CPU interface
+CPU features: detected: Virtualization Host Extensions
+CPU features: kernel page table isolation disabled by kernel configuration
+alternatives: applying boot alternatives
+Kernel command line: earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused init=/bin/sh
+printk: log buffer data + meta data: 131072 + 458752 = 589824 bytes
+Dentry cache hash table entries: 1048576 (order: 11, 8388608 bytes, linear)
+Inode-cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+software IO TLB: area num 8.
+software IO TLB: mapped [mem 0x00000000f7800000-0x00000000fb800000] (64MB)
+Built 1 zonelists, mobility grouping on.  Total pages: 2097152
+mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+SLUB: HWalign=64, Order=0-1, MinObjects=0, CPUs=8, Nodes=1
+rcu: Hierarchical RCU implementation.
+	Tracing variant of Tasks RCU enabled.
+rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+RCU Tasks Trace: Setting shift to 3 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=8.
+NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+GICv3: GIC: Using split EOI/Deactivate mode
+GICv3: 256 SPIs implemented
+GICv3: 0 Extended SPIs implemented
+Root IRQ handler: gic_handle_irq
+GICv3: GICv3 features: 16 PPIs
+GICv3: GICD_CTLR.DS=0, SCR_EL3.FIQ=0
+GICv3: CPU0: found redistributor 0 region 0:0x0000000003460000
+ITS: No ITS available, not enabling LPIs
+rcu: srcu_init: Setting srcu_struct sizes based on contention.
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+arch_timer: cp15 timer running at 24.00MHz (phys).
+clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+Console: colour dummy device 80x25
+Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=96000)
+pid_max: default: 32768 minimum: 301
+LSM: initializing lsm=capability
+Mount-cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
+Mountpoint-cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
+rcu: Hierarchical SRCU implementation.
+rcu: 	Max phase no-delay instances is 1000.
+smp: Bringing up secondary CPUs ...
+Detected VIPT I-cache on CPU1
+GICv3: CPU1: found redistributor 100 region 0:0x0000000003480000
+CPU1: Booted secondary processor 0x0000000100 [0x412fd050]
+Detected VIPT I-cache on CPU2
+GICv3: CPU2: found redistributor 200 region 0:0x00000000034a0000
+CPU2: Booted secondary processor 0x0000000200 [0x412fd050]
+Detected VIPT I-cache on CPU3
+GICv3: CPU3: found redistributor 300 region 0:0x00000000034c0000
+CPU3: Booted secondary processor 0x0000000300 [0x412fd050]
+Detected VIPT I-cache on CPU4
+GICv3: CPU4: found redistributor 400 region 0:0x00000000034e0000
+CPU4: Booted secondary processor 0x0000000400 [0x412fd050]
+Detected VIPT I-cache on CPU5
+GICv3: CPU5: found redistributor 500 region 0:0x0000000003500000
+CPU5: Booted secondary processor 0x0000000500 [0x412fd050]
+CPU features: detected: Spectre-v4
+CPU features: detected: Spectre-BHB
+Detected PIPT I-cache on CPU6
+GICv3: CPU6: found redistributor 600 region 0:0x0000000003520000
+CPU6: Booted secondary processor 0x0000000600 [0x414fd0b1]
+Detected PIPT I-cache on CPU7
+GICv3: CPU7: found redistributor 700 region 0:0x0000000003540000
+CPU7: Booted secondary processor 0x0000000700 [0x414fd0b1]
+smp: Brought up 1 node, 8 CPUs
+SMP: Total of 8 processors activated.
+CPU: All CPU(s) started at EL2
+CPU features: detected: 32-bit EL0 Support
+CPU features: detected: Data cache clean to the PoU not required for I/D coherence
+CPU features: detected: CRC32 instructions
+CPU features: detected: RCpc load-acquire (LDAPR)
+CPU features: detected: Speculative Store Bypassing Safe (SSBS)
+alternatives: applying system-wide alternatives
+Memory: 7920748K/8388608K available (5760K kernel code, 1062K rwdata, 2060K rodata, 448K init, 275K bss, 464736K reserved, 0K cma-reserved)
+devtmpfs: initialized
+posixtimers hash table entries: 4096 (order: 4, 65536 bytes, linear)
+futex hash table entries: 2048 (131072 bytes on 1 NUMA nodes, total 128 KiB, linear).
+30320 pages in range for non-PLT usage
+521840 pages in range for PLT usage
+pinctrl core: initialized pinctrl subsystem
+NET: Registered PF_NETLINK/PF_ROUTE protocol family
+DMA: preallocated 1024 KiB GFP_KERNEL pool for atomic allocations
+DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+ASID allocator initialised with 65536 entries
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+clocksource: Switched to clocksource arch_sys_counter
+NET: Registered PF_INET protocol family
+IP idents hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+tcp_listen_portaddr_hash hash table entries: 4096 (order: 4, 65536 bytes, linear)
+Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+TCP established hash table entries: 65536 (order: 7, 524288 bytes, linear)
+TCP bind hash table entries: 65536 (order: 9, 2097152 bytes, linear)
+TCP: Hash tables configured (established 65536 bind 65536)
+UDP hash table entries: 4096 (order: 6, 262144 bytes, linear)
+UDP-Lite hash table entries: 4096 (order: 6, 262144 bytes, linear)
+NET: Registered PF_UNIX/PF_LOCAL protocol family
+Trying to unpack rootfs image as initramfs...
+workingset: timestamp_bits=46 max_order=21 bucket_order=0
+fuse: init (API version 7.45)
+NET: Registered PF_ALG protocol family
+Block layer SCSI generic (bsg) driver version 0.4 loaded (major 253)
+io scheduler mq-deadline registered
+io scheduler kyber registered
+io scheduler bfq registered
+gpio gpiochip0: Static allocation of GPIO base is deprecated, use dynamic allocation.
+t736-r-pinctrl 7025000.pinctrl: initialized sunXi PIO driver
+gpio gpiochip1: Static allocation of GPIO base is deprecated, use dynamic allocation.
+t736-pinctrl 2000000.pinctrl: initialized sunXi PIO driver
+Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+printk: legacy console [ttyS0] disabled
+2500000.serial: ttyS0 at MMIO 0x2500000 (irq = 409, base_baud = 1500000) is a 16550A
+printk: legacy console [ttyS0] enabled
+printk: legacy console [ttyS0] enabled
+printk: legacy bootconsole [uart8250] disabled
+printk: legacy bootconsole [uart8250] disabled
+brd: module loaded
+loop: module loaded
+t736-dwmac 4500000.ethernet: IRQ eth_wake_irq not found
+t736-dwmac 4500000.ethernet: IRQ sfty not found
+t736-dwmac 4500000.ethernet: PTP uses main clock
+t736-dwmac 4500000.ethernet: RGMII MAC delays TX=13 RX=10, PHY clock 25 MHz
+t736-dwmac 4500000.ethernet: User ID: 0x20, Synopsys ID: 0x53
+t736-dwmac 4500000.ethernet: 	DWMAC4/5
+t736-dwmac 4500000.ethernet: DMA HW capability register supported
+t736-dwmac 4500000.ethernet: RX Checksum Offload Engine supported
+t736-dwmac 4500000.ethernet: TX Checksum insertion supported
+t736-dwmac 4500000.ethernet: Wake-Up On Lan supported
+t736-dwmac 4500000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+t736-dwmac 4500000.ethernet: device MAC address 82:b4:15:38:b3:67
+t736-dwmac 4500000.ethernet: Enabled RFS Flow TC (entries=10)
+t736-dwmac 4500000.ethernet: Using 32/40 bits DMA host/device width
+Freeing initrd memory: 11204K
+t736-dwmac 4500000.ethernet: RGMII configuration retained after MAC reset: 0x11545
+usbcore: registered new interface driver usb-storage
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+NET: Registered PF_INET6 protocol family
+Segment Routing with IPv6
+In-situ OAM (IOAM) with IPv6
+sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+NET: Registered PF_PACKET protocol family
+t736-r-pinctrl 7025000.pinctrl: supply vcc-pl not found, using dummy regulator
+clk: Not disabling unused clocks
+ehci-platform 4200000.usb: EHCI Host Controller
+ohci-platform 4200400.usb: Generic Platform OHCI controller
+ehci-platform 4200000.usb: new USB bus registered, assigned bus number 1
+ehci-platform 4200000.usb: irq 413, io mem 0x04200000
+ohci-platform 4200400.usb: new USB bus registered, assigned bus number 2
+ohci-platform 4200400.usb: irq 414, io mem 0x04200400
+ehci-platform 4200000.usb: USB 2.0 started, EHCI 1.00
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 1 port detected
+hub 2-0:1.0: USB hub found
+hub 2-0:1.0: 1 port detected
+Freeing unused kernel memory: 448K
+Run /init as init process
+Loading, please wait...
+Starting systemd-udevd version 257.13-1~deb13u1
+
+usb 1-1: new high-speed USB device number 2 using ehci-platform
+mmc0: new MMC card at address 0001
+mmcblk0: mmc0:0001 A31Y5C 58.2 GiB
+GPT:Primary header thinks Alt. header is not at the end of the disk.
+GPT:16777215 != 122142719
+GPT:Alternate GPT header not at the end of the disk.
+GPT:16777215 != 122142719
+GPT: Use GNU Parted to correct GPT errors.
+ mmcblk0: p1 p2 p3 p4 p5 p6
+mmcblk0boot0: mmc0:0001 A31Y5C 4.00 MiB
+mmcblk0boot1: mmc0:0001 A31Y5C 4.00 MiB
+hub 1-1:1.0: USB hub found
+hub 1-1:1.0: 4 ports detected
+usb 1-1.3: new high-speed USB device number 3 using ehci-platform
+usb-storage 1-1.3:1.0: USB Mass Storage device detected
+scsi host0: usb-storage 1-1.3:1.0
+t736-dwmac 4500000.ethernet end0: renamed from eth0
+scsi 0:0:0:0: Direct-Access     Generic- SD/MMC           1.00 PQ: 0 ANSI: 4
+sd 0:0:0:0: [sda] Media removed, stopped polling
+sd 0:0:0:0: [sda] Attached SCSI removable disk
+Begin: Loading essential drivers ... done.
+Begin: Running /scripts/init-premount ... done.
+Begin: Mounting root file system ... Begin: Running /scripts/local-top ... done.
+Begin: Running /scripts/local-premount ... 
+# 

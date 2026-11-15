@@ -1,0 +1,64 @@
+diff --git a/plat/allwinner/common/include/platform_def.h b/plat/allwinner/common/include/platform_def.h
+--- a/plat/allwinner/common/include/platform_def.h
++++ b/plat/allwinner/common/include/platform_def.h
+@@ -15,8 +15,12 @@
+ 
+ #ifdef SUNXI_BL31_IN_DRAM
+ 
++#ifndef BL31_BASE
+ #define BL31_BASE			SUNXI_DRAM_BASE
++#endif
++#ifndef BL31_LIMIT
+ #define BL31_LIMIT			(SUNXI_DRAM_BASE + 0x40000)
++#endif
+ 
+ #define MAX_XLAT_TABLES			4
+ #define PLAT_VIRT_ADDR_SPACE_SIZE	(1ULL << 32)
+@@ -71,7 +75,9 @@
+ 
+ #define PLATFORM_CLUSTER_COUNT		U(1)
+ #define PLATFORM_CORE_COUNT		SUNXI_CPU_COUNT
++#ifndef PLATFORM_STACK_SIZE
+ #define PLATFORM_STACK_SIZE		0x400
++#endif
+ 
+ #ifndef SPD_none
+ #ifndef BL32_BASE
+diff --git a/plat/allwinner/sun60i_a733/include/sunxi_mmap.h b/plat/allwinner/sun60i_a733/include/sunxi_mmap.h
+--- a/plat/allwinner/sun60i_a733/include/sunxi_mmap.h
++++ b/plat/allwinner/sun60i_a733/include/sunxi_mmap.h
+@@ -6,6 +6,11 @@
+ 
+ #ifndef SUNXI_MMAP_H
+ #define SUNXI_MMAP_H
++
++/* Project T736 candidate: retained reservation, no vendor monitor ABI. */
++#define BL31_BASE			0x48000000
++#define BL31_LIMIT			0x48200000
++#define PLATFORM_STACK_SIZE		0x1000
+ 
+ /* Memory regions */
+ #define SUNXI_ROM_BASE			0x00000000
+diff --git a/plat/allwinner/common/sunxi_prepare_dtb.c b/plat/allwinner/common/sunxi_prepare_dtb.c
+--- a/plat/allwinner/common/sunxi_prepare_dtb.c
++++ b/plat/allwinner/common/sunxi_prepare_dtb.c
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <libfdt.h>
++#include <stdio.h>
+ 
+ #include <common/debug.h>
+ #include <common/fdt_fixup.h>
+@@ -28,7 +29,10 @@
+ 
+ #ifdef SUNXI_BL31_IN_DRAM
+ 	/* Reserve memory used by Trusted Firmware. */
+-	if (fdt_add_reserved_memory(fdt, "tf-a@40000000", BL31_BASE,
++	char name[32];
++
++	snprintf(name, sizeof(name), "tf-a@%lx", (unsigned long)BL31_BASE);
++	if (fdt_add_reserved_memory(fdt, name, BL31_BASE,
+ 				    BL31_LIMIT - BL31_BASE)) {
+ 		WARN("Failed to add reserved memory nodes to DT.\n");
+ 	}

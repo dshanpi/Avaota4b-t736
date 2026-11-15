@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-14",
+  "kind": "single existing DFI clock update after PHY configuration",
+  "basis": "evidence/t736-zcal-dfi-update-host-facts-20261114.log; spl/lpddr4/phy/host.c t736_phy_select_pstate0; clocks.c and provenance.json CCU bit27 contract",
+  "host_fact": "SDK E_setDfiClk updates both controllers DFIMISC PState field to0 and strobes02002c00 bit27,then waits1000us. SDK mctl_phy_init+766,+76e places this afterPhyConfigPsLoop. Current DFIMISC10014 already has PState0. Source/divider/gate already80000003.",
+  "experiment": "Guard same cold-held LP4 context,one32-bit write88000003,measured1000us wait,expect80000003.102events/1write. No source/divider changes,no PHY triggers or DRAM commands. Run existing codetrack afterward only if this contract passes.",
+  "limitations": "This tests whether post-configuration clock-update ordering affects feedback. Earlier CCU start also strobed update; no claim it was omitted entirely,or that an unchanged readback proves internal DFI frequency.",
+  "failure": "Stop on first anomaly;no retry or cleanup."
+}

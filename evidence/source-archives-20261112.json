@@ -1,0 +1,29 @@
+[
+  {
+    "name": "u-boot",
+    "commit": "5508406582f6f7120dce0c4b3059819a41788db2",
+    "url": "https://github.com/u-boot/u-boot.git",
+    "archive": "u-boot-upstream.tar.gz",
+    "sha256": "af3cca26c2ea2a352efc05980d991b7310959dc431c427ad3250e832a221abd8",
+    "bytes": 46657577,
+    "export": "git archive from locked commit, not Windows worktree"
+  },
+  {
+    "name": "linux",
+    "commit": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
+    "url": "https://github.com/gregkh/linux.git",
+    "archive": "linux-6.18.63-upstream.tar.gz",
+    "sha256": "c41bdd52b610c75613effe80c6abf236efce706b3304fe2f023bf912413f9f6e",
+    "bytes": 256497700,
+    "export": "git archive from locked commit, not Windows worktree"
+  },
+  {
+    "name": "armbian-build",
+    "commit": "2d3dd98fb4a86d4d884cec4fc2f5de28a37a8736",
+    "url": "https://github.com/armbian/build.git",
+    "archive": "armbian-build-upstream.tar.gz",
+    "sha256": "db1a60d81ef14119a6fe7cf7225b3d265291045f7ab0fd1f2845b280895e3523",
+    "bytes": 78747246,
+    "export": "git archive from locked commit, not Windows worktree"
+  }
+]

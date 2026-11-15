@@ -1,0 +1,14 @@
+{
+  "/boot/vmlinuz-6.18.63-t736-hdmi-v13": {
+    "bytes": 5026466,
+    "sha256": "35889f79f5f28447ac2a2f7bf885fa93a767ad7aecfa00f3c9c66a9cb912f03d"
+  },
+  "/boot/initrd.img-6.18.63-t736-hdmi-v13": {
+    "bytes": 11477466,
+    "sha256": "7bbcde44b6d07e35f9ff9549f215f34584784f089947c67cd8df352941d04662"
+  },
+  "/boot/dtb/allwinner/t736-mainline-bringup.dtb": {
+    "bytes": 10027,
+    "sha256": "d81986f7035f252583ae30f861dc3e55675d296547f12704ba81678fd7fe03ed"
+  }
+}

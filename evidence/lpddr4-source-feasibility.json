@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-13",
+  "repository": "InfernoEmbedded/u-boot",
+  "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+  "source_set": "sources/audit/a733-pmu-source-2f5e45fa",
+  "source_files_verified_by_git_blob_sha1": true,
+  "source_compiled": true,
+  "prebuilt_vendor_binary_input": false,
+  "hardware_tested": false,
+  "t736_lpddr4_implemented": false,
+  "deployable": false,
+  "findings": [
+    {
+      "path": "doc/board/allwinner/a733-pmu.rst",
+      "sha": "1509c2b9a265cfc02d12ff30e0817d76b75df17f",
+      "details": "Documents LPDDR5 ARC PMU firmware and source build. Source author's clean-room provenance claim is recorded but not independently certified."
+    },
+    {
+      "path": "arch/arm/mach-sunxi/Kconfig",
+      "sha": "df686d63186205489b7637bba7222842d8cad0aa",
+      "details": "DRAM_SUN60I_A733 is explicitly described as LPDDR5; A733 has no selectable LPDDR4 configuration."
+    },
+    {
+      "path": "arch/arm/mach-sunxi/dram_sun60i_a733.c",
+      "sha": "e228c7fe1d8d8a1da4635d1c8525da6c8cef4cce",
+      "details": "sun60i_a733_dmc_clock_setup fixes the DMC mode to LPDDR5. MR8 size decoding and data-rate reporting use LPDDR5 semantics. Not a DRAM-type-neutral initializer."
+    },
+    {
+      "path": "arch/arm/mach-sunxi/dram_sun60i_a733_tables.h",
+      "sha": "8dfb33f63f3e3dde8b8db3347ae780d72fe89a73",
+      "details": "Controller/PHY/PIE tables are explicitly LPDDR5. Reviewed online; not installed as this board's initialization table."
+    },
+    {
+      "path": "arch/arm/mach-sunxi/pmu/pmu_telemetry.c",
+      "sha": "ea47e991fcf1af67a68c5c88634bc7d3a9b755fa",
+      "details": "Functions named pmu_is_lpddr4/pmu_is_lpddr5 inspect different MR19/MR20 fields rather than a mutually exclusive memory-type selector. Their names do not establish a working LPDDR4 training path."
+    },
+    {
+      "path": "evidence/vendor-reference/reference-1.txt",
+      "section": "T736 User Manual rev 0.90, 11.1, printed page 409",
+      "details": "DRAMC section lists features only, then proceeds to UFS. It does not provide LPDDR4 training or detailed private DDR PHY register programming documentation."
+    }
+  ],
+  "remaining": [
+    "Board-specific LPDDR4 controller timings, MR programming, address map, CA/DQ wiring and voltage configuration",
+    "Source-built LPDDR4 ARC PMU training with tested cold-start behavior",
+    "SPL early storage and handoff integration plus independent hardware validation"
+  ],
+  "compile_evidence": "evidence/open-pmu-compile-probe.json",
+  "constraint": "Vendor DDR library and PMU binary were explicitly rejected by user; this is an implementation gap, not a pending approval.",
+  "subsequent_partial_implementation": "spl/lpddr4/implementation.json",
+  "subsequent_hardware_correction": "On this actual LPDDR4 board MSTR=0x03081002, so the inspected A733 source bit19 LPDDR5 test is not type-discriminating. Full training remains missing."
+}

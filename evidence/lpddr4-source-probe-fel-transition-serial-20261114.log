@@ -1,0 +1,17 @@
+efex
+## jump to efex ...
+[04.836][mmc]: mmc exit start
+[04.855][mmc]: mmc 2 exit ok
+......
+
+[180]HELLO! BOOT0 is starting!
+[183]BOOT0 commit : {e02b3132}
+[189]pmu_chip_id = 14
+[192]EMMC 0x2
+[197]pmu_chip_id = 14
+[203]dram_para_total:0xf
+[206]dram para8 invalid use default para
+[210]vaild para:1  select dram para0
+[213]rtc[2] value = 0x5aa5a55a
+[216]eraly jump fel
+[218]Failed preparing the second boot

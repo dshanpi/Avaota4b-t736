@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-13",
+  "task_complete": false,
+  "requested_boundary": "No Tina vendor binary may participate in normal boot, including DDR init library, DDR PMU, Boot0, BL31, OP-TEE, SCP and U-Boot. Tina RAM FES programming loader only.",
+  "board": {
+    "soc": "T736/sun60iw2",
+    "dram": "8 GiB LPDDR4",
+    "pmic": "AXP8191",
+    "evidence": [
+      "docs/HARDWARE_MAP.md",
+      "evidence/raw-v11-coldboot.log"
+    ]
+  },
+  "source_findings": [
+    {
+      "repository": "u-boot/u-boot",
+      "commit": "5508406582f6f7120dce0c4b3059819a41788db2",
+      "finding": "Pinned official source does not provide a complete T736 SPL/DDR implementation. Project t736_bringup is a DRAM-initialized payload."
+    },
+    {
+      "repository": "InfernoEmbedded/u-boot",
+      "ref": "feature/sunxi-a733-orangepi4pro",
+      "file": "arch/arm/mach-sunxi/dram_sun60i_a733.c",
+      "blob": "3a7b28f570f089cc2c70254bccf99f737c577c2c",
+      "finding": "Audited online, not imported into project. DRAM path forces LPDDR5; PMIC voltage presets and training data are unsuitable for this LPDDR4 board. Author confirms LPDDR4 absent on 2026-11-11.",
+      "source": "https://lore-kernel.gnuweeb.org/linux-sunxi/3a4378bfcbc13ff0d5959117f23b4dc6f45258c7.camel@d-silva.org/"
+    },
+    {
+      "repository": "YuzukiHD/SyterKit",
+      "finding": "Earlier audit found sun60iw2 wrapper calling external init_DRAM; not an independent open LPDDR4 training implementation. No source imported."
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "finding": "Allwinner ELF32 DDR library exists in read-only SDK; explicitly rejected by user for normal boot. Not linked or flashed."
+    },
+    {
+      "repository": "InfernoEmbedded/u-boot",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+      "finding": "13 pinned PMU source/documentation files verified; ARC source compilation passes without vendor blob input. A733 host/controller/PMU path still targets LPDDR5, not this board LPDDR4.",
+      "evidence": "evidence/lpddr4-source-feasibility.json"
+    }
+  ],
+  "tfa_candidate": {
+    "repository": "InfernoEmbedded/arm-trusted-firmware",
+    "commit": "7d322909068fc4bb4ee35e9e43c78ed68d98619b",
+    "classification": "community development branch; not official upstream A733 support",
+    "archive_sha256": "fd1e430b4e6998a802577bf7d58f4b5721cb97ed03b408901767c244474c884a",
+    "a733_base_commit": "5bc9605cbfc175276920c3204658c025da3ae279",
+    "a733_base_author": "Jernej Skrabec",
+    "compiler": "aarch64-linux-gnu-gcc 13.3.0",
+    "patch": "patches/tf-a/0001-t736-bl31-dram-layout.patch",
+    "build_script": "tools/build_tfa_independent_candidate.sh",
+    "binary": "output/independent-candidates/t736-bl31.bin",
+    "sha256": "81f53c1d1f571c74bd907317d813a5ed56c64382479caa75edd3cec43ada6dc6",
+    "bytes": 53924,
+    "entry": "0x48000000",
+    "loaded_memory_end": "0x4801c000",
+    "reservation_end": "0x48200000",
+    "bl33": "0x52000000",
+    "native_psci": true,
+    "linked_vendor_optee_scp": false,
+    "ddr_initialization": false,
+    "pmic_implementation": false,
+    "compile_pass": true,
+    "patch_fuzz_zero_pass": true,
+    "hardware_tested": false,
+    "release_eligible": false,
+    "notes": [
+      "Does not contain vendor monitor header or Allwinner MMIO SMC compatibility handlers.",
+      "No whole-tree clean-room claim; relevant platform code and base commit attribution reviewed."
+    ]
+  },
+  "media": {
+    "partition_config": "0x00",
+    "hardware_boot_enabled": false,
+    "boot_partition_bytes": 4194304,
+    "boot0_sha256": "bb9f8df61474d25e71fa00722318cd387396ca1736605e1248821cc0de3d3af8",
+    "boot1_sha256": "bb9f8df61474d25e71fa00722318cd387396ca1736605e1248821cc0de3d3af8",
+    "both_match_zero_file": true,
+    "evidence": "evidence/independent-boot-selection.log"
+  },
+  "tool_boundary": {
+    "fes_raw_available": true,
+    "ram_boot_tool_spl_restriction": "R528/T113-S3 only per current lynx_allwinner_boot_mainline schema",
+    "t736_ram_boot_not_claimed": true,
+    "bypassed": false
+  },
+  "legacy_packer": {
+    "path": "tools/pack_armbian_raw_v6.py",
+    "default_refused": true,
+    "debug_override": "--legacy-debug-image",
+    "release_eligible": false
+  },
+  "unresolved": [
+    "No source-built LPDDR4 initialization and ARC PMU training has been implemented for this board; vendor library alternative is explicitly prohibited.",
+    "Implement and validate board-specific SPL, power/clock initialization, early eMMC reads and ARM32-to-ARM64 transition.",
+    "Validate independent TF-A and U-Boot on hardware before final raw/FES deployment.",
+    "Cold-start reset in v11 remains unexplained; v11 GPT relocation remains pending."
+  ],
+  "user_scope_confirmation": {
+    "date": "2026-11-13",
+    "answer": "连 DDR 库也禁止，正常启动不能使用任何 Tina 厂家二进制",
+    "resolved": true
+  },
+  "pmu_source_probe": {
+    "source": "https://github.com/InfernoEmbedded/u-boot",
+    "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+    "compiler": "arc-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "bytes": 53232,
+    "sha256": "a6d1e27718b28e9c26591cb1adb2c3c841c9bde8941468cebde6a3fbe4825df9",
+    "compile_pass": true,
+    "prebuilt_vendor_binary_input": false,
+    "missing_stub_used": false,
+    "t736_lpddr4_implemented": false,
+    "hardware_tested": false,
+    "deployable": false,
+    "evidence": "evidence/open-pmu-compile-probe.json",
+    "source_manifest": "sources/audit/a733-pmu-source-2f5e45fa/source-manifest.json"
+  },
+  "lpddr4_source_feasibility": "evidence/lpddr4-source-feasibility.json",
+  "lpddr4_source_followup": "evidence/lpddr4-source-followup.json",
+  "pending_user_input": false,
+  "normal_boot_release_eligible": false,
+  "lpddr4_source_components": {
+    "path": "spl/lpddr4",
+    "status": "partial_controller_and_pmic_source_components",
+    "validation": "evidence/lpddr4-components-check.json",
+    "provenance": "spl/lpddr4/implementation.json",
+    "arm32_compiled": true,
+    "native_sanitized_tests_pass": true,
+    "layout_matches_readonly_board_words": 22,
+    "full_lpddr4_initialization": false,
+    "independent_spl": false,
+    "flashed": false,
+    "coldboot_tested": false,
+    "deployable": false
+  }
+}

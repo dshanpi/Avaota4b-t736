@@ -1,0 +1,168 @@
+{
+  "passed": true,
+  "read_events": 120,
+  "registers": [
+    {
+      "address": "0xa110ca4",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa110d00",
+      "value": "0x2004e"
+    },
+    {
+      "address": "0xa110d04",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa110080",
+      "value": "0x30"
+    },
+    {
+      "address": "0xa110084",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa110090",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa110094",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa110098",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa100500",
+      "value": "0x510"
+    },
+    {
+      "address": "0xa100504",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa100508",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa10050c",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa100078",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa100080",
+      "value": "0x30408"
+    },
+    {
+      "address": "0xa100d00",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa100d04",
+      "value": "0x606"
+    },
+    {
+      "address": "0xa100d08",
+      "value": "0xf0f"
+    },
+    {
+      "address": "0xa100d0c",
+      "value": "0x400010"
+    },
+    {
+      "address": "0xa100800",
+      "value": "0x400200"
+    },
+    {
+      "address": "0xa100804",
+      "value": "0x2000100"
+    },
+    {
+      "address": "0xa510ca4",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa510d00",
+      "value": "0x2004e"
+    },
+    {
+      "address": "0xa510d04",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa510080",
+      "value": "0x30"
+    },
+    {
+      "address": "0xa510084",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa510090",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa510094",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa510098",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa500500",
+      "value": "0x510"
+    },
+    {
+      "address": "0xa500504",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa500508",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa50050c",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa500078",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa500080",
+      "value": "0x30408"
+    },
+    {
+      "address": "0xa500d00",
+      "value": "0x0"
+    },
+    {
+      "address": "0xa500d04",
+      "value": "0x606"
+    },
+    {
+      "address": "0xa500d08",
+      "value": "0xf0f"
+    },
+    {
+      "address": "0xa500d0c",
+      "value": "0x400010"
+    },
+    {
+      "address": "0xa500800",
+      "value": "0x400200"
+    },
+    {
+      "address": "0xa500804",
+      "value": "0x2000100"
+    }
+  ],
+  "writes": 0,
+  "meaning": "Both controller SWCTLSTATIC, initialization timing and MR apertures observed; values are reset/default plus previously configured subset, not initialization complete"
+}

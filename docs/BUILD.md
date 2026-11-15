@@ -4,6 +4,28 @@
 完整 FES 镜像仍依赖本板厂家固件、SDK 打包工具及官方 Armbian rootfs 输入。
 不能仅从本仓库生成无厂家依赖的完整固件。
 
+## 2026-11-14 固定 LPDDR4x 与已验证 HDMI 控制台
+
+当前正常启动链只保留用户授权的固定 DDR 库及内嵌训练程序；SPL、交接、TF-A、U-Boot 均为源码构建。厂家 FES loader 仅用于 RAM 烧录。`source-v6` 已通过三次无人干预 eMMC 启动、HDMI tty1 帧缓冲、内存及文件系统校验，沿用 v4 的独立外围供电；RTL8211F DHCP/100 Mbps 链路和 USB 枚举可用，千兆尚未通过。最终验收见 `evidence/source-v6-emmc-acceptance-20261114.json`。
+
+在已有本板 Linux 基础工作树上，仅首次导入 GPL 显示源码时运行 `python3 tools/prepare_t736_display_port.py`。该工具不会覆盖已有显示工作树，导入清单记录每个原始文件的 SHA256。创建 `build/linux-hdmi-v13`，复制 `userpatches/linux-t736-hdmi-v13.config` 为其 `.config` 后，执行：
+
+```sh
+sh tools/build_display_kernel.sh 13
+sudo -n unshare --mount sh tools/build_source_rootfs_v6.sh
+python3 tools/pack_t736_source_boot.py --variant v6
+```
+
+rootfs 脚本以 `output/rootfs-armbian-source-v1.ext4` 为只读输入，创建独立 v6 文件；保留凭据和 `/boot/t736-source-v4-recovery` 内核恢复副本。包版本为 `6.18.63-13`，release 为 `6.18.63-t736-hdmi-v13`；源码 U-Boot 的固定加载路径通过符号链接指向新内核/initrd。打包器继续使用已实板核对的 v4 SPL 和相同源码交接、TF-A、U-Boot，并拒绝覆盖已有 raw。当前 raw SHA256 为 `5e36cd917e6c49c51e5946faecd838394dce0161dd0926c095b848236729d377`。每次整盘写入后须重新迁移 GPT 备份到物理介质尾部，并验证分区及 PARTUUID 不变。
+
+兼容补丁可用 `python3 tools/export_display_compat.py` 从当前显示工作树重新导出，并在临时目录重放检查，当前 264 个源码/头文件完全一致。补丁包含 framebuffer DMA 绘图和读写回调，以及首次 modeset 完成后延后注册 framebuffer 的修复。最终构建日志为 `evidence/display-kernel-v13-fbops-build-20261114.log`；无 `fbops` 的 v13 日志是尚未补齐绘图回调的中间版本。显示支持只导入 GPL 源文件，不含 HDCP 可执行固件；HDCP 和 CEC 在板级设备树中关闭。新增时钟驱动只配置独立 DE PLL，不修改共享 DDR、PERI 或参考 PLL。
+
+## 当前源码 U-Boot 的归档与重建入口
+
+`patches/u-boot/t736-source-boot.patch` 是相对锁定官方提交的完整板级差异，包含当前源码启动路线的修改；不要与历史 `userpatches/u-boot/` 补丁叠加。`config/u-boot-source-v6.config` 是实际部署配置，`CONFIG_BOOTDELAY=3`。补丁已在官方归档上重放并与构建工作树逐字节核对，现有 `u-boot.bin` 与已部署载荷 SHA256 均为 `c9b05a7d207781a730c5e12aaae2bdfaf113194f8a3ea4b1e625d330e3f4018b`。
+
+准备审计记录所指的 `sources/archives/u-boot-upstream.tar.gz` 后，执行 `sh tools/build_source_uboot.sh`。脚本验证归档、补丁和配置哈希，输出到新建的 `build/source-uboot-v6-rebuild`，不会覆盖打包器锁定的原产物。本次仅核对源和已有产物、检查脚本语法，没有重新编译；时间戳与工具链可能改变候选哈希。记录见 `evidence/source-uboot-backup-audit-20261115.json`。
+
 ## Linux 构建机
 
 实测环境为 Ubuntu 24.04、GCC 13.3 ARM64 交叉工具链、GNU binutils 2.42。

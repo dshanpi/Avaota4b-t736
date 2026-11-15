@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "scope": "Source-only ARM SRAM host-driven LPDDR4 initialization/training on T736, with no opaque PMU or PIE executable payload",
+  "conclusion": "Training search algorithms can run on the ARM CPU from SRAM. ARC execution is not an architectural prerequisite established by current evidence. The remaining prerequisite is an understood hardware route for each stimulus, feedback measurement and delay/Vref update. Controller MR commands alone do not provide every required PHY training primitive.",
+  "status": "Architecture and register-evidence audit; not executable cold initialization or a successful training result",
+  "vendor_payloads_imported_or_decoded": false,
+  "board_actions_by_this_agent": false,
+  "current_hardware_evidence": {
+    "owner": "Root",
+    "cold_source_ccu": "evidence/t736-ccu-cold-sram-hardware-20261114.json",
+    "cold_source_domain": "evidence/t736-domain-setup-sram-hardware-20261114.json",
+    "port_reads": "evidence/t736-common-ports-sram-hardware-20261114.json",
+    "ch0_reads": "evidence/t736-ch0-readonly-sram-hardware-20261114.json",
+    "ch1_reads": "evidence/t736-ch1-readonly-sram-hardware-20261114.json",
+    "observed_state": {
+      "pll_ddr": "0xf9004a00",
+      "dram_clk": "0x80000003",
+      "dram_bgr": "0x00010001",
+      "sys_cfg": "0x2728",
+      "channel_type": "0x2",
+      "prcm_07010250": "0x1",
+      "four_common_ports": [0, 0, 0, 0],
+      "ch0_mstr_stat_mrstat": ["0x03040000", "0x0", "0x0"],
+      "ch1_mstr_stat_mrstat": ["0x03040000", "0x0", "0x0"]
+    },
+    "meaning": "Both controller CSR apertures respond in this source-prepared state even with the four common port values zero. This does not establish a working DFI, PHY, DRAM command path or memory contents."
+  },
+  "execution_architecture": {
+    "arm_sram": [
+      "Run sequence control, bounded polls, rank/channel/lane loops, eye-window search and scoring in SRAM.",
+      "Keep stack, executable code, reports and comparison buffers in SRAM until memory is independently validated.",
+      "Use reviewed host MMIO accessors to program PHY delay/Vref and hardware traffic generators when their target semantics are established.",
+      "Keep PMU reset/stall asserted if its access path permits host execution; a host-controlled ACSM or PHY hardware sequencer need not imply running an ARC program."
+    ],
+    "possible_stimulus_backends": [
+      "Controller MRW/MRR and supported MPC commands after the DFI command path is established.",
+      "PHY host hardware-training/ACSM controls for clock-accurate CA/DQS patterns and capture, if exact target semantics are established.",
+      "Controller memory traffic or documented BIST for read/write eye measurements after a minimally working command/data path exists."
+    ],
+    "not_equivalent": [
+      "A software window-selection algorithm does not measure the PHY eye.",
+      "A generic JEDEC CA waveform encoder does not establish the T736 hardware slot encoding, edge timing or feedback capture.",
+      "A timed analog trigger does not prove calibration done/error status.",
+      "Skip-training or a low operating rate does not establish stable usable DRAM.",
+      "A warm MRR success does not prove cold initialization or independent physical rank routing."
+    ]
+  },
+  "controller_interfaces": {
+    "target_mr": {
+      "base": "0x0a110000",
+      "channel_stride": "0x00400000",
+      "mrctrl0": "base+0x80",
+      "mrctrl1": "base+0x84",
+      "mrstat": "base+0x90",
+      "source": "pmu/mode-register-audit.json and read-only SDK lp5_sw_mr_wr/lp5_sw_mr_rd host functions",
+      "corroborated_fields": "MRCTRL0 rank-select bits5:4, read bit0, trigger bit31; MRCTRL1 MA bits15:8 and write data bits7:0; MRSTAT busy bit0.",
+      "runtime_validation": "24 unique MR5/MR6/MR8 transactions under the previous already initialized legacy boot chain; no cold command test yet.",
+      "cold_unknown": "Controller mode/DFI/PHY requirements before software MR issue and receive-valid/error semantics remain to be established."
+    },
+    "sw_init_int_candidate": {
+      "public_reference": {
+        "repository": "zephyrproject-rtos/hal_nxp",
+        "commit": "e07b15c3eceae2f853db5c1308c23db6b30c6f20",
+        "path": "mcux/mcux-sdk-ng/devices/i.MX/i.MX8M/periph/PERI_DDRC.h",
+        "blob": "54aacfc8bd82d89e6beca748278c7fd90edbc41d",
+        "lines": [495, 507],
+        "license": "BSD-3-Clause",
+        "fact": "MRCTRL0 bit3 permits software MRCTRL0/1 intervention before automatic SDRAM initialization. The LP4 independent-channel case requires setting both channels beforehand. Software must clear it afterward for automatic init to restart."
+      },
+      "target_corroboration": "Not established. T736 MRCTRL0 is at0x80, unlike NXP0x10, and MSTR encodings differ. Shared MR rank/read/trigger bits do not establish every field.",
+      "sdk_inspection": {
+        "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+        "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+        "mctl_com_init": "Host function contains no MRCTRL0 access and therefore no corroboration of bit3.",
+        "lp5_sw_mr_wr": "Writes0x10/0x20 and trigger0x80000010/0x80000020, with no bit3; supports only the independently observed MR interface fields.",
+        "negative_evidence_limit": "Absence in these inspected host functions does not prove the feature is absent from hardware."
+      },
+      "next_evidence": "Locate a T736/new-controller register definition or a target host use. A future deliberately gated experiment must state that bit3 semantics are a hypothesis, observe the initial state and keep all unrelated fields unchanged; a readable/writable bit alone would still not prove its semantics. No such write is included here."
+    },
+    "mpc": {
+      "nxp_fact": "DBGCMD.zq_calib_short issues device ZQ calibration MPC for LP4 when automatic ZQ is disabled; documentation recommends avoiding Init mode.",
+      "distinction": "Device ZQ calibration is separate from PHY pad impedance calibration and its SoC SZQ resistor.",
+      "not_found": "No arbitrary LP4 MPC operand issue interface was located in the inspected public controller headers or T736 host symbols. READ DQ CAL, WRITE FIFO and READ FIFO cannot yet be assumed available via MRCTRL0.",
+      "ddr4_only_trap": "NXP MRCTRL0.MPR_EN bit1 is documented for DDR4 MPR operations, not LP4 arbitrary training MPC."
+    },
+    "initialization": {
+      "public_candidate": "NXP INIT0.skip_dram_init and DFIMISC.dfi_init_start/dfi_init_complete_en provide controller initialization gating; target layout/semantics require separate corroboration.",
+      "limit": "Skipping SDRAM init only changes controller sequencing. It neither initializes the PHY/DRAM nor creates a DFI init-complete response. Current source timing handoff assumes completed training and cannot establish a cold training-free path."
+    }
+  },
+  "stage_requirements": [
+    {
+      "stage": "Controller geometry and timing",
+      "host_route": "Existing source calculations and checked fixed-register writes while both controllers are in Init.",
+      "next_proof": "Read back every programmed register and retain partial-progress/error evidence; this is configuration evidence only."
+    },
+    {
+      "stage": "PHY accessibility and analog baseline",
+      "host_route": "Controlled common-domain phase changes, then fixed read-only PHY ownership/clock/identity observations before any analog writes.",
+      "next_proof": "Establish host aperture/internal-clock access and intended mux/reset state. Three common writes and controller CSR access alone do not establish PHY readiness."
+    },
+    {
+      "stage": "PHY pad Zcal",
+      "host_route": "phy_calibration_diag.c provides a strictly bounded candidate reset/run experiment once its explicit PHY prerequisites are observed.",
+      "next_proof": "Read PU/PD codes and investigate documented done/error/range semantics. TIMED_ONLY remains the result until an independent calibration criterion exists."
+    },
+    {
+      "stage": "DRAM reset, CK/CKE, MR and device ZQ",
+      "host_route": "Controller initialization plus MR intervention, or understood host PHY command controls.",
+      "next_proof": "Exact T736 reset/CKE/DFI sequencing and command delivery must be established. SW_INIT_INT is promising but unconfirmed; an idle command trigger does not prove DRAM accepted it."
+    },
+    {
+      "stage": "Command bus training",
+      "host_route": "ARM performs sweep/window selection; hardware must generate the defined CA patterns, coordinate rank/CKE/MR CBT mode, capture DQ feedback and apply CA delay/Vref changes.",
+      "next_proof": "Target CA pattern, capture and delay-update CSR semantics. MRW alone is insufficient."
+    },
+    {
+      "stage": "Write leveling",
+      "host_route": "ARM sweeps per-byte write delay and scores feedback while hardware supplies defined DQS pulses and capture in the DRAM leveling mode.",
+      "next_proof": "Target DQS stimulus, feedback latch, lane/rank selection and delay-commit semantics."
+    },
+    {
+      "stage": "Read gate, read eye, deskew and write eye/Vref",
+      "host_route": "ARM may use supported training MPC or normal controller memory traffic and SRAM comparisons after a minimally functional data path exists.",
+      "next_proof": "Per-lane gate/delay/Vref CSR fields, commit/capture behavior, cache-independent traffic and sufficient distinct patterns/rank/channel coverage. Avoid circularly treating failed traffic as a useful eye measurement before command delivery exists."
+    },
+    {
+      "stage": "DFI handoff and source-only cold boot",
+      "host_route": "Complete understood initial DFI/PHY state, then enable normal traffic and run alias, address-line, walking-bit and sustained mixed-pattern memory tests.",
+      "next_proof": "Remove every hidden initial dependence on opaque PIE/PMU state. Keeping later DFS and low-power features disabled can reduce required behavior but does not prove initial PIE/DFI operations unnecessary."
+    }
+  ],
+  "related_phy_host_leads": {
+    "sima_type9": "evidence/sima-type9-host-csr-names-20261114.json contains names/addresses only. LP5Mode atlogical200a5 reinforces that SDK dram_type9 is LP5, not a universal Type9 PHY identifier. Names are insufficient to infer masks or LP4 electrical values.",
+    "renesas": {
+      "repository": "u-boot/u-boot",
+      "commit": "6487c50b8a40f2668ab98a892b9300ad5c181f38",
+      "path": "drivers/ram/renesas/dbsc5/r8a78000-dram.c",
+      "blob": "f1c12901d52d8bfbe822ae8dd681424c7a11ba9a",
+      "finding": "Uses single-name HWTCONTROLVAL and related ACSM/PPGC names, but locates these inlogical0x70000 instead of the target candidate0x20000. dbsc5_phy_training itself starts a PMU and waits for mailbox7/ff, so it is not an ARM-only training algorithm.",
+      "limit": "No firmware/ACSM/PIE arrays imported or interpreted. This source is only a potential host-register semantic lead, not a compatible target backend."
+    }
+  }
+}

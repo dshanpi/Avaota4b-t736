@@ -1,0 +1,52 @@
+sh /tmp/t736-transfer/source_v6_reboot_check.sh; printf "REBOOT_CHECK_RC=%s\n" "$?"
+
+active
+/root/t736-source-v6-io-check.bin: OK
+/dev/mmcblk0:
+No errors detected.
+Header version: 1.0
+Using 6 out of 6 partitions.
+A total of 105365535 free sectors is available in 1 segment.
+V6_REBOOT_STATE
+6.18.63-t736-hdmi-v13
+earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused
+403577e6-4b20-443e-82f8-20a31a16137b
+94.31 606.29
+0
+0-7
+               total        used        free      shared  buff/cache   available
+Mem:            7747         181        7496           9         143        7566
+Swap:              0           0           0
+TARGET SOURCE         FSTYPE OPTIONS
+/      /dev/mmcblk0p4 ext4   rw,noatime
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+end0             UP             10.0.0.249/24 metric 1024 fd67:b33e:a9c2:0:c884:85ff:fe01:e58e/64 fe80::c884:85ff:fe01:e58e/64 
+sit0@NONE        DOWN           
+100
+full
+2: end0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether ca:84:85:01:e5:8e brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+          1909      16      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+          4352      44      0       0       0       0 
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.477 ms
+64 bytes from 10.0.0.1: icmp_seq=2 ttl=64 time=0.479 ms
+64 bytes from 10.0.0.1: icmp_seq=3 ttl=64 time=0.438 ms
+
+--- 10.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2038ms
+rtt min/avg/max/mdev = 0.438/0.464/0.479/0.018 ms
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+411:          0          0          0          0          0          0          0          0    GICv3  66 Level     5000000.display-engine
+412:       5710          0          0          0          0          0          0          0    GICv3  89 Level     5730000.tcon
+	active=1
+	self_refresh_active=0
+	on: 2560x1440@60&600Mhz->tcon4	irqcnt:5717	err:0	fps:59.934
+	    vsync: 5717 last rcq at vsync: 1333 offline: disable
+SOURCE_V6_REBOOT_ACCEPTANCE_OK
+REBOOT_CHECK_RC=0
+root@t736:~# 

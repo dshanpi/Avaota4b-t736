@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-14",
+  "scope": "Candidate follow-up experiments after timed-only ZCal pulse; no hardware operated by this reviewer",
+  "baseline": "Root reports source v2 pulse completed111operations4writes, reset42ticks/run2419ticks, PU/PD unchanged zero; no calibration-success or failure inference",
+  "readable_companions": {
+    "logical": ["0x2030d", "0x20320"],
+    "host_candidate_halfwords": ["0x0a94061a", "0x0a940640"],
+    "arc_halfwords": ["0x9004061a", "0x90040640"],
+    "evidence": "Both addresses are publicly listed for ordinary post-training CSR SAVE reads by two independent host implementations; neither is executable program memory.",
+    "sima": {
+      "repository": "SiMa-ai/sima-ai-uboot",
+      "commit": "5a026adbe2a54aeaae5dc50e1852d4b5c1884640",
+      "list_path": "arch/arm/mach-sima/qb_reg_list.c",
+      "list_blob": "1a4a3c957de1ea19f790337dc60fc2bb62483b5e",
+      "list_lines": [38, 40],
+      "list_provenance": "GPL-2.0+ OR MIT host CSR address identities, documented PUB220 4-DBYTE LPDDR5/4; no firmware arrays imported",
+      "reader_path": "arch/arm/mach-sima/ddr_tuning.c",
+      "reader_blob": "b9ef1505fa56a9dabbb6e540f237e00e85f5cd57",
+      "reader_lines": [78, 90, 91, 92, 135, 136, 137],
+      "reader_context": "Writes MicroReset1, MuxSel0 and UcclkHclkEnables3, then do_phy_read for each address. Public host API evidence only; QB firmware is not used."
+    },
+    "nxp": {
+      "repository": "nxp-imx/imx-oei",
+      "commit": "9aea3350e643da86081c9dfaf3a6e1a84a583bfd",
+      "list_path": "oei/ddr/qb_p230_rldb4.h",
+      "list_blob": "e88a916e6cc0aa96910db6e562842e2eaf2793e5",
+      "list_lines": [128, 139],
+      "list_provenance": "BSD-3-Clause host CSR address identities, documented PUB230_REG_LIST_DBYTE4; no executable content inspected or imported",
+      "reader_path": "oei/ddr/ddrphy_qb_gen.c",
+      "reader_blob": "f80c4706da1a44062ba456016ef4b712f480b814",
+      "reader_lines": [93, 94, 95, 96],
+      "reader_context": "Dwc_Ddrphy_Apb_Rd(ddrphy_csr_cfg[i]) saves each listed CSR."
+    },
+    "local_arc_corroboration": "Public InfernoEmbedded u-boot2f5e45fa pmu_clock.c371..390 uses PHY_REG_CLK_PHASE_BASE90040600, pulses p[13]1->0 and p[32]0->1->0. Comments call it clock phase, but surrounding20310/311 are independently named ZCal reset/run; exact companion names remain unknown.",
+    "assessment": "Supports controlled raw halfword read observations with current access guards. No explicit read-clear exclusion or status-bit definition found; do not label returned values completion/error. No companion write recommended from mere readback."
+  },
+  "microreset_hypothesis": {
+    "operation": "Maintain MuxSel0, change MicroReset9->1 with readback, preserve stall bit0 throughout; never write0",
+    "public_bit_definitions": "ST trusted-firmware csr header: CSR_STALLTOMICRO bit0, CSR_RESETTOMICRO bit3; same d0099 identity independently used by SiMa",
+    "upstream_host_reference": "u-boot/u-boot5508406582f6f7120dce0c4b3059819a41788db2 drivers/ram/aspeed/dwc_ddrphy_phyinit_ddr5-3200-nodimm-train2D.c5173..5182 explicitly distinguishes9->1 reset pulse from0 begin firmware execution",
+    "same_generation_context": "SiMa post-training host reader uses Micro1, Mux0, clocks3. SiMa cold host stream leaves Micro1 after training before later ZCalReset/Run writes. Neither proves T736 cold ZCal's reset-domain dependencies.",
+    "nxp_retention_limit": "imx-sm eec232878ab7dd460f5a8f3767d39dc7e9412efa fsl_ddr.c414..497 does not touch MicroReset; prior reset state cannot be inferred from helper alone",
+    "assessment": "Reasonable single-variable reset-dependence experiment with source callbacks and SRAM guards, stronger interface semantics than unnamed companion writes. No evidence yet establishes that micro reset gates ZCal FSM or result latch."
+  },
+  "zero_codes": {
+    "rate": "Observed20303=9 matches SiMa same-generation static configuration; public ARC helper sets bit4 for its pulse then restores original. Bit4 Type9 name unconfirmed; older CalRate CalRun names are not transplanted.",
+    "compctrl": "Observed2030b=0 matches SiMa static configuration; zero alone is not identified as a disabled calibrator.",
+    "clock": "clken3, tickcount450 and PLL programming readback do not measure internal calibration clock or prove PLL lock.",
+    "result_latch": "NXP helper.c338..339 reads20326/327 as saved ZQ codes, but target freshness/validity and companion output-latch strobes remain unproved. Unchanged zeros are ambiguous."
+  },
+  "rate_bit4_experiment_review": {
+    "condition": "Root plans only after rawPclkDivRatio observation; currentZCalRate9 and stalledPMU are explicitly frozen preconditions",
+    "interface_basis": "SiMa names20303 ZCalRate; publicA733 pmu_clock.c371..390 reads originalp[3], assertsZCalReset1, writes(original&ef)|10, then deassertsreset and pulsesrun. This is a non-program CSR interface fact, not permission to import firmware logic or tables.",
+    "proposed_single_variable_sequence": "reset1, rate19, reset0, run1, measured100us, run0, rate9; originalrate9 restored only after every priorstep succeeds. No cleanup writes after error.",
+    "assessment": "Sufficient for a bounded SRAM diagnostic of bit4dependence, with readbacks and existing controller/owner/clock guards. Does not establish bit4's name, necessity or cold-calibration completeness.",
+    "excluded": "No2030d/20320pulse, ARCexecution, PIEprogram, DRAMMR or storage access; keep only the selected source-authored register experiment",
+    "result_contract": "At most timed-only; unchangedcodes remain ambiguous, changedcodes alone also do not establish calibratedDRAM"
+  }
+}

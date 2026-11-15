@@ -1,0 +1,65 @@
+{
+  "scope": "Root state, hardware evidence and host CSR-name references only; not a full project manifest",
+  "files": [
+    {
+      "path": "status.json",
+      "bytes": 27962,
+      "sha256": "3e34b0081c24dbd5ae608b219c01edf4d3cfdb20572f0d102e3c7d86f77c65f7",
+      "readback_matches": true
+    },
+    {
+      "path": "config/independent-boot-plan.json",
+      "bytes": 10339,
+      "sha256": "6e22b20b536962c723f8c0293e1cc4cf02489217ceef961377192f9f2c6d47de",
+      "readback_matches": true
+    },
+    {
+      "path": "config/board-facts.json",
+      "bytes": 5384,
+      "sha256": "66e371123fc060885566086df7f69eee11af3c8d4423f72e237c8960a4ca8694",
+      "readback_matches": true
+    },
+    {
+      "path": "spl/lpddr4/implementation.json",
+      "bytes": 7767,
+      "sha256": "b998cc63a7c6374761f5cf9650b6bcf98b60ce52b25e40473ccaea6a53ccf692",
+      "readback_matches": true
+    },
+    {
+      "path": "evidence/t736-common-ports-sram-hardware-20261114.json",
+      "bytes": 10524,
+      "sha256": "e2c7cfef636cf31c5d08a5a8c47bc68d6d154479c803cc186eeea2073e033278",
+      "readback_matches": true
+    },
+    {
+      "path": "evidence/t736-ch0-readonly-sram-hardware-20261114.json",
+      "bytes": 8126,
+      "sha256": "b86a2664768f31b727493277ed88b4117b426f35f6fc638e6f97ea528b736413",
+      "readback_matches": true
+    },
+    {
+      "path": "evidence/t736-ch1-readonly-sram-hardware-20261114.json",
+      "bytes": 10950,
+      "sha256": "12b65864b4714f8ea4ee060a525495d69f0d8c82d448b8a7b47a69596be3736d",
+      "readback_matches": true
+    },
+    {
+      "path": "evidence/lpddr4-schematic-wiring-reference.json",
+      "bytes": 3216,
+      "sha256": "459f6d3aae439305c75472ca496fecb2f4e34172b70ddd725698cb6425b76830",
+      "readback_matches": true
+    },
+    {
+      "path": "evidence/sima-type9-host-csr-names-20261114.json",
+      "bytes": 5052,
+      "sha256": "042d013e9af4c594b95317fcc438af01073dc39eb916b4e92171191215e6ebe6",
+      "readback_matches": true
+    },
+    {
+      "path": "evidence/sima-type9-host-csr-map-20261114.json",
+      "bytes": 88354,
+      "sha256": "75cf5fbdc42f5af7fa4926cc064b315d57fbfb06fc640d490400188a5dbb1542",
+      "readback_matches": true
+    }
+  ]
+}

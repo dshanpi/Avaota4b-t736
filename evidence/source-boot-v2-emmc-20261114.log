@@ -1,0 +1,23 @@
+mmc dev 0; mmc info; part list mmc 0; printenv bootcmd
+switch to partitions #0, OK
+mmc0(part 0) is current device
+Device: T736 SMHC3 read-only PIO
+Manufacturer ID: ec
+OEM: 0
+Name: A31Y5C
+Bus Speed: 12000000
+Mode: MMC legacy
+Rd Block Len: 512
+MMC version 5.1
+High Capacity: Yes
+Capacity: 58.2 GiB
+Bus Width: 8-bit
+HC WP Group Size: 8 MiB
+User Capacity: 58.2 GiB WRREL
+Boot Capacity: 4 MiB ENH
+RPMB Capacity: 4 MiB ENH
+Boot area 0 is not write protected
+Boot area 1 is not write protected
+Unknown command 'part' - try 'help'
+bootcmd=setenv kernel_comp_addr_r 0x68000000; if mmc dev 0 && ext4load mmc 0:4 0x60000000 /boot/vmlinuz-6.18.63-t736-armbian && setenv kernel_comp_size ${filesize} && ext4load mmc 0:4 0x64000000 /boot/initrd.img-6.18.63-t736-armbian; then setenv rdsize ${filesize}; if ext4load mmc 0:4 0x63000000 /boot/dtb/allwinner/t736-mainline-bringup.dtb; then setenv bootargs earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused; booti 0x60000000 0x64000000:${rdsize} 0x63000000; fi; fi
+T736-mainline=> 

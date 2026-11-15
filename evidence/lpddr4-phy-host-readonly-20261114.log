@@ -1,0 +1,11 @@
+printf '\nLP4_PHY_HOST_OBSERVE_BEGIN\n'; insmod /tmp/t736-transfer/lp4-phy-owner-readonly-20261114.ko; echo INSMOD_RC=$?; dmesg | grep 't736-lp4-phy:' | tail -3; rmmod t736_lp4_phy; echo RMMOD_RC=$?; rm -f /tmp/t736-transfer/lp4-phy-owner-readonly-20261114.ko; printf 'LP4_PHY_HOST_OBSERVE_END\n'
+
+LP4_PHY_HOST_OBSERVE_BEGIN
+t736-lp4-phy: MuxSel @0x0aaa0000 = 0001
+t736-lp4-phy: host does not own APB; stop without any ownership write
+INSMOD_RC=0
+[57852.187274] t736-lp4-phy: MuxSel @0x0aaa0000 = 0001
+[57852.190867] t736-lp4-phy: host does not own APB; stop without any ownership write
+RMMOD_RC=0
+LP4_PHY_HOST_OBSERVE_END
+root@t736:~# 

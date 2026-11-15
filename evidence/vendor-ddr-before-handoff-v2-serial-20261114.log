@@ -1,0 +1,15 @@
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+DRAM CLK =1800 MHZ
+DRAM Type =8 (8:LPDDR4,9:LPDDR5)
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+Actual DRAM SIZE =8192 M
+DRAM SIZE =8192 MBytes, para1 = 311a, para2 = 20001001, dram_tpr13 = 6063
+DRAM simple test OK.
+init_DRAM returned 8192 MiB, ticks=391799244
+MEM PASS: 8 x 64KiB windows, 4 address/data patterns, 524288 words checked; upper physical RAM pending

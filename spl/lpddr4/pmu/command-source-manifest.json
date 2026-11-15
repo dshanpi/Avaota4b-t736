@@ -1,0 +1,24 @@
+{
+  "repository": "enjoy-digital/litedram",
+  "commit": "60b5ae1b1ee5bc16ea695a93399434919797ff31",
+  "license": "BSD-2-Clause",
+  "copyright": "2021 Antmicro",
+  "files": [
+    {
+      "path": "reference/litedram-lpddr4-commands.py",
+      "upstream_path": "litedram/phy/lpddr4/commands.py",
+      "git_blob": "90ade80617ff3cc76f059b57c6cbe880684de9bc"
+    },
+    {
+      "path": "reference/litedram-lpddr5-commands.py",
+      "upstream_path": "litedram/phy/lpddr5/commands.py",
+      "git_blob": "52733ecc7fac722576b9b69a237766cbeff13dc6"
+    },
+    {
+      "path": "reference/LITEDRAM-LICENSE",
+      "upstream_path": "LICENSE",
+      "git_blob": "a438098d970e1b959176d5860f40fcff9e50f8c1"
+    }
+  ],
+  "usage": "Public pin truth tables for command encoder and independent test vectors; no binary firmware."
+}

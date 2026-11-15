@@ -1,0 +1,5 @@
+sync; echo SYNC_DONE_AFTER_FBCON_DIAGNOSTIC; systemctl poweroff
+
+SYNC_DONE_AFTER_FBCON_DIAGNOSTIC
+root@t736:~# 
+

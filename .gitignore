@@ -1,6 +1,7 @@
 /sources/
 /build/
-/output/
+/output/*
+!/output/t736-armbian-source-v6.raw.manifest.json
 /logs/
 /analysis/
 __pycache__/
@@ -9,10 +10,17 @@ __pycache__/
 *.ext4
 *.sparse
 *.fex
+!config/t736-lp4x-fixed.fex
+!config/t736-lp4-radxa-dram-overlay.fex
 *.bin
 *.dtb
 *.deb
 *.elf
+*.o
+*.a
+*.ko
+**/__pycache__/
+**/build/
 *.tar*
 *.zip
 *.bundle

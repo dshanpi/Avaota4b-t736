@@ -1,0 +1,85 @@
+{
+  "success": false,
+  "error": "worker deadline or missing JSON result",
+  "worker_stdout": "",
+  "worker_timed_out": true,
+  "worker_termination_confirmed": false,
+  "worker_pid": 57068,
+  "worker_evidence_directory": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-probe-uf1jaa4x",
+  "automatic_retry": false,
+  "persisted_progress": [
+    {
+      "operation": "version",
+      "address": "0x0",
+      "length": 0,
+      "monotonic": 209453.603114
+    },
+    {
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 168,
+      "monotonic": 209453.7267347
+    },
+    {
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 168,
+      "monotonic": 209453.7345331
+    },
+    {
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0,
+      "monotonic": 209453.7425981
+    },
+    {
+      "operation": "report",
+      "address": "0x48c80",
+      "length": 40,
+      "monotonic": 209453.7496984
+    },
+    {
+      "phase": "phy-zcal",
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 3744,
+      "monotonic": 209453.7573445
+    },
+    {
+      "phase": "phy-zcal",
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 3744,
+      "monotonic": 209453.7745054
+    },
+    {
+      "phase": "phy-zcal",
+      "operation": "clear_report",
+      "address": "0x4e000",
+      "length": 1968,
+      "monotonic": 209453.7892921
+    },
+    {
+      "phase": "phy-zcal",
+      "operation": "check_report",
+      "address": "0x4e000",
+      "length": 1968,
+      "monotonic": 209453.7987861
+    },
+    {
+      "phase": "phy-zcal",
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0,
+      "monotonic": 209453.8070658
+    },
+    {
+      "phase": "phy-zcal",
+      "operation": "report",
+      "address": "0x4e000",
+      "length": 1968,
+      "monotonic": 209453.811212
+    }
+  ],
+  "worker_stderr": ""
+}

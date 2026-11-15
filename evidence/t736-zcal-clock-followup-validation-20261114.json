@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-14",
+  "before_hardware": true,
+  "native_asan_ubsan": {
+    "ucclkfull": "PASS:145 events/13 ordered writes;145 UART faults;61 initial and40 final guard faults;clocks entry/restore mismatches;companion mismatches;3 timer stalls;zero codes stay timed-only;no failure cleanup\n",
+    "dfi-update": "PASS:102 events/one32-bit clock update;102 UART faults;101 read guards;update stuck;two timer stalls;no failure cleanup\n"
+  },
+  "host_unittest": [
+    {
+      "command": "python -m unittest discover -s analysis -p test_t736_phy_zcal_ucclkfull_fel_probe.py -v",
+      "tests": 10,
+      "passed": true
+    },
+    {
+      "command": "python -m unittest discover -s analysis -p test_t736_phy_zcal_dfi_update_fel_probe.py -v",
+      "tests": 9,
+      "passed": true
+    }
+  ],
+  "transport": "All three hardware runs uploaded and read back exact pinned bytes;CP15 preflight passed;no worker timeout,UART error or failed register contract.",
+  "busy_preflights": "Initial LYNX scan and first DFI-update preflight encountered background ADB scan. No SRAM upload or experiment was executed while that busy status was observed. Subsequent idle preflight passed.",
+  "host_sha256": {
+    "t736_phy_zcal_ucclkfull_fel_probe.py": "e15d8777509ed0bc82771160c832c8a773216f11cbd02f58c07066f6bcf0ed63",
+    "test_t736_phy_zcal_ucclkfull_fel_probe.py": "58d46fe8006c80037d737e568d80113a66ca6285909b09f24d6ef8c0edae9425",
+    "t736_phy_zcal_dfi_update_fel_probe.py": "75b9e45f1c68de98e43d117b64a32761343e7070800be953e3f8a0e391edb398",
+    "test_t736_phy_zcal_dfi_update_fel_probe.py": "1ab000ccd59a623caed59389402359059d758b62090c37cbe6bfdca3ee8280bf",
+    "t736_phy_zcal_codetrack_fel_probe.py": "ab4d51e1c39083b7d160e774ed9e37e52da355eb51402de189ed85b3eab2a2db"
+  }
+}

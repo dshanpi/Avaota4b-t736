@@ -1,0 +1,18 @@
+printf "SOURCE_V6_FINAL_STATE\n"; cat /proc/sys/kernel/random/boot_id /proc/uptime /proc/sys/kernel/tainted; cat /sys/class/drm/card0-HDMI-A-1/status /sys/class/drm/card0-HDMI-A-1/enabled; systemctl is-active getty@tty1.service; systemctl --failed --no-pager; exit
+
+SOURCE_V6_FINAL_STATE
+403577e6-4b20-443e-82f8-20a31a16137b
+176.04 1259.60
+0
+connected
+enabled
+active
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+logout
+^[[32;1R^[[32;96R
+
+Armbian 26.11.0-trunk.128 trixie ttyS0 
+
+t736 login: 

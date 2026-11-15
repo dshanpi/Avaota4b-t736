@@ -1,0 +1,106 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "22a43cdacd238bcae81ef1e624ddc5b709886d099cf1fd32cff26fca065c20f9",
+      "remote_match": true
+    },
+    {
+      "path": "docs/BOOT_CHAIN.md",
+      "sha256": "37602af477038973ad83a74673241622597bad8323e2532de2248c9db1eb8c98",
+      "remote_match": true
+    },
+    {
+      "path": "status.json",
+      "sha256": "38418d3152d45302e1795aa43cad387b23f5b86d1abb7141cee446791d56db6e",
+      "remote_match": true
+    },
+    {
+      "path": "config/patch-ledger.json",
+      "sha256": "c084ec2047fae1e9005248c29b04eb48cb3451597d477439803edc218c9b9018",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/independent-boot-audit.json",
+      "sha256": "71cf94e69c859056ba4ab15074ac9ea9861f2a1f0c08ebf7ebd33d17308052b3",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/lpddr4-source-feasibility.json",
+      "sha256": "f1f74b21f8a98fa5cef3fefef4435f28ef5a2806ccb7adcb355fae252a16b4b3",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/lpddr4-post-observation.log",
+      "sha256": "9fb3a65f27d19fd40acb8e8817feda6f9548d65b5be0f93526bbc8a9b90675a7",
+      "remote_match": true
+    },
+    {
+      "path": "spl/lpddr4/axp8191.c",
+      "sha256": "8e12ae0b3e3ec8b971a093c4c946dc44fd46dbf1b1ce7b013725970b7d114b31",
+      "remote_match": true
+    },
+    {
+      "path": "spl/lpddr4/axp8191.h",
+      "sha256": "6e7a528f0a6c4163d9667bea6554c7f5c5db0a8a8ff423f24df43d19e3989ee7",
+      "remote_match": true
+    },
+    {
+      "path": "spl/lpddr4/controller.c",
+      "sha256": "1017f4a0c37370a1a5aab45d05d84e8942ee5800cdb78b1d6a70ab5083afba47",
+      "remote_match": true
+    },
+    {
+      "path": "spl/lpddr4/controller.h",
+      "sha256": "d42e7955af902cf11ecc4b7982bdb0357a56f235a381384f40504b1680bed339",
+      "remote_match": true
+    },
+    {
+      "path": "spl/lpddr4/implementation.json",
+      "sha256": "fb722759b7454a02e8c3e165bbcf18ea13b7c5810f779748b95877283e07f9a5",
+      "remote_match": true
+    },
+    {
+      "path": "spl/lpddr4/observe_linux.c",
+      "sha256": "9fd36dd6df28b55b20a069764b9b91eb7b8113441b5bd58e2804bd2c222b814b",
+      "remote_match": true
+    },
+    {
+      "path": "spl/lpddr4/README.md",
+      "sha256": "81741f4198fccdb003555d389a615c3f78e0cbd955597af948be26931e212264",
+      "remote_match": true
+    },
+    {
+      "path": "spl/lpddr4/test_components.c",
+      "sha256": "bfd6108353a9c746e98b0cc7dad054e6fe0fb01fd68ad1dfd6f27934f2a75f4b",
+      "remote_match": true
+    },
+    {
+      "path": "tools/check_lpddr4_components.py",
+      "sha256": "dd057d81ec0f30546e432453baaf680da10c7e52fe6187f77170dd2614973ed3",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/lpddr4-components-check.json",
+      "sha256": "f2a864ea1cd532effc94bfcbb06a2f48b28b0f8ccc426839ccf763619f6aca90",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/lpddr4-components-check.log",
+      "sha256": "58323ebd3ac10480eaf463bc607c32e85af044747388f05d1c541b03dade8b52",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/lpddr4-register-observation.log",
+      "sha256": "63b47af9349a41ddb34bb8ce1e5cb7cac4174e68136d21aaaaf2f9c38acc144b",
+      "remote_match": true
+    },
+    {
+      "path": "evidence/lpddr4-addressmap-observation.log",
+      "sha256": "6ce2974dc54bdd08b291969c17dedfc85424409cf9c192db3eec8fddd20aaaab",
+      "remote_match": true
+    }
+  ],
+  "normal_boot_complete": false,
+  "new_raw_flashed": false
+}

@@ -1,0 +1,113 @@
+{
+  "date": "2026-11-14",
+  "kind": "read-only-host-register-facts-and-controlled-SRAM-diagnostic-proposal",
+  "hardware_actions": false,
+  "runtime_implementation": false,
+  "vendor_instruction_streams_imported": false,
+  "clean_room_claim": false,
+  "source": {
+    "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+    "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+    "scope": "Read-only host MMIO interface inspection. No IMEM, PIE, PMU, training-data or generated instruction program is imported.",
+    "symbols": ["mctl_com_init", "mctl_com_set_channel_timing", "mctl_com_set_bus_config", "mctl_com_set_controller_odt", "mctl_dfi_init", "mctl_channel_init"]
+  },
+  "current_context_from_root": {
+    "SYS_CFG": "0x2728",
+    "both_MSTR": "0x03081002",
+    "both_STAT": "0x0",
+    "both_MRSTAT": "0x0",
+    "geometry_timing_writes_completed": 64,
+    "subsequent_control_observation_via_root_and_early": {"PWRCTL_180": "0x0", "DFILPCFG0_500": "0x00100000", "DFIUPD0_508": "0x8000", "DFIMISC_510": "0x1", "DFISTAT_514": "0x0", "DFIPHYMSTR_518": "0x80000001", "SWCTL_SWSTAT": "1/1"},
+    "limit": "The completed 22 geometry + 42 timing writes are a subset of controller configuration; they establish neither PHY accessibility nor trained DDR. Re-read before any later transition."
+  },
+  "address_bases": {
+    "CTL0": "0x0a110000",
+    "TIMING0": "0x0a100000",
+    "channel_stride": "0x00400000",
+    "warning": "CTL+d00 and TIMING+d00 are different registers. Standard uMCTL2 offsets must not be substituted for this SoC's offsets. DFISTAT is CTL+514, not CTL+518."
+  },
+  "strongest_pre_release_hold_evidence": {
+    "before_release": "mctl_com_init sets PWRCTL bit11 and clears low8. Its first DFIMISC configuration sets 0x10015 after clearing 0x30000; mctl_com_set_channel_timing pstate0 then clears DFIMISC bit0, leaving 0x10014 if the other bits began clear.",
+    "later_trained_handoff": "mctl_dfi_init separately opens SWCTL, ORs DFIMISC with 0x1001, then ORs bit5; commits SWCTL and polls SWSTAT bit0 then DFISTAT bit0. It later clears DFIMISC bit5 and PWRCTL bit11 before polling STAT for normal mode.",
+    "facts": [
+      {"symbol": "mctl_com_init", "offsets": "0x3a..0x46", "register": "CTL+180", "operation": "(old & ~0xff) | 0x800"},
+      {"symbol": "mctl_com_init", "offsets": "0xc6..0xd4", "register": "CTL+510", "operation": "(old & ~0x30000) | 0x10015"},
+      {"symbol": "mctl_com_set_channel_timing", "offsets": "0x870..0x87a", "register": "CTL+510", "operation": "clear bit0 at pstate0"},
+      {"symbol": "mctl_dfi_init", "offsets": "0xd4..0xec", "register": "CTL+510", "operation": "later OR 0x1001, then OR 0x20"},
+      {"symbol": "mctl_dfi_init", "offsets": "0x104..0x110", "register": "CTL+514", "operation": "later poll bit0"},
+      {"symbol": "mctl_dfi_init", "offsets": "0x128..0x14e", "register": "CTL+180 then CTL+014", "operation": "later clear 0x800, then poll normal state"}
+    ],
+    "interpretation": "For an outer-PHY-access experiment, retaining PWRCTL bit11 and keeping DFIMISC bits0 and5 clear avoids performing the observed trained handoff. These are SoC host-interface facts, not a complete public bitfield specification or proof that all autonomous activity is impossible."
+  },
+  "short_controlled_experiment_proposal": {
+    "purpose": "Establish whether documented-in-host-code common reset/clock release makes PHY outer APB accessible; no DRAM contents, command launch or training claim.",
+    "preconditions": ["Root has formally recovered any previous hang and re-established the current source CCU/domain/configuration state", "SRAM-only execution; no live DRAM clients; existing common ports remain zero", "Both controllers read INIT and MRSTAT idle; report actual DFIMISC/PWRCTL/DFIUPD0/SWCTL/SWSTAT before changing anything", "Timer and UART progress output verified before each unknown MMIO access"],
+    "candidate_configuration": [
+      "Use each channel's SWCTL commit protocol with a bounded SWSTAT check; do not launch mctl_dfi_init.",
+      "PWRCTL CTL+180: preserve unrelated bits, clear low8, set bit11; verify readback.",
+      "DFIMISC CTL+510: preserve unrelated bits, select the observed LP4 field 0x10000 in mask0x30000, set static bits0x14, explicitly keep bit0 and bit5 clear; reject unexpected pstate/other launch-state bits rather than silently accepting them.",
+      "CTL+508: the SDK pre-release host operation clears bit15 and sets bits31:30. It is a candidate auto-update inhibit; preserve other bits, record the opaque-field qualification, and verify readback before using it.",
+      "The subsequent observed DFILPCFG0 CTL+500=0x00100000 should be set0 as in the SDK host operation, rather than retaining an active low-power configuration during the observation.",
+      "The subsequent observed DFIPHYMSTR CTL+518=0x80000001 should receive the reviewed host RMW (old&~0xff000001)|0x25000000, producing0x25000000. This explicitly removes bit0 and the old high byte; the replacement high-byte fields remain qualified opaque board controls.",
+      "Commit and verify both controllers still INIT and MRSTAT idle. Do not wait for DFISTAT success, clear PWRCTL bit11, or set DFIMISC bit5."
+    ],
+    "release_and_observe": [
+      "At root's accepted checkpoint, perform the independently observed common SYS_CFG transitions 0x2728 -> 0x273c -> 0x273e -> 0x273f, with at least 1us after the latter two transitions as in the host interface; readback each write and stop on mismatch.",
+      "Make one fixed halfword outer MuxSel observation; a nonzero owner ends the observation without reading internal PHY registers. Only owner0 permits the fixed MicroReset read.",
+      "Keep full attempt/progress evidence. A hung APB read requires formal hardware recovery, not host retry or an assumed successful timeout."
+    ],
+    "not_required_to_answer_only_APB_reachability": "Replaying every SDK scheduler, performance, MR initialization and unused pstate preset is not necessary merely to ask whether the released APB responds. Those omissions remain explicit. Root should prefer this bounded hypothesis test to treating absence of every field name as an indefinite blocker.",
+    "not_authorized_by_this_file": "This proposal is not a completed normal-startup DDR initialization or a proof that later DRAM accesses are valid. It does not permit importing vendor executable programs."
+  },
+  "remaining_CTL_static_facts_not_in_64_writes": [
+    {"offset": "0x010", "lp4_operation": "write0", "semantic_name": null},
+    {"offset": "0x184", "lp4_operation": "write2 before mctl_com_init in mctl_channel_init", "semantic_name": null},
+    {"offset": "0x18c", "lp4_operation": "clear0x3f", "semantic_name": null},
+    {"offset": "0x180", "lp4_operation": "clear0xff; set0x800", "semantic_name": "PWRCTL"},
+    {"offset": "0x508", "lp4_operation": "clear0x8000; set0xc0000000", "semantic_name": "DFIUPD0 candidate; exact mask names not established"},
+    {"offset": "0x280", "lp4_operation": "set0xa0000000", "semantic_name": null},
+    {"offset": "0x288", "lp4_operation": "set1", "semantic_name": null},
+    {"offset": "0x300", "lp4_operation": "(old & 0xff00ff00) | 0xc0", "semantic_name": null},
+    {"offset": "0x308", "lp4_operation": "set1", "semantic_name": null},
+    {"offset": "0x500", "lp4_operation": "write0", "semantic_name": "DFILPCFG0; exact layout not imported from another SoC"},
+    {"offset": "0x518", "lp4_operation": "(old & ~0xff000001) | 0x25000000", "semantic_name": "DFIPHYMSTR; not DFISTAT; exact high-byte field meaning unconfirmed"},
+    {"offset": "0x208", "lp4_operation": "set1", "semantic_name": null},
+    {"offset": "0x510", "lp4_operation": "initial set0x10015 in cleared0x30000; timing later clearsbit0", "semantic_name": "DFIMISC"},
+    {"offset": "0xc9c", "lp4_operation": "write0x303 when dram_para2 bit12 set (this board), otherwise1", "semantic_name": "controller ODT configuration host helper"},
+    {"offset": "0x200", "lp4_operation": "write0x187 under SWCTL0 -> write -> SWCTL1 -> poll SWSTATbit0", "semantic_name": null},
+    {"offset": "0xd00", "lp4_operation": "pstate0 initialization-delay field construction; bits31:30 ORed when train_mode global nonzero", "semantic_name": "INIT0 candidate; skip_dram_init name and exact encoding must not be assumed from NXP"}
+  ],
+  "remaining_TIMING_static_facts_not_in_42_writes": [
+    {"offset": "0x078", "lp4_operation": "write0x00556262"},
+    {"offset": "0x080", "lp4_operation": "write0"},
+    {"offset": "0xd00", "lp4_operation": "bit0 set when lowspeed_1b2_mode==0, cleared otherwise; separate from CTL+d00"},
+    {"offset": "0x500", "lp4_operation": "(MR1 <<16) | MR2", "historical_board_value": "0x00fc003f"},
+    {"offset": "0x504", "lp4_operation": "(MR3 <<16) | MR13", "historical_board_value": "0x00330008"},
+    {"offset": "0x508", "lp4_operation": "(MR11 <<16) | MR12", "historical_board_value": "0x00040072"},
+    {"offset": "0x50c", "lp4_operation": "(MR22 <<16) | selected MR14; source may use trained byte at params+200 depending tpr10bit29", "historical_board_value": "0x0024001d"},
+    {"offset": "0xd04", "lp4_operation": "preserve upper16; compose lower16 timing counters"},
+    {"offset": "0xd08", "lp4_operation": "preserve upper16; compose lower16 timing counters"},
+    {"offset": "0xd0c", "lp4_operation": "write0x00400005"},
+    {"offset": "0x590", "lp4_operation": "compose additional DFI timing/ratio fields; not yet independently calculated"},
+    {"offset": "0x594", "lp4_operation": "0x0400000f | derived_field<<18; not yet independently calculated"},
+    {"offset": "0x650", "lp4_operation": "preserve all butlow12; insert initialization timing count"},
+    {"offset": "0x800", "lp4_operation": "compose two timing counters"},
+    {"offset": "0x804", "lp4_operation": "derived_counter<<20 | 0x100"}
+  ],
+  "MR_observation_caution": "Historical MR1/2 words differ from static demo_aiot-bak inputs because SDK timing derives them for speed. They are device-mode settings, not a substitute for source LPDDR4 initialization/training. Do not treat these historical values as permission to send commands before source PHY electrical setup.",
+  "bus_helper_LP4_facts": {
+    "CTL+380": "(old & 0xb7ff001c) | 0xa001381c",
+    "CTL+384": "(old & 0x08880fff) | 0x2000",
+    "CTL+38c": "(old & 0xc0c0c0c0) | 0x04040c3e",
+    "CTL+390": "write0x08300810",
+    "pstate_banks_plus_c88": "At TIMING base+pstate*0x100000, pstate0..3: (pstate0_old &0x00ff0000)|0x1e000046 written to all four",
+    "pstate_banks_plus_c00": "write0xff at all four banks",
+    "limit": "These are host static configuration facts, not a recommendation to enable traffic or replay unused pstates for the outer-APB experiment."
+  },
+  "timing_and_transition_requirements": [
+    "The initial common PRCM250/domain sequence includes 10ms settling; current source setup has measured this, but any formal reset requires rebuilding prerequisites.",
+    "SDK mctl_com_set_channel_timing waits20us after each programmed pstate. The source64-write experiment was an observation, not a full timing/handoff sequence; use a real timer when completing configuration.",
+    "Bound every SWSTAT and timer wait and report its last observation; host timeout cannot bound an individual hung MMIO transaction.",
+    "No normal-mode transition, MR launch, memory test or eMMC boot should be inferred from PHY outer-register accessibility."
+  ]
+}

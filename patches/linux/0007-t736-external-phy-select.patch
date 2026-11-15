@@ -1,0 +1,19 @@
+Subject: [PATCH] net: t736: select the external RTL8211F PHY
+
+T736 User Manual 18.1.7.1 specifies PHY_SELECT bit 15 as reset-high
+(internal PHY). Explicitly clear it for the external board PHY.
+
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c
+@@ -61,7 +61,10 @@
+ 	 * not picoseconds; preserve all unrelated bits in the extension block.
+ 	 */
+ 	value = readl(data->cfg);
+-	value &= ~(GENMASK(17, 16) | BIT(13) | GENMASK(12, 5) | GENMASK(2, 0));
++	/* PHY_SELECT (bit 15) resets to internal PHY. This board uses an
++	 * external RTL8211F; leaving it set disconnects the external MDIO.
++	 */
++	value &= ~(GENMASK(17, 16) | BIT(15) | BIT(13) | GENMASK(12, 5) | GENMASK(2, 0));
+ 	value |= BIT(2) | 1;
+ 	value |= FIELD_PREP(GENMASK(17, 16), data->tx_taps >> 3);
+ 	value |= FIELD_PREP(GENMASK(12, 10), data->tx_taps & 7);

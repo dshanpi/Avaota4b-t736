@@ -1,0 +1,156 @@
+{
+  "kind": "fixed-t736-early-sram-probe",
+  "hardware_actions_started": true,
+  "storage_accessed": false,
+  "pmic_writes": 0,
+  "mmio_scope": "UART/TWI clock, pinmux and controller setup; PMIC register reads only",
+  "events": [
+    {
+      "operation": "version",
+      "address": "0x0",
+      "length": 0
+    },
+    {
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 168
+    },
+    {
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 168
+    },
+    {
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0
+    },
+    {
+      "operation": "report",
+      "address": "0x48c80",
+      "length": 40
+    },
+    {
+      "phase": "early",
+      "operation": "upload",
+      "address": "0x48c00",
+      "length": 3088
+    },
+    {
+      "phase": "early",
+      "operation": "readback",
+      "address": "0x48c00",
+      "length": 3088
+    },
+    {
+      "phase": "early",
+      "operation": "clear_report",
+      "address": "0x4e000",
+      "length": 64
+    },
+    {
+      "phase": "early",
+      "operation": "check_report",
+      "address": "0x4e000",
+      "length": 64
+    },
+    {
+      "phase": "early",
+      "operation": "execute",
+      "address": "0x48c00",
+      "length": 0
+    },
+    {
+      "phase": "early",
+      "operation": "report",
+      "address": "0x4e000",
+      "length": 64
+    }
+  ],
+  "usb": {
+    "backend": "usbUDisc-overlapped",
+    "interface_path": "\\\\?\\usb#vid_1f3a&pid_efe8#6&2bcccfa4&0&2#{a5dcbf10-6530-11d2-901f-00c04fb951ed}",
+    "instance_id": "USB\\VID_1F3A&PID_EFE8\\6&2BCCCFA4&0&2",
+    "hardware_ids": [
+      "USB\\VID_1F3A&PID_EFE8&REV_02;3",
+      "USB\\VID_1F3A&PID_EFE8"
+    ],
+    "service": "usbUDisc",
+    "location_paths": [
+      "PCIROOT(0)#PCI(1400)#USBROOT(0)#USB(10)#USB(2)",
+      "ACPI(_SB_)#ACPI(PC00)#ACPI(XHCI)#ACPI(RHUB)#ACPI(HS10)#ACPI(PRT2)"
+    ],
+    "bulk_out": "0x01",
+    "bulk_in": "0x82",
+    "driver_selects_bulk_pipes": true
+  },
+  "cpu_preflight": {
+    "version": {
+      "raw_chip_id": "0x190300",
+      "firmware": "0x1",
+      "mode": 1,
+      "data_flag": 68,
+      "data_length_field": 8,
+      "scratchpad": "0xee800",
+      "reserved": "0000000000000000",
+      "scratch_guard": {
+        "pointer": "0xee800",
+        "excluded_start": "0xee800",
+        "excluded_end": "0xef800",
+        "extent": "0x1000",
+        "extent_basis": "local conservative exclusion policy; actual ROM scratch size unconfirmed",
+        "pointer_valid": true,
+        "overlaps_fixed_probe": false,
+        "allows_fixed_probe": true
+      }
+    },
+    "probe": {
+      "status": 2,
+      "cpsr": "0x60000153",
+      "sp": "0xf2200",
+      "lr": "0x1a138",
+      "sctlr": "0xc50838",
+      "midr": "0x412fd050",
+      "entry": "0x48c00",
+      "mmu_enabled": false,
+      "dcache_enabled": false,
+      "icache_enabled": false,
+      "cp15_read": true,
+      "ddr_initialized": false,
+      "storage_accessed": false,
+      "pmic_accessed": false
+    },
+    "report_hex": "5043375401000000020000005301006000220f0038a101003808c50050d02f41008c040000000000",
+    "upload_readback_sha256": "2b1dd03fb26940103c057f7f40cd20874566314da3e7f50a78dd2f9f5d2d88d9"
+  },
+  "probe": {
+    "status": "0x101",
+    "passed": false,
+    "counter_hz": 0,
+    "ten_us_delay_ticks": 0,
+    "pmic_address": "0x36",
+    "pmic_id": "0x0",
+    "last_twi_status": "0x0",
+    "cleanup_error": 0,
+    "pmic_registers": null,
+    "raw_pmic_register_slots": [
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0"
+    ],
+    "entry_sctlr": "0xc50838",
+    "pmic_writes": 0,
+    "ddr_initialized": false,
+    "storage_accessed": false
+  },
+  "report_hex": "36333754010000000101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003808c50000000000",
+  "upload_readback_sha256": "6cb1752b8d4aba4cd2f4f87ffa8d27a467fe12cf3c3fe3d2ddadbf1fd999ef74",
+  "accepted_sram_window": [
+    "0x48c00",
+    "0x50000"
+  ],
+  "success": false
+}

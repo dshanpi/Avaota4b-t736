@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-14",
+  "scope": "Public host debug text only; no firmware or instruction contents imported",
+  "source": {
+    "repository": "SiMa-ai/sima-ai-uboot",
+    "commit": "5a026adbe2a54aeaae5dc50e1852d4b5c1884640",
+    "path": "arch/arm/mach-sima/ddr_phy_debug_modalix.c",
+    "blob": "b2a3c999c3a7ccc5044f453cb9a818e307b5c767"
+  },
+  "lines": [
+    {
+      "line": 58,
+      "text": "    { .value=0x00240000, .str=\"PMU: Error: Polling on ACSM done failed to complete in acsm_poll_done()...\\n\" },"
+    },
+    {
+      "line": 60,
+      "text": "    { .value=0x00260000, .str=\"PMU1: Beginning assert_CKE() \\n\" },"
+    },
+    {
+      "line": 61,
+      "text": "    { .value=0x00270000, .str=\"PMU1: deassert_CKE() \\n\" },"
+    },
+    {
+      "line": 614,
+      "text": "    { .value=0x02500001, .str=\"PMU5: CS%d <<KEY>> 0 RxEnDly coarse(10:6) fine(5:0), 1 RxClkTDly coarse(9:7) fine(6:0), 2 RxClkCDly coarse(9:7) fine(6:0), 3 VrefDAC0, 4 VrefDAC1, 5 VrefDAC2, 6 VrefDAC3 <<KEY>>\\n\" },"
+    },
+    {
+      "line": 615,
+      "text": "    { .value=0x02510001, .str=\"PMU5: CS%d <<KEY>> 0 TxDqsDly coarse(9:6) fine(5:0), 1 TxDqDly coarse(8:6) fine(5:0), 2 MR14 <<KEY>>\\n\" },"
+    },
+    {
+      "line": 616,
+      "text": "    { .value=0x02520001, .str=\"PMU5: CS%d <<KEY>> 0 WckDly coarse(10:6) fine(5:0), 1 TxDqDly coarse(8:6) fine(5:0), 2 MR14/MR15, 3 TxDqsDly coarse(9:6) fine(5:0) <<KEY>>\\n\" },"
+    },
+    {
+      "line": 619,
+      "text": "    { .value=0x02550000, .str=\"PMU5: all CS <<KEY>> 0 DFIMRL <<KEY>> Units = DFI clocks\\n\" },"
+    },
+    {
+      "line": 620,
+      "text": "    { .value=0x02560000, .str=\"PMU5: all CS <<KEY>> VrefDACs <<KEY>> DAC(6:0)\\n\" },"
+    },
+    {
+      "line": 588,
+      "text": "    { .value=0x02360005, .str=\"PMU3: fixRxEnBackOff csn:%d db:%d dn:%d bo:%d dly:%x\\n\" },"
+    }
+  ],
+  "delay_bitfields": [
+    {
+      "name": "RxEnDly",
+      "coarse": [
+        10,
+        6
+      ],
+      "fine": [
+        5,
+        0
+      ]
+    },
+    {
+      "name": "RxClkTDly",
+      "coarse": [
+        9,
+        7
+      ],
+      "fine": [
+        6,
+        0
+      ]
+    },
+    {
+      "name": "RxClkCDly",
+      "coarse": [
+        9,
+        7
+      ],
+      "fine": [
+        6,
+        0
+      ]
+    },
+    {
+      "name": "TxDqsDly",
+      "coarse": [
+        9,
+        6
+      ],
+      "fine": [
+        5,
+        0
+      ]
+    },
+    {
+      "name": "TxDqDly",
+      "coarse": [
+        8,
+        6
+      ],
+      "fine": [
+        5,
+        0
+      ]
+    }
+  ],
+  "limits": [
+    "These textual field descriptions do not establish target MMIO addresses, picoseconds per step, linearity, active rank/lane selection, latch/commit or completion behavior.",
+    "No pure field utility or target MMIO writer is added until the useful hardware interface is closed."
+  ],
+  "async_semantic_correlation": {
+    "public_arc_source": "arch/arm/mach-sunxi/pmu/pmu_eye.c:720",
+    "function": "pmu_dbyte_cal_strobe_pulse_seq",
+    "error_id": "0x02350000",
+    "independent_debug": "    { .value=0x02350000, .str=\"PMU: ERROR: Wrong strobe mode chosen for lpEnterExitAsyncMode\\n\" },",
+    "supported_conclusion": "Function is plausibly the asynchronous mode entry/exit, not the unrelated Vref/strobe semantics implied by its public source labels.",
+    "named_mode_fields": [
+      {
+        "arc": "0x9003e00a",
+        "logical_broadcast_candidate": "0x1f005",
+        "corroborating_dbyte0": "0x10005",
+        "name": "RxDigStrbEn",
+        "enabled_value_in_public_source": 1
+      },
+      {
+        "arc": "0x9003e016",
+        "logical_broadcast_candidate": "0x1f00b",
+        "corroborating_dbyte0": "0x1000b",
+        "name": "DxDigStrobeMode",
+        "enabled_value_in_public_source": 2
+      }
+    ],
+    "other_unresolved_logical_candidates": [
+      "0x1f00a",
+      "0x1f089",
+      "0x1f08a",
+      "0x1f08b",
+      "0x1f094",
+      "0x1f095"
+    ],
+    "limitations": "One matching diagnostic identifier and local CSR names support the hypothesis; they do not establish an electrically safe full LP4 async protocol or its output/capture data layout. No target writes performed."
+  }
+}

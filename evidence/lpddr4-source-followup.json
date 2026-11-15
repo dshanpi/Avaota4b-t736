@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-13",
+  "scope": "Follow-up source inspection for T736 8 GiB LPDDR4 normal boot without any Tina runtime binary",
+  "conclusion": "No usable source-only LPDDR4 initializer was found in the inspected candidates. This is not a proof that no such implementation exists anywhere.",
+  "candidate_image_built": false,
+  "flashed": false,
+  "hardware_state_changed": false,
+  "candidates": [
+    {
+      "repository": "InfernoEmbedded/u-boot",
+      "branch": "upstream-v2-core-bringup",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+      "driver_commit": "7da1f1cd4afd5293ed4db6448197ec7165ec2818",
+      "finding": "Branch head unchanged; DRAM driver's commit documents LPDDR5 controller, PMU firmware, geometry decoding and board swizzle. Existing isolated source compile does not implement LPDDR4.",
+      "url": "https://github.com/InfernoEmbedded/u-boot/commit/7da1f1cd4afd5293ed4db6448197ec7165ec2818"
+    },
+    {
+      "repository": "InfernoEmbedded/u-boot",
+      "branch": "feature/a733-pmu-refactor",
+      "commit": "e3dfa8f7078daab619ed49f9afd9a5bfd47954d8",
+      "files": [
+        {
+          "path": "doc/board/allwinner/a733-pmu.rst",
+          "sha": "b2ae1d98aa99cd601cdd62e0ecf79f379032f1a3"
+        },
+        {
+          "path": "arch/arm/mach-sunxi/dram_sun60i_a733.c",
+          "sha": "ff5d4ef94c1c82debd6cc6e0225d1905ff9056c2"
+        }
+      ],
+      "finding": "Documented source PMU is LPDDR5. Host driver presets LPDDR5 rails and implements LPDDR5 controller/MR8 sizing. Not imported or executed."
+    },
+    {
+      "repository": "YuzukiHD/SyterKit",
+      "commit": "7f539e17762639589897db835e58dd638b2bea80",
+      "files": [
+        {
+          "path": "drivers/dram/dram-sun60iw2.c",
+          "sha": "8dd73fb4aa4342aa19e0a38c68e79d835afe0f89"
+        },
+        {
+          "path": "soc/sun60iw2/Makefile",
+          "sha": "f9e244163f3218342d9964444d864fbb25ffd240"
+        },
+        {
+          "path": "soc/sun60iw2/lib/libdram-lpddr4.a",
+          "sha": "54f43ea698401bdf712eee7ec4a465f3aaa05dfa",
+          "bytes": 145300,
+          "downloaded": false
+        }
+      ],
+      "finding": "LPDDR4 config explicitly links precompiled libdram-lpddr4.a; C driver calls external init_DRAM. Does not satisfy source-only requirement. No source or binary imported.",
+      "url": "https://github.com/YuzukiHD/SyterKit/blob/7f539e17762639589897db835e58dd638b2bea80/soc/sun60iw2/Makefile"
+    },
+    {
+      "repository": "ua1arn/hftrx",
+      "commit": "d6a27f866736ab9bbab0a47eddde7eec48b33e75",
+      "finding": "LPDDR4 success commit explicitly uses Cubie A7Z board parameters from a Radxa-derived source. Excluded on provenance; audit stopped after detecting this. No code or parameters imported.",
+      "eligible": false
+    }
+  ],
+  "observed_inferno_branches": [
+    {
+      "name": "archive/sunxi-a733-boot0",
+      "commit": "7911ba60ddb8c211cdc42ea9b9c002af306d35a6"
+    },
+    {
+      "name": "feature/a733-pmu-refactor",
+      "commit": "e3dfa8f7078daab619ed49f9afd9a5bfd47954d8"
+    },
+    {
+      "name": "feature/sunxi-a733-orangepi4pro",
+      "commit": "952ffc1808116d7c4a77f37bc84b1193c52c30be"
+    },
+    {
+      "name": "for-upstream/dram-fastboot",
+      "commit": "7b8f5f0808bd189f452fef81f38af44673e4d9d0"
+    },
+    {
+      "name": "for-upstream/nvme",
+      "commit": "ea790abe3269705402ff6451b913eafa7173f5b6"
+    },
+    {
+      "name": "master",
+      "commit": "ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+      "name": "sunxi-a733-v2026.07",
+      "commit": "0f1f916899996017da8bf1c6eb2de69f4465f711"
+    },
+    {
+      "name": "u-boot-edge-orangepi4pro",
+      "commit": "952ffc1808116d7c4a77f37bc84b1193c52c30be"
+    },
+    {
+      "name": "upstream-v1-core-bringup",
+      "commit": "5887f2b750ef8d2b561054c399168161c8f2de6b"
+    },
+    {
+      "name": "upstream-v2-core-bringup",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823"
+    }
+  ],
+  "remaining_required_inputs": [
+    "LPDDR4 host-controller and DDR PHY programming/training implementation suitable for T736",
+    "Board-verified LPDDR4 wiring, geometry, timings and voltage setup",
+    "Independent SRAM SPL integration and tested early eMMC/TF-A handoff"
+  ],
+  "policy": "config/boot-policy.json",
+  "next_validation": "A complete source-built SPL must initialize LPDDR4 from power-on before a compliant raw image can be built and tested."
+}

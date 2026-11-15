@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-14",
+  "scope": "Public non-executable CSR identities only; no PIE instruction words retained or used",
+  "runtime_changes": false,
+  "hardware_actions": false,
+  "findings": [
+    {
+      "source": "https://github.com/zephyrproject-rtos/hal_nxp/blob/e07b15c3eceae2f853db5c1308c23db6b30c6f20/mcux/mcux-sdk-ng/devices/i.MX/i.MX8MP/periph/PERI_DWC_DDRPHYA_APBONLY.h",
+      "fact": "DFIINITCOMPLETESHADOW is a read-only view of sequencer-controlled DfiInitComplete; the older integration does not provide a target mapping."
+    },
+    {
+      "source": "https://github.com/ARM-software/arm-trusted-firmware/blob/a881364e03b0c5b3a8c00f20ad6fbdda53a57031/drivers/st/ddr/phy/phyinit/include/ddrphy_csr_all_cdefines.h",
+      "fact": "Older layout identifies MASTER DFIINITCOMPLETE offset0xf9, adjacent DFIFREQRATIO0xfa. T736 observed frequency ratio is logical0x20000, so the old block offsets are not transplanted."
+    },
+    {
+      "source": "https://github.com/SiMa-ai/sima-ai-uboot/blob/5a026adbe2a54aeaae5dc50e1852d4b5c1884640/arch/arm/include/asm/arch-sima/ddr_tuning.h",
+      "fact": "Modern host comments describe PMU execution followed by PHY DfiInitComplete and controller DFI handshake. This supplies no source-only replacement program or target direct-register control."
+    },
+    {
+      "source": "https://github.com/open-power/hostboot/blob/a7d36910b6c0cd01ce8b7202425d5faee07f4a72/src/import/chips/ocmb/odyssey/common/include/ody_scom_mp_mastr_b0.H",
+      "fact": "Another integration exposes old logical0x200f9 DFIINITCOMPLETE and0x200c9 PLLLOCKSTATUS. Its SCOM bus/layout are not T736 proof."
+    }
+  ],
+  "conclusion": "The queried public interfaces do not establish a T736 direct DFI-complete register or independently authored PIE instruction encoding. No guessed completion write or old-generation offset access is proposed. This is a bounded search result, not a claim no public specification exists."
+}

@@ -1,0 +1,125 @@
+e2fsck 1.47.0 (5-Feb-2023)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+rootfs: 21385/476720 files (0.1% non-contiguous), 198319/1904960 blocks
+/home/ubuntu/t736-mainline/output/t736-armbian-source-v4.raw.img:
+No errors detected.
+Header version: 1.0
+Using 6 out of 6 partitions.
+A total of 1 free sectors is available in 1 segment.
+{
+  "raw": {
+    "path": "t736-armbian-source-v4.raw.img",
+    "bytes": 8589934592,
+    "sha256": "5a12219a0dc8f39b3d06d5eaa19b2324da33e308f23fe9f028e64a1a33ce69dc",
+    "physical_sector_zero": true,
+    "regions": [
+      {
+        "name": "primary-gpt",
+        "sector": 0,
+        "bytes": 2048,
+        "sha256": "00d1c106552923c83f3d38d3b6ece1ada954def16908b1ebfd72dd81067ef1bb"
+      },
+      {
+        "name": "source-spl",
+        "sector": 16,
+        "bytes": 221184,
+        "sha256": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea"
+      },
+      {
+        "name": "source-boot-package",
+        "sector": 24576,
+        "bytes": 313856,
+        "sha256": "cb35e82d844f6fda24f86a2a52975555e7e7725339c6a38d5b85ad2581ae6067"
+      },
+      {
+        "name": "gpt-compatibility-mirror",
+        "sector": 40960,
+        "bytes": 2048,
+        "sha256": "00d1c106552923c83f3d38d3b6ece1ada954def16908b1ebfd72dd81067ef1bb"
+      },
+      {
+        "name": "backup-gpt",
+        "sector": 16777213,
+        "bytes": 1536,
+        "sha256": "80c168f365b4080d7c5b97432017af73f97419dfe4d40cc144b4c6f1015e1c43"
+      },
+      {
+        "name": "rootfs",
+        "sector": 368640,
+        "bytes": 7802716160,
+        "sha256": "2a2db9d822ec89c7bc11d7b288e24e0e4ffdc0621de34926856c7909240c402e"
+      }
+    ],
+    "partitions": [
+      [
+        "boot-resource",
+        73728,
+        65536
+      ],
+      [
+        "env",
+        139264,
+        32768
+      ],
+      [
+        "boot",
+        172032,
+        196608
+      ],
+      [
+        "rootfs",
+        368640,
+        15239680
+      ],
+      [
+        "private",
+        15608320,
+        32768
+      ],
+      [
+        "UDISK",
+        15641088,
+        1136094
+      ]
+    ]
+  },
+  "boot_images": [
+    {
+      "path": "build/source-handoff-v1/stage64.bin",
+      "address": "0x47000000",
+      "sector": 24577,
+      "bytes": 5040,
+      "sha256": "44aeb8e56f64f2ccd80a1cd286460eda6d0232f9cc1e82618866826b23298535"
+    },
+    {
+      "path": "output/independent-candidates/t736-bl31.bin",
+      "address": "0x48000000",
+      "sector": 24587,
+      "bytes": 53924,
+      "sha256": "81f53c1d1f571c74bd907317d813a5ed56c64382479caa75edd3cec43ada6dc6"
+    },
+    {
+      "path": "output/independent-candidates/u-boot-source-ddr-autoboot.bin",
+      "address": "0x52000000",
+      "sector": 24693,
+      "bytes": 253648,
+      "sha256": "c9b05a7d207781a730c5e12aaae2bdfaf113194f8a3ea4b1e625d330e3f4018b"
+    }
+  ],
+  "vendor_executables": [
+    "explicitly authorized sun60iw2 DDR library and embedded DDR training only"
+  ],
+  "vendor_ddr_sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+  "boot_chain": "source eGON SPL + authorized DDR -> source TF-A -> source U-Boot -> Linux -> Armbian",
+  "source_spl_build_record": "build/emmc-spl-v4/build-record.json",
+  "cold_boot_validated": false,
+  "loader": "output/t736-tina-fes-loader.img (RAM only)",
+  "credential": "User authorized agent-chosen root password; secret stored outside project",
+  "recovery": "Pre-DDR fixed efex enters ROM 0x20 directly; no dependency on vendor Boot0 RTC handling",
+  "variant": "v4",
+  "peripheral_power_candidate": true
+}

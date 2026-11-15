@@ -137,13 +137,53 @@
 		phy-names = "usb";
 	};
 
-	/* Initial PIO driver owns these registers until CCU/pinctrl integration. */
+	/* Firmware keeps APB0 at 100 MHz and these rails on. No PMIC control yet. */
+	apb0_fw: clock-apb0-firmware {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <100000000>;
+	};
+
+	pc_supply: regulator-pc-firmware {
+		compatible = "regulator-fixed";
+		regulator-name = "pc-1v8-firmware";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		regulator-always-on;
+	};
+
+	pio: pinctrl@2000000 {
+		compatible = "allwinner,t736-pinctrl";
+		reg = <0 0x02000000 0 0x600>;
+		interrupts = <0 69 4>, <0 71 4>, <0 73 4>, <0 75 4>,
+			     <0 77 4>, <0 79 4>, <0 81 4>, <0 83 4>,
+			     <0 85 4>, <0 87 4>;
+		clocks = <&apb0_fw>, <&dcxo>, <&osc32k>;
+		clock-names = "apb", "hosc", "losc";
+		vcc-pc-supply = <&pc_supply>;
+		gpio-controller;
+		#gpio-cells = <3>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#address-cells = <0>;
+
+		emmc_pins: emmc-pins {
+			pins = "PC0", "PC1", "PC5", "PC6", "PC8", "PC9",
+			       "PC10", "PC11", "PC13", "PC14", "PC15", "PC16";
+			function = "sdc3";
+			allwinner,pinmux = <4>;
+			/* Preserve the firmware's drive strength and pull settings. */
+		};
+	};
+
+	/* Initial PIO driver still owns this CCU subset, but no GPIO registers. */
 	mmc0: mmc@4023000 {
 		compatible = "allwinner,t736-smhc3-pio";
 		reg = <0 0x04023000 0 0x1000>,
 		      <0 0x02002d30 0 4>,
-		      <0 0x02002d3c 0 4>,
-		      <0 0x02000180 0 12>;
+		      <0 0x02002d3c 0 4>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&emmc_pins>;
 		bus-width = <8>;
 		non-removable;
 	};

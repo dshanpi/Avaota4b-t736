@@ -1,0 +1,26 @@
+id; cat /proc/sys/kernel/random/boot_id; cat /proc/uptime; cat /sys/devices/system/cpu/online; free -m; findmnt -n -o SOURCE,FSTYPE,OPTIONS /; systemctl --failed --no-pager; cat /proc/sys/kernel/tainted; dd if=/dev/mmcblk0 bs=512 skip=16 count=432 status=none | sha256sum; printf "SOURCE_V2_RUNTIME_IDENTITY_DONE\n"
+root@t736:~# id; cat /proc/sys/kernel/random/boot_id; cat /proc/uptime; cat /sys/devices/system/cpu/online; free -m; findmnt -n -o SOURCE,FSTYPE,OPTIONS /; systemctl --failed --no-pager; cat /proc/sys/kernel/tainted; dd if=/dev/mmcblk0 bs=512 skip=16 count=432 status=none | sha256sum; printf "SOURCE_V2_RUNTIME_IDENTITY_DONE\n"
+
+uid=0(root) gid=0(root) groups=0(root)
+43091f50-f59c-4017-99c1-80f2d6f5e107
+114.15 676.77
+0-7
+               total        used        free      shared  buff/cache   available
+Mem:            7749         149        7431           9         242        7600
+Swap:              0           0           0
+/dev/mmcblk0p4 ext4 rw,noatime
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+0
+b643029ba6b5e4fa9b46623cae96235969488a2e4ce0f7bfb7d9491ba7bfe186  -
+SOURCE_V2_RUNTIME_IDENTITY_DONE
+root@t736:~# f=$(mktemp /var/tmp/t736-source-v2-io-XXXXXX) && dd if=/dev/urandom of="$f" bs=1M count=16 conv=fsync status=none && expected=$(sha256sum "$f" | cut -d' ' -f1) && actual=$(dd if="$f" bs=1M count=16 iflag=direct status=none | sha256sum | cut -d' ' -f1) && test "$expected" = "$actual" && printf 'SOURCE_V2_IO_16M_FSYNC_DIRECT_READ_OK %s\n' "$actual"; rm -f -- "$f"; ls -l /sys/class/drm /dev/dri /dev/fb0 2>&1; cat /proc/fb; cat /proc/uptime; sync
+
+SOURCE_V2_IO_16M_FSYNC_DIRECT_READ_OK 69372779fa456b251826cd79e0551e3929f49536214a690791fdb4f5c878eeaf
+ls: cannot access '/sys/class/drm': No such file or directory
+ls: cannot access '/dev/dri': No such file or directory
+ls: cannot access '/dev/fb0': No such file or directory
+cat: /proc/fb: No such file or directory
+229.10 1569.30
+root@t736:~# 

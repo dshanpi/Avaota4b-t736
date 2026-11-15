@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "ALLWINNER_UBOOT_PROMPT_TIMEOUT:bytesObserved=11:serialError=none:did not send efex"
+    }
+  ],
+  "isError": true
+}

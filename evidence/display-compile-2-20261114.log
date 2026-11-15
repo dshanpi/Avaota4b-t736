@@ -1,0 +1,10 @@
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+  GEN     Makefile
+drivers/gpu/drm/t736-bsp/Kconfig:191: can't open file "drivers/drm/panel/Kconfig"
+make[3]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/kconfig/Makefile:85: olddefconfig] Error 1
+make[2]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:754: olddefconfig] Error 2
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+make[1]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make: *** [Makefile:248: __sub-make] Error 2

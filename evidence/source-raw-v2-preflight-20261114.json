@@ -1,0 +1,14 @@
+{
+  "version": "source-v2",
+  "bytes": 8589934592,
+  "sha256": "64fec54b74b6cc1491eac7e6ebf7fcd1daed54ccc2fc185dc5e57c70583796d3",
+  "egon_checksum_valid": true,
+  "changed_regions_from_v1": [
+    "source-spl"
+  ],
+  "boot_payloads_unchanged": true,
+  "rootfs_unchanged": true,
+  "partition_layout_unchanged": true,
+  "offline_filesystem_and_layout_checks": "source-raw-v2-pack-20261114.log",
+  "hardware_cold_boot": false
+}

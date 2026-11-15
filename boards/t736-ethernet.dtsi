@@ -1,0 +1,87 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/* Append to the validated PIO board tree for the Ethernet candidate. */
+/ {
+	aliases { ethernet0 = &gmac0; };
+
+	/* Existing firmware configuration, not an independent PLL driver. */
+	ahb_fw: clock-ahb-firmware {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <200000000>;
+	};
+	pll_peri150_fw: clock-peri150-firmware {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <150000000>;
+	};
+	mbus_fw: clock-mbus-firmware {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <600000000>;
+	};
+	ph_supply: regulator-ph-firmware {
+		compatible = "regulator-fixed";
+		regulator-name = "ph-phy-3v3-firmware";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+	};
+	gmac_ccu: clock-controller@2003410 {
+		compatible = "allwinner,t736-gmac-ccu";
+		reg = <0 0x02003410 0 0x10>, <0 0x020025e4 0 4>;
+		clocks = <&ahb_fw>, <&pll_peri150_fw>, <&mbus_fw>;
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+	gmac0: ethernet@4500000 {
+		compatible = "allwinner,t736-dwmac";
+		reg = <0 0x04500000 0 0x8000>, <0 0x04508000 0 4>;
+		interrupts = <0 172 4>, <0 178 4>, <0 173 4>, <0 174 4>;
+		interrupt-names = "macirq", "eth_lpi", "tx0_irq", "rx0_irq";
+		clocks = <&gmac_ccu 0>, <&gmac_ccu 1>, <&gmac_ccu 2>;
+		clock-names = "stmmaceth", "phy", "mbus";
+		/* stmmac pulses AXI; AHB must stay released for the extension. */
+		resets = <&gmac_ccu 1>, <&gmac_ccu 0>;
+		reset-names = "stmmaceth", "ahb";
+		pinctrl-names = "default";
+		pinctrl-0 = <&gmac0_pins>;
+		phy-mode = "rgmii-rxid";
+		phy-handle = <&gmac0_phy>;
+		phy-supply = <&ph_supply>;
+		max-speed = <1000>;
+		allwinner,tx-delay-taps = <13>;
+		allwinner,rx-delay-taps = <10>;
+		snps,pbl = <8>;
+		snps,aal;
+		/* PHY RX delay is required in addition to the calibrated MAC taps.
+		 * PHY TX delay stays off; all four PHY-delay combinations tested.
+		 */
+		mdio {
+			compatible = "snps,dwmac-mdio";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			/* Release the sole PHY before reading its ID. A child reset
+			 * is only acquired after discovery and cannot bootstrap it.
+			 */
+			reset-gpios = <&pio 7 16 1>;
+			reset-delay-us = <10000>;
+			reset-post-delay-us = <150000>;
+			gmac0_phy: ethernet-phy@1 {
+				reg = <1>;
+			};
+		};
+	};
+};
+
+&pio {
+	vcc-ph-supply = <&ph_supply>;
+	gmac0_pins: gmac0-pins {
+		pins = "PH0", "PH1", "PH2", "PH3", "PH4", "PH5", "PH6", "PH7",
+		       "PH8", "PH9", "PH10", "PH11", "PH12", "PH13", "PH14", "PH15";
+		function = "gmac0";
+		allwinner,pinmux = <5>;
+		/* Match the board's documented RGMII electrical configuration. */
+		drive-strength = <40>;
+		bias-pull-up;
+	};
+};

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "status": "source_protocol_core_not_complete_cold_start_driver",
+  "sources": [
+    {
+      "path": "evidence/vendor-reference/reference-1.txt",
+      "sections": ["4.1.6.133 SMHC3 clock", "11.3.9 SMHC3 registers"],
+      "use": "Register layout, PIO flags, reset/clock/status semantics"
+    },
+    {
+      "path": "userpatches/u-boot/u-boot-t736-mainline/0001-t736-uart-memory-mmc.patch",
+      "use": "Project GPL read-only PIO controller implementation previously tested after legacy initialization; cold-start suitability is not inferred from that test"
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/brandy-2.0/u-boot-2018/drivers/mmc/host/sunxi_mmc_host_tm5.c",
+      "use": "Read-only cross-check of new timing SDR module clock at twice card clock; no SDK source copied or executable linked"
+    }
+  ],
+  "implemented": [
+    "Module clock enabled before host reset; unrelated NTSR phase fields preserved",
+    "400 kHz identification and 12 MHz 1-bit SDR transfer using 24 MHz source",
+    "CMD0/1/2/3/7/8 eMMC initialization and EXT_CSD user-area/capacity checks",
+    "512-byte unaligned-safe CMD17 reads with capacity bounds",
+    "No media or EXT_CSD write command API",
+    "Bounded reset/clock/command/FIFO/busy polling with timer-failure propagation",
+    "Immediate R1 error checking, controller IRQ errors and failed-transfer invalidation"
+  ],
+  "missing_integration": [
+    "Actual board VCC/VCCQ power and pad-voltage establishment",
+    "PC pinmux/drive and CCU bus reset/gating implementation",
+    "Connection to early timer/MMIO callbacks",
+    "Boot payload format, source-built payload loading and ARM64 transition"
+  ],
+  "review_fixes": [
+    "Independent review caught missing module clock at cold host reset",
+    "Independent review caught NTSR full write clearing RX phase fields",
+    "R1 errors now checked before waiting for rejected data payload",
+    "Platform timer errors can propagate through the IO API"
+  ],
+  "validation": "evidence/spl-emmc-check.json",
+  "vendor_executable_linked": false,
+  "hardware_tested": false,
+  "coldboot_tested": false,
+  "deployable": false
+}

@@ -1,0 +1,992 @@
+sh /tmp/t736-transfer/display-check.sh
+
+Linux t736 6.18.63-t736-hdmi-v12 #12 SMP Sat Nov 14 05:55:42 EST 2026 aarch64 GNU/Linux
+earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused initcall_debug ignore_loglevel printk.time=1 drm.debug=0x1f fbcon=map:1
+
+DISPLAY_KERNEL_LOG
+[    0.542767] Memory: 7787508K/8388608K available (6464K kernel code, 2114K rwdata, 2384K rodata, 448K init, 286K bss, 466904K reserved, 131072K cma-reserved)
+[    0.795170] calling  cma_init_reserved_areas+0x0/0x24c @ 1
+[    0.802760] initcall cma_init_reserved_areas+0x0/0x24c returned 0 after 0 usecs
+[    1.267309] calling  vtconsole_class_init+0x0/0xe4 @ 1
+[    1.273110] initcall vtconsole_class_init+0x0/0xe4 returned 0 after 0 usecs
+[    1.476075] /display-engine@5000000: Fixed dependency cycle(s) with /tcon@5730000
+[    1.484473] /tcon@5730000: Fixed dependency cycle(s) with /display-engine@5000000
+[    1.493418] /tcon@5730000: Fixed dependency cycle(s) with /hdmi@5520000
+[    1.500856] /hdmi@5520000: Fixed dependency cycle(s) with /tcon@5730000
+[    2.006321] probe of regulator-hdmi-core returned 0 after 0 usecs
+[    2.006736] probe of regulator-hdmi-1v8 returned 0 after 0 usecs
+[    2.990914] calling  register_arm64_panic_block+0x0/0x28 @ 1
+[    3.003072] initcall register_arm64_panic_block+0x0/0x28 returned 0 after 4 usecs
+[    4.518526] calling  display_ccu_driver_init+0x0/0x20 @ 1
+[    4.528222] t736-display-ccu 2002a00.clock-controller: DE PLL locked at 600 MHz; HDMI PHY reference is board DCXO 26 MHz
+[    4.548083] initcall display_ccu_driver_init+0x0/0x20 returned 0 after 23567 usecs
+[    4.599286] calling  display_power_driver_init+0x0/0x20 @ 1
+[    4.625506] initcall display_power_driver_init+0x0/0x20 returned 0 after 20059 usecs
+[    4.892012] printk: legacy bootconsole [uart8250] disabled
+[    4.944786] calling  drm_core_init+0x0/0xa4 @ 1
+[    4.949457] [drm:drm_core_init] Initialized
+[    4.953683] initcall drm_core_init+0x0/0xa4 returned 0 after 4333 usecs
+[    4.960334] calling  drm_display_helper_module_init+0x0/0x8 @ 1
+[    4.966284] initcall drm_display_helper_module_init+0x0/0x8 returned 0 after 0 usecs
+[    4.974058] calling  sunxi_drm_drv_init+0x0/0x80 @ 1
+[    4.979223] [drm] [TCON_TOP]sunxi_tcon_top_probe start
+[    4.984483] probe of 5510000.tcon-top returned 0 after 5332 usecs
+[    4.991209] [drm] [SUNXI-DE] offline_mode not found, used def val
+[    4.997452] [drm] de use no display sys
+[    5.003615] probe of 5000000.display-engine returned 0 after 12828 usecs
+[    5.010776] probe of 5520000.hdmi returned 0 after 244 usecs
+[    5.016656] [drm] [TCON] sunxi_tcon_probe start
+[    5.021249] [drm] [SUNXI-TCON] sunxi_tcon_of_get_id 4
+[    5.026628] [drm] [TCON] sunxi_tcon_probe ret = 0
+[    5.031651] probe of 5730000.tcon returned 0 after 15042 usecs
+[    5.037695] [drm] sunxi_drm_platform_probe start
+[    5.042383] [drm] sunxi_drm_match_add start
+[    5.047355] [drm] sunxi_drm_match_add finish
+[    5.051705] [drm] sunxi_drm_bind start
+[    5.055994] [drm] [TCON_TOP]sunxi_tcon_top_bind start
+[    5.061414] sunxi-drm sunxi-drm: bound 5510000.tcon-top (ops 0xffff8000806d7690)
+[    5.068889] [drm] [SUNXI-DE] sunxi_de_bind start
+[    5.073617] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.084898] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.096176] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.107444] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.118702] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.129961] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.141223] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.152483] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.163737] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.174995] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.186259] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.197527] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.208788] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.220044] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.231302] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.242560] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.253823] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    5.264146] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    5.274452] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.285713] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.296976] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.308245] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000061,not support tfbc modifier
+[    5.319494] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    5.329799] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    5.340101] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    5.350405] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    5.360715] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    5.371018] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    5.381323] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    5.391623] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    5.401932] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    5.412246] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    5.422547] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    5.432852] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    5.443152] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    5.453456] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    5.463760] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.475022] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.486280] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.497540] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.508803] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.520084] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.531347] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.542607] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.553866] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.565125] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.576388] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.587644] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.598903] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.610163] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.621427] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.632692] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.643947] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    5.654251] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    5.664556] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.675810] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.687072] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.698332] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0800000000000072,not support tfbc modifier
+[    5.709591] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    5.719893] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    5.730226] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    5.740540] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    5.750843] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    5.761148] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    5.771468] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    5.781774] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    5.792080] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    5.802386] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    5.812692] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    5.822994] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    5.833310] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    5.843619] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    5.853931] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    5.864238] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    5.874534] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    5.884840] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    5.895147] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    5.905453] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    5.915755] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    5.926060] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    5.936374] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    5.946681] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    5.956988] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    5.967288] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    5.977593] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    5.987895] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    5.998204] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    6.008510] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    6.018814] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001d
+[    6.030961] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001d
+[    6.043096] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001d
+[    6.055229] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001d
+[    6.067358] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001d
+[    6.079486] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001d
+[    6.091615] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    6.101920] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    6.112228] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001d
+[    6.124350] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001d
+[    6.136478] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001d
+[    6.148611] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001d
+[    6.160741] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    6.171047] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    6.181352] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    6.191654] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    6.201958] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    6.212261] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    6.222565] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    6.232869] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    6.243169] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    6.253480] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    6.263781] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    6.274089] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    6.284412] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    6.294716] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    6.305024] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001e
+[    6.317152] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001e
+[    6.329284] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001e
+[    6.341413] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001e
+[    6.353541] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001e
+[    6.365673] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001e
+[    6.377803] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    6.388107] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    6.398412] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001e
+[    6.410540] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001e
+[    6.422669] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001e
+[    6.434795] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001e
+[    6.446926] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    6.457231] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    6.467531] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    6.477840] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    6.488142] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    6.498452] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    6.508759] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    6.519059] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    6.529364] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    6.539684] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    6.549997] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    6.560304] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    6.570605] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    6.580915] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    6.591219] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001f
+[    6.603350] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001f
+[    6.615480] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001f
+[    6.627608] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001f
+[    6.639736] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001f
+[    6.651863] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001f
+[    6.663994] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    6.674300] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    6.684613] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001f
+[    6.696741] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001f
+[    6.708870] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001f
+[    6.721002] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001f
+[    6.733129] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    6.743431] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    6.753736] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    6.764036] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    6.774346] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    6.784652] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    6.794974] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    6.805281] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    6.815584] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    6.825893] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    6.836200] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    6.846496] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    6.856802] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    6.867102] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    6.877493] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    6.887800] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    6.898115] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    6.908421] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    6.918722] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    6.929032] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    6.939333] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    6.949639] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    6.959940] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    6.970245] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    6.980555] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    6.990856] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    7.001167] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    7.011468] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    7.021774] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    7.032079] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    7.042388] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001d
+[    7.054535] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001d
+[    7.066666] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001d
+[    7.078796] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001d
+[    7.090928] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001d
+[    7.103055] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001d
+[    7.115188] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    7.125495] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    7.135794] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001d
+[    7.147927] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001d
+[    7.160057] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001d
+[    7.172194] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001d
+[    7.184321] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    7.194621] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    7.204929] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    7.215230] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    7.225541] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    7.235843] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    7.246147] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    7.256455] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    7.266757] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    7.277062] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    7.287362] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    7.297666] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    7.307989] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    7.318296] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    7.328609] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001e
+[    7.340738] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001e
+[    7.352866] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001e
+[    7.364998] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001e
+[    7.377127] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001e
+[    7.389254] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001e
+[    7.401382] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    7.411685] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    7.421993] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001e
+[    7.434126] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001e
+[    7.446255] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001e
+[    7.458384] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001e
+[    7.470514] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    7.480823] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    7.491125] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    7.501431] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    7.511730] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    7.522036] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    7.532345] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    7.542653] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    7.552960] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    7.563280] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    7.573588] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    7.583894] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    7.594201] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    7.604505] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    7.614808] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001f
+[    7.626936] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001f
+[    7.639067] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001f
+[    7.651202] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001f
+[    7.663331] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001f
+[    7.675459] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001f
+[    7.687587] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    7.697895] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    7.708200] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001f
+[    7.720322] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001f
+[    7.732452] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30335241, notsupport lossy modifier 0x920000000000001f
+[    7.744579] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334241, notsupport lossy modifier 0x920000000000001f
+[    7.756717] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334152, not support tfbc format
+[    7.767019] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30334142, not support tfbc format
+[    7.777324] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3136564e, not support tfbc format
+[    7.787625] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3631564e, not support tfbc format
+[    7.797930] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315559, not support tfbc format
+[    7.808239] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36315659, not support tfbc format
+[    7.818559] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3231564e, not support tfbc format
+[    7.828865] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x3132564e, not support tfbc format
+[    7.839167] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315559, not support tfbc format
+[    7.849471] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315659, not support tfbc format
+[    7.859777] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315559, not support tfbc format
+[    7.870089] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x31315659, not support tfbc format
+[    7.880396] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313050, not support tfbc format
+[    7.890699] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x30313250, not support tfbc format
+[    7.901056] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    7.911367] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    7.921676] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001d
+[    7.933805] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001d
+[    7.945934] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001d
+[    7.958062] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001d
+[    7.970194] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001d
+[    7.982327] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001d
+[    7.994457] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    8.004764] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    8.015064] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001d
+[    8.027204] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001d
+[    8.039335] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001e
+[    8.051465] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001e
+[    8.063594] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001e
+[    8.075741] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001e
+[    8.087884] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001e
+[    8.100013] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001e
+[    8.112141] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    8.122446] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    8.132752] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001e
+[    8.144885] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001e
+[    8.157017] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314752, notsupport lossy modifier 0x920000000000001f
+[    8.169143] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x36314742, notsupport lossy modifier 0x920000000000001f
+[    8.181270] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32315241, notsupport lossy modifier 0x920000000000001f
+[    8.193403] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314241, notsupport lossy modifier 0x920000000000001f
+[    8.205537] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314152, notsupport lossy modifier 0x920000000000001f
+[    8.217666] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x32314142, notsupport lossy modifier 0x920000000000001f
+[    8.229795] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35315241, not support tfbc format
+[    8.240096] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314241, not support tfbc format
+[    8.250400] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314152, notsupport lossy modifier 0x920000000000001f
+[    8.262531] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm format 0x35314142, notsupport lossy modifier 0x920000000000001f
+[    8.274748] [drm] sunxi_de_bind crtc init for de 0 ok
+[    8.280337] sunxi-drm sunxi-drm: bound 5000000.display-engine (ops 0xffff8000806d4c50)
+[    8.288356] [drm] [SUNXI-TCON] sunxi_tcon_of_get_id 4
+[    8.294064] [drm] sunxi-hdmi: hdmi drv init dts done
+[    8.299645] [drm] sunxi-hdmi: [warn] not set hdmi notify node!
+[    8.305566] [drm] sunxi-hdmi: hdmi drv enable resource done
+[    8.311159] [drm] sunxi-hdmi: hdmi drv init resource done
+[    8.316688] [drm] sunxi-hdmi: hdmi drv init i2c adapter finish
+[    8.324270] [drm] sunxi-hdmi: drm hdmi connector create finish
+[    8.330142] [drm] sunxi-hdmi: hdmi devices bind done <<<<<<<<<<
+[    8.337565] sunxi-drm sunxi-drm: bound 5520000.hdmi (ops 0xffff8000806d7d48)
+[    8.344649] sunxi-drm sunxi-drm: bound 5730000.tcon (ops 0xffff8000806d7398)
+[    8.351792] [drm:drm_mode_object_get] OBJ ID: 128 (2)
+[    8.356894] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1]
+[    8.366328] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1] status updated from unknown to disconnected
+[    8.379590] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1] disconnected
+[    8.380174] [drm] sunxi-hdmi: hdmi drv detect hpd connect
+[    8.390152] [drm] HDMI-A-1 Not connected, start hot-plug monitoring
+[    8.401837] [drm:drm_mode_object_get] OBJ ID: 128 (2)
+[    8.406937] [drm] start HDMI-A-1 monitor monitoring, interval: 100ms
+[    8.413314] [drm:drm_mode_object_put] OBJ ID: 128 (3)
+[    8.418405] [drm:commit_init_connecting.isra.0] *ERROR* offline mode: init connecting not found sunxi_drm_offline_mode_pre_init
+[    8.429922] sunxi-drm sunxi-drm: [drm:drm_atomic_state_init] Allocated atomic state (____ptrval____)
+[    8.439095] sunxi-drm sunxi-drm: [drm:drm_atomic_check_only] checking (____ptrval____)
+[    8.447063] sunxi-drm sunxi-drm: [drm:drm_atomic_commit] committing (____ptrval____)
+[    8.454866] sunxi-drm sunxi-drm: [drm:drm_atomic_state_default_clear] Clearing atomic state (____ptrval____)
+[    8.464739] sunxi-drm sunxi-drm: [drm:__drm_atomic_state_free] Freeing atomic state (____ptrval____)
+[    8.473986] [drm:drm_minor_register] 
+[    8.477688] [drm:drm_minor_register] 
+[    8.481555] sunxi-drm sunxi-drm: [drm:drm_sysfs_hotplug_event] generating hotplug event
+[    8.481772] [drm:drm_minor_register] new minor registered 0
+[    8.495209] [drm:drm_minor_register] 
+[    8.499020] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_add] [CONNECTOR:122:Writeback-1] adding connector to sysfs
+[    8.509746] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:122:Writeback-1] generating connector hotplug event
+[    8.521994] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_add] [CONNECTOR:128:HDMI-A-1] adding connector to sysfs
+[    8.532505] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:128:HDMI-A-1] generating connector hotplug event
+[    8.544483] [drm] Initialized sunxi-drm 3.0.0 for sunxi-drm on minor 0
+[    8.551042] [drm] sunxi_drm_bind ok
+[    8.554610] probe of sunxi-drm returned 0 after 3516954 usecs
+[    8.560430] initcall sunxi_drm_drv_init+0x0/0x80 returned 0 after 3581374 usecs
+[    8.924221] [drm] sunxi-hdmi: dw edid unsupport parser desc type: 255
+[    8.930685] [drm] sunxi-hdmi: dw edid unsupport parser desc type: 253
+[    8.937148] [drm] sunxi-hdmi: sunxi hdmi edid parse block0 finish
+[    8.943266] [drm] sunxi-hdmi: [error] dw edid parse dtd timing pixel clock[0KHz] invalid!
+[    8.951456] [drm] sunxi-hdmi: sunxi hdmi edid parse block1 finish
+[    8.957586] sunxi-drm sunxi-drm: [drm:check_connector_changed] [CONNECTOR:128:HDMI-A-1] status updated from disconnected to connected
+[    8.969627] sunxi-drm sunxi-drm: [drm:check_connector_changed] [CONNECTOR:128:HDMI-A-1] Changed epoch counter 1 => 2
+[    8.980176] [drm:drm_mode_object_get] OBJ ID: 128 (3)
+[    8.985272] sunxi-drm sunxi-drm: [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:128:HDMI-A-1] generating connector hotplug event
+[    8.997248] [drm:drm_mode_object_put] OBJ ID: 128 (3)
+[    9.008206] [drm] HDMI-A-1 connection detected
+[    9.012688] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1]
+[    9.022153] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] HDMI: DVI dual 0, max TMDS clock 250000 kHz
+[    9.033673] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] No deep color support on this HDMI sink.
+[    9.044931] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] ELD monitor DELL U2518D
+[    9.054706] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] HDMI: latency present 0 0, video latency 0 0, audio latency 0 0
+[    9.067969] sunxi-drm sunxi-drm: [drm:update_display_info] [CONNECTOR:128:HDMI-A-1] ELD size 36, SAD count 1
+[    9.079300] [drm] sunxi-hdmi: drm get edid support modes: 42
+[    9.085103] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "1152x864": 75 108000 1152 1216 1344 1600 864 865 868 900 0x40 0x5 (BAD)
+[    9.098556] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "640x480": 75 31500 640 656 720 840 480 481 484 500 0x40 0xa (BAD)
+[    9.111468] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x400": 70 28320 720 738 846 900 400 412 414 449 0x40 0x6 (BAD)
+[    9.124383] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "1280x1024": 75 135000 1280 1296 1440 1688 1024 1025 1028 1066 0x40 0x5 (BAD)
+[    9.138249] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "1024x768": 75 78750 1024 1040 1136 1312 768 769 772 800 0x40 0x5 (BAD)
+[    9.151597] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "800x600": 75 49500 800 816 896 1056 600 601 604 625 0x40 0x5 (BAD)
+[    9.164601] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x480i": 60 13500 720 739 801 858 480 488 494 525 0x40 0x101a (BAD)
+[    9.177857] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x576i": 50 13500 720 732 795 864 576 580 586 625 0x40 0x101a (BAD)
+[    9.196828] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x480i": 60 13500 720 739 801 858 480 488 494 525 0x40 0x101a (BAD)
+[    9.218659] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x576i": 50 13500 720 732 795 864 576 580 586 625 0x40 0x101a (BAD)
+[    9.238150] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x480i": 60 13514 720 739 801 858 480 488 494 525 0x40 0x101a (BAD)
+[    9.258962] sunxi-drm sunxi-drm: [drm:drm_mode_prune_invalid] Rejected mode: "720x480i": 60 13514 720 739 801 858 480 488 494 525 0x40 0x101a (BAD)
+[    9.276716] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:128:HDMI-A-1] probed modes:
+[    9.293672] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "2560x1440": 60 241500 2560 2608 2640 2720 1440 1443 1448 1481 0x48 0x9
+[    9.313243] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "2048x1080": 60 147180 2048 2096 2128 2208 1080 1083 1093 1111 0x40 0x9
+[    9.325968] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "2048x1080": 24 58230 2048 2096 2128 2208 1080 1083 1093 1099 0x40 0x9
+[    9.345451] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080": 60 148500 1920 2008 2052 2200 1080 1084 1089 1125 0x40 0x5
+[    9.366768] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080": 60 148500 1920 2008 2052 2200 1080 1084 1089 1125 0x40 0x5
+[    9.386335] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080": 60 148352 1920 2008 2052 2200 1080 1084 1089 1125 0x40 0x5
+[    9.407910] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080i": 60 74250 1920 2008 2052 2200 1080 1084 1094 1125 0x40 0x15
+[    9.428267] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080i": 60 74176 1920 2008 2052 2200 1080 1084 1094 1125 0x40 0x15
+[    9.448359] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080": 50 148500 1920 2448 2492 2640 1080 1084 1089 1125 0x40 0x5
+[    9.469060] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1920x1080i": 50 74250 1920 2448 2492 2640 1080 1084 1094 1125 0x40 0x15
+[    9.491233] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1600x1200": 60 162000 1600 1664 1856 2160 1200 1201 1204 1250 0x40 0x5
+[    9.510389] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x1024": 60 108000 1280 1328 1440 1688 1024 1025 1028 1066 0x40 0x5
+[    9.531246] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x720": 60 74250 1280 1390 1430 1650 720 725 730 750 0x40 0x5
+[    9.550130] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x720": 60 74250 1280 1390 1430 1650 720 725 730 750 0x40 0x5
+[    9.570302] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x720": 60 74176 1280 1390 1430 1650 720 725 730 750 0x40 0x5
+[    9.588673] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1280x720": 50 74250 1280 1720 1760 1980 720 725 730 750 0x40 0x5
+[    9.608939] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "1024x768": 60 65000 1024 1048 1184 1344 768 771 777 806 0x40 0xa
+[    9.627478] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "800x600": 60 40000 800 840 968 1056 600 601 605 628 0x40 0x5
+[    9.648011] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x576": 50 27000 720 732 796 864 576 581 586 625 0x40 0xa
+[    9.667678] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x576": 50 27000 720 732 796 864 576 581 586 625 0x40 0xa
+[    9.689161] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x480": 60 27027 720 736 798 858 480 489 495 525 0x40 0xa
+[    9.708573] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x480": 60 27027 720 736 798 858 480 489 495 525 0x40 0xa
+[    9.729888] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x480": 60 27000 720 736 798 858 480 489 495 525 0x40 0xa
+[    9.748067] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "720x480": 60 27000 720 736 798 858 480 489 495 525 0x40 0xa
+[    9.786718] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "640x480": 60 25200 640 656 752 800 480 490 492 525 0x40 0xa
+[    9.800411] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "640x480": 60 25175 640 656 752 800 480 490 492 525 0x40 0xa
+[    9.819816] sunxi-drm sunxi-drm: [drm:drm_helper_probe_single_connector_modes] Probed mode: "640x480": 60 25175 640 656 752 800 480 490 492 525 0x40 0xa
+[    9.840444] [drm] HDMI-A-1: Configuration mode 2560x1440@60Hz
+[    9.851160] [drm:drm_mode_object_put] OBJ ID: 128 (2)
+[   10.051221] sunxi-drm sunxi-drm: [drm:drm_mode_addfb2] [FB:139]
+[   10.058588] [drm:drm_mode_object_put] OBJ ID: 139 (2)
+[   10.080314] [drm:sunxi_fbdev_plane_update] [SUNXI-DE] fbdev plane update
+[   10.092124] sunxi-drm sunxi-drm: [drm:drm_atomic_state_init] Allocated atomic state (____ptrval____)
+[   10.107691] [drm:drm_mode_object_get] OBJ ID: 137 (1)
+[   10.118326] sunxi-drm sunxi-drm: [drm:drm_atomic_get_crtc_state] Added [CRTC:101:DE-0] (____ptrval____) state to (____ptrval____)
+[   10.137401] sunxi-drm sunxi-drm: [drm:drm_atomic_set_mode_for_crtc] Set [MODE:2560x1440] for [CRTC:101:DE-0] state (____ptrval____)
+[   10.153238] [drm:drm_mode_object_get] OBJ ID: 128 (1)
+[   10.164827] sunxi-drm sunxi-drm: [drm:drm_atomic_get_connector_state] Added [CONNECTOR:128:HDMI-A-1] (____ptrval____) state to (____ptrval____)
+[   10.173283] calling  kernel_panic_sysctls_init+0x0/0x34 @ 1
+[   10.186134] [drm:drm_mode_object_get] OBJ ID: 128 (2)
+[   10.191747] initcall kernel_panic_sysctls_init+0x0/0x34 returned 0 after 25 usecs
+[   10.196780] sunxi-drm sunxi-drm: [drm:drm_atomic_set_crtc_for_connector] Link [CONNECTOR:128:HDMI-A-1] state (____ptrval____) to [CRTC:101:DE-0]
+[   10.204272] calling  kernel_panic_sysfs_init+0x0/0x30 @ 1
+[   10.204308] initcall kernel_panic_sysfs_init+0x0/0x30 returned 0 after 13 usecs
+[   10.217257] [drm:drm_mode_object_get] OBJ ID: 133 (1)
+[   10.229977] sunxi-drm sunxi-drm: [drm:drm_atomic_get_plane_state] Added [PLANE:94:plane-0-vch0(0)] (____ptrval____) state to (____ptrval____)
+[   10.240536] sunxi-drm sunxi-drm: [drm:drm_atomic_set_fb_for_plane] Set [FB:139] for [PLANE:94:plane-0-vch0(0)] state (____ptrval____)
+[   10.260547] [drm:drm_mode_object_get] OBJ ID: 139 (1)
+[   10.277867] sunxi-drm sunxi-drm: [drm:drm_atomic_set_crtc_for_plane] Link [PLANE:94:plane-0-vch0(0)] state (____ptrval____) to [CRTC:101:DE-0]
+[   10.290156] sunxi-drm sunxi-drm: [drm:drm_atomic_check_only] checking (____ptrval____)
+[   10.290195] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CRTC:101:DE-0] mode changed
+[   10.316461] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CRTC:101:DE-0] enable changed
+[   10.333283] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CRTC:101:DE-0] active changed
+[   10.347477] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] Updating routing for [CONNECTOR:128:HDMI-A-1]
+[   10.363583] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CONNECTOR:128:HDMI-A-1] using [ENCODER:127:TMDS-127] on [CRTC:101:DE-0]
+[   10.379424] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_check_modeset] [CRTC:101:DE-0] needs all connectors, enable: y, active: y
+[   10.399435] sunxi-drm sunxi-drm: [drm:drm_atomic_add_affected_connectors] Adding all current connectors for [CRTC:101:DE-0] to (____ptrval____)
+[   10.416417] sunxi-drm sunxi-drm: [drm:drm_atomic_add_affected_planes] Adding all current planes for [CRTC:101:DE-0] to (____ptrval____)
+[   10.436425] sunxi-drm sunxi-drm: [drm:drm_atomic_add_encoder_bridges] Adding all bridges for [encoder:127:TMDS-127] to (____ptrval____)
+[   10.453827] [drm] sunxi-hdmi: drm hdmi set mode change when disp info change
+[   10.472972] [drm] sunxi-hdmi: drm hdmi check mode: change >>>>>>>>>>>>>>>>
+[   10.472986] sunxi-drm sunxi-drm: [drm:drm_atomic_normalize_zpos] [CRTC:101:DE-0] calculating normalized zpos values
+[   10.485177] sunxi-drm sunxi-drm: [drm:drm_atomic_normalize_zpos] [PLANE:94:plane-0-vch0(0)] processing zpos value 0
+[   10.502495] sunxi-drm sunxi-drm: [drm:drm_atomic_normalize_zpos] [PLANE:94:plane-0-vch0(0)] normalized zpos value 0
+[   10.519986] sunxi-drm sunxi-drm: [drm:drm_atomic_commit] committing (____ptrval____)
+[   10.535271] sunxi-drm sunxi-drm: [drm:drm_calc_timestamping_constants] crtc 101: hwmode: htotal 2720, vtotal 1481, vdisplay 1440
+[   10.549879] sunxi-drm sunxi-drm: [drm:drm_calc_timestamping_constants] crtc 101: clock 241500 kHz framedur 16680414 linedur 11262
+[   10.566334] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_commit_crtc_set_mode] modeset on [ENCODER:127:TMDS-127]
+[   10.584960] [drm] sunxi-hdmi: sunxi hdmi select vic 0 use hdmi14 vsif
+[   10.600606] [drm] sunxi-hdmi: drm hdmi mode set: 2560*1440 >>>>>>>>>>>>>>>>
+[   10.614308] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_commit_crtc_enable] enabling [CRTC:101:DE-0]
+[   10.627026] [drm] [SUNXI-CRTC]sunxi_crtc_atomic_enable
+[   10.627037] [drm:drm_mode_object_get] OBJ ID: 140 (1)
+[   10.643830] [drm:drm_mode_object_put] OBJ ID: 140 (2)
+[   10.655010] [drm] sunxi_de_enable index 0
+[   10.668036] [drm] sunxi_de_enable finish sw en=0
+[   10.678541] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_commit_encoder_bridge_pre_enable] pre-enabling bridges [ENCODER:127:TMDS-127]
+[   10.689958] sunxi-drm sunxi-drm: [drm:drm_atomic_helper_commit_encoder_bridge_enable] enabling [ENCODER:127:TMDS-127]
+[   10.699916] [drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+[   10.719255] [drm] sunxi-hdmi: dw audio get n = 6144
+[   10.761900] [drm] sunxi-hdmi: top phy auto calculate done
+[   10.771921] [drm] sunxi-hdmi: [top phy]
+[   10.771928] [drm] sunxi-hdmi:  - pixel clock 241500KHz
+[   10.781172] [drm] sunxi-hdmi:    - pll: 0xE8064000, 0x00035000, 0x00000000, 0x30000000
+[   10.793654] [drm] sunxi-hdmi: top phy config done
+[   10.793678] [drm] sunxi-hdmi: [warn] snps phy check clk: 241500Hz is match in [237600Hz-288000Hz] and change use: 237600Hz
+[   10.806711] [drm] sunxi-hdmi: [snps phy]
+[   10.822134] [drm] sunxi-hdmi:  - refer clock: 237600KHz, color bits: 8, repeat: 0
+[   10.822147] [drm] sunxi-hdmi:     - mpll: 0x0000, 0x3040, 0x0605
+[   10.832691] [drm] sunxi-hdmi:  - refer clock: 241500KHz. [185625KHz~340000KHz]
+[   10.844476] [drm] sunxi-hdmi:     - drive: 0x0004, 0x8040, 0x8e85
+[   10.844945] [drm] sunxi-hdmi: snps phy state: lock
+[   10.906612] [drm] sunxi-hdmi: dw audio check: triger cts re-calculate
+[   10.915036] [drm] sunxi-hdmi: hdmi drv enable output done
+[   10.915044] [drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[   10.925420] [drm:sunxi_crtc_atomic_begin] sunxi_crtc_atomic_begin
+[   10.938664] [drm:sunxi_drm_crtc_enable_vblank] sunxi_drm_crtc_enable_vblank
+[   10.949718] sunxi-drm sunxi-drm: [drm:drm_vblank_enable] enabling vblank on crtc 0, ret: 0
+[   10.963498] [drm:sunxi_de_channel_update] [SUNXI-DE] sunxi_de_channel_update vch0 update
+[   10.977396] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0000000000000000,not support tfbc modifier
+[   10.992987] [drm:de_tfbd_format_mod_supported] [SUNXI-CRTC] get an drm modifier 0x0000000000000000,not support tfbc modifier
+[   11.008499] [drm:de_tfbd_apply_lay] [SUNXI-DE] de_tfbd_disable 258 ch 0
+[   11.025833] [drm:de_frontend_apply] old enable 0 new enableffffb9ff now dirty ffffb9ff ffffb9ff
+[   11.037582] [drm:de_frontend_apply] pq dirty ffffffff enable ffffb9ff
+[   11.053262] [drm:de_fcm_enable] [SUNXI-DE] de_fcm_enable 105 
+[   11.064591] [drm:de35x_fcm_enable] de35x_fcm_enable 0
+[   11.077054] [drm:de_sharp_enable] [SUNXI-DE] de_sharp_enable 55 
+[   11.087607] [drm:de35x_sharp_enable] de35x_sharp_enable 0
+[   11.100959] [drm:de_scaler_asu_pq_enable] de_scaler_asu_pq_enable 0
+[   11.111165] [drm:de_snr_enable] [SUNXI-DE] de_snr_enable 57 
+[   11.124060] [drm:de35x_snr_enable] de35x_snr_enable 0
+[   11.134542] [drm:de_backend_apply] [SUNXI-DE] de_backend_apply 
+[   11.146204] [drm:de_backend_apply] old enable 0 new enableffffffff now dirty ffffffff ffffffff
+[   11.157278] [drm:de_dcsc_apply] [SUNXI-DE] bcsh dirty 1 enable 1 brightness 50 constants 50saturation 50 hue 50 ctm dirty 0 ctm enable 0 apply 0
+[   11.172953] [drm:de_backend_apply_csc.isra.0] [SUNXI-DE] de_backend_apply_csc gamma csc dirty
+[   11.190871] [drm:de_backend_apply] de_backend_apply_deband ffff0000c00eba58
+[   11.206204] [drm:de_backend_apply] de_backend_apply_smbl ffff0000c00eba58
+[   11.218662] [drm:de_dlc_update_regs] [SUNXI-DE] de_dlc_update_regs 936 blk_id:0
+[   11.232776] [drm:de_cdc_update_regs] [SUNXI-DE] de_cdc_update_regs 82 blk_id:0
+[   11.244796] [drm:de_sharp_update_regs] [SUNXI-DE] de_sharp_update_regs 107 blk_id:0
+[   11.258643] [drm:de_snr_update_regs] [SUNXI-DE] de_snr_update_regs 99 blk_id:0
+[   11.271198] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_tmp_khz 338100 , c0/c1 1 , c0 100 , c1 100 , c2 241500 , c3 3381000
+[   11.285306] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_tmp_khz 338100 , c0/c1 1 , c0 100 , c1 100 , c2 241500 , c3 3381000
+[   11.301583] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_tmp_khz 338100 , c0/c1 1 , c0 100 , c1 100 , c2 241500 , c3 3381000
+[   11.301617] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_tmp_khz 338100 , c0/c1 1 , c0 100 , c1 100 , c2 241500 , c3 3381000
+[   11.319794] [drm:sunxi_de_auto_calc_freq_and_apply] c0 600000 , c1 100 , c2 241500 
+[   11.336161] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_ret_khz 338100 , m 6 , n 3
+[   11.354451] [drm:sunxi_de_auto_calc_freq_and_apply] de_clk_ret_khz 338100 , ret clk 342857 , ret_clk 1
+[   11.380230] [drm:sunxi_crtc_atomic_flush] sunxi_crtc_atomic_flush finish
+[   11.390690] sunxi-drm sunxi-drm: [drm:drm_atomic_state_default_clear] Clearing atomic state (____ptrval____)
+[   11.402112] [drm:drm_mode_object_put] OBJ ID: 128 (3)
+[   11.418733] [drm:drm_mode_object_put] OBJ ID: 137 (2)
+[   11.428595] [drm:drm_mode_object_put] OBJ ID: 133 (2)
+[   11.440451] sunxi-drm sunxi-drm: [drm:__drm_atomic_state_free] Freeing atomic state (____ptrval____)
+[   11.446116] calling  deferred_probe_initcall+0x0/0xb4 @ 1
+[   11.451172] [drm] HDMI-A-1: Configuration complete
+[   11.467815] [drm:de_cdc_update_local_param] [de_cdc_update_local_param]-518
+[   11.527422] initcall deferred_probe_initcall+0x0/0xb4 returned 0 after 68767 usecs
+[   12.107034] GPT: Use GNU Parted to correct GPT errors.
+[   24.796789] systemd[1]: kmod-static-nodes.service - Create List of Static Device Nodes skipped, unmet condition check ConditionFileNotEmpty=/lib/modules/6.18.63-t736-hdmi-v12/modules.devname
+[   24.856659] systemd[1]: Starting modprobe@drm.service - Load Kernel Module drm...
+[   25.365380] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[   25.374548] systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+
+DISPLAY_DEVICES
+crw-rw---- 1 root video 29, 0 Nov 11 15:48 /dev/fb0
+
+/dev/dri:
+total 0
+drwxr-xr-x 2 root root      60 Nov 11 15:48 by-path
+crw-rw---- 1 root video 226, 0 Nov 11 15:48 card0
+
+/sys/class/graphics:
+total 0
+lrwxrwxrwx 1 root root 0 Jan  1  1970 fb0 -> ../../devices/platform/sunxi-drm/graphics/fb0
+lrwxrwxrwx 1 root root 0 Jan  1  1970 fbcon -> ../../devices/virtual/graphics/fbcon
+
+CONNECTOR /sys/class/drm/card0-HDMI-A-1
+connected
+enabled
+2560x1440
+2048x1080
+2048x1080
+1920x1080
+1920x1080
+1920x1080
+1920x1080i
+1920x1080i
+1920x1080
+1920x1080i
+1600x1200
+1280x1024
+1280x720
+1280x720
+1280x720
+1280x720
+1024x768
+800x600
+720x576
+720x576
+720x480
+720x480
+720x480
+720x480
+640x480
+640x480
+640x480
+256 /sys/class/drm/card0-HDMI-A-1/edid
+75ecf4dfe66e41e302ca8f9512e04658b3f7a9940c85b3610f176d29b40cf895  /sys/class/drm/card0-HDMI-A-1/edid
+
+CONNECTOR /sys/class/drm/card0-Writeback-1
+unknown
+disabled
+0 /sys/class/drm/card0-Writeback-1/edid
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /sys/class/drm/card0-Writeback-1/edid
+
+FRAMEBUFFER /sys/class/graphics/fb0
+
+2560,2880
+32
+
+FRAMEBUFFER /sys/class/graphics/fbcon
+
+DISPLAY_CLOCKS
+    t736-de-mbus                     1       1        0        600000000   0          0     50000      Y      5000000.display-engine          mbus_vo_sys              
+    t736-tv0                         1       1        0        200000000   0          0     50000      Y      5730000.tcon                    clk_bus_tcon             
+    t736-vo1-ahb                     1       1        0        200000000   0          0     50000      Y      5510000.tcon-top                clk_ahb_gate             
+    t736-vo1-top                     1       1        0        200000000   0          0     50000      Y      5510000.tcon-top                clk_bus_dpss_top         
+    t736-de-ahb                      1       1        0        200000000   0          0     50000      Y      5000000.display-engine          ahb_vid_out              
+    t736-de-bus                      1       1        0        200000000   0          0     50000      Y      5000000.display-engine          clk_bus_de               
+    t736-hdmi-cec                    0       0        0        32768       0          0     50000      N      5520000.hdmi                    clk_cec                  
+    t736-display-ppu                 1       1        0        26000000    0          0     50000      Y      7061000.power-controller        no_connection_id         
+    t736-hdmi-bus                    1       1        0        26000000    0          0     50000      Y      5520000.hdmi                    clk_hdmi                 
+    t736-hdmi-sfr                    1       1        0        24000000    0          0     50000      Y      5520000.hdmi                    clk_hdmi_24M             
+    t736-de                          1       1        0        600000000   0          0     50000      Y      5000000.display-engine          clk_de                   
+
+POWER_DOMAINS
+domain                          status          children        performance
+    /device                         runtime status                  managed by
+------------------------------------------------------------------------------
+t736-vo1                        on                              0
+    5510000.tcon-top                active                      0           SW
+    5520000.hdmi                    active                      0           SW
+t736-de-sys                     on                              0
+    5000000.display-engine          active                      0           SW
+
+DEFERRED_DEVICES
+
+DRM_STATE
+plane[94]: plane-0-vch0(0)
+	crtc=DE-0
+	fb=139
+		allocated by = sunxi_fbdev
+		refcount=2
+		format=AR24 little-endian (0x34325241)
+		modifier=0x0
+		size=2560x2880
+		layers:
+			size[0]=2560x2880
+			pitch[0]=10240
+			offset[0]=0
+			obj[0]:
+				name=0
+				refcount=3
+				start=00100000
+				size=29491200
+				imported=no
+				dma_addr=0x00000000f3c00000
+				vaddr=00000000580dfe98
+	crtc-pos=2560x1440+0+0
+	src-pos=2560.000000x1440.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=0
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+		 layer_id | fb_id |       src-pos       |       crtc-pos      | blend_mode |  alpha |   color 
+		 ---------+-------+---------------------+---------------------+------------+--------+---------
+		     0    |  139  | 2560x1440+   0+   0 | 2560x1440+   0+   0 |      none  |   255  | 0x00000000
+
+	ovl@  101000: enable
+		(2560x1440+   0+   0) = (2560x1440) ==> (2560x1440) 
+	afbd@  105000: disable
+
+	tfbd@  105400: disable
+
+	scaler@  104000: disable
+
+	snr@  106400: disable
+
+	sharp@  106000: disable
+
+	cdc@  108000: disable
+
+	gtm disable
+	vch0_cdc_icsc@       0: disable
+	vch0_cdc_icsc@       0: disable
+
+	dlc@  115000: disable
+	gamma0@  116000:
+		gamma_tbl off
+
+	fcm@  111000: disable csc: disable
+	vch0_fcm_icsc@       0: disable
+	vch0_fcm_ocsc@       0: disable
+
+	vch0_csc@  100800: enable
+		in:  colorfmt: rgb, eotf: bt709, colorspace: BT709, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+plane[102]: plane-1-vch1(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=1
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  121000: disable
+		
+	tfbd@  125400: disable
+
+	scaler@  124000: disable
+
+	vch1_csc@  120800: disable
+plane[108]: plane-2-uch0(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=2
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  1c1000: disable
+		
+	tfbd@  1c5400: disable
+
+	scaler@  1c4000: disable
+
+	cdc@  1c8000: disable
+
+	uch0_csc@  1c0800: disable
+plane[114]: plane-3-uch2(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=3
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  201000: disable
+		
+	scaler@  204000: disable
+
+	uch2_csc@  200800: disable
+blender@  281000: enable
+	 pipe_id | enable | channel | premult |       crtc-pos      
+	---------+--------+---------+---------+---------------------
+	     0   |   true |    0    |  false  | 2560x1440+   0+   0 
+
+	deband@  287000: disable
+	smbl0@  28b000:
+		smbl_tbl off
+	gamma0@  289000:
+		gamma_tbl off
+	disp0_gamma_csc@       0: enable
+		in:  colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+		bcsh: 50 50 50 50
+	dither@  288000: disable
+	fmt@  285000: disable
+
+crtc[101]: DE-0
+	enable=1
+	active=1
+	self_refresh_active=0
+	planes_changed=1
+	mode_changed=1
+	active_changed=1
+	connectors_changed=1
+	color_mgmt_changed=0
+	plane_mask=1
+	connector_mask=2
+	encoder_mask=2
+	mode: "2560x1440": 60 241500 2560 2608 2640 2720 1440 1443 1448 1481 0x48 0x9
+	on: 2560x1440@60&600Mhz->tcon4	irqcnt:11701	err:0	fps:59.939
+		format_space:0	yuv_sampling:0	eotf:4	cs:4	color_range:1	data_bits:0
+	offline composite fps:99.84	timeout:11701
+	    vsync: 11701 last rcq at vsync: 34 offline: disable
+	wb off
+connector[122]: Writeback-1
+	crtc=(null)
+	self_refresh_aware=0
+	interlace_allowed=0
+	ycbcr_420_allowed=0
+	max_requested_bpc=0
+	colorspace=Default
+connector[128]: HDMI-A-1
+	crtc=DE-0
+	self_refresh_aware=0
+	interlace_allowed=1
+	ycbcr_420_allowed=1
+	max_requested_bpc=0
+	colorspace=Default
+	broadcast_rgb=Automatic
+	is_limited_range=n
+	output_bpc=0
+	output_format=RGB
+	tmds_char_rate=0
+plane[94]: plane-0-vch0(0)
+	crtc=DE-0
+	fb=139
+		allocated by = sunxi_fbdev
+		refcount=2
+		format=AR24 little-endian (0x34325241)
+		modifier=0x0
+		size=2560x2880
+		layers:
+			size[0]=2560x2880
+			pitch[0]=10240
+			offset[0]=0
+			obj[0]:
+				name=0
+				refcount=3
+				start=00100000
+				size=29491200
+				imported=no
+				dma_addr=0x00000000f3c00000
+				vaddr=00000000580dfe98
+	crtc-pos=2560x1440+0+0
+	src-pos=2560.000000x1440.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=0
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+		 layer_id | fb_id |       src-pos       |       crtc-pos      | blend_mode |  alpha |   color 
+		 ---------+-------+---------------------+---------------------+------------+--------+---------
+		     0    |  139  | 2560x1440+   0+   0 | 2560x1440+   0+   0 |      none  |   255  | 0x00000000
+
+	ovl@  101000: enable
+		(2560x1440+   0+   0) = (2560x1440) ==> (2560x1440) 
+	afbd@  105000: disable
+
+	tfbd@  105400: disable
+
+	scaler@  104000: disable
+
+	snr@  106400: disable
+
+	sharp@  106000: disable
+
+	cdc@  108000: disable
+
+	gtm disable
+	vch0_cdc_icsc@       0: disable
+	vch0_cdc_icsc@       0: disable
+
+	dlc@  115000: disable
+	gamma0@  116000:
+		gamma_tbl off
+
+	fcm@  111000: disable csc: disable
+	vch0_fcm_icsc@       0: disable
+	vch0_fcm_ocsc@       0: disable
+
+	vch0_csc@  100800: enable
+		in:  colorfmt: rgb, eotf: bt709, colorspace: BT709, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+plane[102]: plane-1-vch1(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=1
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  121000: disable
+		
+	tfbd@  125400: disable
+
+	scaler@  124000: disable
+
+	vch1_csc@  120800: disable
+plane[108]: plane-2-uch0(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=2
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  1c1000: disable
+		
+	tfbd@  1c5400: disable
+
+	scaler@  1c4000: disable
+
+	cdc@  1c8000: disable
+
+	uch0_csc@  1c0800: disable
+plane[114]: plane-3-uch2(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=3
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  201000: disable
+		
+	scaler@  204000: disable
+
+	uch2_csc@  200800: disable
+blender@  281000: enable
+	 pipe_id | enable | channel | premult |       crtc-pos      
+	---------+--------+---------+---------+---------------------
+	     0   |   true |    0    |  false  | 2560x1440+   0+   0 
+
+	deband@  287000: disable
+	smbl0@  28b000:
+		smbl_tbl off
+	gamma0@  289000:
+		gamma_tbl off
+	disp0_gamma_csc@       0: enable
+		in:  colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+		bcsh: 50 50 50 50
+	dither@  288000: disable
+	fmt@  285000: disable
+
+crtc[101]: DE-0
+	enable=1
+	active=1
+	self_refresh_active=0
+	planes_changed=1
+	mode_changed=1
+	active_changed=1
+	connectors_changed=1
+	color_mgmt_changed=0
+	plane_mask=1
+	connector_mask=2
+	encoder_mask=2
+	mode: "2560x1440": 60 241500 2560 2608 2640 2720 1440 1443 1448 1481 0x48 0x9
+	on: 2560x1440@60&600Mhz->tcon4	irqcnt:11728	err:0	fps:59.933
+		format_space:0	yuv_sampling:0	eotf:4	cs:4	color_range:1	data_bits:0
+	offline composite fps:99.84	timeout:11728
+	    vsync: 11728 last rcq at vsync: 34 offline: disable
+	wb off
+connector[122]: Writeback-1
+	crtc=(null)
+	self_refresh_aware=0
+	interlace_allowed=0
+	ycbcr_420_allowed=0
+	max_requested_bpc=0
+	colorspace=Default
+connector[128]: HDMI-A-1
+	crtc=DE-0
+	self_refresh_aware=0
+	interlace_allowed=1
+	ycbcr_420_allowed=1
+	max_requested_bpc=0
+	colorspace=Default
+	broadcast_rgb=Automatic
+	is_limited_range=n
+	output_bpc=0
+	output_format=RGB
+	tmds_char_rate=0
+
+DISPLAY_INTERRUPTS
+411:          0          0          0          0          0          0          0          0    GICv3  66 Level     5000000.display-engine
+412:      11751          0          0          0          0          0          0          0    GICv3  89 Level     5730000.tcon
+
+SYSTEM_STATE
+0
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+end0             UP             10.0.0.172/24 metric 1024 fd67:b33e:a9c2:0:442f:50ff:fe99:69e/64 fe80::442f:50ff:fe99:69e/64 
+sit0@NONE        DOWN           
+
+DISPLAY_CHECK_FINISHED
+root@t736:~# 

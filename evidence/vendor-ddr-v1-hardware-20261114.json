@@ -1,0 +1,13 @@
+{
+  "kind": "pinned-vendor-ddr-fel",
+  "events": [],
+  "automatic_retry": false,
+  "success": false,
+  "error": "AssertionError: LYNX not idle",
+  "worker_timed_out": false,
+  "worker_termination_confirmed": true,
+  "worker_pid": 32280,
+  "worker_evidence_directory": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-probe-ie7zsil_",
+  "persisted_progress": [],
+  "worker_stderr": ""
+}

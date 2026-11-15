@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-11-14",
+  "scope": "Four common-domain port candidates and the first subsequent CH0 register observation",
+  "board_operations_performed_by_this_agent": false,
+  "vendor_executable_arrays_used": false,
+  "current_source_prepared_state": {
+    "evidence": "evidence/t736-domain-setup-sram-hardware-20261114.json",
+    "performed_by": "Root",
+    "status": "passed",
+    "component_result": 1,
+    "ccu": [
+      "0xf9004a00",
+      "0x80000003",
+      "0x00010001"
+    ],
+    "common": [
+      "0x00002728",
+      "0x00000002",
+      "0x00000001"
+    ],
+    "delay_pretest_ticks": 240066,
+    "delay_after_writes_ticks": 240080,
+    "counter_hz": 24000000,
+    "proven": "The source-written common fields were readable, writable and stable across the measured 10ms wait, and execution returned to FEL.",
+    "not_proven": [
+      "Any PHY CSR access",
+      "Analog readiness",
+      "DDR initialized or trained"
+    ]
+  },
+  "port_address_evidence": {
+    "sdk": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+    "sdk_sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+    "host_symbol": "mctl_channel_init",
+    "symbol_offsets": "0x64..0x7e; literal pool at 0x184..0x18c",
+    "access_width": 32,
+    "ordered_host_writes": [
+      {
+        "address": "0x0a02021c",
+        "value": "0x00000103"
+      },
+      {
+        "address": "0x0a020220",
+        "value": "0x000013ff"
+      },
+      {
+        "address": "0x0a020224",
+        "value": "0x00000103"
+      },
+      {
+        "address": "0x0a020228",
+        "value": "0x000013ff"
+      },
+      {
+        "address": "0x0a02021c",
+        "value": "0x00000107"
+      },
+      {
+        "address": "0x0a020224",
+        "value": "0x00000107"
+      }
+    ],
+    "position": "After SYS_CFG dual-channel mask value0x2728 and channel/type selection, before PRCM07010250 bit0 setting and its 10ms wait; both pairs are configured before either controller access.",
+    "sdk_bitfield_names": null,
+    "sdk_preservation_masks": null,
+    "important_limit": "The SDK uses full writes here. It does not establish official bit names, a documented safe RMW mask, or that these are security/ownership controls. Do not invent those meanings from values or unofficial names.",
+    "public_corroboration": {
+      "repository": "InfernoEmbedded/u-boot",
+      "commit": "2f5e45fa7993ce8a4a59b638e539a06d8454f823",
+      "path": "arch/arm/mach-sunxi/dram_sun60i_a733.c",
+      "git_blob": "e228c7fe1d8d8a1da4635d1c8525da6c8cef4cce",
+      "lines": [
+        835,
+        840
+      ],
+      "finding": "Same addresses, write widths, order and values in public host mctl_ccu_init. Names CH0/CH1_PORT_CFG and PORT_EN are public code labels, not independently confirmed bitfield definitions."
+    }
+  },
+  "next_fixed_read_only_groups": {
+    "precondition_same_session": "Verify exact PLL/DRAMCLK/BGR f9004a00/80000003/10001, then current common2728/2/1 using fixed read-only probes. No CCU coldinit rerun.",
+    "ports0": [
+      {
+        "address": "0x0a02021c",
+        "name": "CH0_PORT_CFG_candidate"
+      },
+      {
+        "address": "0x0a020220",
+        "name": "CH0_PORT_EN_candidate"
+      },
+      {
+        "address": "0x0a020010",
+        "name": "SYS_CFG_recheck",
+        "expected": "0x2728"
+      }
+    ],
+    "ports1": [
+      {
+        "address": "0x0a020224",
+        "name": "CH1_PORT_CFG_candidate"
+      },
+      {
+        "address": "0x0a020228",
+        "name": "CH1_PORT_EN_candidate"
+      },
+      {
+        "address": "0x0a020014",
+        "name": "CHANNEL_TYPE_recheck",
+        "expected": "0x2"
+      }
+    ],
+    "rationale": "These four candidates are inside the same already responsive DRAMC common block. The SDK accesses them before any controller. Reading them avoids guessing whether their reset state already equals the SDK-programmed state.",
+    "limitations": "A same-block address is not a formal guarantee against MMIO bus abort/hang. Retain the controlled SRAM observation and power-cycle path. No register field or hardware effect is inferred from a successful read alone.",
+    "probe_owner": "spl_early prepares source and runner; root alone executes hardware"
+  },
+  "ports_source_hardware_observation": {
+    "evidence": "evidence/t736-common-ports-sram-hardware-20261114.json",
+    "performed_by": "Root",
+    "ports": {
+      "0x0a02021c": "0x0",
+      "0x0a020220": "0x0",
+      "0x0a020224": "0x0",
+      "0x0a020228": "0x0"
+    },
+    "common_rechecks": {
+      "SYS_CFG": "0x2728",
+      "CHANNEL_TYPE": "0x2"
+    },
+    "result": "Reads returned and execution returned to FEL. No port writes performed."
+  },
+  "effect_of_omitted_steps": [
+    {
+      "step": "SDK mctl_sys_init SYS_CFG0100/2600 bridge phases and security-dependent SMC workaround",
+      "known": "Current source sequence never executed these phases. Current common fields match the later masked 2728 phase after source writes.",
+      "consequence": "Matching final common values does not prove transient effects or security-dependent bridge state are equivalent. If a later controller read fails, this remains one concrete candidate dependency; do not blindly alter SMC or PRCM mirrors."
+    },
+    {
+      "step": "Six common port writes",
+      "known": "Current source sequence omitted them; all four port values were observed zero.",
+      "consequence": "Subsequent controlled CH0 and CH1 ordinary-register reads succeeded without port writes. This establishes these controller CSR accesses in this state, not general DRAM traffic availability or equivalence to all SDK prerequisites."
+    },
+    {
+      "step": "Post-controller SYS_CFG273c/273e/273f transitions",
+      "known": "Not performed; source state intentionally remains2728.",
+      "consequence": "The SDK configures controllers before these transitions and enters PHY init afterward. They are not a prerequisite shown by the SDK for its first controller config access; they do remain an unperformed prerequisite before PHY access in that flow."
+    }
+  ],
+  "minimal_next_path_after_ports_observed": [
+    "Completed: four port reads, then separately reviewed CH0 and CH1 three-register observations without port writes. Both channels read MSTR03040000/STAT0/MRSTAT0.",
+    "Root next prepares source geometry/timing-only configuration while remaining in SYS_CFG2728 and controller Init. Preserve complete per-write/readback evidence; do not claim DDR readiness from configuration success.",
+    "Any later port-write experiment must describe its current starting state and exact allowed changes. The read tests show port setup is not necessary for the observed CSR access, so no automatic port write is added.",
+    "PHY access, analog calibration and DFI/training remain separately staged observations/experiments. Omitted SYS_CFG273c/e/f and earlier SDK bridge history remain explicit context rather than assumed equivalence."
+  ],
+  "not_proposed": [
+    "PHY CSR access combined with unobserved new controller writes",
+    "Unknown SMC permission changes",
+    "Uncorroborated07010310/07410310 mirror writes",
+    "PMU/PIE payload or training pulse",
+    "Any eMMC write"
+  ],
+  "controller_source_hardware_observations": {
+    "ch0": {
+      "evidence": "evidence/t736-ch0-readonly-sram-hardware-20261114.json",
+      "addresses": [
+        "0x0a110000",
+        "0x0a110014",
+        "0x0a110090"
+      ],
+      "values": [
+        "0x03040000",
+        "0",
+        "0"
+      ]
+    },
+    "ch1": {
+      "evidence": "evidence/t736-ch1-readonly-sram-hardware-20261114.json",
+      "addresses": [
+        "0x0a510000",
+        "0x0a510014",
+        "0x0a510090"
+      ],
+      "values": [
+        "0x03040000",
+        "0",
+        "0"
+      ]
+    },
+    "performed_by": "Root",
+    "finding": "Both independently gated read-only payloads returned to FEL in the source-prepared state. Four zero common port values do not prevent these six controller CSR reads. No controller, PHY, port or storage writes were performed by these observations."
+  }
+}

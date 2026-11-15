@@ -1,0 +1,148 @@
+[3507]Training result is = 7
+[3510]DRAM Pstate 0 training, frequency is 1800 Mhz
+[3518]Actual DRAM SIZE =8192 M
+[3521]DRAM SIZE =8192 MBytes, para1 = 311a, para2 = 20001001, dram_tpr13 = 6063
+[3530]DRAM simple test OK.
+[3579]error: dtb not found for scp
+[3583]tunning data addr:0x4a0003e8
+can't find the part boot_log
+get boot_log patition info is error
+can't find the part boot_log
+get boot_log patition info is error
+[3616]sunxi_amp_boot_init cant't find node "/sunxi-amp" 
+[3622]Jump to ATF: monitor_base = 0x48000000, uboot_base = 0x4a000000, optee_base = 0x48600000
+NOTICE:  BL31: OP-TEE 64bit detected
+NOTICE:  BL31: U-BOOT 32bit detected
+NOTICE:  BL31: dram size is 8589934592 bytes
+NOTICE:  BL31: v2.5(debug):4c445c8de
+NOTICE:  BL31: Built : 18:04:04, Sep 17 2025
+NOTICE:  BL31: No DTB found.
+E/TC:0 0 init_external_dt:1034 Device Tree missing
+M/TC: OP-TEE version: feeea313 (gcc version 9.2.1 20191025 (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10))) #1 Mon Sep  8 12:19:32 UTC 2025 aarch64
+M/TC: OP-TEE 64bit
+E/TC:0 0 plat_rng_init:459 prng seed by trng
+
+U-Boot 2018.07-g3357ad4 (Jul 15 2026 - 11:58:50 +0000) Allwinner Technology
+
+[03.726]CPU:   Allwinner Family
+[03.729]Model: sun60iw2
+I2C:   ready
+[03.789]DRAM:  E/TC:0   sunxi_drm_get_area:548 Incorrect DRM region config: DRM_START_REG = 0x0, DRM_END_REG = 0x0. Fix it now
+8 GiB
+[03.808]Relocation Offset is: 6e58b000
+[03.857]secure enable bit: 0
+CACHE: Misaligned operation at range [b44eae38, b456ae38]
+[03.881]PMU: AXP8191
+[03.883]PMU: AXP8191 VER_A
+[03.889]bmu_axp515_probe pmic_bus_read fail
+[03.893][AXP8191] onoff status: 0x50 = 0x1, 0x51 = 0x0
+[03.897][AXP8191] power-on source: PS_L_to_H
+[03.901][AXP8191] power-off source: none
+[03.905][AXP8191] charge status: 0x4 = 0x0
+[03.909]CPU=1014 MHz,PLL6=1200 Mhz,AHB=200 Mhz, APB1=24Mhz  MBus=600Mhz
+[03.915]gic: sec monitor mode
+SPI ALL:   ready
+[03.960]flash init start
+[03.962]workmode = 0,storage type = 2
+[03.965][mmc]: mmc driver ver uboot2018:2024-10-18 9:01:00 -- uboot2018:2025-03-28 10:03:00
+[03.977][mmc]: SUNXI SDMMC Controller Version:0x50610
+[03.986][mmc]: 200 MHz...
+[03.989][mmc]: sample: 26 - 96(ps)
+[03.992][mmc]: ds: 26 - 96(ps)
+[04.010][mmc]: Best spd md: 4-HS400, freq: 5-200000000, Bus width: 8
+[04.016]sunxi flash init ok
+[04.020]Loading Environment from SUNXI_FLASH... OK
+No ethernet found.
+pwmchip aliases count is: 3
+main name is pwmchip0
+main name is pwmchip1
+pwm_request: err: get clk bypass 25m err.
+[04.107]NOT support bridge yet
+[04.109]Warn: no find panel or bridge
+[04.138]Using display timing dts
+lvds0@0001000:  detailed mode clock 74871 kHz, flags[0]
+    H: 1280 1363 1381 1451
+    V: 0800 0837 0847 0860
+bus_format: 1011
+[04.153]hdmi0@5520000 disconnected
+[04.156]bad framebuffer width 0
+partno erro : can't find partition bootloader
+[04.170]bootloader is not found!
+partno erro : can't find partition bootloader
+[04.190]bootloader is not found!
+FDT ERROR:get function err returned FDT_ERR_NOTFOUND
+[04.259]sunxi_lvds_connector_enable:pinctrl_select_state fail!:-1
+partno erro : can't find partition bootloader
+[04.297]bootloader is not found!
+partno erro : can't find partition bootloader
+[04.316]bootloader is not found!
+[04.331]failed to display uboot logo for disp -1269110432
+[04.343]the secure storage item0 copy0 magic is bad
+[04.354]the secure storage item0 copy1 magic is bad
+[04.358]usb burn from boot
+delay time 0
+[04.365]usb prepare ok
+[04.598]usb sof ok
+[04.600]usb probe ok
+[04.602]usb setup ok
+set address 0x2d
+set address 0x2d ok
+[05.008]do_burn_from_boot usb : have no handshake
+skip update boot_param
+cann't get the boot_base from the env
+[05.022]update part info
+[05.027]battery temp is -1
+[05.030]update bootcmd
+[05.032]libfdt fdt_check_header(): FDT_ERR_BADMAGIC
+[05.037][mmc]: can't find node "sunxi-mmc2" try "mmc"
+[05.042][mmc]: can't find node "mmc2" 
+[05.045][mmc]: fdt err returned <no error>
+[05.051][mmc]: get sunxi-mmc2 string failed
+[05.056]The storage not support sample function
+[05.062]## error: update_fdt_dram_para_from_bootpara : FDT_ERR_NOTFOUND
+ret 0
+[05.074]no battery, disabled battery functons
+[05.078]Could not find nodeoffset for bat_supply
+[05.082]update dts
+Hit any key to stop autoboot:  2  1  0 
+avb_footer.c:22: ERROR: Footer magic is incorrect.
+[07.111]no vendor_boot partition is found
+Android's image name: t736-uboot-probe
+fdt  addr 0x41000000 0x41080000 exceed ramdisk scope
+ramdisk  addr 0x41000000 0x41000000
+[07.138]Starting kernel ...
+
+[07.140]total: 7140 ms
+
+[07.143][mmc]: mmc exit start
+[07.161][mmc]: mmc 2 exit ok
+NOTICE:  [SCP] :wait arisc ready....
+NOTICE:  [SCP] :arisc version: []
+NOTICE:  [SCP] :arisc startup ready
+NOTICE:  [SCP] :arisc startup notify message feedback
+NOTICE:  [SCP] :sunxi-arisc driver is starting
+NOTICE:  BL3-1: Next image address = 0x52000000
+NOTICE:  BL3-1: Next image spsr = 0x3c5
+
+<debug_uart>
+
+U-Boot 2026.10-t736-bringup (Nov 12 2026 - 14:35:23 -0500)
+
+Model: T736 custom board RAM bring-up
+Board: T736 custom RAM bring-up; vendor DDR/BL31/SCP retained
+DRAM:  8 GiB
+Core:  4 devices, 4 uclasses, devicetree: separate
+MMC:   T736 SMHC3 read-only PIO: 0
+Loading Environment from nowhere...
+Loading Environment from nowhere... OK
+In:    serial@2500000
+Out:   serial@2500000
+Err:   serial@2500000
+
+Hit any key to stop autoboot: 3
+Hit any key to stop autoboot: 2
+Hit any key to stop autoboot: 1
+Hit any key to stop autoboot: 0
+switch to partitions #0, OK
+mmc0(part 0) is current device
+4234637 bytes read in 766 ms (5.3 MiB/s)

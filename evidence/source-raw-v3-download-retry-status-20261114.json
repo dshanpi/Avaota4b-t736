@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"bytesTransferred\": 8589934592,\n  \"deviceId\": null,\n  \"error\": null,\n  \"exitCode\": null,\n  \"finishedAt\": 1794650915,\n  \"kind\": \"transfer\",\n  \"localPath\": \"C:\\\\Users\\\\世玉轩\\\\AppData\\\\Local\\\\com.dshanpi.lynx\\\\firmware\\\\project-9\\\\t736-armbian-source-v3.raw.img\",\n  \"phase\": \"complete\",\n  \"progressPct\": 100.0,\n  \"projectId\": 9,\n  \"sha256\": \"911951b5cbcbc667a68506bc0bc1bdd4929e3edcafff136af3d42cccd3b721a6\",\n  \"startedAt\": 1794650849,\n  \"state\": \"success\",\n  \"taskId\": \"transfer-1794650849563432100\",\n  \"totalBytes\": 8589934592\n}"
+    }
+  ],
+  "isError": false
+}

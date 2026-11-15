@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-14",
+  "scope": "Non-executable static PHY clock CSR facts only; no hardware writes or program-content implementation",
+  "physical": "0x0a940002",
+  "logical_name_candidate": "0x20001 PclkDivRatio_p0",
+  "access_bits": 16,
+  "board_profile_value": "0x1111",
+  "bitfield_meaning": "Not established; do not decode its nibbles as frequencies without documentation",
+  "source": {
+    "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+    "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+    "host_symbol": "ddrphy_phyinit_C_initPhyConfigPsLoop",
+    "parameter_layout": "brandy/arisc/ar100s/include/driver/dram.h: clock+0,type+4,para2+28,tpr13+120",
+    "independent_name": "SiMa-ai/sima-ai-uboot5a026adbe2a54aeaae5dc50e1852d4b5c1884640 init_ddr_modalix.c host CSR comment names logical20001 PclkDivRatio_p0; SiMa LP5 preset1122 is not copied",
+    "excluded": "PMU/PIE/shadow program arrays and instruction descriptors are not used; only direct static host MMIO store and its board-parameter control flow are recorded"
+  },
+  "board_conditions": {
+    "dram_type": 8,
+    "dram_clk_mhz": 1800,
+    "historical_para2": "0x20001001",
+    "historical_tpr13": "0x6063",
+    "LP4_reference_fex": "device/config/chips/t736/configs/demo_aiot-bak/sys_config.fex",
+    "reference_para2": "0x1001",
+    "reference_tpr13": "0x60",
+    "common_required_bits": "para2bit0=1, tpr13bit6=1, tpr13bit2=0, lowspeed_1b2_mode=0",
+    "limit": "Reference matches these decision bits; not proof every historical mutable parameter equals the FEX"
+  },
+  "host_control_flow_facts": [
+    "Entry+006 loads para2 into fp; +00e loads clock/type into r7/r5; +016 loads tpr13 into r8.",
+    "Entry+012 extracts para2bit0; +01e..032 sees tpr13bit6 set and stores2 in stack slot0.",
+    "+3690 loads r0 from literal+3744 containing0x0a940002.",
+    "+368a compares type with9; type8 branches+376c, confirms8 and reaches+3852. r0 remains the static CSR address on this LP4 path.",
+    "+3852..3858 compares stack slot0 against2; board branch falls through+385c.",
+    "+385c loads lowspeed_1b2_mode through .bss literal+3ab8; zero branches+389c.",
+    "+389c materializes0x1111 and+38a0 performs the16-bit store to0x0a940002.",
+    "The nonzero low-speed alternative writes2222; other parameter/type branches may write101/102/202/1122. None is a universal preset."
+  ],
+  "experiment_recommendation": "Read raw0a940002 first under current Mux0, Micro stall, clocks3 and controller-held context. If mismatch, a separately reviewed single-static-field write1111 with readback can test this clock-configuration omission before another timed ZCal pulse.",
+  "does_not_prove": ["PHY PLL lock", "internal DFI/PCLK frequency", "calibration result validity", "DRAM initialization or training"]
+}

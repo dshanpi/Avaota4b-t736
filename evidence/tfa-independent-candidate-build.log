@@ -1,0 +1,45 @@
+/home/ubuntu/t736-mainline/sources/audit/tf-a-inferno-7d322909068fc4bb4ee35e9e43c78ed68d98619b.tar.gz: OK
+checking file plat/allwinner/common/include/platform_def.h
+Hunk #2 succeeded at 71 (offset -7 lines).
+checking file plat/allwinner/sun60i_a733/include/sunxi_mmap.h
+checking file plat/allwinner/common/sunxi_prepare_dtb.c
+Hunk #2 succeeded at 28 with fuzz 1 (offset 1 line).
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           AArch64
+  Version:                           0x1
+  Entry point address:               0x48000000
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          764016 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         3
+  Size of section headers:           64 (bytes)
+  Number of section headers:         20
+  Section header string table index: 19
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  LOAD           0x0000000000001000 0x0000000048000000 0x0000000048000000
+                 0x000000000000d000 0x000000000000d000  R E    0x1000
+  LOAD           0x000000000000e000 0x000000004800d000 0x000000004800d000
+                 0x00000000000002a4 0x000000000000f000  RW     0x1000
+  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000000 0x0000000000000000  RW     0x10
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .text .rodata 
+   01     .data .stacks .bss .per_cpu .xlat_table 
+   02     
+81f53c1d1f571c74bd907317d813a5ed56c64382479caa75edd3cec43ada6dc6  /home/ubuntu/t736-mainline/build/tfa-independent-candidate/arm-trusted-firmware-7d322909068fc4bb4ee35e9e43c78ed68d98619b/build/sun60i_a733/debug/bl31.bin
+96818e69236c890e9337572ebd10321b1493807449ee5bb77a889aacf6818c2a  /home/ubuntu/t736-mainline/build/tfa-independent-candidate/arm-trusted-firmware-7d322909068fc4bb4ee35e9e43c78ed68d98619b/build/sun60i_a733/debug/bl31/bl31.elf
+TF_A_CANDIDATE_COMPILED_NOT_HARDWARE_VALIDATED

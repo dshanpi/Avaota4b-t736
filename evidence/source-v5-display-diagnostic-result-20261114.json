@@ -1,0 +1,23 @@
+{
+  "flash_state": "success",
+  "verify_state": "success",
+  "unattended_boot_passed": false,
+  "temporary_boot_args": "initcall_debug ignore_loglevel printk.time=1 drm.debug=0x1f fbcon=map:1",
+  "temporary_boot_to_armbian": true,
+  "hdmi_status": "connected",
+  "hdmi_enabled": true,
+  "mode": "2560x1440@59.933Hz",
+  "supported_modes": 42,
+  "snps_phy_pll": "locked",
+  "vsync_count": 11728,
+  "display_errors": 0,
+  "late_console_mapping_result": "NULL call from soft_cursor; fb_imageblit callback absent behind undefined CONFIG_AW_FB_CONSOLE",
+  "kernel_taint_after_diagnostic": 128,
+  "physical_screen_observed": false,
+  "evidence": [
+    "evidence/source-v5-coldboot-1-20261114.log",
+    "evidence/source-v5-diagnostic-boot-20261114.log",
+    "evidence/source-v5-display-state-20261114.log",
+    "evidence/source-v5-late-fbcon-oops-20261114.log"
+  ]
+}

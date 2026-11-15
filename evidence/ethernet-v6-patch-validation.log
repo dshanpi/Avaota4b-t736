@@ -1,0 +1,28 @@
+patching file arch/arm64/boot/dts/allwinner/Makefile
+patching file arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
+patching file drivers/mmc/host/Makefile
+patching file drivers/mmc/host/Kconfig
+patching file drivers/mmc/host/t736_mmc_pio.c
+patching file drivers/pinctrl/sunxi/Makefile
+patching file drivers/pinctrl/sunxi/Kconfig
+patching file drivers/pinctrl/sunxi/pinctrl-t736-r.c
+patching file drivers/clk/Makefile
+patching file drivers/clk/Kconfig
+patching file drivers/clk/clk-t736-usb.c
+patching file drivers/phy/allwinner/Makefile
+patching file drivers/phy/allwinner/Kconfig
+patching file drivers/phy/allwinner/phy-t736-usb2.c
+patching file drivers/pinctrl/sunxi/pinctrl-t736.c
+patching file drivers/pinctrl/sunxi/pinctrl-sunxi.h
+patching file drivers/pinctrl/sunxi/pinctrl-sunxi.c
+patching file drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c
+patching file arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dts
+patching file drivers/clk/Makefile
+patching file drivers/clk/Kconfig
+patching file drivers/clk/clk-t736-gmac.c
+patching file drivers/net/ethernet/stmicro/stmmac/Makefile
+patching file drivers/net/ethernet/stmicro/stmmac/Kconfig
+patching file drivers/net/ethernet/stmicro/stmmac/dwmac-t736.c
+PASS: 85 register/shift/mask checks; T736 main PIO, R-PIO, legacy and D1
+PASS: IRQ table for 216 pins; absent PA, R-PIO and non-IRQ/gap banks
+PATCH_SERIES_AND_DTB_MATCH_OK /home/ubuntu/t736-mainline/build/patch-verify-ov22l6ot

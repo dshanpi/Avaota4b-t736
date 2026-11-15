@@ -1,0 +1,227 @@
+		If you want support LT8711 output for drm driver, select it.
+
+config AW_DRM_BRIDGE_GM7123
+	tristate "Support GM7123 RGB To VGA Output"
+	depends on AW_DRM_BRIDGE
+	default n
+	help
+		If you want support GM7123 output for drm driver, select it.
+
+menu "sunxi drm panels select"
+	depends on AW_DRM
+source "$(BSP_TOP)drivers/drm/panel/Kconfig"
+endmenu
+source "$(BSP_TOP)drivers/drm/phy/Kconfig"
+
+endmenu
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+  GEN     Makefile
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+  GEN     Makefile
+  WRAP    arch/arm64/include/generated/uapi/asm/kvm_para.h
+  UPD     include/generated/uapi/linux/version.h
+  WRAP    arch/arm64/include/generated/uapi/asm/errno.h
+  WRAP    arch/arm64/include/generated/uapi/asm/ioctl.h
+  WRAP    arch/arm64/include/generated/uapi/asm/ioctls.h
+  WRAP    arch/arm64/include/generated/uapi/asm/ipcbuf.h
+  WRAP    arch/arm64/include/generated/uapi/asm/msgbuf.h
+  WRAP    arch/arm64/include/generated/uapi/asm/poll.h
+  WRAP    arch/arm64/include/generated/uapi/asm/resource.h
+  WRAP    arch/arm64/include/generated/uapi/asm/sembuf.h
+  WRAP    arch/arm64/include/generated/uapi/asm/shmbuf.h
+  WRAP    arch/arm64/include/generated/uapi/asm/siginfo.h
+  WRAP    arch/arm64/include/generated/uapi/asm/socket.h
+  WRAP    arch/arm64/include/generated/uapi/asm/sockios.h
+  HOSTCC  scripts/dtc/dtc.o
+  WRAP    arch/arm64/include/generated/uapi/asm/stat.h
+  WRAP    arch/arm64/include/generated/uapi/asm/swab.h
+  HOSTCC  scripts/dtc/flattree.o
+  WRAP    arch/arm64/include/generated/uapi/asm/termbits.h
+  HOSTCC  scripts/dtc/fstree.o
+  WRAP    arch/arm64/include/generated/uapi/asm/termios.h
+  WRAP    arch/arm64/include/generated/uapi/asm/types.h
+  HOSTCC  scripts/dtc/data.o
+  HOSTCC  scripts/dtc/livetree.o
+  SYSHDR  arch/arm64/include/generated/uapi/asm/unistd_64.h
+  UPD     include/config/kernel.release
+  UPD     include/generated/compile.h
+  HOSTCC  scripts/dtc/treesource.o
+  UPD     include/generated/utsrelease.h
+  HOSTCC  scripts/dtc/srcpos.o
+  WRAP    arch/arm64/include/generated/asm/early_ioremap.h
+  WRAP    arch/arm64/include/generated/asm/fprobe.h
+  WRAP    arch/arm64/include/generated/asm/mcs_spinlock.h
+  WRAP    arch/arm64/include/generated/asm/mmzone.h
+  WRAP    arch/arm64/include/generated/asm/qrwlock.h
+  WRAP    arch/arm64/include/generated/asm/qspinlock.h
+  WRAP    arch/arm64/include/generated/asm/parport.h
+  WRAP    arch/arm64/include/generated/asm/user.h
+  WRAP    arch/arm64/include/generated/asm/delay.h
+  WRAP    arch/arm64/include/generated/asm/div64.h
+  WRAP    arch/arm64/include/generated/asm/dma-mapping.h
+  WRAP    arch/arm64/include/generated/asm/dma.h
+  WRAP    arch/arm64/include/generated/asm/emergency-restart.h
+  WRAP    arch/arm64/include/generated/asm/hw_irq.h
+  WRAP    arch/arm64/include/generated/asm/irq_regs.h
+  WRAP    arch/arm64/include/generated/asm/kdebug.h
+  WRAP    arch/arm64/include/generated/asm/kmap_size.h
+  WRAP    arch/arm64/include/generated/asm/local.h
+  WRAP    arch/arm64/include/generated/asm/local64.h
+  WRAP    arch/arm64/include/generated/asm/mmiowb.h
+  WRAP    arch/arm64/include/generated/asm/msi.h
+  WRAP    arch/arm64/include/generated/asm/serial.h
+  WRAP    arch/arm64/include/generated/asm/softirq_stack.h
+  WRAP    arch/arm64/include/generated/asm/switch_to.h
+  WRAP    arch/arm64/include/generated/asm/trace_clock.h
+  WRAP    arch/arm64/include/generated/asm/unwind_user.h
+  WRAP    arch/arm64/include/generated/asm/vga.h
+  WRAP    arch/arm64/include/generated/asm/video.h
+  SYSTBL  arch/arm64/include/generated/asm/syscall_table_32.h
+  HOSTCC  scripts/dtc/checks.o
+  SYSTBL  arch/arm64/include/generated/asm/syscall_table_64.h
+  SYSHDR  arch/arm64/include/generated/asm/unistd_32.h
+  SYSHDR  arch/arm64/include/generated/asm/unistd_compat_32.h
+  HOSTCC  scripts/dtc/util.o
+  LEX     scripts/dtc/dtc-lexer.lex.c
+  YACC    scripts/dtc/dtc-parser.tab.[ch]
+  HOSTCC  scripts/dtc/libfdt/fdt.o
+  HOSTCC  scripts/dtc/libfdt/fdt_ro.o
+  HOSTCC  scripts/dtc/libfdt/fdt_wip.o
+  HOSTCC  scripts/dtc/libfdt/fdt_sw.o
+  HOSTCC  scripts/dtc/libfdt/fdt_rw.o
+  HOSTCC  scripts/dtc/libfdt/fdt_strerror.o
+  HOSTCC  scripts/dtc/libfdt/fdt_empty_tree.o
+  HOSTCC  scripts/dtc/libfdt/fdt_addresses.o
+  HOSTCC  scripts/dtc/libfdt/fdt_overlay.o
+  HOSTCC  scripts/dtc/fdtoverlay.o
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  HOSTLD  scripts/dtc/fdtoverlay
+  HOSTLD  scripts/dtc/dtc
+  HOSTCC  scripts/kallsyms
+  HOSTCC  scripts/sorttable
+  GEN     arch/arm64/include/generated/asm/cpucap-defs.h
+  GEN     arch/arm64/include/generated/asm/sysreg-defs.h
+  CC      scripts/mod/empty.o
+  HOSTCC  scripts/mod/mk_elfconfig
+  CC      scripts/mod/devicetable-offsets.s
+  UPD     scripts/mod/devicetable-offsets.h
+  MKELF   scripts/mod/elfconfig.h
+  HOSTCC  scripts/mod/modpost.o
+  HOSTCC  scripts/mod/file2alias.o
+  HOSTCC  scripts/mod/sumversion.o
+  HOSTCC  scripts/mod/symsearch.o
+  HOSTLD  scripts/mod/modpost
+  CC      kernel/bounds.s
+  CHKSHA1 /home/ubuntu/t736-mainline/sources/work/linux/include/linux/atomic/atomic-arch-fallback.h
+  CHKSHA1 /home/ubuntu/t736-mainline/sources/work/linux/include/linux/atomic/atomic-instrumented.h
+  CHKSHA1 /home/ubuntu/t736-mainline/sources/work/linux/include/linux/atomic/atomic-long.h
+  UPD     include/generated/timeconst.h
+  UPD     include/generated/bounds.h
+  CC      arch/arm64/kernel/asm-offsets.s
+  UPD     include/generated/asm-offsets.h
+  CC      kernel/sched/rq-offsets.s
+  UPD     include/generated/rq-offsets.h
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  LDS     arch/arm64/kernel/vdso/vdso.lds
+  CC      arch/arm64/kernel/vdso/vgettimeofday.o
+  AS      arch/arm64/kernel/vdso/note.o
+  AS      arch/arm64/kernel/vdso/sigreturn.o
+  CC      arch/arm64/kernel/vdso/vgetrandom.o
+  AS      arch/arm64/kernel/vdso/vgetrandom-chacha.o
+  LD      arch/arm64/kernel/vdso/vdso.so.dbg
+  VDSOSYM include/generated/vdso-offsets.h
+  OBJCOPY arch/arm64/kernel/vdso/vdso.so
+  AR      drivers/gpu/drm/t736-bsp/panel/built-in.a
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_drv.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_intf.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_notify.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_gem.o
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/hdcp/dptx/: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux//home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/hdcp/dptx/: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux//home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include: No such file or directory [-Wmissing-include-dirs]
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_debug.o
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/hdcp/dptx/: No such file or directory [-Wmissing-include-dirs]
+  CC      drivers/gpu/drm/t736-bsp/kernel_panic_printf.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.o
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux//home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/hdcp/dptx/: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux//home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/hdcp/dptx/: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux//home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/hdcp/dptx/: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux//home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/hdcp/dptx/: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/hdcp/dptx/: No such file or directory [-Wmissing-include-dirs]
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux//home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include: No such file or directory [-Wmissing-include-dirs]
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_notify.c:9:10: fatal error: video/sunxi_drm_notify.h: No such file or directory
+    9 | #include <video/sunxi_drm_notify.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+cc1: warning: /home/ubuntu/t736-mainline/sources/work/linux//home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/include: No such file or directory [-Wmissing-include-dirs]
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_drm_notify.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_debug.c:28:10: fatal error: sunxi-iommu.h: No such file or directory
+   28 | #include <sunxi-iommu.h>
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_drm_debug.o] Error 1
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:15:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev.h:18:10: fatal error: sunxi-log.h: No such file or directory
+   18 | #include <sunxi-log.h>
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.o] Error 1
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.h:15,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.h:17,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:35:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.h:17:10: fatal error: video/sunxi_drm.h: No such file or directory
+   17 | #include <video/sunxi_drm.h>
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.o] Error 1
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:21:10: fatal error: sunxi-log.h: No such file or directory
+   21 | #include <sunxi-log.h>
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/kernel_panic_printf.o] Error 1
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.h:15,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.h:17,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_intf.c:10:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.h:17:10: fatal error: video/sunxi_drm.h: No such file or directory
+   17 | #include <video/sunxi_drm.h>
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.h:15,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.h:17,
+                 from /home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:37:
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.h:17:10: fatal error: video/sunxi_drm.h: No such file or directory
+   17 | #include <video/sunxi_drm.h>
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_drm_intf.o] Error 1
+make[7]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:287: drivers/gpu/drm/t736-bsp/sunxi_drm_drv.o] Error 1
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_gem.c:31:6: warning: no previous prototype for ‘sunxi_drm_prime_gem_destroy’ [-Wmissing-prototypes]
+   31 | void sunxi_drm_prime_gem_destroy(struct drm_gem_object *obj,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_gem.c:130:6: warning: no previous prototype for ‘sunxi_gem_dma_free’ [-Wmissing-prototypes]
+  130 | void sunxi_gem_dma_free(struct sunxi_gem_object *sgem_obj)
+      |      ^~~~~~~~~~~~~~~~~~
+make[6]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu/drm/t736-bsp] Error 2
+make[5]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu/drm] Error 2
+make[4]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers/gpu] Error 2
+make[3]: *** [/home/ubuntu/t736-mainline/sources/work/linux/scripts/Makefile.build:544: drivers] Error 2
+make[2]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:2051: .] Error 2
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-hdmi-v12'
+make[1]: *** [/home/ubuntu/t736-mainline/sources/work/linux/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'

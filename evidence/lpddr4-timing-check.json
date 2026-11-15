@@ -1,0 +1,76 @@
+{
+  "commands": [
+    [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wshadow",
+      "-O2",
+      "-I",
+      "/home/ubuntu/t736-mainline/spl/lpddr4",
+      "-I",
+      "/home/ubuntu/t736-mainline/build/lpddr4-timing",
+      "-DT736_TIMING_BOARD_OBSERVATION=1",
+      "-fsanitize=address,undefined",
+      "/home/ubuntu/t736-mainline/spl/lpddr4/controller.c",
+      "/home/ubuntu/t736-mainline/spl/lpddr4/timing.c",
+      "/home/ubuntu/t736-mainline/spl/lpddr4/test_timing.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/lpddr4-timing/test_timing"
+    ],
+    [
+      "/home/ubuntu/t736-mainline/build/lpddr4-timing/test_timing"
+    ],
+    [
+      "arm-linux-gnueabi-gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wshadow",
+      "-O2",
+      "-I",
+      "/home/ubuntu/t736-mainline/spl/lpddr4",
+      "-I",
+      "/home/ubuntu/t736-mainline/build/lpddr4-timing",
+      "-DT736_TIMING_BOARD_OBSERVATION=1",
+      "-mcpu=cortex-a55",
+      "-marm",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-c",
+      "/home/ubuntu/t736-mainline/spl/lpddr4/timing.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/lpddr4-timing/timing.o"
+    ]
+  ],
+  "sha256": {
+    "spl/lpddr4/timing.c": "194fd176e4fb78a4e1398e9f3f4a61e29754c056666ee5588b91929af2e4ae57",
+    "spl/lpddr4/timing.h": "674f8fbcf14ace8e50848da4e8be8950ac359f0a415dedd20dd62cd21fe76468",
+    "spl/lpddr4/test_timing.c": "37769082e55c356991b716ae0eabdf2c35aa8fd1bce851f228378577efd57086",
+    "spl/lpddr4/controller.c": "1017f4a0c37370a1a5aab45d05d84e8942ee5800cdb78b1d6a70ab5083afba47",
+    "spl/lpddr4/controller.h": "d42e7955af902cf11ecc4b7982bdb0357a56f235a381384f40504b1680bed339",
+    "evidence/lpddr4-timing-board-observation.log": "700d674b74d11800d17db866b4bdb7a55496315c601e8fc7b53e8f846364dcf6",
+    "tools/check_lpddr4_timing.py": "45d0305d2e736175fff93c8f03eed39245d3b1865425f9fe9df98fbde70ed02d",
+    "build/lpddr4-timing/timing.o": "e45a3a1f0cd67346a82e2e24771f03ad417006523850e7e29a838d5262dc0cce"
+  },
+  "native_sanitized_tests_pass": true,
+  "arm32_compile_pass": true,
+  "board_observed_words_compared": 42,
+  "undefined_symbols": [
+    "__aeabi_uldivmod",
+    "t736_lp4_set_update"
+  ],
+  "vendor_executable_data_linked": false,
+  "hardware_registers_written": false,
+  "phy_training_implemented": false,
+  "complete_controller_initialization": false,
+  "coldboot_tested": false,
+  "deployable": false
+}

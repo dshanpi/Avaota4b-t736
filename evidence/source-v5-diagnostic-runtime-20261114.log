@@ -1,0 +1,8 @@
+echo 0 > /sys/module/drm/parameters/debug; command -v con2fbmap python3; cat /sys/class/graphics/fb0/{name,virtual_size,bits_per_pixel}; cat /sys/class/drm/card0-HDMI-A-1/{status,enabled}; cat /proc/sys/kernel/tainted
+
+2560,2880
+32
+connected
+enabled
+0
+root@t736:~# 

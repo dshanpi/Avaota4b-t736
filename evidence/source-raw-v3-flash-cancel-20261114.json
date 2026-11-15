@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"cancellationRequested\":true,\"state\":\"running\",\"taskId\":\"flash-1794651263260008700\"}"
+    }
+  ],
+  "isError": false
+}
