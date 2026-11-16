@@ -1,0 +1,138 @@
+{
+  "date": "2026-11-16",
+  "status": "compiled and modpost passed; board loading and rendering not yet verified",
+  "donor": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km",
+  "isolated_source": "/home/ubuntu/t736-mainline/sources/work/pvr-bxm-24.2",
+  "tina_modified": false,
+  "ddk": "24.2@6603887",
+  "bvnc": "36.56.104.183",
+  "kernel_release": "6.18.63-t736-gpu-v15",
+  "build_script": "tools/build_gpu_module.sh",
+  "module": "/home/ubuntu/t736-mainline/output/pvrsrvkm-6.18.63-t736-gpu-v15.ko",
+  "module_sha256": "485befc21972d597536af1146d03a723e5b801d3051696b33d6052680d8c104d",
+  "module_bytes": 1913784,
+  "vermagic": "6.18.63-t736-gpu-v15 SMP mod_unload aarch64",
+  "modpost_unresolved_symbols": false,
+  "build_log": "evidence/pvr-bxm-v15-build-20261116.log",
+  "patch": "patches/pvr-bxm-24.2-linux-6.18-t736-fixed400.patch",
+  "patch_sha256": "51a79bdf89a8e4a70a280f225433620e4930fe3dbadc35caf95f02c36992e2bc",
+  "changed_files": [
+    {
+      "path": "build/linux/kbuild/Makefile.template",
+      "donor_sha256": "286c53d681518f7ff153dcca5160dfe9578416a8aa0144bc15efc54046d51925",
+      "ported_sha256": "a2baa2c23920f97423231186d09be8f0ebf4ff35495a42bacbb66535d01db426"
+    },
+    {
+      "path": "services/server/devices/rgxpower.c",
+      "donor_sha256": "77cf1473092ed28a56b2f9bdfcf7b585d96a92a06d865bd46d1bc51ae327ed55",
+      "ported_sha256": "a5d0d7537db575d1165c5009150dd95783234210136f7b2380f3b8c55bf23431"
+    },
+    {
+      "path": "services/server/env/linux/osfunc.c",
+      "donor_sha256": "dfcc46ea486c69fd0053a2f587c46b0c812b471f6e8f80226c89b7611a507ac4",
+      "ported_sha256": "51ceee69683e52985923b8b2f02c3062d260fd7e64da92a0a0e306f3237d3f66"
+    },
+    {
+      "path": "services/server/env/linux/physmem_dmabuf.c",
+      "donor_sha256": "c85fafd871e5cb8f3e75d7b1a1d4e7c5e071d26799f72158a64d35b11c17abf0",
+      "ported_sha256": "b73a1babca7657a56c61424d807f592ae1a86f9510d2400acd0daf505a3cc7eb"
+    },
+    {
+      "path": "services/server/env/linux/pmr_os.c",
+      "donor_sha256": "c68cdc21d6a521e84a34b8aa288bb41a7b30c61b85c511d1df07f4ed5fdc99dc",
+      "ported_sha256": "09d37bef53c5242f8283a1ca508db0c234499be497f21fe12caf827837ed3c06"
+    },
+    {
+      "path": "services/server/env/linux/pvr_counting_timeline.c",
+      "donor_sha256": "a8f0a5799af7dabe675ae5d69133854563cb8ec85d0d2f237ccca86d4cb8791d",
+      "ported_sha256": "861f5df23c18828d5b5db1beef9a88b45638a4f2a94ea3c8f687fea944c37982"
+    },
+    {
+      "path": "services/server/env/linux/pvr_drm.c",
+      "donor_sha256": "50f7ef9827c95601641aea35f9541a2780c7e7603a2156579ef84a7a4b985710",
+      "ported_sha256": "5eb2ae60ac23f2f0f5f197c2375955b23bd2915ea69e7d00cef35aac161bc267"
+    },
+    {
+      "path": "services/server/env/linux/pvr_export_fence.c",
+      "donor_sha256": "4359b323dd0894c59f20db4ecd5b7edde3b4618e79e2a8dc687bd68f7274ca6f",
+      "ported_sha256": "8c7fd6a00ba193e20281d04971f2924d06c2d3c257a8a9d63bb0a612e89a1ba2"
+    },
+    {
+      "path": "services/server/env/linux/pvr_fence.c",
+      "donor_sha256": "c3ebeb2a809d5686a52b1258d1202284dc92f722c8ac264d6681897e282e0be6",
+      "ported_sha256": "2aae124ddcd11205870b11c9f6ca24212b542e7dfba2fe95fccdb4eac17db336"
+    },
+    {
+      "path": "services/server/env/linux/pvr_fence_trace.h",
+      "donor_sha256": "2afc0032d7e960a58a944b8beb7dfebf33b1c6a26f47bca686fc31957bbcd534",
+      "ported_sha256": "e1eea630a13e83540c8453833cde4cba0c652a6f0cf531e8c8d1e2e94217606f"
+    },
+    {
+      "path": "services/server/env/linux/pvr_platform_drv.c",
+      "donor_sha256": "59fe186eee93a09a0ad8a9d82e4809f332db791a340da089c8184a9beea06634",
+      "ported_sha256": "4925d6d5241f76eecd0952fc99f597d473e967bd341fd69946d53e8cbdd3bbfb"
+    },
+    {
+      "path": "services/server/env/linux/pvr_sw_fence.c",
+      "donor_sha256": "4d5dcd3e56be8efbba8821220564888b4f3c571c493bdd2c370ffa67ff7120c8",
+      "ported_sha256": "ca367115d96909f7ce43fe533afd4e993f1d3936f2c539cc9cfe0bf40f7bb8be"
+    },
+    {
+      "path": "services/server/env/linux/pvr_sync_file.c",
+      "donor_sha256": "480d5b8c5fbb965b4f75e9de64b9d14ce723aea64b70cc8b2082acaa17bcf12f",
+      "ported_sha256": "29d351e9928a40608f3e2fde96e4cfac1a4d1516be28803d71c4a57a5bb597ab"
+    },
+    {
+      "path": "services/system/rogue/rgx_sunxi/sunxi_platform.c",
+      "donor_sha256": "35fa7f9921135dd697e75a8b4432671b550106a226af87e6dbc8bba629b1a2f5",
+      "ported_sha256": "7042db28245c1861226e1350764eac5bd6fb0f5e1835bb4f10ad3ae7e8e39107"
+    },
+    {
+      "path": "services/system/rogue/rgx_sunxi/sunxi_platform.h",
+      "donor_sha256": "9bdf674148505679943528c5946b190826b9ba63aed7d8b7ffa89cb7fbf63123",
+      "ported_sha256": "30dfabf16923e97da149d206be83ad0e421528cada8a58f98864404e1ac4dac7"
+    },
+    {
+      "path": "services/system/rogue/rgx_sunxi/sysconfig.c",
+      "donor_sha256": "6be0112a047b4f2ed77e19af807912dd336499dee3411517a5750a26570a39df",
+      "ported_sha256": "d8ff30a6dd439691f337f7d9164cb79b371b1b34757be2f61744ac1a770455f5"
+    }
+  ],
+  "config_only_difference": "SUPPORT_LINUX_DVFS removed; all other kernel config macros identical",
+  "donor_options": "RGX_BUILD_OPTIONS_KM=0x00020810 RGX_BUILD_OPTIONS=0x80020810 MASK_KM=0x0003f7fb MASK_FW=0x0001f7fb UM_STRICT=0x8003f0fa KM_STRICT=0x8003f0fa",
+  "ported_options": "RGX_BUILD_OPTIONS_KM=0x00020810 RGX_BUILD_OPTIONS=0x80020810 MASK_KM=0x0003f7fb MASK_FW=0x0001f7fb UM_STRICT=0x8003f0fa KM_STRICT=0x8003f0fa",
+  "abi_check_bypassed": false,
+  "fixed_platform": {
+    "frequency_hz": 400000000,
+    "supply": "real gpu regulator, measured 800000..960000uV; no set_voltage",
+    "clocks": [
+      "clk",
+      "clk_bus",
+      "clk_400"
+    ],
+    "reset": "reset_bus",
+    "power": "genpd precedes clocks, no PPU/CCU direct MMIO",
+    "active_pm": false,
+    "linux_dvfs": false,
+    "pdvfs": false
+  },
+  "boundaries": [
+    "Compiler/module linkage does not establish successful GPU firmware initialization or HDMI presentation",
+    "Vendor security-controller MMIO write sequence retained; no speculative readback-equality assertion",
+    "Userspace must match DDK/FW ABI and hardware BVNC",
+    "GPU-allocated scatter-gather buffers may not be scanout-compatible with current DE contiguous DMA importer"
+  ],
+  "warning": "modpost: missing MODULE_DESCRIPTION(); no unresolved exported symbols",
+  "patch_replayed_and_all_modified_file_hashes_match": true,
+  "patch_replay_directory": "/home/ubuntu/t736-mainline/build/pvr-patch-check-d9rtqe8w",
+  "superseded_module_sha256": "6345dc8df71aeed480035dc5d99b407fa3db1a8f3764634b859c667633406de3",
+  "dmabuf_locking_fix": {
+    "changed_calls": 7,
+    "fix": "vmap/vunmap/map_attachment/unmap_attachment importer calls now use _unlocked helpers; exporter ops unchanged",
+    "reason": "Linux6.18 dma-buf.c lines864-896 requires caller reservation locking for original APIs; PMR factory lock is distinct",
+    "reference": "sources/work/linux/drivers/dma-buf/dma-buf.c",
+    "build_log": "evidence/pvr-bxm-v15-dmabuf-build-20261116.log",
+    "modpost_passed": true,
+    "runtime_lockdep_validation": false
+  }
+}

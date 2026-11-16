@@ -1,0 +1,30 @@
+printf "DESKTOP_RENDER\n"; glxinfo -B 2>/dev/null | grep -E "direct rendering|OpenGL vendor|OpenGL renderer|OpenGL version"; runuser -u t736 -- env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gsettings get org.gnome.desktop.interface enable-animations; top -b -d 1 -n 2 -p 2009,2319,1844,2431 | tail -n 14; printf "MODE_NOW\n"; grep -E "on:|irqcnt|fps|err" /sys/kernel/debug/dri/0/state
+
+DESKTOP_RENDER
+direct rendering: Yes
+OpenGL vendor string: Mesa
+OpenGL renderer string: llvmpipe (LLVM 19.1.7, 128 bits)
+OpenGL version string: 4.5 (Compatibility Profile) Mesa 25.0.7-2+deb13u1
+
+(process:2624): dconf-CRITICAL **: 06:16:24.293: unable to create directory '/run/user/0/dconf': 权限不够.  dconf will not work properly.
+
+(process:2624): dconf-CRITICAL **: 06:16:24.296: unable to create directory '/run/user/0/dconf': 权限不够.  dconf will not work properly.
+true
+   2009 t736      20   0 5015020 301180 151248 S   0.0   3.8   2:11.08 gnome-s+
+   2319 t736      20   0  286352  31400  17956 S   0.0   0.4   0:42.81 ibus-ex+
+   1844 t736      20   0  277040  75184  57864 S   0.0   0.9   0:11.65 Xorg
+
+top - 06:16:25 up 9 min,  2 users,  load average: 0.39, 1.27, 0.86
+任务:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :   7747.4 total,   6773.4 free,    637.5 used,    419.9 buff/cache     
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   7110.0 avail Mem 
+
+ 进程号 USER      PR  NI    VIRT    RES    SHR    %CPU  %MEM     TIME+ COMMAND
+   2009 t736      20   0 5015020 301180 151248 S   0.0   3.8   2:11.08 gnome-s+
+   2319 t736      20   0  286352  31400  17956 S   0.0   0.4   0:42.81 ibus-ex+
+   1844 t736      20   0  277040  75184  57864 S   0.0   0.9   0:11.65 Xorg
+MODE_NOW
+	on: 1920x1080@60&600Mhz->tcon4	irqcnt:3124	err:0	fps:0.0
+	offline composite fps:99.84	timeout:3124
+root@t736:~# 

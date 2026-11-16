@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-16",
+  "scope": "Interpretation of root-owned hardware capture plus isolated A76 trial preparation; no hardware access by this agent.",
+  "raw_evidence": {
+    "file": "evidence\\source-v8-cpu-clock-and-monitor-20261116.log",
+    "sha256": "14f1fb8f5e9dba51630c0cf0bae82f39fc93e9e541247ac26a4508739a61d657"
+  },
+  "frequency_decode": {
+    "reference_hz": 26000000,
+    "a55": {
+      "control": "0xf8801300",
+      "clock": "0x03000000",
+      "N": 19,
+      "internal_divisors": [
+        1,
+        1,
+        1
+      ],
+      "external_divisor": 1,
+      "integer_frequency_hz": 494000000,
+      "ready": true
+    },
+    "a76": {
+      "control": "0x40801400",
+      "clock": "0x00000000",
+      "slow_clock": "0x00000000",
+      "pll_enabled": false,
+      "selected_source": "DCXO",
+      "selected_frequency_hz": 26000000
+    },
+    "dsu": {
+      "control": "0xf8801300",
+      "clock": "0x03000105",
+      "N": 19,
+      "internal_divisors": [
+        1,
+        1,
+        1
+      ],
+      "external_divisor": 1,
+      "integer_frequency_hz": 494000000,
+      "axi_hz": 247000000,
+      "apb_hz": 247000000,
+      "gic_hz": 247000000
+    },
+    "modulation": "PAT0=0/PAT1=0x30000000 enable no PI/SDM/fractional modes; LFM=0x40000001 has bit31=0, so no LFM frequency modulation. CTRL/STAT match. Rates are decoded programmed clock rates, not instrument measurements."
+  },
+  "cpu_identity": {
+    "source": "evidence/source-v8-first-boot-20261116.log",
+    "cpu0": {
+      "line": 73,
+      "midr": "0x412fd050",
+      "model": "Cortex-A55 r2p0"
+    },
+    "cpu1_5": {
+      "lines": [
+        137,
+        140,
+        143,
+        146,
+        149
+      ],
+      "midr": "0x412fd050",
+      "model": "Cortex-A55 r2p0"
+    },
+    "cpu6_7": {
+      "lines": [
+        154,
+        157
+      ],
+      "midr": "0x414fd0b1",
+      "model": "Cortex-A76 r4p1"
+    },
+    "crosscheck": "evidence/live-board-20261112/capture.log processor0..5 part0xd05 and processor6..7 part0xd0b; all8 online in that historical capture."
+  },
+  "opp_source": {
+    "file": "/home/ubuntu/t736-aiot/tina/bsp/configs/linux-5.15/sun60iw2p1-cpu-vf.dtsi",
+    "sha256": "130a6a02f66b774e69b7f05b18ee03208d91129ce480ee07aeff30962c72d385",
+    "table": "cluster1_opp_table (lines729-1596)",
+    "minimal_common_26m_opp": {
+      "hz": 416000000,
+      "microvolt": 800000,
+      "line": 1138,
+      "applies_to": "all11 listed26MHz VF bins"
+    },
+    "later_candidate_only": {
+      "hz": 1014000000,
+      "microvolt": 800000,
+      "line": 1219,
+      "applies_to": "all11 listed26MHz VF bins"
+    },
+    "constraint": "CPU_B_PLL manual VCO650MHz..2.26GHz; donor26MHz minimum N26 means VCO>=676MHz. Do not merely enable default N20 (520MHzVCO) or copy ROM A55 N19."
+  },
+  "trial": {
+    "source": "tools/validation/t736-a76-clock-trial.c",
+    "target_hz": 416000000,
+    "N": 32,
+    "vco_hz": 832000000,
+    "external_divisor": 2,
+    "target_ctrl": "0xf8802000",
+    "target_clk": "0x03010000",
+    "actions": {
+      "audit": "default; CPU registers read only, PMIC via existing owner API",
+      "enable": "requires CPU6/7offline, holds cpus_read_lock through mutation, verifies current CPU A55, 26MHz RTC flag, exact measured B state, no modulation, both CPU rails on, no joined phases, DCDC3/4 selectors800..1100mV",
+      "restore": "explicit exact original slow/disabledPLL state; also requires CPU6/7offline and target-state match. Voltage read/check failure does not block reducing to slow.",
+      "rmmod": "no hardware write; retains setting to avoid changing clocks during online tests"
+    },
+    "pmic": "symbol_get(t736_pmic_read_cpu_supplies), six-byte stable struct from boards/t736-pmic.h, serialized by existing owner. No duplicated TWI mapping/engine or PMIC voltage write.",
+    "sequence": [
+      "Set external/2 while mux remains slow",
+      "Program stoppedPLL N32 and commit UPDATE with bounded clear timeout",
+      "KeepLDO, enablePLL and lock detector, commitUPDATE, require3consecutive lock reads",
+      "Enableoutput while stillslow, commitUPDATE again and require3consecutive lock reads, verifyCTRL+CTRL_STAT, switchmux last, verify target and unchanged A55/DSU/back/modulation guards",
+      "Re-read PMIC setpoints; failure rollsB only back to original slow state"
+    ],
+    "recovery": "Rollback confirms slowmux readback before disablingPLL. Incomplete restore logs critical and requires CPU6/7remainoffline. No unrelated register is restored/written.",
+    "hardware_tested": false,
+    "build": "W=1 compile completed against updated6.18.63-t736-gpu-v15; no warnings.",
+    "future_frequency": "1014MHz is not exposed by this module; first verify416MHz hardware independently.",
+    "module": "output/t736-a76-clock-trial-v1-reviewed.ko",
+    "module_sha256": "22bed9ed9c3dc55d7449f2f0d44cc66fd6418229e0f6f31bf67095492121545b",
+    "source_sha256": "eeac0f40a811d1a740299237bc7db4a76be7c57db4be68c54e9add26beac42e4",
+    "header_sha256": "15f03f9b3b7b97f5e59959cf926762dd79c8f249f1c7462f7e50344488368033",
+    "peer_review": [
+      "code_index: read-only logic review found no blocker; did not independently verify register/manual formulas",
+      "event_review: PMIC/offline/exact-state/rollback guards confirmed; added OUTPUT UPDATE+lock before final CTRL_STAT/mux validation to match CPU-specific donor probe"
+    ]
+  },
+  "donor_source_sha256": {
+    "ccu-sun60iw2-cpupll.c": "f4089186d5805e9d7b8b43754c3816068d5ecd686655ae5ac086e60c01e7e0eb",
+    "ccu_gate.c": "3d8c88d8b00d83b64819a88e6cacaa80eef941dd4d1c164d00238ba29054cd51",
+    "ccu_nkmp.c": "fd900e48c17ec95d973c564bb49e37b241fe2834a2b01baaff4b33541f05e88c"
+  },
+  "limitations": "Explains severe A76 execution slowdown but does not establish that every visible flicker is CPU-caused. PMIC registers report setpoints/enable, not analog voltage measurement."
+}

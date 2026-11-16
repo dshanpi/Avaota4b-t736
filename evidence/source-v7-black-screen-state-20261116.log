@@ -1,0 +1,169 @@
+export DISPLAY=:0 XAUTHORITY=/run/user/101/gdm/Xauthority; xrandr --query; xset q | tail -n 9; printf "DRM_STATE\n"; cat /sys/kernel/debug/dri/0/state | head -n 110; printf "XORG_ERRORS\n"; find /var/lib/gdm3/.local/share/xorg -name "Xorg*.log" -exec grep -E "\(EE\)|\(WW\)|modeset|swrast|AIGLX" {} \; | tail -n 30
+
+[drm] sunxi-hdmi: drm get edid support modes: 42
+Screen 0: minimum 320 x 200, current 2560 x 1440, maximum 8192 x 8192
+HDMI-1 connected primary 2560x1440+0+0 (normal left inverted right x axis y axis) 553mm x 311mm
+   2560x1440     59.95*+
+   2048x1080     60.00    24.00  
+   1920x1080     60.00    50.00    59.94  
+   1920x1080i    60.00    50.00    59.94  
+   1600x1200     60.00  
+   1280x1024     60.02  
+   1280x720      60.00    50.00    59.94  
+   1024x768      60.00  
+   800x600       60.32  
+   720x576       50.00  
+   720x480       60.00    59.94  
+   640x480       60.00    59.94  
+  timeout:  600    cycle:  600
+Colors:
+  default colormap:  0x20    BlackPixel:  0x0    WhitePixel:  0xffffff
+Font Path:
+  built-ins
+DPMS (Display Power Management Signaling):
+  Standby: 0    Suspend: 0    Off: 0
+  DPMS is Enabled
+  Monitor is On
+DRM_STATE
+plane[94]: plane-0-vch0(0)
+	crtc=DE-0
+	fb=141
+		allocated by = Xorg
+		refcount=2
+		format=XR24 little-endian (0x34325258)
+		modifier=0x0
+		size=2560x1440
+		layers:
+			size[0]=2560x1440
+			pitch[0]=10240
+			offset[0]=0
+			obj[0]:
+				name=0
+				refcount=3
+				start=00101c20
+				size=14745600
+				imported=no
+				dma_addr=0x00000000f5900000
+				vaddr=00000000915b002f
+	crtc-pos=2560x1440+0+0
+	src-pos=2560.000000x1440.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=0
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+		 layer_id | fb_id |       src-pos       |       crtc-pos      | blend_mode |  alpha |   color 
+		 ---------+-------+---------------------+---------------------+------------+--------+---------
+		     0    |  141  | 2560x1440+   0+   0 | 2560x1440+   0+   0 |      none  |   255  | 0x00000000
+
+	ovl@  101000: enable
+		(2560x1440+   0+   0) = (2560x1440) ==> (2560x1440) 
+	afbd@  105000: disable
+
+	tfbd@  105400: disable
+
+	scaler@  104000: disable
+
+	snr@  106400: disable
+
+	sharp@  106000: disable
+
+	cdc@  108000: disable
+
+	gtm disable
+	vch0_cdc_icsc@       0: disable
+	vch0_cdc_icsc@       0: disable
+
+	dlc@  115000: disable
+	gamma0@  116000:
+		gamma_tbl off
+
+	fcm@  111000: disable csc: disable
+	vch0_fcm_icsc@       0: disable
+	vch0_fcm_ocsc@       0: disable
+
+	vch0_csc@  100800: enable
+		in:  colorfmt: rgb, eotf: bt709, colorspace: BT709, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+plane[102]: plane-1-vch1(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=1
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  121000: disable
+		
+	tfbd@  125400: disable
+
+	scaler@  124000: disable
+
+	vch1_csc@  120800: disable
+plane[108]: plane-2-uch0(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=2
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  1c1000: disable
+		
+	tfbd@  1c5400: disable
+
+	scaler@  1c4000: disable
+
+	cdc@  1c8000: disable
+
+	uch0_csc@  1c0800: disable
+plane[114]: plane-3-uch2(0)
+	crtc=(null)
+	fb=0
+	crtc-pos=0x0+0+0
+	src-pos=0.000000x0.000000+0.000000+0.000000
+	rotation=1
+	normalized-zpos=3
+	color-encoding=ITU-R BT.601 YCbCr
+	color-range=YCbCr limited range
+	color_mgmt_changed=0
+
+	ovl@  201000: disable
+XORG_ERRORS
+[    84.676] (--) modeset(0): HDMI max TMDS frequency 250000KHz
+[   143.441] (II) modeset(0): EDID vendor "DEL", prod id 16700
+[   143.442] (II) modeset(0): Using hsync ranges from config file
+[   143.442] (II) modeset(0): Using vrefresh ranges from config file
+[   143.442] (II) modeset(0): Printing DDC gathered Modelines:
+[   143.442] (II) modeset(0): Modeline "2560x1440"x0.0  241.50  2560 2608 2640 2720  1440 1443 1448 1481 +hsync -vsync (88.8 kHz eP)
+[   143.442] (II) modeset(0): Modeline "1920x1080"x0.0  148.50  1920 2008 2052 2200  1080 1084 1089 1125 +hsync +vsync (67.5 kHz e)
+[   143.442] (II) modeset(0): Modeline "2048x1080"x0.0  147.18  2048 2096 2128 2208  1080 1083 1093 1111 +hsync -vsync (66.7 kHz e)
+[   143.442] (II) modeset(0): Modeline "1280x720"x0.0   74.25  1280 1390 1430 1650  720 725 730 750 +hsync +vsync (45.0 kHz e)
+[   143.442] (II) modeset(0): Modeline "2048x1080"x0.0   58.23  2048 2096 2128 2208  1080 1083 1093 1099 +hsync -vsync (26.4 kHz e)
+[   143.442] (II) modeset(0): Modeline "1920x1080i"x0.0   74.25  1920 2008 2052 2200  1080 1084 1094 1125 interlace +hsync +vsync (33.8 kHz e)
+[   143.442] (II) modeset(0): Modeline "720x480"x0.0   27.00  720 736 798 858  480 489 495 525 -hsync -vsync (31.5 kHz e)
+[   143.442] (II) modeset(0): Modeline "1440x480i"x0.0   27.00  1440 1478 1602 1716  480 488 494 525 interlace -hsync -vsync (15.7 kHz e)
+[   143.443] (II) modeset(0): Modeline "1440x576i"x0.0   27.00  1440 1464 1590 1728  576 580 586 625 interlace -hsync -vsync (15.6 kHz e)
+[   143.443] (II) modeset(0): Modeline "640x480"x0.0   25.18  640 656 752 800  480 490 492 525 -hsync -vsync (31.5 kHz e)
+[   143.443] (II) modeset(0): Modeline "720x576"x0.0   27.00  720 732 796 864  576 581 586 625 -hsync -vsync (31.2 kHz e)
+[   143.443] (II) modeset(0): Modeline "1280x720"x0.0   74.25  1280 1720 1760 1980  720 725 730 750 +hsync +vsync (37.5 kHz e)
+[   143.443] (II) modeset(0): Modeline "1920x1080i"x0.0   74.25  1920 2448 2492 2640  1080 1084 1094 1125 interlace +hsync +vsync (28.1 kHz e)
+[   143.443] (II) modeset(0): Modeline "1920x1080"x0.0  148.50  1920 2448 2492 2640  1080 1084 1089 1125 +hsync +vsync (56.2 kHz e)
+[   143.443] (II) modeset(0): Modeline "800x600"x0.0   40.00  800 840 968 1056  600 601 605 628 +hsync +vsync (37.9 kHz e)
+[   143.443] (II) modeset(0): Modeline "640x480"x0.0   31.50  640 656 720 840  480 481 484 500 -hsync -vsync (37.5 kHz e)
+[   143.443] (II) modeset(0): Modeline "720x400"x0.0   28.32  720 738 846 900  400 412 414 449 -hsync +vsync (31.5 kHz e)
+[   143.443] (II) modeset(0): Modeline "1280x1024"x0.0  135.00  1280 1296 1440 1688  1024 1025 1028 1066 +hsync +vsync (80.0 kHz e)
+[   143.443] (II) modeset(0): Modeline "1024x768"x0.0   78.75  1024 1040 1136 1312  768 769 772 800 +hsync +vsync (60.0 kHz e)
+[   143.443] (II) modeset(0): Modeline "1024x768"x0.0   65.00  1024 1048 1184 1344  768 771 777 806 -hsync -vsync (48.4 kHz e)
+[   143.443] (II) modeset(0): Modeline "800x600"x0.0   49.50  800 816 896 1056  600 601 604 625 +hsync +vsync (46.9 kHz e)
+[   143.443] (II) modeset(0): Modeline "1152x864"x0.0  108.00  1152 1216 1344 1600  864 865 868 900 +hsync +vsync (67.5 kHz e)
+[   143.443] (II) modeset(0): Modeline "1600x1200"x0.0  162.00  1600 1664 1856 2160  1200 1201 1204 1250 +hsync +vsync (75.0 kHz e)
+[   143.456] (II) modeset(0): Modeline "1280x1024"x0.0  108.00  1280 1328 1440 1688  1024 1025 1028 1066 +hsync +vsync (64.0 kHz e)
+[   143.457] (--) modeset(0): HDMI max TMDS frequency 250000KHz
+root@t736:~# 

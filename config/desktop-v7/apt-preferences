@@ -1,0 +1,9 @@
+# Keep this image on Debian's validated Mesa stack; Armbian uses the same
+# trixie codename, so package/trixie alone does not exclude its beta builds.
+Package: *
+Pin: origin beta.armbian.com
+Pin-Priority: -1
+
+Package: libgl1-mesa-dri libegl-mesa0 libglx-mesa0 libgbm1 mesa-libgallium
+Pin: version 25.0.7-2+deb13u1
+Pin-Priority: 1001

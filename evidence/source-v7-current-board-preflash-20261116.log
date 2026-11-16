@@ -1,0 +1,8 @@
+printf "EMMC_SECTORS="; cat /sys/block/mmcblk0/size; printf "EMMC_TYPE="; cat /sys/block/mmcblk0/device/type; systemctl is-enabled systemd-timesyncd.service fake-hwclock.service 2>/dev/null; date -u +%FT%TZ
+
+EMMC_SECTORS=122142720
+EMMC_TYPE=MMC
+not-found
+masked
+2026-11-16T03:17:38Z
+root@t736:~# 

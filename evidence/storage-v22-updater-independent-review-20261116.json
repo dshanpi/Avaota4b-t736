@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v22-updater-independent-static-review",
+  "status": "passed-static-diff-and-final-binding-review-not-executed-by-reviewer",
+  "updater_sha256": "77d4a68f9a2cfb3669162e9b3ca3028383adae269589cdc9c6bda4ded7cf8275",
+  "baseline_reviewer_record": "evidence/storage-v21-updater-independent-review-20261116.json",
+  "final_bindings_match_build_pvr_package_records": true,
+  "bindings": {
+    "kernel_sha256": "8a6eb70cdc43190df40c2c06d2683a666a9b73e870bf79674321514fd986108f",
+    "kernel_bytes": 5601780,
+    "pvr_sha256": "c717b37d6dba72b2ba708e747d222282b06aac15dc317a1cf532a2a8dfd92c1a",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "f3e1aba72e23c0fe86979f441351c573efa9ce93de8ce0c476defadbb7f2d9cb",
+    "payload_manifest_sha256": "1eafa27bdc0cbef7c1f7cf5998695e3ae95102819c97535878752ccd53c1a03d",
+    "raw_image_sha256": "5da7204332a670084a2a8de630e5f33004c920a1f238f4e2b8dee4de9766fbc2",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "candidate_dtb_bytes": 12028,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "running_releases": "v16 or exactly verified v21",
+  "fixed_default_fallback": "v16 plus612459 accepted CPU capacity DT",
+  "diff_from_v21": "Only release and previous-release strings, artifact bindings, previous-v21 hashes, transaction namespace/lock/backup names; no executable control-flow changes",
+  "process_group_and_rollback": "Existing bounded process-group stop, private mount namespace, frozen inputs/backups, fsync and alias recovery safeguards retained",
+  "peer_tests": "14 offline fault-injection tests reported PASS; final exact inputs independently checked by peer",
+  "material_new_blockers": [],
+  "board_acceptance": "Not established by this static review"
+}

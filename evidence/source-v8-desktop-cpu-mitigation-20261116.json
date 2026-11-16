@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-16",
+  "board_boot_image": "source-v8",
+  "user_desktop_acceptance": "failed latest feedback; recheck pending",
+  "cpu_observation": {
+    "a55_mhz": 494,
+    "a76_mhz": 26,
+    "dsu_mhz": 494,
+    "sha256_16mib_seconds": {
+      "cpu0_a55": 0.07840085199995883,
+      "cpu6_a76": 1.1371721760001492
+    },
+    "temporary_online": "0-5",
+    "cpu_pll_writes": false
+  },
+  "display": {
+    "mutter_applied_mode": "1920x1080@60.000",
+    "layout": "physical",
+    "xml": "/home/t736/.config/monitors.xml",
+    "xml_persisted": true,
+    "stable_state_samples": 26,
+    "stable_seconds": 25,
+    "session_restart_verified": false,
+    "physical_screen_verified": false
+  },
+  "gpu": {
+    "gnome_renderer_maps": "IMG EGL/GLES, no swrast observed",
+    "gtk_backend": "EGL OpenGL ES hardware",
+    "pvr_driver_firmware": "OK",
+    "pvr_errors": 0
+  },
+  "false_counter": {
+    "name": "offline_composite_timeout",
+    "cause": "CONFIG_AW_DRM_DE_OFFLINE_MODE=n: stub returns -EPERM, incorrectly interpreted as FINISH|TIMEOUT bitmask while support_offline remains set",
+    "is_observed_hardware_timeout": false
+  },
+  "next": "Flash production GPU kernel with serialized PMIC CPU snapshot; audit real rails then reversible A76 416MHz trial"
+}

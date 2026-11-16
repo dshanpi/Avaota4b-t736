@@ -1,0 +1,40 @@
+.....BACKUP_FSYNC_VERIFIED /tmp/t736-v23-offline-t7mtz0gs/backup
+{
+  "backup_directory": "/tmp/t736-v23-offline-t7mtz0gs/backup",
+  "running_release": "7.0.0-28-generic",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v23",
+  "rebooted": false,
+  "hardware_accepted": false,
+  "status": "UPDATE_FAILED_V16_RESTORED",
+  "error": "RuntimeError('synthetic alias fsync failure')"
+}
+..BACKUP_FSYNC_VERIFIED /tmp/t736-v23-offline-fd6bpwoa/backup
+{
+  "backup_directory": "/tmp/t736-v23-offline-fd6bpwoa/backup",
+  "running_release": "7.0.0-28-generic",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v23",
+  "rebooted": false,
+  "hardware_accepted": false,
+  "status": "UPDATE_FAILED_V16_RESTORED",
+  "error": "RuntimeError('synthetic final bytes mismatch')"
+}
+....{"status": "PENDING_FIXED_BUILD_INPUTS", "missing": ["kernel_sha256"], "write_attempted": false}
+BACKUP_FSYNC_VERIFIED /tmp/t736-v23-offline-7tq_i_7x/backup
+{
+  "backup_directory": "/tmp/t736-v23-offline-7tq_i_7x/backup",
+  "running_release": "7.0.0-28-generic",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v23",
+  "rebooted": false,
+  "hardware_accepted": false,
+  "status": "CRITICAL_SUBPROCESS_STILL_ACTIVE",
+  "error": "ProcessGroupStillActive('synthetic D-state child')",
+  "rollback_attempted": false
+}
+...
+----------------------------------------------------------------------
+Ran 14 tests in 0.551s
+
+OK

@@ -1,0 +1,25 @@
+ls -l /opt/t736-img-ddk-24.2-x11/lib/*vulkan* /usr/lib/aarch64-linux-gnu/libvulkan*; cat /opt/t736-img-ddk-24.2-x11/powervr_icd.json; DISPLAY=:0 XAUTHORITY=/run/user/101/gdm/Xauthority timeout --kill-after=3s 20s t736-img-run probe-x11 >/root/t736-gpu-debug/x11-first.log 2>&1; echo X11_GPU_RC=$?; cat /root/t736-gpu-debug/x11-first.log; echo X11_GPU_DONE
+
+lrwxrwxrwx 1 root root     14 11月16日 06:33 /opt/t736-img-ddk-24.2-x11/lib/libvulkan.so -> libvulkan.so.1
+lrwxrwxrwx 1 root root     20 11月16日 06:33 /opt/t736-img-ddk-24.2-x11/lib/libvulkan.so.1 -> libvulkan.so.1.3.280
+-rw-rw-r-- 1 root root 679632 11月 3日 05:38 /opt/t736-img-ddk-24.2-x11/lib/libvulkan.so.1.3.280
+lrwxrwxrwx 1 root root     20 2025年 3月18日 /usr/lib/aarch64-linux-gnu/libvulkan.so.1 -> libvulkan.so.1.4.309
+-rw-r--r-- 1 root root 592496 2025年 3月18日 /usr/lib/aarch64-linux-gnu/libvulkan.so.1.4.309
+{
+  "file_format_version": "1.0.0",
+  "ICD": {
+    "library_path": "/opt/t736-img-ddk-24.2-x11/lib/libVK_IMG.so",
+    "api_version": "1.3.277",
+    "device_type": "VK_DEVICE_TYPE_PHYSICAL_DEVICE"
+  }
+}
+X11_GPU_RC=0
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+X11_GPU_DONE
+root@t736:~# 

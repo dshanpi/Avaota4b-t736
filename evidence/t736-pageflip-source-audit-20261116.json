@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-16",
+  "scope": "Read-only source review. No board, serial, code, production build or Xorg configuration change.",
+  "inputs_sha256": {
+    "sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c": "f6d9655ca81324458a46fafb3c48ac6715ae04481faa1974d9c69e24f8793a5e",
+    "sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c": "6de86cd74bca951fe2a9d2e3cb6a8999dc89d84f86173bb0acb8fd4a7c72db00",
+    "sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c": "1db72fc6f7808c72adddb3e95142e203397b061d448321e03e3e2ff447e46d54",
+    "sources/work/linux/drivers/gpu/drm/drm_atomic_helper.c": "3dba1fd87a54aad79c4ac15685a3678195728f5467bddfed5cbeb6c5c74f261f",
+    "evidence/xorg-glamor-audit-20261116/hw_xfree86_drivers_modesetting_present.c": "d6e4108f4bfc0f6b050078f0e8ef2957be4973f76beb2b3b9e6addac0b772849",
+    "evidence/xorg-glamor-audit-20261116/hw_xfree86_drivers_modesetting_drmmode_display.c": "7099f1cd58e6deeb5f73cb9d19e0d9281e48ff190e65d0d71b90eca5b63275b2"
+  },
+  "findings": [
+    {
+      "finding": "PageFlip=false rejects Present flips; enabling only permits eligible flips, does not guarantee use.",
+      "source": "Xorg modesetting present.c:246 and 320; driver.c:1252,1901",
+      "detail": "A visible software cursor causes rejection. Existing SWcursor=true can therefore suppress the intended test. Keep it unchanged for the first single-variable test and explicitly establish actual flip activity; hidden-pointer fullscreen rendering may make the path eligible. Do not claim a speed result from a test that never flipped."
+    },
+    {
+      "finding": "Synchronous legacy page-flip is implemented through atomic helpers; async plane updates are intentionally rejected.",
+      "source": "sunxi_drm_crtc.c:2346 and 693-698",
+      "detail": "Do not add async or tear-free options in this trial. Xorg rejects rotated CRTCs, off outputs, non-glamor, incompatible pitch or modifiers. Ordinary windowed/composited work may copy instead of flip."
+    },
+    {
+      "finding": "RCQ completion timeout is a real acceptance boundary.",
+      "source": "sunxi_de.c:738,752-753,774-775; sunxi_drm_crtc.c:2140-2172",
+      "detail": "Ready is set when RCQ is submitted, then polled at 2 ms intervals for up to 50 ms. Timeout only logs and does not return failure or clear ready. The CRTC path can still send the event. An event alone does not prove the frame latched successfully; any new RCQ timeout fails this experiment."
+    },
+    {
+      "finding": "Commit tail depends on the driver flush completion, not an additional generic vblank wait.",
+      "source": "sunxi_drm_drv.c:190-208; sunxi_drm_crtc.c:1673-1681",
+      "detail": "The generic wait_for_vblanks call is commented out before plane cleanup. Normal flush waits for RCQ finish, while the timeout path does not establish safe old-buffer retirement. Vblank IRQ normally suppresses event delivery while DE is busy. Preserve these semantics until measured evidence justifies changes."
+    },
+    {
+      "finding": "Do not infer missing GPU acquire-fence support merely from absent prepare_fb callback.",
+      "source": "drm_atomic_helper.c:2835-2847",
+      "detail": "Linux6.18 supplies drm_gem_plane_helper_prepare_fb for GEM drivers when prepare_fb is absent. Cross-device dma-buf reservation synchronization still needs runtime validation."
+    }
+  ],
+  "experiment": {
+    "preconditions": [
+      "Fixed 1920x1080@60 SDR before A/B; same kernel, userspace profile, GDM/user mode and environment on both runs",
+      "Collect existing counters/logs first; no forced software environment in probe shell",
+      "Back up exact Xorg file and its SHA256; retain serial/SSH and arrange a short independent rollback timer before restarting GDM"
+    ],
+    "only_change": "PageFlip false -> true. Keep SWcursor, modes, depth, GDK overrides, driver paths and kernel fixed.",
+    "baseline": "At least 60 seconds idle and the same 60 seconds of window motion/overview/application redraw. Snapshot /sys/kernel/debug/dri/0/state and pvr/status, current xrandr, Xorg log, bounded dmesg/journal and compositor CPU/frame behavior.",
+    "prove_activation": "A brief available DRM trace or bounded ioctl trace must show real MODE_PAGE_FLIP/atomic FB_ID transitions with matching completion, or an X Present client must report CompleteMode=Flip. Avoid timing-heavy tracing during performance comparison. If software cursor prevents flips, classify the run as not exercised; a later cursor change is a separate experiment.",
+    "initial_acceptance": [
+      "No repeated HDMI disable/enable, connector disconnect or mode changes during steady redraw",
+      "No new sunxi_de_atomic_flush timeout, flip_done/vblank timeout, atomic EBUSY storm, WARN, FIFO/offline error-counter growth, GPU reset/MMU fault/HWR increment",
+      "Actual flip activation demonstrated; buffer content correct, no black frames/tearing/corruption; improved or non-regressed frame pacing and CPU under identical work",
+      "GDM and normal-user session remain recoverable"
+    ],
+    "extended_acceptance": "Only after basic A/B passes: sustained redraw plus normal app/overview/fullscreen transitions, then separate lock/unlock and DPMS off/on cycles. Cold-start acceptance must use final v9 including the new SDR patch; old-v8 1440->1080 boot/login mode transition flashes are not evidence about PageFlip.",
+    "rollback": "On blanking, sync timeout, stuck commit, visual corruption or loss of session control: restore the exact backed-up Xorg file (not broad sed), restart GDM, verify fixed1080/glamor and counters. Do not change kernel or GPU module to recover this userspace option. Keep the timer armed until actual display output is observed.",
+    "limitations": [
+      "No new PageFlip=true hardware result is claimed",
+      "SDR capability patch fixes baseline advertising only; it does not prove a flicker fix",
+      "User-reported flashing and pointer-visible copies may remain separate from page flipping"
+    ]
+  }
+}

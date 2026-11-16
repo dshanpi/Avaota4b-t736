@@ -1,0 +1,98 @@
+{
+  "status": "PASS",
+  "kernel": "6.18.63-t736-storage-v21",
+  "boot_id": "a2c59f54-97a0-49be-83aa-45e8aea7390c",
+  "seconds": 14.77352191499999,
+  "phases": [
+    {
+      "phase": 1,
+      "status": "PASS",
+      "write_MiBs": 9.392096848466295,
+      "reads": [
+        {
+          "order": "sequential",
+          "chunk": 4096,
+          "status": "PASS",
+          "MiBs": 11.914030501912936
+        },
+        {
+          "order": "fixed_seed_random",
+          "chunk": 4096,
+          "status": "PASS",
+          "MiBs": 9.345730107872368
+        },
+        {
+          "order": "sequential",
+          "chunk": 65536,
+          "status": "PASS",
+          "MiBs": 20.94914941016447
+        },
+        {
+          "order": "fixed_seed_random",
+          "chunk": 65536,
+          "status": "PASS",
+          "MiBs": 20.90059755226442
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "status": "PASS",
+      "write_MiBs": 33.62888227146996,
+      "reads": [
+        {
+          "order": "sequential",
+          "chunk": 4096,
+          "status": "PASS",
+          "MiBs": 9.542255700904306
+        },
+        {
+          "order": "fixed_seed_random",
+          "chunk": 4096,
+          "status": "PASS",
+          "MiBs": 9.371596587557123
+        },
+        {
+          "order": "sequential",
+          "chunk": 65536,
+          "status": "PASS",
+          "MiBs": 20.944042711343297
+        },
+        {
+          "order": "fixed_seed_random",
+          "chunk": 65536,
+          "status": "PASS",
+          "MiBs": 20.89006945634682
+        }
+      ]
+    }
+  ]
+}
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 

@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "variant": "source-v10",
+  "state": "milestone-candidate-built-not-flashed",
+  "build_executed": true,
+  "final_image_cold_boot_validated": false,
+  "boot": {
+    "spl": {
+      "path": "build/emmc-spl-v4/emmc-spl.bin",
+      "bytes": 221184,
+      "sha256": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea"
+    },
+    "cpu_package": {
+      "path": "output/t736-source-boot-package-cpu-d.bin",
+      "bytes": 325632,
+      "sha256": "f2ea2157acc3b65b2cc7416dfdba39650e7daa6679693c558fbbdcc30ef9780a"
+    },
+    "cpu_package_manifest": {
+      "path": "output/t736-source-boot-package-cpu-d.manifest.json",
+      "bytes": 2026,
+      "sha256": "9bc64b4dab436b998dde31ec020c3b8237fcd195ffbd0f4343ca2c5acf38f462"
+    }
+  },
+  "kernel": {
+    "path": "build/linux-image-6.18.63-t736-storage-v16_6.18.63-16_arm64.deb",
+    "bytes": 5590080,
+    "sha256": "520b42929ee4700a29ab8da5f020b828948a607c87a6eb8dd98c8ecacd6170c6"
+  },
+  "pvr": {
+    "path": "build/pvr-storage-v16/target_aarch64/pvrsrvkm.ko",
+    "bytes": 1913816,
+    "sha256": "abd38db687c93b91757719564e1f0fe35b10b137f23d78ea425ff2845d8c8474"
+  },
+  "userspace": {
+    "path": "build/gpu-userspace-v2/t736-img-userspace-candidate_24.2.6603887-2_arm64.deb",
+    "bytes": 36678782,
+    "sha256": "1455889d0c10ec5d0b49e839e0e9d3f7560869e65da5fbee02e477039c78e16e"
+  },
+  "cpu_readonly": {
+    "path": "output/t736-cpu-clock-readonly-storage-v16.ko",
+    "bytes": 7416,
+    "sha256": "175f47bdf40cc42dae47a01e0c375b04d83acf802946539005d0a51ba3ddaf91"
+  },
+  "gpu_helpers": {
+    "path": "build/gpu-helpers-storage-v16/manifest.json",
+    "bytes": 1762,
+    "sha256": "64dbaa8171f0cc817df6d11310ef131959acdf0883ec36351dc3bdd0a1deabc3"
+  },
+  "base_rootfs": {
+    "path": "output/rootfs-armbian-source-v9.ext4",
+    "bytes": 7802716160,
+    "recorded_sha256": "d3c56757a3ab03aff75c6796e92c4acb64396f5d144fc659466aed6c4f2b2d9a",
+    "must_rehash_before_copy": true
+  },
+  "media_versions": {
+    "ffmpeg": "7:7.1.5-0+deb13u1",
+    "libavcodec61": "7:7.1.5-0+deb13u1"
+  },
+  "preserve": [
+    "existing credentials and account files",
+    "original GDM daemon.conf and PAM policy; never import temporary autologin",
+    "v4/v6/v7/v15 recovery files and full v15 module tree",
+    "current v9 bootcmd, boot aliases and fixed DTB locations",
+    "v15 profile/runtime/session-trial and legacy trial module in v15 recovery"
+  ],
+  "final_live_configuration_pending": {
+    "gpu_acceptance": {
+      "path": "evidence/storage-v16-gpu-acceptance-20261116.json",
+      "sha256": "b446a26e7332adc2b9d18d0a5b2e916595a0eb8efc8aa77c39026b50748cc3dd"
+    },
+    "firefox_acceptance": {
+      "path": "evidence/storage-v16-firefox-renderer-20261116.json",
+      "sha256": "07b8ca74c592fa4249b21159312056450d4e7dbc9614f96e1d4458438eea07af"
+    },
+    "t736_and_gdm_monitors_xml": {
+      "path": "config/gpu-v10/user-monitors.xml",
+      "sha256": "5d72649064afb2a9ac9866c85b2875d0e85f1c98a1126ce1379c9236d4f995f8"
+    },
+    "firefox_runtime_configuration": "No forcing; real baseline WebRender and PowerVR WebGL passed",
+    "remaining": "ordinary application startup latency and complete image cold boot"
+  },
+  "notes": [
+    "CPU-D and storage-v16 live results are recorded separately by root",
+    "Artifact presence and offline tests never synthesize hardware acceptance",
+    "GPU profile/runtime helpers are v16-bound; session-trial is excluded",
+    "Old CPU trial module is not installed as a v16 operational module",
+    "Rootfs and raw build completed; retained as CPU-D/storage-v16 milestone while DMA/high-speed storage work continues; not flashed"
+  ],
+  "rootfs_build_controller_pid": 933372,
+  "rootfs_build_started_utc": "2026-11-16T10:55:44.945501+00:00",
+  "ordinary_application_startup_latency_accepted": false,
+  "raw_image_built": true,
+  "build_in_progress": false,
+  "rootfs_build_result": {
+    "exit_code": 0,
+    "finished_utc": "2026-11-16T11:16:26.142565+00:00"
+  },
+  "pack_result": {
+    "exit_code": 0,
+    "finished_utc": "2026-11-16T11:19:02.451875+00:00"
+  },
+  "milestone_candidate": {
+    "location": "build host only; text manifest copied locally",
+    "raw": {
+      "path": "t736-armbian-source-v10.raw.img",
+      "bytes": 8589934592,
+      "sha256": "5af964ac3f24b747151bc4f3f292dcae943e6be28bc2d4cabe17dc876547cecf"
+    },
+    "rootfs": {
+      "name": "rootfs",
+      "sector": 368640,
+      "bytes": 7802716160,
+      "sha256": "935a58e933ec831c470a5ef20c89dd5f0f675f417d4fa43bbe0a831e91414469"
+    },
+    "manifest": "output/t736-armbian-source-v10.raw.manifest.json",
+    "flashed": false,
+    "final_image_cold_boot_validated": false
+  }
+}

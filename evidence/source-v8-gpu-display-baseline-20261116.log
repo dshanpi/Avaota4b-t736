@@ -1,0 +1,12 @@
+printf "DISPLAY_PROCESSES\n"; ps -eo pid,user,args | grep -E "[X]org|[g]nome-shell"; printf "HDMI_STATE\n"; cat /sys/class/drm/card0-HDMI-A-1/status; printf "UPTIME\n"; uptime
+
+DISPLAY_PROCESSES
+   1018 Debian-+ /usr/lib/xorg/Xorg vt1 -displayfd 3 -auth /run/user/101/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3
+   1288 Debian-+ /usr/bin/gnome-shell
+   1440 Debian-+ /usr/bin/gjs -m /usr/share/gnome-shell/org.gnome.Shell.Notifications
+   1622 Debian-+ /usr/bin/gjs -m /usr/share/gnome-shell/org.gnome.ScreenSaver
+HDMI_STATE
+connected
+UPTIME
+ 07:13:53 up 10 min,  1 user,  load average: 0.55, 0.47, 0.39
+root@t736:~# 

@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v19-idma-event-experiment",
+  "status": "board-dma-integrity-passed-not-default-boot",
+  "baseline_candidate": "6.18.63-t736-storage-v18",
+  "board_rollback_baseline": "6.18.63-t736-storage-v16 with accepted6124591a topology",
+  "changes": [
+    "IDIE on reads=0x32 (RX+descriptor unavailable+card error)",
+    "IDIE on writes=0x31 (TX+descriptor unavailable+card error)",
+    "CTRL.INT_EN=0 and IRQMASK=0 remain unchanged; no CPU IRQ handler",
+    "Before reset on error: CTRL,DMAC,DLBA,IDIE,IDST,RINT,STATUS full11bitFIFO count,FIFOTH,TBC0 card bytes,TBC1 host bytes,all OWN bitmaps,first/last descriptors; no payload dump; TBC counters only read when RINT.DATA_OVER is set"
+  ],
+  "unchanged": [
+    "12MHz legacy8bit timing",
+    "32bit coherent DMA allocation",
+    "SMHC3-only descriptorflags,length/address shift and next0 terminal",
+    "DMAC0x80",
+    "Accepted CPU topology and all prior platform drivers",
+    "No regulator/pin/voltage/PLL/shared gate writes"
+  ],
+  "interpretation": [
+    "OWN all cleared with host bytecount512 and empty FIFO means data DMA completed; missing event feedback was the prior blocker",
+    "OWN still set with card bytecount512,host0,FIFO128 indicates no DMA drain; examine engine/config/descriptor path next",
+    "No successful initialization or storage speed claim until board read/write hash verification"
+  ],
+  "paused_high_speed_work": {
+    "draft_header": "boards/t736_mmc_clock_v19.h",
+    "integrated": false,
+    "compiled": false,
+    "timing_review": "evidence/storage-v19-hs52-timing-review-20261116.json",
+    "note": "Name predates DMA failure; not used by the storage-v19 event kernel. HS52/HS200/HS400 work is paused."
+  },
+  "files": {
+    "boards/t736_mmc_dma_v19.c": "f29554e12658287abbd4af5068d1c8fa567946af7b281e6d032441f8a295e639",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tools/build_dma_event_kernel.sh": "ccb25add38d4974bae52a59ddcdc99d85de28873ff250125d2a2094e143f6b28",
+    "tools/validation/audit_dma_event_package.py": "e2d652cfb3d61f0b57930a64e3b7960581969e21a52454813b8416c5426b8912"
+  },
+  "final_build_record": "evidence/storage-v19-build-20261116.json",
+  "pvr_record": "evidence/storage-v19-pvr-build-20261116.json",
+  "independent_review": "evidence/storage-v19-idie-independent-review-20261116.json",
+  "board_evidence": "evidence/storage-v19-dma-integrity-20261116.json",
+  "performance_limitation": "Root measured requested50us sleep median3999.1555us with HIGH_RES_TIMERS=n/HZ250; v20 isolates enabling HRT."
+}

@@ -1,0 +1,22 @@
+{'status': 'OBSERVATION_COMPLETE', 'failure': None, 'test_swap_interval': 0, 'rate_ok': True, 'rate_numerator': 60, 'rate_denominator': 1, 'pixel_verified_frames': 2, 'submitted_swaps': 60, 'elapsed_us': 1089098}
+samples 122 last {'kind': 'drain', 'submitted_swaps': 60, 'query_start_us': 266386816, 'query_end_us': 266386937, 'ok': True, 'egl_error': 12288, 'ust': 266374297, 'msc': 3496, 'sbc': 60}
+{'status': 'OBSERVATION_COMPLETE', 'failure': None, 'test_swap_interval': 1, 'rate_ok': True, 'rate_numerator': 60, 'rate_denominator': 1, 'pixel_verified_frames': 2, 'submitted_swaps': 60, 'elapsed_us': 1068223}
+samples 122 last {'kind': 'drain', 'submitted_swaps': 60, 'query_start_us': 267557581, 'query_end_us': 267557687, 'ok': True, 'egl_error': 12288, 'ust': 267552048, 'msc': 3567, 'sbc': 60}
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 

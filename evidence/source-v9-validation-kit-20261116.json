@@ -1,0 +1,12 @@
+{
+  "file": "mainline\\output\\t736-v9-validation-kit-20261116.tar.gz",
+  "bytes": 16066,
+  "sha256": "cb182722330c361dc366e730e2926d1cc0bef7a8c730e4aa529406323ec9ccb3",
+  "entries": {
+    "t736-a76-clock-trial-v1-reviewed.ko": "22bed9ed9c3dc55d7449f2f0d44cc66fd6418229e0f6f31bf67095492121545b",
+    "t736-a76-clock-trial-v2.ko": "a8877450f793341cdf28ba3983fff0ebbbdbc7b9d68f20d194d3e4a61f90adcb",
+    "t736-cpu-clock-readonly.ko": "6303cd025906d215cab1eedc4cc03450fbad26260d94befa55ca201440a30ca1",
+    "gpu_session_trial.sh": "3a342d1f18de6713560eecaf9b917cfb978e68307cf76e3aa48330512b619a04",
+    "gtk_frame_probe.py": "121b5a93f3b359b6c59084a00d34b34662afc24ce7a768fa74464b9522d088f4"
+  }
+}

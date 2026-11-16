@@ -1,0 +1,7 @@
+tar --one-file-system --numeric-owner --acls --xattrs --exclude=root/t736-source-v6-io-check.bin -czpf /tmp/t736-preserved-state.tgz -C / etc root home; rc=$?; printf 'PRESERVE_RC=%s\n' "$rc"; stat -c '%s bytes' /tmp/t736-preserved-state.tgz; sha256sum /tmp/t736-preserved-state.tgz; printf 'PACKAGE_COUNT='; dpkg-query -W -f='${binary:Package}\n' | wc -l
+
+PRESERVE_RC=0
+419895 bytes
+112f8cce9f34177942894c6eade825d41e03068908d0759aba95f4edcca064c9  /tmp/t736-preserved-state.tgz
+PACKAGE_COUNT=263
+root@t736:~# 

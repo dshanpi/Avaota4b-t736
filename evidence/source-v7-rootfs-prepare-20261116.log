@@ -1,0 +1,460 @@
+/home/ubuntu/t736-mainline/build/private/source-v7-preserved-state.tgz: OK
+vmlinuz-6.18.63-t736-armbian: OK
+initrd.img-6.18.63-t736-armbian: OK
+config-6.18.63-t736-armbian: OK
+System.map-6.18.63-t736-armbian: OK
+t736-mainline-bringup.dtb: OK
+Get:1 http://security.debian.org trixie-security InRelease [43.4 kB]
+Hit:2 http://deb.debian.org/debian trixie InRelease
+Get:3 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:4 http://deb.debian.org/debian trixie-backports InRelease [54.0 kB]
+Get:5 http://github.armbian.com/configng stable InRelease [6,225 B]
+Get:7 http://security.debian.org trixie-security/main arm64 Packages [306 kB]
+Get:8 http://deb.debian.org/debian trixie-backports/main arm64 Packages.diff/Index [63.3 kB]
+Get:6 http://fi.mirror.armbian.de/beta trixie InRelease [39.4 kB]
+Get:9 http://deb.debian.org/debian trixie-backports/main arm64 Packages T-2026-11-15-2016.10-F-2026-11-13-1402.25.pdiff [4,284 B]
+Get:10 http://github.armbian.com/configng stable/main arm64 Packages [493 B]
+Get:11 http://fi.mirror.armbian.de/beta trixie/trixie-utils arm64 Packages [37.2 kB]
+Get:9 http://deb.debian.org/debian trixie-backports/main arm64 Packages T-2026-11-15-2016.10-F-2026-11-13-1402.25.pdiff [4,284 B]
+Get:12 http://fi.mirror.armbian.de/beta trixie/trixie-utils all Packages [7,531 B]
+Get:13 http://fi.mirror.armbian.de/beta trixie/trixie-desktop arm64 Packages [23.0 kB]
+Fetched 632 kB in 5s (138 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+locales is already the newest version (2.41-12+deb13u4).
+dbus-user-session is already the newest version (1.16.2-2).
+sudo is already the newest version (1.9.16p2-3+deb13u2).
+The following additional packages will be installed:
+  accountsservice acl adwaita-icon-theme at-spi2-common bubblewrap colord
+  colord-data cpp cpp-14 cpp-14-aarch64-linux-gnu cpp-aarch64-linux-gnu
+  dconf-cli dconf-gsettings-backend dconf-service desktop-base
+  desktop-file-utils dictionaries-common dirmngr eject emacsen-common
+  evolution-data-server-common fontconfig fontconfig-config fonts-cantarell
+  fonts-dejavu-mono fonts-noto-mono fonts-quicksand fuse3 gcr gcr4
+  geocode-glib-common gir1.2-accountsservice-1.0 gir1.2-adw-1 gir1.2-atk-1.0
+  gir1.2-atspi-2.0 gir1.2-freedesktop gir1.2-gck-2 gir1.2-gcr-4
+  gir1.2-gdesktopenums-3.0 gir1.2-gdkpixbuf-2.0 gir1.2-gdm-1.0
+  gir1.2-geoclue-2.0 gir1.2-girepository-2.0 gir1.2-glib-2.0
+  gir1.2-gnomebg-4.0 gir1.2-gnomebluetooth-3.0 gir1.2-gnomedesktop-4.0
+  gir1.2-graphene-1.0 gir1.2-gstreamer-1.0 gir1.2-gtk-3.0 gir1.2-gtk-4.0
+  gir1.2-gweather-4.0 gir1.2-harfbuzz-0.0 gir1.2-ibus-1.0 gir1.2-mutter-16
+  gir1.2-nm-1.0 gir1.2-nma4-1.0 gir1.2-pango-1.0 gir1.2-polkit-1.0
+  gir1.2-rsvg-2.0 gir1.2-soup-3.0 gir1.2-upowerglib-1.0 gjs glib-networking
+  glib-networking-common glib-networking-services gnome-bluetooth-3-common
+  gnome-control-center-data gnome-desktop3-data gnome-online-accounts
+  gnome-session-bin gnome-session-common gnome-settings-daemon-common
+  gnome-shell-common gnupg gnupg-l10n gpg gpg-agent gpgconf gpgsm
+  gsettings-desktop-schemas gstreamer1.0-pipewire gstreamer1.0-plugins-base
+  gstreamer1.0-plugins-good gtk-update-icon-cache gvfs gvfs-common
+  gvfs-daemons gvfs-libs heif-gdk-pixbuf heif-thumbnailer hicolor-icon-theme
+  hunspell-en-us ibus ibus-data iso-codes libaa1 libabsl20240722
+  libaccountsservice0 libadwaita-1-0 libaom3 libappstream5 libarchive13t64
+  libaspell15 libassuan9 libasyncns0 libatasmart4 libatk-bridge2.0-0t64
+  libatk1.0-0t64 libatomic1 libatspi2.0-0t64 libavahi-client3
+  libavahi-common-data libavahi-common3 libavahi-glib1 libavc1394-0 libavif16
+  libblockdev-crypto3 libblockdev-fs3 libblockdev-loop3 libblockdev-mdraid3
+  libblockdev-nvme3 libblockdev-part3 libblockdev-swap3 libblockdev-utils3
+  libblockdev3 libbluetooth3 libbluray2 libbytesize-common libbytesize1
+  libcairo-gobject2 libcairo-script-interpreter2 libcairo2 libcamel-1.2-64t64
+  libcanberra-gtk3-0 libcanberra0 libcdio-cdda2t64 libcdio-paranoia2t64
+  libcdio19t64 libcdparanoia0 libcloudproviders0 libcolord-gtk4-1t64
+  libcolord2 libcolorhug2 libconfig++11 libcrack2 libcryptsetup12 libcue2
+  libcups2t64 libcurl3t64-gnutls libdatrie1 libdav1d7 libdbusmenu-glib4
+  libdbusmenu-gtk3-4 libdconf1 libde265-0 libdecor-0-0 libdeflate0
+  libdisplay-info2 libdrm-amdgpu1 libdrm-common libdrm2 libduktape207
+  libdv4t64 libebur128-1 libecal-2.0-3 libedataserver-1.2-27t64
+  libeditorconfig0 libegl1 libeis1 libenchant-2-2 libepoxy0 libevdev2
+  libevent-2.1-7t64 libexempi8 libexif12 libexiv2-28 libexiv2-data libffado2
+  libflac14 libfontconfig1 libfontenc1 libfreeaptx0 libfreetype6 libfribidi0
+  libfuse3-4 libgav1-1 libgck-1-0 libgck-2-2 libgcr-4-4 libgcr-base-3-1
+  libgcr-ui-3-1 libgd3 libgdata-common libgdata22 libgdk-pixbuf-2.0-0
+  libgdk-pixbuf2.0-common libgdm1 libgeoclue-2-0 libgeocode-glib-2-0
+  libgexiv2-2 libgif7 libgirepository-1.0-1 libgjs0g libgl1 libgles2
+  libglib2.0-0t64 libglib2.0-bin libglib2.0-data libglibmm-2.4-1t64 libglvnd0
+  libglx0 libgnome-autoar-0-0 libgnome-bg-4-2t64 libgnome-bluetooth-3.0-13
+  libgnome-bluetooth-ui-3.0-13 libgnome-desktop-3-20t64
+  libgnome-desktop-4-2t64 libgnome-rr-4-2t64 libgoa-1.0-0b libgoa-1.0-common
+  libgoa-backend-1.0-2 libgpgme11t64 libgpgmepp6t64 libgphoto2-6t64
+  libgphoto2-port12t64 libgpm2 libgraphene-1.0-0 libgraphite2-3 libgsf-1-114
+  libgsf-1-common libgsound0t64 libgstreamer-gl1.0-0
+  libgstreamer-plugins-base1.0-0 libgstreamer1.0-0 libgtk-3-0t64
+  libgtk-3-common libgtk-4-1 libgtk-4-common libgtk-4-media-gstreamer
+  libgtksourceview-5-0 libgtksourceview-5-common libgtop-2.0-11
+  libgtop2-common libgudev-1.0-0 libgusb2 libgweather-4-0t64
+  libgweather-4-common libgxps2t64 libharfbuzz-gobject0 libharfbuzz-subset0
+  libharfbuzz0b libheif-plugin-dav1d libheif-plugin-libde265 libheif1
+  libhunspell-1.7-0 libhwy1t64 libibus-1.0-5 libical3t64 libice6 libicu76
+  libiec61883-0 libieee1284-3t64 libimagequant0 libimobiledevice-1.0-6
+  libimobiledevice-glue-1.0-0 libinih1 libinireader0 libinput-bin libinput10
+  libiptcdata0 libisl23 libjansson4 libjbig0 libjpeg62-turbo libjson-c5
+  libjson-glib-1.0-0 libjson-glib-1.0-common libjxl-gdk-pixbuf libjxl0.11
+  libksba8 liblc3-1 liblcms2-2 libldacbt-abr2 libldacbt-enc2 libldb2 liblerc4
+  liblilv-0-0 libllvm19 liblmdb0 libltdl7 liblua5.4-0 libmalcontent-0-0
+  libmarisa0 libmm-glib0 libmozjs-128-0 libmp3lame0 libmpc3 libmpfr6
+  libmpg123-0t64 libmsgraph-1-1 libmtdev1t64 libmtp-common libmtp9t64
+  libmutter-16-0 libmysofa1 libnautilus-extension4 libncurses6 libnfs14
+  libngtcp2-16 libngtcp2-crypto-gnutls8 libnm0 libnma-common libnma-gtk4-0
+  libnotify4 libnpth0t64 libnspr4 libnss3 libnvme1t64 libogg0 libopencc-data
+  libopencc1.1 libopencore-amrnb0 libopencore-amrwb0 libopenfec1 libopenjp2-7
+  libopus0 liborc-0.4-0t64 libosinfo-1.0-0 libosinfo-l10n libpango-1.0-0
+  libpangocairo-1.0-0 libpangoft2-1.0-0 libpangoxft-1.0-0 libpci3
+  libpciaccess0 libpinyin-data libpinyin15 libpipewire-0.3-0t64
+  libpipewire-0.3-modules libpixman-1-0 libplist-2.0-4 libpng16-16t64
+  libpolkit-agent-1-0 libpolkit-gobject-1-0 libpoppler-glib8t64 libpoppler147
+  libportal-gtk4-1 libportal1 libproxy1v5 libpulse-mainloop-glib0 libpulse0
+  libpwquality-common libpwquality1 libpython3-stdlib libpython3.13-minimal
+  libpython3.13-stdlib librav1e0.7 libraw1394-11 librest-1.0-0 libroc0.4
+  librsvg2-2 librsvg2-common libsane-common libsane1 libsbc1 libsecret-1-0
+  libsecret-common libsensors-config libsensors5 libserd-0-0 libsharpyuv0
+  libshout3 libsigc++-2.0-0v5 libsm6 libsmbclient0 libsndfile1 libsnmp-base
+  libsnmp40t64 libsord-0-0 libsoup-2.4-1 libsoup-3.0-0 libsoup-3.0-common
+  libsoup2.4-common libspa-0.2-bluetooth libspa-0.2-modules libspeex1
+  libspeexdsp1 libspelling-1-2 libspelling-common libsratom-0-0
+  libstartup-notification0 libstemmer0d libsvtav1enc2 libtag2 libtalloc2
+  libtdb1 libtevent0t64 libtext-iconv-perl libthai-data libthai0 libtheora0
+  libtheoradec1 libtheoraenc1 libtiff6 libtinysparql-3.0-0
+  libtotem-plparser-common libtotem-plparser18 libtwolame0 libudfread0
+  libudisks2-0 libunwind8 libupower-glib3 libusbmuxd-2.0-7 libuv1t64
+  libv4l-0t64 libv4lconvert0t64 libvisual-0.4-0 libvolume-key1 libvorbis0a
+  libvorbisenc2 libvorbisfile3 libvpx9 libvte-2.91-common libvte-2.91-gtk4-0
+  libvulkan1 libwacom-common libwacom9 libwavpack1 libwayland-client0
+  libwayland-cursor0 libwayland-egl1 libwayland-server0 libwbclient0 libwebp7
+  libwebpdemux2 libwebpmux3 libwebrtc-audio-processing-1-3
+  libwireplumber-0.5-0 libx11-6 libx11-data libx11-xcb1 libxau6 libxaw7
+  libxcb-damage0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-randr0
+  libxcb-render0 libxcb-res0 libxcb-shm0 libxcb-sync1 libxcb-util1
+  libxcb-xfixes0 libxcb-xkb1 libxcb1 libxcomposite1 libxcursor1 libxcvt0
+  libxdamage1 libxdmcp6 libxext6 libxfixes3 libxfont2 libxft2 libxi6
+  libxinerama1 libxkbcommon-x11-0 libxkbcommon0 libxkbfile1 libxkbregistry0
+  libxml++2.6-2v5 libxml2 libxmlb2 libxmu6 libxmuu1 libxpm4 libxrandr2
+  libxrender1 libxshmfence1 libxslt1.1 libxt6t64 libxtst6 libxxf86vm1 libyuv0
+  libz3-4 libzix-0-0 media-types mesa-utils-bin mutter-common
+  mutter-common-bin nautilus-data osinfo-db p11-kit p11-kit-modules pci.ids
+  pinentry-curses pinentry-gnome3 pipewire pipewire-alsa pipewire-bin
+  pipewire-pulse python3 python3-gi python3-ibus-1.0 python3-minimal
+  python3.13 python3.13-minimal samba-libs sgml-base shared-mime-info
+  sound-theme-freedesktop tecla tinysparql tracker-extract udisks2 upower
+  usb.ids webp-pixbuf-loader wireplumber x11-common x11-xkb-utils
+  xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+  xdg-user-dirs xdg-user-dirs-gtk xml-core xserver-common xwayland
+Suggested packages:
+  adwaita-icon-theme-legacy colord-sensor-argyll cpp-doc gcc-14-locales
+  cpp-14-doc gnome | kde-standard | xfce4 | wmaker ispell | aspell | hunspell
+  wordlist tor fonts-stix | otf-stix fonts-lmodern pulseaudio
+  fonts-noto-cjk-extra orca libpam-fprintd libpam-sss libpam-pkcs11
+  gnome-software | gnome-packagekit usbguard gir1.2-malcontent-0
+  gir1.2-telepathyglib-0.12 gir1.2-telepathylogger-0.2
+  gnome-shell-extension-prefs gpg-wks-server parcimonie xloadimage scdaemon
+  tpm2daemon bluez-obexd pkexec samba-common hunspell openoffice.org-hunspell
+  | openoffice.org-core ibus-clutter ibus-doc isoquery lrzip aspell mdadm
+  libbluray-bdj libcanberra-pulse cups-common libdv-bin oss-compat
+  libenchant-2-voikko exiv2 libgd-tools low-memory-monitor gphoto2 gpm
+  libvisual-0.4-plugins gstreamer1.0-tools libheif-plugin-ffmpegdec
+  libheif-plugin-jpegdec libheif-plugin-jpegenc libheif-plugin-j2kdec
+  libheif-plugin-j2kenc libheif-plugin-kvazaar libheif-plugin-rav1e
+  libheif-plugin-svtenc libusbmuxd-tools liblcms2-utils nvme-cli opus-tools
+  pciutils libpinyin-utils libraw1394-doc librsvg2-bin avahi-daemon hplip
+  lm-sensors serdi snmp-mibs-downloader sordi speex libwacom-bin
+  python3-argcomplete pinentry-doc pulseaudio-utils python3-doc python3-tk
+  python3-venv python3.13-venv python3.13-doc binutils binfmt-support
+  sgml-base-doc f2fs-tools nilfs-tools reiserfsprogs udftools udisks2-btrfs
+  udisks2-lvm2 xfsprogs libspa-0.2-libcamera wireplumber-doc nickle cairo-5c
+  xorg-docs-core evince debhelper xfonts-100dpi | xfonts-75dpi xfonts-scalable
+Recommended packages:
+  plymouth-label libavcodec63 | libavcodec-extra63 | libavcodec62
+  | libavcodec-extra62 | libavcodec61 | libavcodec-extra61 | libavcodec60
+  | libavcodec-extra60 | libavcodec59 | libavcodec-extra59 | libavcodec58
+  | libavcodec-extra58 | libavcodec57 | libavcodec-extra57 | libavcodec56
+  | libavcodec-extra56 | libavcodec55 | libavcodec-extra55 | libavcodec54
+  | libavcodec-extra54 | libavcodec53 | libavcodec-extra53 at-spi2-core
+  xserver-xephyr zenity cracklib-runtime cups-pk-helper fwupd
+  gnome-bluetooth-sendto gnome-remote-desktop gnome-user-docs gnome-user-share
+  libcanberra-pulse libnss-myhostname malcontent-gui
+  mobile-broadband-provider-info nm-connection-editor | network-manager-gnome
+  power-profiles-daemon realmd rygel | rygel-tracker
+  system-config-printer-common gnome-keyring-pkcs11 evolution-ews-core
+  iio-sensor-proxy pkexec bolt evolution-data-server gnome-browser-connector
+  gnome-menus switcheroo-control unzip gnupg-utils gpg-wks-client
+  gstreamer1.0-x wsdd ibus-gtk ibus-gtk3 ibus-gtk4 im-config aspell-en
+  | aspell-dictionary | aspell6a-dictionary libaacs0 libcanberra-gtk3-module
+  default-libdecor-0-plugin-1 | libdecor-0-plugin-1 enchant-2
+  libgdk-pixbuf2.0-bin libgphoto2-l10n gstreamer1.0-gl libgtk-3-bin
+  libgtk-4-bin libheif-plugin-x265 libheif-plugin-aomenc usbmuxd modemmanager
+  libmtp-runtime libpipewire-0.3-common poppler-data sane-airscan sane-utils
+  ipp-usb mesa-vulkan-drivers | vulkan-icd gnome-sushi rtkit ntfs-3g
+  exfatprogs xbitmaps xfonts-base xserver-xorg-legacy xcvt
+The following NEW packages will be installed:
+  accountsservice acl adwaita-icon-theme at-spi2-common bubblewrap colord
+  colord-data cpp cpp-14 cpp-14-aarch64-linux-gnu cpp-aarch64-linux-gnu
+  dbus-x11 dconf-cli dconf-gsettings-backend dconf-service desktop-base
+  desktop-file-utils dictionaries-common dirmngr eject emacsen-common
+  evolution-data-server-common firefox-esr fontconfig fontconfig-config
+  fonts-cantarell fonts-dejavu-core fonts-dejavu-mono fonts-noto-cjk
+  fonts-noto-color-emoji fonts-noto-core fonts-noto-mono fonts-quicksand fuse3
+  gcr gcr4 gdm3 geocode-glib-common gir1.2-accountsservice-1.0 gir1.2-adw-1
+  gir1.2-atk-1.0 gir1.2-atspi-2.0 gir1.2-freedesktop gir1.2-gck-2 gir1.2-gcr-4
+  gir1.2-gdesktopenums-3.0 gir1.2-gdkpixbuf-2.0 gir1.2-gdm-1.0
+  gir1.2-geoclue-2.0 gir1.2-girepository-2.0 gir1.2-glib-2.0
+  gir1.2-gnomebg-4.0 gir1.2-gnomebluetooth-3.0 gir1.2-gnomedesktop-4.0
+  gir1.2-graphene-1.0 gir1.2-gstreamer-1.0 gir1.2-gtk-3.0 gir1.2-gtk-4.0
+  gir1.2-gweather-4.0 gir1.2-harfbuzz-0.0 gir1.2-ibus-1.0 gir1.2-mutter-16
+  gir1.2-nm-1.0 gir1.2-nma4-1.0 gir1.2-pango-1.0 gir1.2-polkit-1.0
+  gir1.2-rsvg-2.0 gir1.2-soup-3.0 gir1.2-upowerglib-1.0 gjs glib-networking
+  glib-networking-common glib-networking-services gnome-bluetooth-3-common
+  gnome-console gnome-control-center gnome-control-center-data
+  gnome-desktop3-data gnome-keyring gnome-online-accounts gnome-session
+  gnome-session-bin gnome-session-common gnome-session-xsession
+  gnome-settings-daemon gnome-settings-daemon-common gnome-shell
+  gnome-shell-common gnome-text-editor gnupg gnupg-l10n gpg gpg-agent gpgconf
+  gpgsm gsettings-desktop-schemas gstreamer1.0-pipewire
+  gstreamer1.0-plugins-base gstreamer1.0-plugins-good gtk-update-icon-cache
+  gvfs gvfs-backends gvfs-common gvfs-daemons gvfs-libs heif-gdk-pixbuf
+  heif-thumbnailer hicolor-icon-theme hunspell-en-us ibus ibus-data
+  ibus-libpinyin iso-codes libaa1 libabsl20240722 libaccountsservice0
+  libadwaita-1-0 libaom3 libappstream5 libarchive13t64 libaspell15 libassuan9
+  libasyncns0 libatasmart4 libatk-bridge2.0-0t64 libatk1.0-0t64 libatomic1
+  libatspi2.0-0t64 libavahi-client3 libavahi-common-data libavahi-common3
+  libavahi-glib1 libavc1394-0 libavif16 libblockdev-crypto3 libblockdev-fs3
+  libblockdev-loop3 libblockdev-mdraid3 libblockdev-nvme3 libblockdev-part3
+  libblockdev-swap3 libblockdev-utils3 libblockdev3 libbluetooth3 libbluray2
+  libbytesize-common libbytesize1 libcairo-gobject2
+  libcairo-script-interpreter2 libcairo2 libcamel-1.2-64t64 libcanberra-gtk3-0
+  libcanberra0 libcdio-cdda2t64 libcdio-paranoia2t64 libcdio19t64
+  libcdparanoia0 libcloudproviders0 libcolord-gtk4-1t64 libcolord2
+  libcolorhug2 libconfig++11 libcrack2 libcryptsetup12 libcue2 libcups2t64
+  libcurl3t64-gnutls libdatrie1 libdav1d7 libdbusmenu-glib4 libdbusmenu-gtk3-4
+  libdconf1 libde265-0 libdecor-0-0 libdeflate0 libdisplay-info2
+  libdrm-amdgpu1 libdrm-common libdrm2 libduktape207 libdv4t64 libebur128-1
+  libecal-2.0-3 libedataserver-1.2-27t64 libeditorconfig0 libegl-mesa0 libegl1
+  libeis1 libenchant-2-2 libepoxy0 libevdev2 libevent-2.1-7t64 libexempi8
+  libexif12 libexiv2-28 libexiv2-data libffado2 libflac14 libfontconfig1
+  libfontenc1 libfreeaptx0 libfreetype6 libfribidi0 libfuse3-4 libgav1-1
+  libgbm1 libgck-1-0 libgck-2-2 libgcr-4-4 libgcr-base-3-1 libgcr-ui-3-1
+  libgd3 libgdata-common libgdata22 libgdk-pixbuf-2.0-0
+  libgdk-pixbuf2.0-common libgdm1 libgeoclue-2-0 libgeocode-glib-2-0
+  libgexiv2-2 libgif7 libgirepository-1.0-1 libgjs0g libgl1 libgl1-mesa-dri
+  libgles2 libglib2.0-0t64 libglib2.0-bin libglib2.0-data libglibmm-2.4-1t64
+  libglvnd0 libglx-mesa0 libglx0 libgnome-autoar-0-0 libgnome-bg-4-2t64
+  libgnome-bluetooth-3.0-13 libgnome-bluetooth-ui-3.0-13
+  libgnome-desktop-3-20t64 libgnome-desktop-4-2t64 libgnome-rr-4-2t64
+  libgoa-1.0-0b libgoa-1.0-common libgoa-backend-1.0-2 libgpgme11t64
+  libgpgmepp6t64 libgphoto2-6t64 libgphoto2-port12t64 libgpm2
+  libgraphene-1.0-0 libgraphite2-3 libgsf-1-114 libgsf-1-common libgsound0t64
+  libgstreamer-gl1.0-0 libgstreamer-plugins-base1.0-0 libgstreamer1.0-0
+  libgtk-3-0t64 libgtk-3-common libgtk-4-1 libgtk-4-common
+  libgtk-4-media-gstreamer libgtksourceview-5-0 libgtksourceview-5-common
+  libgtop-2.0-11 libgtop2-common libgudev-1.0-0 libgusb2 libgweather-4-0t64
+  libgweather-4-common libgxps2t64 libharfbuzz-gobject0 libharfbuzz-subset0
+  libharfbuzz0b libheif-plugin-dav1d libheif-plugin-libde265 libheif1
+  libhunspell-1.7-0 libhwy1t64 libibus-1.0-5 libical3t64 libice6 libicu76
+  libiec61883-0 libieee1284-3t64 libimagequant0 libimobiledevice-1.0-6
+  libimobiledevice-glue-1.0-0 libinih1 libinireader0 libinput-bin libinput10
+  libiptcdata0 libisl23 libjansson4 libjbig0 libjpeg62-turbo libjson-c5
+  libjson-glib-1.0-0 libjson-glib-1.0-common libjxl-gdk-pixbuf libjxl0.11
+  libksba8 liblc3-1 liblcms2-2 libldacbt-abr2 libldacbt-enc2 libldb2 liblerc4
+  liblilv-0-0 libllvm19 liblmdb0 libltdl7 liblua5.4-0 libmalcontent-0-0
+  libmarisa0 libmm-glib0 libmozjs-128-0 libmp3lame0 libmpc3 libmpfr6
+  libmpg123-0t64 libmsgraph-1-1 libmtdev1t64 libmtp-common libmtp9t64
+  libmutter-16-0 libmysofa1 libnautilus-extension4 libncurses6 libnfs14
+  libngtcp2-16 libngtcp2-crypto-gnutls8 libnm0 libnma-common libnma-gtk4-0
+  libnotify4 libnpth0t64 libnspr4 libnss3 libnvme1t64 libogg0 libopencc-data
+  libopencc1.1 libopencore-amrnb0 libopencore-amrwb0 libopenfec1 libopenjp2-7
+  libopus0 liborc-0.4-0t64 libosinfo-1.0-0 libosinfo-l10n libpam-gnome-keyring
+  libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libpangoxft-1.0-0
+  libpci3 libpciaccess0 libpinyin-data libpinyin15 libpipewire-0.3-0t64
+  libpipewire-0.3-modules libpixman-1-0 libplist-2.0-4 libpng16-16t64
+  libpolkit-agent-1-0 libpolkit-gobject-1-0 libpoppler-glib8t64 libpoppler147
+  libportal-gtk4-1 libportal1 libproxy1v5 libpulse-mainloop-glib0 libpulse0
+  libpwquality-common libpwquality1 libpython3-stdlib libpython3.13-minimal
+  libpython3.13-stdlib librav1e0.7 libraw1394-11 librest-1.0-0 libroc0.4
+  librsvg2-2 librsvg2-common libsane-common libsane1 libsbc1 libsecret-1-0
+  libsecret-common libsensors-config libsensors5 libserd-0-0 libsharpyuv0
+  libshout3 libsigc++-2.0-0v5 libsm6 libsmbclient0 libsndfile1 libsnmp-base
+  libsnmp40t64 libsord-0-0 libsoup-2.4-1 libsoup-3.0-0 libsoup-3.0-common
+  libsoup2.4-common libspa-0.2-bluetooth libspa-0.2-modules libspeex1
+  libspeexdsp1 libspelling-1-2 libspelling-common libsratom-0-0
+  libstartup-notification0 libstemmer0d libsvtav1enc2 libtag2 libtalloc2
+  libtdb1 libtevent0t64 libtext-iconv-perl libthai-data libthai0 libtheora0
+  libtheoradec1 libtheoraenc1 libtiff6 libtinysparql-3.0-0
+  libtotem-plparser-common libtotem-plparser18 libtwolame0 libudfread0
+  libudisks2-0 libunwind8 libupower-glib3 libusbmuxd-2.0-7 libuv1t64
+  libv4l-0t64 libv4lconvert0t64 libvisual-0.4-0 libvolume-key1 libvorbis0a
+  libvorbisenc2 libvorbisfile3 libvpx9 libvte-2.91-common libvte-2.91-gtk4-0
+  libvulkan1 libwacom-common libwacom9 libwavpack1 libwayland-client0
+  libwayland-cursor0 libwayland-egl1 libwayland-server0 libwbclient0 libwebp7
+  libwebpdemux2 libwebpmux3 libwebrtc-audio-processing-1-3
+  libwireplumber-0.5-0 libx11-6 libx11-data libx11-xcb1 libxau6 libxaw7
+  libxcb-damage0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-randr0
+  libxcb-render0 libxcb-res0 libxcb-shm0 libxcb-sync1 libxcb-util1
+  libxcb-xfixes0 libxcb-xkb1 libxcb1 libxcomposite1 libxcursor1 libxcvt0
+  libxdamage1 libxdmcp6 libxext6 libxfixes3 libxfont2 libxft2 libxi6
+  libxinerama1 libxkbcommon-x11-0 libxkbcommon0 libxkbfile1 libxkbregistry0
+  libxml++2.6-2v5 libxml2 libxmlb2 libxmu6 libxmuu1 libxpm4 libxrandr2
+  libxrender1 libxshmfence1 libxslt1.1 libxt6t64 libxtst6 libxxf86vm1 libyuv0
+  libz3-4 libzix-0-0 media-types mesa-libgallium mesa-utils mesa-utils-bin
+  mutter-common mutter-common-bin nautilus nautilus-data osinfo-db p11-kit
+  p11-kit-modules pci.ids pinentry-curses pinentry-gnome3 pipewire
+  pipewire-alsa pipewire-audio pipewire-bin pipewire-pulse polkitd python3
+  python3-gi python3-ibus-1.0 python3-minimal python3.13 python3.13-minimal
+  samba-libs sgml-base shared-mime-info sound-theme-freedesktop tecla
+  tinysparql tracker-extract udisks2 upower usb.ids webp-pixbuf-loader
+  wireplumber x11-apps x11-common x11-xkb-utils x11-xserver-utils xauth
+  xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+  xdg-user-dirs xdg-user-dirs-gtk xml-core xserver-common xserver-xorg
+  xserver-xorg-core xserver-xorg-input-libinput xserver-xorg-video-fbdev
+  xwayland
+0 upgraded, 565 newly installed, 0 to remove and 0 not upgraded.
+Need to get 410 MB of archives.
+After this operation, 1,669 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main arm64 libsane-common all 1.3.1-3 [1,307 kB]
+Get:2 http://security.debian.org trixie-security/main arm64 libpng16-16t64 arm64 1.6.48-1+deb13u6 [275 kB]
+Get:3 http://security.debian.org trixie-security/main arm64 libcurl3t64-gnutls arm64 8.14.1-2+deb13u7 [354 kB]
+Get:4 http://deb.debian.org/debian trixie/main arm64 libpython3.13-minimal arm64 3.13.5-2+deb13u5 [856 kB]
+Get:5 http://security.debian.org trixie-security/main arm64 libheif-plugin-libde265 arm64 1.23.6-2~deb13u1 [20.1 kB]
+Get:6 http://security.debian.org trixie-security/main arm64 libheif-plugin-dav1d arm64 1.23.6-2~deb13u1 [22.1 kB]
+Get:7 http://security.debian.org trixie-security/main arm64 libheif1 arm64 1.23.6-2~deb13u1 [710 kB]
+Get:8 http://deb.debian.org/debian trixie/main arm64 python3.13-minimal arm64 3.13.5-2+deb13u5 [2,008 kB]
+Get:9 http://security.debian.org trixie-security/main arm64 libnss3 arm64 2:3.110-1+deb13u5 [1,291 kB]
+Get:10 http://security.debian.org trixie-security/main arm64 librsvg2-2 arm64 2.60.0+dfsg-1+deb13u1 [1,584 kB]
+Get:11 http://deb.debian.org/debian trixie/main arm64 python3-minimal arm64 3.13.5-1 [27.2 kB]
+Get:12 http://deb.debian.org/debian trixie/main arm64 media-types all 13.0.0 [29.3 kB]
+Get:13 http://deb.debian.org/debian trixie/main arm64 libpython3.13-stdlib arm64 3.13.5-2+deb13u5 [1,895 kB]
+Get:14 http://security.debian.org trixie-security/main arm64 librsvg2-common arm64 2.60.0+dfsg-1+deb13u1 [139 kB]
+Get:15 http://security.debian.org trixie-security/main arm64 libevent-2.1-7t64 arm64 2.1.13-stable-1~deb13u1 [171 kB]
+Get:16 http://security.debian.org trixie-security/main arm64 firefox-esr arm64 153.7.0esr-1~deb13u1 [71.8 MB]
+Get:17 http://deb.debian.org/debian trixie/main arm64 python3.13 arm64 3.13.5-2+deb13u5 [757 kB]
+Get:18 http://deb.debian.org/debian trixie/main arm64 libpython3-stdlib arm64 3.13.5-1 [10.2 kB]
+Get:19 http://deb.debian.org/debian trixie/main arm64 python3 arm64 3.13.5-1 [28.2 kB]
+Get:20 http://deb.debian.org/debian trixie/main arm64 libatomic1 arm64 14.2.0-19 [10.1 kB]
+Get:21 http://deb.debian.org/debian trixie/main arm64 libglib2.0-0t64 arm64 2.84.4-3~deb13u5 [1,429 kB]
+Get:22 http://deb.debian.org/debian trixie/main arm64 libaccountsservice0 arm64 23.13.9-7 [53.2 kB]
+Get:23 http://deb.debian.org/debian trixie/main arm64 libpolkit-gobject-1-0 arm64 126-2 [46.3 kB]
+Get:24 http://deb.debian.org/debian trixie/main arm64 accountsservice arm64 23.13.9-7 [86.7 kB]
+Get:25 http://deb.debian.org/debian trixie/main arm64 acl arm64 2.3.2-2+b1 [63.3 kB]
+Get:26 http://deb.debian.org/debian trixie/main arm64 libgdk-pixbuf2.0-common all 2.42.12+dfsg-4+deb13u1 [312 kB]
+Get:27 http://deb.debian.org/debian trixie/main arm64 libxml2 arm64 2.12.7+dfsg+really2.9.14-2.1+deb13u3 [631 kB]
+Get:28 http://deb.debian.org/debian trixie/main arm64 shared-mime-info arm64 2.4-5+b2 [756 kB]
+Get:29 http://deb.debian.org/debian trixie/main arm64 libjpeg62-turbo arm64 1:2.1.5-4 [173 kB]
+Get:30 http://deb.debian.org/debian trixie/main arm64 libdeflate0 arm64 1.23-2 [42.4 kB]
+Get:31 http://deb.debian.org/debian trixie/main arm64 libjbig0 arm64 2.1-6.1+b2 [30.4 kB]
+Get:32 http://deb.debian.org/debian trixie/main arm64 liblerc4 arm64 4.0.0+ds-5 [146 kB]
+Get:33 http://deb.debian.org/debian trixie/main arm64 libsharpyuv0 arm64 1.5.0-0.1 [114 kB]
+Get:34 http://deb.debian.org/debian trixie/main arm64 libwebp7 arm64 1.5.0-0.1 [271 kB]
+Get:35 http://deb.debian.org/debian trixie/main arm64 libtiff6 arm64 4.7.0-3+deb13u3 [325 kB]
+Get:36 http://deb.debian.org/debian trixie/main arm64 libgdk-pixbuf-2.0-0 arm64 2.42.12+dfsg-4+deb13u1 [131 kB]
+Get:37 http://deb.debian.org/debian trixie/main arm64 gtk-update-icon-cache arm64 4.18.6+ds-2 [52.3 kB]
+Get:38 http://deb.debian.org/debian trixie/main arm64 hicolor-icon-theme all 0.18-2 [11.8 kB]
+Get:39 http://deb.debian.org/debian trixie/main arm64 adwaita-icon-theme all 48.1-1 [504 kB]
+Get:40 http://deb.debian.org/debian trixie/main arm64 at-spi2-common all 2.56.2-1+deb13u2 [171 kB]
+Get:41 http://deb.debian.org/debian trixie/main arm64 bubblewrap arm64 0.12.0-1~deb13u1 [54.8 kB]
+Get:42 http://deb.debian.org/debian trixie/main arm64 colord-data all 1.4.7-3 [1,132 kB]
+Get:43 http://deb.debian.org/debian trixie/main arm64 sgml-base all 1.31+nmu1 [10.9 kB]
+Get:44 http://deb.debian.org/debian trixie/main arm64 xml-core all 0.19 [20.1 kB]
+Get:45 http://deb.debian.org/debian trixie/main arm64 libduktape207 arm64 2.7.0-2+b2 [127 kB]
+Get:46 http://deb.debian.org/debian trixie/main arm64 libpolkit-agent-1-0 arm64 126-2 [25.4 kB]
+Get:47 http://deb.debian.org/debian trixie/main arm64 polkitd arm64 126-2 [119 kB]
+Get:48 http://deb.debian.org/debian trixie/main arm64 libxau6 arm64 1:1.0.11-1 [20.6 kB]
+Get:49 http://deb.debian.org/debian trixie/main arm64 libxdmcp6 arm64 1:1.1.5-1 [27.8 kB]
+Get:50 http://deb.debian.org/debian trixie/main arm64 libxcb1 arm64 1.17.0-2+b1 [143 kB]
+Get:51 http://deb.debian.org/debian trixie/main arm64 libx11-data all 2:1.8.12-1 [343 kB]
+Get:52 http://deb.debian.org/debian trixie/main arm64 libx11-6 arm64 2:1.8.12-1 [795 kB]
+Get:53 http://deb.debian.org/debian trixie/main arm64 dbus-x11 arm64 1.16.2-2 [64.6 kB]
+Get:54 http://deb.debian.org/debian trixie/main arm64 libdconf1 arm64 0.40.0-5 [40.4 kB]
+Get:55 http://deb.debian.org/debian trixie/main arm64 dconf-service arm64 0.40.0-5 [30.9 kB]
+Get:56 http://deb.debian.org/debian trixie/main arm64 dconf-gsettings-backend arm64 0.40.0-5 [27.3 kB]
+Get:57 http://deb.debian.org/debian trixie/main arm64 liblcms2-2 arm64 2.16-2+deb13u2 [152 kB]
+Get:58 http://deb.debian.org/debian trixie/main arm64 libcolord2 arm64 1.4.7-3 [130 kB]
+Get:59 http://deb.debian.org/debian trixie/main arm64 libjson-glib-1.0-common all 1.10.6+ds-2 [62.3 kB]
+Get:60 http://deb.debian.org/debian trixie/main arm64 libjson-glib-1.0-0 arm64 1.10.6+ds-2 [59.1 kB]
+Get:61 http://deb.debian.org/debian trixie/main arm64 libgusb2 arm64 0.4.9-1+b1 [34.9 kB]
+Get:62 http://deb.debian.org/debian trixie/main arm64 libcolorhug2 arm64 1.4.7-3 [38.2 kB]
+Get:63 http://deb.debian.org/debian trixie/main arm64 libgudev-1.0-0 arm64 238-6 [13.7 kB]
+Get:64 http://deb.debian.org/debian trixie/main arm64 libavahi-common-data arm64 0.8-16 [112 kB]
+Get:65 http://deb.debian.org/debian trixie/main arm64 libavahi-common3 arm64 0.8-16 [43.3 kB]
+Get:66 http://deb.debian.org/debian trixie/main arm64 libavahi-client3 arm64 0.8-16 [46.7 kB]
+Get:67 http://deb.debian.org/debian trixie/main arm64 libfreetype6 arm64 2.13.3+dfsg-1+deb13u1 [422 kB]
+Get:68 http://deb.debian.org/debian trixie/main arm64 fonts-dejavu-mono all 2.37-8 [489 kB]
+Get:69 http://deb.debian.org/debian trixie/main arm64 fonts-dejavu-core all 2.37-8 [840 kB]
+Get:70 http://deb.debian.org/debian trixie/main arm64 fonts-noto-mono all 20201225-2 [398 kB]
+Get:71 http://deb.debian.org/debian trixie/main arm64 fonts-noto-core all 20201225-2 [12.2 MB]
+Get:72 http://deb.debian.org/debian trixie/main arm64 fontconfig-config arm64 2.15.0-2.3 [318 kB]
+Get:73 http://deb.debian.org/debian trixie/main arm64 libfontconfig1 arm64 2.15.0-2.3 [387 kB]
+Get:74 http://deb.debian.org/debian trixie/main arm64 libpixman-1-0 arm64 0.44.0-3 [168 kB]
+Get:75 http://deb.debian.org/debian trixie/main arm64 libxcb-render0 arm64 1.17.0-2+b1 [115 kB]
+Get:76 http://deb.debian.org/debian trixie/main arm64 libxcb-shm0 arm64 1.17.0-2+b1 [105 kB]
+Get:77 http://deb.debian.org/debian trixie/main arm64 libxext6 arm64 2:1.3.4-1+b3 [49.2 kB]
+Get:78 http://deb.debian.org/debian trixie/main arm64 libxrender1 arm64 1:0.9.12-1 [27.0 kB]
+Get:79 http://deb.debian.org/debian trixie/main arm64 libcairo2 arm64 1.18.4-1+b1 [483 kB]
+Get:80 http://deb.debian.org/debian trixie/main arm64 libngtcp2-16 arm64 1.11.0-1+deb13u1 [121 kB]
+Get:81 http://deb.debian.org/debian trixie/main arm64 libngtcp2-crypto-gnutls8 arm64 1.11.0-1+deb13u1 [28.4 kB]
+Get:82 http://deb.debian.org/debian trixie/main arm64 libexif12 arm64 0.6.25-1+deb13u1 [417 kB]
+Get:83 http://deb.debian.org/debian trixie/main arm64 libaom3 arm64 3.12.1-1+deb13u1 [1,671 kB]
+Get:84 http://deb.debian.org/debian trixie/main arm64 libdav1d7 arm64 1.5.1-1 [252 kB]
+Get:85 http://deb.debian.org/debian trixie/main arm64 libabsl20240722 arm64 20240722.0-4 [452 kB]
+Get:86 http://deb.debian.org/debian trixie/main arm64 libgav1-1 arm64 0.19.0-3+b1 [491 kB]
+Get:87 http://deb.debian.org/debian trixie/main arm64 librav1e0.7 arm64 0.7.1-9+b2 [662 kB]
+Get:88 http://deb.debian.org/debian trixie/main arm64 libsvtav1enc2 arm64 2.3.0+dfsg-1 [1,558 kB]
+Get:89 http://deb.debian.org/debian trixie/main arm64 libyuv0 arm64 0.0.1904.20250204-1 [137 kB]
+Get:90 http://deb.debian.org/debian trixie/main arm64 libavif16 arm64 1.2.1-1.2 [125 kB]
+Get:91 http://deb.debian.org/debian trixie/main arm64 libde265-0 arm64 1.0.15-1+deb13u2 [153 kB]
+Get:92 http://deb.debian.org/debian trixie/main arm64 libimagequant0 arm64 2.18.0-1+b2 [34.6 kB]
+Get:93 http://deb.debian.org/debian trixie/main arm64 libxpm4 arm64 1:3.5.17-1+deb13u1 [52.9 kB]
+Get:94 http://deb.debian.org/debian trixie/main arm64 libgd3 arm64 2.3.3-14~deb13u1 [115 kB]
+Get:95 http://deb.debian.org/debian trixie/main arm64 libltdl7 arm64 2.5.4-4 [415 kB]
+Get:96 http://deb.debian.org/debian trixie/main arm64 libgphoto2-port12t64 arm64 2.5.31-4 [135 kB]
+Get:97 http://deb.debian.org/debian trixie/main arm64 libgphoto2-6t64 arm64 2.5.31-4 [722 kB]
+Get:98 http://deb.debian.org/debian trixie/main arm64 libieee1284-3t64 arm64 0.2.11-14.1+b1 [27.4 kB]
+Get:99 http://deb.debian.org/debian trixie/main arm64 libassuan9 arm64 3.0.2-2 [59.1 kB]
+Get:100 http://deb.debian.org/debian trixie/main arm64 gpgconf arm64 2.4.7-21+deb13u1+b5 [122 kB]
+Get:101 http://deb.debian.org/debian trixie/main arm64 libksba8 arm64 1.6.7-2+b1 [125 kB]
+Get:102 http://deb.debian.org/debian trixie/main arm64 libnpth0t64 arm64 1.8-3 [22.9 kB]
+Get:103 http://deb.debian.org/debian trixie/main arm64 dirmngr arm64 2.4.7-21+deb13u1+b5 [358 kB]
+Get:104 http://deb.debian.org/debian trixie/main arm64 gnupg-l10n all 2.4.7-21+deb13u1 [749 kB]
+Get:105 http://deb.debian.org/debian trixie/main arm64 gpg arm64 2.4.7-21+deb13u1+b5 [578 kB]
+Get:106 http://deb.debian.org/debian trixie/main arm64 pinentry-curses arm64 1.3.1-2 [83.5 kB]
+Get:107 http://deb.debian.org/debian trixie/main arm64 libgck-2-2 arm64 4.4.0.1-3 [68.5 kB]
+Get:108 http://deb.debian.org/debian trixie/main arm64 libgcr-4-4 arm64 4.4.0.1-3 [188 kB]
+Get:109 http://deb.debian.org/debian trixie/main arm64 libcairo-gobject2 arm64 1.18.4-1+b1 [130 kB]
+Get:110 http://deb.debian.org/debian trixie/main arm64 libcairo-script-interpreter2 arm64 1.18.4-1+b1 [57.4 kB]
+Get:111 http://deb.debian.org/debian trixie/main arm64 libcloudproviders0 arm64 0.3.6-2 [27.4 kB]
+Get:112 http://deb.debian.org/debian trixie/main arm64 libcups2t64 arm64 2.4.10-3+deb13u2 [236 kB]
+Get:113 http://deb.debian.org/debian trixie/main arm64 libepoxy0 arm64 1.5.10-2 [200 kB]
+Get:114 http://deb.debian.org/debian trixie/main arm64 libfribidi0 arm64 1.0.16-1 [26.5 kB]
+Get:115 http://deb.debian.org/debian trixie/main arm64 libgraphene-1.0-0 arm64 1.10.8-5 [42.1 kB]
+Get:116 http://deb.debian.org/debian trixie/main arm64 libgraphite2-3 arm64 1.3.14-2+deb13u1 [70.3 kB]
+Get:117 http://deb.debian.org/debian trixie/main arm64 libharfbuzz0b arm64 10.2.0-1+deb13u1 [442 kB]
+Get:118 http://deb.debian.org/debian trixie/main arm64 libharfbuzz-subset0 arm64 10.2.0-1+deb13u1 [509 kB]
+Get:119 http://deb.debian.org/debian trixie/main arm64 fontconfig arm64 2.15.0-2.3 [463 kB]
+Get:120 http://deb.debian.org/debian trixie/main arm64 libthai-data all 0.1.29-2 [168 kB]
+Get:121 http://deb.debian.org/debian trixie/main arm64 libdatrie1 arm64 0.2.13-3+b1 [37.6 kB]
+Get:122 http://deb.debian.org/debian trixie/main arm64 libthai0 arm64 0.1.29-2+b1 [48.4 kB]
+Get:123 http://deb.debian.org/debian trixie/main arm64 libpango-1.0-0 arm64 1.56.3-1 [213 kB]
+Get:124 http://deb.debian.org/debian trixie/main arm64 libpangoft2-1.0-0 arm64 1.56.3-1 [52.9 kB]
+Get:125 http://deb.debian.org/debian trixie/main arm64 libpangocairo-1.0-0 arm64 1.56.3-1 [33.7 kB]
+Get:126 http://deb.debian.org/debian trixie/main arm64 libvulkan1 arm64 1.4.309.0-1 [127 kB]
+Get:127 http://deb.debian.org/debian trixie/main arm64 libwayland-client0 arm64 1.23.1-3 [26.1 kB]
+Get:128 http://deb.debian.org/debian trixie/main arm64 libwayland-egl1 arm64 1.23.1-3 [5,952 B]
+Get:129 http://deb.debian.org/debian trixie/main arm64 libxfixes3 arm64 1:6.0.0-2+b4 [20.5 kB]
+Get:130 http://deb.debian.org/debian trixie/main arm64 libxcursor1 arm64 1:1.2.3-1 [39.3 kB]
+Get:131 http://deb.debian.org/debian trixie/main arm64 libxdamage1 arm64 1:1.1.6-1+b2 [15.6 kB]
+Get:132 http://deb.debian.org/debian trixie/main arm64 libxi6 arm64 2:1.8.2-1 [77.8 kB]
+Get:133 http://deb.debian.org/debian trixie/main arm64 libxinerama1 arm64 2:1.1.4-3+b4 [16.0 kB]
+Get:134 http://deb.debian.org/debian trixie/main arm64 libxkbcommon0 arm64 1.7.0-2 [106 kB]
+Get:135 http://deb.debian.org/debian trixie/main arm64 libxrandr2 arm64 2:1.5.4-1+b3 [35.9 kB]
+Get:136 http://deb.debian.org/debian trixie/main arm64 libglvnd0 arm64 1.7.0-1+b2 [41.6 kB]
+Get:137 http://deb.debian.org/debian trixie/main arm64 libgles2 arm64 1.7.0-1+b2 [18.0 kB]
+Get:138 http://deb.debian.org/debian trixie/main arm64 libgtk-4-common all 4.18.6+ds-2 [2,797 kB]
+Get:139 http://deb.debian.org/debian trixie/main arm64 libgtk-4-1 arm64 4.18.6+ds-2 [2,913 kB]
+Get:140 http://deb.debian.org/debian trixie/main arm64 libsecret-common all 0.21.7-1 [27.9 kB]
+Get:141 http://deb.debian.org/debian trixie/main arm64 libsecret-1-0 arm64 0.21.7-1 [102 kB]
+Get:142 http://deb.debian.org/debian trixie/main arm64 gcr4 arm64 4.4.0.1-3 [201 kB]
+Get:143 http://deb.debian.org/debian trixie/main arm64 libgck-1-0 arm64 3.41.2-3 [70.6 kB]
+Get:144 http://deb.debian.org/debian trixie/main arm64 libgcr-base-3-1 arm64 3.41.2-3 [184 kB]
+Get:145 http://deb.debian.org/debian trixie/main arm64 libatk1.0-0t64 arm64 2.56.2-1+deb13u2 [50.4 kB]
+Get:146 http://deb.debian.org/debian trixie/main arm64 libatspi2.0-0t64 arm64 2.56.2-1+deb13u2 [76.7 kB]
+Get:147 http://deb.debian.org/debian trixie/main arm64 libatk-bridge2.0-0t64 arm64 2.56.2-1+deb13u2 [65.0 kB]
+Get:148 http://deb.debian.org/debian trixie/main arm64 libwayland-cursor0 arm64 1.23.1-3 [11.7 kB]
+Get:149 http://deb.debian.org/debian trixie/main arm64 libxcomposite1 arm64 1:0.4.6-1 [16.4 kB]
+Get:150 http://deb.debian.org/debian trixie/main arm64 libgtk-3-common all 3.24.49-3 [4,908 kB]

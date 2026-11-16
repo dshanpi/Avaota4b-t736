@@ -1,0 +1,176 @@
+"""Fault injection only: never invokes package installation, mounts or devices."""
+import io
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import tarfile
+import tempfile
+import unittest
+from unittest import mock
+
+import update_t736_storage_v16 as update
+
+
+class TransactionTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='t736-v16-offline-')
+        self.root = Path(self.temp.name)
+        self.directory = self.root / 'backup'
+        self.directory.mkdir()
+        (self.directory / 'blobs').mkdir()
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def backup_file(self, path):
+        info = update.object_info(path)
+        update.save(self.directory / 'blobs' / info['sha256'], path.read_bytes())
+        return info
+
+    def test_archive_escape_and_hardlink_rejected(self):
+        for name, kind in (('../outside', tarfile.REGTYPE), ('/outside', tarfile.REGTYPE), ('inside', tarfile.LNKTYPE)):
+            stream = io.BytesIO()
+            with tarfile.open(fileobj=stream, mode='w') as archive:
+                info = tarfile.TarInfo(name)
+                info.type = kind
+                archive.addfile(info, io.BytesIO())
+            with self.subTest(name=name, kind=kind):
+                with self.assertRaises(RuntimeError):
+                    update.archive_manifest(stream.getvalue())
+
+    def test_command_timeout_kills_descendant_before_returning(self):
+        pidfile = self.root / 'descendant.pid'
+        child = ('import subprocess,sys,time; from pathlib import Path; '
+                 'p=subprocess.Popen([sys.executable,"-c","import time;time.sleep(60)"]); '
+                 'Path(sys.argv[1]).write_text(str(p.pid)); time.sleep(60)')
+        with self.assertRaises(subprocess.TimeoutExpired):
+            update.run([sys.executable, '-c', child, str(pidfile)], timeout=0.5)
+        self.assertTrue(pidfile.exists(), 'Synthetic descendant did not start')
+        status = Path('/proc') / pidfile.read_text() / 'stat'
+        if status.exists():
+            self.assertEqual(status.read_text().split(') ', 1)[1].split()[0], 'Z',
+                             'Descendant still running after timeout cleanup')
+
+    def test_atomic_replace_does_not_follow_previous_symlink(self):
+        payload = self.root / 'old-kernel'
+        payload.write_bytes(b'old kernel stays intact')
+        selected = self.root / 'alias'
+        selected.symlink_to(payload.name)
+        candidate = self.root / 'new-dtb'
+        candidate.write_bytes(b'candidate DTB')
+        info = self.backup_file(candidate)
+        update.replace_object(selected, info, self.directory)
+        self.assertFalse(selected.is_symlink())
+        self.assertEqual(selected.read_bytes(), b'candidate DTB')
+        self.assertEqual(payload.read_bytes(), b'old kernel stays intact')
+
+    def test_corrupt_backup_rejects_before_any_restoration(self):
+        old = self.root / 'old-kernel'
+        old.write_bytes(b'known old kernel')
+        before = {str(old): self.backup_file(old)}
+        blob = self.directory / 'blobs' / before[str(old)]['sha256']
+        blob.write_bytes(b'corrupt')
+        old.write_bytes(b'current kernel')
+        with mock.patch.object(update, 'replace_object') as replace:
+            with self.assertRaisesRegex(RuntimeError, 'backup is corrupt'):
+                update.restore(self.directory, before)
+            replace.assert_not_called()
+        self.assertEqual(old.read_bytes(), b'current kernel')
+
+    def test_restore_preserves_candidate_and_restores_old_payload_and_alias(self):
+        old = self.root / 'old-kernel'
+        old.write_bytes(b'known old kernel')
+        new = self.root / 'new-kernel'
+        new.write_bytes(b'candidate kernel')
+        alias = self.root / 'alias'
+        alias.symlink_to(old.name)
+        before = {str(old): self.backup_file(old), str(alias): update.object_info(alias)}
+        old.write_bytes(b'unexpected old-file drift')
+        alias.unlink()
+        alias.symlink_to(new.name)
+        with mock.patch.object(update, 'baseline_paths', return_value=[old, alias]):
+            update.restore(self.directory, before)
+        self.assertEqual(update.snapshot([old, alias]), before)
+        self.assertEqual(new.read_bytes(), b'candidate kernel')
+
+    def test_missing_bindings_cannot_apply(self):
+        with mock.patch.dict(update.BINDINGS, {'kernel_sha256': None}):
+            with mock.patch.object(update.sys, 'argv', ['updater', '--apply']):
+                with mock.patch.object(update, 'device_check') as device:
+                    self.assertEqual(update.main(), 3)
+                    device.assert_not_called()
+
+    def test_final_byte_failure_never_selects_candidate(self):
+        kernel = self.directory / 'kernel.deb'
+        kernel.write_bytes(b'fixture')
+        pvr = self.directory / 'pvrsrvkm.ko'
+        pvr.write_bytes(b'fixture module')
+        selected = self.root / 'modules/extra/pvrsrvkm.ko'
+        commands = []
+
+        def command(argv, **unused):
+            commands.append(argv[0])
+            if argv[0] == 'dpkg-query':
+                return ('install ok installed ' + update.VERSION).encode()
+            return b''
+
+        patches = {
+            'backup': mock.Mock(return_value=self.directory),
+            'suppress_hooks': mock.Mock(), 'inputs': mock.Mock(),
+            'run': mock.Mock(side_effect=command), 'verify_payload': mock.Mock(),
+            'snapshot': mock.Mock(return_value={}),
+            'final_check': mock.Mock(side_effect=RuntimeError('synthetic final bytes mismatch')),
+            'select_candidate': mock.Mock(), 'restore': mock.Mock(), 'PVR': selected,
+        }
+        with mock.patch.multiple(update, **patches):
+            self.assertEqual(update.apply(kernel, pvr, {}, {}), 2)
+        self.assertEqual(commands, ['dpkg', 'dpkg-query', 'depmod', 'update-initramfs'])
+        patches['select_candidate'].assert_not_called()
+        patches['restore'].assert_called_once_with(self.directory, {})
+        result = json.loads((self.directory / 'failure.json').read_text())
+        self.assertEqual(result['status'], 'UPDATE_FAILED_V15_RESTORED')
+
+    def test_failure_journal_error_preserves_rollback_result(self):
+        kernel = self.directory / 'kernel.deb'
+        kernel.write_bytes(b'fixture')
+        pvr = self.directory / 'pvrsrvkm.ko'
+        pvr.write_bytes(b'fixture module')
+        patches = {
+            'backup': mock.Mock(return_value=self.directory),
+            'suppress_hooks': mock.Mock(side_effect=RuntimeError('synthetic mount failure')),
+            'restore': mock.Mock(), 'record': mock.Mock(side_effect=OSError('synthetic journal failure')),
+        }
+        with mock.patch.multiple(update, **patches), mock.patch('builtins.print') as output:
+            self.assertEqual(update.apply(kernel, pvr, {}, {}), 2)
+        patches['restore'].assert_called_once_with(self.directory, {})
+        result = json.loads(output.call_args.args[0])
+        self.assertEqual(result['status'], 'UPDATE_FAILED_V15_RESTORED')
+        self.assertIn('journal_error', result)
+
+    def test_failure_after_selection_attempt_restores_v15(self):
+        kernel = self.directory / 'kernel.deb'
+        kernel.write_bytes(b'fixture')
+        pvr = self.directory / 'pvrsrvkm.ko'
+        pvr.write_bytes(b'fixture module')
+
+        def command(argv, **unused):
+            return ('install ok installed ' + update.VERSION).encode() if argv[0] == 'dpkg-query' else b''
+
+        patches = {
+            'backup': mock.Mock(return_value=self.directory),
+            'suppress_hooks': mock.Mock(), 'inputs': mock.Mock(),
+            'run': mock.Mock(side_effect=command), 'verify_payload': mock.Mock(),
+            'snapshot': mock.Mock(return_value={}), 'final_check': mock.Mock(return_value={}),
+            'select_candidate': mock.Mock(side_effect=RuntimeError('synthetic alias fsync failure')),
+            'restore': mock.Mock(), 'PVR': self.root / 'modules/extra/pvrsrvkm.ko',
+        }
+        with mock.patch.multiple(update, **patches):
+            self.assertEqual(update.apply(kernel, pvr, {}, {}), 2)
+        patches['select_candidate'].assert_called_once()
+        patches['restore'].assert_called_once_with(self.directory, {})
+
+
+if __name__ == '__main__':
+    unittest.main()

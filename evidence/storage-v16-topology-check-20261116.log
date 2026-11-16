@@ -1,0 +1,13 @@
+{
+  "kernel_release": "6.18.63-t736-storage-v16",
+  "target": "/boot/dtb/allwinner/t736-mainline-bringup.dtb",
+  "before_sha256": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5",
+  "backup": "/boot/t736-cpu-topology-v16-backup/original.dtb",
+  "reboot_performed": false,
+  "other_boot_files_changed": false,
+  "runtime_capacity_validated": false,
+  "status": "check-ready",
+  "candidate_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+  "backup_present": false,
+  "after_sha256": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5"
+}

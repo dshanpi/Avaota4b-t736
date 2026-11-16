@@ -1,0 +1,8 @@
+test ! -e /root/t736-gpu-debug/gdm-daemon-before-autologin.conf && cp -a /etc/gdm3/daemon.conf /root/t736-gpu-debug/gdm-daemon-before-autologin.conf && python3 -c 'import configparser; from pathlib import Path; p=Path("/etc/gdm3/daemon.conf"); c=configparser.ConfigParser(); c.optionxform=str; c.read(p); c["daemon"]["AutomaticLoginEnable"]="true"; c["daemon"]["AutomaticLogin"]="t736"; f=p.open("w"); c.write(f); f.close()' && systemctl restart gdm.service; echo DESKTOP_AUTOLOGIN_RC=$?; echo DESKTOP_AUTOLOGIN_DONE
+
+[drm] suxni tcon hdmi set rate: 148500000Hz and get diff: 148500000Hz
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+DESKTOP_AUTOLOGIN_RC=0
+DESKTOP_AUTOLOGIN_DONE
+root@t736:~# 

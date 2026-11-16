@@ -1,0 +1,167 @@
+--- a/services/system/rogue/rgx_sunxi/sunxi_platform.c
++++ b/services/system/rogue/rgx_sunxi/sunxi_platform.c
+@@ -26,22 +26,34 @@
+ 	if (p->runtime_power_status == GPU_POWER_RUNTIME_ON)
+ 		return 0;
+ 	/* GPU_TOP and GPU_CORE are owned exclusively by the genpd provider. */
++	dev_warn(p->dev, "PVRDIAG platform before runtime resume\n");
+ 	ret = pm_runtime_resume_and_get(p->dev);
++	dev_warn(p->dev, "PVRDIAG platform runtime resume ret=%d\n", ret);
+ 	if (ret < 0)
+ 		return ret;
++	dev_warn(p->dev, "PVRDIAG platform before parent clock\n");
+ 	ret = clk_prepare_enable(p->clk_400);
++	dev_warn(p->dev, "PVRDIAG platform parent ret=%d\n", ret);
+ 	if (ret)
+ 		goto put_pm;
++	dev_warn(p->dev, "PVRDIAG platform before set400\n");
+ 	ret = clk_set_rate(p->clk_core, T736_GPU_RATE);
++	dev_warn(p->dev, "PVRDIAG platform set400 ret=%d\n", ret);
+ 	if (ret)
+ 		goto disable_parent;
++	dev_warn(p->dev, "PVRDIAG platform before bus clock\n");
+ 	ret = clk_prepare_enable(p->clk_bus);
++	dev_warn(p->dev, "PVRDIAG platform bus ret=%d\n", ret);
+ 	if (ret)
+ 		goto disable_parent;
++	dev_warn(p->dev, "PVRDIAG platform before reset deassert\n");
+ 	ret = reset_control_deassert(p->rst_bus);
++	dev_warn(p->dev, "PVRDIAG platform reset ret=%d\n", ret);
+ 	if (ret)
+ 		goto disable_bus;
++	dev_warn(p->dev, "PVRDIAG platform before core clock\n");
+ 	ret = clk_prepare_enable(p->clk_core);
++	dev_warn(p->dev, "PVRDIAG platform core ret=%d\n", ret);
+ 	if (ret)
+ 		goto assert_reset;
+ 	if (clk_get_rate(p->clk_core) != T736_GPU_RATE) {
+@@ -136,6 +148,7 @@
+ 	struct resource *res;
+ 	int ret, voltage;
+ 
++	dev_warn(dev, "PVRDIAG platform init enter\n");
+ 	if (sunxi_data)
+ 		return -EBUSY;
+ 	p = kzalloc(sizeof(*p), GFP_KERNEL);
+@@ -186,10 +199,14 @@
+ 		ret = PTR_ERR(p->regula);
+ 		goto free_state;
+ 	}
++	dev_warn(dev, "PVRDIAG platform before regulator enable\n");
+ 	ret = regulator_enable(p->regula);
+-	if (ret)
+-		goto free_state;
++	dev_warn(dev, "PVRDIAG platform regulator ret=%d\n", ret);
++	if (ret)
++		goto free_state;
++	dev_warn(dev, "PVRDIAG platform before regulator voltage\n");
+ 	voltage = regulator_get_voltage(p->regula);
++	dev_warn(dev, "PVRDIAG platform voltage=%d\n", voltage);
+ 	if (voltage < 800000 || voltage > 960000) {
+ 		dev_err(dev, "GPU supply outside 800000..960000 uV: %d\n", voltage);
+ 		ret = voltage < 0 ? voltage : -ERANGE;
+@@ -200,6 +217,7 @@
+ 	ret = sunxi_power_on(p);
+ 	if (ret)
+ 		goto disable_pm;
++	dev_warn(dev, "PVRDIAG platform power-on completed\n");
+ 	p->initialized = true;
+ 	sunxi_data = p;
+ 	dev->platform_data = p;
+--- a/services/server/devices/rgxbvnc.c
++++ b/services/server/devices/rgxbvnc.c
+@@ -43,6 +43,7 @@
+ 
+ #include "img_defs.h"
+ #include "rgxbvnc.h"
++#include <linux/printk.h>
+ #define RGXBVNC_C
+ #include "rgx_bvnc_table_km.h"
+ #undef RGXBVNC_C
+@@ -116,7 +117,9 @@
+ 	/* Core ID reading code for Rogue */
+ 
+ 	/* Read the BVNC, in to new way first, if B not set, use old scheme */
++	pr_warn("PVRDIAG before PBVNC read high=0x01800024 low=0x01800020 core=%u\n", ui32CoreNum);
+ 	ui64BVNC = OSReadHWReg64(psDevInfo->pvRegsBaseKM, RGX_CR_CORE_ID__PBVNC + (ui32CoreNum << 16));
++	pr_warn("PVRDIAG after PBVNC value=0x%016llx\n", (unsigned long long)ui64BVNC);
+ 
+ 	if (GET_B(ui64BVNC))
+ 	{
+@@ -128,8 +131,12 @@
+ 	else
+ 	{
+ 		IMG_UINT64 ui32CoreID, ui32CoreRev;
++		pr_warn("PVRDIAG before fallback RGX_CR_CORE_REVISION\n");
+ 		ui32CoreRev = OSReadHWReg64(psDevInfo->pvRegsBaseKM, RGX_CR_CORE_REVISION + (ui32CoreNum << 16));
++		pr_warn("PVRDIAG after fallback RGX_CR_CORE_REVISION=0x%016llx\n", (unsigned long long)ui32CoreRev);
++		pr_warn("PVRDIAG before fallback RGX_CR_CORE_ID\n");
+ 		ui32CoreID = OSReadHWReg64(psDevInfo->pvRegsBaseKM, RGX_CR_CORE_ID + (ui32CoreNum << 16));
++		pr_warn("PVRDIAG after fallback RGX_CR_CORE_ID=0x%016llx\n", (unsigned long long)ui32CoreID);
+ 		B = (ui32CoreRev & ~RGX_CR_CORE_REVISION_MAJOR_CLRMSK) >>
+ 												RGX_CR_CORE_REVISION_MAJOR_SHIFT;
+ 		V = (ui32CoreRev & ~RGX_CR_CORE_REVISION_MINOR_CLRMSK) >>
+@@ -650,6 +657,7 @@
+ 	IMG_UINT32 ui32Cores = 1U;
+ 	IMG_UINT32 ui32SLCSize = 0;
+ 
++	pr_warn("PVRDIAG BVNC configuration enter\n");
+ 	/* Check for load time RGX BVNC parameter */
+ 	eError = _RGXBvncParseList(&B,&V,&N,&C, ui32RGXDevCnt);
+ 	if (PVRSRV_OK == eError)
+@@ -691,7 +699,9 @@
+ 		}
+ 
+ 		/* Read the BVNC from HW */
++		pr_warn("PVRDIAG before hardware BVNC\n");
+ 		_RGXReadBVNCFromReg(psDeviceNode, 0 /*core0*/, &B, &V, &N, &C);
++		pr_warn("PVRDIAG after hardware BVNC %u.%u.%u.%u\n", B,V,N,C);
+ 
+ 		PVR_LOG(("Read BVNC " RGX_BVNC_STR_FMTSPEC
+ 				" from HW device registers", B, V, N, C));
+@@ -701,7 +711,9 @@
+ 			/* Read the number of cores in the system for newer BVNC (Branch ID > 20) */
+ 			if (B > 20)
+ 			{
++				pr_warn("PVRDIAG before MULTICORE_SYSTEM 0x0180f308\n");
+ 				ui32Cores = OSReadHWReg32(psDevInfo->pvRegsBaseKM, RGX_CR_MULTICORE_SYSTEM);
++				pr_warn("PVRDIAG after MULTICORE_SYSTEM=0x%x\n", ui32Cores);
+ 			}
+ 		}
+ 
+--- a/services/server/devices/rogue/rgxinit.c
++++ b/services/server/devices/rogue/rgxinit.c
+@@ -5264,7 +5264,9 @@
+ 
+ 	psDeviceNode->pvDevice = psDevInfo;
+ 
++	pr_warn("PVRDIAG registers mapped; before BVNC init\n");
+ 	eError = RGXBvncInitialiseConfiguration(psDeviceNode);
++	pr_warn("PVRDIAG after BVNC init ret=%d\n", eError);
+ 	if (PVRSRV_OK != eError)
+ 	{
+ 		PVR_DPF((PVR_DBG_ERROR,
+--- a/services/server/common/pvrsrv.c
++++ b/services/server/common/pvrsrv.c
+@@ -2255,7 +2255,9 @@
+ 	eError = PVRSRVAcquireInternalID(&ui32InternalID);
+ 	PVR_LOG_GOTO_IF_ERROR(eError, "PVRSRVAcquireInternalID", ErrorDeregisterStats);
+ 
++	pr_warn("PVRDIAG before SysDevInit\n");
+ 	eError = SysDevInit(pvOSDevice, &psDevConfig);
++	pr_warn("PVRDIAG after SysDevInit ret=%d\n", eError);
+ 	PVR_LOG_GOTO_IF_ERROR(eError, "SysDevInit", ErrorDeregisterStats);
+ 
+ 	/* Lock down the InternalID for this device by saving the value into
+--- a/services/server/env/linux/pvr_platform_drv.c
++++ b/services/server/env/linux/pvr_platform_drv.c
+@@ -177,7 +177,9 @@
+ 	 * before calling drm_dev_register, avoids those potential races.
+ 	 */
+ 	BUG_ON(pvr_drm_platform_driver.load != NULL);
++	dev_warn(&pdev->dev, "PVRDIAG before pvr_drm_load\n");
+ 	ret = pvr_drm_load(ddev, 0);
++	dev_warn(&pdev->dev, "PVRDIAG after pvr_drm_load ret=%d\n", ret);
+ 	if (ret)
+ 		goto err_drm_dev_put;
+ 

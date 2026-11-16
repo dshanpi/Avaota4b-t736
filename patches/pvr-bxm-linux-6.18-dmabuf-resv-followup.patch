@@ -1,0 +1,65 @@
+--- a/services/server/env/linux/physmem_dmabuf.c
++++ b/services/server/env/linux/physmem_dmabuf.c
+@@ -1009,7 +1009,7 @@
+ 		goto err_out;
+ 	}
+ 
+-	err = dma_buf_vmap(psDmaBuf, &sMap);
++	err = dma_buf_vmap_unlocked(psDmaBuf, &sMap);
+ 	if (err)
+ 	{
+ #if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0))
+@@ -1042,7 +1042,7 @@
+ 	{
+ 		memset(sMap.vaddr, iValue, psDmaBuf->size);
+ 
+-		dma_buf_vunmap(psDmaBuf, &sMap);
++		dma_buf_vunmap_unlocked(psDmaBuf, &sMap);
+ 	}
+ 
+ 	err = 0;
+@@ -1118,7 +1118,7 @@
+ 
+ 	psPrivData->ui32PhysPageCount = 0;
+ 
+-	dma_buf_unmap_attachment(psAttachment, psSgTable, DMA_BIDIRECTIONAL);
++	dma_buf_unmap_attachment_unlocked(psAttachment, psSgTable, DMA_BIDIRECTIONAL);
+ 
+ 	if (psPrivData->bPoisonOnFree)
+ 	{
+@@ -1277,7 +1277,7 @@
+ 		goto fail;
+ 	}
+ 
+-	err = dma_buf_vmap(psDmaBuf, &psPrivData->sMap);
++	err = dma_buf_vmap_unlocked(psDmaBuf, &psPrivData->sMap);
+ 	if (err != 0 || psPrivData->sMap.vaddr == NULL)
+ 	{
+ 		eError = PVRSRV_ERROR_PMR_NO_KERNEL_MAPPING;
+@@ -1306,7 +1306,7 @@
+ 	struct dma_buf *psDmaBuf = psPrivData->psAttachment->dmabuf;
+ 	int err;
+ 
+-	dma_buf_vunmap(psDmaBuf, &psPrivData->sMap);
++	dma_buf_vunmap_unlocked(psDmaBuf, &psPrivData->sMap);
+ 
+ 	do {
+ 		err = dma_buf_end_cpu_access(psDmaBuf, DMA_BIDIRECTIONAL);
+@@ -1460,7 +1460,7 @@
+ 		}
+ 	}
+ 
+-	table = dma_buf_map_attachment(psAttachment, DMA_BIDIRECTIONAL);
++	table = dma_buf_map_attachment_unlocked(psAttachment, DMA_BIDIRECTIONAL);
+ 	if (IS_ERR_OR_NULL(table))
+ 	{
+ 		eError = PVRSRV_ERROR_INVALID_PARAMS;
+@@ -1579,7 +1579,7 @@
+ 	return PVRSRV_OK;
+ 
+ errUnmap:
+-	dma_buf_unmap_attachment(psAttachment, table, DMA_BIDIRECTIONAL);
++	dma_buf_unmap_attachment_unlocked(psAttachment, table, DMA_BIDIRECTIONAL);
+ errFreePhysAddr:
+ 	OSFreeMem(psPrivData->pasDevPhysAddr);
+ errFreePrivData:

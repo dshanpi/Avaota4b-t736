@@ -1,0 +1,7 @@
+uname -a; ip -br addr show end0; cat /sys/class/net/end0/statistics/rx_packets; cat /sys/class/net/end0/carrier
+
+Linux t736 6.18.63-t736-armbian #9 SMP Fri Nov 13 05:43:44 EST 2026 aarch64 GNU/Linux
+end0             UP             fe80::68c5:26ff:fe43:3952/64 
+0
+1
+root@t736:~# 

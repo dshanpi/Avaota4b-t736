@@ -1,0 +1,89 @@
+grep -Ei 'glamor|EGL|DRI|pvr|swrast|AIGLX|fail|error|accel' /var/lib/gdm3/.local/share/xorg/Xorg.0.log | tail -n 45; journalctl -b --no-pager -n 90 | grep -Ei 'gnome|gdm|cogl|EGL|renderer|accel|failed' | tail -n 35; ls -li /opt/t736-img-ddk-24.2-x11/lib/dri; echo SESSION_RENDERER_DIAG_DONE
+
+[  1273.262] (II) xfree86: Adding drm device (/dev/dri/card0)
+[  1273.267] (II) systemd-logind: got fd for /dev/dri/card0 226:0 fd 15 paused 0
+[  1273.288] (II) Loading /usr/lib/xorg/modules/drivers/modesetting_drv.so
+[  1273.289] 	Module class: X.Org Video Driver
+[  1273.289] 	ABI class: X.Org Video Driver, version 25.2
+[  1273.289] (II) modesetting: Driver for Modesetting Kernel Drivers: kms
+[  1273.290] (II) modeset(0): using drv /dev/dri/card0
+[  1273.290] (II) modeset(G0): using drv /dev/dri/card1
+[  1273.291] (**) modeset(0): Option "kmsdev" "/dev/dri/card0"
+[  1273.291] (**) modeset(0): Option "AccelMethod" "glamor"
+[  1273.291] (II) Loading sub module "glamoregl"
+[  1273.291] (II) LoadModule: "glamoregl"
+[  1273.292] (II) Loading /usr/lib/xorg/modules/libglamoregl.so
+[  1273.386] (II) Module glamoregl: vendor="X.Org Foundation"
+[  1273.493] (II) modeset(0): glamor X acceleration enabled on PowerVR B-Series BXM-4-64
+[  1273.493] (II) modeset(0): glamor initialized
+[  1273.506] (**) modeset(G0): Cannot use glamor with 24bpp packed fb
+[  1273.506] (EE) modeset(G0): KMS setup failed
+[  1273.560] glamor: Implementation returned 0x1908/0x1401 read format/type for depth 30, expected 0x1908/0x8368.  Falling back to software.
+[  1274.045] (II) modeset(0): [DRI2] Setup complete
+[  1274.045] (II) modeset(0): [DRI2]   DRI driver: sunxi-drm
+[  1274.045] (II) modeset(0): [DRI2]   VDPAU driver: sunxi-drm
+[  1274.070] (II) Initializing extension DRI3
+[  1274.076] (EE) AIGLX error: Calling driver entry point failed
+[  1274.100] (II) IGLX: Loaded and initialized swrast
+[  1274.100] (II) GLX: Initialized DRISWRAST GL provider for screen 0
+[  1274.103] (II) Initializing extension XFree86-DRI
+[  1274.103] (II) Initializing extension DRI2
+[  1275.046] 	Module class: X.Org XInput Driver
+[  1275.046] 	ABI class: X.Org XInput driver, version 24.4
+[  1275.046] (II) Using input driver 'libinput' for 'wch.cn KMFU HID'
+[  1275.115] (II) Using input driver 'libinput' for 'wch.cn KMFU HID'
+[  1275.192] (II) libinput: wch.cn KMFU HID: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1275.192] (II) libinput: wch.cn KMFU HID: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1275.192] (II) libinput: wch.cn KMFU HID: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1275.194] (**) Option "AccelerationScheme" "none"
+[  1275.194] (**) wch.cn KMFU HID: (accel) selected scheme none/0
+[  1275.194] (**) wch.cn KMFU HID: (accel) acceleration factor: 2.000
+[  1275.195] (**) wch.cn KMFU HID: (accel) acceleration threshold: 4
+[  1275.221] (II) Using input driver 'libinput' for 'wch.cn KMFU HID'
+[  1275.247] (**) Option "AccelerationScheme" "none"
+[  1275.247] (**) wch.cn KMFU HID: (accel) selected scheme none/0
+[  1275.247] (**) wch.cn KMFU HID: (accel) acceleration factor: 2.000
+[  1275.247] (**) wch.cn KMFU HID: (accel) acceleration threshold: 4
+[  1275.636] (II) Using input driver 'libinput' for 'wch.cn KMFU HID'
+11月 16 08:00:12 t736 /usr/libexec/gdm-x-session[3096]: (II) modeset(0): Modeline "1280x1024"x0.0  135.00  1280 1296 1440 1688  1024 1025 1028 1066 +hsync +vsync (80.0 kHz e)
+11月 16 08:00:12 t736 /usr/libexec/gdm-x-session[3096]: (II) modeset(0): Modeline "1024x768"x0.0   78.75  1024 1040 1136 1312  768 769 772 800 +hsync +vsync (60.0 kHz e)
+11月 16 08:00:12 t736 /usr/libexec/gdm-x-session[3096]: (II) modeset(0): Modeline "1024x768"x0.0   65.00  1024 1048 1184 1344  768 771 777 806 -hsync -vsync (48.4 kHz e)
+11月 16 08:00:12 t736 /usr/libexec/gdm-x-session[3096]: (II) modeset(0): Modeline "800x600"x0.0   49.50  800 816 896 1056  600 601 604 625 +hsync +vsync (46.9 kHz e)
+11月 16 08:00:12 t736 /usr/libexec/gdm-x-session[3096]: (II) modeset(0): Modeline "1152x864"x0.0  108.00  1152 1216 1344 1600  864 865 868 900 +hsync +vsync (67.5 kHz e)
+11月 16 08:00:12 t736 /usr/libexec/gdm-x-session[3096]: (II) modeset(0): Modeline "1600x1200"x0.0  162.00  1600 1664 1856 2160  1200 1201 1204 1250 +hsync +vsync (75.0 kHz e)
+11月 16 08:00:12 t736 /usr/libexec/gdm-x-session[3096]: (II) modeset(0): Modeline "1280x1024"x0.0  108.00  1280 1328 1440 1688  1024 1025 1028 1066 +hsync +vsync (64.0 kHz e)
+11月 16 08:00:12 t736 /usr/libexec/gdm-x-session[3096]: (--) modeset(0): HDMI max TMDS frequency 250000KHz
+11月 16 08:00:12 t736 gnome-shell[3153]: Obtained a high priority EGL context
+11月 16 08:00:13 t736 gnome-shell[3153]: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+11月 16 08:00:13 t736 org.gnome.Shell.desktop[3170]: /usr/libexec/mutter-x11-frames: symbol lookup error: /lib/aarch64-linux-gnu/libgtk-4.so.1: undefined symbol: vkCreateWaylandSurfaceKHR
+11月 16 08:00:13 t736 gnome-shell[3153]: Failed to load shared library 'libgtk-4.so.1' referenced by the typelib: /lib/aarch64-linux-gnu/libgtk-4.so.1: undefined symbol: vkCreateWaylandSurfaceKHR
+11月 16 08:00:13 t736 gnome-shell[3153]: JS ERROR: GLib.Error g-invoke-error-quark: Could not locate gdk_set_allowed_backends: /lib/aarch64-linux-gnu/libgtk-4.so.1: undefined symbol: vkCreateWaylandSurfaceKHR
+                                          @resource:///org/gnome/shell/ui/environment.js:394:1
+11月 16 08:00:13 t736 gnome-shell[3153]: Execution of main.js threw exception: Module resource:///org/gnome/shell/ui/init.js threw an exception
+11月 16 08:00:14 t736 gnome-session[3118]: gnome-session-binary[3118]: WARNING: App 'org.gnome.Shell.desktop' exited with code 1
+11月 16 08:00:14 t736 gnome-session[3118]: gnome-session-binary[3118]: WARNING: App 'org.gnome.Shell.desktop' respawning too quickly
+11月 16 08:00:14 t736 gnome-session-binary[3118]: WARNING: App 'org.gnome.Shell.desktop' exited with code 1
+11月 16 08:00:14 t736 gnome-session-binary[3118]: Unrecoverable failure in required component org.gnome.Shell.desktop
+11月 16 08:00:14 t736 gnome-session-binary[3118]: WARNING: App 'org.gnome.Shell.desktop' respawning too quickly
+11月 16 08:00:14 t736 /usr/libexec/gdm-x-session[3117]: dbus-daemon[3117]: [session uid=101 pid=3117 pidfd=5] Activating service name='ca.desrt.dconf' requested by ':1.4' (uid=101 pid=3118 comm="/usr/libexec/gnome-session-binary --autostart /usr")
+11月 16 08:00:14 t736 /usr/libexec/gdm-x-session[3117]: dbus-daemon[3117]: [session uid=101 pid=3117 pidfd=5] Successfully activated service 'ca.desrt.dconf'
+11月 16 08:00:14 t736 gnome-session-f[3172]: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+11月 16 08:00:14 t736 /usr/libexec/gdm-x-session[3117]: dbus-daemon[3117]: [session uid=101 pid=3117 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=101 pid=3208 comm="/usr/libexec/gsd-housekeeping")
+11月 16 08:00:14 t736 /usr/libexec/gdm-x-session[3117]: dbus-daemon[3117]: [session uid=101 pid=3117 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+11月 16 08:00:15 t736 /usr/libexec/gdm-x-session[3117]: dbus-daemon[3117]: [session uid=101 pid=3117 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.24' (uid=101 pid=3234 comm="/usr/libexec/gsd-sharing")
+11月 16 08:00:15 t736 /usr/libexec/gdm-x-session[3117]: dbus-daemon[3117]: [session uid=101 pid=3117 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+11月 16 08:00:15 t736 gsd-sharing[3234]: Failed to handle service change: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+11月 16 08:00:15 t736 gsd-sharing[3234]: Failed to handle service change: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+11月 16 08:00:15 t736 /usr/libexec/gdm-x-session[3117]: dbus-daemon[3117]: [session uid=101 pid=3117 pidfd=5] Activating service name='org.gnome.ScreenSaver' requested by ':1.21' (uid=101 pid=3184 comm="/usr/libexec/gsd-power")
+11月 16 08:00:15 t736 gnome-session-binary[3118]: Entering running state
+11月 16 08:00:16 t736 /usr/libexec/gdm-x-session[3117]: dbus-daemon[3117]: [session uid=101 pid=3117 pidfd=5] Successfully activated service 'org.gnome.ScreenSaver'
+11月 16 08:00:16 t736 gsd-power[3184]: Error setting property 'PowerSaveMode' on interface org.gnome.Mutter.DisplayConfig: 无法调用方法；代理名称为常见的无所有者的名称 org.gnome.Mutter.DisplayConfig，且代理使用 G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START 标记构建 (g-io-error-quark, 0)
+11月 16 08:00:16 t736 gnome-session[3118]: gnome-session-binary[3118]: WARNING: Could not retrieve current screensaver active state: GDBus.Error:org.freedesktop.DBus.Error.NoReply: Message recipient disconnected from message bus without replying
+11月 16 08:00:16 t736 gnome-session-binary[3118]: WARNING: Could not retrieve current screensaver active state: GDBus.Error:org.freedesktop.DBus.Error.NoReply: Message recipient disconnected from message bus without replying
+总计 66384
+145946 -rwxrwxr-x 1 root root 16993848 11月 3日 05:38 pvr_dri.so
+145947 -rwxrwxr-x 1 root root 16993848 11月 3日 05:38 sunxi-drm_dri.so
+145948 -rwxrwxr-x 1 root root 16993848 11月 3日 05:38 swrast_dri.so
+145949 -rwxrwxr-x 1 root root 16993848 11月 3日 05:38 zink_dri.so
+SESSION_RENDERER_DIAG_DONE
+root@t736:~# 

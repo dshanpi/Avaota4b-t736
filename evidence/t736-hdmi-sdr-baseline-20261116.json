@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-16",
+  "change": "Always advertise SDR baseline independently of the optional HDR Static Metadata EDID block; HDR10/HLG checks unchanged",
+  "source": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.c",
+  "before_sha256": "fa1c4c0cb7dbfcf05aac5a7e30da2178fad76243e63901862283b4f418fcbf05",
+  "after_sha256": "2db9fec6cdd478dffb69ed0b31f841a783f3f30a3177a6455c689c2b1452045e",
+  "patch": "patches/t736-hdmi-sdr-baseline.patch",
+  "patch_sha256": "56851c405967bf674c8ba8b5a973ae114f41ad12ba3c77dbb3a78769960bdc3d",
+  "tina_modified": false,
+  "property_setter_return_abi_changed": false,
+  "reason": "Value 1 is BIT(SHDMI_SDR); old support logic incorrectly required HDR metadata EOTF bit0 even for ordinary SDR sinks",
+  "control_flow": "Unsupported setter returns before changing eotf or MMIO; outer property setter swallows its error. This fix alone does not establish a flicker fix. Modeset requires a real display-info difference in atomic_check.",
+  "not_changed": "display-info mask uses enum indexes rather than BIT(index); follow-up only if observed display-info changes justify it",
+  "kernel_build_started": false,
+  "hardware_verified": false,
+  "checks": {
+    "git_apply_check_and_apply": true,
+    "builder_shell_syntax": true,
+    "already_applied_helper_twice_unchanged": true
+  }
+}

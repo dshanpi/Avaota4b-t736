@@ -1,0 +1,23 @@
+{
+  "schema": "t736-egl-sync-probe-build-v1",
+  "date": "2026-11-16",
+  "version": "v1",
+  "status": "ORIGINAL_HASH_REPRODUCED_AND_ARCHIVED",
+  "source_path": "build/desktop-validation/archive-v1/egl_x11_sync_feedback_probe.c",
+  "source_sha256": "9750e0c2fff8b7cfbb9529cbc430d73d560af22127a2dee5ea85d187a3f64354",
+  "binary_path": "build/desktop-validation/egl-sync-probe",
+  "binary_sha256": "6956ee8f4873105488b827f16145ae0d76fa3b8edbbe9ff2e56466a3529d3c60",
+  "remote_binary_path": "/tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe",
+  "reproduction_build": {
+    "command": "aarch64-linux-gnu-gcc -O2 -Wall -Wextra -Werror -std=c11 /tmp/t736-egl-sync-probe.9fmG0J/archive-v1/egl_x11_sync_feedback_probe.c -ldl -o /tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "review_notes": [
+    "Native window and eglGetProcAddress prototypes were representation-compatible on tested ARM64 but refined in v2.",
+    "v1 rejects unset DISPLAY/XAUTHORITY but does not reject empty strings; v2 closes that preflight gap."
+  ],
+  "runtime_note": "Root reports two completed board runs with this binary hash; raw runtime logs are separately retained.",
+  "superseded_by": "evidence/egl-x11-sync-feedback-probe-v2-build-20261116.json"
+}

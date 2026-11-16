@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "status": "compile-only DT candidate; not deployed",
+  "baseline_sha256": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5",
+  "candidate_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+  "candidate_bytes": 11928,
+  "fragment_sha256": "0af7e42afb7f75ba6c71c51b2bc605b329b71f8966cb90f114e5d1b48687cbc1",
+  "outside_cpu_nodes_identical": true,
+  "reservation_map_identical": true,
+  "original_cpu_properties_identical": true,
+  "new_cpu_capacities_and_references_verified": true,
+  "cpus": [
+    {
+      "cpu": 0,
+      "path": "/cpus/cpu@0",
+      "capacity": 430,
+      "map_path": "/cpus/cpu-map/cluster0/core0"
+    },
+    {
+      "cpu": 1,
+      "path": "/cpus/cpu@100",
+      "capacity": 430,
+      "map_path": "/cpus/cpu-map/cluster0/core1"
+    },
+    {
+      "cpu": 2,
+      "path": "/cpus/cpu@200",
+      "capacity": 430,
+      "map_path": "/cpus/cpu-map/cluster0/core2"
+    },
+    {
+      "cpu": 3,
+      "path": "/cpus/cpu@300",
+      "capacity": 430,
+      "map_path": "/cpus/cpu-map/cluster0/core3"
+    },
+    {
+      "cpu": 4,
+      "path": "/cpus/cpu@400",
+      "capacity": 430,
+      "map_path": "/cpus/cpu-map/cluster0/core4"
+    },
+    {
+      "cpu": 5,
+      "path": "/cpus/cpu@500",
+      "capacity": 430,
+      "map_path": "/cpus/cpu-map/cluster0/core5"
+    },
+    {
+      "cpu": 6,
+      "path": "/cpus/cpu@600",
+      "capacity": 1024,
+      "map_path": "/cpus/cpu-map/cluster1/core0"
+    },
+    {
+      "cpu": 7,
+      "path": "/cpus/cpu@700",
+      "capacity": 1024,
+      "map_path": "/cpus/cpu-map/cluster1/core1"
+    }
+  ],
+  "kernel_config_changed": false,
+  "hardware_access": false,
+  "scope": "Fixed v16 baseline versus CPU-topology-only candidate, structural node/property comparison",
+  "new_nodes": [
+    "/cpus/cpu-map",
+    "/cpus/cpu-map/cluster0",
+    "/cpus/cpu-map/cluster1",
+    "/cpus/cpu-map/cluster0/core0",
+    "/cpus/cpu-map/cluster0/core1",
+    "/cpus/cpu-map/cluster0/core2",
+    "/cpus/cpu-map/cluster0/core3",
+    "/cpus/cpu-map/cluster0/core4",
+    "/cpus/cpu-map/cluster0/core5",
+    "/cpus/cpu-map/cluster1/core0",
+    "/cpus/cpu-map/cluster1/core1"
+  ],
+  "changed_existing_nodes": {
+    "/cpus/cpu@0": [
+      "capacity-dmips-mhz",
+      "phandle"
+    ],
+    "/cpus/cpu@100": [
+      "capacity-dmips-mhz",
+      "phandle"
+    ],
+    "/cpus/cpu@200": [
+      "capacity-dmips-mhz",
+      "phandle"
+    ],
+    "/cpus/cpu@300": [
+      "capacity-dmips-mhz",
+      "phandle"
+    ],
+    "/cpus/cpu@400": [
+      "capacity-dmips-mhz",
+      "phandle"
+    ],
+    "/cpus/cpu@500": [
+      "capacity-dmips-mhz",
+      "phandle"
+    ],
+    "/cpus/cpu@600": [
+      "capacity-dmips-mhz",
+      "phandle"
+    ],
+    "/cpus/cpu@700": [
+      "capacity-dmips-mhz",
+      "phandle"
+    ]
+  },
+  "new_clock_or_opp_properties": [],
+  "candidate_local_path": "output/t736-cpu-topology-candidate.dtb"
+}

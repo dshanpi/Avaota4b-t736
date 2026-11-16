@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "board": "t736",
+  "kernel_release": "6.18.63-t736-gpu-v15",
+  "status": "pending",
+  "boot_id": "",
+  "renderer": "",
+  "checks": {
+    "gbm_probe": false,
+    "x11_probe": false,
+    "gnome_hardware_renderer": false,
+    "gtk_hardware_renderer": false,
+    "hdmi_1080p": false
+  },
+  "kernel_deb_sha256": "",
+  "userspace_deb_sha256": "",
+  "evidence_logs": {},
+  "artifacts": {
+    "/boot/vmlinuz-6.18.63-t736-gpu-v15": "",
+    "/boot/config-6.18.63-t736-gpu-v15": "",
+    "/boot/dtb/allwinner/t736-mainline-bringup.dtb": "",
+    "/usr/lib/modules/6.18.63-t736-gpu-v15/extra/pvrsrvkm.ko": "",
+    "/opt/t736-img-ddk-24.2-x11/manifest.json": "",
+    "/usr/lib/firmware/rgx.fw.36.56.104.183": "",
+    "/usr/lib/firmware/rgx.sh.36.56.104.183": "",
+    "/opt/t736-img-ddk-24.2-x11/runtime-gles.json": ""
+  }
+}

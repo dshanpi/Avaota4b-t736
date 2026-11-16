@@ -1,0 +1,11 @@
+/home/t736/update_t736_storage_v19.py: 成功
+{
+  "status": "CHECK_PASS",
+  "running_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v19",
+  "write_attempted": false,
+  "hardware_accepted": false,
+  "baseline_files": 94,
+  "kernel_sha256": "31e82d9ff94ba0a0a26915410a914aa74878ab4ace21434485a8fddb2b40a7b9",
+  "pvr_sha256": "c0aa70e73e90f41c739b8d26781ad1fe6efc2d221712cda2adcf4647e8af11ad"
+}

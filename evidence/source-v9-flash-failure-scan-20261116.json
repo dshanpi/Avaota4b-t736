@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"chipVendor\": \"allwinner\",\n  \"configuredBinding\": \"location:pciroot(0)#pci(1400)#usbroot(0)#usb(10)#usb(2)\",\n  \"devices\": [\n    {\n      \"bus\": 0,\n      \"chip\": \"Allwinner\",\n      \"flasherKind\": \"openixcli\",\n      \"key\": \"location:pciroot(0)#pci(1400)#usbroot(0)#usb(10)#usb(2)\",\n      \"mode\": \"fel/fes\",\n      \"pid\": 61416,\n      \"port\": \"2\",\n      \"usbSpeed\": \"unknown\",\n      \"usbTheoreticalMbps\": null,\n      \"vid\": 7994\n    }\n  ],\n  \"flasherKind\": \"openixcli\",\n  \"online\": true,\n  \"protocol\": \"FEL / FES\",\n  \"state\": \"online\"\n}"
+    }
+  ],
+  "isError": false
+}

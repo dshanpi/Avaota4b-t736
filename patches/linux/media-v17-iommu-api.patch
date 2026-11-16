@@ -1,0 +1,272 @@
+--- a/drivers/iommu/t736/sunxi-iommu-v2.c
++++ b/drivers/iommu/t736/sunxi-iommu-v2.c
+@@ -30,6 +30,7 @@
+ #include <linux/version.h>
+ #include <linux/reset.h>
+ #include <linux/pm_domain.h>
++#include <linux/overflow.h>
+ 
+ #include "sunxi-iommu.h"
+ #include "sunxi-iommu-pgtable.h"
+@@ -818,13 +819,23 @@
+ 	return;
+ }
+ 
+-static int sunxi_iommu_map(struct iommu_domain *domain, unsigned long iova,
+-			   phys_addr_t paddr, size_t size, int prot, gfp_t gfp)
++static int sunxi_iommu_map_pages(struct iommu_domain *domain, unsigned long iova,
++			   phys_addr_t paddr, size_t pgsize, size_t pgcount,
++			   int prot, gfp_t gfp, size_t *mapped)
+ {
+ 	struct sunxi_iommu_domain *sunxi_domain;
+ 	size_t iova_start, iova_end, s_iova_start;
+ 	int ret;
++	size_t size;
+ 	unsigned long flags;
++
++	if (pgsize != SZ_4K || !pgcount ||
++	    check_mul_overflow(pgsize, pgcount, &size) ||
++	    !IS_ALIGNED(iova, SZ_4K) || !IS_ALIGNED(paddr, SZ_4K))
++		return -EINVAL;
++	if (iova > U32_MAX || size - 1 > U32_MAX - iova ||
++	    paddr > DMA_BIT_MASK(34) || size - 1 > DMA_BIT_MASK(34) - paddr)
++		return -ERANGE;
+ 
+ 	sunxi_domain = container_of(domain, struct sunxi_iommu_domain, domain);
+ 	WARN_ON(sunxi_domain->pgtable == NULL);
+@@ -845,17 +856,26 @@
+ 					iova_start, iova_end, paddr, prot);
+ 	spin_unlock_irqrestore(&sunxi_domain->dt_lock, flags);
+ 
++	*mapped += size;
+ 	return 0;
+ }
+ 
+-static size_t sunxi_iommu_unmap(struct iommu_domain *domain, unsigned long iova,
+-				size_t size, struct iommu_iotlb_gather *gather)
++static size_t sunxi_iommu_unmap_pages(struct iommu_domain *domain, unsigned long iova,
++				size_t pgsize, size_t pgcount,
++				struct iommu_iotlb_gather *gather)
+ {
+ 	struct sunxi_iommu_domain *sunxi_domain;
+ 	const struct sunxi_iommu_plat_data *plat_data;
+ 	size_t iova_start, iova_end;
+-	u32 iova_tail_size;
++	int iova_tail_size;
++	size_t size;
+ 	unsigned long flags;
++
++	if (pgsize != SZ_4K || !pgcount ||
++	    check_mul_overflow(pgsize, pgcount, &size) ||
++	    !IS_ALIGNED(iova, SZ_4K) || iova > U32_MAX ||
++	    size - 1 > U32_MAX - iova)
++		return 0;
+ 
+ 	sunxi_domain = container_of(domain, struct sunxi_iommu_domain, domain);
+ 	plat_data = global_iommu_dev->plat_data;
+@@ -878,6 +898,8 @@
+ 	for (; iova_start < iova_end;) {
+ 		iova_tail_size = sunxi_pgtable_delete_l2_tables(
+ 			 sunxi_domain->pgtable, iova_start, iova_end);
++		if (iova_tail_size <= 0)
++			break;
+ 
+ 		if (plat_data->version < IOMMU_VERSION_V14)
+ 			sunxi_ptw_cache_invalid(iova_start, 0);
+@@ -885,10 +907,10 @@
+ 	}
+ 	spin_unlock_irqrestore(&sunxi_domain->dt_lock, flags);
+ 
+-	return size;
+-}
+-
+-void sunxi_iommu_iotlb_sync_map(struct iommu_domain *domain, unsigned long iova,
++	return iova_start - iova;
++}
++
++static int sunxi_iommu_iotlb_sync_map(struct iommu_domain *domain, unsigned long iova,
+ 				size_t size)
+ {
+ 	struct sunxi_iommu_domain *sunxi_domain =
+@@ -899,7 +921,7 @@
+ 	sunxi_zap_tlb(iova, size);
+ 	spin_unlock_irqrestore(&sunxi_domain->dt_lock, flags);
+ 
+-	return;
++	return 0;
+ }
+ 
+ void sunxi_iommu_iotlb_sync(struct iommu_domain *domain,
+@@ -939,16 +961,14 @@
+ 	return ret;
+ }
+ 
+-static struct iommu_domain *sunxi_iommu_domain_alloc(unsigned type)
++static struct iommu_domain *sunxi_iommu_domain_alloc_paging(struct device *dev)
+ {
+ 	struct sunxi_iommu_domain *sunxi_domain;
+ 
+-	if (type != IOMMU_DOMAIN_DMA && type != IOMMU_DOMAIN_UNMANAGED)
+-		return NULL;
+-
+-	/* we just use one domain */
++	/* The donor has one shared hardware page table. Never hand the same
++	 * allocation to multiple independent core-owned domains. */
+ 	if (global_iommu_domain)
+-		return global_iommu_domain;
++		return ERR_PTR(-EBUSY);
+ 
+ 	sunxi_domain = kzalloc(sizeof(*sunxi_domain), GFP_KERNEL);
+ 
+@@ -977,7 +997,8 @@
+ #endif
+ 
+ 	sunxi_domain->domain.geometry.aperture_start = 0;
+-	sunxi_domain->domain.geometry.aperture_end = (1ULL << 34) - 1;
++	sunxi_domain->domain.pgsize_bitmap = SZ_4K;
++	sunxi_domain->domain.geometry.aperture_end = DMA_BIT_MASK(32);
+ 	sunxi_domain->domain.geometry.force_aperture = true;
+ 	spin_lock_init(&sunxi_domain->dt_lock);
+ 	global_iommu_domain = &sunxi_domain->domain;
+@@ -1015,6 +1036,10 @@
+ 	sunxi_iommu_distribute_mater_put(0xffffffff);
+ 	sunxi_pgtable_free(sunxi_domain->pgtable);
+ 	sunxi_domain->pgtable = NULL;
++	if (global_iommu_domain == domain) {
++		global_iommu_domain = NULL;
++		iommu_hw_init_flag = false;
++	}
+ 	free_pages((unsigned long)sunxi_domain->sg_buffer,
+ 		   get_order(MAX_SG_TABLE_SIZE));
+ 	sunxi_domain->sg_buffer = NULL;
+@@ -1025,8 +1050,11 @@
+ }
+ 
+ static int sunxi_iommu_attach_dev(struct iommu_domain *domain,
+-				  struct device *dev)
+-{
++				  struct device *dev, struct iommu_domain *old)
++{
++	/* No domain-switch implementation is claimed by this first port. */
++	if (domain != global_iommu_domain || (old && old != domain))
++		return -EBUSY;
+ 	return 0;
+ }
+ 
+@@ -1063,7 +1091,6 @@
+ 		return;
+ 
+ 	sunxi_enable_device_iommu(owner->tlbid, false);
+-	dev->iommu_group = NULL;
+ 	devm_kfree(dev, dev->dma_parms);
+ 	dev->dma_parms = NULL;
+ 	kfree(owner);
+@@ -1114,7 +1141,7 @@
+ 		}
+ #endif
+ 	}
+-	group = global_group;
++	group = iommu_group_ref_get(global_group);
+ 
+ 	return group;
+ 
+@@ -1128,7 +1155,7 @@
+ }
+ 
+ static int sunxi_iommu_of_xlate(struct device *dev,
+-				struct of_phandle_args *args)
++				const struct of_phandle_args *args)
+ {
+ 	struct sunxi_iommu_owner *owner = dev_iommu_priv_get(dev);
+ 	struct platform_device *sysmmu = of_find_device_by_node(args->np);
+@@ -1734,23 +1761,17 @@
+ 	}
+ }
+ 
+-#ifdef SEPERATE_DOMAIN_API
+ static const struct iommu_domain_ops sunxi_iommu_domain_ops = {
+ 	.attach_dev = sunxi_iommu_attach_dev,
+-#ifndef DETACH_OP_DEPRECATED
+-	.detach_dev	= sunxi_iommu_detach_dev,
+-#endif
+-	.map = sunxi_iommu_map,
+-	.unmap = sunxi_iommu_unmap,
++	.map_pages = sunxi_iommu_map_pages,
++	.unmap_pages = sunxi_iommu_unmap_pages,
+ 	.iotlb_sync_map = sunxi_iommu_iotlb_sync_map,
+ 	.iova_to_phys = sunxi_iommu_iova_to_phys,
+ 	.iotlb_sync = sunxi_iommu_iotlb_sync,
+ 	.free = sunxi_iommu_domain_free,
+ };
+ static const struct iommu_ops sunxi_iommu_ops = {
+-	.pgsize_bitmap = SZ_4K | SZ_16K | SZ_64K | SZ_256K | SZ_1M | SZ_4M |
+-			 SZ_16M,
+-	.domain_alloc = sunxi_iommu_domain_alloc,
++	.domain_alloc_paging = sunxi_iommu_domain_alloc_paging,
+ 	.probe_device = sunxi_iommu_probe_device,
+ 	.probe_finalize = sunxi_iommu_probe_device_finalize,
+ 	.release_device = sunxi_iommu_release_device,
+@@ -1760,31 +1781,6 @@
+ 	.owner = THIS_MODULE,
+ 	.get_resv_regions = sunxi_iommu_get_resv_regions,
+ };
+-
+-#else
+-static const struct iommu_ops sunxi_iommu_ops = {
+-	.pgsize_bitmap = SZ_4K | SZ_16K | SZ_64K | SZ_256K | SZ_1M | SZ_4M |
+-			 SZ_16M,
+-	.map = sunxi_iommu_map,
+-	.unmap = sunxi_iommu_unmap,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+-	.iotlb_sync_map = sunxi_iommu_iotlb_sync_map,
+-#endif
+-	.iotlb_sync = sunxi_iommu_iotlb_sync,
+-	.domain_alloc = sunxi_iommu_domain_alloc,
+-	.domain_free = sunxi_iommu_domain_free,
+-	.attach_dev = sunxi_iommu_attach_dev,
+-	.detach_dev = sunxi_iommu_detach_dev,
+-	.probe_device = sunxi_iommu_probe_device,
+-	.probe_finalize = sunxi_iommu_probe_device_finalize,
+-	.release_device = sunxi_iommu_release_device,
+-	.device_group = sunxi_iommu_device_group,
+-	.of_xlate = sunxi_iommu_of_xlate,
+-	.iova_to_phys = sunxi_iommu_iova_to_phys,
+-	.owner = THIS_MODULE,
+-	.get_resv_regions = sunxi_iommu_get_resv_regions,
+-};
+-#endif
+ 
+ static int __init_plat_data_from_ofnode(struct sunxi_iommu_plat_data *data,
+ 					struct device_node *node)
+@@ -2164,7 +2160,7 @@
+ 	return ret;
+ }
+ 
+-static int sunxi_iommu_remove(struct platform_device *pdev)
++static void sunxi_iommu_remove(struct platform_device *pdev)
+ {
+ 	struct sunxi_iommu_dev *sunxi_iommu = platform_get_drvdata(pdev);
+ 	struct iommu_resv_region *entry, *next;
+@@ -2189,7 +2185,7 @@
+ 	iommu_device_unregister(&sunxi_iommu->iommu);
+ 	global_iommu_dev = NULL;
+ 
+-	return 0;
++	return;
+ }
+ 
+ static int sunxi_iommu_suspend(struct device *dev)
+--- a/drivers/iommu/t736/sunxi-iommu-pgtable.c
++++ b/drivers/iommu/t736/sunxi-iommu-pgtable.c
+@@ -161,7 +161,10 @@
+ 				    int prot)
+ {
+ 	u32 *dent;
+-	for (; iova_start <= iova_end; iova_start += SPD_SIZE) {
++	/* Align to L1 coverage before stepping: a mapping may cross an L1
++	 * boundary without being aligned to that boundary itself. */
++	iova_start = round_down(iova_start, (dma_addr_t)SPD_SIZE);
++	for (; iova_start < iova_end; iova_start += SPD_SIZE) {
+ 		dent = iopde_offset(pgtable, iova_start);
+ 		if (!IS_VALID(*dent) && !sunxi_alloc_iopte(dent, prot)) {
+ 			return -ENOMEM;

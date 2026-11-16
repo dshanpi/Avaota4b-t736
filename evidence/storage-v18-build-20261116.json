@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "kind": "t736-dma-v18-kernel-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v18",
+  "baseline_release": "6.18.63-t736-storage-v16",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "dt_changes": [
+    "SMHC3 resources: shared CCU STORE_MBUS 0x020025e0 and MSI_LITE1 0x0200259c",
+    "Preserve independently validated A55/A76 capacity and CPU-map"
+  ],
+  "storage_clock_hz": 12000000,
+  "max_request_bytes": 65536,
+  "dma_enabled": true,
+  "dma_address_bits": 32,
+  "descriptor_address_shift": 2,
+  "descriptor_segment_bytes": 1024,
+  "voltage_or_timing_change": false,
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v18_6.18.63-18_arm64.deb",
+    "size": 5546276,
+    "sha256": "17a12b4b6c934e3a38e9992302fc62473b8cbda2c3b7d20f52acdf4a06dab324"
+  },
+  "baseline_files": {
+    "build/linux-storage-v16/.config": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e",
+    "build/linux-storage-v16/arch/arm64/boot/Image": "86d49744a35fd1260ff81f1d351a15b4c1dc28943b846696d8117ba5a9f7937d",
+    "boards/t736_mmc_pio_v2.c": "f4e33965e36756214abb48425e90a32ca44da14175a3a613aa29a059a83a5e02"
+  },
+  "files": {
+    "boards/t736_mmc_dma_v18.c": "3656bef4cc9d5db40f4d95c3f0f5ea5c69d5d160c2264e40e743606084ecd1eb",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "sources/work/linux-storage-v18/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts": "2d4f935044ae65104f75f3773c4416939c2401e8cbfc90b7d4c3de48545bddd2",
+    "build/linux-storage-v18/.config": "7f257a234e1e3e7dc8af46d090ccd9b6c789c2fdb7eec6bf01c3a2395b4db4e7",
+    "build/linux-storage-v18/arch/arm64/boot/Image": "6c671b870e204d3c3b9e8f202932d2dabd90887d8df6009f0d7d06a0d02f3b43",
+    "build/linux-storage-v18/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "build/linux-storage-v18/Module.symvers": "9813e3b9b67d85cb230cf921dd984154868d53e8df9b33d1d88325c460d5106c"
+  },
+  "board_validation": "pending; verify cold boot, rootfs reads, bounded scratch-file write/read hashes, throughput and dmesg before promotion",
+  "variant": "dma-with-accepted-cpu-topology",
+  "topology_input": {
+    "sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "fragment_sha256": "0af7e42afb7f75ba6c71c51b2bc605b329b71f8966cb90f114e5d1b48687cbc1"
+  },
+  "repack_script": "tools/repack_storage_v18_topology.py",
+  "repack_script_sha256": "5f22f3d72c05d53e504baa8d951bc878540fc87c9c8c8bbd2081233e87ba518b"
+}

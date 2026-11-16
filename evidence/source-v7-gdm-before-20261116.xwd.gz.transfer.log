@@ -1,0 +1,6 @@
+[?2004hroot@t736:~# sh /tmp/t736-transfer/send-cd8e6d585146470d95b3af9bf5a86fc6.sh; printf "ARTIFACT_TRANSFER_RC=%s\n" "$?"
+
+/tmp/t736-transfer/send-cd8e6d585146470d95b3af9bf5a86fc6.sh: 2: set: Illegal option -
+
+ARTIFACT_TRANSFER_RC=2
+root@t736:~# 

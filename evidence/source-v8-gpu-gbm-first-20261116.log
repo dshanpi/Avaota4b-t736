@@ -1,0 +1,86 @@
+sh /tmp/t736-transfer/gpu_runtime_check.sh gbm >/root/t736-gpu-debug/gbm-first.log 2>&1; echo GPU_GBM_RC=$?; tail -n 45 /root/t736-gpu-debug/gbm-first.log
+
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 2809 at drivers/gpu/drm/drm_file.c:329 drm_open_helper+0x88/0x114
+Modules linked in: pvrsrvkm(O) t736_gpu_power_retry3(O) t736_gpu_pll_enable(O) [last unloaded: pvrsrvkm(O)]
+CPU: 0 UID: 0 PID: 2809 Comm: gpu-probe Tainted: G           O        6.18.63-t736-gpu-v15 #15 NONE 
+Tainted: [O]=OOT_MODULE
+Hardware name: T736 custom board mainline bring-up (DT)
+pstate: 40000009 (nZcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : drm_open_helper+0x88/0x114
+lr : drm_open+0x9c/0x100
+sp : ffff8000839d3ad0
+x29: ffff8000839d3ad0 x28: ffff0000c04c4e00 x27: 0000000000000000
+x26: 0000000000000006 x25: 0000000000020002 x24: ffff800080b75e88
+x23: ffff0000ef7d5d80 x22: ffff0000ef7d5d80 x21: ffff0000c27ee800
+x20: ffff0000c31d0f80 x19: ffff0000c27ee800 x18: 0000000000000000
+x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000001
+x14: 0000000000000002 x13: ffff0000c6978029 x12: 0000000000000002
+x11: ffff8000839d3d34 x10: 0000000a03bdbf1b x9 : ffff0000ef6766c0
+x8 : ffff0000c1d83900 x7 : 0000000000000000 x6 : 0000000000000220
+x5 : 0000000000000000 x4 : 0000000000000220 x3 : ffff0000c27ee8a8
+x2 : 0000000000000000 x1 : ffff0000c31d0f80 x0 : 0000000000000000
+Call trace:
+ drm_open_helper+0x88/0x114 (P)
+ drm_open+0x9c/0x100
+ drm_stub_open+0xbc/0xcc
+ chrdev_open+0x14c/0x158
+ do_dentry_open+0x304/0x374
+ vfs_open+0x24/0x58
+ path_openat+0x858/0x910
+ do_filp_open+0x50/0xa0
+ do_sys_openat2+0x8c/0xc0
+ do_sys_open+0x30/0x38
+ __arm64_sys_openat+0x1c/0x28
+ do_el0_svc+0xa8/0xd0
+ el0_svc+0x18/0x48
+ el0t_64_sync_handler+0x58/0x134
+ el0t_64_sync+0x154/0x158
+---[ end trace 0000000000000000 ]---
+GPU_GBM_RC=1
+[  589.284193] t736-gpu-power-retry 7065000.power-controller: stage 15: genpd published; reading final CCF rate
+[  589.293524] t736-gpu-power-retry 7065000.power-controller: stage 16: GPU_TOP ACK on; Tina CORE request issued: control=00000008 status=00000008 (not an ACK); GPU=400000000 Hz DCDC5=900000 uV reset-deassert=0; DDK HW/FW validation required
+[  589.735200] pvrsrvkm 1800000.gpu: PVRDIAG before pvr_drm_load
+[  589.739748] PVRDIAG before SysDevInit
+[  589.742185] pvrsrvkm 1800000.gpu: PVRDIAG platform init enter
+[  589.747664] pvrsrvkm 1800000.gpu: PVRDIAG platform before regulator enable
+[  589.753312] pvrsrvkm 1800000.gpu: PVRDIAG platform regulator ret=0
+[  589.758227] pvrsrvkm 1800000.gpu: PVRDIAG platform before regulator voltage
+[  589.764354] pvrsrvkm 1800000.gpu: PVRDIAG platform voltage=900000
+[  589.769195] pvrsrvkm 1800000.gpu: PVRDIAG platform before runtime resume
+[  589.774646] pvrsrvkm 1800000.gpu: PVRDIAG platform runtime resume ret=0
+[  589.779995] pvrsrvkm 1800000.gpu: PVRDIAG platform before parent clock
+[  589.785261] pvrsrvkm 1800000.gpu: PVRDIAG platform parent ret=0
+[  589.789919] pvrsrvkm 1800000.gpu: PVRDIAG platform before set400
+[  589.794673] pvrsrvkm 1800000.gpu: PVRDIAG platform set400 ret=0
+[  589.799325] pvrsrvkm 1800000.gpu: PVRDIAG platform before bus clock
+[  589.804329] pvrsrvkm 1800000.gpu: PVRDIAG platform bus ret=0
+[  589.808719] pvrsrvkm 1800000.gpu: PVRDIAG platform before reset deassert
+[  589.814159] pvrsrvkm 1800000.gpu: PVRDIAG platform reset ret=0
+[  589.818731] pvrsrvkm 1800000.gpu: PVRDIAG platform before core clock
+[  589.823818] pvrsrvkm 1800000.gpu: PVRDIAG platform core ret=0
+[  589.828307] pvrsrvkm 1800000.gpu: PVRDIAG platform power-on completed
+[  589.833492] pvrsrvkm 1800000.gpu: T736 GPU fixed 400000000 Hz, supply 900000 uV, CCF/genpd enabled
+[  589.833546] PVRDIAG after SysDevInit ret=0
+[  589.836535] PVRDIAG registers mapped; before BVNC init
+[  589.840419] PVRDIAG BVNC configuration enter
+[  589.843431] PVRDIAG before hardware BVNC
+[  589.846082] PVRDIAG before PBVNC read high=0x01800024 low=0x01800020 core=0
+[  589.851768] PVRDIAG after PBVNC value=0x00240038006800b7
+[  589.855805] PVRDIAG after hardware BVNC 36.56.104.183
+[  589.859597] PVR_K:  2744: Read BVNC 36.56.104.183 from HW device registers
+[  589.859610] PVRDIAG before MULTICORE_SYSTEM 0x0180f308
+[  589.863470] PVRDIAG after MULTICORE_SYSTEM=0x1
+[  589.866682] PVR_K:  2744: RGX Device registered BVNC 36.56.104.183 with 1 core in the system
+[  589.866696] PVRDIAG after BVNC init ret=0
+[  589.870190] pvrsrvkm 1800000.gpu: PVRDIAG after pvr_drm_load ret=0
+[  589.875867] [drm] Initialized pvr 24.2.6603887 for 1800000.gpu on minor 1
+[  717.840319] pvrsrvkm 1800000.gpu: T736 GPU fixed 400000000 Hz, supply 900000 uV, CCF/genpd enabled
+[  717.840488] PVR_K:  2767: Read BVNC 36.56.104.183 from HW device registers
+[  717.840538] PVR_K:  2767: RGX Device registered BVNC 36.56.104.183 with 1 core in the system
+[  717.842058] [drm] Initialized pvr 24.2.6603887 for 1800000.gpu on minor 1
+TEST_RENDER_NODE=/dev/dri/renderD128
+FAIL open render node egl=0x3000
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+root@t736:~# 

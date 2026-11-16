@@ -1,0 +1,20 @@
+{
+  "kind": "v18-exact-input-validation",
+  "result": "PASS",
+  "payload_entries": 82,
+  "bindings": {
+    "kernel_sha256": "17a12b4b6c934e3a38e9992302fc62473b8cbda2c3b7d20f52acdf4a06dab324",
+    "kernel_bytes": 5546276,
+    "pvr_sha256": "c5d60148497ae144c1e41938825259f347f149971c26f500b75da2b9454ad6eb",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "ed586018829a369d859e0a5ea7e1885d3ab399c7d8803333ba432462485acb1f",
+    "payload_manifest_sha256": "fcb8cdab46db5695192c0466d848afcf3434463d67c88b221d0300bfd6999b71",
+    "raw_image_sha256": "6c671b870e204d3c3b9e8f202932d2dabd90887d8df6009f0d7d06a0d02f3b43",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "candidate_dtb_bytes": 11960,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "device_checks_run": false,
+  "maintainer_scripts_executed": false
+}

@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "kind": "t736-pio-v2-design-review",
+  "date": "2026-11-16",
+  "status": "reviewed-and-compiled; board-validation-pending",
+  "baseline_source": "boards/t736_mmc_pio.c",
+  "candidate_source": "boards/t736_mmc_pio_v2.c",
+  "source_sha256": {
+    "boards/t736_mmc_pio.c": "ab8f35caf434023e30ea35a39a923918aba5381c8136c44a6879aed2c491b6d5",
+    "boards/t736_mmc_pio_v2.c": "f4e33965e36756214abb48425e90a32ca44da14175a3a613aa29a059a83a5e02",
+    "tools/build_storage_kernel.sh": "868ad86d746672c843e7aa37925b241a48dca920621e90a45a75ab25caa04b13"
+  },
+  "baseline_hardware_evidence": "source-v9-storage-media-20261116.log",
+  "changes": {
+    "max_request_bytes": [
+      4096,
+      65536
+    ],
+    "max_block_count": [
+      8,
+      128
+    ],
+    "bounce_buffer": "kvmalloc, CPU-only, freed after worker destruction",
+    "workqueue": "alloc_ordered_workqueue with WQ_MEM_RECLAIM; unbound and ordered",
+    "reads": "STATUS[21:17] occupied words accepted only from 1 to 16; otherwise one word; clamp to remaining request; ioread32_rep",
+    "writes": "FIFO_FULL checked for every word; up to 16 words between outer error/reschedule checks"
+  },
+  "unchanged": {
+    "max_clock_hz": 12000000,
+    "width_capabilities_bits": [
+      4,
+      8
+    ],
+    "legacy_timing": true,
+    "dma": false,
+    "voltage": true,
+    "register_resources": true,
+    "irq_masks": true
+  },
+  "donor_evidence": {
+    "file": "/home/ubuntu/t736-aiot/tina/bsp/drivers/mmc/sunxi-mmc-panic.c",
+    "lines": [
+      715,
+      809
+    ],
+    "sha256": "1d0cc85e195fae91ba1bbed498c78b23d1c15e51986b6c855fb0cfd77b55af0e",
+    "interpretation": "Donor accepts only 1..16 FIFO occupied words; candidate does not infer full FIFO capacity or unchecked write capacity"
+  },
+  "reviews": [
+    {
+      "reviewer": "root",
+      "result": "No blocker to isolated compile; requested explicit probe marker, added"
+    },
+    {
+      "reviewer": "event_review",
+      "result": "No new blocker: validated multiplication guard, read/write burst bounds, CPU-only kvmalloc, work requeue at request completion and error/remove cleanup ordering"
+    }
+  ],
+  "isolated_build": {
+    "source": "sources/work/linux-storage-v16",
+    "output": "build/linux-storage-v16",
+    "kernel_release": "6.18.63-t736-storage-v16",
+    "config_diff_allowlist": [
+      "CONFIG_LOCALVERSION"
+    ]
+  },
+  "required_runtime_checks": [
+    "Cold boot and driver marker, confirm mmc0 ios remains 12MHz/8bit/legacy",
+    "Hash-read existing libxul and known files; compare read throughput with same CPU/desktop load",
+    "Write and fdatasync a bounded new scratch file on mounted rootfs, direct-read and compare every byte/hash without touching raw boot sectors",
+    "Read dmesg for mmc timeouts/CRC/FIFO errors; verify normal shutdown and reboot",
+    "Measure Firefox startup separately after I/O contention resolves"
+  ],
+  "board_acceptance": false,
+  "build_evidence": "storage-v16-build-20261116.json",
+  "package_evidence": "storage-v16-package-20261116.json"
+}

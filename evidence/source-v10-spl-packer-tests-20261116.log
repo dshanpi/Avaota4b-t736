@@ -1,0 +1,28 @@
+usage: pack_t736_source_boot.py [-h] [--variant {v3,v4,v5,v6,v7,v8,v9,v10}]
+                                [--spl-variant {v4,v5}]
+                                [--cpu-clock-acceptance CPU_CLOCK_ACCEPTANCE]
+
+Fixed board boot payload and complete Armbian raw. No legacy boot executable.
+
+options:
+  -h, --help            show this help message and exit
+  --variant {v3,v4,v5,v6,v7,v8,v9,v10}
+  --spl-variant {v4,v5}
+                        Default v4 for source-v4 and later; historical
+                        source-v3 remains unchanged
+  --cpu-clock-acceptance CPU_CLOCK_ACCEPTANCE
+                        Passed CPU runtime-clock trial record required for
+                        explicit SPL v5
+V4_READ_ONLY_PROVENANCE_OK 221184 a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea
+V4_SOURCE_VALIDATION historical source record plus pinned verified SPL
+V10_OUTPUT_EXISTS False
+.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.019s
+
+OK
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 0.707s
+
+OK

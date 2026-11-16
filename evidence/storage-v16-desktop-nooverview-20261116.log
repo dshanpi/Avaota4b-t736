@@ -1,0 +1,37 @@
+OVERVIEW (<true>,)
+ 
+HIDE_OVERVIEW ()
+ 
+COMMAND ['python3', '/home/t736/gtk-frame-probe-v16.py'] RC 0
+
+(python3:6058): Gtk-WARNING **: 10:50:01.213: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+/home/t736/gtk-frame-probe-v16.py:75: DeprecationWarning: Gtk.GLArea.set_use_es is deprecated
+  area.set_use_es(True)
+{"gl": {"vendor": "Imagination Technologies", "renderer": "PowerVR B-Series BXM-4-64", "version": "OpenGL ES 3.2 build 24.2@6603887"}}
+{
+  "elapsed_seconds": 12.241,
+  "tick_count": 706,
+  "render_count": 706,
+  "gl": {
+    "vendor": "Imagination Technologies",
+    "renderer": "PowerVR B-Series BXM-4-64",
+    "version": "OpenGL ES 3.2 build 24.2@6603887"
+  },
+  "libraries": [
+    "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+    "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887"
+  ],
+  "physical_display_verified": false,
+  "metric": "GTK frame-clock intervals, not scanout/presentation timestamps",
+  "enough_samples_for_timing": true,
+  "interval_ms_median": 16.737,
+  "interval_ms_p95": 16.821,
+  "intervals_over_33ms": 4,
+  "interval_count": 705
+}
+
+COMMAND ['gdbus', 'call', '--session', '--dest', 'org.gnome.ScreenSaver', '--object-path', '/org/gnome/ScreenSaver', '--method', 'org.gnome.ScreenSaver.GetActive'] RC 0
+(false,)
+

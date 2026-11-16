@@ -1,0 +1,80 @@
+test "$(cat /proc/5365/comm 2>/dev/null)" != gnome-text-edit || kill -TERM 5365; runuser -u t736 -- env XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_TYPE=x11 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri GDK_BACKEND=x11 GDK_DISABLE=gl-api,glx,vulkan GSK_RENDERER=opengl GDK_DEBUG=opengl GSK_DEBUG=renderer gnome-text-editor --standalone >/root/t736-gpu-debug/text-editor-clean-gles.log 2>&1 & echo GTK_CLEAN_GLES_PID=$!; echo GTK_CLEAN_GLES_SENT
+
+[3] 5484
+GTK_CLEAN_GLES_PID=5484
+GTK_CLEAN_GLES_SENT
+root@t736:~# tail -n 65 /root/t736-gpu-debug/text-editor-clean-gles.log; for p in $(pgrep -f '^gnome-text-editor --standalone$'); do echo GTK_PID=$p; awk '/libEGL|libGLES|libpvr|swrast|llvmpipe|LLVM/ {print $NF}' /proc/$p/maps | sort -u; done; echo GTK_CLEAN_GLES_DONE
+
+ - Version: 1.5
+ - Device: /dev/dri/renderD128, 226 128
+ - Client APIs: OpenGL_ES 
+ - Extensions:
+	EGL_ANDROID_native_fence_sync
+	EGL_ANGLE_sync_control_rate
+	EGL_CHROMIUM_sync_control
+	EGL_EXT_buffer_age
+	EGL_EXT_create_context_robustness
+	EGL_EXT_image_dma_buf_import
+	EGL_EXT_image_dma_buf_import_modifiers
+	EGL_EXT_image_gl_colorspace
+	EGL_EXT_pixel_format_float
+	EGL_EXT_query_reset_notification_strategy
+	EGL_EXT_swap_buffers_with_damage
+	EGL_EXT_yuv_surface
+	EGL_IMG_cl_image
+	EGL_IMG_context_priority
+	EGL_KHR_cl_event2
+	EGL_KHR_config_attribs
+	EGL_KHR_create_context
+	EGL_KHR_fence_sync
+	EGL_KHR_get_all_proc_addresses
+	EGL_KHR_gl_colorspace
+	EGL_KHR_gl_renderbuffer_image
+	EGL_KHR_gl_texture_2D_image
+	EGL_KHR_gl_texture_3D_image
+	EGL_KHR_gl_texture_cubemap_image
+	EGL_KHR_image
+	EGL_KHR_image_base
+	EGL_KHR_image_pixmap
+	EGL_KHR_no_config_context
+	EGL_KHR_partial_update
+	EGL_KHR_reusable_sync
+	EGL_KHR_surfaceless_context
+	EGL_KHR_swap_buffers_with_damage
+	EGL_KHR_wait_sync
+	EGL_MESA_configless_context
+	EGL_MESA_drm_image
+	EGL_MESA_image_dma_buf_export
+	EGL_MESA_query_driver
+	EGL_NOK_texture_from_pixmap
+ - Selected fbconfig: R8G8B8A8, depth 0, stencil 0
+          high depth: none
+Creating EGL context version 3.0 (debug:no, forward:no, legacy:no, es:yes)
+Using OpenGL backend EGL
+
+(gnome-text-editor:5487): Gtk-WARNING **: 08:26:35.316: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+Environment variable GSK_RENDERER=opengl set, trying GskGLRenderer
+OpenGL ES version: 3.2 (core)
+GLSL version: OpenGL ES GLSL ES 3.20 build 24.2@6603887
+Max texture size: 8192
+Enabled features (use GDK_GL_DISABLE env var to disable):
+    debug: ✓
+    base-instance: ✗
+    buffer-storage: ✓
+Creating EGL context version 3.0 (debug:no, forward:no, legacy:no, es:yes)
+OpenGL ES version: 3.2 (core)
+GLSL version: OpenGL ES GLSL ES 3.20 build 24.2@6603887
+Max texture size: 8192
+Enabled features (use GDK_GL_DISABLE env var to disable):
+    debug: ✓
+    base-instance: ✗
+    buffer-storage: ✓
+Using renderer 'GskGLRenderer' for surface 'GdkX11Toplevel'
+[2]-  退出 143              runuser -u t736 -- env XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_TYPE=x11 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri GDK_DEBUG=opengl GSK_DEBUG=renderer gnome-text-editor --standalone > /root/t736-gpu-debug/text-editor-clean.log 2>&1
+GTK_PID=5487
+/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887
+GTK_CLEAN_GLES_DONE
+root@t736:~# 

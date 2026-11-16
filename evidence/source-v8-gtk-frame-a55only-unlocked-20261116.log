@@ -1,0 +1,33 @@
+loginctl unlock-session c13; runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority xset dpms force on; runuser -u t736 -- env -u LIBGL_ALWAYS_SOFTWARE -u GALLIUM_DRIVER -u MESA_LOADER_DRIVER_OVERRIDE DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri GDK_BACKEND=x11 GDK_DISABLE=gl-api,glx,vulkan GSK_RENDERER=opengl python3 /tmp/t736-transfer/gtk-frame-probe-v2.py >/root/t736-gpu-debug/gtk-frame-a55only-unlocked.log 2>&1; echo GTK_FRAME_RC=$?; tail -n 35 /root/t736-gpu-debug/gtk-frame-a55only-unlocked.log; echo GTK_FRAME_UNLOCKED_DONE
+
+GTK_FRAME_RC=0
+
+(python3:6640): Gtk-WARNING **: 08:51:08.650: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+/tmp/t736-transfer/gtk-frame-probe-v2.py:75: DeprecationWarning: Gtk.GLArea.set_use_es is deprecated
+  area.set_use_es(True)
+{"gl": {"vendor": "Imagination Technologies", "renderer": "PowerVR B-Series BXM-4-64", "version": "OpenGL ES 3.2 build 24.2@6603887"}}
+{
+  "elapsed_seconds": 12.994,
+  "tick_count": 715,
+  "render_count": 715,
+  "gl": {
+    "vendor": "Imagination Technologies",
+    "renderer": "PowerVR B-Series BXM-4-64",
+    "version": "OpenGL ES 3.2 build 24.2@6603887"
+  },
+  "libraries": [
+    "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+    "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887"
+  ],
+  "physical_display_verified": false,
+  "metric": "GTK frame-clock intervals, not scanout/presentation timestamps",
+  "enough_samples_for_timing": true,
+  "interval_ms_median": 16.735,
+  "interval_ms_p95": 16.757,
+  "intervals_over_33ms": 2,
+  "interval_count": 714
+}
+GTK_FRAME_UNLOCKED_DONE
+root@t736:~# 

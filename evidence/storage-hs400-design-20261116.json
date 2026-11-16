@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "kind": "t736-hs400-conversion-and-strobe-tuning-design",
+  "status": "implemented-source-frozen-boundary-tests-and-arm64-compile-pass-no-board-test",
+  "frozen_candidate": "v23 HS200 source/build remain unchanged; new candidate v24",
+  "policy_draft": {
+    "path": "boards/t736_mmc_hs400_policy_draft.h",
+    "sha256": "ae7f25d6309e1f6b1489277b2edab2fd06bc3f7c64f5a05b7103ea8036922384"
+  },
+  "prerequisites": [
+    "v23 HS200200MHz board accepted: fullCMD21 windows,32MiB two-phase integrity and GPU60frames pass; acceptance is separate from HS400",
+    "8-bit fixed1.8V card; EXT_CSD CARD_TYPE57 and STROBE_SUPPORT1 are capability only",
+    "Existing PERI0_800M/mux1 and downstream gate observations retained; no sharedPLL or rail writes"
+  ],
+  "actual_t736_donor": {
+    "root": "/home/ubuntu/t736-aiot/tina",
+    "sunxi-mmc.c_sha256": "52c7f92db77290437b7818f3c3a92a2956c1ab637214794e56220d0dde99ce16",
+    "sunxi-mmc-v4p5x.c_sha256": "f7b14c8dce66eefc222ac7d06b8aad041ea132c463a1f035a201dd940fb95f7f",
+    "sunxi-mmc.h_sha256": "0945ee0ea5e47082c2ff159e578380671f86f4cd797f4fb3a853bc6f8cde0da3",
+    "references": [
+      "sunxi-mmc.h633 explicitly excludes HS400 from generic DDR timing",
+      "sunxi-mmc.c2111 sets CTRL.DDR only for generic DDR modes",
+      "v4p5x.c660-676 module4x/div1 only for8bitDDR52; HS400 uses2x/div0",
+      "v4p5x.c810-834 NTSR31clear, EDSD31enable forHS400, CSDC6",
+      "v4p5x.c985 DS six-bit software setter; no DLL calibration register used"
+    ]
+  },
+  "hs400_register_policy": {
+    "CTRL10": 0,
+    "NTSR31": 0,
+    "NTSR0": 0,
+    "EDSD31": 1,
+    "CSDC_low4": 6,
+    "DRV16_CMD": 1,
+    "DRV17_DAT": 0,
+    "CLKDIV_low8": 0,
+    "module_to_card_ratio": 2,
+    "SAMP_and_DS": "software bit7 plus six-bit delays; preserve read-only13:8 and unrelated bits",
+    "THLD": "reuse verified HS200 per-block read/write flow control; SFC preserved"
+  },
+  "no_invented_dll_sequence": "SMHC3 SAMP_DL/DS_DL13:8 are marked reserved/read-only by A73311.3.9.38/.39. Do not treat0x20 as calibrated DLL length or import another controller DLL reset sequence. Only documented six-bit software delays are planned.",
+  "board_seed_table": {
+    "source": "actual effective eMMC sm4_cmd2020ffff/ffff0e24 andsm4 1a21ffff/ffff0d11",
+    "le25MHz": {
+      "cmd": 0,
+      "ds": 0
+    },
+    "le50MHz": {
+      "cmd": 32,
+      "ds": 33
+    },
+    "le100MHz": {
+      "cmd": 32,
+      "ds": 26
+    },
+    "le150MHz": {
+      "cmd": 36,
+      "ds": 17
+    },
+    "le200MHz": {
+      "cmd": 14,
+      "ds": 13
+    },
+    "meaning": "entry seeds only; independent validated windows required"
+  },
+  "core_initial_conversion": [
+    "mmc_select_hs200 at targetfrequency and full CMD21 tuning",
+    "mmc_select_hs400 switches card HS_TIMING1",
+    "host changes MMC_HS then lowers to HS clock (50MHz cap)",
+    "CMD6 BUS_WIDTH6 selects8bitDDR oncard",
+    "CMD6 HS_TIMING3 plusdriver-strength selectsHS400",
+    "host set_ios MMC_HS400 then200MHz",
+    "execute_hs400_tuning(host,card) callback runs before finalswitch-status; receives validcard argument whilehost->card maystillNULL",
+    "Only after successfulcallback and CMD13 status is ordinary I/O accepted"
+  ],
+  "runtime_retune_requires_ddr52_transition": {
+    "reason": "mmc_hs400_to_hs200 uses MMC_TIMING_MMC_DDR52 between HS400 and HS; v22 currently rejects this timing",
+    "sequence": [
+      "lower clock toHS range whilestillHS400",
+      "CMD6 HS_TIMING1, hostDDR52 timing",
+      "CMD6 BUS_WIDTH2 selects8bitSDR, hostHS timing",
+      "CMD6 HS_TIMING2, hostHS200 timing/frequency",
+      "CMD21 tuning thencore re-entersHS400 and runsstrobe verification"
+    ],
+    "controller_DDR8_at50MHz": {
+      "CTRL10": 1,
+      "NTSR31_and0": 0,
+      "EDSD31": 0,
+      "CSDC": 3,
+      "DRV16_and17": 1,
+      "CLKDIV": 1,
+      "module_hz": 200000000,
+      "sample_seed": 25,
+      "clock_reg": "0x81000003"
+    },
+    "capability": "Support this transient protocol state without enabling standaloneDDR52 capability prematurely"
+  },
+  "proposed_read_only_tuning": {
+    "command_eye": "64 SAMP taps; public mmc_wait_for_cmd CMD13 with callback card->rca, R1|AC and retries0, equivalent to __mmc_send_status(card,&status,0). Require R1_STATUS==0, noSWITCH_ERROR, READY and TRAN. CRC-valid protocol/state errors are fatal.20trials/tap,window>=12,center16.",
+    "data_strobe_eye": "hold validatedcommandtap; scan DS0..63 with mmc_get_ext_csd(card) CMD8 512-byte reads; freshpoisonedDMA, mandatoryDMAstop, CRC/status+compare immutableRO fields against core card->ext_csd",
+    "reference": "mainline mtk-sd.c2616 uses execute_hs400_tuning+CMD8 to scanDS; core mmc_compare_ext_csds729 defines safeRO fields",
+    "comparison": "Exact26RO fields and ordering from core mmc_compare_ext_csds; compare core-decoded values, plus actual HS_TIMING==(3|drive_strength<<4) and BUS_WIDTH==6 (non-ES). Fresh512B DMA everytrial; no unverified first-read reference.",
+    "window_policy": "start with64 linear taps,20successfulreads per passingtap,min12; center16readverification, no63-to0wrap assumption",
+    "data_gate": "Non-data coreCMD6/CMD13 transitions remain allowed. UnverifiedHS200 allows onlyselectedCMD21; unverifiedHS400 onlyselectedCMD8; transientDDR52 blocks allordinarydata. Poison+shapechecks preventwrongopcode/write bypass.",
+    "failure": "Retain bounded cleanup, DMA quarantine and allocation safety. Use separately reviewed v23 card-error classification for expected bad-tap CRC/timeout; unknown/fatal bits remain errors. Return failure and use preserved accepted boot fallback; no unreviewed manual CMD6 downgrade",
+    "writes": "No raw-sector or scratch writes needed for tuning; lateruser-authorizedfilesystemintegrity tests validatewritepath",
+    "abort": "CMD13 has no data to abort. CMD8 uses explicit zero-retry CMD12; mmc_send_abort_tuning(CMD8) would be a no-op and is not used.",
+    "deadline": "Separate30s softdeadline perCMD/DS phase includingcenterverification;200ms commands; boundedcleanup mayextenddeadline."
+  },
+  "deferred": [
+    "HS400 enhanced-strobe capability (host ES path not implemented)",
+    "CQE",
+    "DDRx data-rail changes",
+    "sharedPLL retuning",
+    "new-sampling NTSR0=1 mode",
+    "strong claim of rated throughput before measured200MHzHS400 + integrity acceptance"
+  ],
+  "next": "independentfinalreview, isolatedv24kernel/PVR/packagebuild, one-shotHS400100then200MHz hardwareacceptance",
+  "dqs_pin_evidence": {
+    "manual": "A733 table18-31 / reference-1.txt near84778: PC0 mux4 SDC3-DS; PC1 reset,PC5 clock,PC6command",
+    "current_board_dts": "boards/t736-mainline-bringup.dts:170 includes PC0 among12 eMMC pins, function sdc3 pinmux4",
+    "policy": "No new DS pinmux required. Existing boards/pinctrl-t736.c preserves firmware pad drive/pulls/voltage. Pin presence alone is not HS400 electrical/timing acceptance."
+  },
+  "implementation": {
+    "source": "boards/t736_mmc_hs400_draft.c",
+    "target_release": "6.18.63-t736-storage-v24",
+    "default_hs400_enabled": false,
+    "default_hs400_max_hz": 100000000,
+    "allowed_hs400_caps": [
+      100000000,
+      200000000
+    ],
+    "enabling_requires": "enable_hs200=1,hs200_max_hz=200000000",
+    "persistent_fallback": "parent-owned acceptedv16, unchanged by build",
+    "build_script": "tools/build_hs400_storage_kernel.sh",
+    "tests": "tests/test_mmc_hs400_policy.py",
+    "compile_log": "evidence/build/mmc-hs400-draft-check-20261116.log",
+    "test_result": "actualC ASan+UBSan and finalARM64externalmodule compilePASS; compile-onlymodule never transferred/loaded",
+    "files": {
+      "boards/t736_mmc_hs400_draft.c": "515d7f75b871ee9da838ef71199706ddedb5425ae6cfac186c3089831d8598e5",
+      "boards/t736_mmc_hs400_policy_draft.h": "ae7f25d6309e1f6b1489277b2edab2fd06bc3f7c64f5a05b7103ea8036922384",
+      "boards/t736_mmc_hs400_tuning_draft.h": "c202f8f5dc5fb625e568c5b8f9f87f2d3c3e2531e2b3a859d361a805fda1c2bf",
+      "tests/test_mmc_hs400_policy.py": "7d766d78f7a8179adf0ee89b84b6ec8f34bb054fdd2b05f7657ed1c27a9ce8cb",
+      "tools/build_hs400_storage_kernel.sh": "b957dc470d07c44af348c953294336212de19a563ac0eb7ce653432b15b96f05",
+      "tools/validation/audit_hs400_storage_package.py": "a797b23b4a164af61eb373e42ab9cfde0ebebc14908287a26d3af528bca46f41"
+    }
+  }
+}

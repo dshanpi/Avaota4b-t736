@@ -1,0 +1,65 @@
+printf t736-gpu-power-retry >/sys/bus/platform/devices/7065000.power-controller/driver_override && insmod /root/t736-gpu-debug/power-retry3.ko publish_domain=1 && insmod /root/t736-gpu-debug/pvrsrvkm-diag1.ko; echo GPU_PLL_DDK_RC=$?; ls -l /dev/dri; echo GPU_PLL_DDK_DONE
+
+t736-gpu-power-retry 7065000.power-controller: stage 01: probe starts, publish_domain=1
+t736-gpu-power-retry 7065000.power-controller: stage 02: resources acquired; enabling supply
+t736-gpu-power-retry 7065000.power-controller: stage 03: DCDC5=900000 uV; enabling PPU/AHB/MBUS
+t736-gpu-power-retry 7065000.power-controller: stage 04: master clocks enabled; setting TOP delays
+t736-gpu-power-retry 7065000.power-controller: stage 05: requesting TOP and waiting for TOP ACK
+t736-gpu-power-retry 7065000.power-controller: stage 06: TOP ACK confirmed; writing Tina CORE policy/request
+t736-gpu-power-retry 7065000.power-controller: stage 07: CORE request written; deasserting GPU reset
+t736-gpu-power-retry 7065000.power-controller: stage 08: reset-deassert returned 0; enabling GPU bus/core
+t736-gpu-power-retry 7065000.power-controller: stage 09: bus/core enabled; reading CCF rate
+t736-gpu-power-retry 7065000.power-controller: stage 10: CCF rate=400000000; reading CORE diagnostic registers
+t736-gpu-power-retry 7065000.power-controller: stage 11: CORE control=00000008 status=00000008 (not an ACK)
+t736-gpu-power-retry 7065000.power-controller: stage 12: initializing genpd
+t736-gpu-power-retry 7065000.power-controller: stage 13: genpd initialized; releasing temporary reset reference
+t736-gpu-power-retry 7065000.power-controller: stage 14: publishing genpd; DDK may probe after this
+t736-gpu-power-retry 7065000.power-controller: stage 15: genpd published; reading final CCF rate
+t736-gpu-power-retry 7065000.power-controller: stage 16: GPU_TOP ACK on; Tina CORE request issued: control=00000008 status=00000008 (not an ACK); GPU=400000000 Hz DCDC5=900000 uV reset-deassert=0; DDK HW/FW validation required
+pvrsrvkm 1800000.gpu: PVRDIAG before pvr_drm_load
+PVRDIAG before SysDevInit
+pvrsrvkm 1800000.gpu: PVRDIAG platform init enter
+pvrsrvkm 1800000.gpu: PVRDIAG platform before regulator enable
+pvrsrvkm 1800000.gpu: PVRDIAG platform regulator ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before regulator voltage
+pvrsrvkm 1800000.gpu: PVRDIAG platform voltage=900000
+pvrsrvkm 1800000.gpu: PVRDIAG platform before runtime resume
+pvrsrvkm 1800000.gpu: PVRDIAG platform runtime resume ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before parent clock
+pvrsrvkm 1800000.gpu: PVRDIAG platform parent ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before set400
+pvrsrvkm 1800000.gpu: PVRDIAG platform set400 ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before bus clock
+pvrsrvkm 1800000.gpu: PVRDIAG platform bus ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before reset deassert
+pvrsrvkm 1800000.gpu: PVRDIAG platform reset ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before core clock
+pvrsrvkm 1800000.gpu: PVRDIAG platform core ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform power-on completed
+PVRDIAG after SysDevInit ret=0
+PVRDIAG registers mapped; before BVNC init
+PVRDIAG BVNC configuration enter
+PVRDIAG before hardware BVNC
+PVRDIAG before PBVNC read high=0x01800024 low=0x01800020 core=0
+PVRDIAG after PBVNC value=0x00240038006800b7
+PVRDIAG after hardware BVNC 36.56.104.183
+PVRDIAG before MULTICORE_SYSTEM 0x0180f308
+PVRDIAG after MULTICORE_SYSTEM=0x1
+PVRDIAG after BVNC init ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG after pvr_drm_load ret=0
+GPU_PLL_DDK_RC=0
+总计 0
+drwxr-xr-x  2 root root        100 11月16日 07:48 by-path
+crw-rw----+ 1 root video  226,   0 11月16日 07:36 card0
+crw-rw----  1 root video  226,   1 11月16日 07:48 card1
+crw-rw----  1 root render 226, 128 11月16日 07:48 renderD128
+GPU_PLL_DDK_DONE
+root@t736:~# echo SERIAL_AFTER_PLL_OK; ls -l /dev/dri
+
+SERIAL_AFTER_PLL_OK
+总计 0
+drwxr-xr-x  2 root root        100 11月16日 07:48 by-path
+crw-rw----+ 1 root video  226,   0 11月16日 07:36 card0
+crw-rw----  1 root video  226,   1 11月16日 07:48 card1
+crw-rw----  1 root render 226, 128 11月16日 07:48 renderD128
+root@t736:~# 

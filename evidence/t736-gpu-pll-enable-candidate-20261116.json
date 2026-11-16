@@ -1,0 +1,80 @@
+{
+  "schema": "t736-independent-gpu-pll-diagnostic-v1",
+  "date": "2026-11-16",
+  "status": "compiled; pending hardware execution result",
+  "kernel_abi": "6.18.63-t736-gpu-v15",
+  "purpose": "Determine whether missing independent PLL_GPU0 enable explains GPU register hang while core source remains PERI400.",
+  "measured_initial_state": {
+    "control_address": "0x020020e0",
+    "control": "0x40104500",
+    "gpu_core_clock": "0x00000000",
+    "gpu_bus_gate_reset": "0x00000000",
+    "source_log": "evidence/source-v8-gpu-pll-initial-readback-20261116.log"
+  },
+  "tina_source_root": "/home/ubuntu/t736-aiot/tina/bsp/drivers/clk/sunxi-ng",
+  "tina_references": {
+    "ccu-sun60iw2.c": "PLL_GPU0 0xe0: enable31, LDO30, lockdetect29, lock28, output27; N15:8, M22:20; features zero",
+    "ccu_gate.c": "ccu_pll_gate_helper_enable and disable",
+    "ccu_common.c": "ccu_helper_wait_for_lock: 100 samples at 3us, three consecutive locked samples then 20us",
+    "ccu_mult.h": "_SUNXI_CCU_MULT_MIN_MAX uses offset +1",
+    "ccu_div.h": "_SUNXI_CCU_DIV uses offset +1",
+    "Kconfig": "AW_SUN60IW2_CCU selects AW_STANDARD_CCU"
+  },
+  "preserved_frequency": {
+    "n_encoding": 69,
+    "n": 70,
+    "m_encoding": 1,
+    "m": 2,
+    "integer_nominal_hz_if_reference_24MHz": 840000000,
+    "sdm_patterns": "not accessed or changed"
+  },
+  "enable_sequence": [
+    "verify exact initial PLL=0x40104500 and core clock=0 or 0x83000000",
+    "clear output27",
+    "set LDO30",
+    "set enable31",
+    "set lockdetect29",
+    "require three consecutive lock28 samples at 3us within 100 samples",
+    "delay20us and confirm lock persists",
+    "set output27",
+    "check all unmodified bits and core/BGR unchanged"
+  ],
+  "failure_sequence": [
+    "clear output27",
+    "clear lockdetect29",
+    "clear enable31",
+    "restore exact original PLL word; retain original LDO1"
+  ],
+  "write_scope": [
+    "0x020020e0 only"
+  ],
+  "excluded_writes": [
+    "PLL_REF",
+    "PLL_PERI0",
+    "GPU core clock mux/divider",
+    "GPU reset/bus gate",
+    "GPU registers",
+    "PPU",
+    "SDM patterns"
+  ],
+  "unload_semantics": "Successful enable remains in hardware until reset; unload does not disable this PLL.",
+  "hardware_success_claim": false,
+  "files": {
+    "tools/validation/t736-gpu-pll-enable.c": {
+      "sha256": "245fd11b51ac0de7f851e823ef4d1b5a5487d6603c43e256287902facca60f1b",
+      "bytes": 5300
+    },
+    "output/t736-gpu-pll-enable-v15.ko": {
+      "sha256": "2513b6752dd31d637bd023d188588df13ad1e395ecf934cb47b6934f76e6586b",
+      "bytes": 9736
+    },
+    "evidence/gpu-pll-enable-v15-build-20261116.log": {
+      "sha256": "2b495ef4dab24a91ecff011ef5eaf21f5bbc1aad4e1ef8a4b1343d13fcd2782b",
+      "bytes": 854
+    },
+    "evidence/source-v8-gpu-pll-initial-readback-20261116.log": {
+      "sha256": "92d04fa46d3e5165864e17ecfaa8ecb013f74289d66dc0b061ce6262c7f0e42b",
+      "bytes": 669
+    }
+  }
+}

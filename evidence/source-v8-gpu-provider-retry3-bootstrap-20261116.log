@@ -1,0 +1,18 @@
+test ! -e /sys/module/pvrsrvkm && test ! -L /sys/bus/platform/devices/7065000.power-controller/driver && printf t736-gpu-power-retry >/sys/bus/platform/devices/7065000.power-controller/driver_override && insmod /tmp/t736-transfer/t736-gpu-power-retry3-v15.ko; printf "BOOTSTRAP_ONLY_RC=%s\n" "$?"; readlink /sys/bus/platform/devices/7065000.power-controller/driver; printf "BOOTSTRAP_DONE\n"
+
+t736-gpu-power-retry 7065000.power-controller: stage 01: probe starts, publish_domain=0
+t736-gpu-power-retry 7065000.power-controller: stage 02: resources acquired; enabling supply
+t736-gpu-power-retry 7065000.power-controller: stage 03: DCDC5=900000 uV; enabling PPU/AHB/MBUS
+t736-gpu-power-retry 7065000.power-controller: stage 04: master clocks enabled; setting TOP delays
+t736-gpu-power-retry 7065000.power-controller: stage 05: requesting TOP and waiting for TOP ACK
+t736-gpu-power-retry 7065000.power-controller: stage 06: TOP ACK confirmed; writing Tina CORE policy/request
+t736-gpu-power-retry 7065000.power-controller: stage 07: CORE request written; deasserting GPU reset
+t736-gpu-power-retry 7065000.power-controller: stage 08: reset-deassert returned 0; enabling GPU bus/core
+t736-gpu-power-retry 7065000.power-controller: stage 09: bus/core enabled; reading CCF rate
+t736-gpu-power-retry 7065000.power-controller: stage 10: CCF rate=400000000; reading CORE diagnostic registers
+t736-gpu-power-retry 7065000.power-controller: stage 11: CORE control=00000008 status=00000000 (not an ACK)
+t736-gpu-power-retry 7065000.power-controller: stage 12: bootstrap-only complete; genpd NOT published; safe rmmod supported
+BOOTSTRAP_ONLY_RC=0
+../../../bus/platform/drivers/t736-gpu-power-retry
+BOOTSTRAP_DONE
+root@t736:~# 

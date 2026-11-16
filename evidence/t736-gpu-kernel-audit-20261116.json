@@ -1,0 +1,735 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-16T06:26:42.587745+00:00",
+  "scope": "Read-only Tina BXM kernel-side audit against current Linux 6.18.63-t736-hdmi-v14; no compile, board access, package installation or driver/source mutation.",
+  "identity": {
+    "requested_gpu_model": "IMG BXM-4-64 MC1 (user supplied)",
+    "verified_family": "IMG BXM/Rogue",
+    "verified_bvnc": "36.56.104.183",
+    "ddk": "24.2@6603887",
+    "source_root": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/",
+    "refs": [
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/include/pvrversion.h",
+        "lines": [
+          47,
+          48,
+          52,
+          55
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/build/linux/sunxi_linux/Makefile",
+        "lines": [
+          68,
+          69,
+          74,
+          85,
+          87,
+          96
+        ]
+      }
+    ]
+  },
+  "donor": {
+    "source_available": true,
+    "license": "README offers MIT or GPLv2; retain per-file license notices",
+    "build_entry": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/Makefile",
+    "build_entry_lines": [
+      133,
+      135,
+      141,
+      145
+    ],
+    "platform": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/system/rogue/rgx_sunxi/",
+    "target": {
+      "window_system": "nulldrmws",
+      "kernel_components": [
+        "srvkm"
+      ],
+      "module": "pvrsrvkm",
+      "pvr_system": "rgx_sunxi",
+      "init_mode": "PVRSRV_LINUX_DEV_INIT_ON_OPEN",
+      "signed_firmware": false
+    },
+    "generated_config": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/binary_sunxi_linux_nulldrmws_release/config_kernel.mk",
+    "generated_config_notes": "Targets 6.6.98-t736-distro with gcc-arm-10.3-2021.07; includes Linux DVFS, native DMA fences and buffer sync. Regenerate for candidate kernel instead of reusing absolute old build paths.",
+    "existing_module": {
+      "path": "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot-bak/debian/rootfs_def/usr/lib/modules/6.6.98-t736-distro/pvrsrvkm.ko",
+      "sha256": "279178df78dd5ba787437becd33aec323af551d506c876ae131c8b4be198b348",
+      "vermagic": "6.6.98-t736-distro SMP preempt mod_unload aarch64",
+      "license": "Dual MIT/GPL",
+      "compatible": "img,gpu",
+      "platform_alias": "rgxsunxi",
+      "strings_verified": [
+        "Rogue_DDK_Linux_WS rogueddk 24.2@6603887",
+        "36.56.104.183"
+      ],
+      "direct_load_on_v14_supported": false
+    },
+    "other_module_path": "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/lib/modules/6.6.98/pvrsrvkm.ko",
+    "exclude_different_driver_tree": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-rgx/"
+  },
+  "compatibility_6_18": [
+    {
+      "kind": "confirmed source/API mismatch",
+      "finding": "drm_driver.date initializer remains but date field is absent in 6.18 drm_driver.",
+      "donor": {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/env/linux/pvr_drm.c",
+        "lines": [
+          547
+        ]
+      },
+      "target": {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_drv.h",
+        "lines": [
+          396,
+          402,
+          404
+        ]
+      }
+    },
+    {
+      "kind": "confirmed source/API mismatch",
+      "finding": "platform_driver.remove expects void callback in 6.18; donor pvr_remove returns int.",
+      "donor": {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/env/linux/pvr_platform_drv.c",
+        "lines": [
+          206,
+          275
+        ]
+      },
+      "target": {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/include/linux/platform_device.h",
+        "lines": [
+          233
+        ]
+      }
+    },
+    {
+      "kind": "confirmed source/API mismatch",
+      "finding": "MODULE_IMPORT_NS requires namespace string in current kernel; donor uses unquoted DMA_BUF.",
+      "donor": {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/env/linux/pvr_platform_drv.c",
+        "lines": [
+          69
+        ]
+      },
+      "target": {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/include/linux/module.h",
+        "lines": [
+          307
+        ]
+      }
+    },
+    {
+      "kind": "confirmed source/API mismatch",
+      "finding": "from_timer and del_timer_sync are absent in 6.18 headers; current APIs are timer_container_of and timer_delete_sync.",
+      "donor": {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/env/linux/osfunc.c",
+        "lines": [
+          1430,
+          1572
+        ]
+      },
+      "target": {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/include/linux/timer.h",
+        "lines": [
+          132,
+          166
+        ]
+      }
+    },
+    {
+      "kind": "conditional source/API mismatch",
+      "finding": "If CONFIG_DEVFREQ_THERMAL is enabled, direct tz->ops->get_temp dereference is invalid against opaque thermal_zone_device; use supported thermal API.",
+      "donor": {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/system/rogue/rgx_sunxi/sunxi_platform.c",
+        "lines": [
+          556
+        ]
+      },
+      "target": {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/include/linux/thermal.h",
+        "lines": [
+          32
+        ]
+      }
+    },
+    {
+      "kind": "existing forward compatibility, not a new blocker",
+      "finding": "Driver already contains >=6.7 shrinker_alloc/register/free path, >=6.3 vm_flags helpers and class_create compatibility; avoid treating old preprocessor branches as active 6.18 failures.",
+      "refs": [
+        {
+          "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/env/linux/physmem_osmem_linux.c",
+          "lines": [
+            847,
+            850,
+            931,
+            934
+          ]
+        },
+        {
+          "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/kernel/drivers/staging/imgtec/kernel_compatibility.h",
+          "lines": [
+            349,
+            365,
+            371,
+            373
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "porting audit requirement, not claimed unique to 6.18",
+      "finding": "Recheck DMA-BUF reservation-lock, vmap/map_attachment, GEM lifetime and fence contracts. Some vendor paths call dma_buf_vmap directly; current locked helper asserts reservation lock.",
+      "refs": [
+        {
+          "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/env/linux/physmem_dmabuf.c",
+          "lines": [
+            1012,
+            1280
+          ]
+        },
+        {
+          "path": "/home/ubuntu/t736-mainline/sources/work/linux/drivers/dma-buf/dma-buf.c",
+          "lines": [
+            1511,
+            1521,
+            1554
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "configuration and BSP dependency",
+      "finding": "Vendor module imports OPP/devfreq/thermal and sunxi_get_soc_dvfs symbols absent from current v14 exported-symbol set. Old module imports also differ because of inlining/config/API changes; this is not a patch list for binary symbol renaming. Rebuild from source with intended config.",
+      "refs": [
+        {
+          "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/system/rogue/rgx_sunxi/sunxi_platform.c",
+          "lines": [
+            711
+          ]
+        },
+        {
+          "path": "/home/ubuntu/t736-aiot/tina/bsp/drivers/sid/sunxi-sid.c",
+          "lines": [
+            644,
+            662
+          ]
+        },
+        {
+          "path": "/home/ubuntu/t736-mainline/build/linux-hdmi-v14/.config",
+          "lines": [
+            1974,
+            2874
+          ]
+        }
+      ]
+    }
+  ],
+  "device_tree": {
+    "reference": {
+      "path": "/home/ubuntu/t736-aiot/tina/bsp/configs/linux-6.6/sun60iw2p1.dtsi",
+      "lines": [
+        4600
+      ]
+    },
+    "compatible": "img,gpu",
+    "register_base": "0x01800000",
+    "register_length_as_written": "0x8ffff",
+    "interrupts": [
+      {
+        "name": "IRQGPU",
+        "gic_spi": 63,
+        "trigger": "LEVEL_HIGH"
+      },
+      {
+        "name": "IRQGPUDVFS",
+        "gic_spi": 64,
+        "trigger": "LEVEL_HIGH",
+        "condition": "SUNXI_DVFS_CTRL_ENABLE controls whether second IRQ is requested"
+      }
+    ],
+    "power_domain": "SUN60IW2_PCK_GPU_TOP",
+    "reset": {
+      "name": "reset_bus",
+      "id": "RST_BUS_GPU0",
+      "binding_id": 32
+    },
+    "clock_names": {
+      "clk_parent": "CLK_PLL_GPU0",
+      "clk": "CLK_GPU0",
+      "clk_bus": "CLK_BUS_GPU0",
+      "clk_800": "CLK_PLL_PERI0_800M",
+      "clk_600": "CLK_PLL_PERI0_600M",
+      "clk_400": "CLK_PLL_PERI0_400M",
+      "clk_300": "CLK_PLL_PERI0_300M",
+      "clk_200": "CLK_PLL_PERI0_200M"
+    }
+  },
+  "clock_reset_dependencies": {
+    "refs": [
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/system/rogue/rgx_sunxi/sunxi_platform.c",
+        "lines": [
+          49,
+          58,
+          108,
+          156
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/drivers/clk/sunxi-ng/ccu-sun60iw2.c",
+        "lines": [
+          31,
+          172,
+          561,
+          587,
+          627,
+          1021,
+          1030,
+          2105
+        ]
+      }
+    ],
+    "ccu_base": "0x02002000",
+    "pll_gpu_offset": "0x00e0",
+    "pll_bits": {
+      "N": "8:15",
+      "M": "20:22",
+      "output": 27,
+      "lock": 28,
+      "lock_enable": 29,
+      "LDO": 30,
+      "enable": 31
+    },
+    "gpu_core_offset": "0x0b20",
+    "gpu_core_fields": {
+      "gate": 31,
+      "mux": "24:26",
+      "divider": "0:3",
+      "divider_encoding": {
+        "0": 1,
+        "8": 2,
+        "12": 4
+      }
+    },
+    "gpu_mux_parents": [
+      "pll-gpu",
+      "pll-peri0-800m",
+      "pll-peri0-600m",
+      "pll-peri0-400m",
+      "pll-peri0-300m",
+      "pll-peri0-200m"
+    ],
+    "gpu_bus_gate": "0x0b24 bit0",
+    "gpu_bus_reset": "0x0b24 bit16",
+    "additional_critical_gates": [
+      "AHB 0x05c0 bit7",
+      "MBUS 0x05e0 bit16"
+    ],
+    "write_keys": {
+      "UPD_KEY": "0x08000000",
+      "AHB_MASTER_KEY": "0x010000ff",
+      "MBUS_MASTER_KEY": "0x41055800"
+    },
+    "binding_ids": {
+      "PLL_GPU0": 23,
+      "GPU0_AHB_GATE": 68,
+      "MBUS_GPU0_GATE": 82,
+      "GPU0": 136,
+      "BUS_GPU0": 137
+    },
+    "porting_note": "Do not write generic gates without carrying the SoC key/register conventions; verify shared parent clocks used by existing display/peripherals."
+  },
+  "power_dependencies": {
+    "refs": [
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/configs/linux-6.6/sun60iw2p1.dtsi",
+        "lines": [
+          746
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/include/dt-bindings/power/sun60iw2-power.h",
+        "lines": [
+          10
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/drivers/pm_domain/pck600_domains.c",
+        "lines": [
+          547,
+          560
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/drivers/clk/sunxi-ng/ccu-sun60iw2-r.c",
+        "lines": [
+          144
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/system/rogue/rgx_sunxi/sunxi_platform.c",
+        "lines": [
+          62,
+          70,
+          350,
+          352,
+          376,
+          379
+        ]
+      }
+    ],
+    "pck_provider": {
+      "compatible": "allwinner,sun60iw2-pck-600",
+      "syscon_base": "0x07060000",
+      "size": "0xb000",
+      "domain_ids": {
+        "GPU_TOP": 5,
+        "GPU_CORE": 6
+      },
+      "top_control_status": [
+        "0x07065000",
+        "0x07065008"
+      ],
+      "core_control_status": [
+        "0x07066000",
+        "0x07066008"
+      ],
+      "status_mask": "0xf",
+      "on_value": 8,
+      "off_value": 0,
+      "poll_timeout_ms": 10,
+      "has_rst_clk": false,
+      "required_clock": "pck / r-ppu, R_CCU 0x07010000 + 0x1ac bit0, parent dcxo, CLK_R_PPU=19",
+      "delay_offsets_values": {
+        "0x170": "0x1f1f1f",
+        "0x174": "0x1f1f",
+        "0xc00": "0x08080808",
+        "0xc04": "0x808",
+        "0xc10": "8"
+      }
+    },
+    "tina_core_handling": "Tina DT enables GPU_TOP domain but comments GPU_CORE node. sunxi_platform hard-defines USE_FPGA=1, writes CORE+0x20=0, CORE control=8 on / 0 off, and separately uses runtime PM for TOP. Do not silently omit this core power dependency.",
+    "known_glue_error_handling": [
+      "PCK timeout logs but returns success in donor path.",
+      "Direct CORE ioremap/write path has no failure or status checks.",
+      "Clock bus lookup checks clk_core instead of clk_bus at sunxi_platform.c:121.",
+      "regulator_get_optional checks NULL instead of IS_ERR at sunxi_platform.c:835; absent supply can become an error-pointer dereference."
+    ],
+    "external_core_always_on_evidence": {
+      "provenance": "Reported by parent agent; not independently inspected in this subtask",
+      "repository": "https://github.com/alexcaoys/allwinner-bsp",
+      "branch": "linux-6.18.y",
+      "commit": "656a550c826787e7e72fae58ca793df9e0988ac8",
+      "patch": "patches/0005-pmdomain-sunxi-support-power-domain-flags-for-pck600.patch",
+      "finding": "A733 GPU_CORE uses GENPD_FLAG_ALWAYS_ON; external DT uses GPU_CORE and GPU_TOP. Supports keeping CORE powered during first integration instead of assuming runtime CORE power cycling is validated.",
+      "boundary": "External A7Z reports are not T736 board validation; its upstream powervr/Mesa route has a different userspace ABI."
+    }
+  },
+  "regulator_opp_sid": {
+    "refs": [
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/device/config/chips/t736/configs/demo_aiot/board.dts",
+        "lines": [
+          1434,
+          1581,
+          1639,
+          2901
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/configs/linux-6.6/sun60iw2p1.dtsi",
+        "lines": [
+          4625
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/system/rogue/rgx_sunxi/sunxi_platform.c",
+        "lines": [
+          640,
+          711,
+          756,
+          760,
+          822,
+          835
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/drivers/sid/sunxi-sid.c",
+        "lines": [
+          644,
+          662
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/include/sunxi-sid.h",
+        "lines": [
+          207
+        ]
+      }
+    ],
+    "supply": "AXP8191 on s_twi0 at address 0x36; gpu-supply=reg_dcdc5",
+    "dcdc5": {
+      "minimum_uv": 500000,
+      "maximum_uv": 1540000,
+      "ramp_delay": 250,
+      "enable_ramp_delay": 1000,
+      "boot_on": true,
+      "always_on": true
+    },
+    "default_opp_values": [
+      {
+        "hz": 400000000,
+        "uv": 800000
+      },
+      {
+        "hz": 600000000,
+        "uv": 800000
+      },
+      {
+        "hz": 800000000,
+        "uv": 840000
+      },
+      {
+        "hz": 1008000000,
+        "uv": 960000
+      }
+    ],
+    "opp_note": "Board silicon/VF table can select different voltages; 300 MHz entry is commented. Values above describe donor defaults, not a newly validated operating point.",
+    "dvfs_behavior": "Reads SID sunxi_get_soc_dvfs and vf_mapping_table, chooses opp-microvolt-vfXXXX/vfdefault, then overwrites initial clk_rate and voltage with maximum OPP.",
+    "porting_requirements": [
+      "Real PMIC bus/regulator provider is required by current platform code; PC/PH firmware fixed rails do not represent GPU DCDC5.",
+      "Do not rely on clk_rate alone for a fixed conservative start. Correct or deliberately replace DVFS initialization while retaining matched DDK bridge options.",
+      "Validate zero/single/too-many OPP cases before use: current sorting accesses indices 0 and 1, no-entry max selection can underflow, maximum-count check occurs after table write.",
+      "If using fixed initial frequency, make frequency/voltage and power policy explicit in candidate platform code; keep dynamic DVFS/thermal enablement as a separately verified step."
+    ]
+  },
+  "iommu_assessment": {
+    "required_for_current_tina_gpu_minimum_path": "Not established; current donor path has no external GPU IOMMU attachment.",
+    "refs": [
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/system/rogue/rgx_sunxi/sysconfig.c",
+        "lines": [
+          163,
+          231,
+          238,
+          288
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/system/rogue/rgx_sunxi/sunxi_platform.c",
+        "lines": [
+          58,
+          59,
+          60,
+          156
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/configs/linux-6.6/sun60iw2p1.dtsi",
+        "lines": [
+          418,
+          4600
+        ]
+      }
+    ],
+    "facts": [
+      "GPU node has no iommus property.",
+      "CPU physical to device physical mapping is identity; general and firmware physical heaps are UMA.",
+      "ARM64 platform DMA mask is 48-bit; internal Rogue GPU MMU is managed by DDK.",
+      "SMMU reset-name strings exist, but clock/reset acquisition requests only reset_bus.",
+      "Presence of separate Allwinner IOMMU node does not prove this GPU is attached to it."
+    ],
+    "boundary": "This does not prove arbitrary GPU BOs are directly usable by the non-IOMMU display controller; PRIME scanout constraints are separate."
+  },
+  "gpu_to_display_interop": {
+    "status": "Required early hardware gate; not validated",
+    "refs": [
+      {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c",
+        "lines": [
+          435
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/include/drm/drm_gem_dma_helper.h",
+        "lines": [
+          203,
+          205,
+          222
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/drm_gem_dma_helper.c",
+        "lines": [
+          469,
+          477,
+          583,
+          589
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/ovl/de_ovl.c",
+        "lines": [
+          259,
+          261
+        ]
+      }
+    ],
+    "confirmed_limits": [
+      "Display uses DRM_GEM_DMA_DRIVER_OPS_VMAP.",
+      "Import rejects when drm_prime_get_contiguous_size(sgt) is smaller than the dma-buf size (-EINVAL). This means a contiguous DMA address span, not merely a fixed number of SG entries.",
+      "VMAP import also requires exporter dma_buf_vmap support before contiguous-address check.",
+      "DE programming uses one base DMA address per plane plus offsets/pitch; v14 display has no IOMMU.",
+      "Rogue GPU-side virtual-contiguous allocation does not by itself guarantee display-side DMA contiguity."
+    ],
+    "earliest_tests": [
+      "Export real GPU-rendered LINEAR XR24/AR24 dma-buf, import on existing sunxi display, create framebuffer, verify acquire/retire fence ordering and physical presentation.",
+      "If GPU allocations are scattered, test DE/CMA-created linear scanout buffer exported to GPU for EGL/dma-buf import and rendering, then presented by DE. Availability of that path depends on selected UM extension/winsys support and remains unknown.",
+      "Exercise repeated buffer reuse/page flips and mode changes before enabling GNOME acceleration."
+    ],
+    "success_boundary": "renderD128 appearance, firmware boot and offscreen GPU render are necessary but do not prove desktop presentation.",
+    "node_order_risk": {
+      "refs": [
+        {
+          "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/env/linux/pvr_drm.c",
+          "lines": [
+            285,
+            321,
+            524
+          ]
+        }
+      ],
+      "finding": "Vendor PVR registers a DRM primary and render device (DRIVER_MODESET|DRIVER_RENDER|DRIVER_GEM); loading it can change card numbering. Existing Xorg kmsdev=/dev/dri/card0 must still select sunxi DE, not the GPU primary. Bind/identify DRM nodes by device/driver instead of assuming order."
+    }
+  },
+  "firmware": {
+    "loader_refs": [
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/devices/rogue/rgxinit.c",
+        "lines": [
+          1882,
+          1935,
+          1939,
+          1943,
+          1954
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/env/linux/fwload.c",
+        "lines": [
+          183
+        ]
+      }
+    ],
+    "native_filename": "rgx.fw.36.56.104.183",
+    "fallback": "exact BVNC -> p-format BVNC -> rgx.fw",
+    "page_note": "v14 is 4K. Loader adds .64k only for MIPS+64K CPU pages; no .16k selection branch was found.",
+    "x11_bundles": [
+      {
+        "directory": "/home/ubuntu/t736-aiot/tina/platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/x11/lib/firmware/",
+        "fw_bytes": 139264,
+        "fw_sha256": "ff97e596559764b32023115897b5e57a1c20d69bae7d4366adaf7e1076a44aa9",
+        "shader_name": "rgx.sh.36.56.104.183",
+        "shader_bytes": 272408,
+        "shader_sha256": "71e1b1da9b4c6b42468e378e8b835306920568088bc6669879db4a108a7747c9"
+      },
+      {
+        "directory": "/home/ubuntu/t736-aiot/tina/platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/lib/firmware/",
+        "fw_bytes": 139264,
+        "fw_sha256": "43eb5d054ee98bc975274198d2ed440e2f0f50b7ffcd0996a4022949f2c7909f",
+        "shader_name": "rgx.sh.36.56.104.183",
+        "shader_bytes": 272408,
+        "shader_sha256": "71e1b1da9b4c6b42468e378e8b835306920568088bc6669879db4a108a7747c9"
+      }
+    ],
+    "do_not_mix": [
+      {
+        "directory": "/home/ubuntu/t736-aiot/tina/target/a733/debian/r1z/overlay/lib/firmware/",
+        "fw_bytes": 155648,
+        "shader_bytes": 287228,
+        "note": "Same BVNC names plus .16k image, different build."
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/platform/allwinner/display/libgpu/gpu-firmware/powervr/rogue_36.56.104.183_v1.fw",
+        "bytes": 126976,
+        "note": "Different upstream PowerVR firmware ABI."
+      }
+    ],
+    "abi_refs": [
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/common/srvcore.c",
+        "lines": [
+          578,
+          622,
+          676,
+          740,
+          746
+        ]
+      },
+      {
+        "path": "/home/ubuntu/t736-aiot/tina/bsp/modules/gpu/img-bxm/linux/rogue_km/services/server/devices/rogue/rgxinit.c",
+        "lines": [
+          2454,
+          2513,
+          2583
+        ]
+      }
+    ],
+    "abi_rule": "Match DDK major/minor and compatible build-option mask with selected UM and firmware. UM revision mismatch warns by default and is fatal under PVRSRV_STRICT_COMPAT_CHECK; do not interpret non-strict warning as validation of mixed binaries."
+  },
+  "v14_missing_items": {
+    "dts": "/home/ubuntu/t736-mainline/sources/work/linux/arch/arm64/boot/dts/allwinner/t736-hdmi-candidate.dts",
+    "missing_providers": [
+      "GPU node",
+      "GPU PLL/core/bus and interconnect gates/resets",
+      "PCK GPU_TOP/GPU_CORE policy and r-ppu clock",
+      "AXP8191 PMIC bus/regulator for DCDC5",
+      "GPU OPP/SID VF support if retaining vendor DVFS"
+    ],
+    "config_ref": "/home/ubuntu/t736-mainline/build/linux-hdmi-v14/.config",
+    "enabled": [
+      "ARM64_4K_PAGES (397)",
+      "PM_GENERIC_DOMAINS/OF (521/523)",
+      "FW_LOADER (1109)",
+      "DMA_CMA, 128 MiB (3478/3483)"
+    ],
+    "disabled": [
+      "I2C_MV64XXX (1743)",
+      "THERMAL (1974)",
+      "MFD_AXP20X_I2C/RSB (1997/1998)",
+      "DRM_POWERVR (2308)",
+      "IOMMU_SUPPORT (2778)",
+      "PM_DEVFREQ (2874)"
+    ],
+    "native_powervr_status": {
+      "ref": {
+        "path": "/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/imagination/pvr_drv.c",
+        "lines": [
+          46,
+          47
+        ]
+      },
+      "finding": "Current v14 source supported-device comment lists AXE-1-16M and BXS-4-64 MC1, not this BXM. Enabling its config alone is not established support."
+    }
+  },
+  "recommended_tina_to_v14_sequence": [
+    "Keep existing fixed LPDDR4x SPL/vendor DDR, source TF-A/U-Boot and validated v14 recovery intact. Create an isolated candidate kernel/DT/module/rootfs bundle rather than overwrite donor Tina sources.",
+    "Select one matched BXM DDK 24.2 UM+firmware bundle; record hashes and bridge options. Keep existing sunxi DE KMS as display controller; no vendor dc_sunxi replacement is required by this build.",
+    "Add real GPU clocks/reset/interconnect gates, r-ppu/PCK TOP and CORE policy, and real DCDC5 regulator support. Preserve shared-clock behavior. Correct platform error handling and make initial fixed frequency/voltage explicit before enabling automatic DVFS; account for external GPU_CORE ALWAYS_ON evidence.",
+    "Adapt the confirmed 6.18 API mismatches and regenerate module config against the candidate kernel. Full compile/modpost and runtime power/fence validation are still required; no build was attempted in this audit.",
+    "First validate module bind, power/clock state, BVNC and matching firmware response, then an actual GPU job. Immediately test DMA-BUF/PRIME allocation, GPU rendering, fence synchronization and DE scanout in both feasible allocation directions.",
+    "Only after presentation passes should the desktop select GPU EGL/GL and remove forced software-rendering overrides. Preserve a software-rendering recovery configuration and avoid hard-coded DRM card enumeration.",
+    "Treat the parent-reported external upstream PowerVR+Mesa branch as a separate candidate stack. Do not feed Tina UM libraries to upstream PowerVR DRM ABI."
+  ],
+  "not_claimed": [
+    "No module compiled or loaded for v14.",
+    "No GPU job, power sequence, PRIME import or desktop acceleration tested on this board in this audit.",
+    "No claim that an existing 6.6 .ko can be reused on 6.18.",
+    "No claim that external IOMMU/SMMU port is mandatory for the donor GPU path.",
+    "No change to source boot chain or LPDDR4x parameters."
+  ]
+}

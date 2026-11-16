@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "scope": "Read-only upstream source and preserved-log review; board/application actions owned by parent",
+  "versions": {
+    "GTK": "4.18.6, parent confirmed installed version",
+    "gnome-control-center": "48.4, parent confirmed installed version",
+    "GStreamer": "1.26.2 source examined",
+    "gnome-desktop": "44.3 source examined; installed library version not independently checked"
+  },
+  "source_roots": [
+    "https://github.com/GNOME/gtk/tree/4.18.6",
+    "https://github.com/GNOME/gnome-control-center/tree/48.4",
+    "https://github.com/GStreamer/gstreamer/tree/1.26.2",
+    "https://github.com/GNOME/gnome-desktop/tree/44.3"
+  ],
+  "source_sha256": {
+    "gtk-gtkgstsink.c": "1a87621a35e9d11a05beed2f8798180e6e0f4eb1a29d8370972a366294dc55be",
+    "gtk-gtkgstpaintable.c": "c0b3ea2be4f5b4d1234f0bcfdef318451bd8da76bb77c275dcb22120ceb4c242",
+    "gtk-gtkmediafile.c": "3ef6240ca604d0348225c06adcee317d6b2fcb019e7d0898d77bde1dd9bbb9da",
+    "gtk-gtknomediafile.c": "e2d18228378dd14803e080045825a01ed61296d8e0988d0629d13f8f46cf3e40",
+    "gst-glcontext.c": "905c5d2af27743317776ea46ad89d0515f35c22738a48650cd9d8849eed7ab97",
+    "gst-glcontext-egl.c": "afc5d9479c6f998fd21a4879acd3377f083508075a00d617576a159ce9029890",
+    "cc-mouse-panel.ui": "5671c33fde420bc7e636d0169b7d581aaec531b546bdbe4b218ad1a9b6e579dd",
+    "cc-mask-paintable.c": "37335b2a2f024168af38043f63af3a255627484de8501d7f540c3167a06bd987",
+    "cc-illustrated-row.c": "b1d0a9882cbca19ec23da35921ef93f3b9ef46480e862b6e1e15059a7a13926c",
+    "cc-background-item.c": "4d7fc73e4b97bb82cba7b0bacab463ba06b1801094be6738e205c3e922e1a949",
+    "cc-background-paintable.c": "19a72eb59321443d55e335d66537baf93eed13229b5239beebb13d64732ad057",
+    "cc-background-chooser.c": "d91904fb3d5a38f93aceb6fd8fa690792524171a46401769aa8f6f9da68aa4ff",
+    "gnome-bg.c": "70f5351ac2a8366ca473dc4a1c4c1fcfa8b1c61c348513428b73d770cc4d4acb",
+    "gnome-desktop-thumbnail.c": "8b2ca477211bb2d9d88cff8745a18c1c4d0fa72cc451241a7b720248f98851c7"
+  },
+  "findings": [
+    {
+      "topic": "Mouse media",
+      "evidence": "cc-mouse-panel.ui references9 WebM illustration resources. cc-mask-paintable.c:454 constructs GtkMediaFile immediately; cc-illustrated-row.c plays/pauses on hover/leave. Multiple GtkGstPlay/GL threads are expected from initialization.",
+      "limits": "The last selected mouse panel does not establish the initial panel when the90second complaint began."
+    },
+    {
+      "topic": "GStreamer GL environment",
+      "evidence": "GTK gtkgstsink.c:633-657 wraps GDK EGL/X11 context then790 creates a shared Gst context. GST_GL_API=gles2/GST_GL_PLATFORM=egl and optional GST_GL_WINDOW=x11 are supported per official GStreamer running documentation. Gst EGL backend936 already prefersGLES if allowed.",
+      "decision": "A valid single-process diagnostic, not a proven permanent fix. Preserved warm-default trial reached951 CPUticks by10seconds versus forced-GLES1685 by15seconds. Cache/order and mapped-versus-drawn limits prevent strong startup conclusions, but forcing is not supported as a speed improvement."
+    },
+    {
+      "topic": "Media isolation",
+      "evidence": "GTK gtkmediafile.c:195 selects GTK_MEDIA. Built-in gtknomediafile.c registers none. GTK_MEDIA=none disables only media backend, keeping GSK GL available.",
+      "decision": "Diagnostic only; removes animated illustrations. New process required because GApplication forwards requests to existing process without replacing its environment."
+    },
+    {
+      "topic": "Wallpaper thumbnail work",
+      "evidence": "GCC cc-background-item.c:354-361 intentionally queues one asynchronous worker;286 calls gnome_bg_create_thumbnail. cc-background-paintable.c callbacks create GdkTexture and invalidate size. Both light/dark variants are queued for chooser previews.",
+      "limits": "No explicit UI-thread wait is present here. Eight similarly named threads are not evidence of eight GCC queue workers; inner image-library parallelism or other stacks must be sampled."
+    },
+    {
+      "topic": "Cold image cache cost",
+      "evidence": "gnome-desktop44.3 gnome-bg.c:2168 checks thumbnail byURI/mtime. Miss at2175 loads/renders full original via gdk_pixbuf_new_from_file;2190 scales afterwards and2205 saves PNG. Factory paths use g_get_user_cache_dir()/thumbnails/<size>.",
+      "hypothesis": "Complex high-resolution SVG wallpapers can make first-cache generation CPU-intensive, then become cheapPNG reads. Parent observed new large thumbnailPNGs during initial Settings run. Causality still requires isolated-cache A/B."
+    }
+  ],
+  "recommended_next_comparison": {
+    "panel": "explicit background panel on a freshSettings PID",
+    "cache_isolation": "New XDG_CACHE_HOME preserving other existing cache members, but new empty thumbnails directory; second run reuses same temporary cache. Do not delete real user cache. Starting with entirely empty XDG_CACHE_HOME also invalidates font/Gst/GSK caches and confounds causality.",
+    "measurements": [
+      "X11 mapped time with supplied helper; explicitly not full-frame completion",
+      "process CPUtick deltas and major faults",
+      "created thumbnail URI/mtime/source dimensions",
+      "bounded worker stack samples if still slow"
+    ],
+    "persistent_changes": "None recommended from current mediaGL comparison"
+  },
+  "window_helper": {
+    "path": "tools/validation/x11_window_wait.py",
+    "sha256": "0ce3d550eb4a728353234d3563509b99baa18ee04c14f7abcea291315cfe910d",
+    "reads": "EWMH client list and PID properties; XGetWindowAttributes IsViewable",
+    "tests": [
+      "py_compile and argparse help passed",
+      "build-host noDISPLAY path returns structurederror and exit2",
+      "parent media-ab log recorded successful board mapped result2.903782seconds for GTK_MEDIA=none"
+    ],
+    "limitations": [
+      "mapped is not a completed render or responsiveness measurement",
+      "C ABI sizeof check not executed: build host lacksXlib development headers; no dependencies installed"
+    ]
+  },
+  "resolved": false,
+  "board_access_by_reviewer": false
+}

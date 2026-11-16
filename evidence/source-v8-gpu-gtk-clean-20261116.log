@@ -1,0 +1,59 @@
+unset LIBGL_ALWAYS_SOFTWARE GALLIUM_DRIVER MESA_LOADER_DRIVER_OVERRIDE; test "$(cat /proc/5232/comm 2>/dev/null)" != gnome-text-edit || kill -TERM 5232; runuser -u t736 -- env XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_TYPE=x11 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri GDK_DEBUG=opengl GSK_DEBUG=renderer gnome-text-editor --standalone >/root/t736-gpu-debug/text-editor-clean.log 2>&1 & echo GTK_CLEAN_TEST_PID=$!; echo GTK_CLEAN_SENT
+
+[2] 5357
+GTK_CLEAN_TEST_PID=5357
+GTK_CLEAN_SENT
+root@t736:~# [drm] suxni tcon hdmi set rate: 148500000Hz and get diff: 148500000Hz
+tail -n 45 /root/t736-gpu-debug/text-editor-clean.log; for p in $(pgrep -f '^gnome-text-editor --standalone$'); do echo GTK_PID=$p; awk '/libEGL|libGLES|libpvr|swrast|llvmpipe|libvulkan_lvp|LLVM/ {print $NF}' /proc/$p/maps | sort -u; done; echo GTK_CLEAN_DONE
+
+glx: failed to create dri3 screen
+failed to load driver: sunxi-drm
+glx: failed to create dri2 screen
+failed to load driver: sunxi-drm
+Best GLX config is 0 for visual 0x238 with no RGBA Visual
+Best GLX config is 40 for visual 0x2D5 with no SRGB
+GLX config 41 for visual 0x2DE is the perfect choice
+GLX version 1.4 found
+ - Vendor: Mesa Project and SGI
+ - Checked extensions:
+	* GLX_ARB_create_context_profile: yes
+	* GLX_EXT_create_context_es2_profile: yes
+	* GLX_SGI_swap_control: no
+	* GLX_EXT_swap_control: no
+	* GLX_EXT_texture_from_pixmap: yes
+	* GLX_SGI_video_sync: no
+	* GLX_EXT_buffer_age: no
+	* GLX_OML_sync_control: no
+	* GLX_ARB_multisample: yes
+	* GLX_EXT_visual_rating: yes
+Creating GLX context version 3.3 (debug:no, forward:no, legacy:no, es:no)
+Realized GLX context[(nil)], indirect, version: 1.4
+Using OpenGL backend X11 GLX
+
+(gnome-text-editor:5365): Gtk-WARNING **: 08:25:38.765: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+Making GLX context 0xaaaae80f8cd0 current to drawable 33554441
+OpenGL version: 3.3 (core)
+GLSL version: 3.30
+Max texture size: 16384
+Enabled features (use GDK_GL_DISABLE env var to disable):
+    debug: ✓
+    base-instance: ✓
+    buffer-storage: ✓
+Creating GLX context version 3.3 (debug:no, forward:no, legacy:no, es:no)
+Realized GLX context[(nil)], indirect, version: 1.4
+Making GLX context 0xaaaae889a300 current to drawable 33554443
+OpenGL version: 3.3 (core)
+GLSL version: 3.30
+Max texture size: 16384
+Enabled features (use GDK_GL_DISABLE env var to disable):
+    debug: ✓
+    base-instance: ✓
+    buffer-storage: ✓
+Using renderer 'GskGLRenderer' for surface 'GdkX11Toplevel'
+Flushing GLX buffers for drawable 33554443 (window: 33554436), frame sync: yes
+[1]-  退出 143              runuser -u t736 -- env XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_TYPE=x11 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri GDK_BACKEND=x11 GDK_DISABLE=gl-api,glx,vulkan GSK_RENDERER=opengl GDK_DEBUG=opengl gnome-text-editor --standalone > /root/t736-gpu-debug/text-editor-gles.log 2>&1
+GTK_PID=5365
+/opt/t736-img-ddk-24.2-x11/lib/dri/swrast_dri.so
+/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+GTK_CLEAN_DONE
+root@t736:~# 

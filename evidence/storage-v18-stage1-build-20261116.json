@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "kind": "t736-dma-v18-kernel-candidate",
+  "status": "superseded-before-board-test",
+  "kernel_release": "6.18.63-t736-storage-v18",
+  "baseline_release": "6.18.63-t736-storage-v16",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "dt_changes": [
+    "SMHC3 resources: shared CCU STORE_MBUS 0x020005e0 and MSI_LITE1 0x0200059c"
+  ],
+  "storage_clock_hz": 12000000,
+  "max_request_bytes": 65536,
+  "dma_enabled": true,
+  "dma_address_bits": 32,
+  "descriptor_address_shift": 2,
+  "descriptor_segment_bytes": 1024,
+  "voltage_or_timing_change": false,
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v18_6.18.63-18_arm64.deb",
+    "size": 5591700,
+    "sha256": "d99977bb0b9c9b856037eaf05c25421136def4a561ae6fbee19d5d80d8d2cba9"
+  },
+  "baseline_files": {
+    "build/linux-storage-v16/.config": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e",
+    "build/linux-storage-v16/arch/arm64/boot/Image": "86d49744a35fd1260ff81f1d351a15b4c1dc28943b846696d8117ba5a9f7937d",
+    "boards/t736_mmc_pio_v2.c": "f4e33965e36756214abb48425e90a32ca44da14175a3a613aa29a059a83a5e02"
+  },
+  "files": {
+    "boards/t736_mmc_dma_v18.c": "f3dfe8ce4f13061382b2b73f8ce5d31a6666cdf50483da0cae703f4941bab955",
+    "boards/t736_mmc_dma_desc.h": "e67e8f96c232deee6431e4e78a4bb9d328ac65f31c0da88a0b2bf5a1efbd42ec",
+    "sources/work/linux-storage-v18/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts": "0fad5d7d6af9e256450d3d568fc0365d0681741a0aefae33b57ccf703c4be9b5",
+    "build/linux-storage-v18/.config": "7f257a234e1e3e7dc8af46d090ccd9b6c789c2fdb7eec6bf01c3a2395b4db4e7",
+    "build/linux-storage-v18/arch/arm64/boot/Image": "e6875e8a719d4c329d648bbb2bc09b724063938e2e04bf24cd64eae5966223ba",
+    "build/linux-storage-v18/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "b8317c7360e51465e36b0c21d12619690eaaa81f24a8b60a38398af4ce2640b1",
+    "build/linux-storage-v18/Module.symvers": "9813e3b9b67d85cb230cf921dd984154868d53e8df9b33d1d88325c460d5106c"
+  },
+  "board_validation": "pending; verify cold boot, rootfs reads, bounded scratch-file write/read hashes, throughput and dmesg before promotion",
+  "reason": "Initial DT check addresses lacked CCU base +0x2000. Final candidate uses corrected read-only gate resources; initial image/package not deployed."
+}

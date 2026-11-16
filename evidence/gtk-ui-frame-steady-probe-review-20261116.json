@@ -1,0 +1,166 @@
+{
+  "schema": "t736-gtk-ui-steady-probe-review-v1",
+  "date": "2026-11-16",
+  "status": "OFFLINE_AND_INDEPENDENT_REVIEW_PASS_WITH_RUNTIME_EVIDENCE",
+  "probe_path": "tools/validation/gtk_ui_frame_probe_steady.py",
+  "probe_sha256": "b60e9578cf7dc4e831bfbd67dd6b44cd37f78a024838f3b7db22f7f6a58230f2",
+  "frozen_original_path": "tools/validation/gtk_ui_frame_probe.py",
+  "frozen_original_sha256": "155dc13dac62bcd6ac5c0fdc3cbb20732c2376be4307f8df32f4cb02e789be70",
+  "checks": {
+    "python_compile": "PASS",
+    "help_without_GI": "PASS",
+    "invalid_duration_and_nan_rejected": "PASS",
+    "UI_setup_AST_identical": "PASS",
+    "animation_AST_identical_except_origin_variable": "PASS",
+    "delayed_timer_not_subdivided": "PASS",
+    "windows_contiguous": "PASS",
+    "window_cpu_sums_equal_total": "PASS",
+    "window_callback_counts_sum_equal_total": "PASS",
+    "final_window_closes_sample": "PASS",
+    "duplicate_timestamp_not_counted": "PASS",
+    "interval_statistics_known_input": "PASS"
+  },
+  "defaults": {
+    "warmup_seconds": 5,
+    "measurement_seconds": 10,
+    "cards": 24,
+    "scroll_px_per_second": 240,
+    "window_width": 820,
+    "window_height": 620
+  },
+  "simulated_windows": [
+    {
+      "window_index": 1,
+      "start_elapsed_seconds": 0.0,
+      "end_elapsed_seconds": 1.0020000000000007,
+      "actual_elapsed_seconds": 1.0020000000000007,
+      "tick_count": 60,
+      "after_paint_count": 60,
+      "process_cpu_seconds": 0.1700000000000017,
+      "final_window": false
+    },
+    {
+      "window_index": 2,
+      "start_elapsed_seconds": 1.0020000000000007,
+      "end_elapsed_seconds": 3.42,
+      "actual_elapsed_seconds": 2.4179999999999993,
+      "tick_count": 120,
+      "after_paint_count": 120,
+      "process_cpu_seconds": 0.3199999999999932,
+      "final_window": false
+    },
+    {
+      "window_index": 3,
+      "start_elapsed_seconds": 3.42,
+      "end_elapsed_seconds": 10.003,
+      "actual_elapsed_seconds": 6.583,
+      "tick_count": 240,
+      "after_paint_count": 240,
+      "process_cpu_seconds": 0.6600000000000108,
+      "final_window": true
+    }
+  ],
+  "limits": [
+    "No board, GTK session, display, input or power action performed by this review.",
+    "Five-second warmup does not prove shader compilation has completed.",
+    "Per-second entries use actual timer boundaries; delayed windows are not exact one-second bins.",
+    "Process CPU excludes Xorg, compositor, GPU and kernel workers.",
+    "after-paint callbacks are not scanout or physical presentation evidence.",
+    "Animation remains continuous; measured phase differs from the original cold probe.",
+    "A tick callback arriving after warmup may carry a smoothed frame timestamp before the sample start. after-paint monotonic arrival counts are unaffected."
+  ],
+  "independent_review": {
+    "reviewer": "/root/backup_audit",
+    "status": "PASS_WITH_DOCUMENTED_BOUNDARY_LIMIT",
+    "reviewed_sha256": "b60e9578cf7dc4e831bfbd67dd6b44cd37f78a024838f3b7db22f7f6a58230f2",
+    "checks": [
+      "Actual CPU windows cover measurement continuously; end diagnostics are excluded.",
+      "Warmup, sample and session gates are separated; workload is unchanged."
+    ],
+    "limitation": "A tick callback arriving after warmup may carry a smoothed frame timestamp before the sample start. after-paint monotonic arrival counts are unaffected."
+  },
+  "board_run": {
+    "performed_by": "/root",
+    "status": "COMPLETE",
+    "evidence": [
+      {
+        "path": "evidence/storage-v22-hs200-100-gtk-ui-steady-20261116.log",
+        "sha256": "3a450eaaba2ac88ceb7a74abd47c34514b31c3757b1774f0f6f71ca628a5ef52",
+        "status": "COMPLETE",
+        "renderer": "GskGLRenderer",
+        "sample_elapsed_seconds": 10.004958931999994,
+        "after_paint_count": 414,
+        "cpu_seconds_sample": 2.3792684950000003,
+        "after_paint_intervals": {
+          "count": 413,
+          "median_ms": 17.159,
+          "p95_ms": 33.335,
+          "over_33_5ms": 11
+        },
+        "per_second_paints": [
+          43,
+          40,
+          40,
+          40,
+          40,
+          40,
+          39,
+          40,
+          40,
+          52
+        ],
+        "per_second_process_cpu": [
+          0.2459975790000004,
+          0.2316072629999999,
+          0.2303431680000001,
+          0.23168042499999952,
+          0.23288190400000008,
+          0.2332518720000003,
+          0.22674000199999966,
+          0.23269313000000036,
+          0.2317139319999999,
+          0.28235922
+        ]
+      },
+      {
+        "path": "evidence/storage-v22-hs200-100-gtk-ui-steady-bigcores-20261116.log",
+        "sha256": "b4f000c7f0ae9c648caa5f8e89935518fabe8c00f1f327adcb7e372cd0112ca9",
+        "status": "COMPLETE",
+        "renderer": "GskGLRenderer",
+        "sample_elapsed_seconds": 10.000211915000023,
+        "after_paint_count": 432,
+        "cpu_seconds_sample": 1.2015370980000006,
+        "after_paint_intervals": {
+          "count": 431,
+          "median_ms": 17.226,
+          "p95_ms": 33.246,
+          "over_33_5ms": 12
+        },
+        "per_second_paints": [
+          52,
+          53,
+          48,
+          40,
+          39,
+          40,
+          40,
+          40,
+          40,
+          40
+        ],
+        "per_second_process_cpu": [
+          0.12831859000000012,
+          0.12860405500000027,
+          0.1250027549999997,
+          0.11956261499999998,
+          0.11480778200000019,
+          0.11835954199999987,
+          0.11783028600000023,
+          0.11780761099999992,
+          0.11802539999999961,
+          0.11321846200000074
+        ]
+      }
+    ]
+  }
+}

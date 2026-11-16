@@ -1,0 +1,271 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "status": "V20_SETTINGS_SAMPLES_ANALYZED_FURTHER_VALIDATION_REQUIRED",
+  "scope": "Independent analysis of parent-collected board samples; no board/application/display/environment changes by this reviewer.",
+  "cases": {
+    "static_launch": {
+      "pid": 5746,
+      "start_monotonic": 667.249743798,
+      "observation_seconds": 20.003636650999965,
+      "cpu_seconds_delta": 3.9,
+      "major_faults_delta": 41,
+      "final_cpu_counter_first_observed_seconds": 6.076522096999952,
+      "main_cpu_sample_counts": {
+        "7": 41
+      },
+      "main_state_samples": {
+        "R": 6,
+        "D": 1,
+        "S": 34
+      },
+      "threads_first": 1,
+      "threads_last": 6,
+      "maximum_threads_observed": 20,
+      "observer_cpu_seconds": 0.260364918,
+      "mapped": {
+        "pid": 5746,
+        "display": ":0",
+        "metric": "First viewable X11 client window with matching _NET_WM_PID",
+        "complete_render_verified": false,
+        "input_sent": false,
+        "timeout_seconds": 20.0,
+        "start_monotonic": 667.249743798,
+        "observer_start_monotonic": 667.388230932,
+        "start_origin": "launcher",
+        "status": "mapped",
+        "window": "0x1e00004",
+        "elapsed_seconds": 1.468824,
+        "observer_seconds": 1.330336,
+        "width": 1920,
+        "height": 1048
+      },
+      "dispatch": null
+    },
+    "mouse_switch": {
+      "pid": 5746,
+      "start_monotonic": 898.316804327,
+      "observation_seconds": 20.00275959800001,
+      "cpu_seconds_delta": 2.86,
+      "major_faults_delta": 56,
+      "final_cpu_counter_first_observed_seconds": 2.0401796449999665,
+      "main_cpu_sample_counts": {
+        "7": 39,
+        "1": 1
+      },
+      "main_state_samples": {
+        "S": 39,
+        "R": 1
+      },
+      "threads_first": 6,
+      "threads_last": 102,
+      "maximum_threads_observed": 105,
+      "observer_cpu_seconds": 0.515947164,
+      "mapped": {
+        "status": "not_measured_for_reused_window",
+        "reason": "Existing-window mapping cannot measure panel completion"
+      },
+      "dispatch": {
+        "exit_code": 0,
+        "observed_exit_seconds": 1.526192773000048,
+        "observation_resolution_seconds": 0.5,
+        "metric": "CLI request return, not first paint or completed panel"
+      }
+    },
+    "static_return": {
+      "pid": 5746,
+      "start_monotonic": 962.978870096,
+      "observation_seconds": 10.004373272999942,
+      "cpu_seconds_delta": 0.42,
+      "major_faults_delta": 0,
+      "final_cpu_counter_first_observed_seconds": 3.5643888449999395,
+      "main_cpu_sample_counts": {
+        "7": 21
+      },
+      "main_state_samples": {
+        "S": 21
+      },
+      "threads_first": 102,
+      "threads_last": 31,
+      "maximum_threads_observed": 102,
+      "observer_cpu_seconds": 0.1479785,
+      "mapped": {
+        "status": "not_measured_for_reused_window",
+        "reason": "Existing-window mapping cannot measure panel completion"
+      },
+      "dispatch": {
+        "exit_code": 0,
+        "observed_exit_seconds": 1.038727644000005,
+        "observation_resolution_seconds": 0.5,
+        "metric": "CLI request return, not first paint or completed panel"
+      }
+    }
+  },
+  "direct_findings": [
+    {
+      "finding": "Startup mapping is earlier than the remaining CPU work",
+      "evidence": "multitasking maps at1.468824s; at1.511s cumulativeCPU1.19s, at3.537s3.77s, and reaches final3.90s at6.077s. At least2.71CPU seconds occur after the first post-map sample.",
+      "conclusion": "Do not label1.469s full Settings-ready or first-render completion."
+    },
+    {
+      "finding": "Startup includes an actual eMMC wait",
+      "evidence": "At1.511s main threadD with wchan=mmc_blk_rw_wait. Majorfault count grows0→41 by2.014s.",
+      "conclusion": "There is directly observed storage wait during first launch; no per-process byte count or total wait duration is available."
+    },
+    {
+      "finding": "CPU placement is already on the large cores for this sample",
+      "evidence": "Static launch all41 main-thread lastCPU samples areCPU7; mouse39/40 CPU7 and oneCPU1; return21/21 CPU7.",
+      "conclusion": "No evidence justifying new process affinity or CPU hotplug changes. These are sampledlastCPU, not residency percentages."
+    },
+    {
+      "finding": "Mouse first entry causes bounded backend work, not sustained busy looping",
+      "evidence": "CPU increment2.86s mostly completed by2.040s; no further processCPU ticks observed through20s. Mainthread0.63s; manyGtkGstPlay/multiqueue/vqueue workers, max105threads;56newmajorfaults.",
+      "conclusion": "Media initialization and preroll are relevant to first-entry cost. Sleeping100threads alone do not prove ongoing load. Actual animation playback was not triggered/verified."
+    },
+    {
+      "finding": "Returning to static page is much lighter",
+      "evidence": "CPU increment0.42s,0majorfaults,31threads at end; finalCPU counter first seen at3.564s.",
+      "conclusion": "This is consistent with cached libraries and no new media construction; not a measured0.42s wall-clock switch completion."
+    },
+    {
+      "finding": "Media transition coincides with GL context warnings",
+      "evidence": "Parent process log contains three gdk_gl_context_make_current() failed warnings at12:37:55.7901. Difference from initial warning timestamp12:34:04.7608 is231.0293s; mouseorigin-staticorigin=231.067060529s.",
+      "conclusion": "Temporal association strongly points to media entry. Callsite/EGL error and final visual outcome are not yet known; hardware-media acceptance must remain false."
+    },
+    {
+      "finding": "IO fields unavailable because kernel lacks task accounting",
+      "evidence": "v20.config SHA8b72287839477b99c008ad37a0756bf57ea50a24dad5c14682c29ea40c558841 hasTASKSTATS=n; TASK_IO_ACCOUNTING depends onTASK_XACCT→TASKSTATS. fs/proc/base.c registersio only underCONFIG_TASK_IO_ACCOUNTING.",
+      "conclusion": "Emptyproc_io_delta is unavailable, not zeroIO. blkio_delay_ticks zero similarly cannot exonerateIO."
+    }
+  ],
+  "source_assessment": [
+    {
+      "source": "GNOME/control-center48.4 shell/cc-window.c:300–307",
+      "finding": "Requesting the already active panel reuses it and sets parameters. A real warm switch comparison must leave mouse then return, not issue mouse twice."
+    },
+    {
+      "source": "shell/cc-window.c:143 and shell/cc-panel-loader.c:225",
+      "finding": "A different panel is constructed withg_object_new; mouse→static→mouse recreates the media panel and can repeat setup costs even when libraries/files are warm."
+    },
+    {
+      "source": "shell/cc-window.c:136–153",
+      "finding": "Has a built-in Time to open panel debug timer around construction/content attachment. If exposed in one diagnostic new process, it measures synchronous panel construction, not asyncfirstpaint."
+    },
+    {
+      "source": "gtk4.18.6 gdk/gdkglcontext.c:1809–1812 and media/gstreamer/gtkgstsink.c:621–624,790–800",
+      "finding": "GDK warning means make_current returnedfalse. GTK GStreamer initialization calls that operation and creates a sharedGst context; this is a plausible failing path, but no stack proves this exact warning callsite."
+    },
+    {
+      "source": "actual packagedDDK24.2 strings",
+      "finding": "libGLESv2_PVR_MESA containsOptimise program andlibsrv_um contains(dwt), consistent with1.16CPU-second Optimise p(dwt) worker being driverprogram optimization. This is a hypothesis without thread stack, not a confirmedshadercompiler attribution."
+    }
+  ],
+  "next_actions_in_priority_order": [
+    {
+      "priority": 1,
+      "action": "Complete parent v21HS boot/integrity check first; do not addtaskstats or graphics changes into its single-variable kernel test."
+    },
+    {
+      "priority": 2,
+      "action": "Onv21 keep the same wrapper SHA, completeGNOME environment,1920x1080/fullscreen state, samepanel order and polling interval. Run staticnewPID→mouse→static→mouse; record allJSON and the original processapp.log. Separate first-use from warm cases; no drop_caches."
+    },
+    {
+      "priority": 3,
+      "action": "After closing only the measuredSettings process, do one same-panel newPID warmmultitasking launch. Compare majorfaults, firstD/mmcwait, mapped and CPUplateau. A reduction supports cache/storage/driverfirst-use cost; v20→v21 alone is confounded bycache andorder."
+    },
+    {
+      "priority": 4,
+      "action": "If make_current warnings repeat, make one bounded diagnostic newmouse process with GST_DEBUG=gtkgstsink:5,glcontext:4 and GST_DEBUG_NO_COLOR=1, retaining allother GPU values. Capture20s to a new app log; do not use the noisy run as a performance sample. These exactGST categories are verified in source. Do not forceGLES/platform orchange globalGPU settings until the failure reason is known."
+    },
+    {
+      "priority": 5,
+      "action": "Only if mediaentry remains slow afterHS/warm effects are separated, use theexisting --media none fresh-process control. If it removes warnings/cost with GSK unchanged, choose a targetedGTK/GStreamer interop correction or lazyconstruction/poster approach forSettings illustrations. Disablingallmedia or switchingCairo is not a production completion."
+    }
+  ],
+  "gpu_environment_observed": {
+    "DISPLAY": ":0",
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+    "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri"
+  },
+  "environment_note": "Actual successful recordedLIBGL_DRIVERS_PATH is /opt/t736-img-ddk-24.2-x11/lib/dri. Preserve this parent-validated path; earlier plan listedruntime-gles/dri from profile source. Do not rewrite a working environment based on that generic example.",
+  "unproven": [
+    "physicalfirstpaint",
+    "completedpage latency",
+    "continuoushoveranimation correctness",
+    "videoengine hardwaredecoding",
+    "all-desktop smoothness",
+    "shadercache effectiveness"
+  ],
+  "full_desktop_acceptance": false,
+  "multimedia_acceptance": false,
+  "evidence": [
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v20-settings-static-launch-gnome.json",
+      "sha256": "e31c0568e65abca4f44834d8998fbd9ca925d6d4375004d7c5a227e2bbd23d1b",
+      "bytes": 168125
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v20-settings-mouse-switch.json",
+      "sha256": "20e8b17874e810d3751c9921d058e562eef1a7394a2930a44467fb39d6e3fa67",
+      "bytes": 1270674
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v20-settings-static-return.json",
+      "sha256": "daada6414e8fd0be0ea884286491bf72cb25d5ecfe58695a01cc42fa2fbc9375",
+      "bytes": 278266
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v20-settings-static-launch-gnome.json.app.log",
+      "sha256": "7a0407cf7e42faa11ce9166c4fbffb5b06af4631b5225dd5aa3cd48706ec3142",
+      "bytes": 581
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v20-settings-driver-cache-readonly-20261116.json",
+      "sha256": "2f5c04c3c4a6dddbec00b3c650479e3d40b79a47b6d76fd07a4bcf64087d96ff",
+      "bytes": 3604
+    }
+  ],
+  "source_files": [
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\cc-window.c",
+      "sha256": "44e0732fff25b05fec74d5f238ebd724dc10ff07160d24fe176867ef97c0e455",
+      "bytes": 24596
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\cc-panel-loader.c",
+      "sha256": "98051b16395074463fbec5cf56a981272d5222b9f8c420a6c3fb10bbeea44722",
+      "bytes": 11515
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\cc-mask-paintable.c",
+      "sha256": "37335b2a2f024168af38043f63af3a255627484de8501d7f540c3167a06bd987",
+      "bytes": 13869
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\cc-illustrated-row.c",
+      "sha256": "b1d0a9882cbca19ec23da35921ef93f3b9ef46480e862b6e1e15059a7a13926c",
+      "bytes": 5241
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gdkglcontext.c",
+      "sha256": "adcfbb9cc19327955dea4814218921bc547519a1f7eccca36d50d5f6fa856ff4",
+      "bytes": 86132
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gtkgstsink.c",
+      "sha256": "1a87621a35e9d11a05beed2f8798180e6e0f4eb1a29d8370972a366294dc55be",
+      "bytes": 30766
+    }
+  ],
+  "excluded_run": {
+    "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v20-settings-static-launch-20261116.log",
+    "sha256": "e618eda1653c4cac3155c7a444c9a944cfd02ec114df80578e0df65ab21b39b4",
+    "status": "ERROR",
+    "pid": 4834,
+    "reason": "FileNotFoundError recorded before usable mapped/summary metrics. Excluded from performance comparison; later complete GNOME-session sample PID5746 is the reviewed launch."
+  }
+}

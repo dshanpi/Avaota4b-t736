@@ -1,0 +1,26 @@
+systemctl stop gdm.service; loginctl terminate-user t736; systemctl stop user@1000.service user-runtime-dir@1000.service; test -e /root/t736-gpu-debug/xorg-before-1080p.conf || cp -a /etc/X11/xorg.conf.d/20-t736-modesetting.conf /root/t736-gpu-debug/xorg-before-1080p.conf; install -m 644 /tmp/t736-transfer/20-t736-1080p.conf /etc/X11/xorg.conf.d/20-t736-modesetting.conf; python3 - <<'PY'
+
+> from pathlib import Path
+
+> import configparser
+
+> p=Path('/etc/environment'); t=p.read_text(); keys={'GDK_BACKEND','GDK_DISABLE','GSK_RENDERER'} 
+}
+
+> t='\n'.join(x for x in t.splitlines() if x.split('=',1)[0].strip() not in keys)+'\nGDK_BACKEND=x11\nGDK_DISABLE=gl-api,glx,vulkan\nGSK_RENDERER=opengl\n'; p.write_text(t)
+
+> p=Path('/etc/gdm3/daemon.conf'); c=configparser.ConfigParser(); c.optionxform=str; c.read(p); c['daemon']['AutomaticLoginEnable']='true'; c['daemon']['AutomaticLogin']='t736'
+
+> with p.open('w') as f:c.write(f)
+
+> PY
+
+[drm] suxni tcon hdmi set rate: 148500000Hz and get diff: 148500000Hz
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[3]+  退出 1                runuser -u t736 -- env XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_TYPE=x11 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri GDK_BACKEND=x11 GDK_DISABLE=gl-api,glx,vulkan GSK_RENDERER=opengl GDK_DEBUG=opengl GSK_DEBUG=renderer gnome-text-editor --standalone > /root/t736-gpu-debug/text-editor-clean-gles.log 2>&1
+root@t736:~# systemctl start gdm.service; echo DESKTOP_1080_GLES_RC=$?; echo DESKTOP_1080_GLES_DONE
+
+DESKTOP_1080_GLES_RC=0
+DESKTOP_1080_GLES_DONE
+root@t736:~# 

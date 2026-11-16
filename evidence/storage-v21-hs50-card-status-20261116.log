@@ -1,0 +1,19 @@
+  Extended CSD rev 1.8 (MMC 5.1)
+Card Type [CARD_TYPE: 0x57]
+High-speed interface timing [HS_TIMING: 0x01]
+Control to turn the Cache ON/OFF [CACHE_CTRL]: 0x01
+# Command Timeout Occurred:	 0
+# Command CRC Errors Occurred:	 0
+# Data Timeout Occurred:	 0
+# Data CRC Errors Occurred:	 0
+# Auto-Cmd Error Occurred:	 0
+# ADMA Error Occurred:	 0
+# Tuning Error Occurred:	 0
+# CMDQ RED Errors:	 0
+# CMDQ GCE Errors:	 0
+# CMDQ ICCE Errors:	 0
+# Request Timedout:	 0
+# CMDQ Request Timedout:	 0
+# ICE Config Errors:	 0
+# Controller Timedout errors:	 0
+# Unexpected IRQ errors:	 0

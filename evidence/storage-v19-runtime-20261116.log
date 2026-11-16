@@ -1,0 +1,48 @@
+6.18.63-t736-storage-v19
+d690073f-430f-4a18-8435-3203cd535295
+clock:		12000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	0 (legacy)
+signal voltage:	0 (3.30 V)
+driver type:	0 (driver type B)
+# CONFIG_NO_HZ_IDLE is not set
+# CONFIG_NO_HZ_FULL is not set
+# CONFIG_NO_HZ is not set
+# CONFIG_HIGH_RES_TIMERS is not set
+CONFIG_PREEMPT_NONE_BUILD=y
+CONFIG_PREEMPT_NONE=y
+# CONFIG_PREEMPT_VOLUNTARY is not set
+# CONFIG_PREEMPT is not set
+# CONFIG_PREEMPT_LAZY is not set
+# CONFIG_PREEMPT_RT is not set
+# CONFIG_PREEMPT_DYNAMIC is not set
+CONFIG_HZ=250
+[    1.166021] t736-smhc3-pio 4023000.mmc: SMHC 050610: IDMA descriptors=0x00000000ae000000 data=0x00000000ebba0000 (shift2, mask32)
+[    1.214018] t736-smhc3-pio 4023000.mmc: DMA v19: 64 KiB coherent bounce, 12 MHz legacy, 8-bit, polling worker
+[    1.790631] t736-smhc3-pio 4023000.mmc: first IDMA request completed: CMD8 bytes=512 IRQ=0000002c IDST=00000002
+Startup finished in 8.112s (kernel) + 24.240s (userspace) = 32.352s 
+graphical.target reached after 24.226s in userspace.
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 

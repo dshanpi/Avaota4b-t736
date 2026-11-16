@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v21-pvr-module",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v21",
+  "module": {
+    "path": "build/pvr-storage-v21/target_aarch64/pvrsrvkm.ko",
+    "size": 1913816,
+    "sha256": "9ba54fb4a0b585b9db1edea6d8dfd541174583a06cf732d2ecc0d38897c103c9",
+    "name": "pvrsrvkm",
+    "vermagic": "6.18.63-t736-storage-v21 SMP mod_unload aarch64",
+    "license": "Dual MIT/GPL"
+  },
+  "kernel_module_symvers_sha256": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+  "kernel_config_sha256": "5e1feec11b9a6d992936f969c0f237e448bac33070d946922c46bce2467af362",
+  "source": "sources/work/pvr-bxm-24.2",
+  "build_script": "tools/build_gpu_module.sh",
+  "build_log": "evidence/build/pvr-storage-v21-build-20261116.log",
+  "known_warning": "vendor module lacks MODULE_DESCRIPTION; build/link completed",
+  "board_validation": "pending"
+}

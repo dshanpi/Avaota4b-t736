@@ -1,0 +1,59 @@
+--- a/services/system/rogue/rgx_sunxi/sunxi_platform.c
++++ b/services/system/rogue/rgx_sunxi/sunxi_platform.c
+@@ -2,6 +2,7 @@
+ /* Copyright(c) 2023 - 2030 Allwinner Technology Co.,Ltd. All rights reserved. */
+ /* T736 initial bring-up: fixed 400 MHz, real regulator, CCF and genpd owners. */
+ #include <linux/clk.h>
++#include <linux/moduleparam.h>
+ #include <linux/err.h>
+ #include <linux/io.h>
+ #include <linux/of.h>
+@@ -18,6 +19,10 @@
+ 
+ #define T736_GPU_RATE 400000000U
+ static struct sunxi_platform *sunxi_data;
++
++static bool early_secure;
++module_param(early_secure, bool, 0444);
++MODULE_PARM_DESC(early_secure, "Diagnostic: perform vendor secure configuration before BVNC reads");
+ 
+ static int sunxi_power_on(struct sunxi_platform *p)
+ {
+@@ -218,12 +223,25 @@
+ 	if (ret)
+ 		goto disable_pm;
+ 	dev_warn(dev, "PVRDIAG platform power-on completed\n");
++	dev_warn(dev, "PVRDIAG early_secure=%d\n", early_secure);
++	if (early_secure) {
++		PVRSRV_ERROR secure_ret;
++		dev_warn(dev, "PVRDIAG before early secure configuration\n");
++		secure_ret = sunxi_secure_config(p);
++		dev_warn(dev, "PVRDIAG after early secure ret=%d\n", secure_ret);
++		if (secure_ret != PVRSRV_OK) {
++			ret = -EIO;
++			goto disable_power;
++		}
++	}
+ 	p->initialized = true;
+ 	sunxi_data = p;
+ 	dev->platform_data = p;
+ 	dev_info(dev, "T736 GPU fixed %u Hz, supply %u uV, CCF/genpd enabled\n",
+ 		p->clk_rate, p->volt);
+ 	return 0;
++disable_power:
++	sunxi_power_off(p);
+ disable_pm:
+ 	pm_runtime_disable(dev);
+ disable_regulator:
+@@ -261,8 +279,11 @@
+ 			iounmap(gpu);
+ 		return PVRSRV_ERROR_OUT_OF_MEMORY;
+ 	}
++	pr_warn("PVRDIAG before secure SMC write 0x0a0000b0=2\n");
+ 	writel(0x2, smc);
++	pr_warn("PVRDIAG after secure SMC write; before GPU_GLB 0x01880014=0\n");
+ 	writel(0x0, gpu);
++	pr_warn("PVRDIAG after secure GPU_GLB write\n");
+ 	iounmap(gpu);
+ 	iounmap(smc);
+ 	return PVRSRV_OK;

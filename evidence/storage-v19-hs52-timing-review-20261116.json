@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "kind": "t736-smhc3-hs52-timing-static-review",
+  "status": "design-only-not-board-accepted",
+  "hardware_access": false,
+  "files_modified": [
+    "evidence/storage-v19-hs52-timing-review-20261116.json"
+  ],
+  "scope": "Independent static audit for v19 HS SDR. No v18 source or running board modified.",
+  "references": {
+    "manual": {
+      "path": "evidence/vendor-reference/reference-1.txt",
+      "sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483",
+      "sections": [
+        "11.3.5.6 phase offset",
+        "11.3.9.1 CTRL",
+        "11.3.9.2 CLKDIV",
+        "11.3.9.21 CSDC",
+        "11.3.9.23 NTSR",
+        "11.3.9.33 EDSD",
+        "11.3.9.37 DRV_DL",
+        "11.3.9.38 SAMP_DL",
+        "11.3.9.39 DS_DL"
+      ]
+    },
+    "live_fdt": {
+      "path": "evidence\\live-board-20261112\\live-fdt-facts.json",
+      "sha256": "b0d66c91056553e6833050a2363a869780e59a05e42437dc2d7b8a5f56399c2f"
+    },
+    "tina_v4p5x_sha256": "f7b14c8dce66eefc222ac7d06b8aad041ea132c463a1f035a201dd940fb95f7f",
+    "tina_mmc_sha256": "52c7f92db77290437b7818f3c3a92a2956c1ab637214794e56220d0dde99ce16",
+    "linux618_core_sha256": "bb1b24227b5bef5af18346d9b2a60faef219b88c9543b5d2220577376bb06500"
+  },
+  "actual_board": {
+    "node": "/soc@3000000/sdmmc@4023000",
+    "compatible": "allwinner,sunxi-mmc-v5p6x",
+    "status": "okay",
+    "sdc_tm4_sm1_freq0": [
+      "0xff20ffff"
+    ],
+    "sdc_tm4_sm1_freq1": [
+      "0xffffffff"
+    ],
+    "vqmmc_supply": [
+      "0x00000066"
+    ],
+    "sunxi_dis_signal_vol_sw": true,
+    "rail_evidence": "evidence/emmc-electrical-capability-audit-20261116.json: ALDO3 fixed 1.8V, not the ios default3.3V"
+  },
+  "frequency_bucket": {
+    "donor_logic": "freq_index=0 <=400k,1 <=25M,2 <=50M,3 <=100M,4 <=150M,5 <=200M. Choose byte(index%4) of freq(index/4). 0xff means donor default, not delay63.",
+    "hs_defaults": [
+      "0x00000000",
+      "0x00000000"
+    ],
+    "decoded_hs_delays": {
+      "<=400000": 0,
+      "400001..25000000": 0,
+      "25000001..50000000": 32,
+      "50000001..100000000": 0
+    },
+    "recommended_first_cap_hz": 50000000,
+    "mode": "MMC_TIMING_MMC_HS (HS52 card mode operated at <=50MHz)",
+    "pitfall": "A literal52MHz falls into idx3 and loses actual-board sample32; do not conflate HS52 mode with exact52MHz clock."
+  },
+  "masked_registers": [
+    {
+      "offset": "0x0000",
+      "name": "CTRL",
+      "mask": "0x00000400",
+      "value": "0x00000000",
+      "purpose": "SDR, not DDR",
+      "requirement": "change DDR-mode field with module clock gated per donor; preserve all unrelated bits"
+    },
+    {
+      "offset": "0x0004",
+      "name": "CLKDIV",
+      "mask": "0x000000ff",
+      "value": "0x00000000",
+      "purpose": "SDR controller divider0; module clock is2x cardclock"
+    },
+    {
+      "offset": "0x005c",
+      "name": "NTSR",
+      "mask": "0x80000001",
+      "value": "0x00000000",
+      "purpose": "donor clears MODE_SEL31 (1x/old sample-output mode); keep HS400 new sample disabled; preserve input-phase-clear/sample-phase fields"
+    },
+    {
+      "offset": "0x010c",
+      "name": "EDSD",
+      "mask": "0x80000000",
+      "value": "0x00000000",
+      "purpose": "disable HS400; preserve HALF_START_BIT0 and unrelated bits"
+    },
+    {
+      "offset": "0x0054",
+      "name": "CSDC",
+      "mask": "0x0000000f",
+      "value": "0x00000003",
+      "purpose": "CRC detector parameter for modes other than HS400"
+    },
+    {
+      "offset": "0x0140",
+      "name": "DRV_DL",
+      "mask": "0x00030000",
+      "value": "0x00010000",
+      "purpose": "command180degrees/data90degrees in SDR; write while module clock gated"
+    },
+    {
+      "offset": "0x0144",
+      "name": "SAMP_DL",
+      "mask": "0x000000bf",
+      "value": "0x000000a0 for actual >25MHz and <=50MHz; 0x80 at <=25MHz",
+      "purpose": "enable software delay, use live-board HS sampling point32 in50MHz bucket; preserve reserved/read-only bits"
+    },
+    {
+      "offset": "0x0148",
+      "name": "DS_DL",
+      "mask": "0x000000bf",
+      "value": "0x00000080",
+      "purpose": "donor non-HS400 strobe delay0 with software enable; not an HS400-tuning claim"
+    }
+  ],
+  "safe_transition": [
+    "MMC core serializes ios changes against requests; never change clocks mid-DMA",
+    "Disable card output clock with DAT0 masked and issue update-clock command; bounded wait for CMD_START clear. If this fails, do not proceed.",
+    "Gate module clock before changing parent/dividers or CTRL DDR bit. Select validated fixed parent and exact divisor without retuning PLL or changing power. Restore module clock only after register readback succeeds.",
+    "Program SDR NTSR/EDSD/CSDC and width; module-gate around DRV_DL change (Tina sunxi_r_op pattern); program SAMP_DL and DS_DL with card clock still disabled.",
+    "Enable card output clock with DAT0 masked; issue update-clock command and bound completion; unmask DAT0 after successful update. Propagate every failure to ios_error so requests fail instead of running at uncertain timing.",
+    "Report calculated card frequency in mmc->actual_clock. Preserve v18 DMA/failure handling; do not enable CQE or high-speed DDR caps."
+  ],
+  "fixed_1v8_ios": {
+    "implementation": "start_signal_voltage_switch returns0 only for MMC_SIGNAL_VOLTAGE_180, returns-EINVAL for330 or120; performs no MMIO, regulator or pin-voltage writes",
+    "core_proof": "Linux core mmc_set_initial_signal_voltage tries330 then180 then120. mmc_set_signal_voltage sets ios before callback and restores old value on error. Initial330 rejection naturally leads to180 success and truthful ios.",
+    "ocr": "Keep OCR3.2-3.4V: OCR describes card VCC, not1.8V VCCQ.",
+    "optional_guard": "MMC_CAP2_AVOID_3_3V rejects accidental330 at end of card initialization",
+    "no_actions": [
+      "noCMD11",
+      "no regulator_set_voltage",
+      "no pad voltage write",
+      "no manual ios field mutation"
+    ]
+  },
+  "caps": {
+    "add": [
+      "MMC_CAP_MMC_HIGHSPEED"
+    ],
+    "defer": [
+      "MMC_CAP_1_8V_DDR",
+      "HS200",
+      "HS400",
+      "CQE"
+    ],
+    "reason": "MMC core performs card HS_TIMING transition based on capability; HS SDR does not require CMD21 tuning. Do not manually switch card modes in set_ios."
+  },
+  "required_board_evidence": [
+    "ios timingMMC_HS,8-bit,actualclock<=50MHz,signal1.8V",
+    "EXT_CSD HS_TIMING1 read-only after card init",
+    "SAMP_DL low6bits32 at50MHz; masked register readbacks",
+    "rootfs/scratch hashes and read/write throughput before/after againstv18",
+    "no timeout/CRC/start-bit/DMA errors across cold boot and bounded repeated IO",
+    "preservedv18 fallback; acceptance remains pending"
+  ]
+}

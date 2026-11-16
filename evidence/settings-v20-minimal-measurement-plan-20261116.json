@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "author": "desktop_review",
+  "status": "READY_FOR_PARENT_BOARD_RUN_NOT_EXECUTED",
+  "scope": "Prepared locally and validated /proc parsing on build host; no board, application, display, clock, cache or affinity operations by this reviewer.",
+  "wrapper": {
+    "path": "G:\\codex\\t736\\mainline\\tools\\validation\\settings_process_measure.py",
+    "sha256": "abe17848c49f5cf6d6a5f4eba7ca1c11dcb7f565a6f6518a1a529475d1e55064"
+  },
+  "existing_mapped_helper": {
+    "path": "G:\\codex\\t736\\mainline\\tools\\validation\\x11_window_wait.py",
+    "sha256": "0ce3d550eb4a728353234d3563509b99baa18ee04c14f7abcea291315cfe910d"
+  },
+  "verified_panel_ids": {
+    "source_url": "https://github.com/GNOME/gnome-control-center/blob/48.4/shell/cc-panel-loader.c",
+    "local_source": {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\cc-panel-loader.c",
+      "sha256": "98051b16395074463fbec5cf56a981272d5222b9f8c420a6c3fb10bbeea44722"
+    },
+    "multitasking_line": 98,
+    "mouse_line": 97,
+    "background_line": 90,
+    "static_control": "multitasking; four SVG assets in cc-multitasking-panel.ui; cc-mask-paintable.c:448–457 bypasses GtkMediaFile for .svg",
+    "static_ui_source": {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\cc-multitasking-panel.ui",
+      "sha256": "11465d8962d7b3f2fb3dfe6bb8815516640f675a8d7adcdf535328d6a24233ef"
+    },
+    "media_control": "mouse; nine WebM resources; constructed during panel setup, play/pause on hover; already proven installed in v16 board logs"
+  },
+  "preconditions": [
+    "Run only after v20 boots and passes the unchanged bounded storage integrity probe; retain kernel/DT/module hashes and boot ID.",
+    "Use the existing parent-owned desktop-session runner as t736, preserving DISPLAY, XAUTHORITY, DBUS_SESSION_BUS_ADDRESS and all validated GPU variables. Do not reconstruct only part of the environment.",
+    "Validated GPU values include LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles; LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles/dri; GDK_BACKEND=x11; GDK_DISABLE=gl-api,glx,vulkan; GSK_RENDERER=opengl. Preserve session-specific display/auth/bus values.",
+    "Record unlocked session and Overview inactive at start/end with the existing parent check. Keep1080p60, all8CPUs and430x6/1024x2 capacity unchanged. Do not bind CPUs or alter governor.",
+    "Wrapper refuses launch if sameUID Settings exists. --reuse-pid is explicit and requires the selected process to be the sole sameUID Settings executable. No default kill.",
+    "Close only a Settings instance owned by this measurement between new-process cases; do not kill a pre-existing user Settings window. CLI panel activation may update Settings own last-panel preference."
+  ],
+  "minimum_run_sequence": [
+    {
+      "case": "static-new-pid",
+      "command": "python3 /home/t736/settings_process_measure.py --panel multitasking --seconds 20 --output /var/tmp/settings-v20-static-launch.json",
+      "meaning": "New Settings process with static SVG panel; mapped latency and startup CPU/IO. Label first-use/cache-unknown, not cache-cold."
+    },
+    {
+      "case": "same-pid-first-mouse",
+      "command": "python3 /home/t736/settings_process_measure.py --panel mouse --reuse-pid \"$(python3 -c 'import json; print(json.load(open(\"/var/tmp/settings-v20-static-launch.json\"))[\"pid\"])')\" --seconds 20 --output /var/tmp/settings-v20-mouse-switch.json",
+      "meaning": "Same process activates multimedia panel. Dispatch return is not panel-ready timing; compare20s CPU, thread andIO work plus actual observed panel."
+    },
+    {
+      "case": "same-pid-return-static",
+      "command": "python3 /home/t736/settings_process_measure.py --panel multitasking --reuse-pid \"$(python3 -c 'import json; print(json.load(open(\"/var/tmp/settings-v20-static-launch.json\"))[\"pid\"])')\" --seconds 10 --output /var/tmp/settings-v20-static-return.json",
+      "meaning": "Return to static panel. If needed repeat mouse once for within-process warm comparison using a new result filename."
+    }
+  ],
+  "optional_media_isolation_after_primary_run": {
+    "method": "Use separately launched mouse processes with full unchanged GPU environment: default, GTK_MEDIA=none, default; each needs previous measured process closed and new result filename. --media none sets only the launched child environment. Never pass it with --reuse-pid.",
+    "example": "python3 /home/t736/settings_process_measure.py --panel mouse --media none --seconds 20 --output /var/tmp/settings-v20-mouse-no-media.json",
+    "interpretation": "A reduction is evidence for media setup/animation cost under those cache/order conditions; it removes illustrations and is not a production fix or proof of hardware video decoding."
+  },
+  "metrics": {
+    "launch": "x11_window_wait.py reports first IsViewable matching _NET_WM_PID. Poll0.05s plus scheduling observer delay. No first paint or complete render claim.",
+    "switch": "CLI request exit observed on0.5s polling. Request was dispatched/returned; this does not prove target page visibly finished. Existing mapped window cannot supply switch latency.",
+    "cpu": "Process utime+stime deltas divided by sysconfCLK_TCK; per-thread lower bounds, lastCPU samples and main-thread state/wchan. Process CPU includes its threads but excludes kworker/IRQ work. Counters are tick-quantized and can miss short activities.",
+    "io": "/proc/PID/io read_bytes/write_bytes and rchar/wchar deltas; majorfaults and optional blkio_delay ticks. Kernel delayacct may be unavailable so zero does not prove noIO wait. MMC device statistics contain unrelated backgroundIO.",
+    "gpu": "Requested environment and mapped libraries plus application stderr. LoadedPVR libraries alone do not prove actualGSK renderer or GPU use. Retain known realGSK probe and driver counters separately.",
+    "observer": "Observer self CPU reported; per-task polling can perturb a heavily threaded app. Same interval is required across compared cases. Reported observer CPU excludes separate x11_window_wait subprocess."
+  },
+  "separation_rules": [
+    "CPU-bound: processCPU and busiestthreadCPU rise during delay, read_bytes low; inspect main-thread CPU6/7 sampling and media/background workers. Do not infer full residency from lastCPU.",
+    "Storage contribution: fresh launch has real read_bytes/majorfaults plus blocked/wchan evidence, warm case improves. A busy MMC kworker alone is not attribution to Settings; correlate timestamps and processIO.",
+    "Media contribution: mouse disproportionately expensive versus static panel, GtkGstPlay/GL/media threads active, new-process GTK_MEDIA=none reduces work with GSK environment unchanged. Library presence alone is not playback or hardware decoding evidence.",
+    "Timer/scheduler contribution: with otherwise identical kernels/clocks/workload, v20 high-resolution timing improves short sleep accuracy and UI without a comparable reduction in processCPU/IO. Avoid inferring causation from one cache-ordered run.",
+    "First paint: this read-only/proc wrapper cannot measure it. Keep first_paint_verified=false. Existing parent screenshot/video can record that a requested panel is visibly complete at a known later sample time, which is an upper bound/observation, not exact first-paint time.",
+    "Do not drop global caches. For optional thumbnail isolation later, preserve font/GStreamer/GSK caches and isolate only thumbnails; do not claim all ofXDG_CACHE_HOME cold is a wallpaper-only experiment."
+  ],
+  "validation": {
+    "local_py_compile": true,
+    "argparse_help": true,
+    "linux_proc_parser_and_counter_math": "PASS; synthetic0.12CPU-second burn measured0.12s using/proc counters",
+    "full_settings_x11_runtime_test": false,
+    "log": {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\settings-process-measure-parser-20261116.log",
+      "sha256": "662be61064acc7fb346996daea78531b9a8d9f1e3b1905d7f7b915e23fce1737"
+    },
+    "independent_static_review": "backup_audit: /proc field indexes correct. Requested PID boundary checks added: UID/exe and start_ticks checks before activation and across snapshots; zero/negative reuse PID rejected."
+  }
+}

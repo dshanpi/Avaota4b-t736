@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "kind": "storage-v23-guarded-updater-preparation",
+  "date": "2026-11-16",
+  "status": "ready-for-board-check-apply-and-one-shot-trial",
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v23.py": "d6b3c43bfb99d94b53544ae9586fa83c5a9be2ff233086eb947da5574d3c3541",
+    "tools/validation/test_update_t736_storage_v23.py": "8ba1f504d4ae7e91852f908b35bc417a512e566750934623eac0624166100e2c",
+    "evidence/storage-v23-updater-offline-tests-20261116.log": "b969accebf4fcdaa165fc4de6581974c893e8e95f33323e253d139e84e775702",
+    "evidence/storage-v23-updater-exact-inputs-20261116.json": "d1c3080012a01dd20a0440ebbd4ee055824b7d6c6de46cc99275fd4784f8451a",
+    "evidence/storage-v23-updater-independent-review-20261116.json": "c89bb2d86cda674c83d285ac7800e3cebac796619c68a6ec744ee2a5c4010819",
+    "evidence/storage-v23-updater-bindings-20261116.json": "5ad910ba78a15e8f9d8285f82744943d72d9470e600eb02c2fd495cfb7b2b180",
+    "evidence/storage-v23-build-20261116.json": "d6fa32fa281370f9ea7cdb9b1eb90c56b632bbb686c8154719319089c71e2747",
+    "evidence/storage-v23-package-20261116.json": "5dcf467fc27568bf4e49ec61e5b08b78062df50573d0b8f4a58d86ab670b2604",
+    "evidence/storage-v23-pvr-build-20261116.json": "bb35ce642456ff1bdae0eb321aee42529a53c5e1335159bb696017f9bf3dab5d",
+    "evidence/storage-v23-hs200-independent-review-20261116.json": "4c4d36efb76441c8ddeb3d36a52f429d1d4f4c31749b1a46939a46292315036b",
+    "evidence/emmc-clocks-readonly-v4-storage-v23-20261116.json": "bebebcd8eabe65de3d364d16fca73551571d3d02d2b5e8b273b1cc4149bce6fb"
+  },
+  "bindings": {
+    "kernel_sha256": "64b25cd6f4160d239aceab28222ad74b2c734f43f4f1adaafd4fedb0ea682ff0",
+    "kernel_bytes": 5604114,
+    "pvr_sha256": "fb0f38a957f84854805ce208601c043c6604b8f47c7737b4541cebef3d762104",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "674aa1ca981d81b18826321fc76208698d9fc2ba04206c1a43484dd0f26cb589",
+    "payload_manifest_sha256": "dc45423f85a6d77a836215631c56860e6fb46028ec2ef96a3921e3cd67dd646e",
+    "raw_image_sha256": "89e626ddc88c62693f1e45047896b46e899b2e21bc477b4fd6caaf412d007e94",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "candidate_dtb_bytes": 12028,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "offline_tests": {
+    "passed": 14,
+    "includes": [
+      "Validated running v22 identity and corruption rejection",
+      "Running v22 separated from fixed v16 fallback",
+      "Timeout-child quiescence before rollback",
+      "Backup corruption, final-verification faults and path-escape protection"
+    ]
+  },
+  "state_separation": {
+    "allowed_running": [
+      "6.18.63-t736-storage-v16",
+      "6.18.63-t736-storage-v22"
+    ],
+    "fixed_default_fallback": "6.18.63-t736-storage-v16",
+    "default_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate": "6.18.63-t736-storage-v23"
+  },
+  "planned_board_flow": [
+    "Root checks and applies the pinned transaction.",
+    "Root immediately restores default selection from the fresh BACKUP_FSYNC_VERIFIED directory.",
+    "v23 kernel/initrd/package DT/PVR remain installed for explicit-path one-shot U-Boot boot with HS200 parameters; no saveenv."
+  ],
+  "candidate_scope": "HS200 tuning-only error classification fix: matched card-error summary marks a failed tap; unknown IDST is rejected before every CMD21 completion poll. Ordinary DMA data error policy and exact v22 DT/config except release remain unchanged.",
+  "second_stage": "100MHz and200MHz need distinct boot/tuning/integrity/health evidence. Prior v22 failed200MHz record remains historical and cannot be relabeled as a pass.",
+  "board_operations_by_this_agent": false,
+  "candidate_board_accepted": false,
+  "private_home_archive_included": false,
+  "delivery": "SFTP only; no new HTTP service.",
+  "independent_review": "code_index PASS at final updater SHA d6b3c43bfb99d94b53544ae9586fa83c5a9be2ff233086eb947da5574d3c3541",
+  "exact_inputs": "82 payload entries and complete control/payload manifests match actual package; four maintainer scripts equal v22 except release identity and were not executed in audit."
+}

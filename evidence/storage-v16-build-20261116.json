@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "kind": "t736-pio-v2-kernel-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v16",
+  "baseline_release": "6.18.63-t736-gpu-v15",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "storage_clock_hz": 12000000,
+  "max_request_bytes": 65536,
+  "dma_enabled": false,
+  "voltage_or_timing_change": false,
+  "files": {
+    "boards/t736_mmc_pio_v2.c": "f4e33965e36756214abb48425e90a32ca44da14175a3a613aa29a059a83a5e02",
+    "build/linux-storage-v16/.config": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e",
+    "build/linux-storage-v16/arch/arm64/boot/Image": "86d49744a35fd1260ff81f1d351a15b4c1dc28943b846696d8117ba5a9f7937d",
+    "build/linux-storage-v16/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5",
+    "build/linux-storage-v16/Module.symvers": "9813e3b9b67d85cb230cf921dd984154868d53e8df9b33d1d88325c460d5106c"
+  },
+  "board_validation": "pending; verify cold boot, rootfs reads, bounded scratch-file write/read hashes, throughput and dmesg before promotion",
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v16_6.18.63-16_arm64.deb",
+    "size": 5590080,
+    "sha256": "520b42929ee4700a29ab8da5f020b828948a607c87a6eb8dd98c8ecacd6170c6"
+  },
+  "baseline_files": {
+    "build/linux-gpu-v15/.config": "244faa52e7d012b65edfbc02f1dff1fd937b255f80ff2da1b90d366bd8673e5d",
+    "build/linux-gpu-v15/arch/arm64/boot/Image": "d40803a7eba8bf3f1930602dd6e092954c58f1ff48df6e9d2f8c5412b486734c",
+    "boards/t736_mmc_pio.c": "ab8f35caf434023e30ea35a39a923918aba5381c8136c44a6879aed2c491b6d5"
+  },
+  "package_audit": "storage-v16-package-20261116.json"
+}

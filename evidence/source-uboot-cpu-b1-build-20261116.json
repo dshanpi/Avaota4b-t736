@@ -1,0 +1,42 @@
+{
+  "variant": "cpu-b1",
+  "upstream_commit": "5508406582f6f7120dce0c4b3059819a41788db2",
+  "source_date_epoch": 1794647291,
+  "sources_sha256": {
+    "patches/u-boot/t736-source-boot.patch": "8c90d197ccb0cecdac42590b98a85a7021aaf05fe053ea6cd9c07e7f540463b9",
+    "patches/u-boot/t736-cpu-b1.patch": "b9e7e8061823ec4f8f123fee0af907a911386e4f7100059a46921254bab84147",
+    "config/u-boot-source-v6.config": "3d8d55d5a2ee90933e12ed5d17ff37a6e15760b0e6b69764ff6710242a16c7ad",
+    "boards/t736-uboot-cpuclock.c": "feeea9d39e00fde5479d0dce899ca3a3317d9ea33d609996081a347651c10c1f",
+    "spl/cpuclock/cpuclock.c": "8a3ea752474bd8565b865a56087b0a761714da3d3d81ec1919f2df2319be27d4",
+    "spl/cpuclock/cpuclock.h": "420603f897b200f3b368532d834935990f2c36acb43a49276467d36c2b508610",
+    "spl/cpuclock/test_cpuclock.c": "4f1e0f5ed83896fdd384bb2d5aed9e7cacd40bd9e09be0fef46126cab81a80db",
+    "spl/early/twi.c": "a9d9fac6ca5841549a07f6a6eaf8531fe4d0b3f144b691bb4452329224ea6758",
+    "spl/early/twi.h": "e9e7fc586fcb535131e4134230880d3820a58dd72085c0be9c36598b2dccfc63",
+    "tools/build_source_uboot_cpu.sh": "fc3bcfdea07f328774a9d444b3a28fc39464db9bfd88914ea65fc5aca3f4a9c6"
+  },
+  "config_sha256": "2b7b3d3676cb183c460ffe413c10fee25cb1cb48472e69e5beb664ffa47755b4",
+  "payload_sha256": "23e945f30da353ba6adedb22b5304fd5c518340cfb1050ac6101d364d90110f7",
+  "elf_sha256": "a15f33b00d839fa4c672bb4fc9239945764402cebd92407ed040c1f01f2ca816",
+  "payload_size": 259176,
+  "hook": "board_early_init_r",
+  "a76_target_hz": 1014000000,
+  "dcdc3_dcdc4_required_selector_uv": 900000,
+  "hardware_tested": false,
+  "host_fault_tests_passed": true,
+  "spl_variant": "v4 unchanged; original pre-DDR recovery preserved",
+  "note": "Candidate only. Runtime v4 passed separately; this exact U-Boot still requires cold-boot acceptance. Existing packer is not changed.",
+  "recorded_at_utc": "2026-11-16T09:27:50.746498+00:00",
+  "review_status": "backup_audit independently reviewed wrapper/patch/builder/shared pure C; no new blocker; exact U-Boot cold boot remains pending",
+  "config_delta": [
+    "CONFIG_BOARD_EARLY_INIT_R=y"
+  ],
+  "compiler_warnings_or_errors": false,
+  "linked_symbols": {
+    "t736_twi_read8": true,
+    "t736_twi_init": false,
+    "t736_twi_write8": false
+  },
+  "local_remote_sha256_match": true,
+  "independent_review_by": "backup_audit",
+  "reviewed_at_utc": "2026-11-16T09:28:56.084188+00:00"
+}

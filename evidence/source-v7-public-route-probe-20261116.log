@@ -1,0 +1,5 @@
+curl --silent --show-error --output /dev/null --write-out "PUBLIC_TLS_HTTP=%{http_code}\n" --connect-timeout 4 --max-time 6 --resolve dns.alidns.com:443:223.5.5.5 https://dns.alidns.com/; printf "PUBLIC_TLS_RC=%s\n" "$?"; resolvectl dns end0 10.0.0.1 fd67:b33e:a9c2::1
+
+PUBLIC_TLS_HTTP=404
+PUBLIC_TLS_RC=0
+root@t736:~# 

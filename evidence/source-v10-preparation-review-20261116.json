@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "kind": "source-v10-preparation-review",
+  "date": "2026-11-16",
+  "hardware_operations_by_this_agent": false,
+  "raw_image_built": true,
+  "final_image_cold_boot_validated": false,
+  "ordinary_application_startup_latency_accepted": false,
+  "build_in_progress": false,
+  "controller_pid": 933372,
+  "files_sha256": {
+    "tools/validation/source_v10_acceptance.py": "3bc716a5f2f153cbd6bb4fbd23049de0b5f421afc01d1409588cb93142e46b19",
+    "tools/validation/test_source_v10_acceptance.py": "5e24780f68c4740dee4517d043c327f0e07b8c2f692425c0641f59571b08a3e8",
+    "tools/validation/source_v10_finalize_gpt.sh": "b46221ec45668548fccbb56e678f7da09bac4e0af1a442f2b6b747ef5aece877",
+    "tools/validation/verify_source_v10_gpt.py": "4aa1e85f1cacf37ba1a555dbd95d1668ac59f494c0c0f5ccf7e4c3fb7dcd4d17",
+    "tools/pack_t736_source_boot.py": "e17fc54ece2583153edcc1c3339625c28e64768202f8a45ccb4c135ac69594ae",
+    "config/source-v10-inputs.json": "bce6facbec26589d8def151634efe7b91b23f0dcb63612ea3e719cebeacd8ffe",
+    "evidence/phy-snapshot-v2-independent-review-20261116.json": "081830c1db50fca586a91b5065fb7afda85542925e09867371841c7934a85a60",
+    "docs/SOURCE_V10_DRAFT.md": "8d8d00dddc300c3344415baeb34b624de85188f8641d6037ead7d2200eb8bfdb",
+    "output/t736-armbian-source-v10.raw.manifest.json": "792c2e4ca9330d6c9e903b0739c8060229f0fcf733a5ccddfb40eb5e5dc63671",
+    "evidence/source-v10-rootfs-build-result-20261116.json": "46aed308574a31a008e5b57766fbaacfe462956fc0df79f9049e10798f71b227",
+    "evidence/source-v10-pack-result-20261116.json": "19fbf82fb37288f832823a71a3735bad3ca12ec3bd6f03c812b0ada8f14a0320"
+  },
+  "validation": {
+    "cpu_d_guard_offline_tests": 15,
+    "cpu_d_actual_input_sources_checked": 18,
+    "profile_and_manifest_tests": 11,
+    "generated_v16_profile_behavior_tests": 9,
+    "firefox_negative_cases": 5,
+    "gpt_decoder": "historical byte fixtures only, valid physical geometry and CRC/table corruption rejection; no v10 board result generated"
+  },
+  "reviewed_by": "desktop_review: PHY v1/v2; strict v16 GPU artifact/evidence validation; GPT labels/geometry scope",
+  "gpt": {
+    "raw_bytes": 8589934592,
+    "raw_backup_lba": 16777215,
+    "expected_physical_backup_lba_after_board_finalize": 122142719,
+    "entries_sha256": "750938222976776900b49d1782ee976c52db16fc42f1ab04ceeaffb3aaa4125f",
+    "source_v10_labels_required": true
+  },
+  "remaining": [
+    "Root resolves ordinary application cold-start latency, DMA and high-speed storage acceptance",
+    "Root owns private backup, future final-version flash/cold boot/GPT finalization",
+    "No v10 deployment or final cold-boot acceptance has occurred"
+  ],
+  "state": "milestone-candidate-built-not-flashed",
+  "build_results": {
+    "rootfs": {
+      "exit_code": 0,
+      "finished_utc": "2026-11-16T11:16:26.142565+00:00"
+    },
+    "pack": {
+      "exit_code": 0,
+      "finished_utc": "2026-11-16T11:19:02.451875+00:00"
+    }
+  },
+  "actual_rootfs_and_pack_validation": "PASS: finalize.complete, original fsck, finalized rootfs SHA, artifact guard, 8 installed GPU/firmware bytes, component evidence and final region/GPT checks"
+}

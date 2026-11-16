@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v19-updater-independent-static-review",
+  "status": "passed-static-diff-and-final-binding-review-not-executed-by-reviewer",
+  "updater_sha256": "2c04f02dc7faba327bdd42e33dfd3d6d84458fe64c3dc4c40d0fae89dfc12fb2",
+  "baseline_reviewer_record": "evidence/storage-v18-updater-independent-review-20261116.json",
+  "final_bindings_match_build_pvr_records": true,
+  "exact_old_dt_preserved": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+  "new_process_group_boundary_review": [
+    "SIGKILL sent to isolated process group on command timeout/interruption",
+    "communicate after kill is bounded to10s",
+    "/proc/stat pgrp indexed correctly, only non-Z/X live states delay rollback",
+    "unconfirmed group exit raises typed ProcessGroupStillActive and records critical without racing rollback",
+    "private mount namespace and existing backup/fsync/readback/alias recovery remain intact"
+  ],
+  "material_new_blockers": [],
+  "tests": "Peer-reported12 fault-injection cases plus actual-input check; reviewer did not repeat tests or touch board",
+  "board_boot_plan": "Parent installs candidate, restores v16 default selection, then one-shot U-Boot explicit v19 paths without saveenv"
+}

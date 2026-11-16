@@ -1,0 +1,8 @@
+env | cut -d= -f1 | grep -i proxy; command -v curl; getent ahostsv4 mirrors.aliyun.com | head -n 1; curl -q -4 --noproxy "*" --silent --show-error --output /dev/null --write-out "DIRECT_HTTPS_HTTP=%{http_code} REMOTE=%{remote_ip}\n" --connect-timeout 5 --max-time 10 https://mirrors.aliyun.com/debian/; printf "DIRECT_HTTPS_RC=%s\n" "$?"
+
+/usr/bin/curl
+175.4.30.38     STREAM mirrors.aliyun.com.w.alikunlun.com
+curl: (35) TLS connect error: error:0A000126:SSL routines::unexpected eof while reading
+DIRECT_HTTPS_HTTP=000 REMOTE=
+DIRECT_HTTPS_RC=35
+root@t736:~# 

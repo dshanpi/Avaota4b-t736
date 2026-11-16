@@ -1,0 +1,38 @@
+mountpoint -q /sys/kernel/debug || mount -t debugfs none /sys/kernel/debug; cat /sys/kernel/debug/gpio; cat /sys/kernel/debug/pinctrl/2000000.pinctrl/pinmux-pins | grep -E 'PH[0-9]'; cat /sys/kernel/debug/clk/clk_summary | grep -E 'gmac|phy|mbus'; ls -l /sys/bus/mdio_bus/devices; ip -details link show end0
+
+gpiochip1: 352 GPIOs, parent: platform/2000000.pinctrl, 2000000.pinctrl:
+
+gpiochip0: 64 GPIOs, parent: platform/7025000.pinctrl, 7025000.pinctrl:
+ gpio-6   (                    |regulator-usb1-vbus ) out hi 
+pin 224 (PH0): device 4500000.ethernet function gmac0 group PH0
+pin 225 (PH1): device 4500000.ethernet function gmac0 group PH1
+pin 226 (PH2): device 4500000.ethernet function gmac0 group PH2
+pin 227 (PH3): device 4500000.ethernet function gmac0 group PH3
+pin 228 (PH4): device 4500000.ethernet function gmac0 group PH4
+pin 229 (PH5): device 4500000.ethernet function gmac0 group PH5
+pin 230 (PH6): device 4500000.ethernet function gmac0 group PH6
+pin 231 (PH7): device 4500000.ethernet function gmac0 group PH7
+pin 232 (PH8): device 4500000.ethernet function gmac0 group PH8
+pin 233 (PH9): device 4500000.ethernet function gmac0 group PH9
+pin 234 (PH10): device 4500000.ethernet function gmac0 group PH10
+pin 235 (PH11): device 4500000.ethernet function gmac0 group PH11
+pin 236 (PH12): device 4500000.ethernet function gmac0 group PH12
+pin 237 (PH13): device 4500000.ethernet function gmac0 group PH13
+pin 238 (PH14): device 4500000.ethernet function gmac0 group PH14
+pin 239 (PH15): device 4500000.ethernet function gmac0 group PH15
+pin 240 (PH16): UNCLAIMED
+pin 241 (PH17): UNCLAIMED
+pin 242 (PH18): UNCLAIMED
+pin 243 (PH19): UNCLAIMED
+ clock-mbus-firmware                 1       1        0        600000000   0          0     50000      Y   deviceless                      no_connection_id         
+    t736-gmac0-mbus                  1       1        0        600000000   0          0     50000      Y      4500000.ethernet                mbus                     
+    t736-gmac0-phy                   1       1        0        25000000    0          0     50000      Y      4500000.ethernet                phy                      
+    t736-gmac0-bus                   1       1        0        200000000   0          0     50000      Y      4500000.ethernet                stmmaceth                
+    t736-usb-master                  1       1        0        24000000    0          0     50000      Y      4200800.phy                     master                   
+    t736-usb-msi                     1       1        0        24000000    0          0     50000      Y      4200800.phy                     msi                      
+                                                                                                              4200800.phy                     bus                      
+    t736-usb-ref                     1       1        0        24000000    0          0     50000      Y      4200800.phy                     ref                      
+total 0
+2: end0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether fa:7a:40:35:c3:3b brd ff:ff:ff:ff:ff:ff promiscuity 0 allmulti 0 minmtu 46 maxmtu 9000 addrgenmode eui64 numtxqueues 8 numrxqueues 8 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 parentbus platform parentdev 4500000.ethernet 
+root@t736:~# 

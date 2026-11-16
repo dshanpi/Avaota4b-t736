@@ -1,0 +1,17 @@
+[drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+ps -C gnome-shell -o pid,user,etime,pcpu; grep -E 'Output HDMI-1|initial mode|Virtual size|glamor X acceleration' /home/t736/.local/share/xorg/Xorg.0.log /home/t736/.local/share/xorg/Xorg.1.log 2>/dev/null | tail -n 12; cat /sys/kernel/debug/dri/0/state | grep 'mode:'; cp -a /root/t736-gpu-debug/gdm-daemon-before-autologin.conf /etc/gdm3/daemon.conf; echo STARTUP1080_CHECK_DONE
+
+    PID USER         ELAPSED %CPU
+   5951 t736           00:17 86.7
+/home/t736/.local/share/xorg/Xorg.0.log:[  3323.742] (II) modeset(0): glamor X acceleration enabled on PowerVR B-Series BXM-4-64
+/home/t736/.local/share/xorg/Xorg.0.log:[  3323.744] (II) modeset(0): Output HDMI-1 using monitor section T736 HDMI 1080p
+/home/t736/.local/share/xorg/Xorg.0.log:[  3323.754] (II) modeset(0): Output HDMI-1 connected
+/home/t736/.local/share/xorg/Xorg.0.log:[  3323.754] (II) modeset(0): Using user preference for initial modes
+/home/t736/.local/share/xorg/Xorg.0.log:[  3323.754] (II) modeset(0): Output HDMI-1 using initial mode 1920x1080 +0+0
+/home/t736/.local/share/xorg/Xorg.1.log:[   166.727] (II) modeset(0): Output HDMI-1 has no monitor section
+/home/t736/.local/share/xorg/Xorg.1.log:[   166.803] (II) modeset(0): Output HDMI-1 connected
+/home/t736/.local/share/xorg/Xorg.1.log:[   166.804] (II) modeset(0): Using exact sizes for initial modes
+/home/t736/.local/share/xorg/Xorg.1.log:[   166.804] (II) modeset(0): Output HDMI-1 using initial mode 2560x1440 +0+0
+	mode: "": 60 241500 2560 2608 2640 2720 1440 1443 1448 1481 0x0 0x9
+STARTUP1080_CHECK_DONE
+root@t736:~# 

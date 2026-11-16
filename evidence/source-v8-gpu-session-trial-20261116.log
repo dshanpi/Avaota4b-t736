@@ -1,0 +1,7 @@
+cp /tmp/t736-transfer/gpu_session_trial.sh /root/t736-gpu-debug/; bash /tmp/t736-transfer/gpu_session_trial.sh enable >/root/t736-gpu-debug/session-trial.log 2>&1; echo GPU_SESSION_TRIAL_RC=$?; tail -n 30 /root/t736-gpu-debug/session-trial.log; echo GPU_SESSION_TRIAL_DONE
+
+GPU_SESSION_TRIAL_RC=1
+/tmp/t736-transfer/gpu_session_trial.sh: 行 173: strings: 未找到命令
+ERROR: Module DDK mismatch.
+GPU_SESSION_TRIAL_DONE
+root@t736:~# 

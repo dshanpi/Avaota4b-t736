@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "kind": "t736-hs200-software-tuning-independent-review",
+  "reviewed_utc": "2026-11-16T12:53:35.278996+00:00",
+  "reviewer": "backup_audit",
+  "status": "PASS-static-review-of-frozen-draft-no-hardware-claim",
+  "board_operations": false,
+  "published": false,
+  "design_record": {
+    "path": "evidence/storage-hs200-design-20261116.json",
+    "sha256": "69a2205922fc527dc5802095de064e9f3f16337749de777b837484a1b773e3c9"
+  },
+  "reviewed_files": {
+    "boards/t736_mmc_hs200_draft.c": "db179f33c161bd134d13698df41f41e6973f5465bd2e2c84777cadca68f57bbe",
+    "boards/t736_mmc_clock_hs200_draft.h": "33f4c8eae7d5b7c73534e07c4c24652a01d0400fc00f286b9212116ee83cd5a2",
+    "boards/t736_mmc_tuning_draft.h": "2ba574aec0bf5fe06d4d0a90319891c0c3c7b2871cbdddaa6ae004e91d66eeb0",
+    "tests/test_mmc_hs200_tuning.py": "6494ad2b9fab897d2a6affa23da52bcc2cf85b00579022b9d7cac5a42a5c9b56",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c"
+  },
+  "scope": [
+    "Review the separate opt-in HS200 draft against frozen v21 HS25/HS50, actual T736 Tina donor, Linux 6.18 MMC core, and A733 manual.",
+    "No edits to frozen v21 driver/package/updater, no board commands, no flashing, no default promotion.",
+    "Suitable to construct a separately identified guarded candidate; static review is not permission to claim HS200 hardware success."
+  ],
+  "findings_resolved": [
+    {
+      "finding": "A failed CMD12 abort can itself report FIFO/HW-lock errors; checking only dma_dead after abort could continue the scan after a hardware fault.",
+      "resolution": "Final driver checks dma_dead, ios_error and RINT[11/12] immediately after CMD12. Failure IRQ/IDST are captured before cleanup CMD12 overwrites diagnostics.",
+      "final_driver_sha256": "db179f33c161bd134d13698df41f41e6973f5465bd2e2c84777cadca68f57bbe"
+    },
+    {
+      "finding": "At high-rate reads, matching THLD to block size enables meaningful block-gap FIFO protection; tuning cannot validate subsequent multiblock reads by itself.",
+      "resolution": "HS200 transfer setup sets THLD to current block size 128/512 with read/write direction, verifies controlled bits, preserves BCIG and SFC, and restores legacy THLD on non-HS200 set_ios."
+    },
+    {
+      "finding": "Earlier T527/AvaotaA1 reference was not the actual T736 donor.",
+      "resolution": "Independently re-read and SHA-checked all three actual T736 donor sources. Actual donor has optional kernel tuning with 64 taps, minimum window12 and20 trials."
+    }
+  ],
+  "verified_in_source": {
+    "enablement": "enable_hs200 defaults false; only HS200_1_8V_SDR is advertised when explicitly enabled. Fixed1.8V callback performs no rail/PMIC writes. HS400/DDR52 not enabled.",
+    "clock": "Exact integer/rational validation of 26MHz DCXO ->24MHz REF ->800MHz PERI0; ready/lock/source/SDM checks retained.100MHz=M4/N1 and200MHz=M2/N1 with SDR module/2. No shared PLL writes.",
+    "phases": "Actual T736 HS200 uses CMD180/DATA90, distinct from donor SD SDR104 DATA180 case. SDR/NTSR/EDSD/CSDC fields are masked/read-back checked.",
+    "tuning": "64 physical delay taps are linear, without endpoint wrapping. Passing tap requires20 successful128-byte JEDEC transfers. Longest window>=12 gives>=5tap edge margin; earliest equal-length tie is deterministic. Center is revalidated16 times.",
+    "fresh_data": "Every CMD21 trial poisons128B coherent buffer with0xa5. Existing completion requires controller completion, DMA direction event and descriptor OWN clear; DMA stop/reset precedes copy; Linux core compares all128 bytes.",
+    "data_gate": "Before a valid tuning point, worker rejects ordinary HS200 data; synchronous tuning CMD21 is allowed and non-data initialization commands remain possible.",
+    "abort": "Expected bad-tap CRC/timeout/pattern mismatch remains a failed tap. CMD12 abort errors are recorded separately and cannot mark a passing tap. Following traffic remains read-only CMD21 until full tuning succeeds. No host->card dereference during initialization.",
+    "fatal": "CMD21 IDST[4/5], RINT[11/12], dma_dead, ios_error or unexpected error terminate scan. Post-abort hardware checks prevent hardware-fault continuation.",
+    "bounds": "30s soft deadline is checked at each tap, trial and pre-abort; tuning command poll is200ms. Clock-update/DMA-reset and cleanup are separately bounded and can extend total wall time; this is not a hard30s guarantee.",
+    "cleanup": "Failure leaves tuning_valid=false and ios_error blocks future data. Abort, DMA-stop and clock-stop results plus original IRQ/IDST are logged. DMA-dead quarantines allocations; tuning cleanup/set_ios skip clock programming after dma_dead. Existing command tail can still clear IRQSTATUS.",
+    "retuning": "Same actual frequency can preserve tuned tap; changing actual frequency invalidates and requests retuning. Leaving HS200 invalidates. Board seed values never substitute for successful CMD21.",
+    "fallback": "Core mmc_init_card does not promise automatic HS52 fallback after execute_tuning failure. Recovery must keep persistent v16 and accepted v21 boot paths available externally."
+  },
+  "actual_donor": {
+    "root": "/home/ubuntu/t736-aiot/tina",
+    "files": {
+      "bsp/drivers/mmc/sunxi-mmc-v4p5x.c": "f7b14c8dce66eefc222ac7d06b8aad041ea132c463a1f035a201dd940fb95f7f",
+      "bsp/drivers/mmc/sunxi-mmc.c": "52c7f92db77290437b7818f3c3a92a2956c1ab637214794e56220d0dde99ce16",
+      "bsp/drivers/mmc/sunxi-mmc.h": "0945ee0ea5e47082c2ff159e578380671f86f4cd797f4fb3a853bc6f8cde0da3"
+    },
+    "independently_read": [
+      "sunxi-mmc-v4p5x.c:271-307 phase branches;318-328 frequency buckets;854-913 THLD policy;1320 and1395 actual v5p6x hook",
+      "sunxi-mmc.c:2448-2449 window12/taps64;2505-2583 scan/trials/pattern comparison;4253 optional execute_tuning_in_kernel",
+      "sunxi-mmc.h:611 MMC_TUNING_RETRY_TIMES20"
+    ],
+    "qualification": "Presence of optional donor tuning is not evidence that the effective eMMC BSP device tree enabled or ran it."
+  },
+  "mainline_core": {
+    "path": "sources/work/linux-storage-v21/drivers/mmc/core/mmc_ops.c",
+    "sha256": "21ce493f0638b9b778af03ed01be9780ca5bcff12ec0e365a112af0137ad193f",
+    "independently_read": "676-743 mmc_send_tuning uses full pattern compare at736;745-768 abort emits CMD12 R1/AC, no card pointer required.",
+    "initialization_note": "mmc.c tunes before host->card is assigned; caller must not use host->card/CMD13 recovery during initial tuning.",
+    "abort_precedent": "renesas_sdhi_core.c calls mmc_send_abort_tuning on command error without treating all abort failures as fatal; hardware faults still require separate rejection here."
+  },
+  "validation": {
+    "compile_log": "evidence/build/mmc-hs200-draft-check-20261116.log",
+    "compile_log_inspected": "PASS: final db179f33 source ARM64 CC/MODPOST/LD without diagnostic errors; compile-only module was not loaded on board.",
+    "compile_artifact_sha256": "0424ab7b2c852865b075d58b7a9f13095fdfe09fc4491fcddcf6bd00b3f70feb",
+    "author_algorithm_test": "PASS reported by code_index: ASan/UBSan of actual C helper with all2080linear intervals, min-window edges, no-wrap, seeds and100/200MHz. Test source was independently inspected; execution not duplicated by this reviewer.",
+    "frozen_v21_updater_sha256": "79b074547330fa68f7c29b4dc4ab366d28bcb7173c825d2735c6df26194aea76",
+    "hardware": "PENDING: no HS200 tuning bitmap, integrity, sustained-I/O or physical-clock measurements in this review."
+  },
+  "next_gate": [
+    "Separate versioned package/updater must bind final package/source hashes and preserve persistent v16 fallback.",
+    "One-shot100MHz first, with matching IOS/tuning bitmap/window/THLD/health evidence and bounded read/write integrity.",
+    "Only after100MHz evidence passes consider200MHz; neither stage implies HS400 qualification or release-wide acceptance."
+  ]
+}

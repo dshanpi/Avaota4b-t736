@@ -1,0 +1,13 @@
+/tmp/t736-transfer/ethtool-csum end0 --tx off && resolvectl flush-caches && timeout 8 resolvectl query --type=A deb.debian.org; printf "TX_OFF_DNS_RC=%s\n" "$?"; grep "^Udp:" /proc/net/snmp
+
+BEFORE (read only)
+end0 RXCSUM=on raw=1
+end0 TXCSUM=on raw=1
+REQUEST SET_TXCSUM=off
+AFTER (readback)
+end0 RXCSUM=on raw=1
+end0 TXCSUM=off raw=0
+TX_OFF_DNS_RC=124
+Udp: InDatagrams NoPorts InErrors OutDatagrams RcvbufErrors SndbufErrors InCsumErrors IgnoredMulti MemErrors
+Udp: 29 0 0 67 0 0 0 10 0
+root@t736:~# 

@@ -1,0 +1,35 @@
+[drm] sunxi-hdmi: drm hdmi atomic disable done >>>>>>>>>>>>>>>>
+[drm] [SUNXI-CRTC]sunxi_crtc_atomic_disable
+[drm] sunxi_de_disable de 0
+[drm] sunxi_de_atomic_flush de 0 not enable, skip
+[drm] sunxi_de_atomic_flush de 0 not enable, skip
+[drm] sunxi_de_atomic_flush de 0 not enable, skip
+[drm] sunxi-hdmi: drm hdmi set mode change when disp info change
+[drm] sunxi-hdmi: drm hdmi check mode: change >>>>>>>>>>>>>>>>
+[drm] sunxi-hdmi: sunxi hdmi select vic 16 use hdmi14 vsif
+[drm] sunxi-hdmi: drm hdmi mode set: 1920*1080 >>>>>>>>>>>>>>>>
+[drm] [SUNXI-CRTC]sunxi_crtc_atomic_enable
+[drm] sunxi_de_enable index 0
+[drm] sunxi_de_enable finish sw en=0
+[drm] suxni tcon hdmi set rate: 148500000Hz and get diff: 148500000Hz
+[drm] sunxi-hdmi: dw audio get n = 6144
+[drm] sunxi-hdmi: [top phy]
+[drm] sunxi-hdmi:  - pixel clock 148500KHz
+[drm] sunxi-hdmi:    - pll: 0xE80F5A00, 0x00035000, 0x80000000, 0x30000000
+[drm] sunxi-hdmi: top phy config done
+[drm] sunxi-hdmi: [snps phy]
+[drm] sunxi-hdmi:  - refer clock: 148500KHz, color bits: 8, repeat: 0
+[drm] sunxi-hdmi:     - mpll: 0x0001, 0x2080, 0x020a
+[drm] sunxi-hdmi:  - refer clock: 148500KHz. [25000KHz~185625KHz]
+[drm] sunxi-hdmi:     - drive: 0x0007, 0x8160, 0x8188
+[drm] sunxi-hdmi: snps phy state: lock
+[drm] sunxi-hdmi: dw audio check: triger cts re-calculate
+[drm] sunxi-hdmi: hdmi drv enable output done
+[drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[drm] sunxi-hdmi: drm get edid support modes: 42
+dmesg -n 5; modprobe -r pvrsrvkm; printf "PVR_UNLOAD_RC=%s\n" "$?"; cat /etc/ssh/ssh_host_ed25519_key.pub; printf "BASELINE_READY\n"
+
+PVR_UNLOAD_RC=0
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICxpg5yE8HAxTymdRQVBNfqclWyL1U31gAq+yiZRvaA6 root@a7f146fcf7d4
+BASELINE_READY
+root@t736:~# 

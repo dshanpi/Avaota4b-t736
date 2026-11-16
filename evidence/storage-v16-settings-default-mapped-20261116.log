@@ -1,0 +1,5 @@
+DEFAULT {"pid": 17915, "display": ":0", "metric": "First viewable X11 client window with matching _NET_WM_PID", "complete_render_verified": false, "input_sent": false, "timeout_seconds": 30.0, "start_monotonic": 1795.360355707, "observer_start_monotonic": 1795.608648415, "start_origin": "launcher", "status": "mapped", "window": "0x1e00004", "elapsed_seconds": 2.973317, "observer_seconds": 2.725024, "width": 980, "height": 640}
+
+{"elapsed": 8.06, "ticks": 1232, "major_faults": 0, "threads": "105"}
+{"elapsed": 13.06, "ticks": 1701, "major_faults": 0, "threads": "105"}
+{"elapsed": 18.07, "ticks": 1701, "major_faults": 0, "threads": "105"}

@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v21-hs-sdr-design",
+  "status": "compiled-and-statically-reviewed-hardware-acceptance-pending",
+  "baseline": "v20 HRT plus v19 IDIE coherent DMA, accepted on board",
+  "baseline_evidence": "evidence/storage-v20-dma-integrity-20261116.json",
+  "first_stage_card_hz": 25000000,
+  "later_stage_card_hz": 50000000,
+  "later_stage_parameter": "t736_mmc_pio.hs_max_hz=50000000",
+  "mode": "MMC_TIMING_MMC_HS / HS52 protocol operated at25MHz then50MHz",
+  "parent_evidence": "evidence/storage-v20-emmc-clocks-readonly-v2-20261116.log",
+  "observed_parent": {
+    "REF": "0xf8675f00",
+    "PERI0": "0xff126310",
+    "PAT0": "0x00000000",
+    "PAT1": "0x30000000",
+    "three_passes_stable": true,
+    "PERI1": "0x40126310 disabled, not selected"
+  },
+  "clock_plan": {
+    "source": "existing PERI0_800M via SMHC3 mux1",
+    "reference_calculation": "26M*96/104=24M",
+    "output_calculation": "24M*100/3=800M",
+    "25MHz": {
+      "M": 16,
+      "N": 1,
+      "module_reg": "0x8100000f",
+      "sample_delay": 0
+    },
+    "50MHz": {
+      "M": 8,
+      "N": 1,
+      "module_reg": "0x81000007",
+      "sample_delay": 32
+    },
+    "shared_pll_writes": false,
+    "branch_gates": {
+      "evidence": "evidence/storage-v20-emmc-clocks-readonly-v3-20261116.log",
+      "enable": "0x8fff0fff",
+      "status": "0x0fff0000",
+      "software_gate_26": 1,
+      "no_auto_10": 1,
+      "actual_gate_26": 1,
+      "three_passes_stable": true,
+      "writes": false
+    }
+  },
+  "voltage": "physically fixedVCCQ1.8; callback describes180 and rejects330/120 without changing rail",
+  "unchanged": [
+    "v20 HRT/HZ config exceptLOCALVERSION",
+    "v19 IDIE/DMA descriptors and completion/error path",
+    "CPU topology/GPU/HDMI/media",
+    "v16 persistent fallback"
+  ],
+  "tests": "PASS actual C helper ASan/UBSan; ARM64 full kernel build; exact config and DT semantic delta; package audit82payload; matching PVR",
+  "source_files": {
+    "boards/t736_mmc_hs_draft.c": "177a977333e1cc330b1984e6e4f5914aca2123c790e6efe73b02000ca247ae14",
+    "boards/t736_mmc_clock_hs_draft.h": "dcb8a5df6be4c0bdb2b68d5c5419b2c2f8405f9d5c874d01247e57d7defaaab1",
+    "boards/t736-smhc3-hs-draft.dtsi": "8bf0dcf154f2f3554ab03092440c623dfced2807c48ddda0d8b08e0fea143b6f",
+    "tools/build_hs_storage_kernel.sh": "86e0e9f49fe0b68bf7d00c1d7b2383b74d6a18e54680da3d0a769fa3eaffb096"
+  },
+  "acceptance_required": [
+    "25MHz ios/clock/sample readback",
+    "bounded same32MiB integrity and performance workload",
+    "no MMC/filesystem errors",
+    "GBM/readback/PVR health",
+    "then explicit50MHz step with repeated acceptance"
+  ],
+  "build_record": "evidence/storage-v21-build-20261116.json",
+  "package_record": "evidence/storage-v21-package-20261116.json",
+  "pvr_record": "evidence/storage-v21-pvr-build-20261116.json",
+  "independent_review": "evidence/storage-v21-hs-peri0-independent-review-20261116.json"
+}

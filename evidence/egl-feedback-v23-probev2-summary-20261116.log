@@ -1,0 +1,4 @@
+{'status': 'OBSERVATION_COMPLETE', 'failure': None, 'test_swap_interval': 0, 'rate_ok': True, 'rate_numerator': 60, 'rate_denominator': 1, 'pixel_verified_frames': 2, 'submitted_swaps': 60, 'elapsed_us': 1066254}
+samples 122 bad_queries 0 last {'kind': 'drain', 'submitted_swaps': 60, 'query_start_us': 404396315, 'query_end_us': 404396430, 'ok': True, 'egl_error': 12288, 'ust': 404389861, 'msc': 4693, 'sbc': 60}
+{'status': 'OBSERVATION_COMPLETE', 'failure': None, 'test_swap_interval': 1, 'rate_ok': True, 'rate_numerator': 60, 'rate_denominator': 1, 'pixel_verified_frames': 2, 'submitted_swaps': 60, 'elapsed_us': 1083187}
+samples 122 bad_queries 0 last {'kind': 'drain', 'submitted_swaps': 60, 'query_start_us': 405567019, 'query_end_us': 405567123, 'ok': True, 'egl_error': 12288, 'ust': 405562674, 'msc': 4763, 'sbc': 60}

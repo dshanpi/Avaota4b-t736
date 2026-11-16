@@ -1,0 +1,22 @@
+dmesg -n 5; systemctl stop gdm.service; modprobe -r pvrsrvkm; test ! -e /sys/module/pvrsrvkm && printf t736-gpu-power-retry >/sys/bus/platform/devices/7065000.power-controller/driver_override && insmod /root/t736-gpu-debug/power-retry3.ko publish_domain=1; echo PROVIDER_RESTORED=$?
+
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+t736-gpu-power-retry 7065000.power-controller: stage 01: probe starts, publish_domain=1
+t736-gpu-power-retry 7065000.power-controller: stage 02: resources acquired; enabling supply
+t736-gpu-power-retry 7065000.power-controller: stage 03: DCDC5=900000 uV; enabling PPU/AHB/MBUS
+t736-gpu-power-retry 7065000.power-controller: stage 04: master clocks enabled; setting TOP delays
+t736-gpu-power-retry 7065000.power-controller: stage 05: requesting TOP and waiting for TOP ACK
+t736-gpu-power-retry 7065000.power-controller: stage 06: TOP ACK confirmed; writing Tina CORE policy/request
+t736-gpu-power-retry 7065000.power-controller: stage 07: CORE request written; deasserting GPU reset
+t736-gpu-power-retry 7065000.power-controller: stage 08: reset-deassert returned 0; enabling GPU bus/core
+t736-gpu-power-retry 7065000.power-controller: stage 09: bus/core enabled; reading CCF rate
+t736-gpu-power-retry 7065000.power-controller: stage 10: CCF rate=400000000; reading CORE diagnostic registers
+t736-gpu-power-retry 7065000.power-controller: stage 11: CORE control=00000008 status=00000000 (not an ACK)
+t736-gpu-power-retry 7065000.power-controller: stage 12: initializing genpd
+t736-gpu-power-retry 7065000.power-controller: stage 13: genpd initialized; releasing temporary reset reference
+t736-gpu-power-retry 7065000.power-controller: stage 14: publishing genpd; DDK may probe after this
+t736-gpu-power-retry 7065000.power-controller: stage 15: genpd published; reading final CCF rate
+t736-gpu-power-retry 7065000.power-controller: stage 16: GPU_TOP ACK on; Tina CORE request issued: control=00000008 status=00000000 (not an ACK); GPU=400000000 Hz DCDC5=900000 uV reset-deassert=0; DDK HW/FW validation required
+PROVIDER_RESTORED=0
+root@t736:~# 

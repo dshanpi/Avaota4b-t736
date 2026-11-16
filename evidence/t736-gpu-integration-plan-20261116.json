@@ -1,0 +1,106 @@
+{
+  "date": "2026-11-16",
+  "status": "planned_not_built_or_deployed",
+  "objective": "在现有 T736 Armbian 上接入 IMG BXM-4-64 MC1 硬件渲染，使 GNOME 桌面达到可用的交互性能。",
+  "baseline": {
+    "image": "source-v7",
+    "kernel": "6.18.63-t736-hdmi-v14",
+    "desktop": "GNOME 48 / Xorg / Debian 13",
+    "gpu_bvnc": "36.56.104.183",
+    "measured_renderer": "llvmpipe (LLVM 19.1.7, 128 bits)",
+    "display": "用户曾确认登录页与桌面切到 1920x1080@60 后可见且闪屏停止，但随后再次报告亮灭。最新只读查询仍是1080p60、ScreenSaver active=true、DPMS Monitor Off；日志有HDMI启停。这是熄屏/唤醒排查线索，不足以认定全部闪烁原因。分辨率尚未持久化。",
+    "render_node": "当前无 GPU render node；card0 是显示控制器。",
+    "evidence": [
+      "source-v7-1080-render-load-20261116.log",
+      "source-v7-user-1080-trial-20261116.log",
+      "source-v7-deployment-complete-20261116.log",
+      "source-v7-flicker-reported-readonly-20261116.log"
+    ]
+  },
+  "constraints": [
+    "复用已授权 Tina GPU 闭源用户态库，保留可得的内核驱动源码。",
+    "维持 Linux 6.18、源码 SPL/TF-A/U-Boot 和固定 LPDDR4x；Tina 原工程只读。",
+    "保留 source-v7 恢复镜像和软件 FEL。最终交付为完整 raw/FES 镜像。",
+    "本轮为基于代码与 ELF 审计的方案；尚未构建或部署 GPU 候选。"
+  ],
+  "selected_route": {
+    "kernel": "Tina rogue_km DDK 24.2@6603887 的 rgx_sunxi / pvrsrvkm，移植到当前 6.18 内核。",
+    "userspace": "从一个来源选择完整匹配的 arm64 X11/GBM EGL/GLES/PVR 库、DRI loader、固件和 shader，建立逐文件哈希清单。",
+    "desktop": "第一候选保留 GNOME Xorg，利用已确认存在的 Mutter EGL_XLIB + GLES2 路径，候选会话选择 COGL_DRIVER=gles2。",
+    "reason": "Tina 已有本芯片厂商基线；GNOME GLES 路径可先避开缺少 libGL_PVR_MESA.so 带来的原生桌面 OpenGL 不确定性。",
+    "unverified": "EGL X11/pixmap、GPU与DE共享缓冲、同步、GNOME扩展要求和实际性能仍需实板验证。"
+  },
+  "steps": [
+    {
+      "id": 1,
+      "title": "冻结基线与完整配套",
+      "actions": [
+        "保存 v7 恢复路径与当前性能基线。",
+        "锁定 KM/UM DDK 与 BVNC，区分 gcc10.2/10.3 同名但不同哈希的 firmware；确认驱动握手与配置匹配。",
+        "从 Mutter 实际 monitorspec 取得屏幕标识，持久化用户和 GDM 的 1080p60 配置。"
+      ],
+      "pass": "可复现的输入清单、完整性哈希和独立候选目录；重启/重新登录不切回1440p。"
+    },
+    {
+      "id": 2,
+      "title": "接通 Linux 6.18 GPU 驱动",
+      "actions": [
+        "复制 rogue_km 到 mainline 独立目录，修复 DRM/platform/timer/namespace 等已发现的 6.18 API 差异，编译适配目标内核的模块。",
+        "补齐板级 GPU PLL/门控、reset、IRQ、regulator、GPU_TOP/GPU_CORE 电源控制；按源码落实 GPU_CORE 常开要求。",
+        "先选择已核实电压范围内的保守频率；DVFS/thermal 后续按真实依赖接入。外部 IOMMU 是否需要由驱动和共享缓冲路径决定。"
+      ],
+      "pass": "模块针对正确内核加载，BVNC与固件握手成功，渲染节点出现，实际 GPU 作业完成，无 firmware/MMU/reset 错误。"
+    },
+    {
+      "id": 3,
+      "title": "最小硬件渲染和显示互操作",
+      "actions": [
+        "重新打包厂商用户态库，去掉旧 Debian 包的 LightDM 管理动作，使用可回退的独立目录。",
+        "在测试进程中移除强制 llvmpipe 变量，验证 EGL/GLES context、shader 与 GPU 提交。",
+        "优先验证 GPU dma-buf/PRIME 到现有 DE KMS 的 import/export、格式/修饰符、fence 和带负载呈现；显示路径是否需要 IOMMU 在此解决。",
+        "v14 使用 DRM_GEM_DMA_DRIVER_OPS_VMAP，导入要求 DMA 地址覆盖连续且 exporter 可 vmap。优先验证 DE/CMA 分配 linear scanout BO、导出给 GPU 渲染、再由 DE 显示；所选用户库是否支持该路径仍待实测。"
+      ],
+      "pass": "EGL/GLES 报告 IMG BXM 硬件 renderer 且有实际作业证据；屏幕正确显示 GPU 渲染画面，无共享缓冲/同步错误。"
+    },
+    {
+      "id": 4,
+      "title": "接入 GNOME 与 GDM",
+      "actions": [
+        "候选保留 Xorg，配置 COGL_DRIVER=gles2 与成套 X11 EGL/GLES 加载路径，分别覆盖 GDM 和用户会话。",
+        "修改候选 rootfs builder，去除 LIBGL_ALWAYS_SOFTWARE=true 与 GALLIUM_DRIVER=llvmpipe；将 Xorg AccelMethod none 改为已验证的 glamor 配置，page flip 经测试后启用。",
+        "检查实际 gnome-shell 使用的驱动和设备，测试窗口纹理、拖动、概览、终端滚动及浏览器普通页面。"
+      ],
+      "pass": "GDM和用户GNOME合成器均使用GPU；无软件回退、黑屏、闪屏或纹理损坏。"
+    },
+    {
+      "id": 5,
+      "title": "性能与完整镜像验收",
+      "actions": [
+        "同一1080p60场景比较v7软件基线与GPU候选，记录实际呈现帧时间、CPU负载、GPU负载和温度。",
+        "目标：持续窗口拖动/概览接近60fps；记录p50/p95/p99及超过100ms的停顿，不能用glxgears或扫描中断频率替代桌面帧率。",
+        "连续交互/图形负载至少30分钟，检查GPU reset/MMU fault/屏幕闪烁；至少3次冷启动验证登录和桌面，并覆盖锁屏、熄屏、唤醒循环，单独记录亮灭问题。",
+        "固化内核、固件、用户库、会话配置到完整 raw，核对哈希、FES烧录后重复关键验收。"
+      ],
+      "pass": "完整镜像可重建并实板启动，实际桌面硬件合成且流畅；明确列出浏览器视频等未覆盖项目。"
+    }
+  ],
+  "decision_points": [
+    {
+      "condition": "GPU EGL/GLES成功，但Xorg纹理共享或glamor/GNOME失败",
+      "action": "先定位 EGL/pixmap/PRIME 问题；只有 GBM/KMS 与 compositor 能力实测通过后再测试 GNOME Wayland，不把换会话当成自动修复。"
+    },
+    {
+      "condition": "桌面OpenGL应用需要原生GL，而厂家套件未提供实现",
+      "action": "验证匹配的 Vulkan + Zink 作为独立应用/桌面候选；有libGL/GLX导出不等于具备硬件OpenGL。"
+    },
+    {
+      "condition": "Tina DDK移植或用户态兼容性成为主要阻碍",
+      "action": "评估独立的上游 PowerVR + 匹配 Mesa/firmware 路线；参考A7Z公开结果与GPU_CORE电源补丁。不能将上游内核DRM ABI与Tina用户态混搭。"
+    }
+  ],
+  "source_audits": [
+    "t736-gpu-kernel-audit-20261116.json",
+    "t736-gpu-debian-package-audit-20261116.json",
+    "t736-gpu-upstream-reference-20261116.json"
+  ]
+}

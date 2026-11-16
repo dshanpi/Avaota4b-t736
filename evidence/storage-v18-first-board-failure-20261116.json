@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v18-first-board-failure",
+  "status": "failed-card-initialization-rootfs-not-mounted",
+  "log": "evidence/storage-v18-coldboot-20261116.log",
+  "log_sha256": "8ba456af4ed0c9ae21a5972a0c14d976f2308f66c4cbca5c895f6de615074bd4",
+  "kernel_release": "6.18.63-t736-storage-v18",
+  "command": 8,
+  "command_purpose": "SEND_EXT_CSD, 512-byte read",
+  "error": -110,
+  "irq": "0x0000002c",
+  "idst": "0x00000000",
+  "successful_dma_requests": 0,
+  "successful_dma_bytes": 0,
+  "observations": [
+    "CMD_DONE and DATA_OVER are set; card command/data receive completed",
+    "RX_FIFO_REQ is sticky; it does not prove the FIFO remained full",
+    "The original code did not snapshot descriptor OWN, FIFO occupancy or byte counters before reset",
+    "STORE_MBUS and MSI_LITE1 readbacks show enabled paths; SMCV050610 confirmed",
+    "Descriptor DMA0xae000000 and buffer DMA0xebba0000 are within32bit mask"
+  ],
+  "unproven_hypothesis": "Requiring directional IDST while IDIE=0 may suppress required completion indication. Vendor read DMA enables IDIE bit1, but manual only explicitly documents NIS masking. Actual data movement is not yet known.",
+  "recovery": "Parent exclusively restores previously accepted v16/topology; no changes made to board by this agent",
+  "next_candidate": "storage-v19 enables directional IDIE plus valid error events, keeps global CPU IRQ disabled, and records pre-reset IDMA/descriptor/FIFO/TBC0/TBC1 state. No clock/timing/voltage change."
+}

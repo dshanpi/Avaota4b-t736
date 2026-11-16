@@ -1,0 +1,16 @@
+id t736; id Debian-gdm; ls -l /dev/dri; runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri /opt/t736-img-ddk-24.2-x11/bin/gpu-probe x11 >/root/t736-gpu-debug/x11-user.log 2>&1; echo X11_USER_RC=$?; cat /root/t736-gpu-debug/x11-user.log; echo X11_USER_DONE
+
+uid=1000(t736) gid=1000(t736) 组=1000(t736),27(sudo),29(audio),44(video),995(input),991(render)
+uid=101(Debian-gdm) gid=106(Debian-gdm) 组=106(Debian-gdm)
+总计 0
+drwxr-xr-x  2 root root        100 11月16日 07:54 by-path
+crw-rw----+ 1 root video  226,   0 11月16日 07:36 card0
+crw-rw----+ 1 root video  226,   1 11月16日 07:54 card1
+crw-rw----+ 1 root render 226, 128 11月16日 07:54 renderD128
+X11_USER_RC=1
+libEGL warning: egl: failed to create dri2 screen
+FAIL eglInitialize egl=0x3001
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+X11_USER_DONE
+root@t736:~# 

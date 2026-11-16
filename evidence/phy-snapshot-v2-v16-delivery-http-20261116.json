@@ -1,0 +1,24 @@
+{
+  "created_utc": "2026-11-16T11:06:08.775342+00:00",
+  "expires_utc": "2026-11-16T12:06:08.775342+00:00",
+  "base_url": "http://192.168.1.228:18749/c8fcae564e6484d721a1af448ec10d4f",
+  "pid": 958109,
+  "files": {
+    "t736-phy-snapshot-v2-storage-v16.ko": {
+      "path": "output/t736-phy-snapshot-v2-storage-v16.ko",
+      "bytes": 7784,
+      "sha256": "3b410742539a764457ec4c9f2ec9f97184d118e97058bfdc04b26391a4add70c"
+    },
+    "t736-phy-snapshot-v2.c": {
+      "path": "tools/validation/t736-phy-snapshot-v2.c",
+      "bytes": 3276,
+      "sha256": "babfde92cf76aa785dadd2d6ee6f935346c671807ffd5fe83ebeb30a7bebefe6"
+    }
+  },
+  "reviewer": "desktop_review",
+  "hardware_actions": false,
+  "configuration_writes": false,
+  "page_selector_writes": true,
+  "read_side_effects": "A42 STAT1000 sampling consumes fault/idle-error bits before page0 sample; compare reg9 and non-RC bits directly",
+  "http_readback_sha256": "ALL_PASS"
+}

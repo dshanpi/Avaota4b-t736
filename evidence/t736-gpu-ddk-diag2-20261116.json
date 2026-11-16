@@ -1,0 +1,40 @@
+{
+  "diagnostic": "diag2 early_secure load parameter, default false, mode0444",
+  "source": "/home/ubuntu/t736-mainline/sources/work/pvr-bxm-24.2-diag2",
+  "original_production_module_unchanged": true,
+  "early_call_point": "After supply, genpd, clocks and reset; before first BVNC access",
+  "original_late_call_retained": true,
+  "hardware_id_reads_unchanged": true,
+  "secure_mmio_semantics": "Same vendor writes; hSysData unused. Same-power-cycle repeat has not been hardware validated; may hang at MMIO. No inferred readback assertions.",
+  "deployed": false,
+  "patch": "patches/pvr-bxm-v15-diag2-early-secure.patch",
+  "delta_format": "T736DEL1: magic8 + <QQ old_size,new_size> + old SHA256[32] + new SHA256[32] + bzip2(C <QQ offset,length> | D <I length> data)*",
+  "delta_replayed_and_sha256_matched": true,
+  "files": [
+    {
+      "path": "output/pvrsrvkm-6.18.63-t736-gpu-v15-diag1.ko",
+      "bytes": 1911968,
+      "sha256": "21940e868ea9220ce59f0718892a4bed5cfe15fd1be913051c5353bb0f7aa30e"
+    },
+    {
+      "path": "output/pvrsrvkm-6.18.63-t736-gpu-v15-diag2.ko",
+      "bytes": 1913336,
+      "sha256": "48317a4b097cbd156ecbdc351096f408e170ee9490dd878a116fc12086e2ed5f"
+    },
+    {
+      "path": "output/pvrsrvkm-6.18.63-t736-gpu-v15-diag2.ko.xz",
+      "bytes": 349852,
+      "sha256": "f4a6635ccc7feb176ca4a71f5e174e9c777bfbcef1d4d3dbbaae6a79885973ee"
+    },
+    {
+      "path": "output/pvrsrvkm-diag1-to-diag2.delta",
+      "bytes": 83048,
+      "sha256": "c403780e8def9b5be94c618d610cef96601a653b3ea71e548cc9ad5f9f227028"
+    },
+    {
+      "path": "tools/validation/apply_binary_delta.py",
+      "bytes": 2116,
+      "sha256": "8a351d5e056bde396e93c6a997f08a9f220fea0a03b265c4aff31253ee226e9a"
+    }
+  ]
+}

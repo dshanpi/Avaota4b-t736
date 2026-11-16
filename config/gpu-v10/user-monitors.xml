@@ -1,0 +1,18 @@
+<monitors version="2">
+  <configuration>
+    <layoutmode>physical</layoutmode>
+    <logicalmonitor>
+      <x>0</x><y>0</y><scale>1</scale><primary>yes</primary>
+      <transform><rotation>normal</rotation><flipped>no</flipped></transform>
+      <monitor>
+        <monitorspec>
+          <connector>HDMI-1</connector>
+          <vendor>DEL</vendor>
+          <product>DELL U2518D</product>
+          <serial>3M7K89A9066L</serial>
+        </monitorspec>
+        <mode><width>1920</width><height>1080</height><rate>60.000</rate></mode>
+      </monitor>
+    </logicalmonitor>
+  </configuration>
+</monitors>

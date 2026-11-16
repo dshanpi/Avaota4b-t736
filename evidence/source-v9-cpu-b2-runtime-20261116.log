@@ -1,0 +1,38 @@
+dmesg -n 4; echo 0 > /sys/devices/system/cpu/cpu7/online; echo 0 > /sys/devices/system/cpu/cpu6/online; if insmod /root/source-v9-validation/a76-clock-v4.ko action=enable && rmmod t736_a76_clock_trial_v4 && insmod /root/source-v9-validation/a76-clock-v4.ko action=upgrade; then rmmod t736_a76_clock_trial_v4; echo 1 > /sys/devices/system/cpu/cpu6/online; echo 1 > /sys/devices/system/cpu/cpu7/online; echo A76_RESTORED_1014; fi; dmesg | grep 't736-a76-clock-trial-v4:' | tail -8; cat /proc/sys/kernel/random/boot_id; cat /sys/devices/system/cpu/online; ethtool end0 | grep -E 'Speed:|Duplex:|Link detected'; dmesg | grep -E 'Downshift|Link is Up'; loginctl list-sessions; ps -eo pid,user,comm | grep -E 'firefox|gnome-shell|Xorg'; ls /root/source-v9-validation
+
+A76_RESTORED_1014
+[   75.736475] t736-a76-clock-trial-v4: commit desired=e0802700 CTRL=f0802700 STAT=f0802700
+[   75.736534] t736-a76-clock-trial-v4: stage desired=e8802700 committed=00002700 actual=f8802700 may_latch_n=0
+[   75.736594] t736-a76-clock-trial-v4: mux expected=03000000 actual=03000000
+[   75.739312] t736-a76-clock-trial-v4: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[   75.739335] t736-a76-clock-trial-v4: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[   75.739352] t736-a76-clock-trial-v4: SUCCESS: A76=1014MHz CTRL=f8802700 STAT=f8802700 CLK=03000000; PMIC untouched
+[   75.739383] t736-a76-clock-trial-v4: finished rc=0 mutation_attempted=1
+[   75.758101] t736-a76-clock-trial-v4: unloaded; setting retained; explicit restore requires CPU6/7offline
+2d1e67a3-f885-4d45-96d4-a05f4e3c2e0c
+0-7
+	Speed: 100Mb/s
+	Duplex: Full
+	Link detected: yes
+[   36.908688] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[   36.924723] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+
+SESSION UID USER       SEAT  LEADER CLASS         TTY   IDLE SINCE
+     c1 101 Debian-gdm seat0 918    greeter       tty1  no   -    
+     c2 101 Debian-gdm -     963    manager-early -     no   -    
+     c3   0 root       -     796    user-early    ttyS0 no   -    
+     c4   0 root       -     1205   manager-early -     no   -    
+
+4 sessions listed.
+
+   1017 Debian-+ Xorg
+   1249 Debian-+ gnome-shell
+a76-clock-v4.ko			  gtk_frame_probe.py
+cpu-stress-6.log		  t736-a76-clock-trial-v1-reviewed.ko
+cpu-stress-7.log		  t736-a76-clock-trial-v2.ko
+ethernet-roundtrip-20261116.json  t736-cpu-clock-readonly.ko
+gbm-user.log			  web-packets-20261116.json
+gdm-original.conf		  web-probe-console.log
+gpu-desktop-enable.log		  x11-user.log
+gpu_session_trial.sh
+root@t736:~# 

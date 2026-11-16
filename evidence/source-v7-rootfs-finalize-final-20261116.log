@@ -1,0 +1,22 @@
+Default desktop service: /usr/lib/systemd/system/gdm.service
+Reading package lists...
+Building dependency tree...
+Reading state information...
+vmlinuz-6.18.63-t736-hdmi-v13: OK
+initrd.img-6.18.63-t736-hdmi-v13: OK
+config-6.18.63-t736-hdmi-v13: OK
+System.map-6.18.63-t736-hdmi-v13: OK
+t736-mainline-bringup.dtb: OK
+vmlinuz-6.18.63-t736-armbian: OK
+initrd.img-6.18.63-t736-armbian: OK
+config-6.18.63-t736-armbian: OK
+System.map-6.18.63-t736-armbian: OK
+t736-mainline-bringup.dtb: OK
+e2fsck 1.47.0 (5-Feb-2023)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+rootfs: 46580/476720 files (0.1% non-contiguous), 648721/1904960 blocks
+SOURCE_V7_finalize_READY

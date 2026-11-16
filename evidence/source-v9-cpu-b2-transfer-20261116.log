@@ -1,0 +1,21 @@
+mkdir -p /run/t736-cpu-b2; cd /run/t736-cpu-b2; b=http://192.168.1.228:18742/f35e2d667b398d127b0ab6a0427cc8e5; for f in t736-source-boot-package-cpu-b2.bin t736-source-boot-package-cpu-b2.manifest.json update_t736_cpu_b2.py; do curl -q -4 --noproxy '*' -f --connect-timeout 4 --max-time 20 "$b/$f" -o "$f" || break; done; sha256sum update_t736_cpu_b2.py t736-source-boot-package-cpu-b2.bin t736-source-boot-package-cpu-b2.manifest.json
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  315k  100  315k    0     0  9328k      0 --:--:-- --:--:-- --:--:-- 9560k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  2103  100  2103    0     0   337k      0 --:--:-- --:--:-- --:--:--  410k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 14689  100 14689    0     0  1860k      0 --:--:-- --:--:-- --:--:-- 2049k
+427ea4bb1fbc579b574a3910c6e4b3b2bfa5b81bd7e279d05b97a17a55c7332e  update_t736_cpu_b2.py
+306fb10d7612c7fcc9bd16b8588737e3153c67103ea470226b34c7d28fdbcfa1  t736-source-boot-package-cpu-b2.bin
+5fc9794a1b14d4541f560a5a9d7f618a980f41444cdb6e6d04c2c029f9a80c39  t736-source-boot-package-cpu-b2.manifest.json
+root@t736:/run/t736-cpu-b2# 

@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-16",
+  "scope": "Read-only build-host audit; no board access, rootfs mounts, package changes or service starts",
+  "inputs": [
+    "/home/ubuntu/t736-mainline/output/rootfs-armbian-source-v6.ext4",
+    "/home/ubuntu/t736-mainline/build/private/source-v7-preserved-state.tgz",
+    "config/desktop-v7-packages.txt"
+  ],
+  "method": "Read v6 files through debugfs without -w; inspect preserved archive members in memory; inspect local package manifest",
+  "v6_installed_packages": {
+    "fake-hwclock": "0.14",
+    "systemd": "257.13-1~deb13u1"
+  },
+  "v6_absent_packages": [
+    "chrony", "ntp", "ntpsec", "openntpd", "systemd-timesyncd"
+  ],
+  "v7_manifest_has_explicit_time_sync_daemon": false,
+  "preserved_enabled_units": [
+    "sysinit.target.wants/fake-hwclock-load.service",
+    "shutdown.target.wants/fake-hwclock-save.service",
+    "timers.target.wants/fake-hwclock-save.timer"
+  ],
+  "fake_hwclock_behavior": {
+    "load": "Before systemd-fsck-root.service; /usr/sbin/fake-hwclock load",
+    "save": "Before shutdown.target; /usr/sbin/fake-hwclock save",
+    "periodic_save": "OnCalendar=hourly",
+    "v6_saved_time": "2026-11-11 15:47:59",
+    "preserved_saved_time": "2026-11-13 06:00:54",
+    "force_clock_backwards": false,
+    "legacy_service_status_is_inconclusive": true
+  },
+  "recommendation": "Explicitly install and enable one network time client, preferably systemd-timesyncd for this image, while retaining fake-hwclock 0.14 split load/save units for a plausible offline boot time. Validate synchronization on actual hardware before claiming TLS/reboot time acceptance.",
+  "limitations": [
+    "The candidate prepare package inventory did not yet exist at audit time.",
+    "Installed dependency closure and runtime synchronization have not been verified.",
+    "No changes were made to the running prepare script or candidate image."
+  ]
+}

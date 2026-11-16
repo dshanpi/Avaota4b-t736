@@ -1,0 +1,61 @@
+/home/t736/mmc_dma_integrity_probe.py: 成功
+{
+  "status": "PASS",
+  "kernel": "6.18.63-t736-storage-v16",
+  "boot_id": "7959b985-70da-4b12-b632-ebff7bd14ca8",
+  "seconds": 67.81308962700007,
+  "phases": [
+    {
+      "phase": 1,
+      "write_MiBs": 1.8826116988455113,
+      "read_MiBs": [
+        [
+          "sequential",
+          4096,
+          1.8381915578721737
+        ],
+        [
+          "fixed_seed_random",
+          4096,
+          1.4684085814218144
+        ],
+        [
+          "sequential",
+          65536,
+          8.210296968111665
+        ],
+        [
+          "fixed_seed_random",
+          65536,
+          8.243426318322985
+        ]
+      ]
+    },
+    {
+      "phase": 2,
+      "write_MiBs": 6.028037402235183,
+      "read_MiBs": [
+        [
+          "sequential",
+          4096,
+          1.754868332324716
+        ],
+        [
+          "fixed_seed_random",
+          4096,
+          6.593817989681396
+        ],
+        [
+          "sequential",
+          65536,
+          8.220509231081346
+        ],
+        [
+          "fixed_seed_random",
+          65536,
+          7.932050910805045
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v18-updater-independent-static-review",
+  "status": "passed-static-diff-review-not-executed-by-reviewer",
+  "updater_sha256": "87b695669cd78f61104159d2cfc82680d6ac41517f079dedf9c5455faeecee80",
+  "comparison": "tools/validation/update_t736_storage_v16.py",
+  "reviewed": [
+    "Exact v16-to-v18 version/package paths and private backup/lock namespace",
+    "Final17a12b4b package and c5d60148 PVR bindings",
+    "Exact accepted6124591a old DT and b9ca0c07 new DT; no arbitrary-old-DT relaxation",
+    "Fixed baseline gzip/config/System.map hashes and board model",
+    "Maintainer/control and payload manifest checks remain intact",
+    "Private mount namespace hook suppression; old kernel and PVR preserved",
+    "Backup fsync/readback and frozen inputs before dpkg; failures restore old aliases and exact DT",
+    "Candidate gzip Image/PVR/DT/readback and generated initramfs checks before selection",
+    "Apply does not reboot, change SPL/GPT/raw media or bootcmd"
+  ],
+  "material_new_blockers": [],
+  "limits": "Read-only source/diff review; relied on peer-reported 11 fault-injection cases and actual-input checks, did not rerun tests or touch board."
+}

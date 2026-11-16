@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "kind": "t736-v22-hs200-200MHz-first-failure-independent-review",
+  "reviewed_utc": "2026-11-16T13:10:57.302997+00:00",
+  "status": "confirmed-error-classification-defect-candidate-fix-not-yet-reviewed",
+  "board_operations": false,
+  "evidence": {
+    "path": "evidence/storage-v22-hs200-200-coldboot-20261116.log",
+    "sha256": "000943b4f5ba1ed9fb6125d5413300f480a7ce966139310cade395efe9d83861",
+    "bytes": 26572
+  },
+  "frozen_driver": {
+    "path": "boards/t736_mmc_hs200_draft.c",
+    "sha256": "db179f33c161bd134d13698df41f41e6973f5465bd2e2c84777cadca68f57bbe"
+  },
+  "observations": {
+    "requested_hz": 200000000,
+    "programmed_clock": "0x81000001",
+    "passing_taps_before_stop": "0..31 each completed20 CMD21 validations",
+    "passing_bitmap": "0x00000000ffffffff",
+    "first_failed_tap": 32,
+    "tap_identity_basis": "Inferred from monotonically scanned taps and first32-bit passing bitmap; failure line does not print tap separately.",
+    "error": -84,
+    "rint": "0x000000ac",
+    "idst": "0x00000022",
+    "descriptor_owned": "0/1",
+    "card_bytes": 128,
+    "host_bytes": 128,
+    "cleanup_abort": -110,
+    "dma_stop": 0,
+    "clock_stop": 0,
+    "dma_dead": false,
+    "card_initialization": "failed",
+    "root_mounted": false
+  },
+  "register_interpretation": {
+    "SMHC3_IDST_bit5": "ERR_FLAG_SUM: card error summary, not a DMA bus fault or generic abnormal interrupt summary.",
+    "SMHC3_IDST_bit1": "Receive completion.",
+    "SMHC3_IDST_bit4": "Descriptor unavailable; continue treating as fatal to tuning.",
+    "SMHC3_IDST_bits3_2": "Reserved in SMHC3 manual; generic donor bit2 means fatal bus error. If observed set, reject conservatively without enabling/writing reserved fields.",
+    "RINT_0xac": "DCRC bit7 plus receive data request/completion/command completion bits5/3/2; noFIFO/HW-lock bits11/12.",
+    "DMA_completion": "Both128-byte counters and OWN0 plus healthy reset support a completed but CRC-invalid tuning transfer. It is still a failed tap, never a successful data transfer."
+  },
+  "cause": "v22 execute_tuning treats both IDST[4] and[5] as fatal. A valid scan must mark the CRC-invalid tap failed and may continue read-only trials after healthy bounded reset; it must not abort merely because the matching card-error summary is set.",
+  "proposed_guarded_fix": [
+    "Separate tuning-only error classification; normal file/data I/O must continue rejecting all reported card errors.",
+    "Allow IDST5 only with matching RINT EBE/RTO/RCRC/SBE/DRTO/DCRC/RE in the same failed transaction; unexplained summary remains fatal.",
+    "Keep IDST4, dma_dead, ios_error and FIFO/HW-lock fatal; reject reserved/unknown IDST bits conservatively, including bit2.",
+    "Treat RINT10 starvation and18 write-busy timeout as unexpected hardware errors in read-only CMD21 tuning, not as card-error-summary recovery.",
+    "Retain short polls, soft global deadline, fresh poisoned patterns, per-tap20 successes, minimum12 contiguous window and final16 validations.",
+    "Any candidate must be separate version with final static classification tests and independent review before a new200MHz trial."
+  ],
+  "manual": {
+    "path": "evidence/vendor-reference/reference-1.txt",
+    "sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483",
+    "section": "11.3.9.28 SMHC3 IDST",
+    "lines": [
+      28709,
+      28729
+    ],
+    "card_error_summary_sources": [
+      "EBE",
+      "RTO",
+      "RCRC",
+      "SBE",
+      "DRTO",
+      "DCRC",
+      "RE"
+    ]
+  },
+  "correction_to_earlier_review": "Earlier HS200 static review accurately described the v22 IDST4/5 fatal code but failed to distinguish SMHC3 card-error-summary semantics. This new hardware-backed review corrects that judgment; earlier frozen evidence is retained.",
+  "acceptance_boundary": "100MHz remains passed. This failed200MHz boot is not acceptance, and the first32 passing taps do not certify the untested remainder or200MHz file I/O."
+}

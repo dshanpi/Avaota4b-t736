@@ -1,0 +1,10 @@
+{
+  "status": "CHECK_PASS",
+  "running_release": "6.18.63-t736-gpu-v15",
+  "candidate_release": "6.18.63-t736-storage-v16",
+  "write_attempted": false,
+  "hardware_accepted": false,
+  "baseline_files": 94,
+  "kernel_sha256": "520b42929ee4700a29ab8da5f020b828948a607c87a6eb8dd98c8ecacd6170c6",
+  "pvr_sha256": "abd38db687c93b91757719564e1f0fe35b10b137f23d78ea425ff2845d8c8474"
+}

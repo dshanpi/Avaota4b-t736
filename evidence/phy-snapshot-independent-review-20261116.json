@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "review": "independent fixed RTL8211F diagnostic module review",
+  "source_sha256": "d190f83e5c132aa7944781d92dc31f0c4e159da00e918bf6e2a9d7f3a93530b8",
+  "status": "approved for one bounded diagnostic snapshot by parent agent",
+  "board_executed_by_reviewer": false,
+  "checks": [
+    "fixed end0, PHY ID 0x001cc916, MDIO address 1",
+    "RTNL held for attached netdev path; one MDIO mutex covers all save/select/read/restore/readback operations",
+    "only explicit PHY writes target page selector register 0x1f",
+    "known original page is retained and restoration attempted after every selection or data-read error",
+    "original page readback checked while bus remains locked; restore/readback errors return failure",
+    "samples are buffered under MDIO lock and logged only after unlocking",
+    "IEEE standard registers use page0, allowed alongside page0xa42 by RTL8211F datasheet",
+    "a43 PHYCR1/2 and d08 RGMII delay pages match upstream Realtek driver"
+  ],
+  "read_side_effects": [
+    "BMSR reads consume latched status including latch-low link state",
+    "STAT1000 bit15 master/slave fault is read-clear/latch-high",
+    "STAT1000 bits7:0 idle error counter is read-clear"
+  ],
+  "datasheet": {
+    "url": "https://www.wch.cn/uploads/file/20210908/1631089341753290.pdf",
+    "revision": "1.4",
+    "GBSR_pdf_pages": [
+      46,
+      47
+    ]
+  },
+  "artifact_build": "parent backup_audit reported warning-free v16 compile, separate build evidence binds final module"
+}

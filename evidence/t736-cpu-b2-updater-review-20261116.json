@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-16",
+  "kind": "CPU-B2 bounded updater preparation; no hardware actions",
+  "updater": "tools/validation/update_t736_cpu_b2.py",
+  "updater_sha256": "427ea4bb1fbc579b574a3910c6e4b3b2bfa5b81bd7e279d05b97a17a55c7332e",
+  "independent_review": "event_review final source SHA427ea4bb... approved",
+  "default": "preflight only; explicit --apply required for actual write; never reboot",
+  "device": "/dev/mmcblk0, MMC, 122142720 sectors, logical sector512, writable",
+  "root_partuuid": "a0085546-4166-744a-a353-fca9272b8e48",
+  "root_device": "/dev/mmcblk0p4 checked against root mount major:minor and actual GPT",
+  "write_range": {
+    "start_lba": 24576,
+    "sectors": 631,
+    "last_lba": 25206
+  },
+  "guards": [
+    "actual eGON length221184/checksum/SPLv4SHA",
+    "actual primary and backup GPT header/table CRC, diskUUID, all partition bounds and non-overlap with target",
+    "old first613sector SHA and 3payload CRC/hash",
+    "new package/manifest pinned hashes, format and allpayload CRC/hash",
+    "TF-A/stage64 bytes unchanged",
+    "device/GPT/SPL and full old631sector rechecked after durable backup before write"
+  ],
+  "backup": "new private root-owned /var/backups/t736-cpu-b2/timestamp-random directory; full631sector before, candidate,manifest,preflight fsync plus parent/dir fsync",
+  "transaction": "GNU dd oflag=direct conv=notrunc,fsync count631 seek24576; direct fullblock631sector readback exactbytes/SHA; neighboring sectors and SPL/GPT checked after write",
+  "error_behavior": "Any update/readback/success journal error restores complete631sector backup and verifies direct readback; failed child killed/reaped before restore; rollback failure explicit CRITICAL_ROLLBACK_FAILED; status2 for any attempted failed update",
+  "signals": "SIGINT/SIGTERM ignored only during bounded write/verify/rollback transaction and restored afterwards; no auto reboot",
+  "simulation_tests": [
+    "real v9 raw-file primary+backup GPT and all6partitions parsed",
+    "real old/new package CRC/SHA/layout validated",
+    "success write/readback",
+    "injected partial write restored",
+    "injected direct readback corruption restored",
+    "injected success result fsync failure restored",
+    "injected rollback failure reports critical instead of success",
+    "injected backup fsync failure performs zero writes"
+  ],
+  "simulation_result": "ALL PASS; tests monkeypatched block I/O into memory and backup directory into temporary files on build host; no /dev access, no board access",
+  "delivery": "serve_t736_cpu_b2.py serves only exactB2 package+manifest+updater paths; allowed board192.168.1.53/buildhost192.168.1.228/loopback; lifetime600seconds; no listing or write HTTP methods; bytes held immutable in memory",
+  "delivery_metadata": "evidence/cpu-b2-delivery-http-20261116.json",
+  "remaining": "root reviews source, downloads, runs CHECK then explicitly--apply, readsWRITE_VERIFY_PASS before deciding any reboot"
+}

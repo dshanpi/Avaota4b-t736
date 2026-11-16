@@ -1,0 +1,9 @@
+resolvectl dns end0 223.6.6.6#dns.alidns.com; resolvectl flush-caches; timeout 8 resolvectl query --type=A deb.debian.org; printf "DNS_TLS_SECONDARY_RC=%s\n" "$?"
+
+debian.map.fastlydns.net IN A 199.232.162.132               -- link: end0
+
+-- Information acquired via protocol DNS in 370.6ms.
+-- Data is authenticated: no; Data was acquired via local or encrypted transport: yes
+-- Data from: network
+DNS_TLS_SECONDARY_RC=0
+root@t736:~# 

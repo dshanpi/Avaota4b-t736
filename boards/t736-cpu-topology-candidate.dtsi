@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/* CPU scheduling metadata only; not included by any production build.
+ * Source: Tina bsp/configs/linux-6.6/sun60iw2p1.dtsi, lines 125-299.
+ * Donor SHA256: d68616db1d2755fbf13730d34e1edadb474cf7e5deb93ca982295b6e2a5edba4
+ * A55/A76 fixed-frequency baseline is 1014 MHz on both clusters.
+ * No CPU clock, OPP, voltage, idle-state or frequency-control provider added.
+ */
+/ {
+	cpus {
+		t736_sched_cpu0: cpu@0 { capacity-dmips-mhz = <430>; };
+		t736_sched_cpu1: cpu@100 { capacity-dmips-mhz = <430>; };
+		t736_sched_cpu2: cpu@200 { capacity-dmips-mhz = <430>; };
+		t736_sched_cpu3: cpu@300 { capacity-dmips-mhz = <430>; };
+		t736_sched_cpu4: cpu@400 { capacity-dmips-mhz = <430>; };
+		t736_sched_cpu5: cpu@500 { capacity-dmips-mhz = <430>; };
+		t736_sched_cpu6: cpu@600 { capacity-dmips-mhz = <1024>; };
+		t736_sched_cpu7: cpu@700 { capacity-dmips-mhz = <1024>; };
+
+		cpu-map {
+			cluster0 {
+				core0 { cpu = <&t736_sched_cpu0>; };
+				core1 { cpu = <&t736_sched_cpu1>; };
+				core2 { cpu = <&t736_sched_cpu2>; };
+				core3 { cpu = <&t736_sched_cpu3>; };
+				core4 { cpu = <&t736_sched_cpu4>; };
+				core5 { cpu = <&t736_sched_cpu5>; };
+			};
+			cluster1 {
+				core0 { cpu = <&t736_sched_cpu6>; };
+				core1 { cpu = <&t736_sched_cpu7>; };
+			};
+		};
+	};
+};

@@ -1,0 +1,65 @@
+[  160.708669] t736-cpu-clock-ro: begin read-only snapshot base=0x08870000
+[  160.708698] t736-cpu-clock-ro: CPU_BACK_CTRL addr=0x08870000 value=0x40104a00
+[  160.708708] t736-cpu-clock-ro: A55_CTRL addr=0x08871000 value=0xf8802700
+[  160.708716] t736-cpu-clock-ro: A55_PAT0 addr=0x08871004 value=0x00000000
+[  160.708723] t736-cpu-clock-ro: A55_PAT1 addr=0x08871008 value=0x30000000
+[  160.708731] t736-cpu-clock-ro: A55_LFM addr=0x08871018 value=0x40000001
+[  160.708738] t736-cpu-clock-ro: A55_CLK addr=0x0887101c value=0x03000000
+[  160.708745] t736-cpu-clock-ro: A55_CTRL_STAT addr=0x0887102c value=0xf8802700
+[  160.708752] t736-cpu-clock-ro: A76_CTRL addr=0x08872000 value=0xf8802700
+[  160.708759] t736-cpu-clock-ro: A76_PAT0 addr=0x08872004 value=0x00000000
+[  160.708766] t736-cpu-clock-ro: A76_PAT1 addr=0x08872008 value=0x30000000
+[  160.708773] t736-cpu-clock-ro: A76_LFM addr=0x08872018 value=0x40000001
+[  160.708780] t736-cpu-clock-ro: A76_CLK addr=0x0887201c value=0x03000000
+[  160.708787] t736-cpu-clock-ro: A76_CTRL_STAT addr=0x0887202c value=0xf8802700
+[  160.708794] t736-cpu-clock-ro: DSU_CTRL addr=0x08873000 value=0xf8801300
+[  160.708801] t736-cpu-clock-ro: DSU_PAT0 addr=0x08873004 value=0x00000000
+[  160.708807] t736-cpu-clock-ro: DSU_PAT1 addr=0x08873008 value=0x30000000
+[  160.708814] t736-cpu-clock-ro: DSU_LFM addr=0x08873018 value=0x40000001
+[  160.708822] t736-cpu-clock-ro: DSU_CLK addr=0x0887301c value=0x03000105
+[  160.708828] t736-cpu-clock-ro: DSU_CTRL_STAT addr=0x0887302c value=0xf8801300
+[  160.708835] t736-cpu-clock-ro: CPU_SLOW_CLK addr=0x08873034 value=0x00000000
+[  160.708845] t736-cpu-clock-ro: end; no MMIO writes performed
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+()
+Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192
+HDMI-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 553mm x 311mm
+   1920x1080     60.00*+  50.00    59.94  
+   2560x1440     59.95 +
+   2048x1080     60.00    24.00  
+   1920x1080i    60.00    50.00    59.94  
+   1600x1200     60.00  
+   1280x1024     60.02  
+   1280x720      60.00    50.00    59.94  
+   1024x768      60.00  
+   800x600       60.32  
+   720x576       50.00  
+   720x480       60.00    59.94  
+   640x480       60.00    59.94  

@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "kind": "t736-dma-v19-idie-static-review",
+  "status": "passed-static-diff-review-hardware-pending",
+  "hardware_accepted": false,
+  "hardware_access": false,
+  "baseline_source_sha256": "3656bef4cc9d5db40f4d95c3f0f5ea5c69d5d160c2264e40e743606084ecd1eb",
+  "candidate_source_sha256": "f29554e12658287abbd4af5068d1c8fa567946af7b281e6d032441f8a295e639",
+  "shared_descriptor_header_sha256": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+  "source": "boards/t736_mmc_dma_v19.c",
+  "comparison": "Exact unified diff against frozen v18; source v19 only, no writes or board accesses by reviewer",
+  "operational_delta": {
+    "IDIE_read": "0x32",
+    "IDIE_write": "0x31",
+    "definition": "direction TX/RX plus SMHC3 descriptor-unavailable bit4 and card-error bit5",
+    "global_irq": "CTRL bit4 remains explicitly cleared",
+    "irqmask": "probe IRQMASK0 unchanged",
+    "unchanged": [
+      "clock12MHz",
+      "legacy timing and voltage",
+      "width policy",
+      "coherent32-bit allocations",
+      "SMHC3 descriptor ABI",
+      "CTRL/DMAC start/stop lifecycle",
+      "mandatory command/data/direction/OWN completion",
+      "reset timeout quarantine",
+      "error recovery"
+    ]
+  },
+  "diagnostics_review": {
+    "before_reset": true,
+    "registers": [
+      "CTRL",
+      "DMAC",
+      "DLBA",
+      "IDIE",
+      "IDST",
+      "RINT",
+      "STATUS",
+      "FIFOTH",
+      "TBC0",
+      "TBC1"
+    ],
+    "fifo_mask": "(STATUS>>17)&0x7ff matchesSMHC3 bits27:17",
+    "ownership": "All1..64 used descriptors inspected withREAD_ONCE afterdma_rmb; bitmap uses2u32 and shifts0..31; no overflow",
+    "descriptor_dump": "Only first/last descriptor four metadata words; no transferred payload",
+    "error_only": true,
+    "bytecount_guard": "RINT is read once; TBC0/TBC1 full32-bit reads only if captured DATA_OVER bit3 is1. Otherwise log explicitly marks bytecounts invalid and retains OWNbitmap."
+  },
+  "caveats": [
+    {
+      "severity": "hardware-acceptance",
+      "issue": "IDIE event-source hypothesis remains unconfirmed; static review cannot establish that rawIDST bits are masked by IDIE. Compare OWN/FIFO and directional IDST in the next controlled board test."
+    }
+  ],
+  "reviewer_files_modified": [
+    "evidence/storage-v19-idie-independent-review-20261116.json"
+  ],
+  "resolved_during_review": "TBC reads guarded by DATA_OVER as required by SMHC3 manual11.3.9.19/.20."
+}

@@ -1,0 +1,477 @@
+{
+  "schema": 4,
+  "reference_pid": 6419,
+  "startup_timeout_seconds": 120,
+  "protocol_timeout_seconds": 60,
+  "drm_devices": [
+    {
+      "path": "/dev/dri/card0",
+      "major": 226,
+      "minor": 0,
+      "user_can_read_write": true,
+      "device": "/sys/devices/platform/sunxi-drm",
+      "driver": "/sys/bus/platform/drivers/sunxi-drm",
+      "module": null
+    },
+    {
+      "path": "/dev/dri/card1",
+      "major": 226,
+      "minor": 1,
+      "user_can_read_write": true,
+      "device": "/sys/devices/platform/1800000.gpu",
+      "driver": "/sys/bus/platform/drivers/pvrsrvkm",
+      "module": "/sys/module/pvrsrvkm"
+    },
+    {
+      "path": "/dev/dri/renderD128",
+      "major": 226,
+      "minor": 128,
+      "user_can_read_write": true,
+      "device": "/sys/devices/platform/1800000.gpu",
+      "driver": "/sys/bus/platform/drivers/pvrsrvkm",
+      "module": "/sys/module/pvrsrvkm"
+    }
+  ],
+  "reference_profile_modified": false,
+  "binary": "/usr/lib/firefox-esr/firefox-esr",
+  "environment": {
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "DISPLAY": ":0",
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+    "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri",
+    "XAUTHORITY": "/run/user/1000/gdm/Xauthority",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "XDG_SESSION_TYPE": "x11"
+  },
+  "sandbox_disabled": false,
+  "blocklist_overridden": false,
+  "diagnostic_remote_system_access": true,
+  "tests": [
+    {
+      "mode": "baseline",
+      "complete": true,
+      "startup_samples": [
+        {
+          "processes": [
+            {
+              "pid": 6419,
+              "state": "R",
+              "ppid": 6418,
+              "pgrp": 6419,
+              "minor_faults": 10271,
+              "major_faults": 0,
+              "user_ticks": 217,
+              "system_ticks": 16,
+              "comm": "firefox-esr",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/6419/io'"
+            },
+            {
+              "pid": 6471,
+              "state": "R",
+              "ppid": 6469,
+              "pgrp": 6471,
+              "minor_faults": 299,
+              "major_faults": 0,
+              "user_ticks": 0,
+              "system_ticks": 0,
+              "comm": "firefox-esr",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/6471/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 15997 2295 1365242 235238 5372 3035 340088 708437 0 87392 947957 0 0 0 0 778 4282",
+            "179       1 mmcblk0p1 85 3 4256 2016 0 0 0 0 0 992 2016 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 85 3 4256 1744 0 0 0 0 0 788 1744 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 113 3 7008 3140 0 0 0 0 0 1184 3140 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 15369 2280 1333178 221685 5371 3035 340088 708433 1 91652 930118 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 85 3 4256 2263 0 0 0 0 0 960 2263 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 117 3 7064 3590 0 0 0 0 0 1520 3590 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 25 0 400 43 0 0 0 0 0 32 43 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 25 0 400 44 0 0 0 0 0 36 44 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 0.015
+        },
+        {
+          "processes": [
+            {
+              "pid": 6419,
+              "state": "R",
+              "ppid": 6418,
+              "pgrp": 6419,
+              "minor_faults": 37140,
+              "major_faults": 0,
+              "user_ticks": 669,
+              "system_ticks": 66,
+              "comm": "firefox-esr",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/6419/io'"
+            },
+            {
+              "pid": 6471,
+              "state": "R",
+              "ppid": 6469,
+              "pgrp": 6471,
+              "minor_faults": 11647,
+              "major_faults": 0,
+              "user_ticks": 266,
+              "system_ticks": 19,
+              "comm": "firefox-esr",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/6471/io'"
+            },
+            {
+              "pid": 6526,
+              "state": "Z",
+              "ppid": 6471,
+              "pgrp": 6471,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 6,
+              "system_ticks": 4,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/6526/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 15997 2295 1365242 235238 5594 3385 347688 710242 0 88816 950238 0 0 0 0 912 4757",
+            "179       1 mmcblk0p1 85 3 4256 2016 0 0 0 0 0 992 2016 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 85 3 4256 1744 0 0 0 0 0 788 1744 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 113 3 7008 3140 0 0 0 0 0 1184 3140 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 15369 2280 1333178 221685 5593 3385 347688 710238 1 93092 931923 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 85 3 4256 2263 0 0 0 0 0 960 2263 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 117 3 7064 3590 0 0 0 0 0 1520 3590 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 25 0 400 43 0 0 0 0 0 32 43 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 25 0 400 44 0 0 0 0 0 36 44 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 5.123
+        }
+      ],
+      "preferences": {
+        "marionette.port": 54935,
+        "browser.shell.checkDefaultBrowser": false,
+        "browser.startup.homepage": "about:blank",
+        "browser.startup.page": 0,
+        "browser.startup.firstrunSkipsHomepage": true,
+        "browser.aboutwelcome.enabled": false
+      },
+      "MOZ_X11_EGL": null,
+      "MOZ_DRM_DEVICE": null,
+      "phase": "complete",
+      "pid": 6471,
+      "marionette_tcp_connected_seconds": 6.134,
+      "marionette_hello": {
+        "applicationType": "gecko",
+        "marionetteProtocol": 3
+      },
+      "marionette_hello_received_seconds": 7.12,
+      "session": {
+        "sessionId": "31f5adbc-4060-467e-9580-5e70c6b51189",
+        "capabilities": {
+          "acceptInsecureCerts": false,
+          "browserName": "firefox",
+          "browserVersion": "153.7.0",
+          "platformName": "linux",
+          "setWindowRect": true,
+          "unhandledPromptBehavior": "dismiss and notify",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:153.0) Gecko/20100101 Firefox/153.0",
+          "moz:buildID": "20261103151912",
+          "moz:headless": false,
+          "moz:platformVersion": "6.18.63-t736-storage-v16",
+          "moz:processID": 6471,
+          "moz:profile": "/tmp/t736-firefox-baseline-0f7pqa4f",
+          "moz:shutdownTimeout": 60000,
+          "pageLoadStrategy": "normal",
+          "timeouts": {
+            "implicit": 0,
+            "pageLoad": 300000,
+            "script": 30000
+          },
+          "strictFileInteractability": false,
+          "moz:accessibilityChecks": false,
+          "moz:webdriverClick": true,
+          "moz:windowless": false,
+          "proxy": {}
+        }
+      },
+      "support": {
+        "url": "about:support",
+        "title": "Troubleshooting Information",
+        "sections": {
+          "graphics-features-tbody": "Features\nWindow Device Pixel Ratios\t1\nCompositing\tWebRender\nFont Visibility Debug Info\tLinux Unknown - VERSION_ID=\"13\"\nID=debian\nAsynchronous Pan/Zoom\twheel input enabled; scrollbar drag enabled; keyboard enabled; autoscroll enabled; smooth pinch-zoom enabled\nWebGL 1 Driver WSI Info\tEGL_VENDOR: Mesa Project\nEGL_VERSION: 1.5\nEGL_EXTENSIONS: EGL_ANDROID_native_fence_sync EGL_CHROMIUM_sync_control EGL_ANGLE_sync_control_rate EGL_EXT_buffer_age EGL_EXT_create_context_robustness EGL_EXT_image_dma_buf_import EGL_EXT_image_dma_buf_import_modifiers EGL_EXT_image_gl_colorspace EGL_EXT_query_reset_notification_strategy EGL_EXT_swap_buffers_with_damage EGL_EXT_yuv_surface EGL_IMG_context_priority EGL_KHR_cl_event2 EGL_KHR_config_attribs EGL_KHR_create_context EGL_KHR_fence_sync EGL_KHR_get_all_proc_addresses EGL_KHR_gl_colorspace EGL_KHR_gl_renderbuffer_image EGL_KHR_gl_texture_2D_image EGL_KHR_gl_texture_3D_image EGL_KHR_gl_texture_cubemap_image EGL_KHR_image EGL_KHR_image_base EGL_KHR_image_pixmap EGL_KHR_no_config_context EGL_KHR_partial_update EGL_KHR_reusable_sync EGL_KHR_surfaceless_context EGL_KHR_swap_buffers_with_damage EGL_EXT_pixel_format_float EGL_KHR_wait_sync EGL_MESA_configless_context EGL_MESA_drm_image EGL_MESA_image_dma_buf_export EGL_MESA_query_driver EGL_NOK_texture_from_pixmap EGL_IMG_cl_image \nEGL_EXTENSIONS(nullptr): EGL_EXT_client_extensions EGL_EXT_device_base EGL_EXT_device_enumeration EGL_EXT_device_query EGL_EXT_platform_base EGL_KHR_client_get_all_proc_addresses EGL_KHR_debug EGL_EXT_platform_device EGL_EXT_explicit_device EGL_EXT_platform_x11 EGL_KHR_platform_x11 EGL_EXT_platform_xcb EGL_MESA_platform_gbm EGL_KHR_platform_gbm EGL_MESA_platform_surfaceless\nWebGL 1 Driver Renderer\tImagination Technologies -- PowerVR B-Series BXM-4-64\nWebGL 1 Driver Version\tOpenGL ES 3.2 build 24.2@6603887\nWebGL 1 Driver Extensions\tGL_ANDROID_extension_pack_es31a GL_APPLE_texture_format_BGRA8888 GL_EXT_EGL_image_array GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_YUV_target GL_EXT_blend_func_extended GL_EXT_blend_minmax GL_EXT_buffer_storage GL_EXT_clear_texture GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_compressed_ETC1_RGB8_sub_texture GL_EXT_conservative_depth GL_EXT_copy_image GL_EXT_discard_framebuffer GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_geometry_point_size GL_EXT_geometry_shader GL_EXT_gpu_shader5 GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_multi_draw_arrays GL_EXT_multisampled_render_to_texture GL_EXT_multisampled_render_to_texture2 GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_primitive_bounding_box GL_EXT_read_format_bgra GL_EXT_robustness GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_separate_shader_objects GL_EXT_shader_framebuffer_fetch GL_EXT_shader_group_vote GL_EXT_shader_implicit_conversions GL_EXT_shader_io_blocks GL_EXT_shader_non_constant_global_initializers GL_EXT_shader_pixel_local_storage GL_EXT_shader_pixel_local_storage2 GL_EXT_shader_texture_lod GL_EXT_shadow_samplers GL_EXT_sparse_texture GL_EXT_tessellation_point_size GL_EXT_tessellation_shader GL_EXT_texture_border_clamp GL_EXT_texture_buffer GL_EXT_texture_cube_map_array GL_EXT_texture_format_BGRA8888 GL_EXT_texture_format_sRGB_override GL_EXT_texture_rg GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_storage_compression GL_EXT_texture_type_2_10_10_10_REV GL_EXT_unpack_subimage GL_IMG_framebuffer_downsample GL_IMG_multisampled_render_to_texture GL_IMG_program_binary GL_IMG_read_format GL_IMG_shader_binary GL_IMG_texture_format_BGRA8888 GL_IMG_texture_npot GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_debug GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_NV_draw_instanced GL_NV_instanced_arrays GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth24 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fragment_precision_high GL_OES_geometry_point_size GL_OES_geometry_shader GL_OES_get_program_binary GL_OES_gpu_shader5 GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_shading GL_OES_sample_variables GL_OES_shader_image_atomic GL_OES_shader_io_blocks GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_tessellation_point_size GL_OES_tessellation_shader GL_OES_texture_3D GL_OES_texture_border_clamp GL_OES_texture_buffer GL_OES_texture_cube_map_array GL_OES_texture_float GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_texture_storage_multisample_2d_array GL_OES_vertex_array_object GL_OES_vertex_half_float GL_OVR_multiview GL_OVR_multiview2 GL_OVR_multiview_multisampled_render_to_texture\nWebGL 1 Extensions\tANGLE_instanced_arrays EXT_blend_minmax EXT_color_buffer_half_float EXT_float_blend EXT_shader_texture_lod EXT_sRGB MOZ_debug OES_element_index_uint OES_fbo_render_mipmap OES_standard_derivatives OES_texture_float OES_texture_half_float OES_texture_half_float_linear OES_vertex_array_object WEBGL_color_buffer_float WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_depth_texture WEBGL_draw_buffers WEBGL_lose_context\nWebGL 2 Driver WSI Info\tEGL_VENDOR: Mesa Project\nEGL_VERSION: 1.5\nEGL_EXTENSIONS: EGL_ANDROID_native_fence_sync EGL_CHROMIUM_sync_control EGL_ANGLE_sync_control_rate EGL_EXT_buffer_age EGL_EXT_create_context_robustness EGL_EXT_image_dma_buf_import EGL_EXT_image_dma_buf_import_modifiers EGL_EXT_image_gl_colorspace EGL_EXT_query_reset_notification_strategy EGL_EXT_swap_buffers_with_damage EGL_EXT_yuv_surface EGL_IMG_context_priority EGL_KHR_cl_event2 EGL_KHR_config_attribs EGL_KHR_create_context EGL_KHR_fence_sync EGL_KHR_get_all_proc_addresses EGL_KHR_gl_colorspace EGL_KHR_gl_renderbuffer_image EGL_KHR_gl_texture_2D_image EGL_KHR_gl_texture_3D_image EGL_KHR_gl_texture_cubemap_image EGL_KHR_image EGL_KHR_image_base EGL_KHR_image_pixmap EGL_KHR_no_config_context EGL_KHR_partial_update EGL_KHR_reusable_sync EGL_KHR_surfaceless_context EGL_KHR_swap_buffers_with_damage EGL_EXT_pixel_format_float EGL_KHR_wait_sync EGL_MESA_configless_context EGL_MESA_drm_image EGL_MESA_image_dma_buf_export EGL_MESA_query_driver EGL_NOK_texture_from_pixmap EGL_IMG_cl_image \nEGL_EXTENSIONS(nullptr): EGL_EXT_client_extensions EGL_EXT_device_base EGL_EXT_device_enumeration EGL_EXT_device_query EGL_EXT_platform_base EGL_KHR_client_get_all_proc_addresses EGL_KHR_debug EGL_EXT_platform_device EGL_EXT_explicit_device EGL_EXT_platform_x11 EGL_KHR_platform_x11 EGL_EXT_platform_xcb EGL_MESA_platform_gbm EGL_KHR_platform_gbm EGL_MESA_platform_surfaceless\nWebGL 2 Driver Renderer\tImagination Technologies -- PowerVR B-Series BXM-4-64\nWebGL 2 Driver Version\tOpenGL ES 3.2 build 24.2@6603887\nWebGL 2 Driver Extensions\tGL_ANDROID_extension_pack_es31a GL_APPLE_texture_format_BGRA8888 GL_EXT_EGL_image_array GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_YUV_target GL_EXT_blend_func_extended GL_EXT_blend_minmax GL_EXT_buffer_storage GL_EXT_clear_texture GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_compressed_ETC1_RGB8_sub_texture GL_EXT_conservative_depth GL_EXT_copy_image GL_EXT_discard_framebuffer GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_geometry_point_size GL_EXT_geometry_shader GL_EXT_gpu_shader5 GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_multi_draw_arrays GL_EXT_multisampled_render_to_texture GL_EXT_multisampled_render_to_texture2 GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_primitive_bounding_box GL_EXT_read_format_bgra GL_EXT_robustness GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_separate_shader_objects GL_EXT_shader_framebuffer_fetch GL_EXT_shader_group_vote GL_EXT_shader_implicit_conversions GL_EXT_shader_io_blocks GL_EXT_shader_non_constant_global_initializers GL_EXT_shader_pixel_local_storage GL_EXT_shader_pixel_local_storage2 GL_EXT_shader_texture_lod GL_EXT_shadow_samplers GL_EXT_sparse_texture GL_EXT_tessellation_point_size GL_EXT_tessellation_shader GL_EXT_texture_border_clamp GL_EXT_texture_buffer GL_EXT_texture_cube_map_array GL_EXT_texture_format_BGRA8888 GL_EXT_texture_format_sRGB_override GL_EXT_texture_rg GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_storage_compression GL_EXT_texture_type_2_10_10_10_REV GL_EXT_unpack_subimage GL_IMG_framebuffer_downsample GL_IMG_multisampled_render_to_texture GL_IMG_program_binary GL_IMG_read_format GL_IMG_shader_binary GL_IMG_texture_format_BGRA8888 GL_IMG_texture_npot GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_debug GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_NV_draw_instanced GL_NV_instanced_arrays GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth24 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fragment_precision_high GL_OES_geometry_point_size GL_OES_geometry_shader GL_OES_get_program_binary GL_OES_gpu_shader5 GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_shading GL_OES_sample_variables GL_OES_shader_image_atomic GL_OES_shader_io_blocks GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_tessellation_point_size GL_OES_tessellation_shader GL_OES_texture_3D GL_OES_texture_border_clamp GL_OES_texture_buffer GL_OES_texture_cube_map_array GL_OES_texture_float GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_texture_storage_multisample_2d_array GL_OES_vertex_array_object GL_OES_vertex_half_float GL_OVR_multiview GL_OVR_multiview2 GL_OVR_multiview_multisampled_render_to_texture\nWebGL 2 Extensions\tEXT_color_buffer_float EXT_float_blend MOZ_debug OES_draw_buffers_indexed OVR_multiview2 WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context\nWindow Protocol\tx11\nDesktop Environment\tgnome\nTarget Frame Rate\t60\nWebGPU Default Adapter\t{\n  \"navigator.gpu\": null\n}\nWebGPU Fallback Adapter\t{\n  \"navigator.gpu\": null\n}\n",
+          "graphics-gpu-1-tbody": "GPU #1\nActive\tYes\nDescription\tPowerVR B-Series BXM-4-64\nVendor ID\tImagination Technologies\nDevice ID\tPowerVR B-Series BXM-4-64\nDriver Version\t24.2.0.0\nRAM\t0\n",
+          "graphics-gpu-2-tbody": "\n          \n            GPU #2\n          \n        ",
+          "graphics-diagnostics-tbody": "Diagnostics\nAzureCanvasBackend\tskia\nAzureContentBackend\tskia\nAzureFallbackCanvasBackend\tskia\nCMSOutputProfile\tAAAGQGxjbXMEQAAAbW50clJHQiBYWVogB+oACwAQAAoALgAvYWNzcEFQUEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1sY21zTvclCht1ucd+xuwRbkOPVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOZGVzYwAAASwAAAA2Y3BydAAAAWQAAACGd3RwdAAAAewAAAAUY2hhZAAAAgAAAAAsclhZWgAAAiwAAAAUYlhZWgAAAkAAAAAUZ1hZWgAAAlQAAAAUclRSQwAAAmgAAAAQZ1RSQwAAAmgAAAAQYlRSQwAAAmgAAAAQY2hybQAAAngAAAAkbWV0YQAAApwAAANAZG1uZAAABdwAAAAuZG1kZAAABgwAAAAybWx1YwAAAAAAAAABAAAADGVuVVMAAAAaAAAAHABEAGUAbABsACAASQBuAGMALgAgADIANQAiAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAGoAAAAcAFQAaABpAHMAIABwAHIAbwBmAGkAbABlACAAaQBzACAAZgByAGUAZQAgAG8AZgAgAGsAbgBvAHcAbgAgAGMAbwBwAHkAcgBpAGcAaAB0ACAAcgBlAHMAdAByAGkAYwB0AGkAbwBuAHMALgAAWFlaIAAAAAAAAPbWAAEAAAAA0y1zZjMyAAAAAAABDEIAAAXe///zJQAAB5MAAP2Q///7of///aIAAAPcAADAblhZWiAAAAAAAABvoAAAOPUAAAOQWFlaIAAAAAAAACSfAAAPhAAAtsNYWVogAAAAAAAAYpcAALeHAAAY2XBhcmEAAAAAAAAAAAACMzNjaHJtAAAAAAADAAAAAKPXAABUewAATM0AAJmaAAAmZgAAD1xkaWN0AAAAAAAAAAsAAAAQAAAAwAAAABYAAADWAAAADAAAAOIAAAAUAAAA9gAAABYAAAEMAAAAFgAAASIAAAAIAAABKgAAABYAAAFAAAAAGAAAAVgAAAAWAAABbgAAAAgAAAF2AAAAIgAAAZgAAAASAAABqgAAABAAAAG6AAAAigAAAkQAAAAUAAACWAAAAAwAAAJkAAAAEgAAAnYAAAAGAAACfAAAABAAAAKMAAAAQAAAAswAAAAiAAAC7gAAAFIAQwBNAEYAXwBwAHIAbwBkAHUAYwB0AG0AdQB0AHQAZQByAEUARABJAEQAXwBtAG8AZABlAGwARABFAEwATAAgAFUAMgA1ADEAOABEAEQAQQBUAEEAXwBzAG8AdQByAGMAZQBlAGQAaQBkAEUARABJAEQAXwBzAGUAcgBpAGEAbAAzAE0ANwBLADgAOQBBADkAMAA2ADYATABDAE0ARgBfAHYAZQByAHMAaQBvAG4ANAA4AC4ANwBFAEQASQBEAF8AbQBhAG4AdQBmAGEAYwB0AHUAcgBlAHIARABlAGwAbAAgAEkAbgBjAC4ARgBpAGwAZQBuAGEAbQBlAC8AaABvAG0AZQAvAHQANwAzADYALwAuAGwAbwBjAGEAbAAvAHMAaABhAHIAZQAvAGkAYwBjAC8AZQBkAGkAZAAtAGYAOQAwAGIAZgBkADQANwBjADAAZQBiAGUANQBiADgAMAA0AGEAZgA2ADEAMABjADAANgBhADUANABhADkAMQAuAGkAYwBjAEMATQBGAF8AYgBpAG4AYQByAHkAbQB1AHQAdABlAHIARQBEAEkARABfAG0AbgBmAHQARABFAEwARQBEAEkARABfAG0AZAA1AGYAOQAwAGIAZgBkADQANwBjADAAZQBiAGUANQBiADgAMAA0AGEAZgA2ADEAMABjADAANgBhADUANABhADkAMQBNAEEAUABQAEkATgBHAF8AZABlAHYAaQBjAGUAXwBpAGQAeAByAGEAbgBkAHIALQBEAGUAbABsACAASQBuAGMALgAtAEQARQBMAEwAIABVADIANQAxADgARAAtADMATQA3AEsAOAA5AEEAOQAwADYANgBMbWx1YwAAAAAAAAABAAAADGVuVVMAAAASAAAAHABEAGUAbABsACAASQBuAGMALgAAbWx1YwAAAAAAAAABAAAADGVuVVMAAAAWAAAAHABEAEUATABMACAAVQAyADUAMQA4AEQAAA==\nDisplay0\t1920x1080@60Hz scales:1.000000|1.000000 SDR\nDisplayCount\t1\nFont Visibility Debug Info\tLinux Unknown - VERSION_ID=\"13\"\nID=debian\n",
+          "graphics-decisions-tbody": "Decision Log\nHW_COMPOSITING\t\ndefault\tavailable\t\t\n\nOPENGL_COMPOSITING\t\ndefault\tavailable\t\t\n\nWEBRENDER\t\ndefault\tavailable\t\t\n\nWEBRENDER_COMPOSITOR\t\ndefault\tdisabled\tDisabled by default\tBlocklisted; failure code FEATURE_FAILURE_DISABLED\nenv\tblocklisted\tBlocklisted by gfxInfo\tBlocklisted; failure code FEATURE_FAILURE_WEBRENDER_COMPOSITOR_DISABLED\n\nWEBRENDER_PARTIAL\t\ndefault\tavailable\t\t\n\nWEBRENDER_SHADER_CACHE\t\ndefault\tdisabled\tDisabled by default\tBlocklisted; failure code FEATURE_FAILURE_DISABLED\n\nWEBRENDER_OPTIMIZED_SHADERS\t\ndefault\tavailable\t\t\n\nWEBRENDER_ANGLE\t\ndefault\tavailable\t\t\nenv\tunavailable\tOS not supported\tBlocklisted; failure code FEATURE_FAILURE_OS_NOT_SUPPORTED\n\nWEBRENDER_DCOMP_PRESENT\t\ndefault\tavailable\t\t\nuser\tdisabled\tUser disabled via pref\tBlocklisted; failure code FEATURE_FAILURE_DCOMP_PREF_DISABLED\nenv\tunavailable\tRequires GPU process\tBlocklisted; failure code FEATURE_FAILURE_NO_GPU_PROCESS\nruntime\tunavailable\tRequires ANGLE\tBlocklisted; failure code FEATURE_FAILURE_DCOMP_NOT_ANGLE\n\nWEBRENDER_SCISSORED_CACHE_CLEARS\t\ndefault\tavailable\t\t\n\nWEBGPU\t\ndefault\tavailable\t\t\n\nX11_EGL\t\ndefault\tavailable\t\t\n\nDMABUF\t\ndefault\tavailable\t\t\n\nHARDWARE_VIDEO_DECODING\t\ndefault\tavailable\t\t\nenv\tblocklisted\tBlocklisted by gfxInfo\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_DECODING_TEST_FAILED\nruntime\tunavailable\tForce disabled by gfxInfo\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_DECODING_TEST_FAILED\n\nHARDWARE_VIDEO_DECODING_VULKAN\t\ndefault\tavailable\t\t\nuser\tdisabled\tUser disabled via media.hardware-video-decoding-vulkan.enabled \tBlocklisted; failure code FEATURE_HARDWARE_VIDEO_DECODING_VULKAN_PREF_DISABLED\n\nHARDWARE_VIDEO_ENCODING\t\ndefault\tavailable\t\t\n\nDMABUF_SURFACE_EXPORT\t\ndefault\tavailable\t\t\n\nBACKDROP_FILTER\t\ndefault\tavailable\t\t\n\nCANVAS_RENDERER_THREAD\t\ndefault\tavailable\t\t\n\nACCELERATED_CANVAS2D\t\ndefault\tavailable\t\t\n\nDMABUF_WEBGL\t\ndefault\tavailable\t\t\n\nVP8_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nVP9_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nH264_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nAV1_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nHEVC_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nGL_NORM16_TEXTURES\t\ndefault\tavailable\t\t\n\nWEBGPU_EXTERNAL_TEXTURE\t\ndefault\tdisabled\tDisabled by default\tBlocklisted; failure code FEATURE_FAILURE_DISABLED\nruntime\tblocked\tWebGPU external textures are not supported on this Operating Sy\tBlocklisted; failure code WEBGPU_EXTERNAL_TEXTURE_UNSUPPORTED_OS\n\nMESA_THREADING\t\ndefault\tavailable\t\t\nenv\tfailed\tNo glthread with EGL and X11\tBlocklisted; failure code FEATURE_FAILURE_EGL_X11\n\nWEBGL\t\ndefault\tavailable\t\t\n\nVIDEO_HDR\t\ndefault\tavailable\t\t\n\n",
+          "graphics-crashguards-tbody": "\n          \n            Crash Guard Disabled Features\n          \n        ",
+          "graphics-workarounds-tbody": "\n          \n            Workarounds\n          \n        ",
+          "graphics-failures-tbody": "Failure Log\n(#0) Error\tCalling WaitFlushedEvent::Run: is delayed: 4906",
+          "media-info-tbody": "Audio Backend\tpulse-rust\nMax Channels\t2\nPreferred Sample Rate\t48000\nRoundtrip latency (standard deviation)\t...\nCodec Support Information\t\nCodec Name\tSoftware Decoding\tHardware Decoding\tSoftware Encoding\tHardware Encoding\nH264\tSupported\tUnsupported\tUnsupported\tUnsupported\nVP9\tSupported\tUnsupported\tUnsupported\tUnsupported\nVP8\tSupported\tUnsupported\tUnsupported\tUnsupported\nAV1\tSupported\tUnsupported\tUnsupported\tUnsupported\nHEVC\tSupported\tUnsupported\tUnsupported\tUnsupported\nAAC\tSupported\tUnsupported\tUnsupported\tUnsupported\nMP3\tSupported\tUnsupported\tUnsupported\tUnsupported\nOpus\tSupported\tUnsupported\tUnsupported\tUnsupported\nVorbis\tSupported\tUnsupported\tUnsupported\tUnsupported\nFLAC\tSupported\tUnsupported\tUnsupported\tUnsupported\nWave\tSupported\tUnsupported\tUnsupported\tUnsupported\n\n"
+        },
+        "codecTables": []
+      },
+      "loaded_graphics_libraries": [
+        "/opt/t736-img-ddk-24.2-x11/lib/dri/pvr_dri.so",
+        "/opt/t736-img-ddk-24.2-x11/lib/dri/swrast_dri.so",
+        "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+        "/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+        "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+        "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887"
+      ],
+      "exit_code": 0,
+      "profile_removed": true,
+      "log": "/home/t736/firefox-v16-v5-renderer.files/baseline.log"
+    },
+    {
+      "mode": "egl-gles",
+      "complete": true,
+      "startup_samples": [
+        {
+          "processes": [
+            {
+              "pid": 6419,
+              "state": "S",
+              "ppid": 6418,
+              "pgrp": 6419,
+              "minor_faults": 123125,
+              "major_faults": 1,
+              "user_ticks": 4301,
+              "system_ticks": 420,
+              "comm": "firefox-esr",
+              "wchan": "do_sys_poll",
+              "io_error": "[Errno 2] No such file or directory: '/proc/6419/io'"
+            },
+            {
+              "pid": 7167,
+              "state": "R",
+              "ppid": 6469,
+              "pgrp": 7167,
+              "minor_faults": 1324,
+              "major_faults": 0,
+              "user_ticks": 3,
+              "system_ticks": 1,
+              "comm": "firefox-esr",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/7167/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 16044 2310 1370186 236221 6929 4432 423424 796619 0 95608 1039090 0 0 0 0 1215 6248",
+            "179       1 mmcblk0p1 85 3 4256 2016 0 0 0 0 0 992 2016 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 85 3 4256 1744 0 0 0 0 0 788 1744 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 113 3 7008 3140 0 0 0 0 0 1184 3140 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 15416 2295 1338122 222668 6928 4432 423424 796616 0 100076 1019284 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 85 3 4256 2263 0 0 0 0 0 960 2263 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 117 3 7064 3590 0 0 0 0 0 1520 3590 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 25 0 400 43 0 0 0 0 0 32 43 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 25 0 400 44 0 0 0 0 0 36 44 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 0.057
+        }
+      ],
+      "preferences": {
+        "marionette.port": 45523,
+        "browser.shell.checkDefaultBrowser": false,
+        "browser.startup.homepage": "about:blank",
+        "browser.startup.page": 0,
+        "browser.startup.firstrunSkipsHomepage": true,
+        "browser.aboutwelcome.enabled": false,
+        "gfx.egl.prefer-gles.enabled": true
+      },
+      "MOZ_X11_EGL": "1",
+      "MOZ_DRM_DEVICE": null,
+      "phase": "complete",
+      "pid": 7167,
+      "marionette_tcp_connected_seconds": 3.588,
+      "marionette_hello": {
+        "applicationType": "gecko",
+        "marionetteProtocol": 3
+      },
+      "marionette_hello_received_seconds": 4.683,
+      "session": {
+        "sessionId": "91b0b72e-8666-4041-86d3-89ab7f5837d2",
+        "capabilities": {
+          "acceptInsecureCerts": false,
+          "browserName": "firefox",
+          "browserVersion": "153.7.0",
+          "platformName": "linux",
+          "setWindowRect": true,
+          "unhandledPromptBehavior": "dismiss and notify",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:153.0) Gecko/20100101 Firefox/153.0",
+          "moz:buildID": "20261103151912",
+          "moz:headless": false,
+          "moz:platformVersion": "6.18.63-t736-storage-v16",
+          "moz:processID": 7167,
+          "moz:profile": "/tmp/t736-firefox-egl-gles-pu9n_e8p",
+          "moz:shutdownTimeout": 60000,
+          "pageLoadStrategy": "normal",
+          "timeouts": {
+            "implicit": 0,
+            "pageLoad": 300000,
+            "script": 30000
+          },
+          "strictFileInteractability": false,
+          "moz:accessibilityChecks": false,
+          "moz:webdriverClick": true,
+          "moz:windowless": false,
+          "proxy": {}
+        }
+      },
+      "support": {
+        "url": "about:support",
+        "title": "Troubleshooting Information",
+        "sections": {
+          "graphics-features-tbody": "Features\nWindow Device Pixel Ratios\t1\nCompositing\tWebRender\nFont Visibility Debug Info\tLinux Unknown - VERSION_ID=\"13\"\nID=debian\nAsynchronous Pan/Zoom\twheel input enabled; scrollbar drag enabled; keyboard enabled; autoscroll enabled; smooth pinch-zoom enabled\nWebGL 1 Driver WSI Info\tEGL_VENDOR: Mesa Project\nEGL_VERSION: 1.5\nEGL_EXTENSIONS: EGL_ANDROID_native_fence_sync EGL_CHROMIUM_sync_control EGL_ANGLE_sync_control_rate EGL_EXT_buffer_age EGL_EXT_create_context_robustness EGL_EXT_image_dma_buf_import EGL_EXT_image_dma_buf_import_modifiers EGL_EXT_image_gl_colorspace EGL_EXT_query_reset_notification_strategy EGL_EXT_swap_buffers_with_damage EGL_EXT_yuv_surface EGL_IMG_context_priority EGL_KHR_cl_event2 EGL_KHR_config_attribs EGL_KHR_create_context EGL_KHR_fence_sync EGL_KHR_get_all_proc_addresses EGL_KHR_gl_colorspace EGL_KHR_gl_renderbuffer_image EGL_KHR_gl_texture_2D_image EGL_KHR_gl_texture_3D_image EGL_KHR_gl_texture_cubemap_image EGL_KHR_image EGL_KHR_image_base EGL_KHR_image_pixmap EGL_KHR_no_config_context EGL_KHR_partial_update EGL_KHR_reusable_sync EGL_KHR_surfaceless_context EGL_KHR_swap_buffers_with_damage EGL_EXT_pixel_format_float EGL_KHR_wait_sync EGL_MESA_configless_context EGL_MESA_drm_image EGL_MESA_image_dma_buf_export EGL_MESA_query_driver EGL_NOK_texture_from_pixmap EGL_IMG_cl_image \nEGL_EXTENSIONS(nullptr): EGL_EXT_client_extensions EGL_EXT_device_base EGL_EXT_device_enumeration EGL_EXT_device_query EGL_EXT_platform_base EGL_KHR_client_get_all_proc_addresses EGL_KHR_debug EGL_EXT_platform_device EGL_EXT_explicit_device EGL_EXT_platform_x11 EGL_KHR_platform_x11 EGL_EXT_platform_xcb EGL_MESA_platform_gbm EGL_KHR_platform_gbm EGL_MESA_platform_surfaceless\nWebGL 1 Driver Renderer\tImagination Technologies -- PowerVR B-Series BXM-4-64\nWebGL 1 Driver Version\tOpenGL ES 3.2 build 24.2@6603887\nWebGL 1 Driver Extensions\tGL_ANDROID_extension_pack_es31a GL_APPLE_texture_format_BGRA8888 GL_EXT_EGL_image_array GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_YUV_target GL_EXT_blend_func_extended GL_EXT_blend_minmax GL_EXT_buffer_storage GL_EXT_clear_texture GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_compressed_ETC1_RGB8_sub_texture GL_EXT_conservative_depth GL_EXT_copy_image GL_EXT_discard_framebuffer GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_geometry_point_size GL_EXT_geometry_shader GL_EXT_gpu_shader5 GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_multi_draw_arrays GL_EXT_multisampled_render_to_texture GL_EXT_multisampled_render_to_texture2 GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_primitive_bounding_box GL_EXT_read_format_bgra GL_EXT_robustness GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_separate_shader_objects GL_EXT_shader_framebuffer_fetch GL_EXT_shader_group_vote GL_EXT_shader_implicit_conversions GL_EXT_shader_io_blocks GL_EXT_shader_non_constant_global_initializers GL_EXT_shader_pixel_local_storage GL_EXT_shader_pixel_local_storage2 GL_EXT_shader_texture_lod GL_EXT_shadow_samplers GL_EXT_sparse_texture GL_EXT_tessellation_point_size GL_EXT_tessellation_shader GL_EXT_texture_border_clamp GL_EXT_texture_buffer GL_EXT_texture_cube_map_array GL_EXT_texture_format_BGRA8888 GL_EXT_texture_format_sRGB_override GL_EXT_texture_rg GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_storage_compression GL_EXT_texture_type_2_10_10_10_REV GL_EXT_unpack_subimage GL_IMG_framebuffer_downsample GL_IMG_multisampled_render_to_texture GL_IMG_program_binary GL_IMG_read_format GL_IMG_shader_binary GL_IMG_texture_format_BGRA8888 GL_IMG_texture_npot GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_debug GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_NV_draw_instanced GL_NV_instanced_arrays GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth24 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fragment_precision_high GL_OES_geometry_point_size GL_OES_geometry_shader GL_OES_get_program_binary GL_OES_gpu_shader5 GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_shading GL_OES_sample_variables GL_OES_shader_image_atomic GL_OES_shader_io_blocks GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_tessellation_point_size GL_OES_tessellation_shader GL_OES_texture_3D GL_OES_texture_border_clamp GL_OES_texture_buffer GL_OES_texture_cube_map_array GL_OES_texture_float GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_texture_storage_multisample_2d_array GL_OES_vertex_array_object GL_OES_vertex_half_float GL_OVR_multiview GL_OVR_multiview2 GL_OVR_multiview_multisampled_render_to_texture\nWebGL 1 Extensions\tANGLE_instanced_arrays EXT_blend_minmax EXT_color_buffer_half_float EXT_float_blend EXT_shader_texture_lod EXT_sRGB MOZ_debug OES_element_index_uint OES_fbo_render_mipmap OES_standard_derivatives OES_texture_float OES_texture_half_float OES_texture_half_float_linear OES_vertex_array_object WEBGL_color_buffer_float WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_depth_texture WEBGL_draw_buffers WEBGL_lose_context\nWebGL 2 Driver WSI Info\tEGL_VENDOR: Mesa Project\nEGL_VERSION: 1.5\nEGL_EXTENSIONS: EGL_ANDROID_native_fence_sync EGL_CHROMIUM_sync_control EGL_ANGLE_sync_control_rate EGL_EXT_buffer_age EGL_EXT_create_context_robustness EGL_EXT_image_dma_buf_import EGL_EXT_image_dma_buf_import_modifiers EGL_EXT_image_gl_colorspace EGL_EXT_query_reset_notification_strategy EGL_EXT_swap_buffers_with_damage EGL_EXT_yuv_surface EGL_IMG_context_priority EGL_KHR_cl_event2 EGL_KHR_config_attribs EGL_KHR_create_context EGL_KHR_fence_sync EGL_KHR_get_all_proc_addresses EGL_KHR_gl_colorspace EGL_KHR_gl_renderbuffer_image EGL_KHR_gl_texture_2D_image EGL_KHR_gl_texture_3D_image EGL_KHR_gl_texture_cubemap_image EGL_KHR_image EGL_KHR_image_base EGL_KHR_image_pixmap EGL_KHR_no_config_context EGL_KHR_partial_update EGL_KHR_reusable_sync EGL_KHR_surfaceless_context EGL_KHR_swap_buffers_with_damage EGL_EXT_pixel_format_float EGL_KHR_wait_sync EGL_MESA_configless_context EGL_MESA_drm_image EGL_MESA_image_dma_buf_export EGL_MESA_query_driver EGL_NOK_texture_from_pixmap EGL_IMG_cl_image \nEGL_EXTENSIONS(nullptr): EGL_EXT_client_extensions EGL_EXT_device_base EGL_EXT_device_enumeration EGL_EXT_device_query EGL_EXT_platform_base EGL_KHR_client_get_all_proc_addresses EGL_KHR_debug EGL_EXT_platform_device EGL_EXT_explicit_device EGL_EXT_platform_x11 EGL_KHR_platform_x11 EGL_EXT_platform_xcb EGL_MESA_platform_gbm EGL_KHR_platform_gbm EGL_MESA_platform_surfaceless\nWebGL 2 Driver Renderer\tImagination Technologies -- PowerVR B-Series BXM-4-64\nWebGL 2 Driver Version\tOpenGL ES 3.2 build 24.2@6603887\nWebGL 2 Driver Extensions\tGL_ANDROID_extension_pack_es31a GL_APPLE_texture_format_BGRA8888 GL_EXT_EGL_image_array GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_YUV_target GL_EXT_blend_func_extended GL_EXT_blend_minmax GL_EXT_buffer_storage GL_EXT_clear_texture GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_compressed_ETC1_RGB8_sub_texture GL_EXT_conservative_depth GL_EXT_copy_image GL_EXT_discard_framebuffer GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_geometry_point_size GL_EXT_geometry_shader GL_EXT_gpu_shader5 GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_multi_draw_arrays GL_EXT_multisampled_render_to_texture GL_EXT_multisampled_render_to_texture2 GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_primitive_bounding_box GL_EXT_read_format_bgra GL_EXT_robustness GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_separate_shader_objects GL_EXT_shader_framebuffer_fetch GL_EXT_shader_group_vote GL_EXT_shader_implicit_conversions GL_EXT_shader_io_blocks GL_EXT_shader_non_constant_global_initializers GL_EXT_shader_pixel_local_storage GL_EXT_shader_pixel_local_storage2 GL_EXT_shader_texture_lod GL_EXT_shadow_samplers GL_EXT_sparse_texture GL_EXT_tessellation_point_size GL_EXT_tessellation_shader GL_EXT_texture_border_clamp GL_EXT_texture_buffer GL_EXT_texture_cube_map_array GL_EXT_texture_format_BGRA8888 GL_EXT_texture_format_sRGB_override GL_EXT_texture_rg GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_storage_compression GL_EXT_texture_type_2_10_10_10_REV GL_EXT_unpack_subimage GL_IMG_framebuffer_downsample GL_IMG_multisampled_render_to_texture GL_IMG_program_binary GL_IMG_read_format GL_IMG_shader_binary GL_IMG_texture_format_BGRA8888 GL_IMG_texture_npot GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_debug GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_NV_draw_instanced GL_NV_instanced_arrays GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth24 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fragment_precision_high GL_OES_geometry_point_size GL_OES_geometry_shader GL_OES_get_program_binary GL_OES_gpu_shader5 GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_shading GL_OES_sample_variables GL_OES_shader_image_atomic GL_OES_shader_io_blocks GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_tessellation_point_size GL_OES_tessellation_shader GL_OES_texture_3D GL_OES_texture_border_clamp GL_OES_texture_buffer GL_OES_texture_cube_map_array GL_OES_texture_float GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_texture_storage_multisample_2d_array GL_OES_vertex_array_object GL_OES_vertex_half_float GL_OVR_multiview GL_OVR_multiview2 GL_OVR_multiview_multisampled_render_to_texture\nWebGL 2 Extensions\tEXT_color_buffer_float EXT_float_blend MOZ_debug OES_draw_buffers_indexed OVR_multiview2 WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context\nWindow Protocol\tx11\nDesktop Environment\tgnome\nTarget Frame Rate\t60\nWebGPU Default Adapter\t{\n  \"navigator.gpu\": null\n}\nWebGPU Fallback Adapter\t{\n  \"navigator.gpu\": null\n}\n",
+          "graphics-gpu-1-tbody": "GPU #1\nActive\tYes\nDescription\tPowerVR B-Series BXM-4-64\nVendor ID\tImagination Technologies\nDevice ID\tPowerVR B-Series BXM-4-64\nDriver Version\t24.2.0.0\nRAM\t0\n",
+          "graphics-gpu-2-tbody": "\n          \n            GPU #2\n          \n        ",
+          "graphics-diagnostics-tbody": "Diagnostics\nAzureCanvasBackend\tskia\nAzureContentBackend\tskia\nAzureFallbackCanvasBackend\tskia\nCMSOutputProfile\tAAAGQGxjbXMEQAAAbW50clJHQiBYWVogB+oACwAQAAoALgAvYWNzcEFQUEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1sY21zTvclCht1ucd+xuwRbkOPVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOZGVzYwAAASwAAAA2Y3BydAAAAWQAAACGd3RwdAAAAewAAAAUY2hhZAAAAgAAAAAsclhZWgAAAiwAAAAUYlhZWgAAAkAAAAAUZ1hZWgAAAlQAAAAUclRSQwAAAmgAAAAQZ1RSQwAAAmgAAAAQYlRSQwAAAmgAAAAQY2hybQAAAngAAAAkbWV0YQAAApwAAANAZG1uZAAABdwAAAAuZG1kZAAABgwAAAAybWx1YwAAAAAAAAABAAAADGVuVVMAAAAaAAAAHABEAGUAbABsACAASQBuAGMALgAgADIANQAiAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAGoAAAAcAFQAaABpAHMAIABwAHIAbwBmAGkAbABlACAAaQBzACAAZgByAGUAZQAgAG8AZgAgAGsAbgBvAHcAbgAgAGMAbwBwAHkAcgBpAGcAaAB0ACAAcgBlAHMAdAByAGkAYwB0AGkAbwBuAHMALgAAWFlaIAAAAAAAAPbWAAEAAAAA0y1zZjMyAAAAAAABDEIAAAXe///zJQAAB5MAAP2Q///7of///aIAAAPcAADAblhZWiAAAAAAAABvoAAAOPUAAAOQWFlaIAAAAAAAACSfAAAPhAAAtsNYWVogAAAAAAAAYpcAALeHAAAY2XBhcmEAAAAAAAAAAAACMzNjaHJtAAAAAAADAAAAAKPXAABUewAATM0AAJmaAAAmZgAAD1xkaWN0AAAAAAAAAAsAAAAQAAAAwAAAABYAAADWAAAADAAAAOIAAAAUAAAA9gAAABYAAAEMAAAAFgAAASIAAAAIAAABKgAAABYAAAFAAAAAGAAAAVgAAAAWAAABbgAAAAgAAAF2AAAAIgAAAZgAAAASAAABqgAAABAAAAG6AAAAigAAAkQAAAAUAAACWAAAAAwAAAJkAAAAEgAAAnYAAAAGAAACfAAAABAAAAKMAAAAQAAAAswAAAAiAAAC7gAAAFIAQwBNAEYAXwBwAHIAbwBkAHUAYwB0AG0AdQB0AHQAZQByAEUARABJAEQAXwBtAG8AZABlAGwARABFAEwATAAgAFUAMgA1ADEAOABEAEQAQQBUAEEAXwBzAG8AdQByAGMAZQBlAGQAaQBkAEUARABJAEQAXwBzAGUAcgBpAGEAbAAzAE0ANwBLADgAOQBBADkAMAA2ADYATABDAE0ARgBfAHYAZQByAHMAaQBvAG4ANAA4AC4ANwBFAEQASQBEAF8AbQBhAG4AdQBmAGEAYwB0AHUAcgBlAHIARABlAGwAbAAgAEkAbgBjAC4ARgBpAGwAZQBuAGEAbQBlAC8AaABvAG0AZQAvAHQANwAzADYALwAuAGwAbwBjAGEAbAAvAHMAaABhAHIAZQAvAGkAYwBjAC8AZQBkAGkAZAAtAGYAOQAwAGIAZgBkADQANwBjADAAZQBiAGUANQBiADgAMAA0AGEAZgA2ADEAMABjADAANgBhADUANABhADkAMQAuAGkAYwBjAEMATQBGAF8AYgBpAG4AYQByAHkAbQB1AHQAdABlAHIARQBEAEkARABfAG0AbgBmAHQARABFAEwARQBEAEkARABfAG0AZAA1AGYAOQAwAGIAZgBkADQANwBjADAAZQBiAGUANQBiADgAMAA0AGEAZgA2ADEAMABjADAANgBhADUANABhADkAMQBNAEEAUABQAEkATgBHAF8AZABlAHYAaQBjAGUAXwBpAGQAeAByAGEAbgBkAHIALQBEAGUAbABsACAASQBuAGMALgAtAEQARQBMAEwAIABVADIANQAxADgARAAtADMATQA3AEsAOAA5AEEAOQAwADYANgBMbWx1YwAAAAAAAAABAAAADGVuVVMAAAASAAAAHABEAGUAbABsACAASQBuAGMALgAAbWx1YwAAAAAAAAABAAAADGVuVVMAAAAWAAAAHABEAEUATABMACAAVQAyADUAMQA4AEQAAA==\nDisplay0\t1920x1080@60Hz scales:1.000000|1.000000 SDR\nDisplayCount\t1\nFont Visibility Debug Info\tLinux Unknown - VERSION_ID=\"13\"\nID=debian\n",
+          "graphics-decisions-tbody": "Decision Log\nHW_COMPOSITING\t\ndefault\tavailable\t\t\n\nOPENGL_COMPOSITING\t\ndefault\tavailable\t\t\n\nWEBRENDER\t\ndefault\tavailable\t\t\n\nWEBRENDER_COMPOSITOR\t\ndefault\tdisabled\tDisabled by default\tBlocklisted; failure code FEATURE_FAILURE_DISABLED\nenv\tblocklisted\tBlocklisted by gfxInfo\tBlocklisted; failure code FEATURE_FAILURE_WEBRENDER_COMPOSITOR_DISABLED\n\nWEBRENDER_PARTIAL\t\ndefault\tavailable\t\t\n\nWEBRENDER_SHADER_CACHE\t\ndefault\tdisabled\tDisabled by default\tBlocklisted; failure code FEATURE_FAILURE_DISABLED\n\nWEBRENDER_OPTIMIZED_SHADERS\t\ndefault\tavailable\t\t\n\nWEBRENDER_ANGLE\t\ndefault\tavailable\t\t\nenv\tunavailable\tOS not supported\tBlocklisted; failure code FEATURE_FAILURE_OS_NOT_SUPPORTED\n\nWEBRENDER_DCOMP_PRESENT\t\ndefault\tavailable\t\t\nuser\tdisabled\tUser disabled via pref\tBlocklisted; failure code FEATURE_FAILURE_DCOMP_PREF_DISABLED\nenv\tunavailable\tRequires GPU process\tBlocklisted; failure code FEATURE_FAILURE_NO_GPU_PROCESS\nruntime\tunavailable\tRequires ANGLE\tBlocklisted; failure code FEATURE_FAILURE_DCOMP_NOT_ANGLE\n\nWEBRENDER_SCISSORED_CACHE_CLEARS\t\ndefault\tavailable\t\t\n\nWEBGPU\t\ndefault\tavailable\t\t\n\nX11_EGL\t\ndefault\tavailable\t\t\nuser\tforce_enabled\tForce enabled by envvar\t\n\nDMABUF\t\ndefault\tavailable\t\t\n\nHARDWARE_VIDEO_DECODING\t\ndefault\tavailable\t\t\nenv\tblocklisted\tBlocklisted by gfxInfo\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_DECODING_TEST_FAILED\nruntime\tunavailable\tForce disabled by gfxInfo\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_DECODING_TEST_FAILED\n\nHARDWARE_VIDEO_DECODING_VULKAN\t\ndefault\tavailable\t\t\nuser\tdisabled\tUser disabled via media.hardware-video-decoding-vulkan.enabled \tBlocklisted; failure code FEATURE_HARDWARE_VIDEO_DECODING_VULKAN_PREF_DISABLED\n\nHARDWARE_VIDEO_ENCODING\t\ndefault\tavailable\t\t\n\nDMABUF_SURFACE_EXPORT\t\ndefault\tavailable\t\t\n\nBACKDROP_FILTER\t\ndefault\tavailable\t\t\n\nCANVAS_RENDERER_THREAD\t\ndefault\tavailable\t\t\n\nACCELERATED_CANVAS2D\t\ndefault\tavailable\t\t\n\nDMABUF_WEBGL\t\ndefault\tavailable\t\t\n\nVP8_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nVP9_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nH264_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nAV1_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nHEVC_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\tBlocklisted; failure code FEATURE_FAILURE_VIDEO_ENCODING_MISSING\n\nGL_NORM16_TEXTURES\t\ndefault\tavailable\t\t\n\nWEBGPU_EXTERNAL_TEXTURE\t\ndefault\tdisabled\tDisabled by default\tBlocklisted; failure code FEATURE_FAILURE_DISABLED\nruntime\tblocked\tWebGPU external textures are not supported on this Operating Sy\tBlocklisted; failure code WEBGPU_EXTERNAL_TEXTURE_UNSUPPORTED_OS\n\nMESA_THREADING\t\ndefault\tavailable\t\t\nenv\tfailed\tNo glthread with EGL and X11\tBlocklisted; failure code FEATURE_FAILURE_EGL_X11\n\nWEBGL\t\ndefault\tavailable\t\t\n\nVIDEO_HDR\t\ndefault\tavailable\t\t\n\n",
+          "graphics-crashguards-tbody": "\n          \n            Crash Guard Disabled Features\n          \n        ",
+          "graphics-workarounds-tbody": "\n          \n            Workarounds\n          \n        ",
+          "graphics-failures-tbody": "Failure Log\n(#0) Error\tCalling WaitFlushedEvent::Run: is delayed: 4230",
+          "media-info-tbody": "Audio Backend\tpulse-rust\nMax Channels\t2\nPreferred Sample Rate\t48000\nRoundtrip latency (standard deviation)\t...\nCodec Support Information\t\nCodec Name\tSoftware Decoding\tHardware Decoding\tSoftware Encoding\tHardware Encoding\nH264\tSupported\tUnsupported\tUnsupported\tUnsupported\nVP9\tSupported\tUnsupported\tUnsupported\tUnsupported\nVP8\tSupported\tUnsupported\tUnsupported\tUnsupported\nAV1\tSupported\tUnsupported\tUnsupported\tUnsupported\nHEVC\tSupported\tUnsupported\tUnsupported\tUnsupported\nAAC\tSupported\tUnsupported\tUnsupported\tUnsupported\nMP3\tSupported\tUnsupported\tUnsupported\tUnsupported\nOpus\tSupported\tUnsupported\tUnsupported\tUnsupported\nVorbis\tSupported\tUnsupported\tUnsupported\tUnsupported\nFLAC\tSupported\tUnsupported\tUnsupported\tUnsupported\nWave\tSupported\tUnsupported\tUnsupported\tUnsupported\n\n"
+        },
+        "codecTables": []
+      },
+      "loaded_graphics_libraries": [
+        "/opt/t736-img-ddk-24.2-x11/lib/dri/pvr_dri.so",
+        "/opt/t736-img-ddk-24.2-x11/lib/dri/swrast_dri.so",
+        "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+        "/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+        "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+        "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887"
+      ],
+      "exit_code": 0,
+      "profile_removed": true,
+      "log": "/home/t736/firefox-v16-v5-renderer.files/egl-gles.log"
+    },
+    {
+      "mode": "egl-gles-drm",
+      "complete": true,
+      "startup_samples": [
+        {
+          "processes": [
+            {
+              "pid": 6419,
+              "state": "S",
+              "ppid": 6418,
+              "pgrp": 6419,
+              "minor_faults": 198956,
+              "major_faults": 1,
+              "user_ticks": 6704,
+              "system_ticks": 637,
+              "comm": "firefox-esr",
+              "wchan": "do_sys_poll",
+              "io_error": "[Errno 2] No such file or directory: '/proc/6419/io'"
+            },
+            {
+              "pid": 7901,
+              "state": "R",
+              "ppid": 6469,
+              "pgrp": 7901,
+              "minor_faults": 696,
+              "major_faults": 0,
+              "user_ticks": 2,
+              "system_ticks": 2,
+              "comm": "firefox-esr",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/7901/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 16047 2310 1370394 236238 8726 5162 526528 972226 0 104480 1215711 0 0 0 0 1338 7246",
+            "179       1 mmcblk0p1 85 3 4256 2016 0 0 0 0 0 992 2016 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 85 3 4256 1744 0 0 0 0 0 788 1744 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 113 3 7008 3140 0 0 0 0 0 1184 3140 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 15419 2295 1338330 222685 8725 5162 526528 972222 64 108988 1194907 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 85 3 4256 2263 0 0 0 0 0 960 2263 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 117 3 7064 3590 0 0 0 0 0 1520 3590 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 25 0 400 43 0 0 0 0 0 32 43 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 25 0 400 44 0 0 0 0 0 36 44 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 0.057
+        }
+      ],
+      "preferences": {
+        "marionette.port": 59767,
+        "browser.shell.checkDefaultBrowser": false,
+        "browser.startup.homepage": "about:blank",
+        "browser.startup.page": 0,
+        "browser.startup.firstrunSkipsHomepage": true,
+        "browser.aboutwelcome.enabled": false,
+        "gfx.egl.prefer-gles.enabled": true
+      },
+      "MOZ_X11_EGL": "1",
+      "MOZ_DRM_DEVICE": "/dev/dri/renderD128",
+      "phase": "complete",
+      "pid": 7901,
+      "marionette_tcp_connected_seconds": 3.588,
+      "marionette_hello": {
+        "applicationType": "gecko",
+        "marionetteProtocol": 3
+      },
+      "marionette_hello_received_seconds": 4.634,
+      "session": {
+        "sessionId": "75fce975-9fe5-4563-bb10-bd275f366808",
+        "capabilities": {
+          "acceptInsecureCerts": false,
+          "browserName": "firefox",
+          "browserVersion": "153.7.0",
+          "platformName": "linux",
+          "setWindowRect": true,
+          "unhandledPromptBehavior": "dismiss and notify",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:153.0) Gecko/20100101 Firefox/153.0",
+          "moz:buildID": "20261103151912",
+          "moz:headless": false,
+          "moz:platformVersion": "6.18.63-t736-storage-v16",
+          "moz:processID": 7901,
+          "moz:profile": "/tmp/t736-firefox-egl-gles-drm-kpxgn1id",
+          "moz:shutdownTimeout": 60000,
+          "pageLoadStrategy": "normal",
+          "timeouts": {
+            "implicit": 0,
+            "pageLoad": 300000,
+            "script": 30000
+          },
+          "strictFileInteractability": false,
+          "moz:accessibilityChecks": false,
+          "moz:webdriverClick": true,
+          "moz:windowless": false,
+          "proxy": {}
+        }
+      },
+      "support": {
+        "url": "about:support",
+        "title": "Troubleshooting Information",
+        "sections": {
+          "graphics-features-tbody": "Features\ngraphicsDevicePixelRatios\t1\ncompositing\tWebRender\nsupportFontDetermination\tLinux Unknown - VERSION_ID=\"13\"\nID=debian\nasyncPanZoom\twheel input enabled; scrollbar drag enabled; keyboard enabled; autoscroll enabled; smooth pinch-zoom enabled\nwebgl1WSIInfo\tEGL_VENDOR: Mesa Project\nEGL_VERSION: 1.5\nEGL_EXTENSIONS: EGL_ANDROID_native_fence_sync EGL_CHROMIUM_sync_control EGL_ANGLE_sync_control_rate EGL_EXT_buffer_age EGL_EXT_create_context_robustness EGL_EXT_image_dma_buf_import EGL_EXT_image_dma_buf_import_modifiers EGL_EXT_image_gl_colorspace EGL_EXT_query_reset_notification_strategy EGL_EXT_swap_buffers_with_damage EGL_EXT_yuv_surface EGL_IMG_context_priority EGL_KHR_cl_event2 EGL_KHR_config_attribs EGL_KHR_create_context EGL_KHR_fence_sync EGL_KHR_get_all_proc_addresses EGL_KHR_gl_colorspace EGL_KHR_gl_renderbuffer_image EGL_KHR_gl_texture_2D_image EGL_KHR_gl_texture_3D_image EGL_KHR_gl_texture_cubemap_image EGL_KHR_image EGL_KHR_image_base EGL_KHR_image_pixmap EGL_KHR_no_config_context EGL_KHR_partial_update EGL_KHR_reusable_sync EGL_KHR_surfaceless_context EGL_KHR_swap_buffers_with_damage EGL_EXT_pixel_format_float EGL_KHR_wait_sync EGL_MESA_configless_context EGL_MESA_drm_image EGL_MESA_image_dma_buf_export EGL_MESA_query_driver EGL_NOK_texture_from_pixmap EGL_IMG_cl_image \nEGL_EXTENSIONS(nullptr): EGL_EXT_client_extensions EGL_EXT_device_base EGL_EXT_device_enumeration EGL_EXT_device_query EGL_EXT_platform_base EGL_KHR_client_get_all_proc_addresses EGL_KHR_debug EGL_EXT_platform_device EGL_EXT_explicit_device EGL_EXT_platform_x11 EGL_KHR_platform_x11 EGL_EXT_platform_xcb EGL_MESA_platform_gbm EGL_KHR_platform_gbm EGL_MESA_platform_surfaceless\nwebgl1Renderer\tImagination Technologies -- PowerVR B-Series BXM-4-64\nwebgl1Version\tOpenGL ES 3.2 build 24.2@6603887\nwebgl1DriverExtensions\tGL_ANDROID_extension_pack_es31a GL_APPLE_texture_format_BGRA8888 GL_EXT_EGL_image_array GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_YUV_target GL_EXT_blend_func_extended GL_EXT_blend_minmax GL_EXT_buffer_storage GL_EXT_clear_texture GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_compressed_ETC1_RGB8_sub_texture GL_EXT_conservative_depth GL_EXT_copy_image GL_EXT_discard_framebuffer GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_geometry_point_size GL_EXT_geometry_shader GL_EXT_gpu_shader5 GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_multi_draw_arrays GL_EXT_multisampled_render_to_texture GL_EXT_multisampled_render_to_texture2 GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_primitive_bounding_box GL_EXT_read_format_bgra GL_EXT_robustness GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_separate_shader_objects GL_EXT_shader_framebuffer_fetch GL_EXT_shader_group_vote GL_EXT_shader_implicit_conversions GL_EXT_shader_io_blocks GL_EXT_shader_non_constant_global_initializers GL_EXT_shader_pixel_local_storage GL_EXT_shader_pixel_local_storage2 GL_EXT_shader_texture_lod GL_EXT_shadow_samplers GL_EXT_sparse_texture GL_EXT_tessellation_point_size GL_EXT_tessellation_shader GL_EXT_texture_border_clamp GL_EXT_texture_buffer GL_EXT_texture_cube_map_array GL_EXT_texture_format_BGRA8888 GL_EXT_texture_format_sRGB_override GL_EXT_texture_rg GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_storage_compression GL_EXT_texture_type_2_10_10_10_REV GL_EXT_unpack_subimage GL_IMG_framebuffer_downsample GL_IMG_multisampled_render_to_texture GL_IMG_program_binary GL_IMG_read_format GL_IMG_shader_binary GL_IMG_texture_format_BGRA8888 GL_IMG_texture_npot GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_debug GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_NV_draw_instanced GL_NV_instanced_arrays GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth24 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fragment_precision_high GL_OES_geometry_point_size GL_OES_geometry_shader GL_OES_get_program_binary GL_OES_gpu_shader5 GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_shading GL_OES_sample_variables GL_OES_shader_image_atomic GL_OES_shader_io_blocks GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_tessellation_point_size GL_OES_tessellation_shader GL_OES_texture_3D GL_OES_texture_border_clamp GL_OES_texture_buffer GL_OES_texture_cube_map_array GL_OES_texture_float GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_texture_storage_multisample_2d_array GL_OES_vertex_array_object GL_OES_vertex_half_float GL_OVR_multiview GL_OVR_multiview2 GL_OVR_multiview_multisampled_render_to_texture\nwebgl1Extensions\tANGLE_instanced_arrays EXT_blend_minmax EXT_color_buffer_half_float EXT_float_blend EXT_shader_texture_lod EXT_sRGB MOZ_debug OES_element_index_uint OES_fbo_render_mipmap OES_standard_derivatives OES_texture_float OES_texture_half_float OES_texture_half_float_linear OES_vertex_array_object WEBGL_color_buffer_float WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_depth_texture WEBGL_draw_buffers WEBGL_lose_context\nwebgl2WSIInfo\tEGL_VENDOR: Mesa Project\nEGL_VERSION: 1.5\nEGL_EXTENSIONS: EGL_ANDROID_native_fence_sync EGL_CHROMIUM_sync_control EGL_ANGLE_sync_control_rate EGL_EXT_buffer_age EGL_EXT_create_context_robustness EGL_EXT_image_dma_buf_import EGL_EXT_image_dma_buf_import_modifiers EGL_EXT_image_gl_colorspace EGL_EXT_query_reset_notification_strategy EGL_EXT_swap_buffers_with_damage EGL_EXT_yuv_surface EGL_IMG_context_priority EGL_KHR_cl_event2 EGL_KHR_config_attribs EGL_KHR_create_context EGL_KHR_fence_sync EGL_KHR_get_all_proc_addresses EGL_KHR_gl_colorspace EGL_KHR_gl_renderbuffer_image EGL_KHR_gl_texture_2D_image EGL_KHR_gl_texture_3D_image EGL_KHR_gl_texture_cubemap_image EGL_KHR_image EGL_KHR_image_base EGL_KHR_image_pixmap EGL_KHR_no_config_context EGL_KHR_partial_update EGL_KHR_reusable_sync EGL_KHR_surfaceless_context EGL_KHR_swap_buffers_with_damage EGL_EXT_pixel_format_float EGL_KHR_wait_sync EGL_MESA_configless_context EGL_MESA_drm_image EGL_MESA_image_dma_buf_export EGL_MESA_query_driver EGL_NOK_texture_from_pixmap EGL_IMG_cl_image \nEGL_EXTENSIONS(nullptr): EGL_EXT_client_extensions EGL_EXT_device_base EGL_EXT_device_enumeration EGL_EXT_device_query EGL_EXT_platform_base EGL_KHR_client_get_all_proc_addresses EGL_KHR_debug EGL_EXT_platform_device EGL_EXT_explicit_device EGL_EXT_platform_x11 EGL_KHR_platform_x11 EGL_EXT_platform_xcb EGL_MESA_platform_gbm EGL_KHR_platform_gbm EGL_MESA_platform_surfaceless\nwebgl2Renderer\tImagination Technologies -- PowerVR B-Series BXM-4-64\nwebgl2Version\tOpenGL ES 3.2 build 24.2@6603887\nwebgl2DriverExtensions\tGL_ANDROID_extension_pack_es31a GL_APPLE_texture_format_BGRA8888 GL_EXT_EGL_image_array GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_YUV_target GL_EXT_blend_func_extended GL_EXT_blend_minmax GL_EXT_buffer_storage GL_EXT_clear_texture GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_compressed_ETC1_RGB8_sub_texture GL_EXT_conservative_depth GL_EXT_copy_image GL_EXT_discard_framebuffer GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_geometry_point_size GL_EXT_geometry_shader GL_EXT_gpu_shader5 GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_multi_draw_arrays GL_EXT_multisampled_render_to_texture GL_EXT_multisampled_render_to_texture2 GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_primitive_bounding_box GL_EXT_read_format_bgra GL_EXT_robustness GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_separate_shader_objects GL_EXT_shader_framebuffer_fetch GL_EXT_shader_group_vote GL_EXT_shader_implicit_conversions GL_EXT_shader_io_blocks GL_EXT_shader_non_constant_global_initializers GL_EXT_shader_pixel_local_storage GL_EXT_shader_pixel_local_storage2 GL_EXT_shader_texture_lod GL_EXT_shadow_samplers GL_EXT_sparse_texture GL_EXT_tessellation_point_size GL_EXT_tessellation_shader GL_EXT_texture_border_clamp GL_EXT_texture_buffer GL_EXT_texture_cube_map_array GL_EXT_texture_format_BGRA8888 GL_EXT_texture_format_sRGB_override GL_EXT_texture_rg GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_storage_compression GL_EXT_texture_type_2_10_10_10_REV GL_EXT_unpack_subimage GL_IMG_framebuffer_downsample GL_IMG_multisampled_render_to_texture GL_IMG_program_binary GL_IMG_read_format GL_IMG_shader_binary GL_IMG_texture_format_BGRA8888 GL_IMG_texture_npot GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_debug GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_NV_draw_instanced GL_NV_instanced_arrays GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth24 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fragment_precision_high GL_OES_geometry_point_size GL_OES_geometry_shader GL_OES_get_program_binary GL_OES_gpu_shader5 GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_shading GL_OES_sample_variables GL_OES_shader_image_atomic GL_OES_shader_io_blocks GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_tessellation_point_size GL_OES_tessellation_shader GL_OES_texture_3D GL_OES_texture_border_clamp GL_OES_texture_buffer GL_OES_texture_cube_map_array GL_OES_texture_float GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_texture_storage_multisample_2d_array GL_OES_vertex_array_object GL_OES_vertex_half_float GL_OVR_multiview GL_OVR_multiview2 GL_OVR_multiview_multisampled_render_to_texture\nwebgl2Extensions\tEXT_color_buffer_float EXT_float_blend MOZ_debug OES_draw_buffers_indexed OVR_multiview2 WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context\ngraphics-window-protocol\tx11\ngraphics-desktop-environment\tgnome\ntargetFrameRate\t60\nwebgpuDefaultAdapter\t{\n  \"navigator.gpu\": null\n}\nwebgpuFallbackAdapter\t{\n  \"navigator.gpu\": null\n}\n",
+          "graphics-gpu-1-tbody": "GPU #1\ngpu-active\tyes\ngpu-description\tPowerVR B-Series BXM-4-64\ngpu-vendor-id\tImagination Technologies\ngpu-device-id\tPowerVR B-Series BXM-4-64\ngpu-driver-version\t24.2.0.0\ngpu-ram\t0\n",
+          "graphics-gpu-2-tbody": "\n          \n            GPU #2\n          \n        ",
+          "graphics-diagnostics-tbody": "Diagnostics\nAzureCanvasBackend\tskia\nAzureContentBackend\tskia\nAzureFallbackCanvasBackend\tskia\nCMSOutputProfile\tAAAGQGxjbXMEQAAAbW50clJHQiBYWVogB+oACwAQAAoALgAvYWNzcEFQUEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1sY21zTvclCht1ucd+xuwRbkOPVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOZGVzYwAAASwAAAA2Y3BydAAAAWQAAACGd3RwdAAAAewAAAAUY2hhZAAAAgAAAAAsclhZWgAAAiwAAAAUYlhZWgAAAkAAAAAUZ1hZWgAAAlQAAAAUclRSQwAAAmgAAAAQZ1RSQwAAAmgAAAAQYlRSQwAAAmgAAAAQY2hybQAAAngAAAAkbWV0YQAAApwAAANAZG1uZAAABdwAAAAuZG1kZAAABgwAAAAybWx1YwAAAAAAAAABAAAADGVuVVMAAAAaAAAAHABEAGUAbABsACAASQBuAGMALgAgADIANQAiAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAGoAAAAcAFQAaABpAHMAIABwAHIAbwBmAGkAbABlACAAaQBzACAAZgByAGUAZQAgAG8AZgAgAGsAbgBvAHcAbgAgAGMAbwBwAHkAcgBpAGcAaAB0ACAAcgBlAHMAdAByAGkAYwB0AGkAbwBuAHMALgAAWFlaIAAAAAAAAPbWAAEAAAAA0y1zZjMyAAAAAAABDEIAAAXe///zJQAAB5MAAP2Q///7of///aIAAAPcAADAblhZWiAAAAAAAABvoAAAOPUAAAOQWFlaIAAAAAAAACSfAAAPhAAAtsNYWVogAAAAAAAAYpcAALeHAAAY2XBhcmEAAAAAAAAAAAACMzNjaHJtAAAAAAADAAAAAKPXAABUewAATM0AAJmaAAAmZgAAD1xkaWN0AAAAAAAAAAsAAAAQAAAAwAAAABYAAADWAAAADAAAAOIAAAAUAAAA9gAAABYAAAEMAAAAFgAAASIAAAAIAAABKgAAABYAAAFAAAAAGAAAAVgAAAAWAAABbgAAAAgAAAF2AAAAIgAAAZgAAAASAAABqgAAABAAAAG6AAAAigAAAkQAAAAUAAACWAAAAAwAAAJkAAAAEgAAAnYAAAAGAAACfAAAABAAAAKMAAAAQAAAAswAAAAiAAAC7gAAAFIAQwBNAEYAXwBwAHIAbwBkAHUAYwB0AG0AdQB0AHQAZQByAEUARABJAEQAXwBtAG8AZABlAGwARABFAEwATAAgAFUAMgA1ADEAOABEAEQAQQBUAEEAXwBzAG8AdQByAGMAZQBlAGQAaQBkAEUARABJAEQAXwBzAGUAcgBpAGEAbAAzAE0ANwBLADgAOQBBADkAMAA2ADYATABDAE0ARgBfAHYAZQByAHMAaQBvAG4ANAA4AC4ANwBFAEQASQBEAF8AbQBhAG4AdQBmAGEAYwB0AHUAcgBlAHIARABlAGwAbAAgAEkAbgBjAC4ARgBpAGwAZQBuAGEAbQBlAC8AaABvAG0AZQAvAHQANwAzADYALwAuAGwAbwBjAGEAbAAvAHMAaABhAHIAZQAvAGkAYwBjAC8AZQBkAGkAZAAtAGYAOQAwAGIAZgBkADQANwBjADAAZQBiAGUANQBiADgAMAA0AGEAZgA2ADEAMABjADAANgBhADUANABhADkAMQAuAGkAYwBjAEMATQBGAF8AYgBpAG4AYQByAHkAbQB1AHQAdABlAHIARQBEAEkARABfAG0AbgBmAHQARABFAEwARQBEAEkARABfAG0AZAA1AGYAOQAwAGIAZgBkADQANwBjADAAZQBiAGUANQBiADgAMAA0AGEAZgA2ADEAMABjADAANgBhADUANABhADkAMQBNAEEAUABQAEkATgBHAF8AZABlAHYAaQBjAGUAXwBpAGQAeAByAGEAbgBkAHIALQBEAGUAbABsACAASQBuAGMALgAtAEQARQBMAEwAIABVADIANQAxADgARAAtADMATQA3AEsAOAA5AEEAOQAwADYANgBMbWx1YwAAAAAAAAABAAAADGVuVVMAAAASAAAAHABEAGUAbABsACAASQBuAGMALgAAbWx1YwAAAAAAAAABAAAADGVuVVMAAAAWAAAAHABEAEUATABMACAAVQAyADUAMQA4AEQAAA==\nDisplay0\t1920x1080@60Hz scales:1.000000|1.000000 SDR\nDisplayCount\t1\nsupportFontDetermination\tLinux Unknown - VERSION_ID=\"13\"\nID=debian\n",
+          "graphics-decisions-tbody": "Decision Log\nHW_COMPOSITING\t\ndefault\tavailable\t\t\n\nOPENGL_COMPOSITING\t\ndefault\tavailable\t\t\n\nWEBRENDER\t\ndefault\tavailable\t\t\n\nWEBRENDER_COMPOSITOR\t\ndefault\tdisabled\tDisabled by default\t\nenv\tblocklisted\tBlocklisted by gfxInfo\t\n\nWEBRENDER_PARTIAL\t\ndefault\tavailable\t\t\n\nWEBRENDER_SHADER_CACHE\t\ndefault\tdisabled\tDisabled by default\t\n\nWEBRENDER_OPTIMIZED_SHADERS\t\ndefault\tavailable\t\t\n\nWEBRENDER_ANGLE\t\ndefault\tavailable\t\t\nenv\tunavailable\tOS not supported\t\n\nWEBRENDER_DCOMP_PRESENT\t\ndefault\tavailable\t\t\nuser\tdisabled\tUser disabled via pref\t\nenv\tunavailable\tRequires GPU process\t\nruntime\tunavailable\tRequires ANGLE\t\n\nWEBRENDER_SCISSORED_CACHE_CLEARS\t\ndefault\tavailable\t\t\n\nWEBGPU\t\ndefault\tavailable\t\t\n\nX11_EGL\t\ndefault\tavailable\t\t\nuser\tforce_enabled\tForce enabled by envvar\t\n\nDMABUF\t\ndefault\tavailable\t\t\n\nHARDWARE_VIDEO_DECODING\t\ndefault\tavailable\t\t\nenv\tblocklisted\tBlocklisted by gfxInfo\t\nruntime\tunavailable\tForce disabled by gfxInfo\t\n\nHARDWARE_VIDEO_DECODING_VULKAN\t\ndefault\tavailable\t\t\nuser\tdisabled\tUser disabled via media.hardware-video-decoding-vulkan.enabled \t\n\nHARDWARE_VIDEO_ENCODING\t\ndefault\tavailable\t\t\n\nDMABUF_SURFACE_EXPORT\t\ndefault\tavailable\t\t\n\nBACKDROP_FILTER\t\ndefault\tavailable\t\t\n\nCANVAS_RENDERER_THREAD\t\ndefault\tavailable\t\t\n\nACCELERATED_CANVAS2D\t\ndefault\tavailable\t\t\n\nDMABUF_WEBGL\t\ndefault\tavailable\t\t\n\nVP8_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\t\n\nVP9_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\t\n\nH264_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\t\n\nAV1_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\t\n\nHEVC_HW_ENCODE\t\ndefault\tavailable\t\t\nenv\tblocklisted\t#BLOCKLIST_FEATURE_FAILURE_VIDEO_ENCODING_MISSING\t\n\nGL_NORM16_TEXTURES\t\ndefault\tavailable\t\t\n\nWEBGPU_EXTERNAL_TEXTURE\t\ndefault\tdisabled\tDisabled by default\t\nruntime\tblocked\tWebGPU external textures are not supported on this Operating Sy\t\n\nMESA_THREADING\t\ndefault\tavailable\t\t\nenv\tfailed\tNo glthread with EGL and X11\t\n\nWEBGL\t\ndefault\tavailable\t\t\n\nVIDEO_HDR\t\ndefault\tavailable\t\t\n\n",
+          "graphics-crashguards-tbody": "\n          \n            Crash Guard Disabled Features\n          \n        ",
+          "graphics-workarounds-tbody": "\n          \n            Workarounds\n          \n        ",
+          "graphics-failures-tbody": "Failure Log\n(#0) Error\tCalling WaitFlushedEvent::Run: is delayed: 4332",
+          "media-info-tbody": "null\tpulse-rust\nnull\t2\nnull\t48000\nnull\t...\nnull\t\nCodec Name\tSoftware Decoding\tHardware Decoding\tSoftware Encoding\tHardware Encoding\nH264\tSupported\tUnsupported\tUnsupported\tUnsupported\nVP9\tSupported\tUnsupported\tUnsupported\tUnsupported\nVP8\tSupported\tUnsupported\tUnsupported\tUnsupported\nAV1\tSupported\tUnsupported\tUnsupported\tUnsupported\nHEVC\tSupported\tUnsupported\tUnsupported\tUnsupported\nAAC\tSupported\tUnsupported\tUnsupported\tUnsupported\nMP3\tSupported\tUnsupported\tUnsupported\tUnsupported\nOpus\tSupported\tUnsupported\tUnsupported\tUnsupported\nVorbis\tSupported\tUnsupported\tUnsupported\tUnsupported\nFLAC\tSupported\tUnsupported\tUnsupported\tUnsupported\nWave\tSupported\tUnsupported\tUnsupported\tUnsupported\n\n"
+        },
+        "codecTables": []
+      },
+      "loaded_graphics_libraries": [
+        "/opt/t736-img-ddk-24.2-x11/lib/dri/pvr_dri.so",
+        "/opt/t736-img-ddk-24.2-x11/lib/dri/swrast_dri.so",
+        "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+        "/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+        "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+        "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887"
+      ],
+      "exit_code": 0,
+      "profile_removed": true,
+      "log": "/home/t736/firefox-v16-v5-renderer.files/egl-gles-drm.log"
+    }
+  ]
+}

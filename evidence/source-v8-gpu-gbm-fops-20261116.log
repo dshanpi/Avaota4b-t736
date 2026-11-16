@@ -1,0 +1,52 @@
+python3 /root/t736-gpu-debug/apply_binary_delta.py /usr/lib/modules/6.18.63-t736-gpu-v15/extra/pvrsrvkm.ko /tmp/t736-transfer/pvrsrvkm-prod-to-fops.delta /root/t736-gpu-debug/pvrsrvkm-fops.ko && rmmod pvrsrvkm && insmod /root/t736-gpu-debug/pvrsrvkm-fops.ko; echo FOPS_RELOAD_RC=$?; sh /tmp/t736-transfer/gpu_runtime_check.sh gbm >/root/t736-gpu-debug/gbm-fops.log 2>&1; echo GPU_GBM_FOPS_RC=$?; tail -n 35 /root/t736-gpu-debug/gbm-fops.log
+
+605305b2384f72b013236885f52f527f725ff2ae62c29d694f4aad025b769939  /root/t736-gpu-debug/pvrsrvkm-fops.ko
+FOPS_RELOAD_RC=0
+GPU_GBM_FOPS_RC=0
+[  589.789919] pvrsrvkm 1800000.gpu: PVRDIAG platform before set400
+[  589.794673] pvrsrvkm 1800000.gpu: PVRDIAG platform set400 ret=0
+[  589.799325] pvrsrvkm 1800000.gpu: PVRDIAG platform before bus clock
+[  589.804329] pvrsrvkm 1800000.gpu: PVRDIAG platform bus ret=0
+[  589.808719] pvrsrvkm 1800000.gpu: PVRDIAG platform before reset deassert
+[  589.814159] pvrsrvkm 1800000.gpu: PVRDIAG platform reset ret=0
+[  589.818731] pvrsrvkm 1800000.gpu: PVRDIAG platform before core clock
+[  589.823818] pvrsrvkm 1800000.gpu: PVRDIAG platform core ret=0
+[  589.828307] pvrsrvkm 1800000.gpu: PVRDIAG platform power-on completed
+[  589.833492] pvrsrvkm 1800000.gpu: T736 GPU fixed 400000000 Hz, supply 900000 uV, CCF/genpd enabled
+[  589.833546] PVRDIAG after SysDevInit ret=0
+[  589.836535] PVRDIAG registers mapped; before BVNC init
+[  589.840419] PVRDIAG BVNC configuration enter
+[  589.843431] PVRDIAG before hardware BVNC
+[  589.846082] PVRDIAG before PBVNC read high=0x01800024 low=0x01800020 core=0
+[  589.851768] PVRDIAG after PBVNC value=0x00240038006800b7
+[  589.855805] PVRDIAG after hardware BVNC 36.56.104.183
+[  589.859597] PVR_K:  2744: Read BVNC 36.56.104.183 from HW device registers
+[  589.859610] PVRDIAG before MULTICORE_SYSTEM 0x0180f308
+[  589.863470] PVRDIAG after MULTICORE_SYSTEM=0x1
+[  589.866682] PVR_K:  2744: RGX Device registered BVNC 36.56.104.183 with 1 core in the system
+[  589.866696] PVRDIAG after BVNC init ret=0
+[  589.870190] pvrsrvkm 1800000.gpu: PVRDIAG after pvr_drm_load ret=0
+[  589.875867] [drm] Initialized pvr 24.2.6603887 for 1800000.gpu on minor 1
+[  717.840319] pvrsrvkm 1800000.gpu: T736 GPU fixed 400000000 Hz, supply 900000 uV, CCF/genpd enabled
+[  717.840488] PVR_K:  2767: Read BVNC 36.56.104.183 from HW device registers
+[  717.840538] PVR_K:  2767: RGX Device registered BVNC 36.56.104.183 with 1 core in the system
+[  717.842058] [drm] Initialized pvr 24.2.6603887 for 1800000.gpu on minor 1
+[  749.608017] Modules linked in: pvrsrvkm(O) t736_gpu_power_retry3(O) t736_gpu_pll_enable(O) [last unloaded: pvrsrvkm(O)]
+[  929.460696] pvrsrvkm 1800000.gpu: T736 GPU fixed 400000000 Hz, supply 900000 uV, CCF/genpd enabled
+[  929.464382] PVR_K:  2837: Read BVNC 36.56.104.183 from HW device registers
+[  929.464525] PVR_K:  2837: RGX Device registered BVNC 36.56.104.183 with 1 core in the system
+[  929.466122] [drm] Initialized pvr 24.2.6603887 for 1800000.gpu on minor 1
+[  929.717839] PVR_K:  2865: RGX Firmware image 'rgx.fw.36.56.104.183' loaded
+[  929.770755] PVR_K:  2865: Shader binary image 'rgx.sh.36.56.104.183' loaded
+root@t736:~# grep -E "^EGL|^GL_|GPU_PROBE|FAIL|TEST_RENDER_NODE" /root/t736-gpu-debug/gbm-fops.log; echo FIRMWARE_STATE; find /sys/kernel/debug/pvr -maxdepth 2 -type f -name status -print 2>/dev/null; echo GPU_RENDER_EVIDENCE_DONE
+
+TEST_RENDER_NODE=/dev/dri/renderD128
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+FIRMWARE_STATE
+/sys/kernel/debug/pvr/status
+GPU_RENDER_EVIDENCE_DONE
+root@t736:~# 

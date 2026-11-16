@@ -1,0 +1,63 @@
+cat /sys/bus/mdio_bus/devices/stmmac-0:01/phy_id; ip -br address; ip route; networkctl status end0 --no-pager; cat /sys/class/net/end0/speed /sys/class/net/end0/duplex; ip -s link 
+ show end0; dmesg | tail -20; command -v curl
+
+0x001cc916
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+end0             UP             fe80::68c5:26ff:fe43:3952/64 
+sit0@NONE        DOWN           
+● 2: end0
+                   Link File: /usr/lib/systemd/network/99-default.link
+                Network File: /etc/systemd/network/20-wired.network
+                       State: degraded (configuring)
+                Online state: online                                                      
+                        Type: ether
+                        Path: platform-4500000.ethernet
+                      Driver: st_gmac
+            Hardware Address: 6a:c5:26:43:39:52
+                         MTU: 1500 (min: 46, max: 9000)
+                       QDisc: mq
+IPv6 Address Generation Mode: eui64
+    Number of Queues (Tx/Rx): 8/8
+            Auto negotiation: yes
+                       Speed: 1Gbps
+                      Duplex: full
+                        Port: tp
+                     Address: fe80::68c5:26ff:fe43:3952
+           Activation Policy: up
+         Required For Online: yes
+          DHCPv6 Client DUID: DUID-EN/Vendor:0000ab1170c1959ce5021270
+
+Nov 11 15:48:10 t736 systemd-networkd[352]: end0: Configuring with /etc/systemd/network/20…work.
+Nov 11 15:48:11 t736 systemd-networkd[352]: end0: Link UP
+Nov 11 15:48:14 t736 systemd-networkd[352]: end0: Gained carrier
+Nov 11 15:48:16 t736 systemd-networkd[352]: end0: Gained IPv6LL
+1000
+full
+2: end0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 6a:c5:26:43:39:52 brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+          3240      21      0       0       0       0 
+[   13.375115] systemd[1]: Mounted sys-kernel-debug.mount - Kernel Debug File System.
+[   13.399377] systemd[1]: fake-hwclock-load.service: Deactivated successfully.
+[   13.405523] systemd[1]: Finished fake-hwclock-load.service - Restore the current clock.
+[   13.429094] systemd-journald[241]: Collecting audit messages is disabled.
+[   13.440736] systemd[1]: Finished keyboard-setup.service - Set the console keyboard layout.
+[   13.464236] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[   13.471012] systemd[1]: Finished modprobe@configfs.service - Load Kernel Module configfs.
+[   13.496167] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[   13.502357] systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+[   13.523539] systemd[1]: Started systemd-journald.service - Journal Service.
+[   13.846906] EXT4-fs (mmcblk0p4): re-mounted e6082fd8-b857-4dfb-b205-8226d8ad02c5.
+[   13.996605] systemd-journald[241]: Received client request to flush runtime journal.
+[   15.082707] random: crng init done
+[   25.176346] t736-dwmac 4500000.ethernet end0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[   25.298696] t736-dwmac 4500000.ethernet end0: PHY [stmmac-0:01] driver [RTL8211F Gigabit Ethernet] (irq=POLL)
+[   25.450685] t736-dwmac 4500000.ethernet end0: No Safety Features support found
+[   25.723823] t736-dwmac 4500000.ethernet end0: IEEE 1588-2008 Advanced Timestamp supported
+[   25.730702] t736-dwmac 4500000.ethernet end0: configuring for phy/rgmii link mode
+[   29.006711] t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+[   30.785750] systemd-journald[241]: Received client request to relinquish /var/log/journal/05846731feab41f28bcfdd55854f99d8 access.
+/usr/bin/curl
+root@t736:~# 

@@ -1,0 +1,101 @@
+stty -echo; : > /run/t736-mdio-diag.b64
+
+root@t736:~# 
+
+root@t736:~# 
+
+root@t736:~# 
+
+root@t736:~# 
+
+root@t736:~# 
+
+root@t736:~# 
+
+/run/t736-mdio-diag.ko: OK
+t736_mdio_diag: loading out-of-tree module taints kernel.
+t736-diag: PH_CFG0=55555555
+t736-diag: PH_CFG1=55555555
+t736-diag: PH_CFG2=0000fff1
+t736-diag: PH_DAT=00010000
+t736-diag: PLL_PERI0=ff126310
+t736-diag: GMAC_PHY_CLOCK=80000005
+t736-diag: GMAC_BUS_RESET=00030001
+t736-diag: GMAC_EXT=00008000
+t736-diag: MDIO_ADDR=0023040c
+t736-diag: MDIO_DATA=0000ffff
+t736-diag: phy=00 id1=0000ffff id2=0000ffff
+t736-diag: phy=01 id1=0000ffff id2=0000ffff
+t736-diag: phy=02 id1=0000ffff id2=0000ffff
+t736-diag: phy=03 id1=0000ffff id2=0000ffff
+t736-diag: phy=04 id1=0000ffff id2=0000ffff
+t736-diag: phy=05 id1=0000ffff id2=0000ffff
+t736-diag: phy=06 id1=0000ffff id2=0000ffff
+t736-diag: phy=07 id1=0000ffff id2=0000ffff
+t736-diag: phy=08 id1=0000ffff id2=0000ffff
+t736-diag: phy=09 id1=0000ffff id2=0000ffff
+t736-diag: phy=10 id1=0000ffff id2=0000ffff
+t736-diag: phy=11 id1=0000ffff id2=0000ffff
+t736-diag: phy=12 id1=0000ffff id2=0000ffff
+t736-diag: phy=13 id1=0000ffff id2=0000ffff
+t736-diag: phy=14 id1=0000ffff id2=0000ffff
+t736-diag: phy=15 id1=0000ffff id2=0000ffff
+t736-diag: phy=16 id1=0000ffff id2=0000ffff
+t736-diag: phy=17 id1=0000ffff id2=0000ffff
+t736-diag: phy=18 id1=0000ffff id2=0000ffff
+t736-diag: phy=19 id1=0000ffff id2=0000ffff
+t736-diag: phy=20 id1=0000ffff id2=0000ffff
+t736-diag: phy=21 id1=0000ffff id2=0000ffff
+t736-diag: phy=22 id1=0000ffff id2=0000ffff
+t736-diag: phy=23 id1=0000ffff id2=0000ffff
+t736-diag: phy=24 id1=0000ffff id2=0000ffff
+t736-diag: phy=25 id1=0000ffff id2=0000ffff
+t736-diag: phy=26 id1=0000ffff id2=0000ffff
+t736-diag: phy=27 id1=0000ffff id2=0000ffff
+t736-diag: phy=28 id1=0000ffff id2=0000ffff
+t736-diag: phy=29 id1=0000ffff id2=0000ffff
+t736-diag: phy=30 id1=0000ffff id2=0000ffff
+t736-diag: phy=31 id1=0000ffff id2=0000ffff
+[  219.515634] t736-diag: PH_CFG0=55555555
+[  219.518207] t736-diag: PH_CFG1=55555555
+[  219.520763] t736-diag: PH_CFG2=0000fff1
+[  219.523307] t736-diag: PH_DAT=00010000
+[  219.525774] t736-diag: PLL_PERI0=ff126310
+[  219.528502] t736-diag: GMAC_PHY_CLOCK=80000005
+[  219.531650] t736-diag: GMAC_BUS_RESET=00030001
+[  219.534810] t736-diag: GMAC_EXT=00008000
+[  219.537454] t736-diag: MDIO_ADDR=0023040c
+[  219.540182] t736-diag: MDIO_DATA=0000ffff
+[  219.547833] t736-diag: phy=00 id1=0000ffff id2=0000ffff
+[  219.555857] t736-diag: phy=01 id1=0000ffff id2=0000ffff
+[  219.563831] t736-diag: phy=02 id1=0000ffff id2=0000ffff
+[  219.571840] t736-diag: phy=03 id1=0000ffff id2=0000ffff
+[  219.579831] t736-diag: phy=04 id1=0000ffff id2=0000ffff
+[  219.587832] t736-diag: phy=05 id1=0000ffff id2=0000ffff
+[  219.595830] t736-diag: phy=06 id1=0000ffff id2=0000ffff
+[  219.603837] t736-diag: phy=07 id1=0000ffff id2=0000ffff
+[  219.611833] t736-diag: phy=08 id1=0000ffff id2=0000ffff
+[  219.619834] t736-diag: phy=09 id1=0000ffff id2=0000ffff
+[  219.627833] t736-diag: phy=10 id1=0000ffff id2=0000ffff
+[  219.635834] t736-diag: phy=11 id1=0000ffff id2=0000ffff
+[  219.643833] t736-diag: phy=12 id1=0000ffff id2=0000ffff
+[  219.651833] t736-diag: phy=13 id1=0000ffff id2=0000ffff
+[  219.659834] t736-diag: phy=14 id1=0000ffff id2=0000ffff
+[  219.667833] t736-diag: phy=15 id1=0000ffff id2=0000ffff
+[  219.675832] t736-diag: phy=16 id1=0000ffff id2=0000ffff
+[  219.683833] t736-diag: phy=17 id1=0000ffff id2=0000ffff
+[  219.691829] t736-diag: phy=18 id1=0000ffff id2=0000ffff
+[  219.699833] t736-diag: phy=19 id1=0000ffff id2=0000ffff
+[  219.707833] t736-diag: phy=20 id1=0000ffff id2=0000ffff
+[  219.715832] t736-diag: phy=21 id1=0000ffff id2=0000ffff
+[  219.723829] t736-diag: phy=22 id1=0000ffff id2=0000ffff
+[  219.731832] t736-diag: phy=23 id1=0000ffff id2=0000ffff
+[  219.739833] t736-diag: phy=24 id1=0000ffff id2=0000ffff
+[  219.747833] t736-diag: phy=25 id1=0000ffff id2=0000ffff
+[  219.755835] t736-diag: phy=26 id1=0000ffff id2=0000ffff
+[  219.763833] t736-diag: phy=27 id1=0000ffff id2=0000ffff
+[  219.771832] t736-diag: phy=28 id1=0000ffff id2=0000ffff
+[  219.779833] t736-diag: phy=29 id1=0000ffff id2=0000ffff
+[  219.787836] t736-diag: phy=30 id1=0000ffff id2=0000ffff
+[  219.795833] t736-diag: phy=31 id1=0000ffff id2=0000ffff
+root@t736:~# 

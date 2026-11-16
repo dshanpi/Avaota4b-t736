@@ -1,0 +1,39 @@
+LOG /home/t736/firefox-v16-v5-renderer.files/baseline.log
+  Failed to enable RemoteSettingsExperimentLoader:
+  Message: Error: Shutdown started
+  Stack:
+    ShutdownStartedError@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:1582:5
+listener@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:752:35
+@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:311:31
+trigger@resource://gre/modules/AsyncShutdown.sys.mjs:773:23
+_wait@resource://gre/modules/AsyncShutdown.sys.mjs:933:15
+wait@resource://gre/modules/AsyncShutdown.sys.mjs:914:34
+observe@resource://gre/modules/AsyncShutdown.sys.mjs:573:10
+
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: recipe-client-addon-run
+LOG /home/t736/firefox-v16-v5-renderer.files/egl-gles-drm.log
+  Failed to enable RemoteSettingsExperimentLoader:
+  Message: Error: Shutdown started
+  Stack:
+    ShutdownStartedError@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:1582:5
+listener@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:752:35
+@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:311:31
+trigger@resource://gre/modules/AsyncShutdown.sys.mjs:773:23
+_wait@resource://gre/modules/AsyncShutdown.sys.mjs:933:15
+wait@resource://gre/modules/AsyncShutdown.sys.mjs:914:34
+observe@resource://gre/modules/AsyncShutdown.sys.mjs:573:10
+
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: recipe-client-addon-run
+LOG /home/t736/firefox-v16-v5-renderer.files/egl-gles.log
+  Failed to enable RemoteSettingsExperimentLoader:
+  Message: Error: Shutdown started
+  Stack:
+    ShutdownStartedError@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:1582:5
+listener@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:752:35
+@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:311:31
+trigger@resource://gre/modules/AsyncShutdown.sys.mjs:773:23
+_wait@resource://gre/modules/AsyncShutdown.sys.mjs:933:15
+wait@resource://gre/modules/AsyncShutdown.sys.mjs:914:34
+observe@resource://gre/modules/AsyncShutdown.sys.mjs:573:10
+
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: recipe-client-addon-run

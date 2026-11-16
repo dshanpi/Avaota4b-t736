@@ -1,0 +1,19 @@
+79b074547330fa68f7c29b4dc4ab366d28bcb7173c825d2735c6df26194aea76  /home/t736/update_t736_storage_v21.py
+BACKUP_FSYNC_VERIFIED /var/backups/t736-storage-v21/20261116T123935Z-kfcxg6ca
+{
+  "backup_directory": "/var/backups/t736-storage-v21/20261116T123935Z-kfcxg6ca",
+  "running_release": "6.18.63-t736-storage-v20",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v21",
+  "rebooted": false,
+  "hardware_accepted": false,
+  "status": "INSTALLED_AND_SELECTED_NOT_BOOT_TESTED",
+  "final_sha256": {
+    "kernel": "b1e087e934b5d3aeccb90c68a13e1eb66c683e9d173eee3d7f740d623e69bdce",
+    "config": "5e1feec11b9a6d992936f969c0f237e448bac33070d946922c46bce2467af362",
+    "dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "pvr": "9ba54fb4a0b585b9db1edea6d8dfd541174583a06cf732d2ecc0d38897c103c9",
+    "initrd": "9b23e3ac6d5021f12e3d89f79a425fb071f7cc91336836bbcab7a73d18546c1f",
+    "modules_dep": "a04354f94edd7ebf9b94fe65b273460c00e8a0d4b60956054937f43544b0230b"
+  }
+}

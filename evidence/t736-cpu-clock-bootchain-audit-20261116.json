@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-16",
+  "scope": "Read-only CPU clock boot-chain source audit and isolated read-only diagnostic module. No board/serial access or CPU PLL/PMIC writes by this agent. No production GPU build changes.",
+  "kernel": {
+    "build": "/home/ubuntu/t736-mainline/build/linux-gpu-v15",
+    "release": "6.18.63-t736-gpu-v15",
+    "config_sha256": "244faa52e7d012b65edfbc02f1dff1fd937b255f80ff2da1b90d366bd8673e5d",
+    "cpu_freq": "CONFIG_CPU_FREQ is not set (.config:540)",
+    "cpu_dt": "boards/t736-mainline-bringup.dts:27-34 declares A55 CPUs0..5 and A76 CPUs6..7 with PSCI, but no CPU clock/OPP/cpu-supply nodes",
+    "consequence": "No cpufreq governor can raise inherited CPU clocks. Current CPU MHz cannot be inferred from peripheral fixed clocks, BogoMIPS or architectural timer frequency."
+  },
+  "boot_chain": [
+    {
+      "stage": "SPL wrapper",
+      "files": [
+        "spl/vendor_ddr/probe.c",
+        "spl/vendor_ddr/emmc_boot.c",
+        "spl/vendor_ddr/stage64.c"
+      ],
+      "finding": "Inspected wrappers configure UART, timer, DDR/peripheral supplies and memory clocks; no explicit CPU PLL/mux initialization was found. PCLK/PERI/AHB/APB logs are not CPU frequency evidence."
+    },
+    {
+      "stage": "authorized DDR library",
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/dramlib/sun60iw2p1/spl_libdram/libdram",
+      "sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+      "finding": "Clock-related exported symbols include ccm_set_pll_ddr0_sscg, _ccm_set_pll_ddr_clk, mctl_sys_init and init_DRAM. Focused mctl_sys_init disassembly references DDR/MBUS/main-CCU addresses 0x02002588,0x02002584,0x02002c0c,0x0a020010,0x02002c00,0x02002580,0x02002020; none is CPU_PLL_CFG 0x08870000. Symbol/address search alone is not proof that every library path leaves CPU clocks unchanged."
+    },
+    {
+      "stage": "TF-A",
+      "commit": "7d322909068fc4bb4ee35e9e43c78ed68d98619b",
+      "platform": "sun60i_a733",
+      "platform_mk_sha256": "b35de62655d460ca6b866f4cc07ed5a2361c8267f896c14f0461da89c8c8e7ca",
+      "setup_sha256": "7f1d222a9dab9aea0a1f193da61648f533ae09ea24b7f50dc82455bebaac7dcf",
+      "power_sha256": "cc2b02b10e4edbcf99127c2adf4a56c2c07c59e64ac2d9b332d15492a66a3d19",
+      "finding": "Native PSCI is selected, SCPI/ARISC and regulator setup disabled; platform sunxi_pmic_setup returns0. No CPU PLL frequency configuration found in applicable platform/common path. AHB200MHz writes in common setup are gated to A64, not A733/T736. CPU interconnect reset/gate writes do not program CPU frequency."
+    },
+    {
+      "stage": "U-Boot",
+      "build": "/home/ubuntu/t736-mainline/build/u-boot-source-ddr",
+      "config_sha256": "3d8d55d5a2ee90933e12ed5d17ff37a6e15760b0e6b69764ff6710242a16c7ad",
+      "board_sha256": "2ee85915bcdf2c5b067b0522c4c403b24e5926dfbc9d244612247f2c3b77a5dd",
+      "finding": "TARGET_T736_BRINGUP=y; ARCH_CPU_INIT=n (69), ARCH_SUNXI=n (122), CLOCKS=n (409), CPU=n (790). board/t736/bringup/board.c board_init:53 returns0; enable_caches:64 enables I/D cache. The generic sunxi SPL clock setup is not selected by this custom chain."
+    }
+  ],
+  "diagnostic": {
+    "source": "tools/validation/t736-cpu-clock-readonly.c",
+    "module": "output/t736-cpu-clock-readonly-v1.ko",
+    "remote_module": "/home/ubuntu/t736-mainline/build/cpu-clock-readonly-v1/t736-cpu-clock-readonly.ko",
+    "module_sha256": "6303cd025906d215cab1eedc4cc03450fbad26260d94befa55ca201440a30ca1",
+    "vermagic": "6.18.63-t736-gpu-v15 SMP mod_unload aarch64",
+    "register_evidence": "evidence/t736-cpu-clock-register-audit-20261116.json",
+    "behavior": "Init-only ioremap/readl snapshot of 20 documented CPU clock CTRL/PAT/LFM/MUX/CTRL_STAT/SLOW registers; no MMIO writes, clock registration, clock enable, reset, regulator operation or vendor CCF callback. Raw values only because manual and vendor formula discrepancies require explicit interpretation. Rmmod has no hardware operation.",
+    "undefined_symbols": [
+      "arm64_use_ng_mappings",
+      "__ioremap_prot",
+      "iounmap",
+      "of_machine_compatible_match",
+      "_printk"
+    ],
+    "commands": [
+      "insmod /path/to/t736-cpu-clock-readonly-v1.ko",
+      "dmesg | grep t736-cpu-clock-ro",
+      "rmmod t736_cpu_clock_readonly"
+    ],
+    "compiled": true,
+    "hardware_tested_by_this_agent": false,
+    "offset_peer_review": "event_review confirmed all20 offsets documented, aligned and within0x4000; PAT1 SDM_BUSY is read-only, CTRL26 R/WAC triggers only on write; no read-clear semantics.",
+    "build_command": "make -C /home/ubuntu/t736-mainline/build/linux-gpu-v15 M=/home/ubuntu/t736-mainline/build/cpu-clock-readonly-v1 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules"
+  },
+  "interpretation": "A55_CLK/A76_CLK[26:24] 0,1,2 select CPU_SLOW;3 selects associated CPU PLL with external divider;4 selects PERI0PLL_DIV2;5 selects CPU_BACK. CPU_SLOW_CLK[1:0]0=DCXO,1=32K,2=16M_RC. DSU mux4/5 and CTRL_STAT N formula conflict across sources: preserve raw values and do not assert an actual frequency without resolving selection/factors.",
+  "status": "Strong source-level reason to investigate inherited CPU rate; no runtime CPU rate was measured in this audit and no claim that low CPU frequency caused all desktop flicker.",
+  "next_step": "Root owns hardware: sample runtime mux/PLL registers using the isolated module; inspect thermal/regulator/voltage constraints before proposing CPU clock writes. Do not use a fixed software clock node to claim a hardware rate.",
+  "local_input_sha256": {
+    "boards/t736-mainline-bringup.dts": "96f63949c8f951ad42f531c5df9559b450e5ea489390485b28d2924cd113f98b",
+    "spl/vendor_ddr/probe.c": "d952ef981baf30c69f03143336a88ab4398b2c4d45a46d2f3342d143f3cd2574",
+    "spl/vendor_ddr/emmc_boot.c": "1d12b590303f3de301ab60aa8fca9991ebc3fc9b477b31402203b0f9f527ffab",
+    "spl/vendor_ddr/stage64.c": "ca6aacb06da6b25421c3ef4681947bb371933365481172d9d45b1e7d0a70ff25",
+    "tools/validation/t736-cpu-clock-readonly.c": "78f21d0799465c3a35f43bb25c046c45416aed92146817a91bb8f68697c392b9",
+    "evidence/t736-cpu-clock-register-audit-20261116.json": "efbb05c2a3b95f335e67ca91a3374d093f2eba64a07ba015d45351be51cd4bfc"
+  }
+}

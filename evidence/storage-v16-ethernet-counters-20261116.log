@@ -1,0 +1,44 @@
+总计 0
+-r--r--r-- 1 root root 4096 11月16日 10:56 errors
+-r--r--r-- 1 root root 4096 11月16日 10:56 reads
+-r--r--r-- 1 root root 4096 11月16日 10:56 transfers
+-r--r--r-- 1 root root 4096 11月16日 10:56 writes
+errors=0
+reads=2745
+transfers=4147
+writes=1402
+     mmc_tx_underflow_error: 0
+     mmc_tx_carrier_error: 0
+     mmc_rx_crc_error: 0
+     mmc_rx_align_error: 0
+     mmc_rx_run_error: 0
+     mmc_rx_jabber_error: 0
+     mmc_rx_length_error: 0
+     mmc_rx_fifo_overflow: 0
+     mmc_rx_watchdog_error: 0
+     mmc_rx_error: 0
+     tx_underflow: 0
+     tx_payload_error: 0
+     tx_ip_header_error: 0
+     overflow_error: 0
+     ipc_csum_error: 0
+     rx_collision: 0
+     rx_crc_errors: 0
+     rx_gmac_overflow: 0
+     rx_overflow_cntr: 0
+     rx_overflow_irq: 0
+     fatal_bus_error_irq: 0
+     phy_eee_wakeup_error_n: 0
+     timestamp_dropped: 0
+     mtl_tx_status_fifo_full: 0
+     mtl_tx_fifo_not_empty: 0
+     mmtl_fifo_ctrl: 0
+     mtl_tx_fifo_read_ctrl_write: 0
+     mtl_tx_fifo_read_ctrl_wait: 0
+     mtl_tx_fifo_read_ctrl_read: 0
+     mtl_tx_fifo_read_ctrl_idle: 0
+     mtl_rx_fifo_fill_level_full: 0
+     mtl_rx_fifo_fill_above_thresh: 0
+     mtl_rx_fifo_fill_below_thresh: 0
+     mtl_rx_fifo_fill_level_empty: 0
+     mtl_rx_fifo_read_ctrl_flush: 0

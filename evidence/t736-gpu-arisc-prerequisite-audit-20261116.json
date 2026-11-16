@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-16",
+  "scope": "Read-only same-SoC ARISC/startup source research; no hardware operations or driver changes",
+  "findings": [
+    {
+      "id": "gpu_core_status_not_vendor_poll_condition",
+      "confidence": "confirmed source behavior",
+      "text": "sun60iw2p1 ARISC ppu_resume requests policy ON for PPU indices 0..10, but explicitly skips status polling for i==6 with comment do not care ppu gpu core status. A CORE status0 alone is not a vendor-supported failure criterion; this does not prove GPU core power is healthy."
+    },
+    {
+      "id": "no_visible_gpu_cold_start_dependency",
+      "confidence": "bounded negative search",
+      "text": "sun60iw2p1 ccu_init configures CPUS/APBS0/APBS1 only. plat_init_early is weak/no-op with no sun60iw2p1 source override. standby_init initializes a wake timer. set_paras is empty, platform_dts_parse_late parses DRAM only. nm of sun60iw2p1 libar100s.a found no GPU/PPU/PCK/startup/plat_init symbol; library contains DRAM save/restore symbols. Closed boot0 behavior is not excluded."
+    },
+    {
+      "id": "unsupported_gpu_domain_flow_excluded",
+      "confidence": "confirmed matching DTS references",
+      "text": "bsp/drivers/pm_domain/gpu_domain.c matches allwinner,gpu-pd, used by sun50iw10p1 5.10/5.15 DTS only in the searched config tree. Its PSW/isolation flow is not evidence for T736."
+    },
+    {
+      "id": "cm_gpu0_not_confirmed_register",
+      "confidence": "incomplete/conflicting reference",
+      "text": "sun60iw2p1 clock_autogen.h defines CM_GPU0_CFG offset 0x1b24, bit0 mode and bits17:16 status. No code callers were found. T736 and A733 manual register tables omit this item between NPU 0x1b1c and PCIE 0x1b28. Do not use this header alone as justification for a write."
+    },
+    {
+      "id": "interconnect_gate_refs",
+      "confidence": "manual confirmed",
+      "text": "T736 reference-1.txt lines6552..6556: AHB_MAT_CLK_GATING offset0x5c0 GPU0 bit7 default1. lines6647..6651: MBUS_MAT_CLK_GATING offset0x5e0 GPU0 bit16 default1. Passed to clock investigator for actual provider/readback comparison."
+    }
+  ],
+  "sources": [
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/arisc/ar100s/service/standby/standby-sun60iw2p1/plat_standby.c",
+      "sha256": "00af00f7f5108aa442812c5a2ebafac72705bc5167ab87687fe6c083cb2bc7ce",
+      "lines": [
+        1228,
+        1243
+      ],
+      "excerpt": "static void ppu_resume(void)\n{\n\tu32 reg_val, i;\n\n\tfor (i = 0; i < 11; i++) {\n\t\treg_val = readl(PCK600_REG_BASE + 0x1000 * i);\n\t\treg_val |= 0x8;\n\t\twritel(reg_val, PCK600_REG_BASE + 0x1000 * i);\n\n\t\t/* do not care ppu gpu core status */\n\t\tif (i == 6)\n\t\t\tcontinue;\n\n\t\twhile (!(readl(PCK600_REG_BASE + 0x1000 * i + 0x8) & 0x8))\n\t\t\t;\n\t}"
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/arisc/ar100s/system/daemon/daemon.c",
+      "sha256": "a5f536675fd968987a0ca262cede31d09525e8e991cc8d9fe79c07f39b9eecc2",
+      "lines": [
+        123,
+        154
+      ],
+      "excerpt": "{\n\tdtb_base = read_dtb_base();\n\tcpucfg_set_little_endian_address((void *)(dtb_base), (void *)(dtb_base + ARISC_DTS_SIZE));\n}\n\nextern void plat_init_early(void);\nvoid __attribute__((weak)) plat_init_early(void)\n{\n\treturn;\n};\n\n/*\n*********************************************************************************************************\n*                                       STARTUP ENTRY\n*\n* Description:  the entry of startup.\n*\n* Arguments  :  none.\n*\n* Returns    :  none.\n*********************************************************************************************************\n*/\nvoid startup_entry(void)\n{\n\tdtb_base_init();\n\n\tplat_init_early();\n\n\tnotifier_init();\n\tsave_state_flag(REC_HOTPULG | 0x0);\n\n\tccu_init();"
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/arisc/ar100s/driver/prcm/prcm-sun60iw2p1/ccu.c",
+      "sha256": "3767ae95027a8c3c70c9df6cefd6851a5d009be3bf9925d2ef751c19d4b9136b",
+      "lines": [
+        78,
+        104
+      ],
+      "excerpt": "s32 ccu_init(void)\n{\n#ifndef CFG_FPGA_PLATFORM\n\t/* setup cpus post div source to 200M */\n\twritel((readl(CPUS_CFG_REG) & (~CPUS_FACTOR_M_MASK)) | CPUS_FACTOR_M(0), CPUS_CFG_REG);\n\n\t/* set cpus clock source to pll_peri0 */\n\twritel((readl(CPUS_CFG_REG) & (~CPUS_CLK_SRC_SEL_MASK)) | CPUS_CLK_SRC_SEL(3), CPUS_CFG_REG);\n\n\t/* setup apbs0 post div source to 100M */\n\twritel((readl(APBS0_CFG_REG) & (~APBS0_FACTOR_M_MASK)) | APBS0_FACTOR_M(1), APBS0_CFG_REG);\n\n\t/* set apbs0 clock source to pll_peri0 */\n\twritel((readl(APBS0_CFG_REG) & (~APBS0_CLK_SRC_SEL_MASK)) | APBS0_CLK_SRC_SEL(3), APBS0_CFG_REG);\n\n\t/* setup apbs1 post div source to 24M */\n\twritel((readl(APBS1_CFG_REG) & (~APBS1_FACTOR_M_MASK)) | APBS1_FACTOR_M(0), APBS1_CFG_REG);\n\n\t/* set apbs1 clock source to 24M */\n\twritel((readl(APBS1_CFG_REG) & (~APBS1_CLK_SRC_SEL_MASK)) | APBS1_CLK_SRC_SEL(4), APBS1_CFG_REG);\n#endif\n\n\t/* initialize apb notifier list */\n\tapbs2_notifier_head = NULL;\n\n\t/* ccu initialize succeeded */\n\treturn OK;"
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/arisc/ar100s/service/standby/standby.c",
+      "sha256": "3bea023d1dd5633834a4a82aa1601f2edd9e2d03f12f12d4ccfe139811f303ca",
+      "lines": [
+        37,
+        45
+      ],
+      "excerpt": "s32 standby_init(void)\n{\n\tbefore_crc = 0;\n\tafter_crc = 0;\n\n\twakeup_timer_init();\n\n\treturn OK;\n}"
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/arisc/ar100s/system/daemon/para.c",
+      "sha256": "3a27493ccd253d6a239bee62300d98e3ae5553a17986912a701e1e12aabaf05d",
+      "lines": [
+        37,
+        48
+      ],
+      "excerpt": "void arisc_para_init(void)\n{\n}\n\nvoid set_paras(void)\n{\n}\n\nvoid platform_dts_parse_late(void)\n{\n\tplatform_dram_para = dram_dts_parse();\n}"
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/arisc/ar100s/driver/prcm/prcm-sun60iw2p1/power.c",
+      "sha256": "9b62762bf13cd65fc03e53f5778cd9529691879d661d4f1da4991420a2eaa6a7",
+      "lines": [
+        38,
+        91
+      ],
+      "excerpt": "s32 ccu_set_poweroff_gating_state(s32 module, s32 state)\n{\n\tvolatile u32 value;\n\n\tswitch (module) {\n\tcase PWRCTL_C0CPU0:\n\t\t{\n\t\t\tvalue = readl(CPUS_C0_CPU_CFG_REG(0));\n\t\t\tvalue &= (~(0x1 << 1));\n\t\t\tvalue |= (state & 0x1) << 1;\n\t\t\twritel(value, CPUS_C0_CPU_CFG_REG(0));\n\t\t\treturn OK;\n\t\t}\n\tcase PWRCTL_C0CPU1:\n\t\t{\n\t\t\tvalue = readl(CPUS_C0_CPU_CFG_REG(1));\n\t\t\tvalue &= (~(0x1 << 1));\n\t\t\tvalue |= (state & 0x1) << 1;\n\t\t\twritel(value, CPUS_C0_CPU_CFG_REG(1));\n\t\t\treturn OK;\n\t\t}\n\tcase PWRCTL_C0CPU2:\n\t\t{\n\t\t\tvalue = readl(CPUS_C0_CPU_CFG_REG(2));\n\t\t\tvalue &= (~(0x1 << 1));\n\t\t\tvalue |= (state & 0x1) << 1;\n\t\t\twritel(value, CPUS_C0_CPU_CFG_REG(2));\n\t\t\treturn OK;\n\t\t}\n\tcase PWRCTL_C0CPU3:\n\t\t{\n\t\t\tvalue = readl(CPUS_C0_CPU_CFG_REG(3));\n\t\t\tvalue &= (~(0x1 << 1));\n\t\t\tvalue |= (state & 0x1) << 1;\n\t\t\twritel(value, CPUS_C0_CPU_CFG_REG(3));\n\t\t\treturn OK;\n\t\t}\n\tcase PWRCTL_C0CPUX:\n\t\t{\n\t\t\tvalue = readl(C0_CPUX_POWEROFF_GATING_REG);\n\t\t\tvalue &= (~(0x1 << 4));\n\t\t\tvalue |= (state & 0x1) << 4;\n\t\t\twritel(value, C0_CPUX_POWEROFF_GATING_REG);\n\t\t\treturn OK;\n\t\t}\n\tdefault:\n\t\t{\n\t\t\tWRN(\"invaid power control module (%d) when set power-off gating\\n\", module);\n\t\t\treturn -EINVAL;\n\t\t}\n\t}\n\t/* un-reached */\n}\n"
+    },
+    {
+      "path": "/home/ubuntu/t736-aiot/tina/brandy/brandy-2.0/u-boot-2018/arch/arm/include/asm/arch-sunxi/plat-sun60iw2p1/clock_autogen.h",
+      "sha256": "0132e8257e86d7f68903371fb4f494f3807f20168149fd151a15157395c4162d",
+      "lines": [
+        4790,
+        4798
+      ],
+      "excerpt": "#define CM_GPU0_CFG_REG\t\t\t\t       0x00001b24 //CM GPU0 Enable Configuration Register\n#define CM_GPU0_CFG_REG_CM_GPU0_STATUS_OFFSET\t       16\n#define CM_GPU0_CFG_REG_CM_GPU0_STATUS_CLEAR_MASK      (0x00030000)\n#define CM_GPU0_CFG_REG_CM_GPU0_STATUS_POWER_OFF       0b01\n#define CM_GPU0_CFG_REG_CM_GPU0_STATUS_POWER_ON\t       0b10\n#define CM_GPU0_CFG_REG_CM_GPU0_MODULE_MODE_OFFSET     0\n#define CM_GPU0_CFG_REG_CM_GPU0_MODULE_MODE_CLEAR_MASK (0x00000001)\n#define CM_GPU0_CFG_REG_CM_GPU0_MODULE_MODE_DISABLE    0b0\n#define CM_GPU0_CFG_REG_CM_GPU0_MODULE_MODE_ENABLE     0b1"
+    }
+  ],
+  "limitations": [
+    "Does not establish cause of first PBVNC read hang.",
+    "No new secure writes, frequencies, reset order or hardware experiments were performed."
+  ]
+}

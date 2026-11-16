@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v21-hs-sdr-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v21",
+  "baseline_release": "6.18.63-t736-storage-v20",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "source_tree": "sources/work/linux-storage-v21",
+  "output_tree": "build/linux-storage-v21",
+  "storage": "v19 IDIE DMA with v20 HRT; HS SDR25MHz default, opt-in50MHz",
+  "parent": "read-only verify existing PERI0_800M with FREF_SEL/SDM/lock/output checks; SMHC3 mux1",
+  "shared_pll_or_rail_writes": false,
+  "default_hs_card_hz": 25000000,
+  "dt_delta": "Only read-only REF/PERI0 register resources and dcxo handle; semantic comparison passed",
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v21_6.18.63-21_arm64.deb",
+    "size": 5597090,
+    "sha256": "ecafdd041f47e7cf44dfca6dc8646f11f6907f71d016ba7238eebe9e12393b54"
+  },
+  "files": {
+    "build/linux-storage-v21/.config": "5e1feec11b9a6d992936f969c0f237e448bac33070d946922c46bce2467af362",
+    "build/linux-storage-v21/arch/arm64/boot/Image": "7bd0feb73be66535f147ead12533ea7f0664f71fabfba6be4f9532ec7f46d24e",
+    "build/linux-storage-v21/arch/arm64/boot/Image.gz": "b1e087e934b5d3aeccb90c68a13e1eb66c683e9d173eee3d7f740d623e69bdce",
+    "build/linux-storage-v21/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "build/linux-storage-v21/System.map": "632c0481f190618489b7aab6d8731b10f12b4a4acf124aae883116833786cc47",
+    "build/linux-storage-v21/Module.symvers": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "boards/t736_mmc_hs_draft.c": "177a977333e1cc330b1984e6e4f5914aca2123c790e6efe73b02000ca247ae14",
+    "boards/t736_mmc_clock_hs_draft.h": "dcb8a5df6be4c0bdb2b68d5c5419b2c2f8405f9d5c874d01247e57d7defaaab1",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "boards/t736-smhc3-hs-draft.dtsi": "8bf0dcf154f2f3554ab03092440c623dfced2807c48ddda0d8b08e0fea143b6f",
+    "tools/build_hs_storage_kernel.sh": "86e0e9f49fe0b68bf7d00c1d7b2383b74d6a18e54680da3d0a769fa3eaffb096",
+    "sources/work/linux-storage-v21/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts": "c150c9f36e9a0fc436b47c1aa194334b2da3c7c6eaf867f387647aaf5a9c61c7"
+  },
+  "frozen_v20_files_unchanged": true,
+  "board_validation": "pending25MHz then50MHz one-shot integrity/performance/GPU checks; v16 defaults preserved"
+}

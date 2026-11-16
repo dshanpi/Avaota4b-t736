@@ -1,0 +1,107 @@
+[drm] sunxi-hdmi: drm get edid support modes: 42
+[drm] sunxi-hdmi: drm get edid support modes: 42
+[drm] sunxi-hdmi: [error] hdmi drv set dynamic range 1 unsupport!
+[drm] sunxi-hdmi: drm hdmi set mode change when disp info change
+[drm] sunxi-hdmi: drm hdmi check mode: change >>>>>>>>>>>>>>>>
+[drm] sunxi-hdmi: drm hdmi atomic disable done >>>>>>>>>>>>>>>>
+[drm] [SUNXI-CRTC]sunxi_crtc_atomic_disable
+[drm] sunxi_de_disable de 0
+[drm] sunxi-hdmi: sunxi hdmi select vic 0 use hdmi14 vsif
+[drm] sunxi-hdmi: drm hdmi mode set: 2560*1440 >>>>>>>>>>>>>>>>
+[drm] [SUNXI-CRTC]sunxi_crtc_atomic_enable
+[drm] sunxi_de_enable index 0
+[drm] sunxi_de_enable finish sw en=0
+[drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+[drm] sunxi-hdmi: dw audio get n = 6144
+[drm] sunxi-hdmi: top phy auto calculate done
+[drm] sunxi-hdmi: [top phy]
+[drm] sunxi-hdmi:  - pixel clock 241500KHz
+[drm] sunxi-hdmi:    - pll: 0xE8064000, 0x00035000, 0x00000000, 0x30000000
+[drm] sunxi-hdmi: top phy config done
+[drm] sunxi-hdmi: [warn] snps phy check clk: 241500Hz is match in [237600Hz-288000Hz] and change use: 237600Hz
+[drm] sunxi-hdmi: [snps phy]
+[drm] sunxi-hdmi:  - refer clock: 237600KHz, color bits: 8, repeat: 0
+[drm] sunxi-hdmi:     - mpll: 0x0000, 0x3040, 0x0605
+[drm] sunxi-hdmi:  - refer clock: 241500KHz. [185625KHz~340000KHz]
+[drm] sunxi-hdmi:     - drive: 0x0004, 0x8040, 0x8e85
+[drm] sunxi-hdmi: snps phy state: lock
+[drm] sunxi-hdmi: dw audio check: triger cts re-calculate
+[drm] sunxi-hdmi: hdmi drv enable output done
+[drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[drm] sunxi-hdmi: drm get edid support modes: 42
+printf "DISPLAY_STABILITY\n"; ps -eo pid,pcpu,pmem,comm --sort=-pcpu | head -n 10; xrandr --current | head -n 5; grep -E "pipe_id|out_|output|on:|irqcnt|fps|err|enable|colorfmt|eotf|colorspace" /sys/kernel/debug/dri/0/state | tail -n 28; sleep 1; grep -E "on:|irqcnt|fps|err" /sys/kernel/debug/dri/0/state; dmesg | tail -n 28; printf "XORG_EE_WW\n"; grep -E "\(EE\)|\(WW\)" /var/lib/gdm3/.local/share/xorg/Xorg.0.log | tail -n 12
+
+DISPLAY_STABILITY
+    PID %CPU %MEM COMMAND
+   2467  600  0.0 ps
+   2468  250  0.0 head
+   2319 98.2  0.3 ibus-extension-
+   2009 95.6  3.5 gnome-shell
+   1280 48.7  5.9 gnome-shell
+   2431 32.9  1.3 gnome-control-c
+   1787 28.2  0.1 systemd
+   2343 21.4  0.4 localsearch-3
+   1599 15.0  0.3 ibus-extension-
+Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192
+HDMI-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 553mm x 311mm
+   2560x1440     59.95 +
+   2048x1080     60.00    24.00  
+   1920x1080     60.00*   50.00    59.94  
+	ovl@  101000: enable
+	vch0_csc@  100800: enable
+		in:  colorfmt: rgb, eotf: bt709, colorspace: BT709, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+blender@  281000: enable
+	 pipe_id | enable | channel | premult |       crtc-pos      
+	disp0_gamma_csc@       0: enable
+		in:  colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+		out: colorfmt: rgb, eotf: gamma22, colorspace: BT601, range: full
+	enable=1
+	on: 2560x1440@60&600Mhz->tcon4	irqcnt:2793	err:0	fps:0.0
+		format_space:0	yuv_sampling:0	eotf:4	cs:4	color_range:1	data_bits:0
+	offline composite fps:99.84	timeout:2793
+	colorspace=Default
+	colorspace=Default
+	output_bpc=0
+	output_format=RGB
+	on: 2560x1440@60&600Mhz->tcon4	irqcnt:2793	err:0	fps:0.0
+	offline composite fps:99.84	timeout:2793
+[  307.625596] [drm] sunxi-hdmi: drm hdmi set mode change when disp info change
+[  307.631421] [drm] sunxi-hdmi: drm hdmi check mode: change >>>>>>>>>>>>>>>>
+[  307.637233] [drm] sunxi-hdmi: drm hdmi atomic disable done >>>>>>>>>>>>>>>>
+[  307.643382] [drm] [SUNXI-CRTC]sunxi_crtc_atomic_disable
+[  307.647394] [drm] sunxi_de_disable de 0
+[  307.650210] [drm] sunxi-hdmi: sunxi hdmi select vic 0 use hdmi14 vsif
+[  307.655569] [drm] sunxi-hdmi: drm hdmi mode set: 2560*1440 >>>>>>>>>>>>>>>>
+[  307.661294] [drm] [SUNXI-CRTC]sunxi_crtc_atomic_enable
+[  307.665155] [drm] sunxi_de_enable index 0
+[  307.667980] [drm] sunxi_de_enable finish sw en=0
+[  307.671378] [drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+[  307.677790] [drm] sunxi-hdmi: dw audio get n = 6144
+[  307.708521] [drm] sunxi-hdmi: top phy auto calculate done
+[  307.712648] [drm] sunxi-hdmi: [top phy]
+[  307.715229] [drm] sunxi-hdmi:  - pixel clock 241500KHz
+[  307.719104] [drm] sunxi-hdmi:    - pll: 0xE8064000, 0x00035000, 0x00000000, 0x30000000
+[  307.725805] [drm] sunxi-hdmi: top phy config done
+[  307.729231] [drm] sunxi-hdmi: [warn] snps phy check clk: 241500Hz is match in [237600Hz-288000Hz] and change use: 237600Hz
+[  307.739395] [drm] sunxi-hdmi: [snps phy]
+[  307.742071] [drm] sunxi-hdmi:  - refer clock: 237600KHz, color bits: 8, repeat: 0
+[  307.748293] [drm] sunxi-hdmi:     - mpll: 0x0000, 0x3040, 0x0605
+[  307.753036] [drm] sunxi-hdmi:  - refer clock: 241500KHz. [185625KHz~340000KHz]
+[  307.758996] [drm] sunxi-hdmi:     - drive: 0x0004, 0x8040, 0x8e85
+[  307.764291] [drm] sunxi-hdmi: snps phy state: lock
+[  307.817833] [drm] sunxi-hdmi: dw audio check: triger cts re-calculate
+[  307.822997] [drm] sunxi-hdmi: hdmi drv enable output done
+[  307.827125] [drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[  325.687681] [drm] sunxi-hdmi: drm get edid support modes: 42
+XORG_EE_WW
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[    48.855] (WW) The directory "/usr/share/fonts/X11/misc" does not exist.
+[    48.855] (WW) The directory "/usr/share/fonts/X11/cyrillic" does not exist.
+[    48.855] (WW) The directory "/usr/share/fonts/X11/100dpi/" does not exist.
+[    48.855] (WW) The directory "/usr/share/fonts/X11/75dpi/" does not exist.
+[    48.855] (WW) The directory "/usr/share/fonts/X11/Type1" does not exist.
+[    48.855] (WW) The directory "/usr/share/fonts/X11/100dpi" does not exist.
+[    48.855] (WW) The directory "/usr/share/fonts/X11/75dpi" does not exist.
+[    49.362] (WW) VGA arbiter: cannot open kernel arbiter, no multi-card support
+root@t736:~# 

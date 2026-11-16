@@ -1,0 +1,214 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "status": "GL_CONTEXT_CREATION_PASSES_SYSTEM_MEMORY_VIDEO_PATH_NEEDS_FACTORY_CHECK",
+  "scope": "仅审查父代理保存的日志与官方源码；没有操作板卡或更改环境。",
+  "log": {
+    "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-mouse-debug.json.app.log",
+    "sha256": "c048b0a4f71a2b523b9b7742ca7d7010cdd5421b25ca0d4c3b9f42c1091e674d",
+    "bytes": 1520905
+  },
+  "process_record": {
+    "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-mouse-debug.json",
+    "sha256": "ae3b8c4588f973f74a341ca0025b169f1ea04f7d49168c4eef704db048e5de7a",
+    "bytes": 1279929
+  },
+  "counts": {
+    "lines": 1100,
+    "gdk_make_current_warnings": 1,
+    "gst_error_level": 0,
+    "gst_warning_level": 0,
+    "egl_contexts_created": 18,
+    "available_gles2_contexts": 18,
+    "bound_gles_api": 18,
+    "wrapped_context_config_fixme": 18,
+    "config_id_zero_info": 18,
+    "actual_set_caps": 18,
+    "actual_set_caps_glmemory": 0,
+    "actual_set_caps_dmabuf": 0,
+    "actual_set_caps_plain_rgb": 18
+  },
+  "negotiated_caps_evidence": [
+    {
+      "line": 295,
+      "sink": "gtkgstsink2",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 318,
+      "sink": "gtkgstsink3",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 342,
+      "sink": "gtkgstsink1",
+      "caps": "video/x-raw, width=(int)455, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 372,
+      "sink": "gtkgstsink0",
+      "caps": "video/x-raw, width=(int)455, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 469,
+      "sink": "gtkgstsink4",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 511,
+      "sink": "gtkgstsink7",
+      "caps": "video/x-raw, width=(int)455, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 514,
+      "sink": "gtkgstsink5",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 534,
+      "sink": "gtkgstsink6",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 549,
+      "sink": "gtkgstsink8",
+      "caps": "video/x-raw, width=(int)455, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 856,
+      "sink": "gtkgstsink10",
+      "caps": "video/x-raw, width=(int)455, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 869,
+      "sink": "gtkgstsink9",
+      "caps": "video/x-raw, width=(int)455, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 935,
+      "sink": "gtkgstsink11",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 1003,
+      "sink": "gtkgstsink12",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 1012,
+      "sink": "gtkgstsink14",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 1041,
+      "sink": "gtkgstsink15",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 1065,
+      "sink": "gtkgstsink13",
+      "caps": "video/x-raw, width=(int)256, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 1083,
+      "sink": "gtkgstsink17",
+      "caps": "video/x-raw, width=(int)455, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    },
+    {
+      "line": 1098,
+      "sink": "gtkgstsink16",
+      "caps": "video/x-raw, width=(int)455, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)RGB, colorimetry=(string)1:1:0:0"
+    }
+  ],
+  "gdk_warning": {
+    "line": 48,
+    "text": "12:49:32.9713                  Gdk[ 4775]: WARNING: gdk_gl_context_make_current() failed",
+    "adjacent_context_result": "前面 glcontextegl1 已创建并报告 PowerVR BXM-4-64，后续其他上下文也继续成功。没有 EGL 错误码或调用栈，不能确认该次绑定失败的根因。"
+  },
+  "proven_gl_details": {
+    "vendor": "Imagination Technologies",
+    "renderer": "PowerVR B-Series BXM-4-64",
+    "version": "OpenGL ES 3.2 build 24.2@6603887",
+    "platform": "EGL on X11",
+    "original_environment": {
+      "DISPLAY": ":0",
+      "GDK_BACKEND": "x11",
+      "GDK_DISABLE": "gl-api,glx,vulkan",
+      "GSK_RENDERER": "opengl",
+      "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+      "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri"
+    }
+  },
+  "interpretation": [
+    "不能写成无警告：完整日志仍有 1 条 GDK make_current 警告。但是 18 个 EGL/GLES 上下文创建均成功，没有 GST ERROR/WARN，也没有 falling back to non-GL playback。",
+    "config ID 0 不是创建失败：GStreamer 源码在该 INFO 后 return TRUE；取不到包装上下文配置时再选择 pbuffer config，日志显示后续成功。",
+    "必须区分广告和实际协商：GLMemory/DMABuf 多次出现在可支持的 caps 列表；18 次实际 set_caps 均为普通内存 RGB，没有 GLMemory 或 DMABuf。",
+    "GTK 源码在 uses_gl 成功后尝试 gst_element_factory_make(\"glsinkbin\")。factory 不存在时不打印回退警告，直接保留裸 GtkGstSink；这与当前现象吻合，但尚须板端核对 factory 才能确认缺包。",
+    "运行 maps 含 libgstgl 与 libgstvpx，未记录 libgstopengl.so。前者是 GL 库，不能证明 opengl 元素插件已安装。",
+    "普通内存 RGB 帧由 GtkGstSink 的 GdkMemoryTexture 路径包装，最终仍可能由 GSK 上传并合成；因此不能把它误写成整个 GNOME 都退回 Cairo。",
+    "该日志覆盖 Settings 小 WebM 的初始化和往返切页，未证明持续播放、物理显示或 VE/Cedar 硬解。"
+  ],
+  "actionable_next_step": {
+    "read_only_checks": [
+      "gst-inspect-1.0 glsinkbin",
+      "gst-inspect-1.0 glupload",
+      "gst-inspect-1.0 glcolorconvert",
+      "dpkg-query -W gstreamer1.0-gl"
+    ],
+    "if_missing": "由父代理补齐 Debian GStreamer GL 元素插件及依赖，保留已经工作的 IMG EGL/GLES 环境。先检查包版本兼容性，随后仅以新 Settings 进程复测。",
+    "acceptance": "实际 set_caps 应出现 video/x-raw(memory:GLMemory) 和 RGBA，并验证可见播放及无新管线错误。广告 caps 不能代替实际协商。比较正常无调试样本的 CPU/帧表现；不保证管线创建时间必然降低。",
+    "if_present": "核对 gst-inspect 的加载错误、元素排名、plugin registry、libgstopengl.so 是否进入目标 maps；不要据现有证据乱改全局 GDK_DISABLE。",
+    "global_renderer_rollback_warranted": false,
+    "gdk_disable_ab_still_prioritized": false
+  },
+  "renderer_alias_review": {
+    "gtk_version": "4.18.6",
+    "source": {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gskrenderer.c",
+      "sha256": "6c2492c9c3146e5cc41722092202f95f22a2ace683c05e27173c7a662f4aa591",
+      "bytes": 22962
+    },
+    "lines": "492–499",
+    "opengl": "GSK_TYPE_GL_RENDERER",
+    "ngl": "GSK_TYPE_GL_RENDERER",
+    "gl": "警告旧 GL 后端已经删除，然后仍返回 GSK_TYPE_GL_RENDERER",
+    "conclusion": "三个名称不是不同实现，gl 与 opengl 对照没有意义；约 42fps 不能靠改别名解决。",
+    "independent_reviewer": "backup_audit"
+  },
+  "source_files": [
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gtkgstpaintable.c",
+      "sha256": "c0b3ea2be4f5b4d1234f0bcfdef318451bd8da76bb77c275dcb22120ceb4c242",
+      "bytes": 12690
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gtkgstsink.c",
+      "sha256": "1a87621a35e9d11a05beed2f8798180e6e0f4eb1a29d8370972a366294dc55be",
+      "bytes": 30766
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gst-glcontext-egl.c",
+      "sha256": "afc5d9479c6f998fd21a4879acd3377f083508075a00d617576a159ce9029890",
+      "bytes": 58209
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gdk.c",
+      "sha256": "759ae47934d3a51050f83a5e86a52726a4237b0a87d6352a516e47f82ad4a4cb",
+      "bytes": 16459
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gdkglcontext.c",
+      "sha256": "adcfbb9cc19327955dea4814218921bc547519a1f7eccca36d50d5f6fa856ff4",
+      "bytes": 86132
+    }
+  ],
+  "source_lines": {
+    "silent_missing_glsinkbin": "gtk-gtkgstpaintable.c:239–251",
+    "memory_texture_path": "gtk-gtkgstsink.c:513–564",
+    "config_id_zero_success": "gst-glcontext-egl.c:1496–1499"
+  },
+  "no_board_changes_by_reviewer": true,
+  "hardware_decode_accepted": false,
+  "whole_desktop_accepted": false
+}

@@ -1,0 +1,13 @@
+{
+  "files": {
+    "read_link_advertising.py": {
+      "path": "tools/validation/read_link_advertising.py",
+      "bytes": 3102,
+      "sha256": "b2bf50ccc34ccc3671a55437b59468bb2267dbfc15eba5f80cd1a1eff29025e0"
+    }
+  },
+  "base_url": "http://192.168.1.228:18750/04e2af6f144f67e21d9c94edea8efc2e",
+  "pid": 983560,
+  "started_utc": "2026-11-16T11:20:11.775592+00:00",
+  "lifetime_seconds": 3600
+}

@@ -1,0 +1,14 @@
+mkdir -p /root/source-v9-validation; tar -xzf /tmp/t736-transfer/v9-validation-kit.tar.gz -C /root/source-v9-validation; sha256sum /root/source-v9-validation/*.ko; echo 0 > /sys/devices/system/cpu/cpu7/online; echo 0 > /sys/devices/system/cpu/cpu6/online; insmod /root/source-v9-validation/t736-a76-clock-trial-v1-reviewed.ko action=audit; echo CPU_AUDIT_RC=$?; dmesg | grep t736-a76-clock-trial | tail -n 10; cat /sys/devices/system/cpu/online; echo CPU_AUDIT_DONE
+
+22bed9ed9c3dc55d7449f2f0d44cc66fd6418229e0f6f31bf67095492121545b  /root/source-v9-validation/t736-a76-clock-trial-v1-reviewed.ko
+a8877450f793341cdf28ba3983fff0ebbbdbc7b9d68f20d194d3e4a61f90adcb  /root/source-v9-validation/t736-a76-clock-trial-v2.ko
+6303cd025906d215cab1eedc4cc03450fbad26260d94befa55ca201440a30ca1  /root/source-v9-validation/t736-cpu-clock-readonly.ko
+CPU_AUDIT_RC=0
+[  149.847396] t736-a76-clock-trial: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[  149.847443] t736-a76-clock-trial: verified owner setpoints DCDC3=900000uV DCDC4=900000uV
+[  149.847502] t736-a76-clock-trial: action=audit XO=983fb0f7 B_CTRL=40801400 B_STAT=40801400 B_CLK=00000000 online6=0 online7=0
+[  149.847531] t736-a76-clock-trial: AUDIT complete: no CPU register writes
+[  149.847552] t736-a76-clock-trial: finished rc=0 mutation_attempted=0
+0-5
+CPU_AUDIT_DONE
+root@t736:~# 

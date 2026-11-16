@@ -1,0 +1,385 @@
+{
+  "schema": 1,
+  "kind": "t736-emmc-electrical-and-capability-evidence-audit",
+  "date": "2026-11-16",
+  "scope": "saved real-board observations, effective FDT and current raw EXT_CSD; no board operations",
+  "inputs": {
+    "evidence/live-board-20261112/effective.dtb": {
+      "sha256": "08905c2a19b5986413bd406e7c999825f191b82b86d71e319661a7983bde991e",
+      "bytes": 524288
+    },
+    "evidence/live-board-20261112/capture.log": {
+      "sha256": "6dc846c02dfb66e992f241b43168cd42ff8e0d3c854aa3901a562a861e763d59",
+      "bytes": 932220
+    },
+    "evidence/live-board-20261112/supplement.log": {
+      "sha256": "71ab6fe87acf6a0f9c4cadacf8cf70f11252c228f2010a61918eed1838942493",
+      "bytes": 1150
+    },
+    "evidence/storage-v18-extcsd-20261116.txt": {
+      "sha256": "dd41d3cefb4c0fc16a454f3aaad2399903f307d882c5fc0e9d128ea23ac35527",
+      "bytes": 11177
+    },
+    "evidence/storage-v18-extcsd-raw-20261116.txt": {
+      "sha256": "fa09d21595df645abf8dde2b3dfa84b9689788a8481114fc14d869b449432607",
+      "bytes": 1025
+    },
+    "boards/t736-mainline-bringup.dts": {
+      "sha256": "96f63949c8f951ad42f531c5df9559b450e5ea489390485b28d2924cd113f98b",
+      "bytes": 5739
+    }
+  },
+  "current_ext_csd": {
+    "raw_bytes": 512,
+    "raw_sha256": "cc990e0f8f0db715d1c39fd9cd38192baa706525c284b41cbd964981220a679f",
+    "fields": {
+      "EXT_CSD_REV": {
+        "offset": 192,
+        "value": 8,
+        "hex": "0x8"
+      },
+      "CARD_TYPE": {
+        "offset": 196,
+        "value": 87,
+        "hex": "0x57"
+      },
+      "STROBE_SUPPORT": {
+        "offset": 184,
+        "value": 1,
+        "hex": "0x1"
+      },
+      "HS_TIMING": {
+        "offset": 185,
+        "value": 0,
+        "hex": "0x0"
+      },
+      "BUS_WIDTH": {
+        "offset": 183,
+        "value": 2,
+        "hex": "0x2"
+      },
+      "DRIVER_STRENGTH": {
+        "offset": 197,
+        "value": 31,
+        "hex": "0x1f"
+      },
+      "CACHE_CTRL": {
+        "offset": 33,
+        "value": 1,
+        "hex": "0x1"
+      },
+      "PRE_EOL_INFO": {
+        "offset": 267,
+        "value": 1,
+        "hex": "0x1"
+      },
+      "DEVICE_LIFE_TIME_EST_TYP_A": {
+        "offset": 268,
+        "value": 1,
+        "hex": "0x1"
+      },
+      "DEVICE_LIFE_TIME_EST_TYP_B": {
+        "offset": 269,
+        "value": 1,
+        "hex": "0x1"
+      }
+    },
+    "sector_count": 122142720,
+    "capacity_bytes": 62537072640,
+    "supported_modes": [
+      "HS26",
+      "HS52",
+      "DDR52 at 1.8V or 3V I/O",
+      "HS200 at 200MHz 1.8V I/O",
+      "HS400 at 200MHz 1.8V I/O"
+    ],
+    "does_not_advertise": [
+      "HS200 at 1.2V",
+      "HS400 at 1.2V"
+    ],
+    "active_mode": "HS_TIMING=0; no high-speed mode proven by this capture",
+    "enhanced_strobe_card_support": true,
+    "enhanced_strobe_host_support_proven": false
+  },
+  "historical_bsp_observation": {
+    "capture_directory": "evidence/live-board-20261112",
+    "log_wall_clock_is_not_capture_date": true,
+    "device": "4023000.sdmmc / mmc0:0001",
+    "card_name": "A31Y5C",
+    "cid": "ec290041333159354330982b37b69ccd",
+    "ios": {
+      "bus_width_bits": 8,
+      "timing": "HS400",
+      "bus_clock_hz": 200000000,
+      "signal_voltage_v": 1.8,
+      "vdd_supply_window_v": "3.3-3.4"
+    },
+    "controller_module_clock_hz": 400000000,
+    "vqmmc_regulator_readback_mv": 1800,
+    "vqmmc_readback_is_physical_measurement": false,
+    "evidence_lines": {
+      "supplement.log": [
+        3,
+        4,
+        8,
+        9,
+        10,
+        13
+      ],
+      "capture.log": [
+        220,
+        222,
+        9488,
+        9520,
+        9524,
+        9856
+      ]
+    }
+  },
+  "effective_fdt": {
+    "controller_path": "/soc@3000000/sdmmc@4023000",
+    "properties": {
+      "compatible": "allwinner,sunxi-mmc-v5p6x",
+      "device_type": "sdc3",
+      "reg": [
+        "0x00000000",
+        "0x04023000",
+        "0x00000000",
+        "0x00001000"
+      ],
+      "interrupts": [
+        "0x00000000",
+        "0x000000a4",
+        "0x00000004"
+      ],
+      "clocks": [
+        "0x0000002f",
+        "0x00000012",
+        "0x0000000e",
+        "0x00000012",
+        "0x00000010",
+        "0x00000012",
+        "0x00000095",
+        "0x00000012",
+        "0x00000096",
+        "0x00000012",
+        "0x0000004d",
+        "0x00000012",
+        "0x0000003a"
+      ],
+      "clock-names": [
+        "osc24m",
+        "pll_periph",
+        "pll_periph_2",
+        "mmc",
+        "ahb",
+        "mmc_mbus",
+        "mmc_msi_lite"
+      ],
+      "resets": [
+        "0x00000012",
+        "0x00000026"
+      ],
+      "reset-names": "rst",
+      "pinctrl-names": [
+        "default",
+        "sleep"
+      ],
+      "pinctrl-0": [
+        "0x0000010b",
+        "0x0000010c",
+        "0x0000010d"
+      ],
+      "pinctrl-1": [
+        "0x0000010e"
+      ],
+      "bus-width": [
+        "0x00000008"
+      ],
+      "req-page-count": [
+        "0x00000002"
+      ],
+      "cap-mmc-highspeed": true,
+      "cap-cmd23": true,
+      "mmc-cache-ctrl": true,
+      "non-removable": true,
+      "max-frequency": [
+        "0x0bebc200"
+      ],
+      "cap-erase": true,
+      "mmc-high-capacity-erase-size": true,
+      "no-sdio": true,
+      "no-sd": true,
+      "ctl-spec-caps": [
+        "0x00000328"
+      ],
+      "sdc_tm4_sm0_freq0": [
+        "0xffffffff"
+      ],
+      "sdc_tm4_sm0_freq1": [
+        "0xffffffff"
+      ],
+      "sdc_tm4_sm1_freq0": [
+        "0xff20ffff"
+      ],
+      "sdc_tm4_sm1_freq1": [
+        "0xffffffff"
+      ],
+      "sdc_tm4_sm2_freq0": [
+        "0xff1920ff"
+      ],
+      "sdc_tm4_sm2_freq1": [
+        "0xffffffff"
+      ],
+      "sdc_tm4_sm3_freq0": [
+        "0x2020ffff"
+      ],
+      "sdc_tm4_sm3_freq1": [
+        "0xffff3128"
+      ],
+      "sdc_tm4_sm4_freq0": [
+        "0x1a21ffff"
+      ],
+      "sdc_tm4_sm4_freq1": [
+        "0xffff0d11"
+      ],
+      "sdc_tm4_sm4_freq0_cmd": [
+        "0x2020ffff"
+      ],
+      "sdc_tm4_sm4_freq1_cmd": [
+        "0xffff0e24"
+      ],
+      "status": "okay",
+      "mmc-ddr-1_8v": true,
+      "mmc-hs200-1_8v": true,
+      "mmc-hs400-1_8v": true,
+      "sunxi-dis-signal-vol-sw": true,
+      "mmc-bootpart-noacc": true,
+      "cqe-on": true,
+      "ctl-cmdq-md": [
+        "0x00000001"
+      ],
+      "vmmc-supply": [
+        "0x00000075"
+      ],
+      "vqmmc-supply": [
+        "0x00000066"
+      ],
+      "phandle": [
+        "0x0000024e"
+      ]
+    },
+    "supplies": {
+      "vqmmc": {
+        "path": "/soc@3000000/twi@7083000/pmu@36/regulators@0/aldo3",
+        "properties": {
+          "regulator-name": "axp8191-aldo3",
+          "regulator-min-microvolt": [
+            "0x0007a120"
+          ],
+          "regulator-max-microvolt": [
+            "0x0033e140"
+          ],
+          "regulator-enable-ramp-delay": [
+            "0x000003e8"
+          ],
+          "phandle": [
+            "0x00000066"
+          ]
+        }
+      },
+      "vmmc": {
+        "path": "/soc@3000000/twi@7083000/pmu@36/regulators@0/dc1sw2",
+        "properties": {
+          "regulator-name": "axp8191-dc1sw2",
+          "swin-supply": [
+            "0x00000052"
+          ],
+          "regulator-boot-on": true,
+          "regulator-always-on": true,
+          "phandle": [
+            "0x00000075"
+          ]
+        }
+      }
+    },
+    "pin_groups": {
+      "/soc@3000000/pinctrl@2000000/sdc3@0": {
+        "pins": [
+          "PC6",
+          "PC8",
+          "PC9",
+          "PC10",
+          "PC11",
+          "PC13",
+          "PC14",
+          "PC15",
+          "PC16"
+        ],
+        "function": "sdc3",
+        "drive-strength": [
+          "0x00000014"
+        ],
+        "bias-pull-up": true,
+        "phandle": [
+          "0x0000010b"
+        ]
+      },
+      "/soc@3000000/pinctrl@2000000/sdc3@1": {
+        "pins": [
+          "PC0",
+          "PC1",
+          "PC5",
+          "PC6",
+          "PC8",
+          "PC9",
+          "PC10",
+          "PC11",
+          "PC13",
+          "PC14",
+          "PC15",
+          "PC16"
+        ],
+        "function": "gpio_in",
+        "phandle": [
+          "0x0000010e"
+        ]
+      },
+      "/soc@3000000/pinctrl@2000000/sdc3@2": {
+        "pins": "PC0",
+        "function": "sdc3",
+        "drive-strength": [
+          "0x00000028"
+        ],
+        "bias-pull-down": true,
+        "phandle": [
+          "0x0000010c"
+        ]
+      },
+      "/soc@3000000/pinctrl@2000000/sdc3@3": {
+        "pins": [
+          "PC5",
+          "PC1"
+        ],
+        "function": "sdc3",
+        "drive-strength": [
+          "0x00000028"
+        ],
+        "bias-pull-up": true,
+        "phandle": [
+          "0x0000010d"
+        ]
+      }
+    }
+  },
+  "conclusions": [
+    "The physical card advertises MMC 5.1, HS200/HS400 at 1.8V; current HS_TIMING remains legacy.",
+    "The same controller and card family previously ran 8-bit HS400 at 200MHz in the BSP; this is real-board capability evidence, not current driver acceptance.",
+    "Effective BSP FDT routes VCCQ to AXP8191 ALDO3; saved regulator state reads 1800mV and IOS reports 1.8V. VCC and VCCQ are distinct.",
+    "Current mainline fixed pc-1v8-firmware describes inherited pad supply; IOS 3.3V alone does not establish physical VCCQ. Do not change PMIC voltage based on that default.",
+    "Implement and validate DMA at unchanged 12MHz/8-bit/legacy first. Higher modes require host clock/timing, card transitions, tuning, DS handling and fallback checks; capability flags alone are insufficient.",
+    "Enhanced strobe card support is not proof of implemented enhanced-strobe host operation."
+  ],
+  "current_high_speed_acceptance": false,
+  "recommendation": "Preserve existing 1.8V VCCQ/pin settings; stage DMA, HS52, HS200 tuning, then HS400 with actual controller and card evidence."
+}

@@ -1,0 +1,42 @@
+insmod /tmp/t736-transfer/a55-clock-v1.ko action=audit; echo A55_AUDIT_RC=$?; dmesg 
+ | grep t736-a55-clock | tail -n 9; rmmod t736_a55_clock_trial_v1; echo A55_AUDIT_DONE
+
+A55_AUDIT_RC=0
+[ 1697.604057] t736-a55-clock-trial-v1: action=audit XO=983fb0f7 A55=f8801300/f8801300/03000000 A76=f8802700/f8802700/03000000 online=0-7 MIDR=414fd0b1
+[ 1697.604074] t736-a55-clock-trial-v1: CPU0 PPU_PWSR=00000108
+[ 1697.604078] t736-a55-clock-trial-v1: CPU1 PPU_PWSR=00000108
+[ 1697.604081] t736-a55-clock-trial-v1: CPU2 PPU_PWSR=00000108
+[ 1697.604085] t736-a55-clock-trial-v1: CPU3 PPU_PWSR=00000108
+[ 1697.604088] t736-a55-clock-trial-v1: CPU4 PPU_PWSR=00000108
+[ 1697.604091] t736-a55-clock-trial-v1: CPU5 PPU_PWSR=00000108
+[ 1697.604094] t736-a55-clock-trial-v1: AUDIT: no CPU writes; PMIC owner read only
+[ 1697.604102] t736-a55-clock-trial-v1: finished rc=0 mutation_attempted=0 rollback_rc=0
+A55_AUDIT_DONE
+root@t736:~# taskset -c 6 sh -c 'set -e; for c in 1 2 3 4 5 0; do echo 0 > /sys/devices/system/cpu/cpu$c/online; done; cat /sys/devices/system/cpu/online; insmod /tmp/t736-transfer/a55-clock-v1.ko action=upgrade'; echo A55_UPGRADE_RC=$?; dmesg | grep t736-a55-clock | tail -n 22; echo A55_UPGRADE_DONE
+
+6-7
+insmod: ERROR: could not insert module /tmp/t736-transfer/a55-clock-v1.ko: Input/output error
+A55_UPGRADE_RC=1
+[ 1697.604007] t736-a55-clock-trial-v1: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[ 1697.604057] t736-a55-clock-trial-v1: action=audit XO=983fb0f7 A55=f8801300/f8801300/03000000 A76=f8802700/f8802700/03000000 online=0-7 MIDR=414fd0b1
+[ 1697.604074] t736-a55-clock-trial-v1: CPU0 PPU_PWSR=00000108
+[ 1697.604078] t736-a55-clock-trial-v1: CPU1 PPU_PWSR=00000108
+[ 1697.604081] t736-a55-clock-trial-v1: CPU2 PPU_PWSR=00000108
+[ 1697.604085] t736-a55-clock-trial-v1: CPU3 PPU_PWSR=00000108
+[ 1697.604088] t736-a55-clock-trial-v1: CPU4 PPU_PWSR=00000108
+[ 1697.604091] t736-a55-clock-trial-v1: CPU5 PPU_PWSR=00000108
+[ 1697.604094] t736-a55-clock-trial-v1: AUDIT: no CPU writes; PMIC owner read only
+[ 1697.604102] t736-a55-clock-trial-v1: finished rc=0 mutation_attempted=0 rollback_rc=0
+[ 1697.673511] t736-a55-clock-trial-v1: unloaded; setting retained; no MMIO writes
+[ 1723.092014] t736-a55-clock-trial-v1: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[ 1723.092515] t736-a55-clock-trial-v1: action=upgrade XO=983fb0f7 A55=f8801300/f8801300/03000000 A76=f8802700/f8802700/03000000 online=6-7 MIDR=414fd0b1
+[ 1723.092550] t736-a55-clock-trial-v1: CPU0 PPU_PWSR=00000108
+[ 1723.092554] t736-a55-clock-trial-v1: CPU1 PPU_PWSR=00000100
+[ 1723.092558] t736-a55-clock-trial-v1: CPU2 PPU_PWSR=00000100
+[ 1723.092561] t736-a55-clock-trial-v1: CPU3 PPU_PWSR=00000100
+[ 1723.092565] t736-a55-clock-trial-v1: CPU4 PPU_PWSR=00000100
+[ 1723.092568] t736-a55-clock-trial-v1: CPU5 PPU_PWSR=00000100
+[ 1723.092591] t736-a55-clock-trial-v1: finished rc=-5 mutation_attempted=0 rollback_rc=0
+A55_UPGRADE_DONE
+root@t736:~# for c in 0 1 2 3 4 5; do echo 1 > /sys/devices/system/cpu/cpu$c/online; done; cat /sys/devices/system/cpu/online; echo A55_ORIGINAL_CORES_RESTORED
+

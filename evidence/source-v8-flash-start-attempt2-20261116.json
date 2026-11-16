@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"chipVendor\":\"allwinner\",\"flasherKind\":\"openixcli\",\"loaderTransition\":null,\"next\":\"Poll lynx_workbench_task_status with this taskId from this or any later MCP session until state is success, failed, or cancelled.\",\"state\":\"running\",\"taskId\":\"flash-1794812230911010000\",\"taskLifetime\":\"LYNX application process; independent of MCP sessions\",\"warning\":\"Do not disconnect power or USB while the task is active.\"}"
+    }
+  ],
+  "isError": false
+}

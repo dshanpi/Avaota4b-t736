@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "kind": "t736-smhc3-hs-parent-clock-independent-review",
+  "reviewed_utc": "2026-11-16T12:15:41.621818+00:00",
+  "status": "draft-review-findings-not-integrated",
+  "board_operations": false,
+  "applies_to_v20": false,
+  "reviewed_draft": {
+    "path": "boards/t736_mmc_clock_hs_draft.h",
+    "sha256": "5896e01c282db77d551712d06ca8dc722a5df8aba0ababf227fd543cf9aaf878"
+  },
+  "conclusions": [
+    "The board DCXO is 26 MHz; this is distinct from SMHC3 mux0 SYS_CLK24M. Do not blindly replace the existing 24 MHz module parent by 26 MHz.",
+    "The shared SYS_CLK24M source is documented as a DCXO/PLL_REF mux with fixed 24 MHz output. Tina Linux and U-Boot both register sys24M as 24 MHz. No software-selectable SYS_CLK24M mux register was identified in this review.",
+    "The next HS candidate should verify PLL_REF from observed registers and the known 26 MHz DCXO, including before low-speed SYS_CLK24M use, rather than use an unvalidated constant.",
+    "PERI1 output1 N/P1/input-divider fields and SMHC3 mux3 agree between manual and donor. But the autogen header defines PERI1 CTRL bit24 FREF_SEL, which the manual marks reserved. The draft currently ignores this bit and can decode a direct 26 MHz input as 24 MHz. Require the known REFPLL selection or reject an unresolved source.",
+    "Capture PERI1 pattern registers to exclude active sigma-delta modulation before calling the integer decode exact. Nominal register arithmetic is not a physical frequency measurement."
+  ],
+  "register_model": {
+    "smhc3_clock": "CCU 0x02002000 + 0x0d30",
+    "mux0": "SYS_CLK24M",
+    "mux3": "PERI1_800M output1",
+    "module_dividers": "M=(reg[4:0]+1), N=(reg[12:8]+1), both linear1..32",
+    "sdr_card_clock": "parent/(2*M*N) for controller CLKDIV0",
+    "reference_pll": "0x02002000; 26M*(N[15:8]+1)/((input_div[1]+1)*(output_div[22:16]+1))",
+    "peri1_pll": "0x020020c0; selected_input*(N[15:8]+1)/((input_div[1]+1)*(P1[18:16]+1))",
+    "peri1_source_selector": "autogen bit24:0=HOSC,1=REFPLL; manual contradiction retained",
+    "peri1_patterns": [
+      "0x020020c8 PAT0",
+      "0x020020cc PAT1"
+    ],
+    "example_wrong_input": "N100,P1=3,input_div1 gives 800 MHz from24 MHz but866.666...MHz from26 MHz. Using the wrong parent would overclock a nominal25/50 MHz plan."
+  },
+  "manual": {
+    "path": "evidence/vendor-reference/reference-1.txt",
+    "sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483",
+    "line_references": {
+      "pll_distribution": 2170,
+      "pll_reference_text": 2346,
+      "peri1_fields": [
+        3466,
+        3501,
+        3556
+      ],
+      "smhc3_clock": [
+        8280,
+        8290,
+        8296,
+        8302
+      ],
+      "sysclk24m_fixed_definition": [
+        30218,
+        30219
+      ],
+      "dcxo_status": [
+        22449,
+        22922
+      ]
+    }
+  },
+  "donor_files": [
+    {
+      "path": "bsp/drivers/clk/sunxi-ng/ccu-sun60iw2.c",
+      "sha256": "1d32bb8555f8ff205d35210f638f9d42cc28aa9295c46963aa1c810d47b06d77",
+      "references": [
+        "PLL_REF39-55",
+        "PERI1125-155",
+        "SMHC31108-1126"
+      ]
+    },
+    {
+      "path": "bsp/configs/linux-5.15/sun60iw2p1.dtsi",
+      "sha256": "0cc81b5b49dda81c94f629a477e3d64373678d4c4ca1f378138d2648b159cefe",
+      "reference": "SYS24M356-360"
+    },
+    {
+      "path": "brandy/brandy-2.0/u-boot-2018/drivers/clk/sunxi/clk-sun60iw2.c",
+      "sha256": "c72d0a1b58500b3b0779588541c32c970850286369602cee5fda42fa0ab75330",
+      "reference": "SYS24M424"
+    },
+    {
+      "path": "brandy/brandy-2.0/u-boot-2018/arch/arm/include/asm/arch-sunxi/plat-sun60iw2p1/clock_autogen.h",
+      "sha256": "0132e8257e86d7f68903371fb4f494f3807f20168149fd151a15157395c4162d",
+      "references": [
+        "PLL_REF3-43",
+        "PERI1_FREF_SEL329-332"
+      ]
+    },
+    {
+      "path": "bsp/drivers/clk/sunxi-ng/ccu_sdm.c",
+      "sha256": "50d7df603c7243dbe2a6702b2f5b8cdb289478aa39e1d2a2cbf4e0aa9b802ad6",
+      "reference": "helper_is_enabled175-192"
+    }
+  ],
+  "sampling": "Prior storage-v19-hs52-timing-review remains applicable to the later HS draft: actual card <=25MHz uses delay0, >25MHz and<=50MHz uses32 from live-board0xff20ffff. Frequency bucket must follow validated actual card rate. A literal52MHz enters the next bucket and is not the reviewed50MHz step.",
+  "kept_unchanged": [
+    "v20 HRT-only build",
+    "v19 DMA source",
+    "v16 default fallback",
+    "current board clocks/rails"
+  ],
+  "required_next_steps": [
+    "Review and integrate explicit parent checks into a later named candidate.",
+    "Read and save actual REF/PERI1/PAT/SMHC3 controls without retuning PLL or rail.",
+    "Use staged25MHz then50MHz HS SDR only after matched integrity/error checks."
+  ]
+}

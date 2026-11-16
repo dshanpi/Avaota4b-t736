@@ -1,0 +1,12 @@
+77d4a68f9a2cfb3669162e9b3ca3028383adae269589cdc9c6bda4ded7cf8275  /home/t736/update_t736_storage_v22.py
+{
+  "status": "CHECK_PASS",
+  "running_release": "6.18.63-t736-storage-v21",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v22",
+  "write_attempted": false,
+  "hardware_accepted": false,
+  "baseline_files": 94,
+  "kernel_sha256": "8a6eb70cdc43190df40c2c06d2683a666a9b73e870bf79674321514fd986108f",
+  "pvr_sha256": "c717b37d6dba72b2ba708e747d222282b06aac15dc317a1cf532a2a8dfd92c1a"
+}

@@ -1,0 +1,17 @@
+
+
+root@t736:~# loginctl list-sessions --no-legend; ps -eo pid,user,args | grep -E "[X]org|[g]dm-x-session"; tr "\0" "\n" < /proc/2009/environ | grep -E "^(DISPLAY|XAUTHORITY|DBUS_SESSION_BUS_ADDRESS)="; printf "CURRENT_VT="; cat /sys/class/tty/tty0/active
+
+c2  101 Debian-gdm -     943  manager-early -     no -
+c3    0 root       -     733  user-early    ttyS0 no -
+c4    0 root       -     1187 manager-early -     no -
+c5 1000 t736       seat0 1773 user          tty2  no -
+c6 1000 t736       -     1787 manager       -     no -
+
+   1840 t736     /usr/libexec/gdm-x-session --run-script /usr/bin/gnome-session
+   1844 t736     /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+DISPLAY=:1
+XAUTHORITY=/run/user/1000/gdm/Xauthority
+CURRENT_VT=tty2
+root@t736:~# 

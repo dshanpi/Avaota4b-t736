@@ -1,0 +1,27 @@
+6.18.63-t736-storage-v16
+28f7406c-ced2-4927-b045-7ed129e5f43b
+0-7
+[    1.200581] t736-smhc3-pio 4023000.mmc: PIO v2: 64 KiB requests, 12 MHz cap, ordered unbound worker
+[   24.320586] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[   24.336600] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+{"boot_id": "28f7406c-ced2-4927-b045-7ed129e5f43b", "kernel": "6.18.63-t736-storage-v16", "online": "0-7", "raw_write": false, "cpu_seconds": 30, "mmc_ios": "clock:\t\t12000000 Hz\nvdd:\t\t21 (3.3 ~ 3.4 V)\nbus mode:\t2 (push-pull)\nchip select:\t0 (don't care)\npower mode:\t2 (on)\nbus width:\t3 (8 bits)\ntiming spec:\t0 (legacy)\nsignal voltage:\t0 (3.30 V)\ndriver type:\t0 (driver type B)\n", "cpu": [{"cpu": 0, "ok": true, "mib": 11547, "seconds": 30.001525961000006}, {"cpu": 1, "ok": true, "mib": 11341, "seconds": 30.00198384600001}, {"cpu": 2, "ok": true, "mib": 11213, "seconds": 30.00113983499999}, {"cpu": 3, "ok": true, "mib": 11863, "seconds": 30.001750919000003}, {"cpu": 4, "ok": true, "mib": 11392, "seconds": 30.001750959999995}, {"cpu": 5, "ok": true, "mib": 11408, "seconds": 30.000463532999994}, {"cpu": 6, "ok": true, "mib": 17553, "seconds": 30.001883895000006}, {"cpu": 7, "ok": true, "mib": 17398, "seconds": 30.000158244000005}], "raw_read": {"bytes": 16777216, "seconds": 1.5565779719999995, "mib_per_second": 10.278958258314608, "sha256": "391fe695743f64ca23d625f6ee85d4d8cbdcc74af4d11758e6fc4e6dccd53aef"}, "file_write": {"bytes": 8388608, "seconds": 1.046423317999995, "mib_per_second": 7.6450895754982, "fsync": true}, "file_readback": {"bytes": 8388608, "seconds": 0.7697943670000029, "mib_per_second": 10.392385736956125, "sha256": "fa5183d417a3f3d7bc093aeafdb1dd9d6864fad93ae876052eebc9e326587001"}, "status": "PASS"}

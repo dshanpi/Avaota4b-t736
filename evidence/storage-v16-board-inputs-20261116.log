@@ -1,0 +1,54 @@
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+    PID COMMAND         S WCHAN                          %CPU
+   2040 ps              R -                               166
+   1864 python3         R -                              99.7
+   1858 python3         R -                              99.5
+   1863 python3         R -                              99.5
+   1865 python3         R -                              99.3
+   1860 python3         R -                              98.3
+   1862 python3         R -                              98.3
+   1861 python3         R -                              98.2
+   1859 python3         R -                              97.9
+   1299 ibus-extension- S do_sys_poll                    21.7
+   2029 sudo            S do_sys_poll                     8.3
+   1645 systemd         S do_epoll_wait                   6.4
+    135 kworker/7:2-eve I worker_thread                   6.2
+    168 kworker/6:2-mm_ I worker_thread                   5.8
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 5459k  100 5459k    0     0  11.0M      0 --:--:-- --:--:-- --:--:-- 11.0M
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0 1868k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 1868k  100 1868k    0     0  10.8M      0 --:--:-- --:--:-- --:--:-- 10.7M
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 24338  100 24338    0     0  4163k      0 --:--:-- --:--:-- --:--:-- 4753k
+520b42929ee4700a29ab8da5f020b828948a607c87a6eb8dd98c8ecacd6170c6  kernel.deb
+abd38db687c93b91757719564e1f0fe35b10b137f23d78ea425ff2845d8c8474  pvrsrvkm.ko
+cf6ad0b32e1ffbd5d6687e54d1a4204f2e7ecd24a0bc44bdeb71f76d79aded7f  update_t736_storage_v16.py

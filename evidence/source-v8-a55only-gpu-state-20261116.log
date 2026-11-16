@@ -1,0 +1,46 @@
+echo GPU_CPU_STABLE; cat /sys/kernel/debug/pvr/status; cat /sys/class/drm/card0-HDMI-A-1/status; ps -eo pid,psr,pcpu,comm --sort=-pcpu | head -n 12; tail -n 8 /home/t736/.config/monitors.xml; echo GPU_CPU_STABLE_DONE
+
+GPU_CPU_STABLE
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+connected
+    PID PSR %CPU COMMAND
+   6434   3  900 ps
+   6364   0 17.8 gnome-text-edit
+   6206   1  7.8 ibus-extension-
+   5951   3  5.8 gnome-shell
+   6217   1  2.1 xdg-desktop-por
+   5815   3  1.6 Xorg
+   5770   0  1.0 systemd
+     84   7  0.7 kworker/7:1-mm_percpu_wq
+      1   5  0.6 systemd
+   5795   3  0.5 dbus-daemon
+   5969   4  0.5 mutter-x11-fram
+          <width>2560</width>
+          <height>1440</height>
+          <rate>59.951</rate>
+        </mode>
+      </monitor>
+    </logicalmonitor>
+  </configuration>
+</monitors>
+GPU_CPU_STABLE_DONE
+root@t736:~# 

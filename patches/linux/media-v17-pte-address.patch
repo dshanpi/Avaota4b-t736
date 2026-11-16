@@ -1,0 +1,24 @@
+--- a/drivers/iommu/t736/sunxi-iommu-pgtable.c
++++ b/drivers/iommu/t736/sunxi-iommu-pgtable.c
+@@ -180,7 +180,6 @@
+ 	size_t paddr_start;
+ 	u32 *dent, *pent;
+ 	u32 iova_tail_count, iova_tail_size;
+-	u32 pent_val;
+ 	int i;
+ 	paddr = cpu_phy_to_iommu_phy(paddr);
+ 	paddr_start = paddr & IOMMU_PT_MASK;
+@@ -194,10 +193,11 @@
+ 
+ 		dent = iopde_offset(pgtable, iova_start);
+ 		pent = iopte_offset(dent, iova_start);
+-		pent_val = sunxi_mk_pte(paddr_start, prot);
+ 		for (i = 0; i < iova_tail_count; i++) {
+ 			WARN_ON(*pent);
+-			*pent = pent_val + SPAGE_SIZE * i;
++			/* Physical address bits above 32 live in low descriptor bits.
++			 * Encode each page so crossing 4 GiB carries into those bits. */
++			*pent = sunxi_mk_pte(paddr_start + SPAGE_SIZE * i, prot);
+ 			pent++;
+ 		}
+ 

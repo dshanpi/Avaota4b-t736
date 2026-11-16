@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "stage": "v17 stage1 compile-only IOMMU API migration",
+  "kernel_release": "6.18.63-t736-media-v17",
+  "Image_and_modules_build_passed": true,
+  "deployable": false,
+  "enabled_media_dt_nodes": [],
+  "baseline_v16_image_unchanged": true,
+  "baseline_v16_image_sha256": "86d49744a35fd1260ff81f1d351a15b4c1dc28943b846696d8117ba5a9f7937d",
+  "enabled_config": [
+    "CONFIG_DMABUF_HEAPS=y",
+    "CONFIG_DMABUF_HEAPS_SYSTEM=y",
+    "CONFIG_IOMMU_API=y",
+    "CONFIG_IOMMU_SUPPORT=y",
+    "CONFIG_IOMMU_DEFAULT_DMA_STRICT=y",
+    "CONFIG_IOMMU_DMA=y",
+    "CONFIG_AW_IOMMU=y",
+    "CONFIG_AW_IOMMU_V2=y",
+    "CONFIG_AW_IOMMU_DISTRIBUTE=y"
+  ],
+  "warning_lines": 175,
+  "files": [
+    {
+      "path": "build/linux-media-v17/.config",
+      "bytes": 99803,
+      "sha256": "574cf5431f8a933457bdc12920ed591d0763fab7251dff123fc16a00a707e880"
+    },
+    {
+      "path": "build/linux-media-v17/arch/arm64/boot/Image",
+      "bytes": 11866120,
+      "sha256": "ebe25f4e205ef0cb6fff0eb415e271bf642d7a1cf9577d03c72e66a72962e195"
+    },
+    {
+      "path": "build/linux-media-v17/Module.symvers",
+      "bytes": 493844,
+      "sha256": "4290802f10d32ae8ae41de1846540470896e520daf6cb7f0738d4c66d121b0a3"
+    },
+    {
+      "path": "build/linux-media-v17/vmlinux",
+      "bytes": 15873952,
+      "sha256": "ae6be3c688fdea3f10bf392a2e437938a2853f43a78a32d4a3dfab1210439612"
+    },
+    {
+      "path": "build/linux-media-v17/drivers/dma-buf/heaps/system_heap.o",
+      "bytes": 8952,
+      "sha256": "993f6f79281f5a05420161e0e02291ba33b61878bff6508a07067ec106edea67"
+    },
+    {
+      "path": "build/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.o",
+      "bytes": 41272,
+      "sha256": "6ad91a72ece86038eb4e08cbd805c05770f1723f353d6df9a8bc30fb7d36b614"
+    },
+    {
+      "path": "build/linux-media-v17/drivers/iommu/t736/sunxi-iommu-pgtable.o",
+      "bytes": 7896,
+      "sha256": "1188310419987c08399aa509a0cca876df8d76bc6fcd596a3440c5460c8bafca"
+    },
+    {
+      "path": "patches/linux/media-v17-iommu-api.patch",
+      "bytes": 8470,
+      "sha256": "f9761e9a8d0ddcab344f608235f46d3b89df98dce6c8c9a5cdba582a623c4393"
+    }
+  ],
+  "build_log": "evidence/build/media-v17-image-build-20261116.log",
+  "pending": [
+    "VE clock/reset/power and NSI integration",
+    "IOMMU shared domain identity/blocked/lifetime review",
+    "page-table DMA-map ownership and visibility",
+    "unmap invalidation ordering and delayed L2 freeing",
+    "T736 invalidation completion semantics",
+    "physical-page address carry above 4GiB",
+    "probe unwind and master reference lifetime"
+  ],
+  "hardware_validation": false
+}

@@ -1,0 +1,6 @@
+sed -i "s/\r$//" /tmp/t736-transfer/send-cd8e6d585146470d95b3af9bf5a86fc6.sh; sh /tmp/t736-transfer/send-cd8e6d585146470d95b3af9bf5a86fc6.sh; printf "ARTIFACT_TRANSFER_RC=%s\n" "$?"
+
+systemd-journald[241]: Time jumped backwards, rotating.
+{"bytes": 27884, "sha256": "510f43ab9c90734b7510618ca871e68d40cde4fc3f0a7f9cc3a9effa75a74d39", "verified": true}
+ARTIFACT_TRANSFER_RC=0
+root@t736:~# 

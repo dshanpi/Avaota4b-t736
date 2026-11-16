@@ -1,0 +1,74 @@
+insmod /tmp/t736-transfer/a76-clock-v4.ko action=enable; echo CPU_V4_ENABLE_RC=$?; dmesg | grep t736-a76-clock-trial-v4 | tail -n 18; echo CPU_V4_ENABLE_DONE
+
+CPU_V4_ENABLE_RC=0
+[ 1007.772859] t736-a76-clock-trial-v4: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[ 1007.772907] t736-a76-clock-trial-v4: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[ 1007.773022] t736-a76-clock-trial-v4: action=enable XO=983fb0f7 CTRL=40802700 STAT=40802700 CLK=00000000 online6=0 online7=0
+[ 1007.773056] t736-a76-clock-trial-v4: mux expected=00010000 actual=00010000
+[ 1007.773071] t736-a76-clock-trial-v4: stage desired=40802700 committed=00002700 actual=40802700 may_latch_n=0
+[ 1007.773089] t736-a76-clock-trial-v4: stage desired=48802700 committed=00002700 actual=48802700 may_latch_n=0
+[ 1007.773106] t736-a76-clock-trial-v4: stage desired=48802000 committed=00002700 actual=48802700 may_latch_n=0
+[ 1007.773122] t736-a76-clock-trial-v4: stage desired=c8802000 committed=00002700 actual=c8802700 may_latch_n=1
+[ 1007.773139] t736-a76-clock-trial-v4: stage desired=e8802000 committed=00002700 actual=e8802000 may_latch_n=1
+[ 1007.773158] t736-a76-clock-trial-v4: commit desired=e8802000 CTRL=f8802000 STAT=f8802000
+[ 1007.773216] t736-a76-clock-trial-v4: mux expected=03010000 actual=03010000
+[ 1007.775815] t736-a76-clock-trial-v4: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[ 1007.775838] t736-a76-clock-trial-v4: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[ 1007.775856] t736-a76-clock-trial-v4: SUCCESS: A76=416MHz CTRL=f8802000 STAT=f8802000 CLK=03010000; PMIC untouched
+[ 1007.776029] t736-a76-clock-trial-v4: finished rc=0 mutation_attempted=1
+CPU_V4_ENABLE_DONE
+root@t736:~# rmmod t736_a76_clock_trial_v4; insmod /tmp/t736-transfer/a76-clock-v4.ko action=upgrade; echo CPU_V4_UPGRADE_RC=$?; dmesg | grep t736-a76-clock-trial-v4 | tail -n 18; echo CPU_V4_UPGRADE_DONE
+
+CPU_V4_UPGRADE_RC=0
+[ 1007.775856] t736-a76-clock-trial-v4: SUCCESS: A76=416MHz CTRL=f8802000 STAT=f8802000 CLK=03010000; PMIC untouched
+[ 1007.776029] t736-a76-clock-trial-v4: finished rc=0 mutation_attempted=1
+[ 1023.365586] t736-a76-clock-trial-v4: unloaded; setting retained; explicit restore requires CPU6/7offline
+[ 1023.406407] t736-a76-clock-trial-v4: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[ 1023.406454] t736-a76-clock-trial-v4: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[ 1023.406517] t736-a76-clock-trial-v4: action=upgrade XO=983fb0f7 CTRL=f8802000 STAT=f8802000 CLK=03010000 online6=0 online7=0
+[ 1023.406549] t736-a76-clock-trial-v4: mux expected=00000000 actual=00000000
+[ 1023.406584] t736-a76-clock-trial-v4: stage desired=e0802000 committed=00002000 actual=f0802000 may_latch_n=0
+[ 1023.406601] t736-a76-clock-trial-v4: stage desired=c0802000 committed=00002000 actual=c0802000 may_latch_n=0
+[ 1023.406618] t736-a76-clock-trial-v4: stage desired=c0802700 committed=00002000 actual=c0802000 may_latch_n=0
+[ 1023.406635] t736-a76-clock-trial-v4: stage desired=e0802700 committed=00002000 actual=e0802700 may_latch_n=1
+[ 1023.406653] t736-a76-clock-trial-v4: commit desired=e0802700 CTRL=f0802700 STAT=f0802700
+[ 1023.406712] t736-a76-clock-trial-v4: stage desired=e8802700 committed=00002700 actual=f8802700 may_latch_n=0
+[ 1023.406852] t736-a76-clock-trial-v4: mux expected=03000000 actual=03000000
+[ 1023.409456] t736-a76-clock-trial-v4: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[ 1023.409476] t736-a76-clock-trial-v4: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[ 1023.409493] t736-a76-clock-trial-v4: SUCCESS: A76=1014MHz CTRL=f8802700 STAT=f8802700 CLK=03000000; PMIC untouched
+[ 1023.409537] t736-a76-clock-trial-v4: finished rc=0 mutation_attempted=1
+CPU_V4_UPGRADE_DONE
+root@t736:~# rmmod t736_a76_clock_trial_v4; echo 1 > /sys/devices/system/cpu/cpu6/online; echo 1 > /sys/devices/system/cpu/cpu7/online; cat /sys/devices/system/cpu/online; for c in 0 6 7; do echo CPU=$c; timeout 15 taskset -c "$c" python3 -c 'import hashlib,time; b=bytes(1048576); t=time.monotonic(); [hashlib.sha256(b).digest() for _ in range(16)]; print("sha256_16MiB_seconds",time.monotonic()-t)'; done; insmod /root/source-v9-validation/t736-cpu-clock-readonly.ko; dmesg | grep t736-cpu-clock-ro | tail -n 24; rmmod t736_cpu_clock_readonly; echo CPU_1014_ONLINE_DONE
+
+0-7
+CPU=0
+sha256_16MiB_seconds 0.08127000300009968
+CPU=6
+sha256_16MiB_seconds 0.02639804299997195
+CPU=7
+sha256_16MiB_seconds 0.026321101000121416
+[ 1074.278868] t736-cpu-clock-ro: begin read-only snapshot base=0x08870000
+[ 1074.278883] t736-cpu-clock-ro: CPU_BACK_CTRL addr=0x08870000 value=0x40104a00
+[ 1074.278890] t736-cpu-clock-ro: A55_CTRL addr=0x08871000 value=0xf8801300
+[ 1074.278894] t736-cpu-clock-ro: A55_PAT0 addr=0x08871004 value=0x00000000
+[ 1074.278898] t736-cpu-clock-ro: A55_PAT1 addr=0x08871008 value=0x30000000
+[ 1074.278902] t736-cpu-clock-ro: A55_LFM addr=0x08871018 value=0x40000001
+[ 1074.278906] t736-cpu-clock-ro: A55_CLK addr=0x0887101c value=0x03000000
+[ 1074.278910] t736-cpu-clock-ro: A55_CTRL_STAT addr=0x0887102c value=0xf8801300
+[ 1074.278914] t736-cpu-clock-ro: A76_CTRL addr=0x08872000 value=0xf8802700
+[ 1074.278918] t736-cpu-clock-ro: A76_PAT0 addr=0x08872004 value=0x00000000
+[ 1074.278921] t736-cpu-clock-ro: A76_PAT1 addr=0x08872008 value=0x30000000
+[ 1074.278925] t736-cpu-clock-ro: A76_LFM addr=0x08872018 value=0x40000001
+[ 1074.278929] t736-cpu-clock-ro: A76_CLK addr=0x0887201c value=0x03000000
+[ 1074.278933] t736-cpu-clock-ro: A76_CTRL_STAT addr=0x0887202c value=0xf8802700
+[ 1074.278937] t736-cpu-clock-ro: DSU_CTRL addr=0x08873000 value=0xf8801300
+[ 1074.278940] t736-cpu-clock-ro: DSU_PAT0 addr=0x08873004 value=0x00000000
+[ 1074.278944] t736-cpu-clock-ro: DSU_PAT1 addr=0x08873008 value=0x30000000
+[ 1074.278948] t736-cpu-clock-ro: DSU_LFM addr=0x08873018 value=0x40000001
+[ 1074.278952] t736-cpu-clock-ro: DSU_CLK addr=0x0887301c value=0x03000105
+[ 1074.278955] t736-cpu-clock-ro: DSU_CTRL_STAT addr=0x0887302c value=0xf8801300
+[ 1074.278959] t736-cpu-clock-ro: CPU_SLOW_CLK addr=0x08873034 value=0x00000000
+[ 1074.278964] t736-cpu-clock-ro: end; no MMIO writes performed
+CPU_1014_ONLINE_DONE
+root@t736:~# 

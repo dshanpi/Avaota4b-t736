@@ -1,0 +1,35 @@
+APP 14145 gnome-control-c
+LIBS /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887
+/usr/lib/aarch64-linux-gnu/libvulkan.so.1.4.309
+ENV {'LD_LIBRARY_PATH': '/opt/t736-img-ddk-24.2-x11/runtime-gles', 'GDK_DISABLE': 'gl-api,glx,vulkan', 'GSK_RENDERER': 'opengl', 'GDK_BACKEND': 'x11', 'COGL_DRIVER': 'gles2', 'LIBGL_ALWAYS_SOFTWARE': None}
+    PID     TID COMMAND         S WCHAN                          %CPU
+  14145   14145 gnome-control-c S do_sys_poll                     286
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 12%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   2% 
+ 179       0 mmcblk0 27747 2531 2207178 341732 13161 9733 792480 1512323 0 170584 1865264 0 0 0 0 2206 11207
+ 179       1 mmcblk0p1 85 3 4256 2016 0 0 0 0 0 992 2016 0 0 0 0 0 0
+ 179       2 mmcblk0p2 85 3 4256 1744 0 0 0 0 0 788 1744 0 0 0 0 0 0
+ 179       3 mmcblk0p3 113 3 7008 3140 0 0 0 0 0 1184 3140 0 0 0 0 0 0
+ 179       4 mmcblk0p4 27119 2516 2175114 328179 13160 9733 792480 1512319 0 177216 1840499 0 0 0 0 0 0
+ 179       5 mmcblk0p5 85 3 4256 2263 0 0 0 0 0 960 2263 0 0 0 0 0 0
+ 179       6 mmcblk0p6 117 3 7064 3590 0 0 0 0 0 1520 3590 0 0 0 0 0 0
+ 179       8 mmcblk0boot0 25 0 400 43 0 0 0 0 0 32 43 0 0 0 0 0 0
+ 179      16 mmcblk0boot1 25 0 400 44 0 0 0 0 0 36 44 0 0 0 0 0 0

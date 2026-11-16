@@ -1,0 +1,24 @@
+{
+  "files": {
+    "update_t736_storage_v18.py": {
+      "path": "tools/validation/update_t736_storage_v18.py",
+      "bytes": 25931,
+      "sha256": "87b695669cd78f61104159d2cfc82680d6ac41517f079dedf9c5455faeecee80"
+    },
+    "linux-image-6.18.63-t736-storage-v18_6.18.63-18_arm64.deb": {
+      "path": "build/linux-image-6.18.63-t736-storage-v18_6.18.63-18_arm64.deb",
+      "bytes": 5546276,
+      "sha256": "17a12b4b6c934e3a38e9992302fc62473b8cbda2c3b7d20f52acdf4a06dab324"
+    },
+    "pvrsrvkm-storage-v18.ko": {
+      "path": "build/pvr-storage-v18/target_aarch64/pvrsrvkm.ko",
+      "bytes": 1913816,
+      "sha256": "c5d60148497ae144c1e41938825259f347f149971c26f500b75da2b9454ad6eb"
+    },
+    "SHA256SUMS": {
+      "path": "evidence/storage-v18-delivery-SHA256SUMS-20261116.txt",
+      "bytes": 307,
+      "sha256": "634a2ff647cde1499954adab742e08da4ab6281d28998cdeca5ff718ac7e6275"
+    }
+  }
+}

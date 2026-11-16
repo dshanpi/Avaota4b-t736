@@ -1,0 +1,27 @@
+rmmod t736_a76_clock_trial; insmod /root/source-v9-validation/t736-a76-clock-trial-v1-reviewed.ko action=enable; echo CPU_ENABLE_RC=$?; dmesg | grep t736-a76-clock-trial | tail -n 24; echo CPU_ENABLE_DONE
+
+t736-a76-clock-trial: enable failed (-5); restoring original B state
+insmod: ERROR: could not insert module /root/source-v9-validation/t736-a76-clock-trial-v1-reviewed.ko: Input/output error
+CPU_ENABLE_RC=1
+[  149.847396] t736-a76-clock-trial: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[  149.847443] t736-a76-clock-trial: verified owner setpoints DCDC3=900000uV DCDC4=900000uV
+[  149.847502] t736-a76-clock-trial: action=audit XO=983fb0f7 B_CTRL=40801400 B_STAT=40801400 B_CLK=00000000 online6=0 online7=0
+[  149.847531] t736-a76-clock-trial: AUDIT complete: no CPU register writes
+[  149.847552] t736-a76-clock-trial: finished rc=0 mutation_attempted=0
+[  166.408465] t736-a76-clock-trial: unloaded; clock setting retained. Explicit restore requires CPU6/7 offline.
+[  166.457150] t736-a76-clock-trial: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[  166.457196] t736-a76-clock-trial: verified owner setpoints DCDC3=900000uV DCDC4=900000uV
+[  166.457253] t736-a76-clock-trial: action=enable XO=983fb0f7 B_CTRL=40801400 B_STAT=40801400 B_CLK=00000000 online6=0 online7=0
+[  166.457283] t736-a76-clock-trial: write +201c expected=00010000 actual=00010000
+[  166.457299] t736-a76-clock-trial: write +2000 expected=40802000 actual=40801400
+[  166.457316] t736-a76-clock-trial: enable failed (-5); restoring original B state
+[  166.463616] t736-a76-clock-trial: write +201c expected=00000000 actual=00000000
+[  166.463654] t736-a76-clock-trial: write +2000 expected=40801400 actual=40801400
+[  166.463670] t736-a76-clock-trial: write +2000 expected=40801400 actual=40801400
+[  166.463685] t736-a76-clock-trial: write +2000 expected=40801400 actual=40801400
+[  166.463699] t736-a76-clock-trial: write +2000 expected=40801400 actual=40801400
+[  166.463735] t736-a76-clock-trial: final CTRL=40801400 STAT=40801400 CLK=00000000
+[  166.463750] t736-a76-clock-trial: RESTORED exact measured DCXO/PLL-disabled state
+[  166.465271] t736-a76-clock-trial: finished rc=-5 mutation_attempted=1
+CPU_ENABLE_DONE
+root@t736:~# 

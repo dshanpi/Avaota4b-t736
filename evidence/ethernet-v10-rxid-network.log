@@ -1,0 +1,51 @@
+insmod /tmp/t736-transfer/t736_phy_delay_probe.ko delays=2; networkctl renew end0; sleep 5; ip -br addr show end0; ip route; cat /sys/class/net/end0/statistics/rx_packets; ping -c 3 -W 2 192.168.1.1
+
+t736-phy-delay: temporary delays=2 original_tx=0009 original_rx=0011 current_tx=0009 current_rx=0019
+end0             UP             fe80::3cdc:5fff:fe6c:571/64 
+44
+ping: connect: Network is unreachable
+root@t736:~# systemctl restart systemd-networkd; sleep 4; ip -br addr show end0; ip route; ping -c 3 -W 2 192.168.1.1; perl /tmp/t736-transfer/ethernet_stats.pl | head -30
+
+end0             UP             10.0.0.229/24 metric 1024 fd67:b33e:a9c2:0:3cdc:5fff:fe6c:571/64 fe80::3cdc:5fff:fe6c:571/64 
+default via 10.0.0.1 dev end0 proto dhcp src 10.0.0.229 metric 1024 
+10.0.0.0/24 dev end0 proto kernel scope link src 10.0.0.229 metric 1024 
+10.0.0.1 dev end0 proto dhcp scope link src 10.0.0.229 metric 1024 
+PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
+64 bytes from 192.168.1.1: icmp_seq=1 ttl=63 time=0.948 ms
+64 bytes from 192.168.1.1: icmp_seq=2 ttl=63 time=0.696 ms
+64 bytes from 192.168.1.1: icmp_seq=3 ttl=63 time=0.875 ms
+
+--- 192.168.1.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2008ms
+rtt min/avg/max/mdev = 0.696/0.839/0.948/0.105 ms
+ETHTOOL_STATS_COUNT=214
+mmc_tx_octetcount_gb=84130
+mmc_tx_framecount_gb=207
+mmc_tx_broadcastframe_g=25
+mmc_tx_multicastframe_g=84
+mmc_tx_64_octets_gb=56
+mmc_tx_65_to_127_octets_gb=81
+mmc_tx_256_to_511_octets_gb=26
+mmc_tx_1024_to_max_octets_gb=44
+mmc_tx_unicast_gb=98
+mmc_tx_multicast_gb=84
+mmc_tx_broadcast_gb=25
+mmc_tx_octetcount_g=84130
+mmc_tx_framecount_g=207
+mmc_tx_pause_frame=8
+mmc_tx_vlan_frame_g=11
+mmc_rx_framecount_gb=65
+mmc_rx_octetcount_gb=32188
+mmc_rx_octetcount_g=20352
+mmc_rx_broadcastframe_g=4
+mmc_rx_multicastframe_g=9
+mmc_rx_crc_error=10
+mmc_rx_align_error=0
+mmc_rx_run_error=1
+mmc_rx_jabber_error=0
+mmc_rx_undersize_g=0
+mmc_rx_oversize_g=0
+mmc_rx_64_octets_gb=29
+mmc_rx_65_to_127_octets_gb=11
+mmc_rx_128_to_255_octets_gb=1
+root@t736:~# 

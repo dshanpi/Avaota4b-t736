@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "scope": "Read-only saved-board-log, upstreamGTK/GStreamer source and packaged-library review; no board or application changes.",
+  "finding": "GDK_DISABLE=gl-api,glx,vulkan deliberately keeps EGL/GLES available; the observed make_current failure is not evidence that GLES was disabled.",
+  "source_basis": [
+    {
+      "file": "gtk-gdk.c",
+      "lines": "152–155",
+      "fact": "gl-api 的帮助文本是 Disable non-GLES GL API；gles-api 和 egl 是独立开关，glx 仅禁用 GLX。"
+    },
+    {
+      "file": "gtk-gdkglcontext.c",
+      "lines": "1298–1338",
+      "fact": "GL_API 与 GLES_API 分别检查。API 被禁止会在实现上下文时报告 OpenGL API disabled via GDK_DISABLE，不等于后续 make_current 警告。"
+    },
+    {
+      "file": "gtk-gdkglcontext.c",
+      "lines": "410–443",
+      "fact": "GDK 优先使用共享上下文兼容的 API；否则默认偏好 GLES，除非请求 gl-prefer-gl。因此移除 gl-api 未必改变实际 API。"
+    },
+    {
+      "file": "gtk-gdkglcontext.c",
+      "lines": "1779–1812",
+      "fact": "检查当前上下文、必要时实现上下文，然后调用平台 make_current；最后一步返回失败才打印该警告。EGL 基类调用 eglMakeCurrent，可能使用 surface 或 EGL_NO_SURFACE。"
+    },
+    {
+      "file": "gtk-gtkgstsink.c",
+      "lines": "621–657",
+      "fact": "GTK 的 GStreamer sink 绑定 GDK 上下文，获取 X11 EGL display、当前 API 和 context handle，包装后创建共享 Gst 上下文。此路径支持 EGL/GLES，不要求 GLX。"
+    },
+    {
+      "file": "gst-glcontext.c",
+      "lines": "1254–1264",
+      "fact": "GST_GL_API 控制 GStreamer 自己的 API 选择；GDK_DISABLE 是 GDK 功能开关，并不单独配置所有 GStreamer 上下文。"
+    },
+    {
+      "file": "gst-glcontext-egl.c",
+      "lines": "936–947",
+      "fact": "请求允许 GLES2 时，GStreamer EGL 后端优先绑定 EGL_OPENGL_ES_API。这里 gles2 包含 ES2/3 上下文，不意味着强制降到 GLES 2.0。"
+    }
+  ],
+  "diagnostic_sequence": [
+    {
+      "step": 1,
+      "type": "logging-only freshprocess baseline",
+      "command": "env GST_DEBUG=gtkgstsink:5,glcontext:4 GST_DEBUG_NO_COLOR=1 python3 /home/t736/settings_process_measure.py --panel mouse --seconds 20 --output /var/tmp/settings-v21-mouse-gst-default.json",
+      "conditions": "父代理只关闭身份已核对的实验进程。完整继承已验证的 GNOME 环境，保留 GDK_DISABLE=gl-api,glx,vulkan 与 LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri。不用 --reuse-pid：已有进程不会继承新环境。父代理已开始此项。"
+    },
+    {
+      "step": 2,
+      "type": "only if baseline leaves APIrestriction question unresolved",
+      "command": "env GDK_DISABLE=glx,vulkan GST_DEBUG=gtkgstsink:5,glcontext:4 GST_DEBUG_NO_COLOR=1 python3 /home/t736/settings_process_measure.py --panel mouse --seconds 20 --output /var/tmp/settings-v21-mouse-gst-allow-gl.json",
+      "conditions": "使用新进程，相同用户库、显示和路径，只从 GDK_DISABLE 删除 gl-api。GLX 与 Vulkan 仍禁用。对照错误和实际 API，不比较有调试日志的性能。若仍选择 GLES 且警告复现，则不支持 API 限制是直接原因。"
+    },
+    {
+      "step": 3,
+      "type": "optional targeted API logging",
+      "command_prefix": "env GDK_DEBUG=opengl",
+      "conditions": "GDK 源码将 opengl 注册为 OpenGL 信息日志。只有 Gst 日志不能辨认 GDK API 时，才在 A/B 两组同样加入；这不是 gl-prefer-gl。不要同时改 GST_GL_API 或 GST_GL_PLATFORM。"
+    }
+  ],
+  "interpretation": [
+    "检查 got EGL on X11、当前 GL handle、available GL APIs、Bound OpenGL|ES、共享和创建失败及回退信息。加载 PVR 库或 CLI 返回成功都不能单独证明 GL 媒体输出正确。",
+    "允许桌面 GL 后警告消失也只是暂时证据，因为已有警告只发生在首次进入媒体页。需要匹配的新进程对照，并核实 API 和库路径没有变化。",
+    "不要全局清空 GDK_DISABLE：这样会同时引入 GLX、Vulkan 和回退路径变化。目前没有持久修改环境的依据。",
+    "调试日志样本不能用于性能验收；暖缓存且无 major fault 的媒体页仍会重建管线并消耗 CPU。",
+    "若没有 EGL 错误码或调用栈，仅靠这个最小诊断还不能区分 surface、上下文共享、线程归属或驱动故障。后续定点取证应作为独立步骤，不能直接猜根因。"
+  ],
+  "v21_hs50_samples": [
+    {
+      "source": {
+        "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-static-launch.json",
+        "sha256": "678fbf09d7d87ed07ab1fedbebb675ecb3cbe4c83538b000740de64b53b91731"
+      },
+      "mode": "new_process_launch",
+      "pid": 3414,
+      "panel": "multitasking",
+      "process_cpu_seconds": 3.75,
+      "major_faults": 215,
+      "cpu99_observed_seconds": 4.048242295999984,
+      "last_cpu_tick_observed_seconds": 19.232211159000002,
+      "mapped": {
+        "pid": 3414,
+        "display": ":0",
+        "metric": "First viewable X11 client window with matching _NET_WM_PID",
+        "complete_render_verified": false,
+        "input_sent": false,
+        "timeout_seconds": 20.0,
+        "start_monotonic": 141.049503772,
+        "observer_start_monotonic": 141.176371712,
+        "start_origin": "launcher",
+        "status": "mapped",
+        "window": "0x2000004",
+        "elapsed_seconds": 2.094446,
+        "observer_seconds": 1.967578,
+        "width": 1920,
+        "height": 1048
+      },
+      "dispatch": null,
+      "thread_count_last": 6,
+      "main_cpu_samples": {
+        "1": 2,
+        "7": 2,
+        "6": 37
+      }
+    },
+    {
+      "source": {
+        "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-mouse-first.json",
+        "sha256": "753dddf65020886a3b4b230b80b3188cf7f82fa52dea6c18a7fef401ce1761c7"
+      },
+      "mode": "panel_activation",
+      "pid": 3414,
+      "panel": "mouse",
+      "process_cpu_seconds": 2.37,
+      "major_faults": 53,
+      "cpu99_observed_seconds": 1.5379050920000168,
+      "last_cpu_tick_observed_seconds": 1.5379050920000168,
+      "mapped": {
+        "status": "not_measured_for_reused_window",
+        "reason": "Existing-window mapping cannot measure panel completion"
+      },
+      "dispatch": {
+        "exit_code": 0,
+        "observed_exit_seconds": 1.5379897919999905,
+        "observation_resolution_seconds": 0.5,
+        "metric": "CLI request return, not first paint or completed panel"
+      },
+      "thread_count_last": 102,
+      "main_cpu_samples": {
+        "6": 40
+      }
+    },
+    {
+      "source": {
+        "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-static-return.json",
+        "sha256": "fbbc44ad353bf1ed30f4a33da68ae32c32e69d56630117ceb363017a76ec154a"
+      },
+      "mode": "panel_activation",
+      "pid": 3414,
+      "panel": "multitasking",
+      "process_cpu_seconds": 0.18,
+      "major_faults": 0,
+      "cpu99_observed_seconds": 1.5420792669999912,
+      "last_cpu_tick_observed_seconds": 1.5420792669999912,
+      "mapped": {
+        "status": "not_measured_for_reused_window",
+        "reason": "Existing-window mapping cannot measure panel completion"
+      },
+      "dispatch": {
+        "exit_code": 0,
+        "observed_exit_seconds": 1.0371855269999912,
+        "observation_resolution_seconds": 0.5,
+        "metric": "CLI request return, not first paint or completed panel"
+      },
+      "thread_count_last": 30,
+      "main_cpu_samples": {
+        "6": 8,
+        "7": 13
+      }
+    },
+    {
+      "source": {
+        "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-mouse-second.json",
+        "sha256": "88ce522eb38a3d2eb0c9760e549f4dfc9a4300f868e3cb4b2030bf8e42f0db06"
+      },
+      "mode": "panel_activation",
+      "pid": 3414,
+      "panel": "mouse",
+      "process_cpu_seconds": 1.89,
+      "major_faults": 0,
+      "cpu99_observed_seconds": 1.027253218000027,
+      "last_cpu_tick_observed_seconds": 1.027253218000027,
+      "mapped": {
+        "status": "not_measured_for_reused_window",
+        "reason": "Existing-window mapping cannot measure panel completion"
+      },
+      "dispatch": {
+        "exit_code": 0,
+        "observed_exit_seconds": 1.0273420880000117,
+        "observation_resolution_seconds": 0.5,
+        "metric": "CLI request return, not first paint or completed panel"
+      },
+      "thread_count_last": 120,
+      "main_cpu_samples": {
+        "7": 40
+      }
+    }
+  ],
+  "v21_conclusions": [
+    "静态首次启动 215 次 major fault，v20 对照为 41 次。映射 2.094 秒与 1.469 秒不是受控的存储快慢比较；CPU 3.75 秒与 3.9 秒接近。",
+    "静态 CPU 在 4.048 秒已达到 3.74/3.75 秒；最后 0.01 秒 CPU 计数到 19.232 秒才出现。不能据此声称加载用了 19 秒。cpu99 仅表示工作计数进度，不是界面就绪时间。",
+    "鼠标页首次 2.37 CPU 秒、53 次 major fault；第二次 1.89 CPU 秒、0 次 major fault。暖文件下媒体管线重建仍有成本。CPU 分别在 1.538 秒和 1.027 秒后不再增加。",
+    "原进程日志的两条 GL 警告发生在首次鼠标页切入时段，第二次没有新增。没有验证悬停动画或物理首绘。"
+  ],
+  "original_app_log": {
+    "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-static-launch.json.app.log",
+    "sha256": "2bd1bd5d7a81818b2c72bfa07774798020edf5897bacccdabff85aea22276792"
+  },
+  "source_files": [
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gdk.c",
+      "sha256": "759ae47934d3a51050f83a5e86a52726a4237b0a87d6352a516e47f82ad4a4cb"
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gdkglcontext.c",
+      "sha256": "adcfbb9cc19327955dea4814218921bc547519a1f7eccca36d50d5f6fa856ff4"
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gtkgstsink.c",
+      "sha256": "1a87621a35e9d11a05beed2f8798180e6e0f4eb1a29d8370972a366294dc55be"
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gst-glcontext.c",
+      "sha256": "905c5d2af27743317776ea46ad89d0515f35c22738a48650cd9d8849eed7ab97"
+    },
+    {
+      "path": "C:\\Users\\世玉轩\\AppData\\Local\\Temp\\t736-settings-source-review\\gst-glcontext-egl.c",
+      "sha256": "afc5d9479c6f998fd21a4879acd3377f083508075a00d617576a159ce9029890"
+    }
+  ],
+  "no_runtime_environment_change_by_reviewer": true,
+  "full_media_acceptance": false
+}

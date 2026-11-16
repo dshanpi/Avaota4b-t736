@@ -1,0 +1,24 @@
+echo 0 > /sys/devices/system/cpu/cpu7/online; echo 0 > /sys/devices/system/cpu/cpu6/online; insmod /tmp/t736-transfer/a76-clock-v3.ko action=upgrade; echo CPU_V3_UPGRADE_RC=$?; dmesg | grep t736-a76-clock-trial-v3 | tail -n 17; echo CPU_V3_UPGRADE_DONE
+
+t736-a76-clock-trial-v3: trial failed=-5; reducing to slow with committed N retained
+insmod: ERROR: could not insert module /tmp/t736-transfer/a76-clock-v3.ko: Input/output error
+CPU_V3_UPGRADE_RC=1
+[  712.539254] t736-a76-clock-trial-v3: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[  712.539275] t736-a76-clock-trial-v3: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[  712.539293] t736-a76-clock-trial-v3: SUCCESS: A76=416MHz CTRL=f8802000 STAT=f8802000 CLK=03010000; PMIC untouched
+[  712.539321] t736-a76-clock-trial-v3: finished rc=0 mutation_attempted=1
+[  729.154913] t736-a76-clock-trial-v3: unloaded; setting retained; explicit restore requires CPU6/7offline
+[  750.211661] t736-a76-clock-trial-v3: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[  750.211704] t736-a76-clock-trial-v3: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[  750.211774] t736-a76-clock-trial-v3: action=upgrade XO=983fb0f7 CTRL=f8802000 STAT=f8802000 CLK=03010000 online6=0 online7=0
+[  750.211803] t736-a76-clock-trial-v3: mux expected=00000000 actual=00000000
+[  750.211888] t736-a76-clock-trial-v3: stage desired=e0802000 committed=00002000 actual=f0802000
+[  750.211905] t736-a76-clock-trial-v3: stage desired=c0802000 committed=00002000 actual=c0802000
+[  750.211921] t736-a76-clock-trial-v3: stage desired=c0802700 committed=00002000 actual=c0802000
+[  750.211936] t736-a76-clock-trial-v3: stage desired=e0802700 committed=00002000 actual=e0802700
+[  750.211954] t736-a76-clock-trial-v3: trial failed=-5; reducing to slow with committed N retained
+[  750.219485] t736-a76-clock-trial-v3: mux expected=00000000 actual=00000000
+[  750.219523] t736-a76-clock-trial-v3: SAFE_SLOW: CTRL=40802700 STAT=40802700 CLK=00000000 retained_N=39; PLL disabled, no N20 re-enable
+[  750.219571] t736-a76-clock-trial-v3: finished rc=-5 mutation_attempted=1
+CPU_V3_UPGRADE_DONE
+root@t736:~# 

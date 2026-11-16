@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "status": "offline-topology-merge-complete-board-v18-pending",
+  "baseline_package_sha256": "c20ae52d58f83ccf5be812d994fb44e51913edeab50dc938911fe43235bba4c7",
+  "kernel_sha256_unchanged": "6c671b870e204d3c3b9e8f202932d2dabd90887d8df6009f0d7d06a0d02f3b43",
+  "topology_input_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+  "fragment_sha256": "0af7e42afb7f75ba6c71c51b2bc605b329b71f8966cb90f114e5d1b48687cbc1",
+  "outside_mmc_reg_identical_to_accepted_topology": true,
+  "mmc_reg_additions": [
+    "0x020025e0/4 read-only",
+    "0x0200259c/4 read-only"
+  ],
+  "reservation_map_identical": true,
+  "package_sha256": "17a12b4b6c934e3a38e9992302fc62473b8cbda2c3b7d20f52acdf4a06dab324",
+  "other_payload_members_and_metadata_identical": true,
+  "dtb_md5sums_updated": true,
+  "candidate_dtb_sha256": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+  "candidate_dts_sha256": "2d4f935044ae65104f75f3773c4416939c2401e8cbfc90b7d4c3de48545bddd2",
+  "commands": [
+    [
+      "/home/ubuntu/t736-mainline/build/linux-storage-v18/scripts/dtc/dtc",
+      "-I",
+      "dtb",
+      "-O",
+      "dts",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/storage-v18-topology-final/t736-gpu-candidate.dts",
+      "/home/ubuntu/t736-mainline/build/storage-v18-dmaonly-final/t736-gpu-candidate.dtb"
+    ],
+    [
+      "/home/ubuntu/t736-mainline/build/linux-storage-v18/scripts/dtc/dtc",
+      "-I",
+      "dts",
+      "-O",
+      "dtb",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/storage-v18-topology-final/t736-gpu-candidate.dtb",
+      "/home/ubuntu/t736-mainline/build/storage-v18-topology-final/t736-gpu-candidate.dts"
+    ]
+  ],
+  "payload_audit": "run audit_dma_storage_package.py separately",
+  "hardware_access": false
+}

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "review": "desktop_probe_guard_and_firefox_system_access",
+  "hardware_test_of_new_gtk_guard": false,
+  "sha256": {
+    "mainline/tools/validation/gtk_frame_probe.py": "77f9f60d7c4340a2e73eb151aebce2062352559d4e0ba09ca17f00ff186b65d8",
+    "mainline/tools/validation/firefox_renderer_probe.py": "db689fb44a86736e0491bf5dd704537de14d49e884c693d6fd71d33c577af260"
+  },
+  "gtk": {
+    "compile": "PASS",
+    "observed_cause": "GNOME OverviewActive=true; after root agent hid overview the unchanged probe produced 706 frames in 12.241 seconds",
+    "evidence": "storage-v16-desktop-nooverview-20261116.log",
+    "changes": [
+      "read lock and overview state before rendering; skip if active or unknown",
+      "record session state before and after; flag timing unusable if ending state is invalid",
+      "no session-state writes and no synchronization changes",
+      "timing state checks cover start and end only"
+    ]
+  },
+  "firefox": {
+    "static_review": "PASS",
+    "diagnostic_system_access_scope": "only separately spawned non-root temporary Firefox profile with --no-remote; reads about:support DOM",
+    "transport": "probe connects 127.0.0.1; installed Firefox loopbackOnly=true separately confirmed by parent agent",
+    "unchanged_sandbox": true,
+    "unchanged_blocklist": true,
+    "persistent_browser_flag_installed": false,
+    "cleanup": "finally closes connection, waits/terminates owned process, deletes temporary profile",
+    "limitation": "review does not establish hardware WebRender or video decoding; use returned about:support result"
+  }
+}

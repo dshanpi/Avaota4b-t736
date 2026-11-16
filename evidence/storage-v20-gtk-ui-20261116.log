@@ -1,0 +1,65 @@
+
+(python3:4635): Gtk-WARNING **: 12:31:05.571: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+{
+  "status": "COMPLETE",
+  "timing_usable": true,
+  "workload": "24 rounded libadwaita cards with labels, buttons and switches; 240px/s scroll",
+  "renderer_gtype": "GskGLRenderer",
+  "requested_renderer": "opengl",
+  "environment": {
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles"
+  },
+  "sample_seconds_requested": 10.0,
+  "sample_elapsed_seconds": 10.002758233999998,
+  "mapped_seconds_after_launch": 0.4020228530000054,
+  "first_tick_seconds_after_launch": 0.4632977389999837,
+  "cpu_seconds_before_map": 0.353116708,
+  "cpu_seconds_sample": 4.404701116,
+  "cpu_seconds_total": 4.757817824,
+  "rusage_user_seconds": 4.6341,
+  "rusage_system_seconds": 0.602352,
+  "max_rss_kib": 107208,
+  "tick_intervals": {
+    "count": 421,
+    "median_ms": 16.748,
+    "p95_ms": 33.444,
+    "over_33_5ms": 6
+  },
+  "after_paint_intervals": {
+    "count": 421,
+    "median_ms": 16.884,
+    "p95_ms": 34.366,
+    "over_33_5ms": 45
+  },
+  "tick_count": 422,
+  "after_paint_count": 422,
+  "scroll_changed": true,
+  "libraries": [
+    "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+    "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887",
+    "/usr/lib/aarch64-linux-gnu/libadwaita-1.so.0",
+    "/usr/lib/aarch64-linux-gnu/libcairo-gobject.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo-script-interpreter.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libgtk-4.so.1.1800.6",
+    "/usr/share/locale/zh_CN/LC_MESSAGES/libadwaita.mo"
+  ],
+  "session_before": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_after": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_check_scope": "start and end only",
+  "interrupted": false,
+  "physical_display_verified": false,
+  "metric": "GTK frame-clock tick and monotonic after-paint callback intervals; not scanout/presentation"
+}

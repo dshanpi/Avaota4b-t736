@@ -1,0 +1,10 @@
+hub 1-1.4:1.0: hub_ext_port_status failed (err = -71)
+systemctl stop gdm.service; printf "GDM_STOP_RC=%s\n" "$?"; ps -eo pid,user,args | grep -E "[X]org|[g]nome-shell"; printf "PVR_MODULE="; test -e /sys/module/pvrsrvkm && echo loaded || echo absent; sync; printf "DRIVER_ONLY_READY\n"
+
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+GDM_STOP_RC=0
+   1271 Debian-+ [gnome-shell] <defunct>
+PVR_MODULE=absent
+DRIVER_ONLY_READY
+root@t736:~# 

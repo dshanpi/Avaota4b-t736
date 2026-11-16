@@ -1,0 +1,68 @@
+{
+  "requested_sleep_us": 50,
+  "samples": 40,
+  "median_us": 3999.1555,
+  "min_us": 3146.46,
+  "max_us": 3999.551,
+  "scope": "userspace nanosleep; supports but does not trace kernel driver usleep"
+}
+{
+  "status": "PASS",
+  "kernel": "6.18.63-t736-storage-v19",
+  "size_bytes": 8388608,
+  "seconds": 51.720030442999985,
+  "phases": [
+    {
+      "phase": 1,
+      "write_MiBs": 0.3982768279422895,
+      "read_MiBs": [
+        [
+          "sequential",
+          4096,
+          0.6445580825123594
+        ],
+        [
+          "fixed_seed_random",
+          4096,
+          0.6196653198513783
+        ],
+        [
+          "sequential",
+          65536,
+          6.426312485059513
+        ],
+        [
+          "fixed_seed_random",
+          65536,
+          5.921047780799395
+        ]
+      ]
+    },
+    {
+      "phase": 2,
+      "write_MiBs": 3.8061100532316487,
+      "read_MiBs": [
+        [
+          "sequential",
+          4096,
+          0.6514798816294584
+        ],
+        [
+          "fixed_seed_random",
+          4096,
+          0.6075627146587533
+        ],
+        [
+          "sequential",
+          65536,
+          6.284710332417777
+        ],
+        [
+          "fixed_seed_random",
+          65536,
+          6.583182206099672
+        ]
+      ]
+    }
+  ]
+}

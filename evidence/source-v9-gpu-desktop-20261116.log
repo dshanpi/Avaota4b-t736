@@ -1,0 +1,63 @@
+echo GDM_CONFIG; grep -nE '^\[daemon\]|AutomaticLogin|Wayland' /etc/gdm3/daemon.conf; cat /etc/X11/xorg.conf.d/20-t736-modesetting.conf; cat /home/t736/.config/monitors.xml; echo GPU_DESKTOP_PREP_DONE
+
+GDM_CONFIG
+1:[daemon]
+2:WaylandEnable=false
+3:AutomaticLoginEnable=false
+Section "Device"
+    Identifier "T736 display engine"
+    Driver "modesetting"
+    Option "kmsdev" "/dev/dri/card0"
+    Option "AccelMethod" "none"
+    Option "SWcursor" "true"
+    Option "PageFlip" "false"
+EndSection
+<monitors version="2">
+  <configuration>
+    <layoutmode>physical</layoutmode>
+    <logicalmonitor>
+      <x>0</x><y>0</y><scale>1</scale><primary>yes</primary>
+      <transform><rotation>normal</rotation><flipped>no</flipped></transform>
+      <monitor>
+        <monitorspec>
+          <connector>HDMI-1</connector>
+          <vendor>DEL</vendor>
+          <product>DELL U2518D</product>
+          <serial>3M7K89A9066L</serial>
+        </monitorspec>
+        <mode><width>1920</width><height>1080</height><rate>60.000</rate></mode>
+      </monitor>
+    </logicalmonitor>
+  </configuration>
+</monitors>
+GPU_DESKTOP_PREP_DONE
+root@t736:~# cp -a /etc/gdm3/daemon.conf /root/source-v9-validation/gdm-original.conf; python3 -c 'from pathlib import Path; p=Path("/etc/gdm3/daemon.conf"); s=p.read_text(); assert s.count("AutomaticLoginEnable=false")==1; p.write_text(s.replace("AutomaticLoginEnable=false","AutomaticLoginEnable=true\nAutomaticLogin=t736"))'; bash /root/source-v9-validation/gpu_session_trial.sh enable >/root/source-v9-validation/gpu-desktop-enable.log 2>&1; echo GPU_DESKTOP_ENABLE_RC=$?; tail -n 12 /root/source-v9-validation/gpu-desktop-enable.log; echo GPU_DESKTOP_ENABLE_DONE
+
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+GPU_DESKTOP_ENABLE_RC=0
+Candidate enabled; PageFlip remains false. Diagnostics: /root/t736-gpu-session-trial/runs/20261116T091042Z-2537
+Verify actual Xorg/GNOME process libraries and hardware renderer; use rollback on failure.
+GPU_DESKTOP_ENABLE_DONE
+root@t736:~# echo GPU_DESKTOP_STATE; pgrep -af 'gnome-shell|Xorg'; loginctl list-sessions --no-pager; cat /sys/kernel/debug/dri/0/state | grep -A1 'mode:'; for p in $(pgrep -u t736 -x gnome-shell); do echo GNOME_PID=$p; grep -E 'libEGL|libGLES|swrast' /proc/$p/maps | awk '{print $NF}' | sort -u; done; cp -a /root/source-v9-validation/gdm-original.conf /etc/gdm3/daemon.conf; echo GPU_DESKTOP_STATE_DONE
+
+GPU_DESKTOP_STATE
+2853 /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3
+2989 /usr/bin/gnome-shell
+3063 /usr/bin/gjs -m /usr/share/gnome-shell/org.gnome.Shell.Notifications
+3152 /usr/bin/gjs -m /usr/share/gnome-shell/org.gnome.ScreenSaver
+SESSION  UID USER SEAT  LEADER CLASS         TTY   IDLE SINCE
+     c3    0 root -     741    user-early    ttyS0 no   -    
+     c4    0 root -     1200   manager-early -     no   -    
+     c7 1000 t736 seat0 2787   user          tty2  no   -    
+     c8 1000 t736 -     2805   manager       -     no   -    
+
+4 sessions listed.
+	mode: "": 60 148500 1920 2008 2052 2200 1080 1084 1089 1125 0x0 0x5
+	on: 1920x1080@60&600Mhz->tcon4	irqcnt:3894	err:0	fps:59.761
+GNOME_PID=2989
+/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0
+GPU_DESKTOP_STATE_DONE
+root@t736:~# 

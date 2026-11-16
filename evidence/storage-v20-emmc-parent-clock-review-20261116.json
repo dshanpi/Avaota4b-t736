@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v20-parent-clock-live-readback-review",
+  "status": "PERI0-integer-parent-and-distribution-gate-readback-verified",
+  "observed_registers": {
+    "PLL_REF_CTRL": {
+      "address": "0x02002000",
+      "value": "0xf8675f00"
+    },
+    "PLL_PERI0_CTRL": {
+      "address": "0x020020a0",
+      "value": "0xff126310"
+    },
+    "PLL_PERI0_PAT0": {
+      "address": "0x020020a8",
+      "value": "0x00000000"
+    },
+    "PLL_PERI0_PAT1": {
+      "address": "0x020020ac",
+      "value": "0x30000000"
+    },
+    "PLL_PERI1_CTRL": {
+      "address": "0x020020c0",
+      "value": "0x40126310"
+    },
+    "PLL_PERI1_PAT0": {
+      "address": "0x020020c8",
+      "value": "0x00000000"
+    },
+    "PLL_PERI1_PAT1": {
+      "address": "0x020020cc",
+      "value": "0x30000000"
+    },
+    "SMHC3_CLK": {
+      "address": "0x02002d30",
+      "value": "0x80000000"
+    },
+    "STORE_MBUS_GATE": {
+      "address": "0x020025e0",
+      "value": "0xf1055803"
+    },
+    "MSI_LITE1_GATE": {
+      "address": "0x0200259c",
+      "value": "0x00030001"
+    }
+  },
+  "three_passes_equal": true,
+  "reference_decode": {
+    "dcxo_hz": 26000000,
+    "N": 96,
+    "input_div": 1,
+    "output_div": 104,
+    "exact_output_hz": 24000000,
+    "enable_lock_output_ready": true
+  },
+  "peri0_decode": {
+    "fref_sel_bit24": 1,
+    "selected_parent": "PLL_REF24M",
+    "N": 100,
+    "input_div": 1,
+    "output1_div": 3,
+    "exact_nominal_output1_hz": 800000000,
+    "enable_lock_output1_gate": true,
+    "pattern0_enable_bit31": false,
+    "pattern1_sdm_bits27_26": 0
+  },
+  "peri1_rejected": {
+    "value": "0x40126310",
+    "enable_bit31": false,
+    "lock_bit28": false,
+    "output1_gate_bit26": false,
+    "must_not_be_assumed_800MHz_live_parent": true,
+    "enable_or_retune_needed_for_v21": false
+  },
+  "current_smhc3": {
+    "mux": 0,
+    "parent": "SYS_CLK24M",
+    "M": 1,
+    "N": 1,
+    "nominal_module_hz": 24000000,
+    "nominal_sdr_card_hz": 12000000,
+    "scope": "V3 controller readback confirms internal CLKDIV0, card-output enable, SDR mode and8-bit width.",
+    "configuration_readback": {
+      "SMHC3_CLK": "0x80000000",
+      "SMHC3_BGR": "0x00010001",
+      "SMHC3_CTRL": "0x20000000",
+      "SMHC3_CLKDIV": "0x00010000",
+      "SMHC3_WIDTH": "0x00000002",
+      "SMHC3_CSDC": "0x00000003",
+      "SMHC3_NTSR": "0x81710000",
+      "SMHC3_EDSD": "0x00000000",
+      "SMHC3_DRV_DL": "0x00010000",
+      "SMHC3_SAMP_DL": "0x00002000",
+      "SMHC3_DS_DL": "0x00002000",
+      "SMHC3_SMCV": "0x03050610"
+    }
+  },
+  "proposed_v21": {
+    "parent_mux": 1,
+    "parent": "existing PERI0 output1 800M",
+    "first_card_hz": 25000000,
+    "M": 16,
+    "N": 1,
+    "module_register_masked": "0x8100000f",
+    "sampling_delay": 0,
+    "pll_retune": false,
+    "shared_gate_write": false,
+    "shared_gate_enable_required": false,
+    "rationale": "REF24 and existing PERI0 output1 are enabled/locked, unmodulated integer decode800M, downstream800M softwaregate enabled/no-auto and actual status enabled. v21 can selectmux1 without enabling or retuning shared parent gates."
+  },
+  "distribution_gate_followup": {
+    "config_address": "0x02003908",
+    "config_enable_bit": 26,
+    "config_no_auto_bit": 10,
+    "status_address": "0x02003988",
+    "status_enabled_bit": 26,
+    "required_interpretation": "EN26=1,NoAuto10=1,STAT26=1 proves the observed branch is continuously enabled. If auto gating is enabled and STAT is0, do not conflate it with PLL disabled; evaluate mux-use gating behavior.",
+    "collector": "tools/validation/t736-emmc-clocks-readonly-v3.c",
+    "status": "PASS",
+    "observed_config": "0x8fff0fff",
+    "observed_status": "0x0fff0000",
+    "software_enabled": true,
+    "no_auto_gating": true,
+    "status_enabled": true
+  },
+  "limitations": [
+    "Nominal register arithmetic, not an oscilloscope frequency measurement.",
+    "Three successive snapshots do not establish atomic state or long-term clock stability.",
+    "PERI0 FREF_SEL bit24 follows the donor autogen definition; public manual marks this field reserved, which remains explicitly documented.",
+    "No PLL, clock, gate, voltage or storage timing changes were performed by this review."
+  ],
+  "evidence": {
+    "path": "evidence/storage-v20-emmc-clocks-readonly-v2-20261116.log",
+    "sha256": "bc27863a000ff369bf47246010a2c854412dc303f052d375af78a0629845c2d9"
+  },
+  "static_review": "evidence/storage-hs-parent-clock-independent-review-20261116.json",
+  "v3_evidence": {
+    "path": "evidence/storage-v20-emmc-clocks-readonly-v3-20261116.log",
+    "sha256": "b62be5b90210ad19d96e69cf5f7066f82929767be9d54536dcef4d5b12338cac",
+    "three_passes_equal": true,
+    "register_count": 23
+  }
+}

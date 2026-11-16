@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "kind": "storage-v19-guarded-updater-preparation",
+  "date": "2026-11-16",
+  "status": "ready for board check/apply; no runtime acceptance",
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v19.py": "2c04f02dc7faba327bdd42e33dfd3d6d84458fe64c3dc4c40d0fae89dfc12fb2",
+    "tools/validation/test_update_t736_storage_v19.py": "8fd69b9a855b7745518c2aedd5d20eae9f88a06f8da4d08f3e0d6134b01e5406",
+    "tools/validation/audit_dma_storage_v19_package.py": "d08a5df201759b90ed4368def04a8aea1d10dba5b202475c1c9483c3b15d3084",
+    "evidence/storage-v19-updater-offline-tests-20261116.log": "8fa81fc9ddeed833378ce3a19a5b3df9384ba348bd2d101887aa2cd97ad13f75",
+    "evidence/storage-v19-updater-pre-quiesce-tests-20261116.log": "cee1108f00f78ec7bfb8551f46aea3de633fefb54b1e488f1484034e77eac856",
+    "evidence/storage-v19-updater-exact-inputs-20261116.json": "a99cf5788481ce82c66ce5fa898bac02ef66c4c92b7f2333495e1353cf53c6d5",
+    "evidence/storage-v19-updater-independent-review-20261116.json": "37b734d6e5986aeb36eccb29f9d91910f5d481877afdd799e30ccd4244a235fb",
+    "evidence/storage-v19-package-20261116.json": "64d615e5979031cca2eaf6a090588455780285a76c75b8d4e5fad5c77440fc66",
+    "evidence/storage-v19-updater-bindings-20261116.json": "e7ded62056af1d61b443d9b28bffb32f844eeb7103a3cbbf0cbf36c3852a4fe0"
+  },
+  "bindings": {
+    "kernel_sha256": "31e82d9ff94ba0a0a26915410a914aa74878ab4ace21434485a8fddb2b40a7b9",
+    "kernel_bytes": 5592228,
+    "pvr_sha256": "c0aa70e73e90f41c739b8d26781ad1fe6efc2d221712cda2adcf4647e8af11ad",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "a3c2ff422873a41976fc7866a5347b4a99f1618f236a042646091fcc8d2be933",
+    "payload_manifest_sha256": "d3184f21f54243386e19cd2891135585fcf0473e229e9b2f6762062bfb381ce7",
+    "raw_image_sha256": "34522f80371d20ca9e76cfebcb1c025061d569997defe9b23aa47214bb89c12b",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "candidate_dtb_bytes": 11960,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "offline_tests": {
+    "passed": 12,
+    "prior_test_failure_preserved": "evidence/storage-v19-updater-pre-quiesce-tests-20261116.log",
+    "fix": "SIGKILL process-group completion barrier; bounded pipe-close wait; no concurrent rollback if a killed group is still active"
+  },
+  "exact_inputs": "82 payload entries and complete control/payload manifests PASS; maintainer scripts not executed during audit",
+  "independent_review": "code_index passed at exact updaterSHA2c04f02dc7faba327bdd42e33dfd3d6d84458fe64c3dc4c40d0fae89dfc12fb2",
+  "candidate_installation_preserves": [
+    "v16 fallback including accepted612 capacity DT",
+    "previous failedv18 installed package for diagnosis",
+    "existing boot alias names; no SPL/GPT/bootcmd changes"
+  ],
+  "planned_board_flow": [
+    "root checks and applies the pinned kernel/PVR transaction",
+    "root immediately rolls back default selection to v16 using the fresh backup",
+    "v19 package/kernel/initrd/DT/PVR stay installed for a one-shot explicit-path U-Boot test without saveenv"
+  ],
+  "board_operations_by_this_agent": false,
+  "candidate_board_accepted": false,
+  "private_home_archive_included": false
+}

@@ -1,0 +1,7 @@
+gzip -dc /tmp/t736-transfer/ethtool-csum.gz > /tmp/t736-transfer/ethtool-csum; echo "d3195ecb6b70e33506f94d1b0164bd16d0ffeeda982103fea030a30f428e9879  /tmp/t736-transfer/ethtool-csum" | sha256sum -c - && chmod 700 /tmp/t736-transfer/ethtool-csum && /tmp/t736-transfer/ethtool-csum end0
+
+/tmp/t736-transfer/ethtool-csum: OK
+BEFORE (read only)
+end0 RXCSUM=on raw=1
+end0 TXCSUM=on raw=1
+root@t736:~# 

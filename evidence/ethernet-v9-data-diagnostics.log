@@ -1,0 +1,144 @@
+cat /proc/interrupts | grep -E 'eth|mac|end0'; cat /sys/kernel/debug/stmmaceth/end0 
+/dma_cap; cat /sys/kernel/debug/stmmaceth/end0/descriptors_status | head -45; ip neigh; journalc 
+tl -u systemd-networkd -n 12 --no-pager
+
+410:          0          0          0          0          0          0          0          0    GICv3 204 Level     end0:mac
+411:         23          0          0          0          0          0          0          0    GICv3 205 Level     end0:tx-0
+412:          0          0          0          0          0          0          0          0    GICv3 206 Level     end0:rx-0
+==============================
+	DMA HW features
+==============================
+	10/100 Mbps: Y
+	1000 Mbps: Y
+	Half duplex: Y
+	Hash Filter: N
+	Multiple MAC address registers: Y
+	PCS (TBI/SGMII/RTBI PHY interfaces): N
+	SMA (MDIO) Interface: Y
+	PMT Remote wake up: Y
+	PMT Magic Frame: Y
+	RMON module: Y
+	IEEE 1588-2002 Time Stamp: N
+	IEEE 1588-2008 Advanced Time Stamp: Y
+	802.3az - Energy-Efficient Ethernet (EEE): Y
+	AV features: N
+	Checksum Offload in TX: Y
+	IP Checksum Offload in RX: Y
+	Number of Additional RX channel: 1
+	Number of Additional TX channel: 1
+	Number of Additional RX queues: 1
+	Number of Additional TX queues: 1
+	Enhanced descriptors: N
+	TX Fifo Size: 4096
+	RX Fifo Size: 8192
+	Hash Table Size: 64
+	TSO: N
+	Number of PPS Outputs: 0
+	Safety Features: No
+	Flexible RX Parser: N
+	Enhanced Addressing: 32
+	Receive Side Scaling: N
+	VLAN Hash Filtering: Y
+	Split Header: Y
+	VLAN TX Insertion: Y
+	Double VLAN: Y
+	Number of L3/L4 Filters: 0
+	ARP Offloading: N
+	Enhancements to Scheduled Traffic (EST): N
+	Frame Preemption (FPE): N
+	Time-Based Scheduling (TBS): N
+	Number of DMA Channels Enabled for TBS: 0
+	Per-Stream Filtering: N
+	TX Timestamp FIFO Depth: 0
+	Number of Traffic Classes: 0
+	DCB Feature: N
+	IEEE 1588 High Word Register: N
+	PTP Offload: N
+	One-Step Timestamping: N
+	Priority-Based Flow Control: N
+	Number of Flexible RX Parser Instructions: 64
+	Number of Flexible RX Parser Parsable Bytes: 64
+	Parallel Instruction Processor Engines: 0
+	Number of Extended VLAN Tag Filters: 0
+	Width of the Time Interval Field in GCL: 0
+	Depth of GCL: 0
+	Queue/Channel-Based VLAN Tag Insertion on TX: N
+	Number of Auxiliary Snapshot Inputs: 0
+	One-Step Timestamping for PTP over UDP/IP: N
+	Enhanced DMA: N
+	Different Descriptor Cache: N
+	VxLAN/NVGRE: N
+	Debug Memory Interface: N
+	Number of Policing Counters: 0
+RX Queue 0:
+Descriptor ring:
+0 [0x000000004027e000]: 0x402fb040 0x0 0x402fa000 0x83000000
+1 [0x000000004027e010]: 0x402f9040 0x0 0x402f8000 0x83000000
+2 [0x000000004027e020]: 0x402f7040 0x0 0x402f6000 0x83000000
+3 [0x000000004027e030]: 0x402f5040 0x0 0x402f4000 0x83000000
+4 [0x000000004027e040]: 0x402f3040 0x0 0x402f2000 0x83000000
+5 [0x000000004027e050]: 0x402f1040 0x0 0x402f0000 0x83000000
+6 [0x000000004027e060]: 0x402ef040 0x0 0x402ee000 0x83000000
+7 [0x000000004027e070]: 0x402ed040 0x0 0x402ec000 0x83000000
+8 [0x000000004027e080]: 0x402eb040 0x0 0x402ea000 0x83000000
+9 [0x000000004027e090]: 0x402e9040 0x0 0x402e8000 0x83000000
+10 [0x000000004027e0a0]: 0x402e7040 0x0 0x402e6000 0x83000000
+11 [0x000000004027e0b0]: 0x402e5040 0x0 0x402e4000 0x83000000
+12 [0x000000004027e0c0]: 0x402e3040 0x0 0x402e2000 0x83000000
+13 [0x000000004027e0d0]: 0x402e1040 0x0 0x402e0000 0x83000000
+14 [0x000000004027e0e0]: 0x402df040 0x0 0x402de000 0x83000000
+15 [0x000000004027e0f0]: 0x402dd040 0x0 0x402dc000 0x83000000
+16 [0x000000004027e100]: 0x402db040 0x0 0x402da000 0x83000000
+17 [0x000000004027e110]: 0x402d9040 0x0 0x402d8000 0x83000000
+18 [0x000000004027e120]: 0x402d7040 0x0 0x402d6000 0x83000000
+19 [0x000000004027e130]: 0x402d5040 0x0 0x402d4000 0x83000000
+20 [0x000000004027e140]: 0x402d3040 0x0 0x402d2000 0x83000000
+21 [0x000000004027e150]: 0x402d1040 0x0 0x402d0000 0x83000000
+22 [0x000000004027e160]: 0x402cf040 0x0 0x402ce000 0x83000000
+23 [0x000000004027e170]: 0x402cd040 0x0 0x402cc000 0x83000000
+24 [0x000000004027e180]: 0x402cb040 0x0 0x402ca000 0x83000000
+25 [0x000000004027e190]: 0x402c9040 0x0 0x402c8000 0x83000000
+26 [0x000000004027e1a0]: 0x402c7040 0x0 0x402c6000 0x83000000
+27 [0x000000004027e1b0]: 0x402c5040 0x0 0x402c4000 0x83000000
+28 [0x000000004027e1c0]: 0x402c3040 0x0 0x402c2000 0x83000000
+29 [0x000000004027e1d0]: 0x402c1040 0x0 0x402c0000 0x83000000
+30 [0x000000004027e1e0]: 0x402bf040 0x0 0x402be000 0x83000000
+31 [0x000000004027e1f0]: 0x402bd040 0x0 0x402bc000 0x83000000
+32 [0x000000004027e200]: 0x4033b040 0x0 0x4033a000 0x83000000
+33 [0x000000004027e210]: 0x40339040 0x0 0x40338000 0x83000000
+34 [0x000000004027e220]: 0x40337040 0x0 0x40336000 0x83000000
+35 [0x000000004027e230]: 0x40335040 0x0 0x40334000 0x83000000
+36 [0x000000004027e240]: 0x40333040 0x0 0x40332000 0x83000000
+37 [0x000000004027e250]: 0x40331040 0x0 0x40330000 0x83000000
+38 [0x000000004027e260]: 0x4032f040 0x0 0x4032e000 0x83000000
+39 [0x000000004027e270]: 0x4032d040 0x0 0x4032c000 0x83000000
+40 [0x000000004027e280]: 0x4032b040 0x0 0x4032a000 0x83000000
+41 [0x000000004027e290]: 0x40329040 0x0 0x40328000 0x83000000
+42 [0x000000004027e2a0]: 0x40327040 0x0 0x40326000 0x83000000
+Nov 11 15:48:07 t736 systemd[1]: Starting systemd-networkd.service - Network Configuration...
+Nov 11 15:48:10 t736 systemd-networkd[352]: lo: Link UP
+Nov 11 15:48:10 t736 systemd-networkd[352]: lo: Gained carrier
+Nov 11 15:48:10 t736 systemd-networkd[352]: Unable to load sysctl monitor BPF program, ignoring: No such process.
+Nov 11 15:48:10 t736 systemd-networkd[352]: end0: Configuring with /etc/systemd/network/20-wired.network.
+Nov 11 15:48:11 t736 systemd[1]: Started systemd-networkd.service - Network Configuration.
+Nov 11 15:48:11 t736 systemd-networkd[352]: end0: Link UP
+Nov 11 15:48:14 t736 systemd-networkd[352]: end0: Gained carrier
+Nov 11 15:48:16 t736 systemd-networkd[352]: end0: Gained IPv6LL
+root@t736:~# networkctl renew end0; ip -s link show end0
+
+2: end0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 6a:c5:26:43:39:52 brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+          3974      24      0       0       0       0 
+root@t736:~# command -v perl; ls /sys/class/net/end0/statistics; cat /sys/class/net/end0/statistics/rx_errors
+
+/usr/bin/perl
+collisions     rx_dropped	 rx_missed_errors   tx_bytes	       tx_fifo_errors
+multicast      rx_errors	 rx_nohandler	    tx_carrier_errors  tx_heartbeat_errors
+rx_bytes       rx_fifo_errors	 rx_over_errors     tx_compressed      tx_packets
+rx_compressed  rx_frame_errors	 rx_packets	    tx_dropped	       tx_window_errors
+rx_crc_errors  rx_length_errors  tx_aborted_errors  tx_errors
+0
+root@t736:~# 

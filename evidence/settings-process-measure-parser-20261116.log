@@ -1,0 +1,44 @@
+REMOTE_DIRECTORY=/home/ubuntu/t736-mainline/build/settings-measure-review-20261116-1794830880
+SCRIPT_SHA256=abe17848c49f5cf6d6a5f4eba7ca1c11dcb7f565a6f6518a1a529475d1e55064
+EXIT_CODE=0
+{
+  "status": "PASS",
+  "scope": "Linux /proc parser and interval counter arithmetic only; no Settings/X11 launch",
+  "summary": {
+    "clock_ticks_per_second": 100,
+    "process_counter_delta": {
+      "user_ticks": 11,
+      "system_ticks": 1,
+      "minor_faults": 1,
+      "major_faults": 0,
+      "blkio_delay_ticks": 0
+    },
+    "process_cpu_seconds": 0.12,
+    "proc_io_delta": {
+      "rchar": 1006,
+      "wchar": 0,
+      "syscr": 10,
+      "syscw": 0,
+      "read_bytes": 0,
+      "write_bytes": 0,
+      "cancelled_write_bytes": 0
+    },
+    "main_thread_last_cpu_sample_counts": {
+      "1": 2
+    },
+    "main_thread_state_samples": {
+      "R": 2
+    },
+    "largest_thread_cpu_lower_bounds": [
+      {
+        "tid": 1210153,
+        "comm": "python3",
+        "cpu_seconds_lower_bound": 0.12,
+        "last_sampled_cpu": 1
+      }
+    ],
+    "note": "last_cpu is a polling sample, not measured CPU residency; exited-thread accounting can be incomplete; CPU counters are tick-quantized and can miss short activity; process CPU excludes MMC kernel workers"
+  }
+}
+
+STDERR

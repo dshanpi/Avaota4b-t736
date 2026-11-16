@@ -1,0 +1,8 @@
+dmesg -n 4; cp /tmp/t736-transfer/a76-clock-v4.ko /root/source-v9-validation/; echo 0 > /sys/devices/system/cpu/cpu7/online; echo 0 > /sys/devices/system/cpu/cpu6/online; if insmod /root/source-v9-validation/a76-clock-v4.ko action=enable && rmmod t736_a76_clock_trial_v4 && insmod /root/source-v9-validation/a76-clock-v4.ko action=upgrade; then rmmod t736_a76_clock_trial_v4; echo 1 > /sys/devices/system/cpu/cpu6/online; echo 1 > /sys/devices/system/cpu/cpu7/online; echo A76_RESTORED_1014; fi; dmesg | grep 't736-a76-clock-trial-v4: SUCCESS'; cat /sys/devices/system/cpu/online; echo A76_RESTORE_DONE
+
+A76_RESTORED_1014
+[  220.245389] t736-a76-clock-trial-v4: SUCCESS: A76=416MHz CTRL=f8802000 STAT=f8802000 CLK=03010000; PMIC untouched
+[  220.312025] t736-a76-clock-trial-v4: SUCCESS: A76=1014MHz CTRL=f8802700 STAT=f8802700 CLK=03000000; PMIC untouched
+0-7
+A76_RESTORE_DONE
+root@t736:~# 

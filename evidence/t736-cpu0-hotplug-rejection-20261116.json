@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-16",
+  "status": "RUNTIME_A55_TRIAL_REJECTED_BEFORE_MUTATION; CPU0_HOTPLUG_UNSAFE_UNTIL_FIXED",
+  "hardware_log": "evidence\\source-v9-cpu-a55-1014-20261116.log",
+  "hardware_log_sha256": "dbc67b30ff38622bdd58ecb99d17509e0b2fac5ec288958c42c1332e69c0988b",
+  "facts": {
+    "before": "A55 CTRL/STAT=f8801300 CLK03000000; A76=f8802700/03000000; all CPUs0-7 online",
+    "after_linux_offline": "Linux online6-7; CPU0 PPU07052008=00000108 remains ON; CPU1..5 PPUs=00000100 OFF",
+    "trial": "action=upgrade refused rc=-5 mutation_attempted=0; no CPU PLL or mux write",
+    "restore": "echo1 to cpu0/online first; saved serial log has no subsequent marker; root reports unresponsive observation"
+  },
+  "mapping": {
+    "base": "07050000",
+    "native_macro": "PPU_PWSR(n)=base+n*1000+1008",
+    "call": "sunxi_pwr_domain_on uses PPU_PWSR(core+1), core=MPIDR_AFFLVL1_VAL(mpidr)",
+    "cpu0": "07052008",
+    "cpu1_through5": "07053008..07057008",
+    "conclusion": "module mapping exactly matches selected TF-A; other cores changed ON to OFF using same mapping"
+  },
+  "mechanism": [
+    "Linux removes CPU from cpu_online_mask then cpu_psci_cpu_die calls CPU_OFF; cpu_psci_cpu_kill only checks PSCI AFFINITY_INFO.",
+    "TF-A lib/psci/psci_off.c invokes native pwr_domain_off then sets AFF_STATE_OFF before psci_pwrdown_cpu_end_terminal WFI; this software state does not confirm PPU power OFF.",
+    "Native CPU_OFF only clears POWER_ON bit0 in R_CPUCFG+220+core*4 and sets GIC_WAKEUP_DISABLE bit1 in R_CPUCFG+200+core*4.",
+    "Native CPU_ON first sets CPU_INITARCH_AA64, then waits without timeout for PPU_PWSR(core+1)&f ==0 before asserting POWER_ON/HOTPLUG_EN.",
+    "CPU0 remaining PPU state8 is sufficient to keep that CPU_ON wait stuck. No new target PLL programming occurred."
+  ],
+  "sources": {
+    "tf_a_commit": "7d322909068fc4bb4ee35e9e43c78ed68d98619b",
+    "native": "plat/allwinner/common/sunxi_native_pm_ncat2.c:33-65",
+    "affinity_state": "lib/psci/psci_off.c:137-185",
+    "terminal": "lib/psci/psci_common.c:1345-1368",
+    "a55_powerdown": "lib/cpus/aarch64/cortex_a55.S:128-132 sets CPUPWRCTLR_EL1 CORE_PWRDN_EN",
+    "kernel": "arch/arm64/kernel/psci.c cpu_psci_cpu_kill; arch/arm64/kernel/smp.c __cpu_disable"
+  },
+  "uncertain": "The specific inherited CPU0 PPU policy or missing bootstrap power-controller initialization preventing physical OFF is not yet proven. There is no CPU0 exception in selected native PSCI code.",
+  "decision": "Do not repeat runtime A55 offline experiment; do not bypass PPU guard or issue speculative power-controller writes. Root owns recovery.",
+  "alternative_proposal": "Independent U-Boot early_init_r candidate with only bootstrap CPU0 running, secondary PPUs OFF; switch running A55 mux slow using CNT24MHz timing, warm N19->N39 with PLL_EN retained, preserve DSU/A76/PMIC, keep SPLv4 unchanged. Pending root review/implementation.",
+  "root_hardware_ownership": true
+}

@@ -1,0 +1,51 @@
+{
+  "schema": 2,
+  "kind": "storage-v18-dma-independent-static-review",
+  "date": "2026-11-16",
+  "reviewer": "backup_audit",
+  "result": "corrected SMHC3-specific candidate passes static review; hardware acceptance pending",
+  "hardware_operations": false,
+  "files_sha256": {
+    "boards/t736_mmc_dma_v18.c": "3656bef4cc9d5db40f4d95c3f0f5ea5c69d5d160c2264e40e743606084ecd1eb",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tools/build_dma_storage_kernel.sh": "faa6c0e681862881e99f218de56ca46ecf12f1ebb0b4257d2bfea307ce517a47",
+    "tests/test_mmc_dma_descriptor.py": "0878dcfdbfc3ccf49e109fa40454021628fc1b0fa4a581d53b39708ac53cd8b6",
+    "evidence/storage-v18-smhc-version-gates-corrected-20261116.log": "7eb93f55499cf150b9446346b5128e20388843ce2487ca58554437f72282398d"
+  },
+  "supersedes": "evidence/storage-v18-dma-superseded-review-20261116.json",
+  "manual_basis": {
+    "local_reference": "evidence/vendor-reference/reference-1.txt",
+    "sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483",
+    "sections": [
+      "Table11-4 SMHC3 DES0",
+      "Table11-6 SMHC3 DES1",
+      "11.3.9.1 CTRL",
+      "11.3.9.15 RINTSTS",
+      "11.3.9.17 FIFO threshold",
+      "11.3.9.26 DMAC",
+      "11.3.9.27 DLBA",
+      "11.3.9.28 IDST"
+    ],
+    "full_manual_excluded_from_public_backup": true
+  },
+  "reviewed": [
+    "DES0 only OWN31/FD3/LD2; low4G keeps high-address fields zero. CH4/DIC1/ER5/CES30 are not used because they are reserved for SMHC3.",
+    "DES1 size is 12 bits; 1KiB positive, four-byte-aligned chunks avoid zero (ignored) encoding. All addresses are word-shifted.",
+    "DMAC enables bit7 only; bit1 is reserved. IDST clears valid sticky bits with0x133 and errors use only4/5. No descriptor CES error interpretation.",
+    "RINTSTS13 is an error on reads, normal busy-clear on writes.18 is write-busy timeout;8/9/10/18 report timeout in the fixed legacy/no-voltage-switch scope.",
+    "CTRL31 selects DMA FIFO access, CTRL5 enables DMA; no new reserved30 modification. FIFO0x300f00f0 represents outstanding encoding3 (four requests), RX15/TX240.",
+    "Completion requires CMD_DONE plus DATA/ACMD_DONE, matching-direction IDST and every OWN clear. A descriptor-level RX/TX status alone cannot prematurely complete a request.",
+    "Coherent32-bit allocations bound data/descriptor addresses. dma_wmb before engine start and dma_rmb before ownership/data read enforce ordering.",
+    "Data requests always stop/disable/reset engine and FIFO before read-copy, success return or reuse. Reset timeout marks dead and pins allocations until reboot; no free/reuse after uncertain DMA quiescence.",
+    "Failed reads never copy bounce data; failed write SG copy occurs before engine enable. Zero bytes_xfered on failure.",
+    "Ordered workqueue serializes callbacks including requeue from mmc_request_done; callback ends immediately after completion.",
+    "Shared gates are read-only: resources020025e0/0200259c match corrected builder. Check bit30/bit0, reject before controller writes if off. Saved board values f1055803/00030001 and SMCV03050610 agree.",
+    "Reviewed actual C tests cover address/length boundaries, reserved-descriptor-bit zero, direction/command/data completion, OWN pending, read-vs-write bit13, timeout18/10 and error precedence."
+  ],
+  "retained_limits": [
+    "Not hardware acceptance or high-speed acceptance; remains12MHz legacy8-bit.",
+    "Two-second request/busy budget and auto-stop response handling retained.",
+    "No new shared-gate write authorized by this review.",
+    "Board snapshot is observed by root; this agent only read saved evidence."
+  ]
+}

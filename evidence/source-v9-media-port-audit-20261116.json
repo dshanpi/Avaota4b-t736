@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "scope": "Read-only source/package audit for Firefox software codecs and T736 decoder bring-up on Linux 6.18; no board mutation or VE acceptance",
+  "board_observation": {
+    "source": "source-v9-browser-media-state-20261116.log",
+    "firefox": "153.7.0esr-1~deb13u1 arm64",
+    "ffmpeg_libavcodec_installed": false,
+    "libva_installed": false,
+    "video_cedar_ve_devices_present": false,
+    "graphics_parent_maps": ["private pvr_dri.so", "private swrast_dri.so", "private libGL/libEGL/libGLES"],
+    "renderer_conclusion": "Library mappings alone do not establish the active WebRender compositor; isolated about:support probe prepared",
+    "renderer_probe": "../tools/validation/firefox_renderer_probe.py",
+    "renderer_probe_live_validation": "Original 35-second baseline and EGL/GLES startup attempts both timed out with empty logs; this establishes no renderer result. Schema 2 extends startup to 120 seconds and captures process state, page faults, I/O and MMC diskstats",
+    "renderer_probe_timeout_evidence": "source-v9-firefox-probe-results-20261116.log"
+  },
+  "software_codec_packages": {
+    "package_metadata_source": "192.168.1.228:/home/ubuntu/t736-mainline/build/armbian-raw-v9/var/lib/apt/lists/*_Packages",
+    "firefox_security_repository_version": "153.7.0esr-1~deb13u1",
+    "firefox_recommends_accepts_libavcodec61": true,
+    "minimal_requested_package": "libavcodec61",
+    "available_version": "7:7.1.5-0+deb13u1",
+    "installation": "apt-get install --no-install-recommends libavcodec61",
+    "dependency_resolution": "Let apt install the matching libavutil59, libswresample5 and other declared dependencies; do not copy only one shared library",
+    "optional_validation_tool": "ffmpeg",
+    "optional_gstreamer_application_support": "gstreamer1.0-libav 1.26.2-1+deb13u1",
+    "expected_scope": "Provides FFmpeg software codec support, including the missing Firefox H.264/AAC library path; runtime codec support still needs measurement",
+    "hardware_decode_enabled_by_package_installation": false,
+    "libva_note": "apt may pull libva dependencies, but their presence is not a working T736 VAAPI driver"
+  },
+  "donor": {
+    "root": "192.168.1.228:/home/ubuntu/t736-aiot/tina",
+    "driver": "bsp/drivers/ve/cedar-ve/cedar_ve.c",
+    "platform": "bsp/drivers/ve/cedar-ve/platforms/ve_plat_sun60iw2.c",
+    "uapi": "bsp/include/uapi/linux/cedar_ve_uapi.h",
+    "license": "Kernel donor GPL-2.0-or-later; packaged userland includes proprietary codec libraries",
+    "interface": "Private character device and ioctl ABI, not V4L2 or VAAPI",
+    "config": "CONFIG_AW_VIDEO_ENCODER_DECODER",
+    "module": "sunxi-ve",
+    "sha256": {
+      "bsp/drivers/ve/cedar-ve/cedar_ve.c": "774558140b78e743925f6e26ffcfe3e86751963ace27b208530b471d8c303f7b",
+      "bsp/drivers/ve/cedar-ve/platforms/ve_plat_sun60iw2.c": "cda151be0ba896a685444f85fbb14264635510130721bfe12c2f97c8d6d23bdf",
+      "bsp/include/uapi/linux/cedar_ve_uapi.h": "cf16597a900df3b294c6f76a1f6c303aabed3036666805b8ed3b59029416d8dc",
+      "platform/allwinner/multimedia/libcedarc_v2.0/base/CdcIonUtil.c": "9fd0b83b49e6af5c3cce061eaad76cf40172982955a0edc19a9e546ffcdadb3a"
+    }
+  },
+  "userspace_version_selection": {
+    "selected_package": "debian/packages/arm64/libcedarc/libcedarc-dev_2.0.0_arm64.deb",
+    "package_name": "libcedarc-dev-2.0.0-arm64",
+    "package_version": "1.0.7",
+    "package_sha256": "229b69699184bbf7b0bade1540cc06cda50e20ccb5cd6da9f8c365d1bc1023d0",
+    "selection_evidence": "debian/mk-custome-rootfs.sh explicitly labels the 2.0.0 package for A733/T736; its libMemAdapter/libvdecoder RPATHs contain out/t736/demo_aiot",
+    "rejected_unverified_alternative": {
+      "package": "libcedarc-dev_3.0.0_arm64.deb",
+      "sha256": "2cfd61f1a245a8b902851cdd30f0751b54914dc52143c38622e087658180048d",
+      "reason": "Its package changelog mentions A537/A333 and its library RPATHs contain out/a537/demo_aiot; a higher filename version is not evidence of A733 compatibility"
+    },
+    "required_family": ["libVE.so", "libcdc_base.so", "libMemAdapter.so", "libfbm.so", "libsbm.so", "libvideoengine.so", "libvdecoder.so", "matching libaw codec libraries"],
+    "device_strings": ["/dev/cedar_dev", "/dev/cedar_dev_ve2", "/dev/sunxi_soc_info", "/dev/googlevp9_dev"],
+    "allocator": {
+      "actual_2_0_libcdc_base_strings": ["/dev/dma_heap/system", "/dev/dma_heap/reserved"],
+      "source": "platform/allwinner/multimedia/libcedarc_v2.0/base/CdcIonUtil.c:291",
+      "note": "CdcIon function names do not imply an old /dev/ion dependency; this packaged library uses dma-heap. Confirm memory type selection, heap availability, cache synchronization and contiguous IOVA mapping before decode"
+    },
+    "inspection_method": "dpkg-deb extraction into build/cedar-package-audit; readelf and strings only; no vendor binary execution or system installation"
+  },
+  "decoder_donor_dt": {
+    "source": "bsp/configs/linux-6.6/sun60iw2p1.dtsi:847",
+    "compatible": "allwinner,sunxi-cedar-ve",
+    "registers": ["0x01c0e000 size 0x3000", "0x03000000 size 0x10"],
+    "irq": 49,
+    "clocks": ["pll_ve", "ahb_gate", "mbus_gate", "mbus_ve", "bus_ve", "ve"],
+    "reset": "RST_BUS_VE_DEC",
+    "power_domain": "SUN60IW2_PCK_VE_DEC",
+    "iommu": "mmu_aw master 6, companion ve1 master 7",
+    "nsi": "nsi0 master 7, companion ve1 master 8",
+    "encoder_excluded_from_initial_scope": "ve2 at 0x01c10000, IRQ 48, VE_ENC power domain"
+  },
+  "linux_6_18_port_requirements": [
+    {
+      "area": "Providers",
+      "finding": "Current work tree has dedicated T736 USB, GMAC, GPU and display clock/power providers, but no complete VE clock/reset/power, T736 IOMMU or NSI path",
+      "required_work": "Implement and validate decoder PLL/gates/reset, VE_DEC power sequencing and DMA/IOMMU/NSI routing before enabling the decoder DT node"
+    },
+    {
+      "area": "Platform removal callback",
+      "finding": "Donor sunxi_cedar_remove at cedar_ve.c:2165 returns int; Linux 6.18 include/linux/platform_device.h:233 requires void",
+      "required_work": "Update the removal signature and all return paths; audit probe failure and runtime-PM cleanup"
+    },
+    {
+      "area": "Module namespace",
+      "finding": "Donor cedar_ve.c:2358 uses MODULE_IMPORT_NS(DMA_BUF); Linux 6.18 module.h passes its argument directly to MODULE_INFO",
+      "required_work": "Use MODULE_IMPORT_NS(\"DMA_BUF\") for Linux 6.18"
+    },
+    {
+      "area": "Already version-gated APIs",
+      "finding": "Donor already has >=6.6 class_create and dma_buf_*_attachment_unlocked paths and >=6.1.25 vm_flags_set",
+      "required_work": "Keep the applicable modern paths; do not introduce obsolete compatibility shims"
+    },
+    {
+      "area": "DMA ABI and memory safety",
+      "finding": "user_iommu_param.iommu_addr and dma_buf_param.phy_addr are 32-bit; map_dma_buf_addr currently takes the first sg_dma_address and narrows it without checking mapped contiguity or 32-bit range",
+      "required_work": "Enforce a suitable DMA mask, a valid contiguous IOVA covering the buffer, overflow checks, balanced attach/map/unmap/detach and cache synchronization; never treat the first scatterlist address as a whole-buffer mapping without proof"
+    },
+    {
+      "area": "Private mmap/ioctl surface",
+      "finding": "cedardev_mmap maps from the VE register base using the requested length without an explicit register-resource length bound",
+      "required_work": "Bound the mapping to the intended register resource and audit private ioctl copies, lengths, lifetime and per-file cleanup before exposing the device to non-root applications"
+    },
+    {
+      "area": "Vendor coupling",
+      "finding": "Driver includes sunxi-log/sunxi-sid, platform-specific DVFS and optional AMP/rpmsg IOMMU hooks; flush_cache is an assembly source",
+      "required_work": "Isolate the sun60iw2 decoder path, replace logging dependencies, audit DVFS/regulator policy and cache code; keep unrelated AMP/rpmsg, kernel codec and encoder paths outside the first port"
+    }
+  ],
+  "acceptance_sequence": [
+    "Complete isolated Firefox baseline versus EGL/GLES about:support measurement without disabling sandbox or overriding graphics blocklists",
+    "Install the minimal software codec package and repeat runtime codec-support and playback measurements",
+    "Build the isolated sun60iw2 decoder port against Linux 6.18 with audited providers and private ABI; this source audit is not a successful build",
+    "Verify clocks/reset/power, device version, dma-buf/IOMMU mapping and recovery before submitting compressed video",
+    "Decode a known short H.264 sample to memory/YUV with the matching Cedar 2.0 family and compare output to software decode; then test supported H.265/VP9 separately",
+    "Design and validate a browser-supported integration separately; Firefox does not consume Cedar/OpenMAX private libraries directly"
+  ],
+  "acceptance_boundaries": {
+    "mainline_cedrus_t736_support": false,
+    "h6_compatible_substitution_justified": false,
+    "standalone_ve_decode_verified": false,
+    "browser_hardware_video_decode_verified": false,
+    "vendor_4k_performance_claims_board_validated": false,
+    "sandbox_disabled": false,
+    "graphics_blocklist_overridden": false,
+    "vaapi_forced": false
+  }
+}

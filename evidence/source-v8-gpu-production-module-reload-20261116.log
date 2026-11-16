@@ -1,0 +1,10 @@
+rmmod pvrsrvkm && modprobe pvrsrvkm; echo PRODUCTION_DDK_RC=$?; ls -l /dev/dri; echo PRODUCTION_DDK_READY
+
+PRODUCTION_DDK_RC=0
+总计 0
+drwxr-xr-x  2 root root        60 11月16日 07:50 by-path
+crw-rw----+ 1 root video 226,   0 11月16日 07:36 card0
+crw-------  1 root root  226,   1 11月16日 07:50 card1
+crw-------  1 root root  226, 128 11月16日 07:50 renderD128
+PRODUCTION_DDK_READY
+root@t736:~# 

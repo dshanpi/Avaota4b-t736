@@ -1,0 +1,18 @@
+printf 'ROOT_TEST_ENV\n'; env | grep -E '^(LIBGL_ALWAYS_SOFTWARE|GALLIUM_DRIVER|MESA_LOADER_DRIVER_OVERRIDE)='; printf 'RUNUSER_TEST_ENV\n'; runuser -u t736 -- env | grep -E '^(LIBGL_ALWAYS_SOFTWARE|GALLIUM_DRIVER|MESA_LOADER_DRIVER_OVERRIDE)='; runuser -u t736 -- env -u LIBGL_ALWAYS_SOFTWARE -u GALLIUM_DRIVER -u MESA_LOADER_DRIVER_OVERRIDE DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri /opt/t736-img-ddk-24.2-x11/bin/gpu-probe x11 >/root/t736-gpu-debug/x11-user-cleanenv.log 2>&1; echo X11_USER_CLEAN_RC=$?; tail -n 8 /root/t736-gpu-debug/x11-user-cleanenv.log; echo USER_CLEAN_DONE
+
+ROOT_TEST_ENV
+GALLIUM_DRIVER=llvmpipe
+LIBGL_ALWAYS_SOFTWARE=true
+RUNUSER_TEST_ENV
+GALLIUM_DRIVER=llvmpipe
+LIBGL_ALWAYS_SOFTWARE=true
+X11_USER_CLEAN_RC=0
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+USER_CLEAN_DONE
+root@t736:~# 

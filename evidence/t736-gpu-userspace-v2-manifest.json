@@ -1,0 +1,636 @@
+{
+  "version": "24.2.6603887-2",
+  "source_root": "/home/ubuntu/t736-aiot/tina/platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11",
+  "prefix": "/opt/t736-img-ddk-24.2-x11",
+  "project_inputs_sha256": {
+    "tools/build_gpu_userspace.py": "f21dae648b4886dcaec2e8a7f3b8f72e8161d4f3eab5c7adfe00e49d367accd6",
+    "tools/validation/gpu_userspace_probe.c": "4dc62d92789dc0938092ea0b5d1cd0768f25cc781bc720b2b65c8c2c7685e96e",
+    "config/gpu-userspace-x11.env": "deb9040372042c06745d8fbcd60da9b929ad70396f16bfa600e69cf30cbab40d",
+    "config/gpu-userspace-run.sh": "d291f6f304bf79dcd770fe99ab12bf52d365d78cc818f1e09398992b1bdcf2c3",
+    "config/gpu-userspace-gnome.desktop": "7bb42617233162fc2441b8b4c432830f830c022cf8941ddb5601daaeda03d027",
+    "tools/validation/gpu_runtime_view.py": "0bdf9800033a80104d0ee50988701e11d804328b275adb08aeae02142dff4db4"
+  },
+  "probe_compiler": "aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "firmware_sha256": {
+    "rgx.fw.36.56.104.183": "43eb5d054ee98bc975274198d2ed440e2f0f50b7ffcd0996a4022949f2c7909f",
+    "rgx.sh.36.56.104.183": "71e1b1da9b4c6b42468e378e8b835306920568088bc6669879db4a108a7747c9"
+  },
+  "external_sonames": [
+    "ld-linux-aarch64.so.1",
+    "libX11-xcb.so.1",
+    "libX11.so.6",
+    "libXext.so.6",
+    "libXfixes.so.3",
+    "libXxf86vm.so.1",
+    "libc.so.6",
+    "libdl.so.2",
+    "libdrm.so.2",
+    "libexpat.so.1",
+    "libgcc_s.so.1",
+    "libm.so.6",
+    "libpthread.so.0",
+    "librt.so.1",
+    "libstdc++.so.6",
+    "libudev.so.1",
+    "libxcb-dri2.so.0",
+    "libxcb-dri3.so.0",
+    "libxcb-glx.so.0",
+    "libxcb-present.so.0",
+    "libxcb-randr.so.0",
+    "libxcb-shm.so.0",
+    "libxcb-sync.so.1",
+    "libxcb-xfixes.so.0",
+    "libxcb.so.1",
+    "libxshmfence.so.1",
+    "libz.so.1"
+  ],
+  "firmware_deployed_globally": false,
+  "lightdm_hooks": false,
+  "system_mesa_replaced": false,
+  "hardware_tested": false,
+  "runtime_view": {
+    "directory": "runtime-gles",
+    "manifest": "runtime-gles.json",
+    "exclude": "libvulkan.so*",
+    "vulkan_loader": "system"
+  },
+  "files": [
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/README.txt",
+      "bytes": 1170,
+      "sha256": "cda4f57dd04a64123ba181c45e6edfe26ee16e972706905a144e2e6e9173afcf",
+      "source": null
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/bin/gpu-probe",
+      "bytes": 71336,
+      "sha256": "a38c36ba68fc7ed98e42033e42727123fdd761d6a1ba561417bbd4981d5ce1f7",
+      "source": null,
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/bin/gpu-runtime-view",
+      "bytes": 4511,
+      "sha256": "0bdf9800033a80104d0ee50988701e11d804328b275adb08aeae02142dff4db4",
+      "source": null
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/bin/t736-img-run",
+      "bytes": 476,
+      "sha256": "d291f6f304bf79dcd770fe99ab12bf52d365d78cc818f1e09398992b1bdcf2c3",
+      "source": null
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/firmware/rgx.fw.36.56.104.183",
+      "bytes": 139264,
+      "sha256": "43eb5d054ee98bc975274198d2ed440e2f0f50b7ffcd0996a4022949f2c7909f",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/lib/firmware/rgx.fw.36.56.104.183"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/firmware/rgx.sh.36.56.104.183",
+      "bytes": 272408,
+      "sha256": "71e1b1da9b4c6b42468e378e8b835306920568088bc6669879db4a108a7747c9",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/lib/firmware/rgx.sh.36.56.104.183"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/dri/pvr_dri.so",
+      "bytes": 16993848,
+      "sha256": "445406ab0c2a23c6ee2cb5e7e2187f968be6f545167a91ca67a234b3e92bb48a",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/dri/pvr_dri.so",
+      "needed": [
+        "libglapi.so.0",
+        "libdrm.so.2",
+        "libexpat.so.1",
+        "libz.so.1",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/dri/sunxi-drm_dri.so",
+      "bytes": 16993848,
+      "sha256": "445406ab0c2a23c6ee2cb5e7e2187f968be6f545167a91ca67a234b3e92bb48a",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/dri/sunxi-drm_dri.so",
+      "needed": [
+        "libglapi.so.0",
+        "libdrm.so.2",
+        "libexpat.so.1",
+        "libz.so.1",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/dri/swrast_dri.so",
+      "bytes": 16993848,
+      "sha256": "445406ab0c2a23c6ee2cb5e7e2187f968be6f545167a91ca67a234b3e92bb48a",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/dri/swrast_dri.so",
+      "needed": [
+        "libglapi.so.0",
+        "libdrm.so.2",
+        "libexpat.so.1",
+        "libz.so.1",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/dri/zink_dri.so",
+      "bytes": 16993848,
+      "sha256": "445406ab0c2a23c6ee2cb5e7e2187f968be6f545167a91ca67a234b3e92bb48a",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/dri/zink_dri.so",
+      "needed": [
+        "libglapi.so.0",
+        "libdrm.so.2",
+        "libexpat.so.1",
+        "libz.so.1",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libEGL.so",
+      "symlink": "libEGL.so.1",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libEGL.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1",
+      "symlink": "libEGL.so.1.0.0",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libEGL.so.1"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+      "bytes": 332560,
+      "sha256": "216b9ab552a83253c99bf54b9bc775458dc642f18eb37eed40b6e2c42de0f38d",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libEGL.so.1.0.0",
+      "needed": [
+        "libgbm.so.1",
+        "libglapi.so.0",
+        "libexpat.so.1",
+        "libX11-xcb.so.1",
+        "libxcb.so.1",
+        "libxcb-dri2.so.0",
+        "libxcb-randr.so.0",
+        "libxcb-xfixes.so.0",
+        "libdrm.so.2",
+        "libdl.so.2",
+        "libxcb-dri3.so.0",
+        "libxcb-present.so.0",
+        "libxcb-sync.so.1",
+        "libxshmfence.so.1",
+        "libm.so.6",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGL.so",
+      "symlink": "libGL.so.1",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libGL.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGL.so.1",
+      "symlink": "libGL.so.1.2.0",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libGL.so.1"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+      "bytes": 709568,
+      "sha256": "fb3bf1b53ff0007c957b30ba9f7620cb07edf36b7a5f218a8359c36384c850fc",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libGL.so.1.2.0",
+      "needed": [
+        "libglapi.so.0",
+        "libdrm.so.2",
+        "libdl.so.2",
+        "libX11.so.6",
+        "libxcb-glx.so.0",
+        "libxcb.so.1",
+        "libX11-xcb.so.1",
+        "libxcb-dri2.so.0",
+        "libXext.so.6",
+        "libXfixes.so.3",
+        "libXxf86vm.so.1",
+        "libxcb-shm.so.0",
+        "libexpat.so.1",
+        "libxshmfence.so.1",
+        "libxcb-randr.so.0",
+        "libxcb-dri3.so.0",
+        "libxcb-present.so.0",
+        "libxcb-sync.so.1",
+        "libxcb-xfixes.so.0",
+        "libm.so.6",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv1_CM.so",
+      "symlink": "libGLESv1_CM.so.1",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libGLESv1_CM.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv1_CM.so.1",
+      "symlink": "libGLESv1_CM.so.1.1.0",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libGLESv1_CM.so.1"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv1_CM.so.1.1.0",
+      "bytes": 34512,
+      "sha256": "2f6c0a43cf165d90179c379b4059579554aa0b9dea66312095089a8e22526392",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libGLESv1_CM.so.1.1.0",
+      "needed": [
+        "libglapi.so.0"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv1_CM_PVR_MESA.so",
+      "symlink": "libGLESv1_CM_PVR_MESA.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libGLESv1_CM_PVR_MESA.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv1_CM_PVR_MESA.so.24.2.6603887",
+      "bytes": 629944,
+      "sha256": "98f89f4d423955d62a7e40296da72f84887c8f9de4ce7bd5daec4171daf0fe14",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libGLESv1_CM_PVR_MESA.so.24.2.6603887",
+      "needed": [
+        "libpvr_dri_support.so",
+        "libsrv_um.so",
+        "libusc.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so",
+      "symlink": "libGLESv2.so.2",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libGLESv2.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2",
+      "symlink": "libGLESv2.so.2.0.0",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libGLESv2.so.2"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0",
+      "bytes": 78064,
+      "sha256": "ad3902456e220bb80c2fcdec1fec5cc36276503d3f84a3ae2c1faf7efff9714c",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libGLESv2.so.2.0.0",
+      "needed": [
+        "libglapi.so.0"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so",
+      "symlink": "libGLESv2_PVR_MESA.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libGLESv2_PVR_MESA.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+      "bytes": 1642224,
+      "sha256": "7442a27ca4a28586a7699b97f224541d9b6ecdf2717a9c4e815ce57afada2a7f",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+      "needed": [
+        "libpvr_dri_support.so",
+        "libsrv_um.so",
+        "libglslcompiler.so",
+        "libusc.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "librt.so.1",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libOpenCL.so",
+      "symlink": "libPVROCL.so.1",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libOpenCL.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libOpenCL.so.1",
+      "symlink": "libPVROCL.so.1",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libOpenCL.so.1"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libPVROCL.so",
+      "symlink": "libPVROCL.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libPVROCL.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libPVROCL.so.1",
+      "symlink": "libPVROCL.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libPVROCL.so.1"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libPVROCL.so.24.2.6603887",
+      "bytes": 516752,
+      "sha256": "ae90824ffe67135f1b2430e1082e51817a34c9b9b676d7913058f9bfe93621ba",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libPVROCL.so.24.2.6603887",
+      "needed": [
+        "libsrv_um.so",
+        "libusc.so",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libPVRScopeServices.so",
+      "symlink": "libPVRScopeServices.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libPVRScopeServices.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libPVRScopeServices.so.24.2.6603887",
+      "bytes": 80176,
+      "sha256": "104ce36d69901a0e9eccb8e89f434fd6af8a901e0b094e53978e62aacc02c62b",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libPVRScopeServices.so.24.2.6603887",
+      "needed": [
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libVK_IMG.so",
+      "symlink": "libVK_IMG.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libVK_IMG.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libVK_IMG.so.1",
+      "symlink": "libVK_IMG.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libVK_IMG.so.1"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libVK_IMG.so.24.2.6603887",
+      "bytes": 919944,
+      "sha256": "ac182122ff87ed2ade0deca78c360324069351e050860952175670f78f92230e",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libVK_IMG.so.24.2.6603887",
+      "needed": [
+        "libsrv_um.so",
+        "libusc.so",
+        "libufwriter.so",
+        "libm.so.6",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libdrm.so.2",
+        "libX11-xcb.so.1",
+        "libX11.so.6",
+        "libxcb.so.1",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libgbm.so",
+      "symlink": "libgbm.so.1",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libgbm.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1",
+      "symlink": "libgbm.so.1.0.0",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libgbm.so.1"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1.0.0",
+      "bytes": 92744,
+      "sha256": "6b54e3ce133f8cd1ec442ced7ace62a00e8a9c45ad339a1d921c1483340635f6",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libgbm.so.1.0.0",
+      "needed": [
+        "libdrm.so.2",
+        "libdl.so.2",
+        "libexpat.so.1",
+        "libxcb-randr.so.0",
+        "libm.so.6",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libglapi.so",
+      "symlink": "libglapi.so.0",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libglapi.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libglapi.so.0",
+      "symlink": "libglapi.so.0.0.0",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libglapi.so.0"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libglapi.so.0.0.0",
+      "bytes": 445800,
+      "sha256": "c38bb96742f4b50078ea3d4bd5e57e6792aba27d6c4ad1c07217c8db4a47b49c",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libglapi.so.0.0.0",
+      "needed": [
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libglslcompiler.so",
+      "symlink": "libglslcompiler.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libglslcompiler.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libglslcompiler.so.24.2.6603887",
+      "bytes": 973376,
+      "sha256": "0dee1bd5a4d04f1aca028ad766bde310faba69a1f174dcaef03715617f0a7938",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libglslcompiler.so.24.2.6603887",
+      "needed": [
+        "libsrv_um.so",
+        "libusc.so",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so",
+      "symlink": "libpvr_dri_support.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libpvr_dri_support.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887",
+      "bytes": 331152,
+      "sha256": "97cda01f3f7026d6ffecbc23991e0a414925996b5ef22766186148f8a4f5aa34",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libpvr_dri_support.so.24.2.6603887",
+      "needed": [
+        "libsrv_um.so",
+        "libdl.so.2",
+        "libpthread.so.0",
+        "libdrm.so.2",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libpvr_mesa_wsi.so",
+      "bytes": 4788664,
+      "sha256": "a71d6aac9cd82399240815b0780aedb74206f5baf42e1b1606114ac643ca3ad1",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libpvr_mesa_wsi.so",
+      "needed": [
+        "libexpat.so.1",
+        "libxcb.so.1",
+        "libX11-xcb.so.1",
+        "libxcb-dri3.so.0",
+        "libxcb-present.so.0",
+        "libxcb-xfixes.so.0",
+        "libxcb-sync.so.1",
+        "libxcb-randr.so.0",
+        "libxcb-shm.so.0",
+        "libxshmfence.so.1",
+        "libdrm.so.2",
+        "libudev.so.1",
+        "libz.so.1",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libsrv_um.so",
+      "symlink": "libsrv_um.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libsrv_um.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libsrv_um.so.24.2.6603887",
+      "bytes": 473992,
+      "sha256": "a717b17927a7679e83548ae62e0f0df2568ea9a6716201ca0b62ef4ee3cdd756",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libsrv_um.so.24.2.6603887",
+      "needed": [
+        "libm.so.6",
+        "libdl.so.2",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdrm.so.2",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libsutu_display.so",
+      "symlink": "libsutu_display.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libsutu_display.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libsutu_display.so.24.2.6603887",
+      "bytes": 51936,
+      "sha256": "f8d3c89a494e1c5da2e8e9c6efcab77c9f4a71f4ae99feccfc561c76e2af962d",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libsutu_display.so.24.2.6603887",
+      "needed": [
+        "libsrv_um.so",
+        "libpthread.so.0",
+        "libdrm.so.2",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libufwriter.so",
+      "symlink": "libufwriter.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libufwriter.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libufwriter.so.24.2.6603887",
+      "bytes": 49714664,
+      "sha256": "c8d0f919b82d15f094d2b20f7b1569a4dcc410b6a44450d4b6a7d240617c1dd6",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libufwriter.so.24.2.6603887",
+      "needed": [
+        "libusc.so",
+        "libsrv_um.so",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libusc.so",
+      "symlink": "libusc.so.24.2.6603887",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libusc.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libusc.so.24.2.6603887",
+      "bytes": 2087152,
+      "sha256": "e2a2d3ad5526e9e4d83bb8d97966e382f080f8687178bd43c416d5d5a4cecc57",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/lib/libusc.so.24.2.6603887",
+      "needed": [
+        "libsrv_um.so",
+        "libm.so.6",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libvulkan.so",
+      "symlink": "libvulkan.so.1",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libvulkan.so"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libvulkan.so.1",
+      "symlink": "libvulkan.so.1.3.280",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libvulkan.so.1"
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/lib/libvulkan.so.1.3.280",
+      "bytes": 679632,
+      "sha256": "f91ccd196bfa9fef3ecf7ec4b8da74174b476cc196345f96e9c0f49b3816c0ba",
+      "source": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/x11/usr/local/lib/libvulkan.so.1.3.280",
+      "needed": [
+        "libdl.so.2",
+        "libm.so.6",
+        "libxcb.so.1",
+        "libX11.so.6",
+        "libpthread.so.0",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/powervr_icd.json",
+      "bytes": 202,
+      "sha256": "4a09a6abfe047c643ffdd84d57a5302b0b9bb8049599483eb607eec6ad9adab4",
+      "source": null
+    },
+    {
+      "path": "opt/t736-img-ddk-24.2-x11/session.env",
+      "bytes": 450,
+      "sha256": "deb9040372042c06745d8fbcd60da9b929ad70396f16bfa600e69cf30cbab40d",
+      "source": null
+    },
+    {
+      "path": "usr/bin/t736-img-run",
+      "symlink": "/opt/t736-img-ddk-24.2-x11/bin/t736-img-run",
+      "source": null
+    },
+    {
+      "path": "usr/share/xsessions/t736-img.desktop",
+      "bytes": 255,
+      "sha256": "7bb42617233162fc2441b8b4c432830f830c022cf8941ddb5601daaeda03d027",
+      "source": null
+    }
+  ]
+}

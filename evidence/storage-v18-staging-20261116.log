@@ -1,0 +1,26 @@
+17a12b4b6c934e3a38e9992302fc62473b8cbda2c3b7d20f52acdf4a06dab324  /home/t736/kernel-storage-v18.deb
+c5d60148497ae144c1e41938825259f347f149971c26f500b75da2b9454ad6eb  /home/t736/pvrsrvkm-storage-v18.ko
+Startup finished in 5.545s (kernel) + 16.368s (userspace) = 21.913s 
+graphical.target reached after 13.691s in userspace.
+5.818s udisks2.service
+4.741s dev-mmcblk0p4.device
+4.149s accounts-daemon.service
+2.362s systemd-resolved.service
+2.357s systemd-udevd.service
+1.959s systemd-journal-flush.service
+1.915s systemd-random-seed.service
+1.857s dbus.service
+1.639s systemd-networkd.service
+1.552s armbian-zram-config.service
+1.457s upower.service
+1.336s rsyslog.service
+    PID COMMAND         %CPU
+     11 kworker/u32:0-t  7.4
+   2485 gnome-shell      3.7
+   2674 ibus-extension-  3.5
+   3362 gnome-control-c  1.8
+   2356 Xorg             1.8
+      1 systemd          1.5
+     94 kworker/u32:1-p  1.1
+   4431 sshd-session     0.6
+   4592 sudo             0.5

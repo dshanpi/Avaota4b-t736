@@ -1,0 +1,192 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "status": "DT_CAPACITY_RUNTIME_ACCEPTED_UI_SINGLE_SAMPLE_IMPROVED",
+  "scope": "Independent review of parent-collected board evidence; reviewer made no board, clock, power, display or application changes.",
+  "supersedes_only_runtime_status_of": "evidence/storage-v16-cpu-scheduler-review-20261116.json",
+  "boot": {
+    "kernel": "6.18.63-t736-storage-v16",
+    "boot_id": "7931d895-6800-46e7-a7e9-eb073d223b7d",
+    "poweroff_log_reaches_power_down": true,
+    "boot_log_restarts_source_sram_ddr_tfa_uboot_linux": true,
+    "cold_boot_operation_reported_by": "parent",
+    "online_cpus": "0-7",
+    "deployed_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "topology": {
+    "cpu_capacity_cpu0_to_cpu7": [
+      430,
+      430,
+      430,
+      430,
+      430,
+      430,
+      1024,
+      1024
+    ],
+    "a55_cluster": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "a76_cluster": [
+      6,
+      7
+    ],
+    "cluster_grouping_source": "candidate DT node-diff review; runtime cluster topology directories are not included in supplied log",
+    "runtime_capacity_validation": true,
+    "optional_sched_mc_cluster_config_applied": false
+  },
+  "unchanged_clock_check": {
+    "a55_ctrl": "0xf8802700",
+    "a76_ctrl": "0xf8802700",
+    "a55_clk": "0x03000000",
+    "a76_clk": "0x03000000",
+    "nominal_a55_a76_mhz": 1014,
+    "basis": "Read-only CCU snapshot matches the fixed 1014MHz baseline; no cpufreq-derived live measurement claimed",
+    "new_frequency_experiment": false
+  },
+  "gpu_display": {
+    "egl_vendor": "Mesa Project",
+    "gl_vendor": "Imagination Technologies",
+    "gl_renderer": "PowerVR B-Series BXM-4-64",
+    "gl_version": "OpenGL ES 3.2 build 24.2@6603887",
+    "offscreen_probe_frames": 60,
+    "offscreen_quadrant_readback": "verified",
+    "pvr_driver": "OK",
+    "pvr_firmware": "OK",
+    "pvr_server_errors": 0,
+    "pvr_hwr_count": 0,
+    "xrandr_current": "1920x1080 60.00Hz",
+    "physical_scanout_verified": false
+  },
+  "ui_comparison": {
+    "workload": "24 rounded libadwaita cards with labels, buttons and switches; 240px/s scroll",
+    "probe_sha256": "155dc13dac62bcd6ac5c0fdc3cbb20732c2376be4307f8df32f4cb02e789be70",
+    "renderer": "GskGLRenderer",
+    "same_reported_library_paths": true,
+    "session_unlocked_and_overview_inactive_at_both_boundaries": true,
+    "baseline": {
+      "sample_elapsed_seconds": 10.004408880000028,
+      "mapped_seconds_after_launch": 0.830139367999891,
+      "cpu_seconds_sample": 7.763504815999999,
+      "after_paint_count": 357,
+      "after_paint_intervals": {
+        "count": 356,
+        "median_ms": 20.9865,
+        "p95_ms": 33.093,
+        "over_33_5ms": 9
+      },
+      "tick_count": 357,
+      "tick_intervals": {
+        "count": 356,
+        "median_ms": 16.798499999999997,
+        "p95_ms": 33.539,
+        "over_33_5ms": 23
+      }
+    },
+    "topology_candidate": {
+      "sample_elapsed_seconds": 10.002060074000013,
+      "mapped_seconds_after_launch": 0.3520256980000056,
+      "cpu_seconds_sample": 4.527668584,
+      "after_paint_count": 463,
+      "after_paint_intervals": {
+        "count": 462,
+        "median_ms": 17.0835,
+        "p95_ms": 31.932,
+        "over_33_5ms": 10
+      },
+      "tick_count": 463,
+      "tick_intervals": {
+        "count": 462,
+        "median_ms": 16.7065,
+        "p95_ms": 33.35,
+        "over_33_5ms": 5
+      }
+    },
+    "observed_percent_change": {
+      "after_paint_count": 29.692,
+      "sample_process_cpu_seconds": -41.68,
+      "after_paint_median_ms": -18.598,
+      "mapped_seconds": -57.594
+    },
+    "metric": "Monotonic GTK after-paint callbacks, not physical presentation; mapping is not complete drawing",
+    "samples_per_variant": 1,
+    "strict_randomized_ABA": false
+  },
+  "excluded_run": {
+    "path": "evidence/storage-v16-topology-gtk-ui-20261116.log",
+    "status": "UNUSABLE",
+    "renderer": "GskCairoRenderer",
+    "after_paint_count": 116,
+    "explanation": "Parent reported missing LIBGL_DRIVERS_PATH in the first launcher. MESA loader errors and GskCairoRenderer confirm a mismatched rendering environment. This sample must not be classified as a topology regression.",
+    "environment_record_limitation": "Probe JSON did not include LIBGL_DRIVERS_PATH; launcher omission is parent-reported, while fallback/errors are direct log evidence."
+  },
+  "conclusion": "The DT-only capacity change is present after the reported cold boot and the correctly configured OpenGL UI sample improves. This accepts capacity propagation and a bounded UI improvement, not all-desktop smoothness or multimedia completion.",
+  "limitations": [
+    "One baseline and one candidate sample; cache, background processes and run ordering are not controlled as randomized repeated measurements.",
+    "After-paint callbacks are not scanout or end-to-end interaction latency.",
+    "The after-paint tail still contains slow frames; this is not a sustained 60Hz desktop acceptance.",
+    "GPU offscreen correctness does not verify display scanout or hardware video decoding.",
+    "Settings startup/panel changes, storage DMA stability and multimedia integration remain separate work.",
+    "Runtime MMC remains 12MHz legacy PIO; this topology change does not cure storage CPU load."
+  ],
+  "full_desktop_acceptance": false,
+  "multimedia_complete": false,
+  "evidence": [
+    {
+      "path": "evidence/storage-v16-topology-apply-20261116.log",
+      "sha256": "adb5aa5f5e63aea4e3fe8a56509774c48a4b8471085017b366700e58b94a9160",
+      "bytes": 503
+    },
+    {
+      "path": "evidence/storage-v16-topology-poweroff-20261116.log",
+      "sha256": "3ec2247e18f96c895cc8706b0c8de456c53bff89edc6bdae632e269dcd12710e",
+      "bytes": 11202
+    },
+    {
+      "path": "evidence/storage-v16-topology-coldboot-20261116.log",
+      "sha256": "ea1f59db875807a3c84338c5be5da2e9bc9e0e304241fecc7062612bdaaafcf5",
+      "bytes": 27820
+    },
+    {
+      "path": "evidence/storage-v16-topology-runtime-20261116.log",
+      "sha256": "332b9f65e9872630e7d2f7cbfd151411204a044eb1ba0a78612d473a5c66e256",
+      "bytes": 2345
+    },
+    {
+      "path": "evidence/storage-v16-topology-cpu-gpu-20261116.log",
+      "sha256": "439cde11e8d19783db62ca8531c4ffdf39cdfb9b287248c97aed12ec087e07ad",
+      "bytes": 3064
+    },
+    {
+      "path": "evidence/storage-v16-topology-gtk-ui-correct-env-20261116.log",
+      "sha256": "937c26d608f0d585ace544786c7ecec01232f1e5057056684cd77d43970c7f6a",
+      "bytes": 2950
+    },
+    {
+      "path": "evidence/storage-v16-topology-gtk-ui-20261116.log",
+      "sha256": "11cf6f72a8a90bae8f0750298e9f62188a0826d58af712b7de26e95f24f624e8",
+      "bytes": 3943
+    },
+    {
+      "path": "evidence/storage-v16-gtk-ui-renderers-20261116.log",
+      "sha256": "c69629201a7053b3447f76736e783ec7529cb3d97b15785aa19a88503b50627a",
+      "bytes": 5133
+    },
+    {
+      "path": "evidence/cpu-topology-dt-node-diff-review-20261116.json",
+      "sha256": "f15603d6ad336dac0bad4d090e1f9505b6334323e229e926957a9c9b55e8d3f8",
+      "bytes": 3016
+    },
+    {
+      "path": "evidence/storage-v16-cpu-scheduler-review-20261116.json",
+      "sha256": "b5d4667fd57bb5a189218b41d0b246b7c3ac15b6c10c230726dd18b970deefb1",
+      "bytes": 4184
+    }
+  ]
+}

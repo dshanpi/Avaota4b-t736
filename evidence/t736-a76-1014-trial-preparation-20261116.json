@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-16",
+  "scope": "Prepared only: source, build and review of a 416 MHz to 1014 MHz candidate. This agent did not access hardware or claim either frequency passed hardware validation.",
+  "v1_preserved": {
+    "source": "tools/validation/t736-a76-clock-trial.c",
+    "sha256": "eeac0f40a811d1a740299237bc7db4a76be7c57db4be68c54e9add26beac42e4",
+    "module": "output/t736-a76-clock-trial-v1-reviewed.ko",
+    "module_sha256": "22bed9ed9c3dc55d7449f2f0d44cc66fd6418229e0f6f31bf67095492121545b"
+  },
+  "v2": {
+    "source": "tools/validation/t736-a76-clock-trial-v2.c",
+    "source_sha256": "d9b8f8c3fca6832f4338718fd9d28217440220cf24f273bf1c6aeab4a5bf5a91",
+    "module": "output\\t736-a76-clock-trial-v2.ko",
+    "module_sha256": "a8877450f793341cdf28ba3983fff0ebbbdbc7b9d68f20d194d3e4a61f90adcb",
+    "module_name": "t736_a76_clock_trial_v2",
+    "vermagic": "6.18.63-t736-gpu-v15 SMP mod_unload aarch64",
+    "W1_build_passed": true,
+    "hardware_tested": false
+  },
+  "opp_evidence": "evidence/t736-cpu-supply-source-audit-20261116.json",
+  "cluster1_common_26mhz_opps": [
+    {
+      "hz": 416000000,
+      "line": 972,
+      "microvolts_by_26m_vf": {
+        "vf0000": 800000,
+        "vf0100": 800000,
+        "vf0200": 800000,
+        "vf0300": 800000,
+        "vf0400": 800000,
+        "vf0500": 800000,
+        "vf0600": 800000,
+        "vf0401": 800000,
+        "vf0501": 800000
+      }
+    },
+    {
+      "hz": 1014000000,
+      "line": 1041,
+      "microvolts_by_26m_vf": {
+        "vf0000": 800000,
+        "vf0100": 800000,
+        "vf0200": 800000,
+        "vf0300": 800000,
+        "vf0400": 800000,
+        "vf0500": 800000,
+        "vf0600": 800000,
+        "vf0401": 800000,
+        "vf0501": 800000
+      }
+    }
+  ],
+  "initial_state": {
+    "CTRL": "0xf8802000",
+    "CTRL_STAT": "0xf8802000",
+    "CLK": "0x03010000",
+    "nominal_hz": 416000000
+  },
+  "target_state": {
+    "CTRL": "0xf8802700",
+    "CTRL_STAT": "0xf8802700",
+    "CLK": "0x03000000",
+    "N": 39,
+    "external_divisor": 1,
+    "vco_hz": 1014000000,
+    "nominal_hz": 1014000000
+  },
+  "preconditions": [
+    "exact416MHz state only foraction=upgrade",
+    "CPU6and7both offline; cpus_read_lock held through all mutations",
+    "current CPU partA55 and8possibleCPUs",
+    "real RTC26MHz flag; CPU_SLOW0; unchangedB PAT0/PAT1/LFM",
+    "existing owner snapshotAPI available; AXP8191id3; DCDC3/4enabled; no joinedphasebits6/7; both setpoints800..1100mV",
+    "resource reservation excludes a competingCPU clock owner"
+  ],
+  "upgrade_sequence": [
+    "confirm slowmux before disablingB PLL",
+    "clearoutput,lockdetect,enable; commitUPDATE",
+    "wait<=10ms until CTRLandSTAT confirmENABLE,OUTPUT,LOCK_EN,UPDATEandLOCKallclear",
+    "programN39andext1whilemuxslowandPLLstopped",
+    "commitUPDATE,enableLDO/PLL/lockdetect,commitUPDATE,require3consecutiveLOCKsamples",
+    "enableoutput,commitUPDATEandrequire3consecutiveLOCKsamplesagain; verifyCTRL/STATbeforemux3",
+    "verifyfinaltargetandallunchangedguards; recheckPMICthroughsameowner"
+  ],
+  "rollback": {
+    "ordinary_failure": "if supplyvalid andguardsunchanged, stop/unlockPLLthen rebuild416; ifthatfails or supplyinvalid, restoreexactoriginalslow/disabledPLL state",
+    "guard_failure": "skip416rebuild, attemptslowonly; requirebigcoresremainofflineandreset evenifslowrestored",
+    "markers": [
+      "ROLLBACK_416_SUCCESS",
+      "ROLLBACK_SLOW_SUCCESS",
+      "ROLLBACK_INCOMPLETE"
+    ],
+    "restore_action": "acceptsexact416or1014state; requiresbigcoresoffline; supplyread/checkfailuredoesnotblockreducingtoslow",
+    "module_unload": "retainsclock; noMMIOwrite"
+  },
+  "peer_review": "event_review confirmed final stopped/unlocked CTRL+STAT wait and fail-closed guard handling; no further source-level blocker. Hardware validation remains pending.",
+  "limitations": [
+    "PMICregistersprovideenableandvoltagesetpoints,notanalogmeasurements",
+    "This changes onlyA76targetfrequency asanexperimentalvariable; Nandexternaldividerbothchangefrom416representation",
+    "NoCPUvoltage/A55/DSU/GPU/reset/powerdomainwrites; noautomaticbootloading"
+  ]
+}

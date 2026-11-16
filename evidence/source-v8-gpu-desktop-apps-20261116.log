@@ -1,0 +1,9 @@
+command -v gnome-control-center gnome-calculator gnome-text-editor gnome-terminal nautilus; ps -C gnome-shell -o pid,user,etime,pcpu; echo DESKTOP_APPS_READY
+
+/usr/bin/gnome-control-center
+/usr/bin/gnome-text-editor
+/usr/bin/nautilus
+    PID USER         ELAPSED %CPU
+   4175 t736           00:38 64.9
+DESKTOP_APPS_READY
+root@t736:~# 

@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "kind": "storage-v18-guarded-updater-preparation",
+  "date": "2026-11-16",
+  "status": "final bindings validated; 11 offline tests passed; root board preflight PASS; no blocking issue in backup_audit review",
+  "origin": "guarded v15-to-v16 transaction adapted to fixed storage-v16-to-v18",
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v18.py": "87b695669cd78f61104159d2cfc82680d6ac41517f079dedf9c5455faeecee80",
+    "tools/validation/test_update_t736_storage_v18.py": "74ca3ed1dd8eafa7e88b6cddc0d2635803d2b764129c5bd930d6f560a4107df4",
+    "tools/validation/audit_dma_storage_package.py": "854e6e3064cc441954aaafaa4838ec2c9132dfd0bc8e1bf1475d2779085bf5c8",
+    "evidence/storage-v18-updater-offline-tests-20261116.log": "0f50425efe502f9e4497099fa26dc3c09e70f55dfcfb54a80947d2dc77fdad30",
+    "evidence/storage-v18-updater-exact-inputs-20261116.json": "b00d7744940743767e0df44f8e0cae9b257818fdcb95a0473c5037cb6d5db8ca",
+    "evidence/storage-v18-updater-bindings-20261116.json": "8e417c4aa9dfe63a19d25805dbad4adeb40fba75ecdcfd63cef52841daecb96f",
+    "evidence/storage-v18-install-check-20261116.log": "1b912c16d14b3a2320bf86e787bf01381e459cfdb2b315c98bae092ad479a251",
+    "evidence/storage-v18-updater-independent-review-20261116.json": "72944327a4bddb6022f3a7d2dd533073fa51bed36a13f91f86e01562634617ae"
+  },
+  "baseline_release": "6.18.63-t736-storage-v16",
+  "baseline_package_version": "6.18.63-16",
+  "candidate_release": "6.18.63-t736-storage-v18",
+  "candidate_package_version": "6.18.63-18",
+  "fixed_baseline_dtb_pending": false,
+  "candidate_hashes_pending": false,
+  "safety_properties": [
+    "Default check only and all candidate/baseline DT bindings must be fixed before check/apply",
+    "Exact old kernel/config/System.map plus accepted old topology DT check",
+    "Private mount namespace suppresses kernel/initramfs selection hooks",
+    "Fsynced original boot/module backup and immutable frozen input copies before dpkg",
+    "Full control/payload manifest and exact candidate DT/Image/PVR validation",
+    "Explicit depmod/initrd and final files readback before same existing aliases select candidate",
+    "Failure restores v16 payload/DT/aliases; candidate package remains installed for diagnosis",
+    "No reboot, SPL, GPT, raw media or bootcmd change"
+  ],
+  "hardware_operations_by_this_agent": false,
+  "independent_review": "code_index second-person review passed, updaterSHA87b695669cd78f61104159d2cfc82680d6ac41517f079dedf9c5455faeecee80",
+  "bindings": {
+    "kernel_sha256": "17a12b4b6c934e3a38e9992302fc62473b8cbda2c3b7d20f52acdf4a06dab324",
+    "kernel_bytes": 5546276,
+    "pvr_sha256": "c5d60148497ae144c1e41938825259f347f149971c26f500b75da2b9454ad6eb",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "ed586018829a369d859e0a5ea7e1885d3ab399c7d8803333ba432462485acb1f",
+    "payload_manifest_sha256": "fcb8cdab46db5695192c0466d848afcf3434463d67c88b221d0300bfd6999b71",
+    "raw_image_sha256": "6c671b870e204d3c3b9e8f202932d2dabd90887d8df6009f0d7d06a0d02f3b43",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "candidate_dtb_bytes": 11960,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  }
+}

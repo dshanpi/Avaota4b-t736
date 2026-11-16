@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "kind": "storage-v22-guarded-updater-preparation",
+  "date": "2026-11-16",
+  "status": "ready-for-board-check-apply-and-one-shot-trial",
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v22.py": "77d4a68f9a2cfb3669162e9b3ca3028383adae269589cdc9c6bda4ded7cf8275",
+    "tools/validation/test_update_t736_storage_v22.py": "8b58f8ccd9906d595bf07c74d0bdb8bdf136704fa3bd76db6f6b1a533fcfb046",
+    "tools/validation/audit_hs200_storage_package.py": "3c00ac0a59b63af61bbc93a8742b78a3b19151bf83344fed04514bbf458348d4",
+    "evidence/storage-v22-updater-offline-tests-20261116.log": "41d6752244bfc72e5396c69fc725540e0cf39008d15e44541bd3a43ed1c2e45f",
+    "evidence/storage-v22-updater-exact-inputs-20261116.json": "1729526c68b694946f306517fe23e0d7c1eb8c8731847311ffbf78a5d2b97e2f",
+    "evidence/storage-v22-updater-independent-review-20261116.json": "f8c5b924f44ce60b8456857590e3a476cf7d9c810b04b4ffc35d8101ab9bdf2b",
+    "evidence/storage-v22-updater-bindings-20261116.json": "e599c583172184b2dcab276a9695882c9505a277cbdfa3c97a45338ca3e2dffa",
+    "evidence/storage-v22-build-20261116.json": "4894c347104680cb0e6a9c24ff5b30919b5c94a4dbea05f34d9b5a5d80216877",
+    "evidence/storage-v22-package-20261116.json": "b60d846fcbd11a40cf748859a67f5bac3dbbdd8075055f6170a80dd3c2a97bc0",
+    "evidence/storage-v22-pvr-build-20261116.json": "8026c6ca655041a4a03652659878f0a0a4d6acb8e1e4b786927a04e56695b9fd",
+    "evidence/storage-hs200-independent-review-20261116.json": "d83940d2611764ad8092facaf9d666fb49cb0bec22689abd2074e0c707e93c0a"
+  },
+  "bindings": {
+    "kernel_sha256": "8a6eb70cdc43190df40c2c06d2683a666a9b73e870bf79674321514fd986108f",
+    "kernel_bytes": 5601780,
+    "pvr_sha256": "c717b37d6dba72b2ba708e747d222282b06aac15dc317a1cf532a2a8dfd92c1a",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "f3e1aba72e23c0fe86979f441351c573efa9ce93de8ce0c476defadbb7f2d9cb",
+    "payload_manifest_sha256": "1eafa27bdc0cbef7c1f7cf5998695e3ae95102819c97535878752ccd53c1a03d",
+    "raw_image_sha256": "5da7204332a670084a2a8de630e5f33004c920a1f238f4e2b8dee4de9766fbc2",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "candidate_dtb_bytes": 12028,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "offline_tests": {
+    "passed": 14,
+    "includes": [
+      "Validated running v21 identity and corruption rejection",
+      "Running v21 separated from fixed v16 fallback",
+      "Timeout-child quiescence before rollback",
+      "Backup corruption, final-verification faults and path-escape protection"
+    ]
+  },
+  "state_separation": {
+    "allowed_running": [
+      "6.18.63-t736-storage-v16",
+      "6.18.63-t736-storage-v21"
+    ],
+    "fixed_default_fallback": "6.18.63-t736-storage-v16",
+    "default_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate": "6.18.63-t736-storage-v22"
+  },
+  "planned_board_flow": [
+    "Root checks and applies the pinned transaction.",
+    "Root immediately restores default selection from the fresh BACKUP_FSYNC_VERIFIED directory.",
+    "v22 kernel/initrd/package DT/PVR remain installed for explicit-path one-shot U-Boot boot with HS200100MHz parameters; no saveenv."
+  ],
+  "candidate_scope": "Opt-in HS200; tuning is disabled by default. Exact frozen v21 DTB; existing PERI0_800M mux1 with no shared PLL or rail writes.",
+  "second_stage": "200MHz remains a separate trial; require 100MHz CMD21 bitmap/window, IOS, integrity and health evidence first.",
+  "board_operations_by_this_agent": false,
+  "candidate_board_accepted": false,
+  "private_home_archive_included": false,
+  "delivery": "SFTP only; no new HTTP service.",
+  "independent_review": "code_index PASS at final updater SHA 77d4a68f9a2cfb3669162e9b3ca3028383adae269589cdc9c6bda4ded7cf8275",
+  "exact_inputs": "82 payload entries and complete control/payload manifests match actual package; four maintainer scripts equal v21 except release identity and were not executed in audit."
+}

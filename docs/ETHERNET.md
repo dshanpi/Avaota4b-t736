@@ -1,5 +1,19 @@
 # GMAC0 进展
 
+## 2026-11-16：独立启动链 source-v9 的当前结果
+
+当前内核为 `6.18.63-t736-gpu-v15`，板卡 `end0` 获得 `10.0.0.249/24`，网关 `10.0.0.1`。本端和对端都广告 `1000baseT/Full`，但实际链路为 **100 Mbps/full**；独立启动链日志多次记录 RTL8211F 从千兆降到百兆。因此，旧 v11 的千兆通过记录不能替代当前镜像的验收。
+
+source-v9 已完成板卡主动访问构建机的三轮测试，每轮下载 64 MiB 并回传 64 MiB，总计 384 MiB。六次传输均完成，客户端和服务器 SHA256 一致；客户端实际速率约下载 93.4 Mbps、上传 93.9 Mbps，已接近当前百兆链路上限。测试服务在第三轮后自动退出。基线列出的 CRC、对齐、FIFO、checksum 和总线错误均为 0；完整传输前后计数仍需从客户端 JSON 汇总，不能提前声明所有错误计数没有增加。
+
+当前网页访问是另一项待解决的问题：板卡时钟正确、NTP 已同步，DNS over TLS 能成功解析域名；公网 HTTP 出现空响应，HTTPS 在握手时 EOF。构建机对相同公网目标的 HTTP、默认 TLS、TLS 1.2 均正常。局域网大数据通过不能视为网页已可用；正在对固定目标 IP 做仅记录 TCP 包头的对照。
+
+网络位于 NAT 后。当前构建机看到板卡来源为 `192.168.1.53`，旧记录为 `.50`；两个地址的 ARP MAC 都是 `60:be:b4:01:48:ad`，板侧网关 MAC 为相邻的 `...:ac`。构建机向 `10.0.0.249` 的默认路由经 `192.168.1.1`，所以反向 SSH 超时不能单独证明板卡 TCP 故障。没有改动构建机路由。
+
+保留旧实测配置 `rgmii-rxid`、MAC TX=13/RX=10、PHY 仅 RX 2 ns 延时。source-v9 的 `PLL_PERI0=0xff126310` 与旧启动链一致，GMAC PHY 分频仍为 150 MHz / 6；目前没有依据盲改延时、分频或 checksum offload。下一步需结合 PHY 主从协商、接收器训练状态与实际时钟读回定位降速，并在稳定 1000/full 下重新完成吞吐、完整性和冷启动验证。
+
+当前证据：`evidence/source-v9-ethernet-initial-20261116.log`、`source-v9-ethernet-roundtrip-20261116.log`、`source-v9-ethernet-server-20261116.json`、`source-v9-web-diagnostic-20261116.log`、`source-v9-web-buildhost-comparison-20261116.json`、`source-v9-ethernet-review-20261116.json`。诊断工具在 `tools/validation/ethernet_roundtrip_*.py` 和 `ethernet_web_probe.py`；工具自测与实板验收分开记录。
+
 ## v11：正式内核修正已通过网络数据测试，启动链仍不合格
 
 已通过 v11 串口 root 登录，内核为 `6.18.63-11`，未经临时 PHY 模块修改即获得 DHCP 地址 `10.0.0.230`，1000 Mbps/full。全部受支持的 stmmac 自检返回 0，未支持项目返回 -95，flags=1。自检后的链路重协商期间首轮 ping 丢包，恢复后第二轮 ping 为 3/3。

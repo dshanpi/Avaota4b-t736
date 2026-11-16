@@ -1,0 +1,28 @@
+[drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+[drm] suxni tcon hdmi set rate: 148500000Hz and get diff: 148500000Hz
+ps -C gnome-shell -o pid,user,etime,pcpu,args; for p in $(pidof gnome-shell); do echo SHELL_PID=$p; tr '\0' '\n' </proc/$p/environ | grep -E '^(DISPLAY|XAUTHORITY|LD_LIBRARY_PATH| 
+COGL_DRIVER|LIBGL_ALWAYS_SOFTWARE|GALLIUM_DRIVER)='; awk '/libGLES|libvulkan|swrast|llvmpipe/ {p 
+rint $NF}' /proc/$p/maps | sort -u; done; loginctl list-sessions --no-pager; cp -a /root/t736-gp 
+u-debug/gdm-daemon-before-autologin.conf /etc/gdm3/daemon.conf; echo AUTOLOGIN_CONFIG_RESTORED;  
+echo DESKTOP_MAPS_DONE
+
+    PID USER         ELAPSED %CPU COMMAND
+   4175 t736           00:04 94.7 /usr/bin/gnome-shell
+SHELL_PID=4175
+LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles
+COGL_DRIVER=gles2
+DISPLAY=:0
+XAUTHORITY=/run/user/1000/gdm/Xauthority
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0
+/usr/lib/aarch64-linux-gnu/libvulkan.so.1.4.309
+SESSION  UID USER SEAT  LEADER CLASS         TTY   IDLE SINCE
+    c11 1000 t736 seat0 3957   user          tty2  no   -    
+    c12 1000 t736 -     3968   manager       -     no   -    
+     c5    0 root -     729    user-early    ttyS0 no   -    
+     c6    0 root -     2274   manager-early -     no   -    
+
+4 sessions listed.
+AUTOLOGIN_CONFIG_RESTORED
+DESKTOP_MAPS_DONE
+root@t736:~# 

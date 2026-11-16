@@ -1,0 +1,14 @@
+make: Entering directory '/home/ubuntu/t736-mainline/build/linux-gpu-v15'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/gpu-pll-enable-v15'
+  CC [M]  t736-gpu-pll-enable.o
+  MODPOST Module.symvers
+  LD [M]  t736-gpu-pll-enable.ko
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/gpu-pll-enable-v15'
+make: Leaving directory '/home/ubuntu/t736-mainline/build/linux-gpu-v15'
+2513b6752dd31d637bd023d188588df13ad1e395ecf934cb47b6934f76e6586b  /home/ubuntu/t736-mainline/build/gpu-pll-enable-v15/t736-gpu-pll-enable.ko
+filename:       /home/ubuntu/t736-mainline/build/gpu-pll-enable-v15/t736-gpu-pll-enable.ko
+description:    T736 measured-state independent PLL_GPU0 enable diagnostic
+license:        GPL
+depends:        
+name:           t736_gpu_pll_enable
+vermagic:       6.18.63-t736-gpu-v15 SMP mod_unload aarch64

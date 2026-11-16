@@ -1,0 +1,53 @@
+['dconf', 'read', '/org/gnome/control-center/last-panel'] 0 'mouse'
+
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "/usr/lib/python3.13/subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/subprocess.py", line 1972, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'xprop'
+/usr/share/gnome-control-center/keybindings/50-mutter-wayland.xml
+/usr/share/gnome-control-center/keybindings/01-launchers.xml
+/usr/share/gnome-control-center/keybindings/01-input-sources.xml
+/usr/share/gnome-control-center/keybindings/50-gnome-shell-launchers.xml
+/usr/share/gnome-control-center/keybindings/00-multimedia.xml
+/usr/share/gnome-control-center/keybindings/50-accessibility.xml
+/usr/share/gnome-control-center/keybindings/01-system.xml
+/usr/share/gnome-control-center/keybindings/50-mutter-windows.xml
+/usr/share/gnome-control-center/keybindings/50-gnome-shell-system.xml
+/usr/share/gnome-control-center/keybindings/50-mutter-navigation.xml
+/usr/share/gnome-control-center/keybindings/50-gnome-shell-screenshots.xml
+/usr/share/gnome-control-center/keybindings/50-mutter-system.xml
+/usr/share/gnome-control-center/pixmaps/noise-texture-light.png
+lrwx------ 1 t736 t736 64 11月16日 11:06 81 -> socket:[53329]
+lrwx------ 1 t736 t736 64 11月16日 11:06 82 -> socket:[48874]
+lrwx------ 1 t736 t736 64 11月16日 11:06 83 -> socket:[48875]
+lrwx------ 1 t736 t736 64 11月16日 11:06 84 -> /dev/dri/renderD128
+lrwx------ 1 t736 t736 64 11月16日 11:06 85 -> /dev/dri/renderD128
+lrwx------ 1 t736 t736 64 11月16日 11:06 86 -> anon_inode:[eventfd]
+lrwx------ 1 t736 t736 64 11月16日 11:06 87 -> anon_inode:[eventfd]
+lrwx------ 1 t736 t736 64 11月16日 11:06 88 -> /dev/dri/renderD128
+lrwx------ 1 t736 t736 64 11月16日 11:06 89 -> /dev/dri/renderD128
+lrwx------ 1 t736 t736 64 11月16日 11:06 9 -> /dev/dri/renderD128
+lrwx------ 1 t736 t736 64 11月16日 11:06 90 -> anon_inode:[eventfd]
+lrwx------ 1 t736 t736 64 11月16日 11:06 91 -> socket:[53336]
+lrwx------ 1 t736 t736 64 11月16日 11:06 92 -> socket:[53337]
+lrwx------ 1 t736 t736 64 11月16日 11:06 93 -> socket:[51363]
+lrwx------ 1 t736 t736 64 11月16日 11:06 94 -> socket:[51364]
+lrwx------ 1 t736 t736 64 11月16日 11:06 95 -> /dev/dri/renderD128
+lrwx------ 1 t736 t736 64 11月16日 11:06 96 -> /dev/dri/renderD128
+lrwx------ 1 t736 t736 64 11月16日 11:06 97 -> anon_inode:[eventfd]
+lrwx------ 1 t736 t736 64 11月16日 11:06 98 -> /dev/dri/renderD128
+lrwx------ 1 t736 t736 64 11月16日 11:06 99 -> anon_inode:[eventfd]

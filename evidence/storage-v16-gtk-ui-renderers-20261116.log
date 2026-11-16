@@ -1,0 +1,135 @@
+GSK_MODE opengl
+RC 0
+
+(python3:19101): Gtk-WARNING **: 11:19:28.085: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+{
+  "status": "COMPLETE",
+  "timing_usable": true,
+  "workload": "24 rounded libadwaita cards with labels, buttons and switches; 240px/s scroll",
+  "renderer_gtype": "GskGLRenderer",
+  "requested_renderer": "opengl",
+  "environment": {
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles"
+  },
+  "sample_seconds_requested": 10,
+  "sample_elapsed_seconds": 10.004408880000028,
+  "mapped_seconds_after_launch": 0.830139367999891,
+  "first_tick_seconds_after_launch": 0.8681937970000035,
+  "cpu_seconds_before_map": 0.8268038740000001,
+  "cpu_seconds_sample": 7.763504815999999,
+  "cpu_seconds_total": 8.590308689999999,
+  "rusage_user_seconds": 8.891721,
+  "rusage_system_seconds": 0.629679,
+  "max_rss_kib": 106168,
+  "tick_intervals": {
+    "count": 356,
+    "median_ms": 16.798499999999997,
+    "p95_ms": 33.539,
+    "over_33_5ms": 23
+  },
+  "after_paint_intervals": {
+    "count": 356,
+    "median_ms": 20.9865,
+    "p95_ms": 33.093,
+    "over_33_5ms": 9
+  },
+  "tick_count": 357,
+  "after_paint_count": 357,
+  "scroll_changed": true,
+  "libraries": [
+    "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+    "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887",
+    "/usr/lib/aarch64-linux-gnu/libadwaita-1.so.0",
+    "/usr/lib/aarch64-linux-gnu/libcairo-gobject.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo-script-interpreter.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libgtk-4.so.1.1800.6",
+    "/usr/share/locale/zh_CN/LC_MESSAGES/libadwaita.mo"
+  ],
+  "session_before": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_after": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_check_scope": "start and end only",
+  "interrupted": false,
+  "physical_display_verified": false,
+  "metric": "GTK frame-clock tick and monotonic after-paint callback intervals; not scanout/presentation"
+}
+
+GSK_MODE cairo
+RC 0
+
+(python3:19119): Gtk-WARNING **: 11:19:40.196: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+{
+  "status": "COMPLETE",
+  "timing_usable": true,
+  "workload": "24 rounded libadwaita cards with labels, buttons and switches; 240px/s scroll",
+  "renderer_gtype": "GskCairoRenderer",
+  "requested_renderer": "cairo",
+  "environment": {
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "cairo",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles"
+  },
+  "sample_seconds_requested": 10,
+  "sample_elapsed_seconds": 10.020465546000196,
+  "mapped_seconds_after_launch": 0.798404765000214,
+  "first_tick_seconds_after_launch": 0.818443082000158,
+  "cpu_seconds_before_map": 0.7945759150000001,
+  "cpu_seconds_sample": 9.048256795999999,
+  "cpu_seconds_total": 9.842832711,
+  "rusage_user_seconds": 10.408959,
+  "rusage_system_seconds": 0.372463,
+  "max_rss_kib": 89400,
+  "tick_intervals": {
+    "count": 205,
+    "median_ms": 50.001,
+    "p95_ms": 50.4,
+    "over_33_5ms": 205
+  },
+  "after_paint_intervals": {
+    "count": 205,
+    "median_ms": 48.398,
+    "p95_ms": 49.988,
+    "over_33_5ms": 205
+  },
+  "tick_count": 206,
+  "after_paint_count": 206,
+  "scroll_changed": true,
+  "libraries": [
+    "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+    "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887",
+    "/usr/lib/aarch64-linux-gnu/libadwaita-1.so.0",
+    "/usr/lib/aarch64-linux-gnu/libcairo-gobject.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo-script-interpreter.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libgtk-4.so.1.1800.6",
+    "/usr/share/locale/zh_CN/LC_MESSAGES/libadwaita.mo"
+  ],
+  "session_before": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_after": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_check_scope": "start and end only",
+  "interrupted": false,
+  "physical_display_verified": false,
+  "metric": "GTK frame-clock tick and monotonic after-paint callback intervals; not scanout/presentation"
+}
+

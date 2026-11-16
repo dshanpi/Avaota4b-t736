@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "kind": "t736-v18-first-idma-failure-independent-review",
+  "status": "hypothesis-and-instrumentation-not-hardware-confirmed",
+  "hardware_access": false,
+  "observed": {
+    "log": "evidence/storage-v18-coldboot-20261116.log",
+    "log_sha256": "8ba456af4ed0c9ae21a5972a0c14d976f2308f66c4cbca5c895f6de615074bd4",
+    "controller_version": "0x050610",
+    "descriptor_dma": "0xae000000",
+    "buffer_dma": "0xebba0000",
+    "command": 8,
+    "bytes": 512,
+    "ret": -110,
+    "rint": "0x0000002c",
+    "idst": "0x00000000",
+    "successful_dma_requests": 0
+  },
+  "expected_initial_descriptor": {
+    "dlba_register": "0x2b800000",
+    "descriptor_flags": "0x8000000c",
+    "length": "0x00000200",
+    "buffer_word_address": "0x3aee8000",
+    "next": "0x00000000"
+  },
+  "interpretation": [
+    "RINT0x2c=CMD_DONE+DATA_OVER+DRR and no reported card CRC/timeout error. Command/receive path reached completion; host timeout was software waiting for DMA conditions.",
+    "DRR is a sticky raw-interrupt event, not current FIFO occupancy. Current FIFO state was not recorded.",
+    "Both coherent DMA addresses are below4GiB and satisfy documented word-address encoding/alignment. This does not prove engine fetched the descriptor.",
+    "The driver requires IDST direction completion while IDIE is0; Tina/upstream enable IDIE RX for reads. Event gating is the most direct first single-variable hypothesis.",
+    "SMHC3 manual explicitly says NIS is affected only by unmasked bits, but does not clearly say raw RX/TX status requires IDIE. IDIE causality is not proven until before-reset OWN/FIFO snapshots or experiment results."
+  ],
+  "minimal_experiment": {
+    "idie_read": "0x32 = RX bit1 + descriptor-unavailable bit4 + card-error bit5",
+    "idie_write": "0x31 = TX bit0 + descriptor-unavailable bit4 + card-error bit5",
+    "unchanged": [
+      "CTRL global interrupt bit4 remains0",
+      "IRQMASK remains0",
+      "SMHC3 DMAC0x80",
+      "descriptor flags OWN/FD/LD only",
+      "12MHz legacy8bit",
+      "all low4G/coherent allocations and descriptor addressing",
+      "completion still requires CMD+DATA+direction+allOWNclear"
+    ],
+    "reserved_bits": "Do not enable IDIE bit8/9; manual SMHC3IDIE only defines0,1,2,4,5 and this experiment needs no fatal-error bit2."
+  },
+  "instrument_before_stop_reset": [
+    "CTRL0x00",
+    "DMAC0x80",
+    "DLBA0x84",
+    "IDIE0x8c",
+    "IDST0x88",
+    "RINT0x38",
+    "STATUS0x3c",
+    "FIFOTH0x40",
+    "dma_rmb then all descriptor flags/ownership; complete first/last descriptor fields",
+    "Optional read-only coherent EXT_CSD bytes192(revision),196(cardtype),212..215(sectorcount), diagnostic only"
+  ],
+  "status_decode": {
+    "FIFO_LEVEL": "SMHC3 STATUS[27:17],11bits; (status>>17)&0x7ff",
+    "DMA_REQ": "STATUS31",
+    "FIFO_EMPTY": "STATUS2",
+    "CARD_BUSY": "STATUS9",
+    "FSM_BUSY": "STATUS10"
+  },
+  "outcome_branches": [
+    "AllOWNclear+FIFOempty with IDST0: data may have moved and event gating/completion predicate is responsible; manual explicitly says OWNclear allows host to read transferred data.",
+    "OWNstillset+FIFO128words forCMD8: IDMA did not drain received512bytes; investigate engine start/descriptor fetch/bus access with captured readback.",
+    "IDIEenabled then RX status/OWNclear succeeds: retain event enable while CPUinterrupt global gate staysoff; validate actual transferred EXT_CSD before blockIO.",
+    "Do not treat DATA_OVER alone as DMA completion, and do not fall back to reading FIFO after resets."
+  ],
+  "source_snapshot": {
+    "driver_sha256": "3656bef4cc9d5db40f4d95c3f0f5ea5c69d5d160c2264e40e743606084ecd1eb",
+    "manual": "evidence/vendor-reference/reference-1.txt sections11.3.9.16 and11.3.9.28/.29",
+    "tina": "sunxi_mmc_start_dma enables RX IDIE; init_host enablesCTRL globalIRQ; differences remain explicit"
+  },
+  "other_work": "HS52 work paused. No code or board modifications performed by this reviewer."
+}

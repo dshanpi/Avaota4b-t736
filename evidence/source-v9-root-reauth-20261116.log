@@ -1,0 +1,479 @@
+systemd[1]: Hostname set to <t736>.
+
+systemd[1]: bpf-restrict-fs: BPF LSM hook not enabled in the kernel, BPF LSM not supported.
+
+systemd[1]: Queued start job for default target graphical.target.
+
+systemd[1]: Created slice system-getty.slice - Slice /system/getty.
+
+[  OK  ] Created slice system-getty.slice - Slice /system/getty.
+
+systemd[1]: Created slice system-modprobe.slice - Slice /system/modprobe.
+
+[  OK  ] Created slice system-modprobe.slice - Slice /system/modprobe.
+
+systemd[1]: Created slice system-serial\x2dgetty.slice - Slice /system/serial-getty.
+
+[  OK  ] Created slice system-serial\x2dget…slice - Slice /system/serial-getty.
+
+systemd[1]: Created slice user.slice - User and Session Slice.
+
+[  OK  ] Created slice user.slice - User and Session Slice.
+
+systemd[1]: Started systemd-ask-password-console.path - Dispatch Password Requests to Console Directory Watch.
+
+[  OK  ] Started systemd-ask-password-conso…equests to Console Directory Watch.
+
+systemd[1]: Started systemd-ask-password-wall.path - Forward Password Requests to Wall Directory Watch.
+
+[  OK  ] Started systemd-ask-password-wall.…d Requests to Wall Directory Watch.
+
+systemd[1]: Set up automount proc-sys-fs-binfmt_misc.automount - Arbitrary Executable File Formats File System Automount Point.
+
+[  OK  ] Set up automount proc-sys-fs-binfm…ormats File System Automount Point.
+
+systemd[1]: Expecting device dev-ttyS0.device - /dev/ttyS0...
+
+         Expecting device dev-ttyS0.device - /dev/ttyS0...
+
+systemd[1]: Reached target nss-user-lookup.target - User and Group Name Lookups.
+
+[  OK  ] Reached target nss-user-lookup.target - User and Group Name Lookups.
+
+systemd[1]: Reached target paths.target - Path Units.
+
+[  OK  ] Reached target paths.target - Path Units.
+
+systemd[1]: Reached target remote-fs.target - Remote File Systems.
+
+[  OK  ] Reached target remote-fs.target - Remote File Systems.
+
+systemd[1]: Reached target slices.target - Slice Units.
+
+[  OK  ] Reached target slices.target - Slice Units.
+
+systemd[1]: Reached target swap.target - Swaps.
+
+[  OK  ] Reached target swap.target - Swaps.
+
+systemd[1]: Listening on syslog.socket - Syslog Socket.
+
+[  OK  ] Listening on syslog.socket - Syslog Socket.
+
+systemd[1]: Listening on systemd-creds.socket - Credential Encryption/Decryption.
+
+[  OK  ] Listening on systemd-creds.socket - Credential Encryption/Decryption.
+
+systemd[1]: Listening on systemd-initctl.socket - initctl Compatibility Named Pipe.
+
+[  OK  ] Listening on systemd-initctl.socke…- initctl Compatibility Named Pipe.
+
+systemd[1]: Listening on systemd-journald-dev-log.socket - Journal Socket (/dev/log).
+
+[  OK  ] Listening on systemd-journald-dev-…socket - Journal Socket (/dev/log).
+
+systemd[1]: Listening on systemd-journald.socket - Journal Sockets.
+
+[  OK  ] Listening on systemd-journald.socket - Journal Sockets.
+
+systemd[1]: Listening on systemd-networkd.socket - Network Service Netlink Socket.
+
+[  OK  ] Listening on systemd-networkd.socket - Network Service Netlink Socket.
+
+systemd[1]: systemd-pcrextend.socket - TPM PCR Measurements skipped, unmet condition check ConditionSecurity=measured-uki
+
+systemd[1]: systemd-pcrlock.socket - Make TPM PCR Policy skipped, unmet condition check ConditionSecurity=measured-uki
+
+systemd[1]: Listening on systemd-udevd-control.socket - udev Control Socket.
+
+[  OK  ] Listening on systemd-udevd-control.socket - udev Control Socket.
+
+systemd[1]: Listening on systemd-udevd-kernel.socket - udev Kernel Socket.
+
+[  OK  ] Listening on systemd-udevd-kernel.socket - udev Kernel Socket.
+
+systemd[1]: dev-hugepages.mount - Huge Pages File System skipped, unmet condition check ConditionPathExists=/sys/kernel/mm/hugepages
+
+systemd[1]: Mounting dev-mqueue.mount - POSIX Message Queue File System...
+
+         Mounting dev-mqueue.mount - POSIX Message Queue File System...
+
+systemd[1]: Mounting run-lock.mount - Legacy Locks Directory /run/lock...
+
+         Mounting run-lock.mount - Legacy Locks Directory /run/lock...
+
+systemd[1]: Mounting sys-kernel-debug.mount - Kernel Debug File System...
+
+         Mounting sys-kernel-debug.mount - Kernel Debug File System...
+
+systemd[1]: sys-kernel-tracing.mount - Kernel Trace File System skipped, unmet condition check ConditionPathExists=/sys/kernel/tracing
+
+systemd[1]: Starting fake-hwclock-load.service - Restore the current clock...
+
+         Starting fake-hwclock-load.service - Restore the current clock...
+
+systemd[1]: Starting keyboard-setup.service - Set the console keyboard layout...
+
+         Starting keyboard-setup.service - Set the console keyboard layout...
+
+systemd[1]: kmod-static-nodes.service - Create List of Static Device Nodes skipped, unmet condition check ConditionFileNotEmpty=/lib/modules/6.18.63-t736-gpu-v15/modules.devname
+
+systemd[1]: Starting modprobe@configfs.service - Load Kernel Module configfs...
+
+         Starting modprobe@configfs.service - Load Kernel Module configfs...
+
+systemd[1]: Starting modprobe@drm.service - Load Kernel Module drm...
+
+         Starting modprobe@drm.service - Load Kernel Module drm...
+
+systemd[1]: Starting modprobe@efi_pstore.service - Load Kernel Module efi_pstore...
+
+         Starting modprobe@efi_pstore.servi… - Load Kernel Module efi_pstore...
+
+systemd[1]: Starting modprobe@fuse.service - Load Kernel Module fuse...
+
+         Starting modprobe@fuse.service - Load Kernel Module fuse...
+
+systemd[1]: systemd-hibernate-clear.service - Clear Stale Hibernate Storage Info skipped, unmet condition check ConditionPathExists=/sys/firmware/efi/efivars/HibernateLocation-8cf2644b-4b0b-428f-9387-6d876050dc67
+
+systemd[1]: Starting systemd-journald.service - Journal Service...
+
+         Starting systemd-journald.service - Journal Service...
+
+systemd[1]: Starting systemd-modules-load.service - Load Kernel Modules...
+
+         Starting systemd-modules-load.service - Load Kernel Modules...
+
+systemd[1]: Starting systemd-network-generator.service - Generate Network Units from Kernel Command Line...
+
+         Starting systemd-network-generator…k Units from Kernel Command Line...
+
+systemd[1]: systemd-pcrmachine.service - TPM PCR Machine ID Measurement skipped, unmet condition check ConditionSecurity=measured-uki
+
+systemd[1]: Starting systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully...
+
+         Starting systemd-tmpfiles-setup-de… Device Nodes in /dev gracefully...
+
+systemd[1]: systemd-tpm2-setup-early.service - Early TPM SRK Setup skipped, unmet condition check ConditionSecurity=measured-uki
+
+systemd[1]: Starting systemd-udev-load-credentials.service - Load udev Rules from Credentials...
+
+         Starting systemd-udev-load-credent…Load udev Rules from Credentials...
+
+systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+
+         Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+
+systemd[1]: Mounted dev-mqueue.mount - POSIX Message Queue File System.
+
+[  OK  ] Mounted dev-mqueue.mount - POSIX Message Queue File System.
+
+systemd[1]: Mounted run-lock.mount - Legacy Locks Directory /run/lock.
+
+[  OK  ] Mounted run-lock.mount - Legacy Locks Directory /run/lock.
+
+systemd[1]: Mounted sys-kernel-debug.mount - Kernel Debug File System.
+
+[  OK  ] Mounted sys-kernel-debug.mount - Kernel Debug File System.
+
+systemd[1]: fake-hwclock-load.service: Deactivated successfully.
+
+systemd[1]: Finished fake-hwclock-load.service - Restore the current clock.
+
+[  OK  ] Finished fake-hwclock-load.service - Restore the current clock.
+
+systemd[1]: modprobe@drm.service: Deactivated successfully.
+
+systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+
+[  OK  ] Finished modprobe@drm.service - Load Kernel Module drm.
+
+systemd[1]: modprobe@configfs.service: Deactivated successfully.
+
+systemd[1]: Finished modprobe@configfs.service - Load Kernel Module configfs.
+
+systemd-journald[238]: Collecting audit messages is disabled.
+
+[  OK  ] Finished modprobe@configfs.service - Load Kernel Module configfs.
+
+systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+
+systemd[1]: Finished modprobe@efi_pstore.service - Load Kernel Module efi_pstore.
+
+[  OK  ] Finished modprobe@efi_pstore.service - Load Kernel Module efi_pstore.
+
+systemd[1]: modprobe@fuse.service: Deactivated successfully.
+
+systemd[1]: Finished modprobe@fuse.service - Load Kernel Module fuse.
+
+[  OK  ] Finished modprobe@fuse.service - Load Kernel Module fuse.
+
+systemd[1]: Finished systemd-modules-load.service - Load Kernel Modules.
+
+[  OK  ] Finished systemd-modules-load.service - Load Kernel Modules.
+
+systemd[1]: Finished systemd-network-generator.service - Generate Network Units from Kernel Command Line.
+
+[  OK  ] Finished systemd-network-generator…ork Units from Kernel Command Line.
+
+systemd[1]: Finished systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully.
+
+[  OK  ] Finished systemd-tmpfiles-setup-de…ic Device Nodes in /dev gracefully.
+
+systemd[1]: Started systemd-journald.service - Journal Service.
+
+[  OK  ] Started systemd-journald.service - Journal Service.
+
+[  OK  ] Finished systemd-udev-load-credent…- Load udev Rules from Credentials.
+
+[  OK  ] Reached target network-pre.target - Preparation for Network.
+
+         Mounting sys-fs-fuse-connections.mount - FUSE Control File System...
+
+         Mounting sys-kernel-config.mount - Kernel Configuration File System...
+
+         Starting systemd-remount-fs.servic…unt Root and Kernel File Systems...
+
+         Starting systemd-sysctl.service - Apply Kernel Variables...
+
+[  OK  ] Mounted sys-fs-fuse-connections.mount - FUSE Control File System.
+
+[  OK  ] Finished systemd-sysctl.service - Apply Kernel Variables.
+
+[  OK  ] Finished keyboard-setup.service - Set the console keyboard layout.
+
+[  OK  ] Mounted sys-kernel-config.mount - Kernel Configuration File System.
+
+[  OK  ] Finished systemd-remount-fs.servic…mount Root and Kernel File Systems.
+
+         Starting systemd-journal-flush.ser…sh Journal to Persistent Storage...
+
+         Starting systemd-random-seed.service - Load/Save OS Random Seed...
+
+         Starting systemd-resolved.service - Network Name Resolution...
+
+         Starting systemd-timesyncd.service - Network Time Synchronization...
+
+         Starting systemd-tmpfiles-setup-de…eate Static Device Nodes in /dev...
+
+[  OK  ] Finished systemd-udev-trigger.service - Coldplug All udev Devices.
+
+[  OK  ] Finished systemd-tmpfiles-setup-de…Create Static Device Nodes in /dev.
+
+[  OK  ] Reached target local-fs-pre.target…Preparation for Local File Systems.
+
+         Mounting tmp.mount - /tmp...
+
+         Starting systemd-udevd.service - R…ager for Device Events and Files...
+
+[  OK  ] Mounted tmp.mount - /tmp.
+
+[  OK  ] Reached target local-fs.target - Local File Systems.
+
+[  OK  ] Listening on systemd-sysext.socket… System Extension Image Management.
+
+         Starting armbian-zram-config.service - Armbian ZRAM config...
+
+         Starting console-setup.service - Set console font and keymap...
+
+         Starting systemd-binfmt.service - Set Up Additional Binary Formats...
+
+[  OK  ] Started systemd-timesyncd.service - Network Time Synchronization.
+
+[  OK  ] Reached target time-set.target - System Time Set.
+
+[  OK  ] Finished console-setup.service - Set console font and keymap.
+
+         Mounting proc-sys-fs-binfmt_misc.m…cutable File Formats File System...
+
+[  OK  ] Mounted proc-sys-fs-binfmt_misc.mo…xecutable File Formats File System.
+
+[  OK  ] Finished systemd-binfmt.service - Set Up Additional Binary Formats.
+
+[  OK  ] Finished armbian-zram-config.service - Armbian ZRAM config.
+
+[  OK  ] Finished systemd-journal-flush.ser…lush Journal to Persistent Storage.
+
+[  OK  ] Finished systemd-random-seed.service - Load/Save OS Random Seed.
+
+         Starting systemd-tmpfiles-setup.se…ate System Files and Directories...
+
+[  OK  ] Finished systemd-tmpfiles-setup.se…reate System Files and Directories.
+
+[*     ] (1 of 3) Job systemd-udevd.service/start running (7s / 1min 33s)
+
+[  OK  ] Started systemd-udevd.service - Ru…anager for Device Events and Files.
+
+         Starting systemd-networkd.service - Network Configuration...
+
+[  OK  ] Started systemd-resolved.service - Network Name Resolution.
+
+[  OK  ] Reached target nss-lookup.target - Host and Network Name Lookups.
+
+[  OK  ] Reached target sysinit.target - System Initialization.
+
+[  OK  ] Started apt-daily.timer - Daily apt download activities.
+
+[  OK  ] Started apt-daily-upgrade.timer - …y apt upgrade and clean activities.
+
+[  OK  ] Started dpkg-db-backup.timer - Daily dpkg database backup timer.
+
+[  OK  ] Started e2scrub_all.timer - Period…Metadata Check for All Filesystems.
+
+[  OK  ] Started fake-hwclock-save.timer - Periodically save current clock.
+
+[  OK  ] Started fstrim.timer - Discard unused filesystem blocks once a week.
+
+[  OK  ] Started logrotate.timer - Daily rotation of log files.
+
+[  OK  ] Started man-db.timer - Daily man-db regeneration.
+
+[  OK  ] Started systemd-tmpfiles-clean.tim…y Cleanup of Temporary Directories.
+
+[  OK  ] Reached target timers.target - Timer Units.
+
+[  OK  ] Listening on dbus.socket - D-Bus System Message Bus Socket.
+
+[  OK  ] Listening on sshd-unix-local.socke…temd-ssh-generator, AF_UNIX Local).
+
+[  OK  ] Listening on systemd-hostnamed.socket - Hostname Service Socket.
+
+[  OK  ] Reached target sockets.target - Socket Units.
+
+         Starting armbian-hardware-monitor.…ce - Armbian hardware monitoring...
+
+         Starting armbian-hardware-optimize… - Armbian hardware optimization...
+
+         Starting armbian-led-state.service - Armbian leds state...
+
+[  OK  ] Found device dev-ttyS0.device - /dev/ttyS0.
+
+[  OK  ] Finished armbian-led-state.service - Armbian leds state.
+
+[  OK  ] Finished armbian-hardware-monitor.…vice - Armbian hardware monitoring.
+
+[  OK  ] Finished armbian-hardware-optimize…ce - Armbian hardware optimization.
+
+[  OK  ] Started systemd-networkd.service - Network Configuration.
+
+[  OK  ] Reached target basic.target - Basic System.
+
+         Starting accounts-daemon.service - Accounts Service...
+
+[  OK  ] Started cron.service - Regular background program processing daemon.
+
+         Starting dbus.service - D-Bus System Message Bus...
+
+         Starting e2scrub_reap.service - Re…ne ext4 Metadata Check Snapshots...
+
+         Starting rsyslog.service - System Logging Service...
+
+         Starting systemd-logind.service - User Login Management...
+
+         Starting systemd-networkd-persiste…tent Storage in systemd-networkd...
+
+         Starting udisks2.service - Disk Manager...
+
+[  OK  ] Finished e2scrub_reap.service - Re…line ext4 Metadata Check Snapshots.
+
+[  OK  ] Finished systemd-networkd-persiste…istent Storage in systemd-networkd.
+
+[  OK  ] Started dbus.service - D-Bus System Message Bus.
+
+         Starting wpa_supplicant.service - WPA supplicant...
+
+         Starting systemd-hostnamed.service - Hostname Service...
+
+[  OK  ] Started systemd-hostnamed.service - Hostname Service.
+
+         Starting polkit.service - Authorization Manager...
+
+[  OK  ] Started wpa_supplicant.service - WPA supplicant.
+
+[  OK  ] Reached target network.target - Network.
+
+         Starting ssh.service - OpenBSD Secure Shell server...
+
+         Starting systemd-user-sessions.service - Permit User Sessions...
+
+[  OK  ] Finished systemd-user-sessions.service - Permit User Sessions.
+
+         Starting gdm.service - GNOME Display Manager...
+
+[  OK  ] Started serial-getty@ttyS0.service - Serial Getty on ttyS0.
+
+[  OK  ] Reached target getty.target - Login Prompts.
+
+[  OK  ] Started systemd-logind.service - User Login Management.
+
+[  OK  ] Started polkit.service - Authorization Manager.
+
+[  OK  ] Started rsyslog.service - System Logging Service.
+
+[  OK  ] Started accounts-daemon.service - Accounts Service.
+
+[  OK  ] Started ssh.service - OpenBSD Secure Shell server.
+
+[  OK  ] Reached target multi-user.target - Multi-User System.
+
+[  OK  ] Started gdm.service - GNOME Display Manager.
+
+[  OK  ] Created slice user-101.slice - User Slice of UID 101.
+
+         Starting user-runtime-dir@101.serv… Runtime Directory /run/user/101...
+
+[  OK  ] Started udisks2.service - Disk Manager.
+
+[  OK  ] Reached target graphical.target - Graphical Interface.
+
+[  OK  ] Finished user-runtime-dir@101.serv…er Runtime Directory /run/user/101.
+
+         Starting user@101.service - User Manager for UID 101...
+
+Armbian 26.11.0-trunk.128 trixie ttyS0 
+
+t736 login: 
+
+t736 login: root
+
+密码： 
+
+    _             _    _                             __  __ _    _      _ 
+
+   /_\  _ _ _ __ | |__(_)__ _ _ _ ___ _  _ _ _  ___ / _|/ _(_)__(_)__ _| |
+
+  / _ \| '_| '  \| '_ \ / _` | ' \___| || | ' \/ _ \  _|  _| / _| / _` | |
+
+ /_/ \_\_| |_|_|_|_.__/_\__,_|_||_|   \_,_|_||_\___/_| |_| |_\__|_\__,_|_|
+
+                                                                          
+
+ v26.11 rolling for T736 custom mainline running Armbian Linux 6.18.63-t736-gpu-v15
+
+ Packages:     Debian stable (trixie)
+
+ Support:      DIY (custom image)
+
+Linux t736 6.18.63-t736-gpu-v15 #15 SMP Mon Nov 16 03:44:51 EST 2026 aarch64
+
+ IPv4:        (LAN) 10.0.0.249
+
+ IPv6:        (LAN) fd67:b33e:a9c2:0:c884:85ff:fe01:e58e
+
+ Performance:  
+
+ Load:         31%           	 Uptime:         1m	 Local users:  2           	
+
+ Memory usage: 3% of 7.57G  	
+
+ Usage of /:   36% of 7.1G   	
+
+ Commands: 
+
+ Monitoring: htop
+
+root@t736:~# printf "T736_AUTH_UID=%s\n" "$(id -u)"
+
+T736_AUTH_UID=0
+
+root@t736:~# 

@@ -1,0 +1,7 @@
+date -u -s '2026-11-16 03:11:38' >/dev/null && sh /tmp/t736-transfer/private-backup-network.sh; printf 'BACKUP_NETWORK_RC=%s\n' "$?"
+
+{"bytes": 419895, "sha256": "112f8cce9f34177942894c6eade825d41e03068908d0759aba95f4edcca064c9", "verified": true}
+PRIVATE_STATE_NETWORK_OK
+BACKUP_NETWORK_RC=0
+root@t736:~# systemd-journald[248]: Received client request to flush runtime journal.
+systemd-journald[248]: Received client request to relinquish /var/log/journal/8433d056f5d04b32a16c5eaee0f2f298 access.

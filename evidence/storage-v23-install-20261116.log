@@ -1,0 +1,18 @@
+BACKUP_FSYNC_VERIFIED /var/backups/t736-storage-v23/20261116T132206Z-1q1z87i2
+{
+  "backup_directory": "/var/backups/t736-storage-v23/20261116T132206Z-1q1z87i2",
+  "running_release": "6.18.63-t736-storage-v22",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v23",
+  "rebooted": false,
+  "hardware_accepted": false,
+  "status": "INSTALLED_AND_SELECTED_NOT_BOOT_TESTED",
+  "final_sha256": {
+    "kernel": "2a2920f717dca0b63b2eeb9706ecb645208a2fc02aa52ba7d4dc0504488e7b51",
+    "config": "ac261fc54cd55ef4d8a8a6536697721530c02352b278694d3a507b0289cd7bc0",
+    "dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "pvr": "fb0f38a957f84854805ce208601c043c6604b8f47c7737b4541cebef3d762104",
+    "initrd": "494da416757ef3758992e0e885699f3091d808bf55aaa7d661cb95c6d603ea6d",
+    "modules_dep": "a04354f94edd7ebf9b94fe65b273460c00e8a0d4b60956054937f43544b0230b"
+  }
+}

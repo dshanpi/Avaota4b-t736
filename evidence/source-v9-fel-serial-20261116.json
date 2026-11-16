@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"bytesRead\":46,\"connected\":true,\"handle\":\"serial-7\",\"hex\":\"53504c20666978656420656665783a20656e746572696e6720426f6f74524f4d2046454c20617420307832300d0a\",\"port\":\"COM17\",\"text\":\"SPL fixed efex: entering BootROM FEL at 0x20\\r\\n\"}"
+    }
+  ],
+  "isError": false
+}

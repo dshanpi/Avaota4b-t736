@@ -1,0 +1,17 @@
+dmesg -n 5; modprobe -r pvrsrvkm; echo DDK_UNLOADED=$?; loginctl list-sessions --no-pager; ps -eo pid,user,args | grep -E "[X]org|[g]nome-shell"; echo BASELINE_AVAILABLE
+
+DDK_UNLOADED=0
+SESSION  UID USER       SEAT  LEADER CLASS         TTY   IDLE SINCE
+     c2  101 Debian-gdm -     946    manager-early -     no   -    
+     c3 1000 t736       seat0 1514   user          tty2  no   -    
+     c4 1000 t736       -     1528   manager       -     no   -    
+     c5    0 root       -     729    user-early    ttyS0 no   -    
+     c6    0 root       -     2274   manager-early -     no   -    
+
+5 sessions listed.
+   1586 t736     /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3
+   1747 t736     /usr/bin/gnome-shell
+   1884 t736     /usr/bin/gjs -m /usr/share/gnome-shell/org.gnome.Shell.Notifications
+   2041 t736     /usr/bin/gjs -m /usr/share/gnome-shell/org.gnome.ScreenSaver
+BASELINE_AVAILABLE
+root@t736:~# 

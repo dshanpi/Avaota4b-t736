@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v20-high-resolution-timer-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v20",
+  "baseline_release": "6.18.63-t736-storage-v19",
+  "source_tree": "sources/work/linux-storage-v19 (shared frozen source, no edits)",
+  "output_tree": "build/linux-storage-v20 (independent copy, stable source paths)",
+  "configuration_changes": [
+    "CONFIG_HIGH_RES_TIMERS=y",
+    "CONFIG_TICK_ONESHOT=y (selected dependency)",
+    "CONFIG_SCHED_HRTICK=y (def_bool HIGH_RES_TIMERS)",
+    "CONFIG_LOCALVERSION"
+  ],
+  "scheduler_hrticks": "CONFIG_SCHED_HRTICK is implicit; runtime HRTICK/HRTICK_DL features remain default false",
+  "unchanged": [
+    "HZ250",
+    "HZ_PERIODIC",
+    "12MHz legacy8bit",
+    "IDIE/DMA implementation",
+    "CPU topology/DTB",
+    "voltage/PLL/gates",
+    "media drivers"
+  ],
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v20_6.18.63-20_arm64.deb",
+    "size": 5597638,
+    "sha256": "107f0359050f6dcf5a806cc26e995c41462fc77393e5414eb4307c53f35f5e11"
+  },
+  "files": {
+    "build/linux-storage-v20/.config": "8b72287839477b99c008ad37a0756bf57ea50a24dad5c14682c29ea40c558841",
+    "build/linux-storage-v20/arch/arm64/boot/Image": "90793bc0396b1ebf6183eb6f9b39863cd40cd3948910a7c3ea8812201822b888",
+    "build/linux-storage-v20/arch/arm64/boot/Image.gz": "823f2e47dcb90e970079940987c7e99b9d3c31cf6a21dcf063535ae77530a633",
+    "build/linux-storage-v20/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "build/linux-storage-v20/System.map": "95658e558be3c734fc912fce046459bec757288e132b77655c3078f8bd121bf3",
+    "build/linux-storage-v20/Module.symvers": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "tools/build_hrtimer_kernel.sh": "ce4df0aac48eb61184579c6954cda177787c504ae09d17a396a6957c462be389"
+  },
+  "frozen_v19_verified_unchanged": {
+    "boards/t736_mmc_dma_v19.c": "f29554e12658287abbd4af5068d1c8fa567946af7b281e6d032441f8a295e639",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts": "2d4f935044ae65104f75f3773c4416939c2401e8cbfc90b7d4c3de48545bddd2",
+    "build/linux-storage-v19/.config": "6aab4229067aee5bea1c432d441cd4083b532766d400507e45bb4396c0672778",
+    "build/linux-storage-v19/arch/arm64/boot/Image": "34522f80371d20ca9e76cfebcb1c025061d569997defe9b23aa47214bb89c12b",
+    "build/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "build/linux-storage-v19/Module.symvers": "9813e3b9b67d85cb230cf921dd984154868d53e8df9b33d1d88325c460d5106c"
+  },
+  "board_validation": "pending: check high-resolution activation, bounded nanosleep/poll latency, boot time, scratch-file hashes/read-write throughput and GPU/desktop; retain v16 default rollback"
+}

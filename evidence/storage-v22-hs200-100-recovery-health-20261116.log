@@ -1,0 +1,21 @@
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 5%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   4% 
+          CDM:   0% 
+[    2.698692] t736-smhc3-pio 4023000.mmc: HS200 tuning card=100000000 pass=ffffffffffffffff abort_err=0000000000000000 window=0+64 tap=31 verified=16x128 THLD=00800001 SFC=00000006
+Startup finished in 3.656s (kernel) + 6.189s (userspace) = 9.846s 
+graphical.target reached after 6.172s in userspace.

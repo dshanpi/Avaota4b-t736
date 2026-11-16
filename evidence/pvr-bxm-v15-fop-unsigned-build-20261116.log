@@ -1,0 +1,19 @@
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/pvr-bxm-24.2/build/linux/sunxi_linux'
+******* Multiarch build:     no
+******* Primary arch:        target_aarch64
+******* Secondary arch:      none
+******* PVR top-level arch:  rogue
+******* PVR DEFS arch:       rogue
+******* PVR USC arch:        rogue
+******* PVR TPU arch:        rogue
+******* HWDefs Root:         /home/ubuntu/t736-mainline/sources/work/pvr-bxm-24.2/hwdefs/rogue
+******* Host OS:             linux
+******* Target OS:           linux
+WARNING: You are not specifying how to find dependent libraries, e.g., by specifying SYSROOT.
+The build may fail.
+  CC [M]  services/server/env/linux/pvr_drm.o
+  LD [M]  pvrsrvkm.o
+  MODPOST Module.symvers
+WARNING: modpost: missing MODULE_DESCRIPTION() in pvrsrvkm.o
+  LD [M]  pvrsrvkm.ko
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/pvr-bxm-24.2/build/linux/sunxi_linux'

@@ -1,0 +1,75 @@
+BACKUP_FSYNC_VERIFIED /var/backups/t736-cpu-c/20261116T102039Z-2jewyoci
+{
+  "status": "WRITE_VERIFY_PASS",
+  "device": {
+    "device": "/dev/mmcblk0",
+    "sectors": 122142720,
+    "root_partuuid": "a0085546-4166-744a-a353-fca9272b8e48",
+    "spl_bytes": 221184,
+    "spl_sha256": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea",
+    "gpt": {
+      "primary": {
+        "current": 1,
+        "backup": 16777215,
+        "first": 73728,
+        "last": 16777182,
+        "header_sha256": "d68838c9e8d951391824a044a8e7d718d6b67f903ca27547bddd8a43dfeffa49",
+        "entries_sha256": "750938222976776900b49d1782ee976c52db16fc42f1ab04ceeaffb3aaa4125f"
+      },
+      "backup": {
+        "current": 16777215,
+        "backup": 1,
+        "first": 73728,
+        "last": 16777182,
+        "header_sha256": "95618102cd8b130a88bcb22f7c6a3461b40cf571efc0493635451191d4783e59",
+        "entries_sha256": "750938222976776900b49d1782ee976c52db16fc42f1ab04ceeaffb3aaa4125f"
+      },
+      "partitions": [
+        {
+          "number": 1,
+          "first": 73728,
+          "last": 139263,
+          "partuuid": "a0085546-4166-744a-a353-fca9272b8e45"
+        },
+        {
+          "number": 2,
+          "first": 139264,
+          "last": 172031,
+          "partuuid": "a0085546-4166-744a-a353-fca9272b8e46"
+        },
+        {
+          "number": 3,
+          "first": 172032,
+          "last": 368639,
+          "partuuid": "a0085546-4166-744a-a353-fca9272b8e47"
+        },
+        {
+          "number": 4,
+          "first": 368640,
+          "last": 15608319,
+          "partuuid": "a0085546-4166-744a-a353-fca9272b8e48"
+        },
+        {
+          "number": 5,
+          "first": 15608320,
+          "last": 15641087,
+          "partuuid": "a0085546-4166-744a-a353-fca9272b8e49"
+        },
+        {
+          "number": 6,
+          "first": 15641088,
+          "last": 16777181,
+          "partuuid": "a0085546-4166-744a-a353-fca9272b8e4a"
+        }
+      ]
+    }
+  },
+  "new_sha256": "a7e2e06cc9843a9d2fbd37514d9923f3ed8fcd23fd7fc09f30e484f1774a721d",
+  "backup_range_sha256": "f7805f03332c53d01d182a257bf944ac166e4ae7ab20aad525afb0234cec15cd",
+  "start_lba": 24576,
+  "sector_count": 633,
+  "rebooted": false,
+  "write_attempted": true,
+  "backup_directory": "/var/backups/t736-cpu-c/20261116T102039Z-2jewyoci",
+  "readback_sha256": "a7e2e06cc9843a9d2fbd37514d9923f3ed8fcd23fd7fc09f30e484f1774a721d"
+}

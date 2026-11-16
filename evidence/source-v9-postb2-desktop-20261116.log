@@ -1,0 +1,59 @@
+cat /etc/gdm3/daemon.conf; cat /etc/environment; ls /usr/local/bin/t736*; ps -eo pid,comm,pcpu --sort=-pcpu | head -10; cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null
+
+[daemon]
+WaylandEnable=false
+AutomaticLoginEnable=false
+TimedLoginEnable=false
+
+[security]
+
+[xdmcp]
+
+[chooser]
+
+[debug]
+
+LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+COGL_DRIVER=gles2
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+GSK_RENDERER=opengl
+ls: 无法访问 '/usr/local/bin/t736*': 没有那个文件或目录
+    PID COMMAND         %CPU
+   1249 gnome-shell     28.3
+   1345 xdg-desktop-por 27.7
+   1354 gjs             22.8
+   1205 systemd         14.1
+     85 kworker/6:1+eve 13.1
+   1369 gnome-control-c 11.0
+      1 systemd         10.6
+   1346 systemd-localed  8.6
+     10 kworker/0:1-eve  7.9
+root@t736:~# cp -a /etc/gdm3/daemon.conf /run/gdm-pre-browser-check.conf; sed -i 's/^AutomaticLoginEnable=false/AutomaticLoginEnable=true\nAutomaticLogin=t736/' /etc/gdm3/daemon.conf; systemctl restart gdm; printf 'TEMP_DESKTOP_LOGIN_STARTED\n'
+
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+TEMP_DESKTOP_LOGIN_STARTED
+root@t736:~# loginctl list-sessions --no-pager; ps -eo pid,user,args | grep -E '(Xorg|gnome-shell|firefox)' | head -12; cp -a /run/gdm-pre-browser-check.conf /etc/gdm3/daemon.conf; cat /etc/gdm3/daemon.conf | head -6; ls /usr/share/t736-validation /usr/local/lib/t736-validation 2>/dev/null
+
+SESSION  UID USER SEAT  LEADER CLASS         TTY   IDLE SINCE
+     c3    0 root -     796    user-early    ttyS0 no   -    
+     c4    0 root -     1205   manager-early -     no   -    
+     c5 1000 t736 seat0 1678   user          tty2  no   -    
+     c6 1000 t736 -     1689   manager       -     no   -    
+
+4 sessions listed.
+   1738 t736     /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3
+   1902 t736     /usr/bin/gnome-shell
+   1956 t736     /usr/bin/gjs -m /usr/share/gnome-shell/org.gnome.Shell.Screencast
+   1971 t736     /usr/libexec/gnome-shell-calendar-server
+   1974 root     grep -E (Xorg|gnome-shell|firefox)
+[daemon]
+WaylandEnable=false
+AutomaticLoginEnable=false
+TimedLoginEnable=false
+
+[security]
+/usr/local/lib/t736-validation:
+root@t736:~# 

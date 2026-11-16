@@ -1,0 +1,36 @@
+ak���!A)�c'2�Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+t736-gpu-power 7065000.power-controller: sync_state() pending due to 1800000.gpu
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+Begin: Running /scripts/local-block ... done.
+done.
+Gave up waiting for root file system device.  Common problems:
+ - Boot args (cat /proc/cmdline)
+   - Check rootdelay= (did the system wait long enough?)
+ - Missing modules (cat /proc/modules; ls /dev)
+ALERT!  PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 does not exist.  Dropping to a shell!
+(initramfs) printf "T736_RECOVERY_SHELL\n"; uname -r; test -f /tmp/t736-transfer/reverse-ssh.sh && sha256sum /tmp/t736-transfer/reverse-ssh.sh
+T736_RECOVERY_SHELL
+6.18.63-t736-storage-v18
+(initramfs) 

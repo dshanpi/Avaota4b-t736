@@ -1,0 +1,37 @@
+insmod /tmp/t736-transfer/t736_phy_delay_probe.ko delays=2; perl /tmp/t736-transfer/ethernet_selftest.pl | head -5; perl /tmp/t736-transfer/ethernet_stats.pl | head -24; rmmod t736_phy_delay_probe
+
+t736-phy-delay: temporary delays=2 original_tx=0009 original_rx=0011 current_tx=0009 current_rx=0019
+t736-dwmac 4500000.ethernet end0: entered promiscuous mode
+t736-dwmac 4500000.ethernet end0: left promiscuous mode
+STMMAC_SELFTEST_FLAGS=1
+ 1. MAC Loopback               : 0
+ 2. PHY Loopback               : 0
+ 3. MMC Counters               : 0
+ 4. EEE                        : -95
+ETHTOOL_STATS_COUNT=214
+mmc_tx_octetcount_gb=78681
+mmc_tx_framecount_gb=168
+mmc_tx_broadcastframe_g=18
+mmc_tx_multicastframe_g=61
+mmc_tx_64_octets_gb=51
+mmc_tx_65_to_127_octets_gb=55
+mmc_tx_256_to_511_octets_gb=18
+mmc_tx_1024_to_max_octets_gb=44
+mmc_tx_unicast_gb=89
+mmc_tx_multicast_gb=61
+mmc_tx_broadcast_gb=18
+mmc_tx_octetcount_g=78681
+mmc_tx_framecount_g=168
+mmc_tx_pause_frame=8
+mmc_tx_vlan_frame_g=11
+mmc_rx_framecount_gb=49
+mmc_rx_octetcount_gb=30038
+mmc_rx_octetcount_g=18202
+mmc_rx_broadcastframe_g=1
+mmc_rx_multicat736-phy-delay: restored TX result=0 RX result=0
+stframe_g=9
+mmc_rx_crc_error=10
+mmc_rx_align_error=0
+mmc_rx_run_error=1
+t736-dwmac 4500000.ethernet end0: Link is Down
+root@t736:~# t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx

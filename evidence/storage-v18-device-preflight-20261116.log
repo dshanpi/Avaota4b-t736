@@ -1,0 +1,51 @@
+/usr/bin/mmc
+A31Y5C
+ec290041333159354330982b37b69ccd
+d02f01329f5903ffffffffef8e400019
+0x0000ec
+clock:		12000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	0 (legacy)
+signal voltage:	0 (3.30 V)
+driver type:	0 (driver type B)
+ext_csd
+quirks
+state
+status
+block
+cid
+cmdq_en
+csd
+date
+driver
+dsr
+enhanced_area_offset
+enhanced_area_size
+enhanced_rpmb_supported
+erase_size
+ffu_capable
+fwrev
+hwrev
+life_time
+manfid
+name
+ocr
+oemid
+power
+pre_eol_info
+preferred_erase_size
+prv
+raw_rpmb_size_mult
+rca
+rel_sectors
+removable
+rev
+serial
+subsystem
+type
+uevent
+wp_grp_size

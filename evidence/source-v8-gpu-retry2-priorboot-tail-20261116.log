@@ -1,0 +1,30 @@
+printf "LAST_BOOT_ERRORS\n"; journalctl -b -1 -k --no-pager -n 25 2>/dev/null | tail -n 25; printf "RECOVERED\n"
+
+LAST_BOOT_ERRORS
+11月 16 06:50:51 t736 systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+11月 16 06:50:51 t736 systemd-journald[236]: Collecting audit messages is disabled.
+11月 16 06:50:51 t736 systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+11月 16 06:50:51 t736 systemd[1]: Finished modprobe@efi_pstore.service - Load Kernel Module efi_pstore.
+11月 16 06:50:51 t736 systemd[1]: modprobe@fuse.service: Deactivated successfully.
+11月 16 06:50:51 t736 systemd[1]: Finished modprobe@fuse.service - Load Kernel Module fuse.
+11月 16 06:50:51 t736 systemd[1]: Finished systemd-modules-load.service - Load Kernel Modules.
+11月 16 06:50:51 t736 systemd[1]: Finished systemd-network-generator.service - Generate Network Units from Kernel Command Line.
+11月 16 06:50:51 t736 systemd[1]: Finished systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully.
+11月 16 06:50:51 t736 systemd[1]: Reached target network-pre.target - Preparation for Network.
+11月 16 06:50:51 t736 systemd[1]: Mounting sys-fs-fuse-connections.mount - FUSE Control File System...
+11月 16 06:50:51 t736 systemd[1]: Mounting sys-kernel-config.mount - Kernel Configuration File System...
+11月 16 06:50:51 t736 systemd[1]: systemd-fsck-root.service - File System Check on Root Device skipped, unmet condition check ConditionPathExists=!/run/initramfs/fsck-root
+11月 16 06:50:51 t736 systemd[1]: Starting systemd-remount-fs.service - Remount Root and Kernel File Systems...
+11月 16 06:50:51 t736 systemd[1]: Starting systemd-sysctl.service - Apply Kernel Variables...
+11月 16 06:50:51 t736 systemd[1]: Started systemd-journald.service - Journal Service.
+11月 16 06:50:52 t736 kernel: EXT4-fs (mmcblk0p4): re-mounted 355deac2-71e0-4194-a1c2-f7d457b94137.
+11月 16 06:50:54 t736 systemd-journald[236]: Received client request to flush runtime journal.
+11月 16 06:50:54 t736 kernel: random: crng init done
+11月 16 06:50:56 t736 kernel: pvrsrvkm: loading out-of-tree module taints kernel.
+11月 16 06:50:57 t736 kernel: t736-dwmac 4500000.ethernet end0: Register MEM_TYPE_PAGE_POOL RxQ-0
+11月 16 06:50:58 t736 kernel: t736-dwmac 4500000.ethernet end0: PHY [stmmac-0:01] driver [RTL8211F Gigabit Ethernet] (irq=POLL)
+11月 16 06:50:58 t736 kernel: t736-dwmac 4500000.ethernet end0: No Safety Features support found
+11月 16 06:50:58 t736 kernel: t736-dwmac 4500000.ethernet end0: IEEE 1588-2008 Advanced Timestamp supported
+11月 16 06:50:58 t736 kernel: t736-dwmac 4500000.ethernet end0: configuring for phy/rgmii-rxid link mode
+RECOVERED
+root@t736:~# 

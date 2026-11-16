@@ -1,0 +1,13 @@
+uname -r; ip -br addr show end0; ip route; cat /sys/class/net/end0/ 
+statistics/rx_packets; systemctl --failed --no-pager; grep -A1 'pin 224 ' /sys/k 
+ernel/debug/pinctrl/2000000.pinctrl/pinconf-pins
+
+6.18.63-t736-armbian
+end0             UP             fe80::3cdc:5fff:fe6c:571/64 
+0
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+pin 224 (PH0): input bias pull up (1 ohms), output drive strength (40 mA)
+pin 225 (PH1): input bias pull up (1 ohms), output drive strength (40 mA)
+root@t736:~# 

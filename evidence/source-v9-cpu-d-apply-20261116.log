@@ -1,0 +1,14 @@
+python3 /tmp/t736-transfer/update-cpu-d.py --package /tmp/t736-transfer/cpu-d.bin --manifest /tmp/t736-transfer/cpu-d.manifest.json --apply > /root/source-v9-validation/cpu-d-apply.log; printf 'CPU_D_UPDATE_RC=%s\n' "$?"; tail -10 /root/source-v9-validation/cpu-d-apply.log
+
+CPU_D_UPDATE_RC=0
+  },
+  "new_sha256": "f2ea2157acc3b65b2cc7416dfdba39650e7daa6679693c558fbbdcc30ef9780a",
+  "backup_range_sha256": "f1011dab49daf32e952865da237b0cb05ef323f8d733992cd6065eedefc67a34",
+  "start_lba": 24576,
+  "sector_count": 636,
+  "rebooted": false,
+  "write_attempted": true,
+  "backup_directory": "/var/backups/t736-cpu-d/20261116T102657Z-uib0xilr",
+  "readback_sha256": "f2ea2157acc3b65b2cc7416dfdba39650e7daa6679693c558fbbdcc30ef9780a"
+}
+root@t736:~# 

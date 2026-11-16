@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "kind": "t736-v23-hs200-error-recovery-independent-review",
+  "reviewed_utc": "2026-11-16T13:18:30.856963+00:00",
+  "status": "PASS-static-classifier-and-driver-diff-review-not-board-tested",
+  "reviewed_files": {
+    "boards/t736_mmc_hs200_v23_draft.c": "e812522e9295ab162ae604ff2a0f626d1210ddb1c86a6402102897f30ea39d46",
+    "boards/t736_mmc_tuning_error_draft.h": "2cd7bc09f6200e47986f0a08e3755033964898b2e9ba10e1add250b2d95ac243",
+    "tests/test_mmc_hs200_error_recovery.py": "52c548de2ce0e6ac74456074aed3472ab053f70e4ad15389f696ce2a2ac69bf7",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "boards/t736_mmc_clock_hs200_draft.h": "33f4c8eae7d5b7c73534e07c4c24652a01d0400fc00f286b9212116ee83cd5a2",
+    "boards/t736_mmc_tuning_draft.h": "2ba574aec0bf5fe06d4d0a90319891c0c3c7b2871cbdddaa6ae004e91d66eeb0"
+  },
+  "design": {
+    "path": "evidence/storage-v23-hs200-error-recovery-design-20261116.json",
+    "sha256": "c47fb75b64edd31a5f9735fabcfc086de237c760be3fb1472db5025b4bc7bf50"
+  },
+  "prior_failure": "evidence/storage-v22-hs200-200-failure-review-20261116.json",
+  "frozen_v22_source_unchanged": true,
+  "normal_dma_error_policy_unchanged": true,
+  "verified_rules": [
+    "Observed RINT0xac/IDST0x22 with EILSEQ is classified as a failed tap that can continue after healthy reset. It is never counted as passing.",
+    "Only CMD21 tuning uses this classifier. Existing normal DMA completion helper and both card-error bits remain unchanged for all ordinary data operations.",
+    "IDST accepts only documented RX-complete, card-error-summary and normal-summary bits. Descriptor-unavailable, TX-complete, reserved/fatal-bus bit2 and every unknown bit reject recovery.",
+    "Every read-only CMD21 poll checks IDST validity before the original completion predicate, including otherwise successful completion. Unknown bits cannot bypass error classification by appearing alongside normal completion. The failed status is retained and mandatory reset still executes.",
+    "IDST5 requires a simultaneous explanatory raw RINT card error: EBE/RTO/RCRC/SBE/DRTO/DCRC/RE. Summary-only errors remain fatal.",
+    "EILSEQ requires a raw card error. ETIMEDOUT may represent a software poll timeout with no RINT; hardware/unknown filters still apply.",
+    "EIO is recoverable only as a complete pattern mismatch with CMD/DATA/RX completions and no raw/summary card errors; prior command path has already required descriptor OWN clear.",
+    "RINT starvation10, FIFO11, illegal-command12 and write-busy18 are rejected in tuning, including immediately after CMD12 abort.",
+    "dma_dead and ios_error independently reject continuation. Existing abort bitmap, original-failure snapshot, reset quarantine, soft deadline and cleanup return logs remain.",
+    "64 linear taps,20 complete CMD21 successes per passing tap, minimum12 window and16 midpoint checks remain unchanged. No seed or prior run substitutes for a passing trial."
+  ],
+  "source_delta": "One new tuning-only header; IDST guard before each read-only CMD21 completion poll; bad-tap error classification; stricter post-abort non-card error filter; v23 diagnostic name. No phase/clock/threshold/power/ordinary-I/O changes.",
+  "validation": {
+    "classifier_tests": "PASS: final build log independently inspected; actual-C ASan/UBSan matrix includes successful-completion IDST guard checks for every unexpected bit. Final test source SHA52c548de2ce0e6ac74456074aed3472ab053f70e4ad15389f696ce2a2ac69bf7 matches build record.",
+    "selection_tests": "Original2080 linear-window ASan/UBSan test reported PASS; unchanged header SHA bound above.",
+    "synthetic_partial_eye": "Test0..31 good/32..63 bad selects15; this is a synthetic classifier/selection test, not a claim that the real200MHz eye ends at31.",
+    "board": "Pending separately versioned candidate installation and100/200MHz runtime evidence.",
+    "build_log": {
+      "path": "evidence/build/storage-v23-build-20261116.log",
+      "sha256": "b73223face722d005ad399b9db207d59f073776f776c985660a196a6052810b2"
+    }
+  },
+  "independent_donor_manual_reference": {
+    "manual": "evidence/vendor-reference/reference-1.txt",
+    "section": "11.3.9.28",
+    "manual_sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483",
+    "note": "Generic SMHC0-2 IDST layout must not be substituted for SMHC3; SMHC3 bit5 is card summary and bit2 is reserved."
+  },
+  "board_operations_by_reviewer": false,
+  "persistent_default_promoted": false,
+  "hs400_included": false,
+  "review_revision": {
+    "reason": "Closed the successful-completion path that initially bypassed unknown-IDST rejection.",
+    "previous_driver_sha256": "893c0b81ee6362f78e7df6ff6369e527c3211956aa8ebf685b2d6f57e9d95581",
+    "previous_helper_sha256": "2fa3ea7c1ef60acc7d5c8e91a73ca23927dbef7dad2fcdf6b13ee8b45dc827e4",
+    "new_guard_independently_reviewed": true
+  }
+}

@@ -1,0 +1,9 @@
+SOURCE_SHA256=62adadc873cb036f38d5da27040ffa20c47a4bafdf3b84f01beb439f2dc99140
+CHECK=sh -n (no build/image/install execution)
+REMOTE_PATH=/home/ubuntu/t736-mainline/build/desktop-gl-source-check-20261116-1794833870/build_source_rootfs_v10.sh
+EXIT_CODE=0
+STDOUT
+
+STDERR
+
+LOCAL=4 embedded Python heredocs parsed with ast.parse successfully

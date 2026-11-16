@@ -1,0 +1,38 @@
+for p in $(pidof Xorg gnome-shell); do echo PROCESS=$p; ps -p "$p" -o pid,user,args; tr '\0' '\n' </proc/$p/environ | grep -E '^(DISPLAY|XAUTHORITY|LD_LIBRARY_PATH|LIBGL_DRIVERS_PATH|COGL_DRIVER|LIBGL_ALWAYS_SOFTWARE|GALLIUM_DRIVER)='; awk '/libEGL|libGLES|libgbm|libpvr|pvr_dri|swrast|llvmpipe/ {print $NF}' /proc/$p/maps | sort -u; done; find /var/lib/gdm3/.local/share/xorg /home/t736/.local/share/xorg -name 'Xorg.*.log' -printf '%T@ %p\n' 2>/dev/null | sort -n | tail -n 3; cat /sys/kernel/debug/pvr/status; echo GPU_SESSION_MAPS_DONE
+
+PROCESS=3096
+    PID USER     COMMAND
+   3096 Debian-+ /usr/lib/xorg/Xorg vt1 -displayfd 3 -auth /run/user/101/gdm/Xauthority -noliste
+LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/lib
+COGL_DRIVER=gles2
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+/opt/t736-img-ddk-24.2-x11/lib/dri/swrast_dri.so
+/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887
+1794815300.6358576460 /home/t736/.local/share/xorg/Xorg.1.log
+1794816012.8331428040 /var/lib/gdm3/.local/share/xorg/Xorg.0.log
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+GPU_SESSION_MAPS_DONE
+root@t736:~# 

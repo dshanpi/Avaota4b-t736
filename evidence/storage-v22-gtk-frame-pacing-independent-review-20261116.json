@@ -1,0 +1,150 @@
+{
+  "schema": "t736-gtk-frame-pacing-independent-review-v1",
+  "date": "2026-11-16",
+  "status": "STEADY_CALLBACK_LIMIT_CONFIRMED_CAUSE_PENDING_FRAME_FEEDBACK",
+  "measurements": [
+    {
+      "path": "evidence/storage-v22-hs200-100-gtk-ui-20261116.log",
+      "sha256": "db98d9778b942941e40162dee6543b280009841e3641495234f6293388c2df82",
+      "status": "COMPLETE",
+      "renderer": "GskGLRenderer",
+      "sample_elapsed_seconds": 10.001784239999992,
+      "after_paint_count": 440,
+      "cpu_seconds_sample": 3.8527890240000002,
+      "after_paint_intervals": {
+        "count": 439,
+        "median_ms": 16.808,
+        "p95_ms": 33.988,
+        "over_33_5ms": 48
+      },
+      "per_second_paints": [],
+      "per_second_process_cpu": []
+    },
+    {
+      "path": "evidence/storage-v22-hs200-100-gtk-ui-steady-20261116.log",
+      "sha256": "3a450eaaba2ac88ceb7a74abd47c34514b31c3757b1774f0f6f71ca628a5ef52",
+      "status": "COMPLETE",
+      "renderer": "GskGLRenderer",
+      "sample_elapsed_seconds": 10.004958931999994,
+      "after_paint_count": 414,
+      "cpu_seconds_sample": 2.3792684950000003,
+      "after_paint_intervals": {
+        "count": 413,
+        "median_ms": 17.159,
+        "p95_ms": 33.335,
+        "over_33_5ms": 11
+      },
+      "per_second_paints": [
+        43,
+        40,
+        40,
+        40,
+        40,
+        40,
+        39,
+        40,
+        40,
+        52
+      ],
+      "per_second_process_cpu": [
+        0.2459975790000004,
+        0.2316072629999999,
+        0.2303431680000001,
+        0.23168042499999952,
+        0.23288190400000008,
+        0.2332518720000003,
+        0.22674000199999966,
+        0.23269313000000036,
+        0.2317139319999999,
+        0.28235922
+      ]
+    },
+    {
+      "path": "evidence/storage-v22-hs200-100-gtk-ui-steady-bigcores-20261116.log",
+      "sha256": "b4f000c7f0ae9c648caa5f8e89935518fabe8c00f1f327adcb7e372cd0112ca9",
+      "status": "COMPLETE",
+      "renderer": "GskGLRenderer",
+      "sample_elapsed_seconds": 10.000211915000023,
+      "after_paint_count": 432,
+      "cpu_seconds_sample": 1.2015370980000006,
+      "after_paint_intervals": {
+        "count": 431,
+        "median_ms": 17.226,
+        "p95_ms": 33.246,
+        "over_33_5ms": 12
+      },
+      "per_second_paints": [
+        52,
+        53,
+        48,
+        40,
+        39,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "per_second_process_cpu": [
+        0.12831859000000012,
+        0.12860405500000027,
+        0.1250027549999997,
+        0.11956261499999998,
+        0.11480778200000019,
+        0.11835954199999987,
+        0.11783028600000023,
+        0.11780761099999992,
+        0.11802539999999961,
+        0.11321846200000074
+      ]
+    }
+  ],
+  "conclusions": [
+    "Five-second warmup did not remove the approximately 40 after-paint callbacks/second plateau.",
+    "Pinning only the test process to CPUs 6-7 reduced its measured CPU time substantially while the final seven seconds still had 39-40 callbacks/second. This is limited single-run evidence; no permanent affinity change is justified.",
+    "The summaries preserve interval median/p95, not chronological intervals; they cannot establish strict 16.7/33.3 millisecond alternation.",
+    "Application process CPU alone excludes compositor/Xorg/GPU waits and does not identify the bottleneck.",
+    "Frame callbacks and GDK feedback are not a physical display rate measurement."
+  ],
+  "source_findings": [
+    {
+      "url": "https://github.com/GNOME/gtk/blob/4.18.6/gdk/x11/gdksurface-x11.c",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gdksurface-x11.c",
+      "sha256": "f01500be1f5b6ddc8ca194764f7317007e7b06659a3be598c3e82a1eb203288d",
+      "lines": "630-643, 749-754",
+      "finding": "Negotiates compositor FRAME_DRAWN support and freezes updates after end_frame."
+    },
+    {
+      "url": "https://github.com/GNOME/gtk/blob/4.18.6/gdk/x11/gdkdisplay-x11.c",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gdkdisplay-x11.c",
+      "sha256": "48df4e855a7cde2c0dea3e699648340f7810d744b8c512a9e13fba5aff8e0305",
+      "lines": "1189-1233",
+      "finding": "FRAME_DRAWN thaws pending updates; FRAME_TIMINGS supplies presentation/refresh/completion feedback."
+    },
+    {
+      "url": "https://github.com/GNOME/gtk/blob/4.18.6/gdk/x11/gdkglcontext-egl.c",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gdkglcontext-egl.c",
+      "sha256": "c2c3e2a712f253c6527fa7b274308a1eedf6aea4d46e3051ad1daa60b2e71321",
+      "lines": "86-103",
+      "finding": "Composited X11 EGL context requests swap interval zero; compositor handles vblank."
+    },
+    {
+      "url": "https://github.com/GNOME/gtk/blob/4.18.6/gdk/gdkframetimings.c",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\gtk-gdkframetimings.c",
+      "sha256": "1983dfbe58a85817a1e0746a52467ba274f2511a0b2972f9ebc7e2dd83ceebd9",
+      "lines": "36-38, 52-64",
+      "finding": "FrameTimings is reference-counted boxed type; retaining a reference prevents history slot reuse of the same object."
+    }
+  ],
+  "next_diagnostic": {
+    "path": "tools/validation/gtk_ui_frame_timings_probe.py",
+    "sha256": "979b87842b71b590a437715cc5358a581007586cad7e220d2f76da7611c15215",
+    "purpose": "Compare before/after-paint callback wall spans and gaps with raw GDK predicted/presentation/refresh/completion feedback.",
+    "no_global_changes": true
+  },
+  "frozen_probe_paths": [
+    "tools/validation/gtk_ui_frame_probe.py",
+    "tools/validation/gtk_ui_frame_probe_steady.py"
+  ],
+  "board_actions_by_reviewer": false
+}

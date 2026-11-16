@@ -1,0 +1,125 @@
+echo WEB_DIAG; readlink -f /etc/resolv.conf; cat /etc/resolv.conf; resolvectl statu 
+s --no-pager; ip route; timeout 6 resolvectl query example.com; curl -I --connect-timeout 4 --ma 
+x-time 8 https://example.com 2>&1 | tail -n 7; pgrep -af 'firefox|chromium|epiphany' | head -n 8 
+; echo WEB_DIAG_DONE
+
+WEB_DIAG
+/etc/resolv.conf
+# This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8).
+# Do not edit.
+#
+# This file might be symlinked as /etc/resolv.conf. If you're looking at
+# /etc/resolv.conf and seeing this text, you have followed the symlink.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "resolvectl status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs should typically not access this file directly, but only
+# through the symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a
+# different way, replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0 trust-ad
+search .
+Global
+         Protocols: +LLMNR -mDNS +DNSOverTLS DNSSEC=no/unsupported
+  resolv.conf mode: foreign
+Current DNS Server: 223.5.5.5#dns.alidns.com
+       DNS Servers: 223.5.5.5#dns.alidns.com 223.6.6.6#dns.alidns.com
+        DNS Domain: ~.
+
+Link 2 (end0)
+    Current Scopes: DNS LLMNR/IPv4 LLMNR/IPv6
+         Protocols: +DefaultRoute +LLMNR -mDNS +DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 10.0.0.1
+       DNS Servers: 10.0.0.1 fd67:b33e:a9c2::1
+     Default Route: yes
+
+Link 3 (sit0)
+    Current Scopes: none
+         Protocols: -DefaultRoute +LLMNR -mDNS +DNSOverTLS DNSSEC=no/unsupported
+     Default Route: no
+default via 10.0.0.1 dev end0 proto dhcp src 10.0.0.249 metric 1024 
+10.0.0.0/24 dev end0 proto kernel scope link src 10.0.0.249 metric 1024 
+10.0.0.1 dev end0 proto dhcp scope link src 10.0.0.249 metric 1024 
+example.com: 2606:4700:10::6814:179a           -- link: end0
+             2606:4700:10::ac42:93f3           -- link: end0
+             104.20.23.154                     -- link: end0
+             172.66.147.243                    -- link: end0
+
+-- Information acquired via protocol DNS in 126.3ms.
+-- Data is authenticated: no; Data was acquired via local or encrypted transport: yes
+-- Data from: network
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (35) TLS connect error: error:0A000126:SSL routines::unexpected eof while reading
+3519 /usr/lib/firefox-esr/firefox-esr
+3526 /usr/lib/firefox-esr/crashhelper 3519 9 /tmp/ 11
+3624 /usr/lib/firefox-esr/firefox-esr -contentproc -parentBuildID 20261103151912 -prefsHandle 0:26580 -prefMapHandle 1:286641 -sandboxReporter 2 -chrootClient 3 -ipcHandle 4 -initialChannelId {1ba8fb1e-2098-4440-a744-3ea1bdaf5dc0} -parentPid 3519 -crashHelperPid 3526 -crashHelper 5 -crashReporter 6 -appDir /usr/lib/firefox-esr/browser 1 socket
+3634 /usr/lib/firefox-esr/firefox-esr -contentproc -ipcHandle 0 -signalPipe 1 -initialChannelId {e4c4de4e-e73e-4d01-b2aa-1bb95565b3e5} -parentPid 3519 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 2 forkserver
+3674 /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:27548 -prefMapHandle 1:286641 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {eb77163a-548b-44c8-8f19-3bb4180e9fb9} -parentPid 3519 -crashHelperPid 3526 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 3 tab
+3682 /usr/lib/firefox-esr/firefox-esr -contentproc -parentBuildID 20261103151912 -prefsHandle 0:27548 -prefMapHandle 1:286641 -sandboxReporter 2 -chrootClient 3 -ipcHandle 4 -initialChannelId {52a60b33-79b8-4db6-ae23-e4be30d8bd38} -parentPid 3519 -crashHelperPid 3526 -crashHelper 5 -crashReporter 6 -appDir /usr/lib/firefox-esr/browser 4 rdd
+3733 /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:27933 -prefMapHandle 1:286641 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {3f128ef2-1343-4e80-8256-67b4c43b8aae} -parentPid 3519 -crashHelperPid 3526 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 5 tab
+3762 /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:27612 -prefMapHandle 1:286641 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {b11c1023-d402-429e-ba64-7999ad4ecf39} -parentPid 3519 -crashHelperPid 3526 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 6 tab
+WEB_DIAG_DONE
+root@t736:~# echo WEB_DETAIL; date -u; timedatectl show -p NTPSynchronized -p TimeUSec; env | gr 
+ep -i proxy; for u in http://www.baidu.com https://www.baidu.com https://www.debian.org; do echo 
+ URL=$u; curl -4 -I -sS --connect-timeout 4 --max-time 7 "$u" 2>&1 | head -n 6; done; for c in 0 
+ 1 2 3 4 5; do printf 'CPU%s_hotplug=' "$c"; test -f /sys/devices/system/cpu/cpu$c/online && cat /sys/devices/system/cpu/cpu$c/online; done; echo WEB_DETAIL_DONE
+
+WEB_DETAIL
+2026年 11月 16日 星期一 09:28:54 UTC
+NTPSynchronized=yes
+TimeUSec=Mon 2026-11-16 09:28:55 UTC
+URL=http://www.baidu.com
+curl: (52) Empty reply from server
+URL=https://www.baidu.com
+curl: (35) TLS connect error: error:0A000126:SSL routines::unexpected eof while reading
+URL=https://www.debian.org
+curl: (35) TLS connect error: error:0A000126:SSL routines::unexpected eof while reading
+CPU0_hotplug=1
+CPU1_hotplug=1
+CPU2_hotplug=1
+CPU3_hotplug=1
+CPU4_hotplug=1
+CPU5_hotplug=1
+WEB_DETAIL_DONE
+root@t736:~# echo WEB_PATH_TEST; command -v tcpdump; curl -q -4 --noproxy '*' -I -sS --connect-t 
+imeout 4 --max-time 8 --resolve mirrors.aliyun.com:443:183.3.205.11 https://mirrors.aliyun.com/d 
+ebian/ 2>&1 | head -n 6; curl -q -4 --noproxy '*' --tls-max 1.2 --http1.1 -I -sS --connect-timeo 
+ut 4 --max-time 8 --resolve mirrors.aliyun.com:443:183.3.205.11 https://mirrors.aliyun.com/debia 
+n/ 2>&1 | head -n 6; curl -q -4 --noproxy '*' -I -sS --connect-timeout 4 --max-time 6 http://10. 
+0.0.1/ 2>&1 | head -n 9; ip neigh show 10.0.0.1; echo WEB_PATH_TEST_DONE
+
+WEB_PATH_TEST
+curl: (28) Connection timed out after 4003 milliseconds
+curl: (35) TLS connect error: error:0A000126:SSL routines::unexpected eof while reading
+HTTP/1.1 200 OK
+
+Connection: Keep-Alive
+
+Keep-Alive: timeout=20
+
+ETag: "2037-298-696452f0"
+
+Last-Modified: Mon, 12 Jan 2026 01:48:32 GMT
+
+Date: Mon, 16 Nov 2026 09:32:50 GMT
+
+Content-Type: text/html
+
+Content-Length: 664
+
+10.0.0.1 dev end0 lladdr 60:be:b4:01:48:ac REACHABLE 
+WEB_PATH_TEST_DONE
+root@t736:~# 

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v22-hs200-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v22",
+  "baseline_release": "6.18.63-t736-storage-v21",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "source_tree": "sources/work/linux-storage-v22",
+  "output_tree": "build/linux-storage-v22",
+  "design": "evidence/storage-hs200-design-20261116.json",
+  "default_hs200_enabled": false,
+  "first_stage_hs200_hz": 100000000,
+  "later_stage_hs200_hz": 200000000,
+  "boot_parameters": [
+    "t736_mmc_pio.enable_hs200=1",
+    "t736_mmc_pio.hs200_max_hz=100000000"
+  ],
+  "tuning": "64 linear taps,20 fresh128B patterns/tap,window>=12,16 center verification patterns",
+  "flow_control": "HS200 per-request128/512B THLD; preserves SFC/BCIG; restores legacy policy on exit",
+  "shared_pll_or_rail_writes": false,
+  "hs400_enabled": false,
+  "dt_delta": "None; exact v21 DTB hash",
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v22_6.18.63-22_arm64.deb",
+    "size": 5601780,
+    "sha256": "8a6eb70cdc43190df40c2c06d2683a666a9b73e870bf79674321514fd986108f"
+  },
+  "files": {
+    "build/linux-storage-v22/.config": "04ab0af6fcb29c0dfe2934590a2cb9f9b9943828930c6f9164814e8019d9428e",
+    "build/linux-storage-v22/arch/arm64/boot/Image": "5da7204332a670084a2a8de630e5f33004c920a1f238f4e2b8dee4de9766fbc2",
+    "build/linux-storage-v22/arch/arm64/boot/Image.gz": "b652ac7920053b87dbe7ea6eb967d255b4ddcb03a3261c55866755b9a496588a",
+    "build/linux-storage-v22/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "build/linux-storage-v22/System.map": "77ba54fb73d3bbfaa59b525ad558bc3ea8fc77106522cb77966c7af78c7510f7",
+    "build/linux-storage-v22/Module.symvers": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "boards/t736_mmc_hs200_draft.c": "db179f33c161bd134d13698df41f41e6973f5465bd2e2c84777cadca68f57bbe",
+    "boards/t736_mmc_clock_hs200_draft.h": "33f4c8eae7d5b7c73534e07c4c24652a01d0400fc00f286b9212116ee83cd5a2",
+    "boards/t736_mmc_tuning_draft.h": "2ba574aec0bf5fe06d4d0a90319891c0c3c7b2871cbdddaa6ae004e91d66eeb0",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tools/build_hs200_storage_kernel.sh": "6ec654f78588284815a11534b254a03bf693a9dffff005f1ff8ff3fb67054835"
+  },
+  "frozen_v21_files_unchanged": true,
+  "board_validation": "pending100MHz then200MHz one-shot tuning/integrity/performance/GPU; defaults remain existing fallback"
+}

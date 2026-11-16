@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-16",
+  "archive": "build/private/source-v7-preserved-state.tgz",
+  "archive_sha256": "112f8cce9f34177942894c6eade825d41e03068908d0759aba95f4edcca064c9",
+  "inspection": "Read-only tarfile member pax_headers; counts nonempty ACL/xattr metadata only",
+  "nonempty_acl_xattr_members": 0,
+  "metadata_keys": {},
+  "active_prepare_impact": "No ACL/xattr metadata to lose; running builder need not restore archive again",
+  "reproduction_update": "Source extraction now explicitly requests --acls --xattrs --xattrs-include=*",
+  "board_accessed": false
+}

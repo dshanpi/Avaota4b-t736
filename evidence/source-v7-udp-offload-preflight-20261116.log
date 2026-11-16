@@ -1,0 +1,5 @@
+ethtool -k end0 | grep -E "checksum|tx-udp|rx-check"; printf "CHECKSUM_FEATURES_DONE\n"
+
+-bash: ethtool: command not found
+CHECKSUM_FEATURES_DONE
+root@t736:~# 

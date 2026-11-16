@@ -1,0 +1,19 @@
+{
+  "files": {
+    "t736-gpu-helpers-storage-v16.tar.gz": {
+      "path": "output/t736-gpu-helpers-storage-v16.tar.gz",
+      "bytes": 10968,
+      "sha256": "dcd18279f86deb1815c975e1f7191c151ecdfd7e912a2c184f5f889eb751905a"
+    },
+    "t736-cpu-clock-readonly-storage-v16.ko": {
+      "path": "output/t736-cpu-clock-readonly-storage-v16.ko",
+      "bytes": 7416,
+      "sha256": "175f47bdf40cc42dae47a01e0c375b04d83acf802946539005d0a51ba3ddaf91"
+    },
+    "gpu-helpers-manifest.json": {
+      "path": "build/gpu-helpers-storage-v16/manifest.json",
+      "bytes": 1762,
+      "sha256": "64dbaa8171f0cc817df6d11310ef131959acdf0883ec36351dc3bdd0a1deabc3"
+    }
+  }
+}

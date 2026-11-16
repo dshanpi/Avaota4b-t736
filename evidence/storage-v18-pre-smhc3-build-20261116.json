@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "kind": "t736-dma-v18-kernel-candidate",
+  "status": "superseded-before-board-test",
+  "kernel_release": "6.18.63-t736-storage-v18",
+  "baseline_release": "6.18.63-t736-storage-v16",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "dt_changes": [
+    "SMHC3 resources: shared CCU STORE_MBUS 0x020025e0 and MSI_LITE1 0x0200259c"
+  ],
+  "storage_clock_hz": 12000000,
+  "max_request_bytes": 65536,
+  "dma_enabled": true,
+  "dma_address_bits": 32,
+  "descriptor_address_shift": 2,
+  "descriptor_segment_bytes": 1024,
+  "voltage_or_timing_change": false,
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v18_6.18.63-18_arm64.deb",
+    "size": 5591130,
+    "sha256": "3e1f776f3ab785b645cf3e0301344b68f0f643c5747ee4f522f31c53bf108f2d"
+  },
+  "baseline_files": {
+    "build/linux-storage-v16/.config": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e",
+    "build/linux-storage-v16/arch/arm64/boot/Image": "86d49744a35fd1260ff81f1d351a15b4c1dc28943b846696d8117ba5a9f7937d",
+    "boards/t736_mmc_pio_v2.c": "f4e33965e36756214abb48425e90a32ca44da14175a3a613aa29a059a83a5e02"
+  },
+  "files": {
+    "boards/t736_mmc_dma_v18.c": "d32cd6e1abda0c7c313d999c5d40a2aa2856b16507eebc1bf186ee2a357ba275",
+    "boards/t736_mmc_dma_desc.h": "b4d7184336abec047a75733de4015d4bc8ae68e15395f848023b58c632b8608f",
+    "sources/work/linux-storage-v18/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts": "583c6429c6f1ac15b07ad6cae301533f2454f894d27f6da4e01c7ce039c4cb69",
+    "build/linux-storage-v18/.config": "7f257a234e1e3e7dc8af46d090ccd9b6c789c2fdb7eec6bf01c3a2395b4db4e7",
+    "build/linux-storage-v18/arch/arm64/boot/Image": "b327ddb70237371b53b3f41cbc43f8a1eb2eb3ad6528ab34de4c6733f197534f",
+    "build/linux-storage-v18/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "11a447559d221231582d01260127b6a96ed5a41094bea656eedf94a8a775d667",
+    "build/linux-storage-v18/Module.symvers": "9813e3b9b67d85cb230cf921dd984154868d53e8df9b33d1d88325c460d5106c"
+  },
+  "board_validation": "pending; verify cold boot, rootfs reads, bounded scratch-file write/read hashes, throughput and dmesg before promotion",
+  "reason": "A733 SMHC3-specific manual supersedes generic donor flags: reserved DES0/DMAC/IDST fields removed. Previous package not deployed."
+}

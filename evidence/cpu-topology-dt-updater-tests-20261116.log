@@ -1,0 +1,14 @@
+{
+  "scope": "Linux temporary-directory transactions with mocked platform/model/root identity; no board access",
+  "tests": [
+    "default check makes no file changes",
+    "apply exact candidate with valid original backup",
+    "repeat apply is idempotent",
+    "rollback exact original and readback",
+    "bad candidate rejected without writes",
+    "unknown target rejected without writes"
+  ],
+  "pass": true
+}
+
+exit 0

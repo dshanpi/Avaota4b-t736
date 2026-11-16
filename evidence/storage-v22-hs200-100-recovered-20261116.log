@@ -1,0 +1,12 @@
+6.18.63-t736-storage-v22
+0efb1034-4c52-4c73-96de-8a8db4386a96
+clock:		100000000 Hz
+actual clock:	100000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	9 (mmc HS200)
+signal voltage:	1 (1.80 V)
+driver type:	0 (driver type B)

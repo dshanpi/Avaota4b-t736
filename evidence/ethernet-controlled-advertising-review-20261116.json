@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "kind": "ethernet-controlled-advertising-observation",
+  "date": "2026-11-16",
+  "board_operator": "root",
+  "reviewer": "backup_audit",
+  "files_sha256": {
+    "evidence/storage-v16-phy-readvertise-controlled-20261116.log": "f29478c96175851a0a5d538ddc3d683ab9d6910cf5f88ce7e2cf00717d663dc0",
+    "evidence/storage-v16-phy-readvertise-restored-20261116.log": "b158006d80018bb48c199f24907f463b2970e86415d505cbf7ad7e94ef99d06d",
+    "tools/validation/read_link_advertising.py": "b2bf50ccc34ccc3671a55437b59468bb2267dbfc15eba5f80cd1a1eff29025e0"
+  },
+  "original_advertising_mask": "0x62ef",
+  "temporary_advertising_mask": "0x62eb",
+  "changed_bit_only": "100baseT/Half removed; autoneg and all other bits including 10/100/1000 Full, Pause and Asym_Pause preserved",
+  "method": "standard ethtool link setting update to trigger actual phylib advertisement rewrite; no forced 1000, no direct advertisement register writes",
+  "observations": [
+    {
+      "stage": "approximately 1 second after temporary-mask change",
+      "ctrl1000_page_0xa42": "0x0200",
+      "ctrl1000_page_0": "0x0200",
+      "interpretation": "standard software advertisement path can set 1000 Full hardware advertisement bit"
+    },
+    {
+      "stage": "approximately 13 seconds later",
+      "speed_mbps": 100,
+      "duplex": "full",
+      "kernel_message": "Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps"
+    },
+    {
+      "stage": "original mask restored and another negotiation completed",
+      "restoration_exit_code": 0,
+      "advertising_ioctl_readback": "0x62ef",
+      "speed_mbps": 100,
+      "duplex": "full",
+      "ctrl1000_page_0xa42": "0x0000",
+      "ctrl1000_page_0": "0x0000",
+      "pause_and_asym_pause": true
+    }
+  ],
+  "conclusions": [
+    "A zero reg9 after link establishment is insufficient evidence of a missing driver initialization write. The standard advertisement rewrite is observed to work.",
+    "This sequence is consistent with negotiation followed by downshift; it does not identify which hardware or software mechanism later clears reg9.",
+    "Both page views agree. PHY delay/ALDPS/CLKOUT configuration remains unchanged.",
+    "Original complete advertising mask has been restored and read back. Stable 100Mbps remains the operational state.",
+    "No cable fault is established by the generic kernel message. Gigabit requires a future physical/control comparison and is not accepted."
+  ],
+  "gigabit_accepted": false,
+  "further_link_changes_planned": false
+}

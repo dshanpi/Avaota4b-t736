@@ -1,0 +1,26 @@
+SPL fixed efex: entering BootROM FEL at 0x20
+
+T736 source SRAM host + authorized libdram v1
+init_DRAM begin seed tpr3=110000 tpr13=60
+DRAM BOOT DRIVE INFO: V0.6035
+DDR rail dcdc8 requested=1100 effective=1100 rc=0
+DDR rail eldo1 requested=660 effective=650 rc=0
+DRAM_VCC set to 1100 mv
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+[AUTO DEBUG]16 bit,2 ranks training success!
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+DRAM CLK =1800 MHZ
+DRAM Type =8 (8:LPDDR4,9:LPDDR5)
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+Actual DRAM SIZE =8192 M
+DRAM SIZE =8192 MBytes, para1 = 311a, para2 = 20001001, dram_tpr13 = 6063
+DRAM simple test OK.
+init_DRAM returned 8192 MiB, ticks=391953169
+MEM PASS: 8 x 64KiB windows, 4 address/data patterns, 524288 words checked; upper physical RAM pending

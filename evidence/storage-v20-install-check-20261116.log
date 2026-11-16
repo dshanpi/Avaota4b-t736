@@ -1,0 +1,12 @@
+/home/t736/update_t736_storage_v20.py: 成功
+{
+  "status": "CHECK_PASS",
+  "running_release": "6.18.63-t736-storage-v19",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v20",
+  "write_attempted": false,
+  "hardware_accepted": false,
+  "baseline_files": 94,
+  "kernel_sha256": "107f0359050f6dcf5a806cc26e995c41462fc77393e5414eb4307c53f35f5e11",
+  "pvr_sha256": "2a9bd492c5b69785639c2afa3df0b1499196fedc028dc1d4f769b05e96e95132"
+}

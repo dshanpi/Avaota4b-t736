@@ -1,0 +1,194 @@
+{
+  "recorded_at": "2026-11-16T03:17:29.469924+00:00",
+  "purpose": "Read-only network diagnosis while source-v7 prepare continues",
+  "package_path": "pool/main/f/fonts-noto/fonts-noto-core_20201225-2_all.deb",
+  "range": "bytes=0-262143",
+  "apt_pid": 3495231,
+  "sample_seconds": 1.5347893349826336,
+  "apt_cache_before": {
+    "total_bytes": 70682176,
+    "files": 85,
+    "partial": {
+      "libabsl20240722_20240722.0-4_arm64.deb": 291920,
+      "firefox-esr_153.7.0esr-1~deb13u1_arm64.deb": 31390656
+    }
+  },
+  "apt_cache_after": {
+    "total_bytes": 71102256,
+    "files": 85,
+    "partial": {
+      "libabsl20240722_20240722.0-4_arm64.deb": 447136,
+      "firefox-esr_153.7.0esr-1~deb13u1_arm64.deb": 31655520
+    }
+  },
+  "apt_download_bytes_per_second": 273705.31604896334,
+  "mirror_tests": [
+    {
+      "base": "http://deb.debian.org/debian",
+      "exit_code": 0,
+      "error": "",
+      "http_code": 206,
+      "remote_ip": "146.75.114.132",
+      "size_download": 262144,
+      "speed_download": 987701,
+      "time_connect": 0.064034,
+      "time_appconnect": 0.0,
+      "time_starttransfer": 0.121252,
+      "time_total": 0.265408,
+      "url_effective": "http://deb.debian.org/debian/pool/main/f/fonts-noto/fonts-noto-core_20201225-2_all.deb"
+    },
+    {
+      "base": "https://deb.debian.org/debian",
+      "exit_code": 0,
+      "error": "",
+      "http_code": 206,
+      "remote_ip": "146.75.114.132",
+      "size_download": 262144,
+      "speed_download": 789447,
+      "time_connect": 0.063989,
+      "time_appconnect": 0.126418,
+      "time_starttransfer": 0.188336,
+      "time_total": 0.33206,
+      "url_effective": "https://deb.debian.org/debian/pool/main/f/fonts-noto/fonts-noto-core_20201225-2_all.deb"
+    },
+    {
+      "base": "https://mirrors.tuna.tsinghua.edu.cn/debian",
+      "exit_code": 0,
+      "error": "",
+      "http_code": 206,
+      "remote_ip": "101.6.15.130",
+      "size_download": 262144,
+      "speed_download": 179974,
+      "time_connect": 0.193471,
+      "time_appconnect": 0.390892,
+      "time_starttransfer": 0.798695,
+      "time_total": 1.456564,
+      "url_effective": "https://mirrors.tuna.tsinghua.edu.cn/debian/pool/main/f/fonts-noto/fonts-noto-core_20201225-2_all.deb"
+    },
+    {
+      "base": "https://mirrors.ustc.edu.cn/debian",
+      "exit_code": 0,
+      "error": "",
+      "http_code": 206,
+      "remote_ip": "202.141.160.110",
+      "size_download": 262144,
+      "speed_download": 1386587,
+      "time_connect": 0.031054,
+      "time_appconnect": 0.065028,
+      "time_starttransfer": 0.091854,
+      "time_total": 0.189057,
+      "url_effective": "https://mirrors.ustc.edu.cn/debian/pool/main/f/fonts-noto/fonts-noto-core_20201225-2_all.deb"
+    },
+    {
+      "base": "https://mirrors.aliyun.com/debian",
+      "exit_code": 0,
+      "error": "",
+      "http_code": 206,
+      "remote_ip": "175.4.30.43",
+      "size_download": 262144,
+      "speed_download": 1261083,
+      "time_connect": 0.031709,
+      "time_appconnect": 0.061208,
+      "time_starttransfer": 0.150319,
+      "time_total": 0.207872,
+      "url_effective": "https://mirrors.aliyun.com/debian/pool/main/f/fonts-noto/fonts-noto-core_20201225-2_all.deb"
+    }
+  ],
+  "mutations": "No apt/source/process/board changes; range downloads discarded to /dev/null",
+  "followup_1MiB_range_tests": [
+    {
+      "name": "apt_current_ip",
+      "base": "http://deb.debian.org/debian",
+      "exit_code": 0,
+      "error": "",
+      "http_code": 206,
+      "remote_ip": "199.232.162.132",
+      "size_download": 1048576,
+      "speed_download": 1074183,
+      "time_starttransfer": 0.121139,
+      "time_total": 0.976161
+    },
+    {
+      "name": "fresh_dns",
+      "base": "http://deb.debian.org/debian",
+      "exit_code": 0,
+      "error": "",
+      "http_code": 206,
+      "remote_ip": "146.75.114.132",
+      "size_download": 1048576,
+      "speed_download": 1479079,
+      "time_starttransfer": 0.118135,
+      "time_total": 0.708938
+    },
+    {
+      "name": "ustc",
+      "base": "https://mirrors.ustc.edu.cn/debian",
+      "exit_code": 0,
+      "error": "",
+      "http_code": 206,
+      "remote_ip": "202.38.95.110",
+      "size_download": 1048576,
+      "speed_download": 2355598,
+      "time_starttransfer": 0.120532,
+      "time_total": 0.445142
+    },
+    {
+      "name": "aliyun",
+      "base": "https://mirrors.aliyun.com/debian",
+      "exit_code": 0,
+      "error": "",
+      "http_code": 206,
+      "remote_ip": "183.60.240.56",
+      "size_download": 1048576,
+      "speed_download": 11684209,
+      "time_starttransfer": 0.056325,
+      "time_total": 0.089743
+    }
+  ],
+  "apt_connection_observation": {
+    "http_method_pids": [
+      3495656,
+      3495661
+    ],
+    "remote": "199.232.162.132:80",
+    "host_fresh_dns": "146.75.114.132",
+    "method_cpu_percent": [
+      2.2,
+      2.2
+    ],
+    "apt_cpu_percent": 5.8,
+    "apt_fetch_log_progress": "71 fonts-noto-core -> 88 libsvtav1enc2 while observing"
+  },
+  "apt_10s_sample": {
+    "before": {
+      "bytes": 87100064,
+      "count": 117
+    },
+    "after": {
+      "bytes": 89581377,
+      "count": 119
+    },
+    "seconds": 10.034596280951519,
+    "bytes_per_second": 247275.81763406156
+  },
+  "aliyun_head_checks": [
+    {
+      "url": "https://mirrors.aliyun.com/debian/dists/trixie/InRelease",
+      "exit_code": 0,
+      "http_code_time": "200 0.413299",
+      "error": ""
+    },
+    {
+      "url": "https://mirrors.aliyun.com/debian-security/dists/trixie-security/InRelease",
+      "exit_code": 0,
+      "http_code_time": "200 0.447048",
+      "error": ""
+    },
+    {
+      "url": "https://mirrors.aliyun.com/debian-security/pool/updates/main/f/firefox-esr/firefox-esr_153.7.0esr-1~deb13u1_arm64.deb",
+      "exit_code": 0,
+      "http_code_time": "200 0.678742",
+      "error": ""
+    }
+  ]
+}

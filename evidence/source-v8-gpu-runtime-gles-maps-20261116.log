@@ -1,0 +1,56 @@
+[drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+[drm] suxni tcon hdmi set rate: 148500000Hz and get diff: 148500000Hz
+for p in $(pidof Xorg gnome-shell); do echo PROCESS=$p; ps -p "$p" -o pid,user,args; tr '\0' '\n' </proc/$p/environ | grep -E '^(DISPLAY|XAUTHORITY|LD_LIBRARY_PATH|LIBGL_DRIVERS_PATH|COGL_DRIVER|LIBGL_ALWAYS_SOFTWARE|GALLIUM_DRIVER)='; awk '/libEGL|libGLES|libgbm|libpvr|libvulkan|pvr_dri|swrast|llvmpipe/ {print $NF}' /proc/$p/maps | sort -u; done; journalctl -b --since '-1 min' --no-pager | grep -Ei 'gnome-shell.*(error|EGL|renderer|fail)|symbol lookup' | tail -n 15; cat /sys/kernel/debug/pvr/status | head -n 20; echo RUNTIME_GLES_CHECK_DONE
+
+PROCESS=3495
+    PID USER     COMMAND
+   3495 Debian-+ /usr/lib/xorg/Xorg vt1 -displayfd 3 -auth /run/user/101/gdm/Xauthority -noliste
+LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles
+COGL_DRIVER=gles2
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+/opt/t736-img-ddk-24.2-x11/lib/dri/swrast_dri.so
+/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887
+PROCESS=3525
+    PID USER     COMMAND
+   3525 Debian-+ /usr/bin/gnome-shell
+LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles
+COGL_DRIVER=gles2
+DISPLAY=:0
+XAUTHORITY=/run/user/101/gdm/Xauthority
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887
+/usr/lib/aarch64-linux-gnu/libvulkan.so.1.4.309
+11月 16 08:06:52 t736 gnome-shell[3525]: Obtained a high priority EGL context
+11月 16 08:06:53 t736 gnome-shell[3525]: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+11月 16 08:07:00 t736 gnome-shell[3525]: Failed to parse saved session file: 打开文件“/var/lib/gdm3/.config/mutter/sessions/1025bc268cbecd7745179481641165182300000035100000.ms”失败：没有那个文件或目录
+11月 16 08:07:01 t736 gnome-shell[3525]: Error looking up permission: GDBus.Error:org.freedesktop.portal.Error.NotFound: No entry for geolocation
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+RUNTIME_GLES_CHECK_DONE
+root@t736:~# 

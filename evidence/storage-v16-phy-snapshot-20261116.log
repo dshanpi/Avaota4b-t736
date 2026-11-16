@@ -1,0 +1,17 @@
+t736-phy-snapshot.ko: 成功
+6.18.63-t736-storage-v16 SMP mod_unload aarch64
+[  910.940126] t736-phy-snapshot: begin id=001cc916 address=1 original_page=0a42
+[  910.940159] t736-phy-snapshot: reads consume BMSR latches and STAT1000 fault/idle-error status
+[  910.940165] t736-phy-snapshot: BMCR page=0000 reg=00 value=1040
+[  910.940175] t736-phy-snapshot: BMSR_first page=0000 reg=01 value=79ad
+[  910.940182] t736-phy-snapshot: BMSR_current page=0000 reg=01 value=79ad
+[  910.940190] t736-phy-snapshot: ADVERTISE page=0000 reg=04 value=0de1
+[  910.940197] t736-phy-snapshot: LPA page=0000 reg=05 value=dde1
+[  910.940204] t736-phy-snapshot: CTRL1000 page=0000 reg=09 value=0000
+[  910.940211] t736-phy-snapshot: STAT1000 page=0000 reg=0a value=0800
+[  910.940218] t736-phy-snapshot: ESTATUS page=0000 reg=0f value=2000
+[  910.940225] t736-phy-snapshot: PHYCR1 page=0a43 reg=18 value=2118
+[  910.940232] t736-phy-snapshot: PHYCR2 page=0a43 reg=19 value=0843
+[  910.940239] t736-phy-snapshot: TX_DELAY page=0d08 reg=11 value=0009
+[  910.940246] t736-phy-snapshot: RX_DELAY page=0d08 reg=15 value=0019
+[  910.940253] t736-phy-snapshot: end original_page=0a42 final_page=0a42 restore_rc=0 rc=0; writes_limited_to_page_selector=1

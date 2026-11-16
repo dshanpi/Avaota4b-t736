@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-16",
+  "status": "CPU_C_COMPILED_REVIEWED_PACKAGED; COLD_BOOT_PENDING",
+  "files_sha256": {
+    "build/source-uboot-cpu-c/output/u-boot.bin": "31feddf61f98efd327ed82da5018a2b156a50aaedc394d3d160b556eccffafbe",
+    "build/source-uboot-cpu-c/output/build-record.json": "cdacf273af5d0676f2f2b09a5bb52cb90993d4a6e49af2d8ddf04016e1a82dc9",
+    "output/t736-source-boot-package-cpu-c.bin": "a7e2e06cc9843a9d2fbd37514d9923f3ed8fcd23fd7fc09f30e484f1774a721d",
+    "output/t736-source-boot-package-cpu-c.manifest.json": "75191aa1f47dcee39881df02034759af1162ab0bb395f26910697ad17ab499ad",
+    "tools/validation/update_t736_cpu_c.py": "af5b58e8e953b6f67b3dc30f3d34837c5c7e845c9b2fa54adb17c09919395b4c",
+    "tools/pack_t736_cpu_c_boot.py": "9dc1455b57d2a4c956e1bf22905cdb10fa5781bbea50aae5707085316ffff6c2"
+  },
+  "frozen_cpu_source_sha256": "e56bb498000365b5cfe36931008b9143fee718caa74c268c95fd089bddccd4ce",
+  "change": "Independent C candidate replaces B1 direct cold N39 with exactly runtime-v4 cold N32/ext2=416 then warm N39/ext1=1014; existing guarded single-bootstrap A55 warm routine reused. B1/B2 frozen.",
+  "diagnostics": "Every A76 mux/control/update/lock step captures before/desired/actual and CTRL/STAT/CLK before printf; first failure retained before rollback; generic failure step80 covers PMIC/guard/delay with no earlier write failure. Normal steps1..19, rollback90..93.",
+  "safety": [
+    "Known old/requested N only at runtime-v4 EN/LOCK_EN stages",
+    "Explicit enabled UPDATE carries cached target N; strict CTRL/STAT and3LOCK samples+20us",
+    "Guard A55/DSU/BACK/modulation/XO and B PPUsOFF",
+    "PMIC owner requires inherited900mV and exact pre/post snapshot",
+    "A76 fallback verified slow/PLLoff retaining N20/32/39, no disabled UPDATE; unsafe guard/rollback halts",
+    "A55 keepsPLL_EN, explicitlymasksI/F and usesDSB/ISB, any mutation/guard failurehalts"
+  ],
+  "validation": {
+    "build": "full independent source extraction/config hash gates/host suites/compiler/source hashes passed",
+    "native": "B1+A76-C+A55 native fault suites passed; no physical inference from models",
+    "independent_package": "event_review separate struct/zlib parser verified header/payload CRC/hash, zero padding, exact firsttwo payload equality, final UBoot bytes, size633/end25209",
+    "updater": "event_review source review; six memory-backed transaction cases PASS: success/partial-write/readback corruption/success-journal fsync/rollback failure/backup failure"
+  },
+  "update": {
+    "baseline": "actual stored B2, SHA306fb10d7612c7fcc9bd16b8588737e3153c67103ea470226b34c7d28fdbcfa1,631sectors",
+    "new": "C633sectors",
+    "range": "24576..25208",
+    "backup": "entire633sectors including2extra beyondB2,fsync",
+    "rollback": "entire633sectors directwrite/readverify",
+    "reboot": false
+  },
+  "delivery": "evidence/cpu-c-delivery-http-20261116.json; exact3files, board192.168.1.53,1hourauto-close",
+  "limits": [
+    "No hardware operation by child agents",
+    "C coldboot and desktop acceptance pending root",
+    "B2 storage write passed but CPUcoldboot failed safe; not finalimage success",
+    "CPU0 hotplug remains unsupported",
+    "v10 wholeimage build stillonhold awaitingCPU/Firefox acceptance"
+  ]
+}

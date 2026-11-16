@@ -1,0 +1,13 @@
+--- a/services/server/env/linux/pvr_drm.c
++++ b/services/server/env/linux/pvr_drm.c
+@@ -506,6 +506,10 @@
+ 
+ const struct file_operations pvr_drm_fops = {
+ 	.owner			= THIS_MODULE,
++#ifdef FOP_UNSIGNED_OFFSET
++	/* DRM requires unsigned mmap offsets in the file operations. */
++	.fop_flags		= FOP_UNSIGNED_OFFSET,
++#endif
+ 	.open			= drm_open,
+ 	.release		= drm_release,
+ 	.unlocked_ioctl		= drm_ioctl,

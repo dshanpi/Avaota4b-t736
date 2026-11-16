@@ -1,0 +1,29 @@
+6.18.63-t736-storage-v16
+7959b985-70da-4b12-b632-ebff7bd14ca8
+vmlinuz-6.18.63-t736-storage-v16
+initrd.img-6.18.63-t736-storage-v16
+6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b  /boot/dtb/allwinner/t736-mainline-bringup.dtb
+/dev/mmcblk0p4 rw,noatime
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 

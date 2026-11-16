@@ -1,0 +1,70 @@
+{
+  "v16": {
+    "cpu_seconds_delta": {
+      "user": 2.64,
+      "nice": 0.02,
+      "system": 11.27,
+      "idle": 465.76,
+      "iowait": 65.26,
+      "irq": 0.0,
+      "softirq": 0.0,
+      "steal": 0.0,
+      "guest": 0.0,
+      "guest_nice": 0.0
+    },
+    "disk_stat_delta": [
+      17682,
+      0,
+      280488,
+      42572,
+      8813,
+      142,
+      134784,
+      24696,
+      0,
+      65244,
+      67463,
+      0,
+      0,
+      0,
+      0,
+      30,
+      196
+    ],
+    "note": "whole-system interval includes all tasks; v16 32MiB, v19 8MiB workload, not equal-duration comparison"
+  },
+  "v19": {
+    "cpu_seconds_delta": {
+      "user": 0.35,
+      "nice": 0.0,
+      "system": 0.04,
+      "idle": 366.15,
+      "iowait": 52.21,
+      "irq": 0.0,
+      "softirq": 0.0,
+      "steal": 0.0,
+      "guest": 0.0,
+      "guest_nice": 0.0
+    },
+    "disk_stat_delta": [
+      4671,
+      56,
+      86352,
+      29629,
+      2221,
+      73,
+      33744,
+      25238,
+      0,
+      51996,
+      55206,
+      0,
+      0,
+      0,
+      0,
+      18,
+      339
+    ],
+    "note": "whole-system interval includes all tasks; v16 32MiB, v19 8MiB workload, not equal-duration comparison"
+  }
+}

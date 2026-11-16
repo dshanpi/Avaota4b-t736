@@ -1,0 +1,23 @@
+	                                     100baseT/Half 100baseT/Full
+	                                     1000baseT/Full
+	Link partner advertised pause frame use: Symmetric Receive-only
+	Link partner advertised auto-negotiation: Yes
+	Link partner advertised FEC modes: Not reported
+	Speed: 100Mb/s
+	Duplex: Full
+	Auto-negotiation: on
+	master-slave cfg: preferred slave
+	Port: Twisted Pair
+	PHYAD: 1
+	Transceiver: external
+	MDI-X: Unknown
+	Supports Wake-on: ug
+	Wake-on: d
+        Current message level: 0x0000003f (63)
+                               drv probe link timer ifdown ifup
+	Link detected: yes
+[   24.320586] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[   24.336600] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+[  944.010762] t736-dwmac 4500000.ethernet end0: Link is Down
+[  955.622281] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[  955.638303] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx

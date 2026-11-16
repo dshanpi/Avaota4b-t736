@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-16",
+  "change": "Set pvr_drm_fops.fop_flags=FOP_UNSIGNED_OFFSET when the macro exists; keep DRM open and DDK open callbacks unchanged.",
+  "reason": "Linux 6.18 drm_open_helper drm_file.c:329 rejects file_operations without FOP_UNSIGNED_OFFSET with WARN and -EINVAL, before drm_file_alloc or the DDK open callback.",
+  "reference": "Linux include/drm/drm_gem.h DRM_GEM_FOPS uses .fop_flags=FOP_UNSIGNED_OFFSET; include/linux/fs.h defines it as a macro and file_operations field.",
+  "validation": [
+    "Incremental CC/LD/MODPOST succeeded; existing MODULE_DESCRIPTION warning only",
+    "Hash-bound delta applied and target SHA256 verified",
+    "No GPU, power, clock, firmware, ABI or bridge flow changed",
+    "Full accumulated patch replayed against 16 untouched donor files; every result byte matches isolated source"
+  ],
+  "files": [
+    {
+      "path": "/home/ubuntu/t736-mainline/output/pvrsrvkm-6.18.63-t736-gpu-v15-fops.ko",
+      "size": 1913784,
+      "sha256": "605305b2384f72b013236885f52f527f725ff2ae62c29d694f4aad025b769939"
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/output/pvrsrvkm-prod-to-fops.delta",
+      "size": 205,
+      "sha256": "95ac0489ba74f908c96ac59e910ddc612cd256dd02664888c52ebc8e791a462a"
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/patches/pvr-bxm-24.2-linux-6.18-fop-unsigned-offset.patch",
+      "size": 401,
+      "sha256": "6994a4461c3b20dfcb2781092d34a864db6760eaf189ff45f86e9b2c1aace4f1"
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/patches/pvr-bxm-24.2-linux-6.18-t736-fixed400.patch",
+      "size": 50812,
+      "sha256": "6a265db9189e10db8b79ca56b00129f414b5765c085f8e2907f5561d62253be4"
+    }
+  ],
+  "delta_base_sha256": "485befc21972d597536af1146d03a723e5b801d3051696b33d6052680d8c104d",
+  "hardware_validation": {
+    "status": "GBM/OpenGL ES test passed on live board",
+    "module_sha256": "605305b2384f72b013236885f52f527f725ff2ae62c29d694f4aad025b769939",
+    "firmware": "rgx.fw.36.56.104.183 loaded",
+    "shader": "rgx.sh.36.56.104.183 loaded",
+    "renderer": "PowerVR B-Series BXM-4-64",
+    "gl_version": "OpenGL ES 3.2 build 24.2@6603887",
+    "render_node": "/dev/dri/renderD128",
+    "frames": 60,
+    "quadrants": 4,
+    "pixel_readback": "verified",
+    "gbm_dma_buf": "passed, reported by root board operator",
+    "evidence_log": {
+      "path": "mainline/evidence/source-v8-gpu-gbm-fops-20261116.log",
+      "sha256": "691e37928451729d6979cee52afcdb41b8f9b78fc8ee8dc082e931626a570f60"
+    },
+    "scope": "Current live boot with independently enabled PLL_GPU0 and diagnostic power provider; integrated-kernel cold boot and GDM/Xorg acceptance not yet covered."
+  },
+  "retained_original_production_module": {
+    "path": "mainline\\output\\pvrsrvkm-6.18.63-t736-gpu-v15.ko",
+    "sha256": "485befc21972d597536af1146d03a723e5b801d3051696b33d6052680d8c104d",
+    "unchanged": true
+  }
+}

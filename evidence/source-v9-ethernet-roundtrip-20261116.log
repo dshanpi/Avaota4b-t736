@@ -1,0 +1,17 @@
+curl -f --connect-timeout 5 --max-time 10 http://192.168.1.228:18738/019616b4714c29 
+6bfdb616c8/client.py -o /run/t736-net-roundtrip.py && timeout 240 python3 /run/t736-net-roundtri 
+p.py http://192.168.1.228:18738/019616b4714c296bfdb616c8 --output /root/source-v9-validation/eth 
+ernet-roundtrip-20261116.json; echo NETWORK_ROUNDTRIP_RC=$?; echo NETWORK_ROUNDTRIP_DONE
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  5589  100  5589    0     0  1413k      0 --:--:-- --:--:-- --:--:-- 1819k
+{"round": 1, "download": {"bytes": 67108864, "seconds": 5.74463652899999, "mbps": 93.45602794707308, "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc"}, "upload": {"bytes": 67108864, "seconds": 5.715951688999894, "mbps": 93.9250261742389, "server": {"method": "POST", "client": "192.168.1.53", "bytes": 67108864, "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc", "match": true, "seconds": 5.706665195990354, "mbps": 94.0778709739655, "error": null}}, "link_speed": "100"}
+{"round": 2, "download": {"bytes": 67108864, "seconds": 5.748850064999942, "mbps": 93.38753071132764, "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc"}, "upload": {"bytes": 67108864, "seconds": 5.714857194999922, "mbps": 93.94301444132714, "server": {"method": "POST", "client": "192.168.1.53", "bytes": 67108864, "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc", "match": true, "seconds": 5.70652612298727, "mbps": 94.08016373347593, "error": null}}, "link_speed": "100"}
+{"round": 3, "download": {"bytes": 67108864, "seconds": 5.737984159999996, "mbps": 93.56437679674605, "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc"}, "upload": {"bytes": 67108864, "seconds": 5.712527883999883, "mbps": 93.98132016190453, "server": {"method": "POST", "client": "192.168.1.53", "bytes": 67108864, "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc", "match": true, "seconds": 5.706122645991854, "mbps": 94.08681609343144, "error": null}}, "link_speed": "100"}
+{"accepted": true, "output": "/root/source-v9-validation/ethernet-roundtrip-20261116.json", "error": null}
+NETWORK_ROUNDTRIP_RC=0
+NETWORK_ROUNDTRIP_DONE
+root@t736:~# 

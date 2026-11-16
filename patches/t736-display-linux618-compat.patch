@@ -210,6 +210,234 @@
  }
  #if LINUX_VERSION_CODE < KERNEL_VERSION(5, 15, 0)
  static void sunxi_plane_atomic_async_update(struct drm_plane *plane,
+@@ -1038,12 +1039,10 @@
+ 	struct display_channel_state *state;
+ 	int i;
+ 
+-	if (plane->state) {
+-		state = to_display_channel_state(plane->state);
++	if (plane->state)
+ 		sunxi_atomic_plane_destroy_state(plane, plane->state);
+-	} else {
+-		kfree(state);
+-	}
++	plane->state = NULL;
++
+ 	state = kzalloc(sizeof(*state), GFP_KERNEL);
+ 	if (!state) {
+ 		DRM_ERROR("%s fail, no mem\n", __FUNCTION__);
+@@ -1052,6 +1051,11 @@
+ 
+ 	/* prepare for pqd */
+ 	state->frontend_blob = drm_property_create_blob(plane->dev, sizeof(struct de_frontend_data), NULL);
++	if (IS_ERR(state->frontend_blob)) {
++		DRM_ERROR("%s fail, no frontend blob\n", __func__);
++		kfree(state);
++		return;
++	}
+ 
+ 	__drm_atomic_helper_plane_reset(plane, &state->base);
+ 	for (i = 0; i < MAX_LAYER_NUM_PER_CHN - 1; i++) {
+@@ -1602,20 +1606,29 @@
+ }
+ 
+ static void sunxi_crtc_finish_page_flip(struct drm_device *dev,
+-					struct sunxi_drm_crtc *scrtc)
++					struct sunxi_drm_crtc *scrtc, bool force)
+ {
+ 	unsigned long flags;
+ 
+ 	/* send the vblank of drm_crtc_state->event */
+ 	spin_lock_irqsave(&dev->event_lock, flags);
+-	if (scrtc->event && scrtc->should_send_vblank) {
++	if (scrtc->event && (force || scrtc->should_send_vblank)) {
+ 		drm_crtc_send_vblank_event(&scrtc->crtc, scrtc->event);
++		drm_crtc_vblank_put(&scrtc->crtc);
+ 		scrtc->vblank_trace++;
+ 		SUNXIDRM_TRACE_INT2("crtc-vblank", scrtc->hw_id, scrtc->vblank_trace & 1);
+ 		scrtc->event = NULL;
+ 		scrtc->should_send_vblank = 0;
+ 	}
++	if (force)
++		scrtc->should_send_vblank = 0;
+ 	spin_unlock_irqrestore(&dev->event_lock, flags);
++}
++
++static void sunxi_crtc_destroy(struct drm_crtc *crtc)
++{
++	sunxi_crtc_finish_page_flip(crtc->dev, to_sunxi_crtc(crtc), true);
++	drm_crtc_cleanup(crtc);
+ }
+ 
+ irqreturn_t sunxi_crtc_event_proc(int irq, void *crtc)
+@@ -1665,7 +1678,7 @@
+ 		 *
+ 		 * We need to identify these cases and prevent them from incorrectly triggering the fence of frame n+1.
+ 		 */
+-		sunxi_crtc_finish_page_flip(scrtc->crtc.dev, scrtc);
++		sunxi_crtc_finish_page_flip(scrtc->crtc.dev, scrtc, false);
+ 	}
+ 	return IRQ_HANDLED;
+ }
+@@ -1801,11 +1814,19 @@
+ 
+ static void sunxi_crtc_reset(struct drm_crtc *crtc)
+ {
+-	struct sunxi_crtc_state *state = kzalloc(sizeof(*state), GFP_KERNEL);
++	struct sunxi_crtc_state *state;
+ 	struct sunxi_drm_crtc *scrtc = to_sunxi_crtc(crtc);
+ 
+ 	if (crtc->state)
+ 		sunxi_crtc_destroy_state(crtc, crtc->state);
++	crtc->state = NULL;
++
++	state = kzalloc(sizeof(*state), GFP_KERNEL);
++	if (!state) {
++		DRM_ERROR("%s fail, no mem\n", __func__);
++		return;
++	}
++
+ 	state->px_fmt_space = DE_FORMAT_SPACE_RGB;
+ 	state->yuv_sampling = DE_YUV444;
+ 	state->eotf = DE_EOTF_BT709;
+@@ -1820,6 +1841,11 @@
+ 
+ 	/* prepare for pqd */
+ 	state->backend_blob = drm_property_create_blob(crtc->dev, sizeof(struct de_backend_data), NULL);
++	if (IS_ERR(state->backend_blob)) {
++		DRM_ERROR("%s fail, no backend blob\n", __func__);
++		kfree(state);
++		return;
++	}
+ 
+ 	__drm_atomic_helper_crtc_reset(crtc, &state->base);
+ }
+@@ -1999,16 +2025,17 @@
+ 	struct sunxi_crtc_state *scrtc_state = to_sunxi_crtc_state(crtc->state);
+ 
+ 	drm_crtc_vblank_off(crtc);
++	sunxi_crtc_finish_page_flip(crtc->dev, scrtc, true);
+ 
+ 	if (scrtc_state->frame_rate_change) {
+ 		DRM_DEBUG_KMS("%s: skip disable for VRR\n", __func__);
+-		return;
++		goto out;
+ 	}
+ 
+ 	DRM_INFO("[SUNXI-CRTC]%s\n", __func__);
+ 	if (!scrtc->enabled) {
+ 		DRM_ERROR("%s: crtc has been disabled\n", __func__);
+-		return;
++		goto out;
+ 	}
+ 
+ 	/* remove not finish wb  */
+@@ -2025,13 +2052,14 @@
+ 	scrtc->enabled = false;
+ 	sunxi_de_disable(scrtc->sunxi_de);
+ 
++out:
+ 	if (crtc->state->event && !crtc->state->active) {
+ 		spin_lock_irq(&crtc->dev->event_lock);
+ 		drm_crtc_send_vblank_event(crtc, crtc->state->event);
+ 		scrtc->vblank_trace++;
+ 		SUNXIDRM_TRACE_INT2("crtc-vblank", scrtc->hw_id, scrtc->vblank_trace & 1);
++		crtc->state->event = NULL;
+ 		spin_unlock_irq(&crtc->dev->event_lock);
+-		crtc->state->event = NULL;
+ 	}
+ }
+ 
+@@ -2045,20 +2073,11 @@
+ #endif
+ {
+ 	struct sunxi_drm_crtc *scrtc = to_sunxi_crtc(crtc);
+-	struct drm_device *dev = crtc->dev;
+-	unsigned long flags;
+ 	struct drm_plane *plane;
+ 	struct sunxi_drm_plane *sunxi_plane;
+ 
+ 	DRM_DEBUG_DRIVER("%s\n", __func__);
+ 	SUNXIDRM_TRACE_BEGIN(__func__);
+-	if (crtc->state->event) {
+-		drm_crtc_vblank_get(crtc);
+-		spin_lock_irqsave(&dev->event_lock, flags);
+-		scrtc->event = crtc->state->event;
+-		spin_unlock_irqrestore(&dev->event_lock, flags);
+-		crtc->state->event = NULL;
+-	}
+ 	drm_atomic_crtc_for_each_plane(plane, crtc) {
+ 		sunxi_plane = to_sunxi_plane(plane);
+ 		if (sunxi_plane->index == scrtc->fbdev_chn_id) {
+@@ -2086,6 +2105,7 @@
+ 	struct drm_crtc_state *new_state = crtc->state;
+ 	struct sunxi_crtc_state *scrtc_state = to_sunxi_crtc_state(new_state);
+ 	struct sunxi_de_flush_cfg cfg;
++	unsigned long flags;
+ 	void *backend_data;
+ 	bool all_dirty = crtc->state->mode_changed || (crtc->state->active_changed && crtc->state->active);
+ 	SUNXIDRM_TRACE_BEGIN(__func__);
+@@ -2123,12 +2143,33 @@
+ 
+ 	sunxi_wb_commit_done(scrtc);
+ 
++	/* Each stored event owns one vblank reference.  Take it only after
++	 * submitting the frame, so a failed get cannot complete an unflushed flip.
++	 */
++	spin_lock_irqsave(&crtc->dev->event_lock, flags);
++	if (new_state->event) {
++		/* Atomic helpers serialize flips; never leak an unexpected old one.
++		 * Preserve the ready flag set by this commit's RCQ submission.
++		 */
++		if (WARN_ON(scrtc->event)) {
++			drm_crtc_send_vblank_event(crtc, scrtc->event);
++			drm_crtc_vblank_put(crtc);
++			scrtc->event = NULL;
++		}
++		if (drm_crtc_vblank_get(crtc) == 0)
++			scrtc->event = new_state->event;
++		else
++			drm_crtc_send_vblank_event(crtc, new_state->event);
++		new_state->event = NULL;
++	}
++	spin_unlock_irqrestore(&crtc->dev->event_lock, flags);
++
+ 	/*
+ 	 * Ideally, the page_flip should be called within the vsync interrupt;
+ 	 * but if the interrupt is delayed, we perform the page_flip after the rcq_finished
+ 	 * to ensure that the fence of the current frame is signaled !
+ 	 */
+-	sunxi_crtc_finish_page_flip(crtc->dev, scrtc);
++	sunxi_crtc_finish_page_flip(crtc->dev, scrtc, false);
+ 
+ 	if (scrtc->fbdev_flush_pending) {
+ 		scrtc->fbdev_flush_pending = false;
+@@ -2303,7 +2344,7 @@
+ static const struct drm_crtc_funcs sunxi_crtc_funcs = {
+ 	.set_config = drm_atomic_helper_set_config,
+ 	.page_flip = drm_atomic_helper_page_flip,
+-	.destroy = drm_crtc_cleanup,
++	.destroy = sunxi_crtc_destroy,
+ 	.reset = sunxi_crtc_reset,
+ 	.atomic_print_state = sunxi_crtc_atomic_print_state,
+ 	.atomic_duplicate_state = sunxi_crtc_duplicate_state,
+@@ -2571,7 +2612,7 @@
+ 			drm_plane_cleanup(&scrtc->plane[i].plane);
+ 	}
+ 	if (scrtc->crtc.dev)
+-		drm_crtc_cleanup(&scrtc->crtc);
++		sunxi_crtc_destroy(&scrtc->crtc);
+ 	return ERR_PTR(-EINVAL);
+ }
+ 
+@@ -2587,5 +2628,5 @@
+ 	for (i = 0; i < scrtc->plane_cnt; i++) {
+ 		drm_plane_cleanup(&scrtc->plane[i].plane);
+ 	}
+-	drm_crtc_cleanup(&scrtc->crtc);
+-}
++	sunxi_crtc_destroy(&scrtc->crtc);
++}
 --- a/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c
 +++ b/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c
 @@ -93,6 +93,9 @@

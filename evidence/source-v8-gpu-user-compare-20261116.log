@@ -1,0 +1,33 @@
+DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority t736-img-run probe-x11 >/root/t736-gpu-debug/x11-root-current.log 2>&1; echo X11_ROOT_CURRENT_RC=$?; tail -n 8 /root/t736-gpu-debug/x11-root-current.log; runuser -u t736 -- env LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri /opt/t736-img-ddk-24.2-x11/bin/gpu-probe gbm /dev/dri/renderD128 >/root/t736-gpu-debug/gbm-user.log 2>&1; echo GBM_USER_RC=$?; tail -n 10 /root/t736-gpu-debug/gbm-user.log; dmesg | tail -n 12; echo GPU_USER_COMPARE_DONE
+
+X11_ROOT_CURRENT_RC=0
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+GBM_USER_RC=0
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+[ 2415.248647] [drm] sunxi-hdmi:    - pll: 0xE80F5A00, 0x00035000, 0x80000000, 0x30000000
+[ 2415.248687] [drm] sunxi-hdmi: top phy config done
+[ 2415.249042] [drm] sunxi-hdmi: [snps phy]
+[ 2415.249051] [drm] sunxi-hdmi:  - refer clock: 148500KHz, color bits: 8, repeat: 0
+[ 2415.249065] [drm] sunxi-hdmi:     - mpll: 0x0001, 0x2080, 0x020a
+[ 2415.249079] [drm] sunxi-hdmi:  - refer clock: 148500KHz. [25000KHz~185625KHz]
+[ 2415.249094] [drm] sunxi-hdmi:     - drive: 0x0007, 0x8160, 0x8188
+[ 2415.249634] [drm] sunxi-hdmi: snps phy state: lock
+[ 2415.299664] [drm] sunxi-hdmi: dw audio check: triger cts re-calculate
+[ 2415.299677] [drm] sunxi-hdmi: hdmi drv enable output done
+[ 2415.299687] [drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[ 2415.573810] [drm] sunxi-hdmi: drm get edid support modes: 42
+GPU_USER_COMPARE_DONE
+root@t736:~# 

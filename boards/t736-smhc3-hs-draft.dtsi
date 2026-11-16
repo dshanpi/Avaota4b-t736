@@ -1,0 +1,10 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/* Fixed-board HS SDR parent observation: no shared PLL ownership or writes. */
+&{/mmc@4023000} {
+	reg = <0 0x04023000 0 0x1000>, <0 0x02002d30 0 4>,
+	      <0 0x02002d3c 0 4>, <0 0x020025e0 0 4>,
+	      <0 0x0200259c 0 4>, <0 0x02002000 0 4>,
+	      <0 0x020020a0 0 0x10>;
+	clocks = <&{/dcxo}>;
+	clock-names = "dcxo";
+};

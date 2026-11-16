@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "kind": "t736-hs400-design-independent-review",
+  "reviewed_utc": "2026-11-16T13:16:40.820916+00:00",
+  "status": "design-reviewed-implementation-and-hardware-gates-still-pending",
+  "deployment": "deferred while HS200200MHz error classification is fixed and tested",
+  "design": {
+    "path": "evidence/storage-hs400-design-20261116.json",
+    "sha256": "8bde21ae83ac6d83f38411fa2781c2322191fcbabe6a0324d8163a85e4548626"
+  },
+  "policy": {
+    "path": "boards/t736_mmc_hs400_policy_draft.h",
+    "sha256": "97c93528e5df4e749f5d960e6dc7c8b46fdf7eec070bbb4c119feebf0b3a93bf"
+  },
+  "board_operations": false,
+  "frozen_v22_modified": false,
+  "verified_dependencies": [
+    "Actual T736 sunxi_mmc_ddr_timing excludes HS400. Generic CTRL.DDR10 must stay0 for HS400; dedicated EDSD31 selects it. CSDC6, CMD180/DATA90, module/card2x and internaldiv0 match actual donor.",
+    "Core initial HS200->HS400 transition performs CMD6 HS_TIMING1, hostHS/lowclock, CMD6 BUS_WIDTH8DDR, CMD6 HS_TIMING3, then hostHS400/targetclock and execute_hs400_tuning(host,card).",
+    "Core runtime retuning necessarily visits MMC_TIMING_MMC_DDR52 after HS400 is downgraded to HSDDR and before the bus is switched back to8SDR. v22 rejects DDR52; adding HS400 capability alone cannot implement this transition.",
+    "8-bit DDR52 transition at50MHz needs CTRL.DDR10=1, DATA180, module200MHz/card4x with internaldiv1, EDSD31=0 and CSDC3. Support the transient without advertising an unvalidated standalone DDR52 operating mode.",
+    "execute_hs400_tuning receives card explicitly before host->card is assigned on initial card setup. Use callback card; do not dereference host->card for initialization recovery.",
+    "Core invokes execute_hs400_tuning before final CMD13 switch-status and disables retuning around that callback. Ordinary data gating must preserve non-data CMD6/CMD13 protocol transitions.",
+    "Mainline MTK uses mmc_get_ext_csd(card) reads to scan HS400 strobe delay. T736 proposal adds fresh poisoned DMA and immutable core-established EXT_CSD field comparisons; full512-byte equality across mode switches is invalid.",
+    "CMD13 tuning must use exported __mmc_send_status(card,&status,0); mmc_send_status retries failed commands and could hide bad taps. R1 validity also explicitly rejects SWITCH_ERRORbit7, which R1_STATUS0xFFF9A000 excludes.",
+    "Existing final v22 DT includes PC0 in emmc-pins withmux4; manual PC0_SELECT0100 is SDC3-DS. This establishes configured pin routing, not a physical DQS waveform measurement.",
+    "A733 SAMP_DL/DS_DL[13:8] are not a documented DLL calibration control. Keep them unchanged and use only documented software-enable and six-bit delay fields."
+  ],
+  "required_implementation_review": [
+    "Keep HS400 opt-in and dependent on accepted HS200200MHz; no HS400ES/CQE/shared PLL or rail changes.",
+    "Track separately valid command and DS eyes; invalidate on mode/frequency changes; only requested tuning CMD8 reads pass data gate until both succeed.",
+    "Keep linear64tap/20success/min12/16center policy and explicit true-time bounds; never treat seeded taps or a CRC-failed transfer as validated.",
+    "Use final separately reviewed v23 recovery classification for expected raw card CRC/timeout errors. Unexplained summaries, unknown bits, descriptor errors and controller faults remain fatal.",
+    "Audit all initial and runtime retune transitions with correct internal/module divider and clock-disable ordering; no manual unreviewed CMD6 recovery sequence.",
+    "Match only core-established read-only EXT_CSD fields; free every allocated response and preserve DMA reset/quarantine on all paths.",
+    "Validate subsequent filesystem reads and writes separately; CMD8 strobe tuning is read-only and does not qualify the write path."
+  ],
+  "sources": {
+    "actual_t736": "/home/ubuntu/t736-aiot/tina/bsp/drivers/mmc",
+    "sunxi_mmc_h": "0945ee0ea5e47082c2ff159e578380671f86f4cd797f4fb3a853bc6f8cde0da3",
+    "sunxi_mmc_c": "52c7f92db77290437b7818f3c3a92a2956c1ab637214794e56220d0dde99ce16",
+    "sunxi_mmc_v4p5x_c": "f7b14c8dce66eefc222ac7d06b8aad041ea132c463a1f035a201dd940fb95f7f",
+    "core_mmc_c_sha256": "3fd819d40cb6aa118a3689a1ee82041383a64506546f4e5faee308fc63d1949d",
+    "core_mmc_ops_c_sha256": "21ce493f0638b9b778af03ed01be9780ca5bcff12ec0e365a112af0137ad193f",
+    "mtk_sd_c_sha256": "47ae6ca2313bace2bd224b9885f736c6abd990379e0add6f571a05a59850c4a2",
+    "manual_sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483",
+    "final_v22_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244"
+  },
+  "references": [
+    "T736 donor h633-634; c2105-2115; v4p5x666-674,811-833,985-994",
+    "Linux core mmc.c1181-1273,1281-1348,729-795,1836-1846; host.c176-210",
+    "Linux mmc_ops.c69-97,291-337,378-406; include/linux/mmc/mmc.h153-155",
+    "Linux mtk-sd.c2616-2660; manualPC0_SELECT87236-87241"
+  ],
+  "result_boundary": "This is a design review only. No HS400 driver implementation, compile check, tuning eye, throughput or hardware acceptance is established."
+}

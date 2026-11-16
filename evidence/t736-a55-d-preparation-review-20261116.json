@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "kind": "t736-a55-d-preparation-review",
+  "date": "2026-11-16",
+  "status": "host-tests-and-package-verified-board-test-pending",
+  "board_accepted": false,
+  "baseline_evidence": {
+    "path": "evidence/source-v9-cpu-c-coldboot-20261116.log",
+    "sha256": "2fec874a1cb89962e90bc509fa6dc9f5013a8244457e44b2974c6493d6dab8ee",
+    "a76": "C cold416/warm1014 steps1..19 passed; CTRL/STATf8802700 CLK03000000",
+    "a55": "C stage4 VERIFY failure; mutation1 slow1 guard0; finalCTRL/STATc0802700 CLK0; halted before secondary release"
+  },
+  "manual": {
+    "path": "evidence/vendor-reference/reference-1.txt",
+    "lines": [
+      16989,
+      17057
+    ],
+    "semantics": "CPU_L_PLL N is R/W, raw N; ENABLE31/LDO30 remain set, UPDATE26 is write-autoclear. Manual does not promise old N after a factor write. Mux101c is documented glitch-free dynamic switch (lines17286..17300)."
+  },
+  "changes": [
+    "Independent D files, no C/B2/SPL source or binary replaced",
+    "Only write-N step4 and following LOCK_EN step5 permit exactly N19 or N39 before explicit UPDATE; OUTPUT remains closed",
+    "A55 ENABLE/LDO never cleared; no extra enable edge added",
+    "Other fields including dividers/gates/reserved bits remain exact; unknown N rejected",
+    "Explicit UPDATE bounded1000, final CTRL/STAT N39 exact, three LOCK checks plus20us recheck before selecting PLL",
+    "11step trace captured in local report with24entry bound, no UART inside A55 transaction",
+    "Trace output occurs after return: success on verified target PLL, failure after mux-only slow attempt; mutated/guard error still halts withIRQ/FIQmasked"
+  ],
+  "host_tests": {
+    "compiler": "cc -std=c11 -O2 -Wall -Wextra -Werror",
+    "passed": true,
+    "scope": [
+      "unchanged precondition/failure coverage from original A55 model",
+      "N delayed until UPDATE",
+      "N latches at LOCK_EN",
+      "N immediately visible at write-N",
+      "N becomes visible after first read but before next stage",
+      "unknown N at write-N or later rejected without UPDATE",
+      "wrong gate at write-N rejected",
+      "PVR/kernel/board not used by tests"
+    ]
+  },
+  "independent_review": {
+    "reviewer": "code_index",
+    "result": "No new blocker to isolated build; exact final control/status, three locks plus20us, enabled warm PLL, mux-only failure and buffered diagnostics reviewed",
+    "independent_host_test": "code_index rebuilt with cc -std=c11 -Wall -Wextra -Werror and ran build/a55-d-independent-review; returned 0, fault-injection PASS; D inputs unchanged"
+  },
+  "files_sha256": {
+    "spl/cpuclock/a55clock_d.c": "7b60852c4fb52e048672ff5cfc3cfae3cc008fb83daa3cc734db18c1e85daa25",
+    "spl/cpuclock/a55clock_d.h": "89908c86976549ad3da6b48688e6539ec7a33989b86523535f5d2bc93f59b5a2",
+    "spl/cpuclock/test_a55clock_d.c": "49e0d00eebab1560110ee5c675afc77a4879bfd80fcda1f7a0795ceac5678f30",
+    "boards/t736-uboot-cpuclock-d.c": "82ce1b5fe38e91ff4ba9cec308a60ffd3e199e190a1efbe80c6d225a682161e7",
+    "patches/u-boot/t736-cpu-d.patch": "61bd8beab9ddb23fe378226d5ad6c924e1e508185ce3d0e65a57d8939a2a0130",
+    "tools/build_source_uboot_cpu_d.sh": "dadcf7a063efe231ff8ee7616a8d39d3a992abef28541d1978fa6a4fed765c34",
+    "tools/pack_t736_cpu_d_boot.py": "4b453e7f2a03dc0ae584d4015ab273b97a60872399d9bb394df56651daaa05a9",
+    "tools/validation/update_t736_cpu_d.py": "f6845306cc7bfa4984481813d87add0796afc25ab3d0c9e348ad3768b8456327",
+    "tools/validation/serve_t736_cpu_d.py": "69d145a2ee327defc6d6c1faee52f0ffcee31007801e38e3b6410cc6c5e7965d"
+  },
+  "build_record": {
+    "path": "build/source-uboot-cpu-d/output/build-record.json",
+    "sha256": "46f5065b48f1b2a4e18c263d2d84d1a02077267137ca033848d03c2377863d2e",
+    "inputs_match": true,
+    "payload_bytes": 265256,
+    "payload_sha256": "3ee3a5710c5c13c9ab11b274c6b076447ab346fc7622a1d64b5aaa692f877cdf"
+  },
+  "package": {
+    "path": "output/t736-source-boot-package-cpu-d.bin",
+    "sha256": "f2ea2157acc3b65b2cc7416dfdba39650e7daa6679693c558fbbdcc30ef9780a",
+    "bytes": 325632,
+    "start_lba": 24576,
+    "sectors": 636,
+    "end_lba_exclusive": 25212,
+    "stage64_and_tfa_unchanged": true,
+    "spl": "pinned v4 unchanged"
+  },
+  "update_tool": {
+    "default": "check",
+    "transition": "C633sectors toD636sectors",
+    "backup": "all636sectors including3oldtailsectors; complete rollback",
+    "reboots": false,
+    "board_writes_by_this_review": false
+  }
+}

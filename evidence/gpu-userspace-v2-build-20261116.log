@@ -1,0 +1,57 @@
+{
+  "runtime_path": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+  "manifest_path": "/opt/t736-img-ddk-24.2-x11/runtime-gles.json",
+  "manifest_sha256": "3201fa05a36f0add5e88008438557d7305587f53214d14254ffb9839b14cb332",
+  "links": 46,
+  "excluded": [
+    "libvulkan.so",
+    "libvulkan.so.1",
+    "libvulkan.so.1.3.280"
+  ]
+}
+{
+  "runtime_path": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+  "manifest_path": "/opt/t736-img-ddk-24.2-x11/runtime-gles.json",
+  "manifest_sha256": "3201fa05a36f0add5e88008438557d7305587f53214d14254ffb9839b14cb332",
+  "links": 46,
+  "excluded": [
+    "libvulkan.so",
+    "libvulkan.so.1",
+    "libvulkan.so.1.3.280"
+  ]
+}
+dpkg-deb: building package 't736-img-userspace-candidate' in '/home/ubuntu/t736-mainline/build/gpu-userspace-v2/t736-img-userspace-candidate_24.2.6603887-2_arm64.deb'.
+{
+  "package": "/home/ubuntu/t736-mainline/build/gpu-userspace-v2/t736-img-userspace-candidate_24.2.6603887-2_arm64.deb",
+  "sha256": "1455889d0c10ec5d0b49e839e0e9d3f7560869e65da5fbee02e477039c78e16e",
+  "files": 62,
+  "external_sonames": [
+    "ld-linux-aarch64.so.1",
+    "libX11-xcb.so.1",
+    "libX11.so.6",
+    "libXext.so.6",
+    "libXfixes.so.3",
+    "libXxf86vm.so.1",
+    "libc.so.6",
+    "libdl.so.2",
+    "libdrm.so.2",
+    "libexpat.so.1",
+    "libgcc_s.so.1",
+    "libm.so.6",
+    "libpthread.so.0",
+    "librt.so.1",
+    "libstdc++.so.6",
+    "libudev.so.1",
+    "libxcb-dri2.so.0",
+    "libxcb-dri3.so.0",
+    "libxcb-glx.so.0",
+    "libxcb-present.so.0",
+    "libxcb-randr.so.0",
+    "libxcb-shm.so.0",
+    "libxcb-sync.so.1",
+    "libxcb-xfixes.so.0",
+    "libxcb.so.1",
+    "libxshmfence.so.1",
+    "libz.so.1"
+  ]
+}

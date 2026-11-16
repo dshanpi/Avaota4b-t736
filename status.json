@@ -1,7 +1,7 @@
 {
-  "date": "2026-11-14",
-  "updated_utc": "2026-11-14T11:44:37.720654+00:00",
-  "state": "source_v6_emmc_three_boots_hdmi_fbcon_and_runtime_passed",
+  "date": "2026-11-16",
+  "updated_utc": "2026-11-16T13:32:16.958786+00:00",
+  "state": "storage_v23_hs200_200_bounded_stage_passed_v16_default_desktop_diagnostics_ongoing",
   "versions": {
     "u_boot": "2026.10-t736-bringup",
     "linux": "6.18.63-t736-hdmi-v13",
@@ -34,9 +34,9 @@
     "Armbian 26.11"
   ],
   "next": [
-    "Observe physical HDMI screen when user returns",
-    "Investigate Ethernet gigabit downshift; bulk network acceptance remains",
-    "Extend storage/memory/peripheral support as separate follow-up work"
+    "Complete isolated HS400 implementation review and separate staged trials",
+    "Resolve GNOME frame-feedback and responsiveness diagnostics",
+    "Build and accept a final integrated image only after its component stages pass"
   ],
   "workspace": {
     "local": "G:\\codex\\t736\\mainline",
@@ -1388,5 +1388,22 @@
     ]
   },
   "historical_rootfs_sparse_sha256": "370b531cf5dd10a1f5177756ca407ee7e33ac391f15a92acca2891a804f49bb1",
-  "current_rootfs_raw_sha256": "b68942b741988cef35a8bece83a3c3209498ba111aec6e7bf58056c6ef5e187f"
+  "current_rootfs_raw_sha256": "b68942b741988cef35a8bece83a3c3209498ba111aec6e7bf58056c6ef5e187f",
+  "historical_snapshot_date": "2026-11-14",
+  "historical_snapshot_state": "source_v6_emmc_three_boots_hdmi_fbcon_and_runtime_passed",
+  "stage_snapshot": {
+    "as_of": "2026-11-16",
+    "purpose": "Source/evidence backup checkpoint before HS400, desktop and final-image acceptance.",
+    "tested_kernel": "6.18.63-t736-storage-v23",
+    "persistent_default_kernel": "6.18.63-t736-storage-v16",
+    "persistent_default_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "stage_record": "evidence/storage-v23-hs200-stage-record-20261116.json",
+    "stage_record_sha256": "683f10fdccb694f71a241d6f2b0769b2d5fc59e80596ba9f14c2a5260f284f74",
+    "hs200_200_bounded_stage": "PASS",
+    "hs400_accepted": false,
+    "gnome_responsiveness_accepted": false,
+    "new_final_image_accepted": false,
+    "physical_display_observation": "No new physical-monitor acceptance is claimed.",
+    "historical_fields": "versions, hardware_passed and validation_image fields below retain the source-v6 full-image acceptance snapshot; stage_snapshot describes newer incremental trials."
+  }
 }

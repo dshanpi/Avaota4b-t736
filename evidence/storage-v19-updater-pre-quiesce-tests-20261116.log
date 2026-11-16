@@ -1,0 +1,44 @@
+test_archive_escape_and_hardlink_rejected (test_update_t736_storage_v19.TransactionTests.test_archive_escape_and_hardlink_rejected) ... ok
+test_atomic_replace_does_not_follow_previous_symlink (test_update_t736_storage_v19.TransactionTests.test_atomic_replace_does_not_follow_previous_symlink) ... ok
+test_command_timeout_kills_descendant_before_returning (test_update_t736_storage_v19.TransactionTests.test_command_timeout_kills_descendant_before_returning) ... FAIL
+test_corrupt_backup_rejects_before_any_restoration (test_update_t736_storage_v19.TransactionTests.test_corrupt_backup_rejects_before_any_restoration) ... ok
+test_failure_after_selection_attempt_restores_v16 (test_update_t736_storage_v19.TransactionTests.test_failure_after_selection_attempt_restores_v16) ... BACKUP_FSYNC_VERIFIED /tmp/t736-v19-offline-rwc7wopt/backup
+{
+  "backup_directory": "/tmp/t736-v19-offline-rwc7wopt/backup",
+  "rebooted": false,
+  "hardware_accepted": false,
+  "status": "UPDATE_FAILED_V16_RESTORED",
+  "error": "RuntimeError('synthetic alias fsync failure')"
+}
+ok
+test_failure_journal_error_preserves_rollback_result (test_update_t736_storage_v19.TransactionTests.test_failure_journal_error_preserves_rollback_result) ... ok
+test_final_byte_failure_never_selects_candidate (test_update_t736_storage_v19.TransactionTests.test_final_byte_failure_never_selects_candidate) ... BACKUP_FSYNC_VERIFIED /tmp/t736-v19-offline-xxnf0gor/backup
+{
+  "backup_directory": "/tmp/t736-v19-offline-xxnf0gor/backup",
+  "rebooted": false,
+  "hardware_accepted": false,
+  "status": "UPDATE_FAILED_V16_RESTORED",
+  "error": "RuntimeError('synthetic final bytes mismatch')"
+}
+ok
+test_final_dtb_mutation_rejected_even_when_kernel_bytes_match (test_update_t736_storage_v19.TransactionTests.test_final_dtb_mutation_rejected_even_when_kernel_bytes_match) ... ok
+test_missing_bindings_cannot_apply (test_update_t736_storage_v19.TransactionTests.test_missing_bindings_cannot_apply) ... ok
+test_restore_preserves_candidate_and_restores_old_payload_and_alias (test_update_t736_storage_v19.TransactionTests.test_restore_preserves_candidate_and_restores_old_payload_and_alias) ... ok
+test_wrong_baseline_topology_rejected_before_candidate_install (test_update_t736_storage_v19.TransactionTests.test_wrong_baseline_topology_rejected_before_candidate_install) ... ok
+
+======================================================================
+FAIL: test_command_timeout_kills_descendant_before_returning (test_update_t736_storage_v19.TransactionTests.test_command_timeout_kills_descendant_before_returning)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/ubuntu/t736-mainline/tools/validation/test_update_t736_storage_v19.py", line 55, in test_command_timeout_kills_descendant_before_returning
+    self.assertEqual(status.read_text().split(') ', 1)[1].split()[0], 'Z',
+AssertionError: 'R' != 'Z'
+- R
++ Z
+ : Descendant still running after timeout cleanup
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.581s
+
+FAILED (failures=1)
+{"status": "PENDING_FIXED_BUILD_INPUTS", "missing": ["kernel_sha256", "kernel_bytes", "pvr_sha256", "pvr_bytes", "control_manifest_sha256", "payload_manifest_sha256", "raw_image_sha256", "raw_image_bytes", "candidate_dtb_sha256", "candidate_dtb_bytes"], "write_attempted": false}

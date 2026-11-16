@@ -1,0 +1,42 @@
+install -d -m 700 /root/t736-gpu-debug; install -m 600 /tmp/t736-transfer/pvrsrvkm-diag1b.ko.xz /root/t736-gpu-debug/pvrsrvkm-diag1.ko.xz; install -m 600 /tmp/t736-transfer/t736-gpu-power-retry3-v15.ko /root/t736-gpu-debug/power-retry3.ko; xz -dc /root/t736-gpu-debug/pvrsrvkm-diag1.ko.xz >/root/t736-gpu-debug/pvrsrvkm-diag1.ko; echo '21940e868ea9220ce59f0718892a4bed5cfe15fd1be913051c5353bb0f7aa30e  /root/t736-gpu-debug/pvrsrvkm-diag1.ko' | sha256sum -c - && sync && insmod /root/t736-gpu-debug/pvrsrvkm-diag1.ko; printf 'DDK_DIAG1_RC=%s
+
+> ' "$?"; ls -l /dev/dri; printf 'DDK_DIAG1_DONE
+
+> '
+
+-bash: xz: 未找到命令
+/root/t736-gpu-debug/pvrsrvkm-diag1.ko: 失败
+sha256sum: 警告：1 个校验和不匹配
+DDK_DIAG1_RC=1
+总计 0
+drwxr-xr-x  2 root root      60 11月16日 07:04 by-path
+crw-rw----+ 1 root video 226, 0 11月16日 07:04 card0
+DDK_DIAG1_DONE
+root@t736:~# python3 -c 'import lzma,pathlib; p=pathlib.Path("/root/t736-gpu-debug/pvrsrvkm-diag1.ko"); p.write_bytes(lzma.decompress(p.with_suffix(".ko.xz").read_bytes()))' && echo '21940e868ea9220ce59f0718892a4bed5cfe15fd1be913051c5353bb0f7aa30e  /root/t736-gpu-debug/pvrsrvkm-diag1.ko' | sha256sum -c - && sync && insmod /root/t736-gpu-debug/pvrsrvkm-diag1.ko; echo DDK_DIAG1_RC=$?; ls -l /dev/dri; echo DDK_DIAG1_DONE
+
+/root/t736-gpu-debug/pvrsrvkm-diag1.ko: 成功
+pvrsrvkm 1800000.gpu: PVRDIAG before pvr_drm_load
+PVRDIAG before SysDevInit
+pvrsrvkm 1800000.gpu: PVRDIAG platform init enter
+pvrsrvkm 1800000.gpu: PVRDIAG platform before regulator enable
+pvrsrvkm 1800000.gpu: PVRDIAG platform regulator ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before regulator voltage
+pvrsrvkm 1800000.gpu: PVRDIAG platform voltage=900000
+pvrsrvkm 1800000.gpu: PVRDIAG platform before runtime resume
+pvrsrvkm 1800000.gpu: PVRDIAG platform runtime resume ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before parent clock
+pvrsrvkm 1800000.gpu: PVRDIAG platform parent ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before set400
+pvrsrvkm 1800000.gpu: PVRDIAG platform set400 ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before bus clock
+pvrsrvkm 1800000.gpu: PVRDIAG platform bus ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before reset deassert
+pvrsrvkm 1800000.gpu: PVRDIAG platform reset ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before core clock
+pvrsrvkm 1800000.gpu: PVRDIAG platform core ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform power-on completed
+PVRDIAG after SysDevInit ret=0
+PVRDIAG registers mapped; before BVNC init
+PVRDIAG BVNC configuration enter
+PVRDIAG before hardware BVNC
+PVRDIAG before PBVNC read high=0x01800024 low=0x01800020 core=0

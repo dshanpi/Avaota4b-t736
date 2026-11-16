@@ -1,0 +1,36 @@
+Keyboard Control:
+  auto repeat:  on    key click percent:  0    LED mask:  00000002
+  XKB indicators:
+    00: Caps Lock:   off    01: Num Lock:    on     02: Scroll Lock: off
+    03: Compose:     off    04: Kana:        off    05: Sleep:       off
+    06: Suspend:     off    07: Mute:        off    08: Misc:        off
+    09: Mail:        off    10: Charging:    off    11: Shift Lock:  off
+    12: Group 2:     off    13: Mouse Keys:  off
+  auto repeat delay:  500    repeat rate:  33
+  auto repeating keys:  00ffffffdffffbbf
+                        fadfffefffedffff
+                        9fffffffffffffff
+                        fff7ffffffffffff
+  bell percent:  50    bell pitch:  400    bell duration:  100
+Pointer Control:
+  acceleration:  2/1    threshold:  4
+Screen Saver:
+  prefer blanking:  yes    allow exposures:  yes
+  timeout:  600    cycle:  600
+Colors:
+  default colormap:  0x20    BlackPixel:  0x0    WhitePixel:  0xffffff
+Font Path:
+  built-ins
+DPMS (Display Power Management Signaling):
+  Standby: 0    Suspend: 0    Off: 0
+  DPMS is Enabled
+  Monitor is On
+
+(false,)
+
+REFERENCE_PID 4013
+PROBE_RC 1
+{"mode": "baseline", "complete": false, "preferences": {"marionette.port": 43753, "browser.shell.checkDefaultBrowser": false, "browser.startup.homepage": "about:blank", "browser.startup.page": 0, "browser.startup.firstrunSkipsHomepage": true, "browser.aboutwelcome.enabled": false}, "MOZ_X11_EGL": null, "MOZ_DRM_DEVICE": null, "phase": "navigate_about_support", "pid": 4019, "marionette_tcp_connected_seconds": 9.721, "marionette_hello": {"applicationType": "gecko", "marionetteProtocol": 3}, "marionette_hello_received_seconds": 12.031, "session": {"sessionId": "13827cfd-6fa0-46c2-a0ca-103458150a49", "capabilities": {"acceptInsecureCerts": false, "browserName": "firefox", "browserVersion": "153.7.0", "platformName": "linux", "setWindowRect": true, "unhandledPromptBehavior": "dismiss and notify", "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:153.0) Gecko/20100101 Firefox/153.0", "moz:buildID": "20261103151912", "moz:headless": false, "moz:platformVersion": "6.18.63-t736-storage-v16", "moz:processID": 4019, "moz:profile": "/tmp/t736-firefox-baseline-_bnqj5q8", "moz:shutdownTimeout": 60000, "pageLoadStrategy": "normal", "timeouts": {"implicit": 0, "pageLoad": 300000, "script": 30000}, "strictFileInteractability": false, "moz:accessibilityChecks": false, "moz:webdriverClick": true, "moz:windowless": false, "proxy": {}}}, "error": "RuntimeError: WebDriver:Navigate: {'error': 'unsupported operation', 'message': 'Navigation to \"about:support\" is not allowed in this context', 'stacktrace': 'RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8\\nWebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:169:5\\nUnsupportedOperationError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:961:5\\nnavigateTo@chrome://remote/content/marionette/driver.sys.mjs:2382:13\\n'}", "failure_elapsed_seconds": 33.389, "exit_code": -15, "profile_removed": true, "log": "/home/t736/firefox-v16-renderer.files/baseline.log"}
+{"mode": "egl-gles", "complete": false, "preferences": {"marionette.port": 54591, "browser.shell.checkDefaultBrowser": false, "browser.startup.homepage": "about:blank", "browser.startup.page": 0, "browser.startup.firstrunSkipsHomepage": true, "browser.aboutwelcome.enabled": false, "gfx.egl.prefer-gles.enabled": true}, "MOZ_X11_EGL": "1", "MOZ_DRM_DEVICE": null, "phase": "navigate_about_support", "pid": 4793, "marionette_tcp_connected_seconds": 3.847, "marionette_hello": {"applicationType": "gecko", "marionetteProtocol": 3}, "marionette_hello_received_seconds": 4.97, "session": {"sessionId": "0179f458-0b68-4a93-8fa7-0b0fba73a22d", "capabilities": {"acceptInsecureCerts": false, "browserName": "firefox", "browserVersion": "153.7.0", "platformName": "linux", "setWindowRect": true, "unhandledPromptBehavior": "dismiss and notify", "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:153.0) Gecko/20100101 Firefox/153.0", "moz:buildID": "20261103151912", "moz:headless": false, "moz:platformVersion": "6.18.63-t736-storage-v16", "moz:processID": 4793, "moz:profile": "/tmp/t736-firefox-egl-gles-24tbygta", "moz:shutdownTimeout": 60000, "pageLoadStrategy": "normal", "timeouts": {"implicit": 0, "pageLoad": 300000, "script": 30000}, "strictFileInteractability": false, "moz:accessibilityChecks": false, "moz:webdriverClick": true, "moz:windowless": false, "proxy": {}}}, "error": "RuntimeError: WebDriver:Navigate: {'error': 'unsupported operation', 'message': 'Navigation to \"about:support\" is not allowed in this context', 'stacktrace': 'RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8\\nWebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:169:5\\nUnsupportedOperationError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:961:5\\nnavigateTo@chrome://remote/content/marionette/driver.sys.mjs:2382:13\\n'}", "failure_elapsed_seconds": 22.211, "exit_code": -15, "profile_removed": true, "log": "/home/t736/firefox-v16-renderer.files/egl-gles.log"}
+{"mode": "egl-gles-drm", "complete": false, "preferences": {"marionette.port": 55967, "browser.shell.checkDefaultBrowser": false, "browser.startup.homepage": "about:blank", "browser.startup.page": 0, "browser.startup.firstrunSkipsHomepage": true, "browser.aboutwelcome.enabled": false, "gfx.egl.prefer-gles.enabled": true}, "MOZ_X11_EGL": "1", "MOZ_DRM_DEVICE": "/dev/dri/renderD128", "phase": "navigate_about_support", "pid": 5323, "marionette_tcp_connected_seconds": 3.588, "marionette_hello": {"applicationType": "gecko", "marionetteProtocol": 3}, "marionette_hello_received_seconds": 4.653, "session": {"sessionId": "9b133c67-b711-4e6d-9659-ffcc35953832", "capabilities": {"acceptInsecureCerts": false, "browserName": "firefox", "browserVersion": "153.7.0", "platformName": "linux", "setWindowRect": true, "unhandledPromptBehavior": "dismiss and notify", "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:153.0) Gecko/20100101 Firefox/153.0", "moz:buildID": "20261103151912", "moz:headless": false, "moz:platformVersion": "6.18.63-t736-storage-v16", "moz:processID": 5323, "moz:profile": "/tmp/t736-firefox-egl-gles-drm-kxubv7py", "moz:shutdownTimeout": 60000, "pageLoadStrategy": "normal", "timeouts": {"implicit": 0, "pageLoad": 300000, "script": 30000}, "strictFileInteractability": false, "moz:accessibilityChecks": false, "moz:webdriverClick": true, "moz:windowless": false, "proxy": {}}}, "error": "RuntimeError: WebDriver:Navigate: {'error': 'unsupported operation', 'message': 'Navigation to \"about:support\" is not allowed in this context', 'stacktrace': 'RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8\\nWebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:169:5\\nUnsupportedOperationError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:961:5\\nnavigateTo@chrome://remote/content/marionette/driver.sys.mjs:2382:13\\n'}", "failure_elapsed_seconds": 21.458, "exit_code": -15, "profile_removed": true, "log": "/home/t736/firefox-v16-renderer.files/egl-gles-drm.log"}
+REFERENCE_STOPPED /home/t736/t736-firefox-reference-hgi260xx

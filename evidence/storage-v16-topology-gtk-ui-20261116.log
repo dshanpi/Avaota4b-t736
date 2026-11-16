@@ -1,0 +1,77 @@
+libEGL warning: MESA-LOADER: failed to open sunxi-drm: /usr/local/lib/dri/sunxi-drm_dri.so: 无法打开共享目标文件: 没有那个文件或目录 (search paths /usr/local/lib/dri, suffix _dri)
+
+libEGL warning: MESA-LOADER: failed to open sunxi-drm: /usr/local/lib/dri/sunxi-drm_dri.so: 无法打开共享目标文件: 没有那个文件或目录 (search paths /usr/local/lib/dri, suffix _dri)
+
+libEGL warning: MESA-LOADER: failed to open zink: /usr/local/lib/dri/zink_dri.so: 无法打开共享目标文件: 没有那个文件或目录 (search paths /usr/local/lib/dri, suffix _dri)
+
+libEGL warning: MESA-LOADER: failed to open swrast: /usr/local/lib/dri/swrast_dri.so: 无法打开共享目标文件: 没有那个文件或目录 (search paths /usr/local/lib/dri, suffix _dri)
+
+libEGL warning: MESA-LOADER: failed to open sunxi-drm: /usr/local/lib/dri/sunxi-drm_dri.so: 无法打开共享目标文件: 没有那个文件或目录 (search paths /usr/local/lib/dri, suffix _dri)
+
+libEGL warning: MESA-LOADER: failed to open sunxi-drm: /usr/local/lib/dri/sunxi-drm_dri.so: 无法打开共享目标文件: 没有那个文件或目录 (search paths /usr/local/lib/dri, suffix _dri)
+
+libEGL warning: MESA-LOADER: failed to open zink: /usr/local/lib/dri/zink_dri.so: 无法打开共享目标文件: 没有那个文件或目录 (search paths /usr/local/lib/dri, suffix _dri)
+
+libEGL warning: MESA-LOADER: failed to open swrast: /usr/local/lib/dri/swrast_dri.so: 无法打开共享目标文件: 没有那个文件或目录 (search paths /usr/local/lib/dri, suffix _dri)
+
+(python3:3468): Gtk-WARNING **: 11:37:38.373: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+{
+  "status": "UNUSABLE",
+  "timing_usable": false,
+  "workload": "24 rounded libadwaita cards with labels, buttons and switches; 240px/s scroll",
+  "renderer_gtype": "GskCairoRenderer",
+  "requested_renderer": "opengl",
+  "environment": {
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles"
+  },
+  "sample_seconds_requested": 10.0,
+  "sample_elapsed_seconds": 10.014769923000017,
+  "mapped_seconds_after_launch": 0.3897242360000064,
+  "first_tick_seconds_after_launch": 0.4632471890000147,
+  "cpu_seconds_before_map": 0.376147747,
+  "cpu_seconds_sample": 3.3401695829999998,
+  "cpu_seconds_total": 3.71631733,
+  "rusage_user_seconds": 4.230867,
+  "rusage_system_seconds": 0.212976,
+  "max_rss_kib": 88128,
+  "tick_intervals": {
+    "count": 115,
+    "median_ms": 100.029,
+    "p95_ms": 101.708,
+    "over_33_5ms": 109
+  },
+  "after_paint_intervals": {
+    "count": 115,
+    "median_ms": 99.595,
+    "p95_ms": 103.717,
+    "over_33_5ms": 113
+  },
+  "tick_count": 116,
+  "after_paint_count": 116,
+  "scroll_changed": true,
+  "libraries": [
+    "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+    "/usr/lib/aarch64-linux-gnu/libadwaita-1.so.0",
+    "/usr/lib/aarch64-linux-gnu/libcairo-gobject.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo-script-interpreter.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libgtk-4.so.1.1800.6",
+    "/usr/share/locale/zh_CN/LC_MESSAGES/libadwaita.mo"
+  ],
+  "session_before": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_after": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_check_scope": "start and end only",
+  "interrupted": false,
+  "physical_display_verified": false,
+  "metric": "GTK frame-clock tick and monotonic after-paint callback intervals; not scanout/presentation"
+}

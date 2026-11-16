@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "reference_pid": 2279,
+  "reference_profile_modified": false,
+  "binary": "/usr/lib/firefox-esr/firefox-esr",
+  "environment": {
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "DISPLAY": ":0",
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+    "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri",
+    "XAUTHORITY": "/run/user/1000/gdm/Xauthority",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "XDG_SESSION_TYPE": "x11"
+  },
+  "sandbox_disabled": false,
+  "blocklist_overridden": false,
+  "tests": [
+    {
+      "mode": "baseline",
+      "complete": false,
+      "preferences": {
+        "marionette.port": 51409,
+        "browser.shell.checkDefaultBrowser": false,
+        "browser.startup.homepage": "about:blank",
+        "browser.startup.page": 0,
+        "browser.startup.firstrunSkipsHomepage": true,
+        "browser.aboutwelcome.enabled": false
+      },
+      "MOZ_X11_EGL": null,
+      "pid": 2324,
+      "error": "TimeoutError: Diagnostic Firefox did not start Marionette within 35s",
+      "exit_code": -15,
+      "profile_removed": true,
+      "log": "/home/t736/firefox-renderer-probe-20261116.files/baseline.log"
+    },
+    {
+      "mode": "egl-gles",
+      "complete": false,
+      "preferences": {
+        "marionette.port": 35755,
+        "browser.shell.checkDefaultBrowser": false,
+        "browser.startup.homepage": "about:blank",
+        "browser.startup.page": 0,
+        "browser.startup.firstrunSkipsHomepage": true,
+        "browser.aboutwelcome.enabled": false,
+        "gfx.egl.prefer-gles.enabled": true
+      },
+      "MOZ_X11_EGL": "1",
+      "pid": 2408,
+      "error": "TimeoutError: Diagnostic Firefox did not start Marionette within 35s",
+      "exit_code": -15,
+      "profile_removed": true,
+      "log": "/home/t736/firefox-renderer-probe-20261116.files/egl-gles.log"
+    }
+  ]
+}

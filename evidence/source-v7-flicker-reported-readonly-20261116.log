@@ -1,0 +1,71 @@
+[drm] sunxi-hdmi: drm hdmi atomic disable done >>>>>>>>>>>>>>>>
+[drm] [SUNXI-CRTC]sunxi_crtc_atomic_disable
+[drm] sunxi_de_disable de 0
+[drm] sunxi_de_atomic_flush de 0 not enable, skip
+[drm] sunxi-hdmi: drm hdmi set mode change when disp info change
+[drm] sunxi-hdmi: drm hdmi check mode: change >>>>>>>>>>>>>>>>
+[drm] sunxi-hdmi: sunxi hdmi select vic 16 use hdmi14 vsif
+[drm] sunxi-hdmi: drm hdmi mode set: 1920*1080 >>>>>>>>>>>>>>>>
+[drm] [SUNXI-CRTC]sunxi_crtc_atomic_enable
+[drm] sunxi_de_enable index 0
+[drm] sunxi_de_enable finish sw en=0
+[drm] suxni tcon hdmi set rate: 148500000Hz and get diff: 148500000Hz
+[drm] sunxi-hdmi: dw audio get n = 6144
+[drm] sunxi-hdmi: [top phy]
+[drm] sunxi-hdmi:  - pixel clock 148500KHz
+[drm] sunxi-hdmi:    - pll: 0xE80F5A00, 0x00035000, 0x80000000, 0x30000000
+[drm] sunxi-hdmi: top phy config done
+[drm] sunxi-hdmi: [snps phy]
+[drm] sunxi-hdmi:  - refer clock: 148500KHz, color bits: 8, repeat: 0
+[drm] sunxi-hdmi:     - mpll: 0x0001, 0x2080, 0x020a
+[drm] sunxi-hdmi:  - refer clock: 148500KHz. [25000KHz~185625KHz]
+[drm] sunxi-hdmi:     - drive: 0x0007, 0x8160, 0x8188
+[drm] sunxi-hdmi: snps phy state: lock
+[drm] sunxi-hdmi: dw audio check: triger cts re-calculate
+[drm] sunxi-hdmi: hdmi drv enable output done
+[drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[drm] sunxi-hdmi: drm hdmi atomic disable done >>>>>>>>>>>>>>>>
+[drm] [SUNXI-CRTC]sunxi_crtc_atomic_disable
+[drm] sunxi_de_disable de 0
+[drm] sunxi_de_atomic_flush de 0 not enable, skip
+printf "DISPLAY_READONLY\n"; uptime; grep -E "on:|irqcnt|fps|err" /sys/kernel/debug/dri/0/state; printf "GNOME_SESSIONS\n"; pgrep -a "gnome-shell|Xorg"; printf "RECENT_DISPLAY_LOG\n"; dmesg | grep -Ei "hdmi|drm|underflow|hotplug|fifo|timeout" | tail -n 14
+
+DISPLAY_READONLY
+ 06:26:12 up 18 min,  2 users,  load average: 0.02, 0.21, 0.47
+GNOME_SESSIONS
+1844 /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3
+2009 /usr/bin/gnome-shell
+RECENT_DISPLAY_LOG
+[ 1033.363972] [drm] sunxi-hdmi: top phy config done
+[ 1033.368075] [drm] sunxi-hdmi: [snps phy]
+[ 1033.371001] [drm] sunxi-hdmi:  - refer clock: 148500KHz, color bits: 8, repeat: 0
+[ 1033.377541] [drm] sunxi-hdmi:     - mpll: 0x0001, 0x2080, 0x020a
+[ 1033.382656] [drm] sunxi-hdmi:  - refer clock: 148500KHz. [25000KHz~185625KHz]
+[ 1033.388875] [drm] sunxi-hdmi:     - drive: 0x0007, 0x8160, 0x8188
+[ 1033.394689] [drm] sunxi-hdmi: snps phy state: lock
+[ 1033.448766] [drm] sunxi-hdmi: dw audio check: triger cts re-calculate
+[ 1033.454205] [drm] sunxi-hdmi: hdmi drv enable output done
+[ 1033.458584] [drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[ 1047.522623] [drm] sunxi-hdmi: drm hdmi atomic disable done >>>>>>>>>>>>>>>>
+[ 1047.529476] [drm] [SUNXI-CRTC]sunxi_crtc_atomic_disable
+[ 1047.534069] [drm] sunxi_de_disable de 0
+[ 1047.537743] [drm] sunxi_de_atomic_flush de 0 not enable, skip
+root@t736:~# printf "DISPLAY_POWER_READONLY\n"; env DISPLAY=:1 XAUTHORITY=/run/user/1000/gdm/Xauthority xrandr --current | head -n 6; env DISPLAY=:1 XAUTHORITY=/run/user/1000/gdm/Xauthority xset q | tail -n 7; runuser -u t736 -- env XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gdbus call --session --dest org.gnome.ScreenSaver --object-path /org/gnome/ScreenSaver --method org.gnome.ScreenSaver.GetActive; journalctl -b --since "3 minutes ago" _COMM=gnome-shell --no-pager -n 8
+
+DISPLAY_POWER_READONLY
+Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192
+HDMI-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 553mm x 311mm
+   2560x1440     59.95 +
+   2048x1080     60.00    24.00  
+   1920x1080     60.00*   50.00    59.94  
+   1920x1080i    60.00    50.00    59.94  
+  default colormap:  0x20    BlackPixel:  0x0    WhitePixel:  0xffffff
+Font Path:
+  built-ins
+DPMS (Display Power Management Signaling):
+  Standby: 0    Suspend: 0    Off: 0
+  DPMS is Enabled
+  Monitor is Off
+(true,)
+-- No entries --
+root@t736:~# 

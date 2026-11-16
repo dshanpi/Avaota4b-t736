@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "variant": "v10",
+  "desktop_profile": "gpu",
+  "kernel_release": "6.18.63-t736-storage-v16",
+  "kernel_deb_sha256": "520b42929ee4700a29ab8da5f020b828948a607c87a6eb8dd98c8ecacd6170c6",
+  "module_input_sha256": "abd38db687c93b91757719564e1f0fe35b10b137f23d78ea425ff2845d8c8474",
+  "userspace_deb_sha256": "1455889d0c10ec5d0b49e839e0e9d3f7560869e65da5fbee02e477039c78e16e",
+  "installed_files": {
+    "/boot/vmlinuz-6.18.63-t736-storage-v16": "0244c994eb6092e2d68f8ae4bef9347c9ce11507790b8eb351db1a5a8023ccee",
+    "/boot/initrd.img-6.18.63-t736-storage-v16": "39556512830b2effb1722a47f6a46644ab2417d3ee60371b8549f278b830171c",
+    "/boot/config-6.18.63-t736-storage-v16": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e",
+    "/boot/dtb/allwinner/t736-mainline-bringup.dtb": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5",
+    "/usr/lib/modules/6.18.63-t736-storage-v16/extra/pvrsrvkm.ko": "abd38db687c93b91757719564e1f0fe35b10b137f23d78ea425ff2845d8c8474",
+    "/etc/environment": "06ae1f4849ca1fb19862d03cbe16f5b04ced07fd2db7bcd391fbaa59bec65e1f",
+    "/etc/X11/xorg.conf.d/20-t736-modesetting.conf": "ad0e2b03a3b31450a69a272f437760ea1f2adaffb77a6e15703c3b5f1c3c101d",
+    "/etc/systemd/system/gdm.service.d/90-t736-gpu-profile.conf": "63eb1b8eb5eca12f4c35b1d25a7337293f2320c67e0dbdb918bb641d04525019",
+    "/etc/modules-load.d/t736-gpu.conf": "b6dae242a4746337effbc9cceff63392fb9558a6993957339e61d8a97490b19b",
+    "/opt/t736-img-ddk-24.2-x11/manifest.json": "9ae49ed015dd2fafc55361eeaab3f23789f9b42f0f18a36eb341cb1ff3b02a69",
+    "/opt/t736-img-ddk-24.2-x11/runtime-gles.json": "3201fa05a36f0add5e88008438557d7305587f53214d14254ffb9839b14cb332",
+    "/usr/share/t736-gpu-profile/20-t736-modesetting-1080p.conf": "ad0e2b03a3b31450a69a272f437760ea1f2adaffb77a6e15703c3b5f1c3c101d",
+    "/usr/local/sbin/t736-gpu-profile": "6f1b83b0ce54f102ef6def3dc60ff046b85ceed356d6c0a96ae792cbf4768172",
+    "/usr/local/sbin/t736-gpu-runtime-check": "6a16e3ad5761a564b1c9f3cd84723a34a4e24c06743c3dd9e90879a580e2a713",
+    "/usr/local/sbin/t736-mutter-1080p": "099c6baacd7653d3ef93f597f067b68baaf68d231bb8f493bcc462ebb8d2ace7",
+    "/usr/local/lib/t736-validation/t736-cpu-clock-readonly-storage-v16.ko": "175f47bdf40cc42dae47a01e0c375b04d83acf802946539005d0a51ba3ddaf91",
+    "/home/t736/.config/monitors.xml": "5d72649064afb2a9ac9866c85b2875d0e85f1c98a1126ce1379c9236d4f995f8",
+    "/var/lib/gdm3/.config/monitors.xml": "5d72649064afb2a9ac9866c85b2875d0e85f1c98a1126ce1379c9236d4f995f8",
+    "/etc/sysctl.d/90-t736-console.conf": "c9cbbccafb02d9f6d5225d6daf421477a87d1054978f8b6b9e1a9748743095c6"
+  },
+  "final_image_cold_boot_validated": false,
+  "cpu_d_cold_boot_validated": false,
+  "firefox_renderer_validated": false,
+  "ffmpeg_installed": true,
+  "previous_kernel_retained": "6.18.63-t736-gpu-v15",
+  "media_packages": {
+    "ffmpeg": "7:7.1.5-0+deb13u1",
+    "libavcodec61": "7:7.1.5-0+deb13u1"
+  },
+  "gpu_helper_manifest": {
+    "schema": 1,
+    "kernel_release": "6.18.63-t736-storage-v16",
+    "hardware_accepted": false,
+    "source_sha256": {
+      "tools/validation/gpu_profile.py": "0fba997bd7f93f381b9a55a82c3194739fde7305a18ecd6c095212786a2ddbcf",
+      "tools/validation/gpu_runtime_check.sh": "c2443ec18d5403839f4959579caa592f0a4cfc9d54b3688d57289acb945b14d0",
+      "config/gpu-v9/acceptance.template.json": "23f4a113fa5f3eaf643ab09d852d686ab06bd9fec408b67ff5888ba701738e69",
+      "config/gpu-v10/20-t736-modesetting-1080p.conf": "ad0e2b03a3b31450a69a272f437760ea1f2adaffb77a6e15703c3b5f1c3c101d",
+      "tools/validation/mutter_set_1080p.py": "099c6baacd7653d3ef93f597f067b68baaf68d231bb8f493bcc462ebb8d2ace7"
+    },
+    "files": {
+      "t736-gpu-profile": {
+        "bytes": 18300,
+        "sha256": "6f1b83b0ce54f102ef6def3dc60ff046b85ceed356d6c0a96ae792cbf4768172"
+      },
+      "t736-gpu-runtime-check": {
+        "bytes": 1404,
+        "sha256": "6a16e3ad5761a564b1c9f3cd84723a34a4e24c06743c3dd9e90879a580e2a713"
+      },
+      "acceptance.template.json": {
+        "bytes": 844,
+        "sha256": "f9fc7595cac93598e4e53471be636abe4a24beb00d2bf27836394a9668366a0a"
+      },
+      "20-t736-modesetting-1080p.conf": {
+        "bytes": 862,
+        "sha256": "ad0e2b03a3b31450a69a272f437760ea1f2adaffb77a6e15703c3b5f1c3c101d"
+      },
+      "t736-mutter-1080p": {
+        "bytes": 9717,
+        "sha256": "099c6baacd7653d3ef93f597f067b68baaf68d231bb8f493bcc462ebb8d2ace7"
+      }
+    },
+    "changes": [
+      "Profile release constant and runtime uname guard changed from v15 to v16",
+      "Runtime comment updated; profile logic, 1080p config and Mutter helper unchanged",
+      "Acceptance template remains pending with all checks false"
+    ],
+    "excluded_legacy_tools": [
+      "gpu_session_trial.sh",
+      "t736-a76-clock-trial.ko"
+    ]
+  },
+  "gpu_acceptance_sha256": "b446a26e7332adc2b9d18d0a5b2e916595a0eb8efc8aa77c39026b50748cc3dd"
+}

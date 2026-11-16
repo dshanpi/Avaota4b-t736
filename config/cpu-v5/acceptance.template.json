@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "t736-a76-clock-acceptance",
+  "board": "t736",
+  "status": "pending",
+  "validation_scope": "runtime-clock-trial",
+  "boot_id": "",
+  "checks": {
+    "a76_416mhz": false,
+    "a76_1014mhz": false,
+    "register_readback": false,
+    "supply_readback": false,
+    "a55_dsu_unchanged": false,
+    "online_stability": false
+  },
+  "cpu_clock": {
+    "target_mhz": 1014,
+    "reference_hz": 26000000,
+    "pll_n": 39,
+    "external_divider": 1,
+    "ctrl": "0xf8802700",
+    "clk": "0x03000000",
+    "pmic_configuration_writes": false
+  },
+  "spl_candidate": {
+    "variant": "v5",
+    "packed_sha256": "",
+    "build_record_sha256": "",
+    "sources": {}
+  },
+  "kernel_deb_sha256": "",
+  "kernel_artifacts": {
+    "/boot/vmlinuz-6.18.63-t736-gpu-v15": "",
+    "/boot/config-6.18.63-t736-gpu-v15": "",
+    "/boot/dtb/allwinner/t736-mainline-bringup.dtb": ""
+  },
+  "evidence_logs": {}
+}

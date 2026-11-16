@@ -1,0 +1,2 @@
+test ! -L /sys/bus/platform/devices/7065000.power-controller/driver && insmod /tmp/t736-transfer/t736-gpu-power-retry2-v15.ko; printf 'PROVIDER2_RC=%s\n' "$?"; sleep 1; readlink /sys/bus/platform/devices/7065000.power-controller/driver; ls -l /dev/dri; dmesg | grep -Ei 't736-gpu|pvr|rogue|gpu.*fail|rgx' | tail -n 45; printf 'PROVIDER2_DONE\n'
+

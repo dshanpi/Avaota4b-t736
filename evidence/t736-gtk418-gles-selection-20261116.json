@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-16",
+  "source_tag": "GTK 4.18.6",
+  "no_package_change": true,
+  "no_board_operation": true,
+  "recommended_environment": {
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "GDK_DEBUG": "opengl",
+    "GSK_DEBUG": "renderer"
+  },
+  "findings": [
+    "GDK_DEBUG=gl-gles is absent from GTK4.18.6 debug keys; GDK_DISABLE=gl-api blocks desktop GL while leaving GLES enabled.",
+    "GDK_DISABLE=glx blocks the GLX fallback; GDK_DISABLE=vulkan keeps this validation on the OpenGL/GLES renderer.",
+    "GSK_RENDERER=gl remains an alias but emits an old-renderer removal warning; opengl and ngl map directly to GSK_TYPE_GL_RENDERER.",
+    "GSK_RENDERER is a preferred renderer, not a no-fallback guarantee: GSK can still fall back to Cairo.",
+    "EGL context creation prefers GLES unless GL_PREFER_GL is set or a shared context requires another allowed API."
+  ],
+  "acceptance": [
+    "New standalone GTK process so an existing application or D-Bus activation does not absorb the request with its old environment",
+    "GDK OpenGL diagnostics report an EGL context with es:yes and PowerVR identity",
+    "GSK diagnostics report GskGLRenderer, not GskCairoRenderer",
+    "Process maps, render-node use and GPU error counters corroborate the log; process liveness alone is insufficient"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/GNOME/gtk/blob/4.18.6/gdk/gdk.c",
+      "section": "gdk_debug_keys and gdk_feature_keys"
+    },
+    {
+      "url": "https://github.com/GNOME/gtk/blob/4.18.6/gdk/gdkglcontext.c",
+      "excerpts": [
+        {
+          "lines": [
+            399,
+            444
+          ],
+          "text": "gdk_gl_context_realize_egl (GdkGLContext  *context,\n                            GError       **error)\n{\n  GdkDisplay *display = gdk_gl_context_get_display (context);\n  GdkGLContext *share = gdk_display_get_gl_context (display);\n  GdkDebugFlags flags;\n  GdkGLAPI api, preferred_api;\n  gboolean prefer_legacy;\n\n  flags = gdk_display_get_debug_flags(display);\n\n  if (share && gdk_gl_context_is_api_allowed (context,\n                                              gdk_gl_context_get_api (share),\n                                              NULL))\n    preferred_api = gdk_gl_context_get_api (share);\n  else if ((flags & GDK_DEBUG_GL_PREFER_GL) != 0 &&\n           gdk_gl_context_is_api_allowed (context, GDK_GL_API_GL, NULL))\n    preferred_api = GDK_GL_API_GL;\n  else if (gdk_gl_context_is_api_allowed (context, GDK_GL_API_GLES, NULL))\n    preferred_api = GDK_GL_API_GLES;\n  else if ((flags & GDK_DEBUG_GL_PREFER_GL) == 0 &&\n            gdk_gl_context_is_api_allowed (context, GDK_GL_API_GL, NULL))\n    preferred_api = GDK_GL_API_GL;\n  else\n    {\n      g_set_error_literal (error, GDK_GL_ERROR,\n                           GDK_GL_ERROR_NOT_AVAILABLE,\n                           _(\"No GL API allowed.\"));\n      return 0;\n    }\n\n  prefer_legacy = share != NULL && gdk_gl_context_is_legacy (share);\n\n  if (preferred_api == GDK_GL_API_GL)\n    {\n      if ((api = gdk_gl_context_create_egl_context (context, GDK_GL_API_GL, prefer_legacy)) ||\n          (api = gdk_gl_context_create_egl_context (context, GDK_GL_API_GLES, FALSE)) ||\n          (api = gdk_gl_context_create_egl_context (context, GDK_GL_API_GL, TRUE)))\n        return api;\n    }\n  else\n    {\n      if ((api = gdk_gl_context_create_egl_context (context, GDK_GL_API_GLES, FALSE)) ||\n          (api = gdk_gl_context_create_egl_context (context, GDK_GL_API_GL, prefer_legacy)) ||\n          (api = gdk_gl_context_create_egl_context (context, GDK_GL_API_GL, TRUE)))\n        return api;"
+        },
+        {
+          "lines": [
+            1298,
+            1338
+          ],
+          "text": "gdk_gl_context_is_api_allowed (GdkGLContext  *self,\n                               GdkGLAPI       api,\n                               GError       **error)\n{\n  GdkGLContextPrivate *priv = gdk_gl_context_get_instance_private (self);\n  GdkGLAPI allowed_apis;\n\n  allowed_apis = priv->allowed_apis;\n\n  if (!gdk_has_feature (GDK_FEATURE_GLES_API))\n    {\n      if (api == GDK_GL_API_GLES)\n        {\n          g_set_error_literal (error, GDK_GL_ERROR, GDK_GL_ERROR_NOT_AVAILABLE,\n                               _(\"OpenGL ES API disabled via GDK_DISABLE\"));\n          return FALSE;\n        }\n\n      allowed_apis &= ~GDK_GL_API_GLES;\n    }\n\n  if (!gdk_has_feature (GDK_FEATURE_GL_API))\n    {\n      if (api == GDK_GL_API_GL)\n        {\n          g_set_error_literal (error, GDK_GL_ERROR, GDK_GL_ERROR_NOT_AVAILABLE,\n                               _(\"OpenGL API disabled via GDK_DISABLE\"));\n          return FALSE;\n        }\n\n      allowed_apis &= ~GDK_GL_API_GL;\n    }\n\n  if (allowed_apis & api)\n    return TRUE;\n\n  g_set_error (error, GDK_GL_ERROR, GDK_GL_ERROR_NOT_AVAILABLE,\n               _(\"Application does not support %s API\"),\n               api == GDK_GL_API_GL ? \"OpenGL\" : \"OpenGL ES\");\n\n  return FALSE;"
+        }
+      ]
+    },
+    {
+      "url": "https://github.com/GNOME/gtk/blob/4.18.6/gsk/gskrenderer.c",
+      "excerpts": [
+        {
+          "lines": [
+            481,
+            499
+          ],
+          "text": "static GType\nget_renderer_for_name (const char *renderer_name)\n{\n  if (renderer_name == NULL)\n    return G_TYPE_INVALID;\n#ifdef GDK_WINDOWING_BROADWAY\n  else if (g_ascii_strcasecmp (renderer_name, \"broadway\") == 0)\n    return GSK_TYPE_BROADWAY_RENDERER;\n#endif\n  else if (g_ascii_strcasecmp (renderer_name, \"cairo\") == 0)\n    return GSK_TYPE_CAIRO_RENDERER;\n  else if (g_ascii_strcasecmp (renderer_name, \"ngl\") == 0 ||\n           g_ascii_strcasecmp (renderer_name, \"opengl\") == 0)\n    return GSK_TYPE_GL_RENDERER;\n  else if (g_ascii_strcasecmp (renderer_name, \"gl\") == 0)\n    {\n      g_warning (\"The old GL renderer has been removed. Try GSK_RENDERER=help\");\n      return GSK_TYPE_GL_RENDERER;\n    }"
+        },
+        {
+          "lines": [
+            704,
+            729
+          ],
+          "text": "static struct {\n  GType (* get_renderer) (GdkSurface *surface);\n} renderer_possibilities[] = {\n  { get_renderer_for_display },\n  { get_renderer_for_env_var },\n  { get_renderer_for_backend },\n#ifdef GDK_RENDERING_VULKAN\n  { get_renderer_for_vulkan },\n#endif\n  { get_renderer_for_gl },\n#ifdef GDK_RENDERING_VULKAN\n  { get_renderer_for_vulkan_fallback },\n#endif\n  { get_renderer_for_gl_fallback },\n  { get_renderer_fallback },\n};\n\n/**\n * gsk_renderer_new_for_surface:\n * @surface: a surface\n *\n * Creates an appropriate `GskRenderer` instance for the given surface.\n *\n * If the `GSK_RENDERER` environment variable is set, GSK will\n * try that renderer first, before trying the backend-specific\n * default. The ultimate fallback is the cairo renderer."
+        },
+        {
+          "lines": [
+            745,
+            769
+          ],
+          "text": "  for (i = 0; i < G_N_ELEMENTS (renderer_possibilities); i++)\n    {\n      renderer_type = renderer_possibilities[i].get_renderer (surface);\n      if (renderer_type == G_TYPE_INVALID)\n        continue;\n\n      renderer = g_object_new (renderer_type, NULL);\n\n      if (gsk_renderer_realize (renderer, surface, &error))\n        {\n          GSK_DEBUG (RENDERER,\n                     \"Using renderer '%s' for surface '%s'\",\n                     G_OBJECT_TYPE_NAME (renderer),\n                     G_OBJECT_TYPE_NAME (surface));\n          return renderer;\n        }\n\n      GSK_DEBUG (RENDERER,\n                 \"Failed to realize renderer '%s' for surface '%s': %s\",\n                 G_OBJECT_TYPE_NAME (renderer),\n                 G_OBJECT_TYPE_NAME (surface),\n                 error->message);\n\n      g_object_unref (renderer);\n      g_clear_error (&error);"
+        }
+      ]
+    },
+    {
+      "url": "https://github.com/GNOME/gtk/blob/4.18.6/gdk/x11/gdkdisplay-x11.c",
+      "excerpts": [
+        {
+          "lines": [
+            2974,
+            3006
+          ],
+          "text": "gdk_x11_display_init_gl_backend (GdkX11Display  *self,\n                                 Visual        **out_visual,\n                                 int            *out_depth,\n                                 GError        **error)\n{\n  GdkDisplay *display = GDK_DISPLAY (self);\n  Display *dpy = gdk_x11_display_get_xdisplay (GDK_DISPLAY (self));\n  EGLDisplay egl_display;\n  XVisualInfo *visinfo;\n  int visualid;\n\n  /* No env vars set, do the regular GL initialization.\n   * \n   * We try EGL first, but are very picky about what we accept.\n   * If that fails, we try to go with GLX instead.\n   * And if that also fails, we try EGL again, but this time accept anything.\n   *\n   * The idea here is that EGL is the preferred method going forward, but GLX is\n   * the tried and tested method that we know works. So if we detect issues with\n   * EGL, we want to avoid using it in favor of GLX.\n   */\n\n  if (!gdk_display_init_egl (display, EGL_PLATFORM_X11_KHR, dpy, FALSE, error))\n    {\n      g_clear_error (error);\n\n      if (gdk_x11_display_init_glx (self, out_visual, out_depth, error))\n        return TRUE;\n      \n      g_clear_error (error);\n      if (!gdk_display_init_egl (display, EGL_PLATFORM_X11_KHR, dpy, TRUE, error))\n        return FALSE;\n    }"
+        }
+      ]
+    }
+  ]
+}

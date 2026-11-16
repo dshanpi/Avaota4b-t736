@@ -1,0 +1,21 @@
+{
+  "kind": "diagnostic only; original published module unchanged",
+  "source": "/home/ubuntu/t736-mainline/sources/work/pvr-bxm-24.2-diag1",
+  "build_output": "/home/ubuntu/t736-mainline/build/pvr-bxm-v15-diag1",
+  "module": "/home/ubuntu/t736-mainline/output/pvrsrvkm-6.18.63-t736-gpu-v15-diag1.ko",
+  "module_sha256": "21940e868ea9220ce59f0718892a4bed5cfe15fd1be913051c5353bb0f7aa30e",
+  "compressed": "/home/ubuntu/t736-mainline/output/pvrsrvkm-6.18.63-t736-gpu-v15-diag1.ko.xz",
+  "compressed_sha256": "c3a84e951e0afd3b80ef236d8a360730a1525ab94b565c8eea0fc92e0bfbd899",
+  "compressed_bytes": 349600,
+  "vermagic": "6.18.63-t736-gpu-v15 SMP mod_unload aarch64",
+  "build_log": "evidence/pvr-bxm-v15-diag1-build-20261116.log",
+  "patch": "patches/pvr-bxm-v15-diag1-checkpoints.patch",
+  "logic_changed": false,
+  "bvnc_check_skipped": false,
+  "secure_config_order_changed": false,
+  "physical_first_reads": [
+    "0x01800024",
+    "0x01800020"
+  ],
+  "strip": "aarch64-linux-gnu-strip --strip-debug"
+}

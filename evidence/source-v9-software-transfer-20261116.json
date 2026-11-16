@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-16",
+  "image": "G:\\codex\\t736\\mainline\\output\\t736-armbian-source-v9.raw.img",
+  "bytes": 8589934592,
+  "sha256": "831e8ea5679d3adb6f3616027114ddaa4cfb83c0032c24fb847ad81a94b73f0e",
+  "remote_sha256": "831e8ea5679d3adb6f3616027114ddaa4cfb83c0032c24fb847ad81a94b73f0e",
+  "kernel_deb_sha256": "441110b370051a19bb38e67f29cb3737b3c7c04cbc8ad6e853d6707ca9b74a60",
+  "transfer_verified": true,
+  "transport": "temporary exact-file HTTP endpoint; stopped and removed",
+  "desktop_profile": "software",
+  "userspace_version": "24.2.6603887-2",
+  "cpu_validation_module_included": false,
+  "console_printk_level": 4,
+  "cold_boot_validated": false,
+  "gpu_runtime_validated": false,
+  "elapsed_seconds": 65.3
+}

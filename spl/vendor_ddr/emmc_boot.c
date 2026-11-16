@@ -36,7 +36,9 @@ void spl_recovery_window(void){
  t736_clrset32(0x02000104,0xff0,0x220);t736_clrset32(0x02002538,0x0700001f,0);t736_clrset32(0x02002e00,0,0x10001);
  t736_write32(UART+4,0);t736_write32(UART+12,0x80);t736_write32(UART,13);t736_write32(UART+4,0);t736_write32(UART+12,3);t736_write32(UART+8,7);
  if(t736_timer_init())stop();
-#ifdef T736_PERIPHERAL_POWER
+#ifdef T736_CPUCLOCK
+ printf("T736 SPL v5; Ctrl-C 3s for recovery\n");
+#elif defined(T736_PERIPHERAL_POWER)
  printf("T736 source eMMC SPL v4; fixed LPDDR4x and peripheral power; Ctrl-C within 3 seconds for recovery\n");
 #else
  printf("T736 source eMMC SPL v3; fixed board LPDDR4x; Ctrl-C within 3 seconds for recovery\n");

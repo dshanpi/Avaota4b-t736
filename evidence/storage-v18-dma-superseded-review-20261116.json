@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "kind": "storage-v18-dma-independent-static-review",
+  "date": "2026-11-16",
+  "reviewer": "backup_audit",
+  "hardware_operations": false,
+  "files_sha256": {
+    "boards/t736_mmc_dma_v18.c": "d32cd6e1abda0c7c313d999c5d40a2aa2856b16507eebc1bf186ee2a357ba275",
+    "boards/t736_mmc_dma_desc.h": "b4d7184336abec047a75733de4015d4bc8ae68e15395f848023b58c632b8608f",
+    "boards/t736_mmc_pio.c": "ab8f35caf434023e30ea35a39a923918aba5381c8136c44a6879aed2c491b6d5",
+    "tools/build_dma_storage_kernel.sh": "faa6c0e681862881e99f218de56ca46ecf12f1ebb0b4257d2bfea307ce517a47",
+    "tests/test_mmc_dma_descriptor.py": "8ff62fcccc8cfefe950ad4810eebad90650cbc4a6d728a2f14a7951256b1e5d5",
+    "evidence/storage-v18-smhc-version-gates-corrected-20261116.log": "7eb93f55499cf150b9446346b5128e20388843ce2487ca58554437f72282398d"
+  },
+  "result": "SUPERSEDED: old generic SMHC0-2 descriptor/control assumptions withdrawn; do not deploy bound old package",
+  "reviewed": [
+    "Card CMD_DONE and DATA_OVER/AUTO_COMMAND_DONE plus direction-specific IDST are required before success. All active descriptor OWN bits must clear; descriptor error fails the request.",
+    "Coherent allocations use a 32-bit DMA mask; descriptor/data/next addresses are word-shifted and checked for alignment/end bounds. The 1KiB chunks avoid ambiguous 11-bit zero encoding.",
+    "dma_wmb orders initialized descriptors and outgoing data before starting IDMA. dma_rmb precedes descriptor and incoming buffer consumption.",
+    "Every launched data request stops/disables/resets the DMA controller and FIFO before read-copy, successful return or memory reuse.",
+    "Any reset timeout sets dma_dead/ios_error; future commands refuse operation. Both coherent allocations remain pinned on remove and failure cleanup rather than being freed for a potentially late DMA.",
+    "Failed reads do not copy bounce contents to caller SG; bytes_xfered remains zero. Short SG copy fails before starting DMA on writes.",
+    "Ordered WQ serializes work and supports requeue from mmc_request_done. The running callback makes no further mrq access after completion.",
+    "SBC failure is returned; request errors attempt CMD12; dma_dead makes the stop command fail safely without re-enabling the engine.",
+    "DMA status error bits agree with Tina sunxi-mmc.h: fatal bus 2, destination-invalid 4, card-error 5, abnormal-summary 9, host-abort 10.",
+    "Last descriptor CHAIN+LAST+END, DIC cleared, next zero matches the existing mainline sunxi-mmc descriptor termination; Tina uses CHAIN+LAST and omits END. Both use LAST to terminate data.",
+    "Final t736_check_dma_bus only readl()s two resources; builder supplies exact corrected addresses 0x020025e0 and 0x0200259c. It requires STORE_MBUS bit30 and MSI_LITE1 bit0, returning before controller writes on failure. No new writes to either shared clock register.",
+    "Saved board snapshot at corrected addresses reads f1055803/00030001 and SMCV03050610. Prior wrong-address zero readings are superseded, not evidence that DMA bus gates were off.",
+    "Production polling calls t736_dma_poll_result from the same header compiled by the actual C tests. The extracted helper preserves error priority, CMD/data/directional DMA completion and dma_rmb-before-OWN semantics.",
+    "Reviewed new C test cases cover missing CMD/data/direction bits, auto-stop, pending intermediate OWN, descriptor error and simultaneous error/completion. Independent review did not repeat the build-owner test run."
+  ],
+  "retained_limitations": [
+    "This review is not a DMA hardware test or higher-speed timing acceptance.",
+    "Two-second command/busy budget and existing auto-stop response handling are inherited from the v16 path.",
+    "Timing remains 12MHz legacy 8-bit; no high-speed/MMC voltage capability is enabled.",
+    "Quarantined memory is intentionally leaked until reboot after a dead DMA engine."
+  ],
+  "required_hardware_acceptance": [
+    "Confirm SMHC version guard, low32-bit descriptor/data addresses and unchanged 12MHz legacy IOS.",
+    "Cold boot through rootfs, compare bounded raw-read checksums, bounded filesystem write/read checksums, and inspect controller errors.",
+    "Test request boundary/fragment sizes and preserve working kernel/DTB/PVR/initrd rollback."
+  ],
+  "excludes": "No approval for later source changes or any new shared STORE_MBUS/MSI_LITE register writes",
+  "reviewed_revision": "final DMA candidate with corrected CCU read-only checks and shared completion helper",
+  "superseded_reason": "Manual Table11-4/11-6 and section11.3.9 define SMHC3-specific reserved bits; corrected candidate requires fresh hashes and review",
+  "latest_findings": [
+    "Agree DES0 only OWN/FD/LD under low4G; CES30 is reserved, not error",
+    "Agree DMAC enables bit7 only, bit1 reserved",
+    "Agree IDST valid clear mask0x133 and errors4/5",
+    "Additional correction requested: RINTSTS13 is read start-error but write busy-clear; RINTSTS18 is data write busy timeout"
+  ]
+}

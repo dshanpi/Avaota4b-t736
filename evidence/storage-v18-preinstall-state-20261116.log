@@ -1,0 +1,26 @@
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+文件系统        大小  已用  可用 已用% 挂载点
+/dev/mmcblk0p4  7.1G  3.0G  4.2G   42% /
+/dev/mmcblk0p4  7.1G  3.0G  4.2G   42% /
+/dev/mmcblk0p4  7.1G  3.0G  4.2G   42% /
+-rw-r--r-- 1 root root  12M 11月16日 10:42 /boot/initrd.img-6.18.63-t736-storage-v16
+-rw-r--r-- 1 root root 4.8M 11月16日 10:17 /boot/vmlinuz-6.18.63-t736-storage-v16

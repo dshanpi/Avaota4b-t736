@@ -1,0 +1,13 @@
+systemctl is-active systemd-resolved; resolvectl status end0 --no-pager; ip route; timeout 8 resolvectl query --type=A deb.debian.org
+
+active
+Link 2 (end0)
+    Current Scopes: DNS LLMNR/IPv4 LLMNR/IPv6
+         Protocols: +DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 10.0.0.1
+       DNS Servers: 10.0.0.1 fd67:b33e:a9c2::1
+     Default Route: yes
+default via 10.0.0.1 dev end0 proto dhcp src 10.0.0.249 metric 1024 
+10.0.0.0/24 dev end0 proto kernel scope link src 10.0.0.249 metric 1024 
+10.0.0.1 dev end0 proto dhcp scope link src 10.0.0.249 metric 1024 
+root@t736:~# 

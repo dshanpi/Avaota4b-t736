@@ -1,0 +1,90 @@
+{
+  "date": "2026-11-16",
+  "scope": "Read-only Xorg/GNOME diagnosis; no board, serial, production configuration or source changes",
+  "runtime_evidence": [
+    "source-v8-gpu-session-renderer-diag-20261116.log",
+    "source-v8-gpu-session-maps-20261116.log"
+  ],
+  "conclusions": {
+    "depth30": "Local per-depth pixmap fallback. Xorg 21.1.16 glamor_add_format selects formats[depth]; the read format/type mismatch returns before setting rendering_supported. Only affected-depth allocations then use fbCreatePixmap. formats 24/32 and 30 are independently and unconditionally probed, so DefaultDepth 24 does not suppress the depth30 probe/warning.",
+    "hardware": "The captured Xorg log explicitly reports PowerVR B-Series BXM-4-64 glamor acceleration and no depth24/32 format failure. This establishes hardware EGL/GLES initialization; it is not comprehensive desktop/application acceptance.",
+    "glx": "AIGLX message means DRI2 createNewScreen returned NULL. The subsequent DRISWRAST provider selects the __DRI_SWRAST extension. It is separate from the active hardware EGL/GLES glamor context.",
+    "same_hash": "pvr_dri.so, sunxi-drm_dri.so, swrast_dri.so and zink_dri.so in the packaged vendor bundle all have SHA256 445406ab0c2a23c6ee2cb5e7e2187f968be6f545167a91ca67a234b3e92bb48a and 16993848 bytes. This is a multi-driver megadriver exporting distinct entry points. Equal hashes do not establish hardware rendering for the swrast entry.",
+    "software_implementation": "The megadriver has a local softpipe_create_screen function and no LLVM NEEDED entry. The only observed llvmpipe string is VK_DRIVER_ID_MESA_LLVMPIPE. Software GLX is plausible, most likely softpipe; exact active GLX renderer requires a separate GLX context query and is not claimed here.",
+    "gnome": "Mutter 48.7 selects EGL_XLIB for COGL_DRIVER=gles2 and GLX for GL3. The runtime already reports a high-priority EGL context. The captured fatal exit is GTK4 undefined vkCreateWaylandSurfaceKHR, not the depth30 or GLX message. Fixing the Vulkan-loader selection is the immediate prerequisite for the next desktop test.",
+    "secondary_gpu": "modeset(G0) tries render-only card1 as an extra KMS device and fails with packed24bpp/KMS setup errors. Primary modeset(0) still initializes. AutoAddGPU=false can suppress unnecessary Xorg GPU-screen creation after explicit card0 selection, but is not an EGL/GLX fix and needs a separate confirmation of primary/DRI3/render-node operation."
+  },
+  "source_references": [
+    {
+      "path": "xorg-glamor-audit-20261116/glamor_glamor.c",
+      "lines": [
+        219,
+        220,
+        468,
+        511,
+        516,
+        525,
+        589,
+        591,
+        601
+      ],
+      "purpose": "Per-depth fallback and unconditional probing"
+    },
+    {
+      "path": "xorg-glamor-audit-20261116/glx_glxdri2.c",
+      "lines": [
+        965,
+        970,
+        971
+      ],
+      "purpose": "Exact AIGLX NULL screen failure"
+    },
+    {
+      "path": "xorg-glamor-audit-20261116/glx_glxdriswrast.c",
+      "lines": [
+        438,
+        442,
+        448,
+        469,
+        486
+      ],
+      "purpose": "Separate SWRAST provider"
+    },
+    {
+      "path": "xorg-glamor-audit-20261116/hw_xfree86_man_xorg.conf.man",
+      "lines": [
+        662,
+        666,
+        2035,
+        2043
+      ],
+      "purpose": "AutoAddGPU, depth versus framebuffer bpp"
+    },
+    {
+      "url": "https://github.com/GNOME/mutter/blob/48.7/src/backends/x11/meta-renderer-x11.c",
+      "git_blob_sha": "44d06e32f1deb7b7d84f2460546883ecbe97b5d4",
+      "lines": [
+        57,
+        67
+      ],
+      "purpose": "GLES2 EGL_XLIB versus GL3 GLX"
+    }
+  ],
+  "minimal_configuration_recommendation": {
+    "immediate": "Keep existing explicit modesetting card0, glamor, SWcursor=true, PageFlip=false and COGL_DRIVER=gles2; first change only the Vulkan-loader conflict under the other agent's ownership.",
+    "optional_sdr": "Augment the intended existing Screen, or add one only if absent: Device \"T736 display engine\", DefaultDepth 24, DefaultFbBpp 32. Do not force packed 24 bits per pixel. This fixes the main screen format, not all offered pixmap/visual depths.",
+    "optional_secondary_gpu": "If G0 remains noisy or destabilizing after desktop works, add only ServerFlags Option \"AutoAddGPU\" \"false\" while retaining explicit card0. Verify primary modeset, DRI3 and PowerVR EGL again. Leave input auto-discovery unchanged.",
+    "avoid": [
+      "Do not disable GLX or AIGLX just to silence this log",
+      "Do not remove swrast_dri.so from the vendor megadriver package",
+      "Do not set MESA_LOADER_DRIVER_OVERRIDE=pvr globally on split display/render devices",
+      "Do not treat absence of the depth30 warning as a success requirement"
+    ],
+    "acceptance": [
+      "EGL X11 draw/readback probe identifies PowerVR",
+      "GNOME Shell remains running with vendor EGL/GLES and no loader-symbol error",
+      "Actual GNOME renderer verified, normal window creation/composition and physical HDMI observed",
+      "Treat native GLX application support as a separate unresolved capability"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+Sector Count [SEC_COUNT: 0x0747c000]
+I/O Driver Strength [DRIVER_STRENGTH: 0x1f]
+Card Type [CARD_TYPE: 0x57]
+ HS400 Dual Data Rate eMMC @200MHz 1.8VI/O
+ HS200 Single Data Rate eMMC @200MHz 1.8VI/O
+High-speed interface timing [HS_TIMING: 0x00]
+Enhanced Strobe mode [STROBE_SUPPORT: 0x01]
+eMMC Life Time Estimation A [EXT_CSD_DEVICE_LIFE_TIME_EST_TYP_A]: 0x01
+eMMC Life Time Estimation B [EXT_CSD_DEVICE_LIFE_TIME_EST_TYP_B]: 0x01
+eMMC Pre EOL information [EXT_CSD_PRE_EOL_INFO]: 0x01

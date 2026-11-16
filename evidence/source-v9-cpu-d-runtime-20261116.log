@@ -1,0 +1,45 @@
+cat /proc/sys/kernel/random/boot_id; cat /sys/devices/system/cpu/online; insmod /root/source-v9-validation/t736-cpu-clock-readonly.ko; dmesg | tail -25; ethtool eth0 | tail -18
+
+0b92ab3f-6697-45c7-aff4-f2f3e82e61de
+0-7
+[  104.375983] [drm] sunxi-hdmi: hdmi drv enable output done
+[  104.375986] [drm] sunxi-hdmi: drm hdmi atomic enable >>>>>>>>>>>>>>>>
+[  126.574767] [drm] sunxi-hdmi: drm get edid support modes: 42
+[  182.971105] t736-cpu-clock-ro: begin read-only snapshot base=0x08870000
+[  182.971135] t736-cpu-clock-ro: CPU_BACK_CTRL addr=0x08870000 value=0x40104a00
+[  182.971145] t736-cpu-clock-ro: A55_CTRL addr=0x08871000 value=0xf8802700
+[  182.971153] t736-cpu-clock-ro: A55_PAT0 addr=0x08871004 value=0x00000000
+[  182.971161] t736-cpu-clock-ro: A55_PAT1 addr=0x08871008 value=0x30000000
+[  182.971168] t736-cpu-clock-ro: A55_LFM addr=0x08871018 value=0x40000001
+[  182.971175] t736-cpu-clock-ro: A55_CLK addr=0x0887101c value=0x03000000
+[  182.971182] t736-cpu-clock-ro: A55_CTRL_STAT addr=0x0887102c value=0xf8802700
+[  182.971189] t736-cpu-clock-ro: A76_CTRL addr=0x08872000 value=0xf8802700
+[  182.971197] t736-cpu-clock-ro: A76_PAT0 addr=0x08872004 value=0x00000000
+[  182.971203] t736-cpu-clock-ro: A76_PAT1 addr=0x08872008 value=0x30000000
+[  182.971210] t736-cpu-clock-ro: A76_LFM addr=0x08872018 value=0x40000001
+[  182.971217] t736-cpu-clock-ro: A76_CLK addr=0x0887201c value=0x03000000
+[  182.971224] t736-cpu-clock-ro: A76_CTRL_STAT addr=0x0887202c value=0xf8802700
+[  182.971231] t736-cpu-clock-ro: DSU_CTRL addr=0x08873000 value=0xf8801300
+[  182.971238] t736-cpu-clock-ro: DSU_PAT0 addr=0x08873004 value=0x00000000
+[  182.971245] t736-cpu-clock-ro: DSU_PAT1 addr=0x08873008 value=0x30000000
+[  182.971252] t736-cpu-clock-ro: DSU_LFM addr=0x08873018 value=0x40000001
+[  182.971259] t736-cpu-clock-ro: DSU_CLK addr=0x0887301c value=0x03000105
+[  182.971266] t736-cpu-clock-ro: DSU_CTRL_STAT addr=0x0887302c value=0xf8801300
+[  182.971273] t736-cpu-clock-ro: CPU_SLOW_CLK addr=0x08873034 value=0x00000000
+[  182.971283] t736-cpu-clock-ro: end; no MMIO writes performed
+netlink error: no device matches name (offset 24)
+netlink error: No such device
+netlink error: no device matches name (offset 24)
+netlink error: No such device
+netlink error: no device matches name (offset 24)
+netlink error: No such device
+netlink error: no device matches name (offset 24)
+netlink error: No such device
+netlink error: no device matches name (offset 24)
+netlink error: No such device
+netlink error: no device matches name (offset 24)
+netlink error: No such device
+netlink error: no device matches name (offset 24)
+netlink error: No such device
+No data available
+root@t736:~# 

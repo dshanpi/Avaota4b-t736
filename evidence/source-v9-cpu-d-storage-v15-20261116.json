@@ -1,0 +1,77 @@
+{
+  "boot_id": "0b92ab3f-6697-45c7-aff4-f2f3e82e61de",
+  "kernel": "6.18.63-t736-gpu-v15",
+  "online": "0-7",
+  "raw_write": false,
+  "cpu_seconds": 30,
+  "mmc_ios": "clock:\t\t12000000 Hz\nvdd:\t\t21 (3.3 ~ 3.4 V)\nbus mode:\t2 (push-pull)\nchip select:\t0 (don't care)\npower mode:\t2 (on)\nbus width:\t3 (8 bits)\ntiming spec:\t0 (legacy)\nsignal voltage:\t0 (3.30 V)\ndriver type:\t0 (driver type B)\n",
+  "cpu": [
+    {
+      "cpu": 0,
+      "ok": true,
+      "mib": 12027,
+      "seconds": 30.000579380000005
+    },
+    {
+      "cpu": 1,
+      "ok": true,
+      "mib": 11980,
+      "seconds": 30.000579878999986
+    },
+    {
+      "cpu": 2,
+      "ok": true,
+      "mib": 12030,
+      "seconds": 30.000580045999982
+    },
+    {
+      "cpu": 3,
+      "ok": true,
+      "mib": 11949,
+      "seconds": 30.00037407100001
+    },
+    {
+      "cpu": 4,
+      "ok": true,
+      "mib": 11858,
+      "seconds": 30.000562325000004
+    },
+    {
+      "cpu": 5,
+      "ok": true,
+      "mib": 12166,
+      "seconds": 30.000579587000004
+    },
+    {
+      "cpu": 6,
+      "ok": true,
+      "mib": 18068,
+      "seconds": 30.001011292000015
+    },
+    {
+      "cpu": 7,
+      "ok": true,
+      "mib": 18043,
+      "seconds": 30.00106219899999
+    }
+  ],
+  "raw_read": {
+    "bytes": 16777216,
+    "seconds": 9.914293026999985,
+    "mib_per_second": 1.6138316626739364,
+    "sha256": "d9a620109e2115f3d590013660fb75bc2a2c260074f87f3ac439369c21ca689c"
+  },
+  "file_write": {
+    "bytes": 8388608,
+    "seconds": 4.439066535999984,
+    "mib_per_second": 1.8021806916209802,
+    "fsync": true
+  },
+  "file_readback": {
+    "bytes": 8388608,
+    "seconds": 1.229536114000041,
+    "mib_per_second": 6.506518929300627,
+    "sha256": "fa5183d417a3f3d7bc093aeafdb1dd9d6864fad93ae876052eebc9e326587001"
+  },
+  "status": "PASS"
+}

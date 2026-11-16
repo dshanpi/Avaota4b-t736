@@ -1,0 +1,85 @@
+
+(python3:3875): Gtk-WARNING **: 11:38:28.712: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+{
+  "status": "COMPLETE",
+  "timing_usable": true,
+  "workload": "24 rounded libadwaita cards with labels, buttons and switches; 240px/s scroll",
+  "renderer_gtype": "GskGLRenderer",
+  "requested_renderer": "opengl",
+  "environment": {
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles"
+  },
+  "sample_seconds_requested": 10.0,
+  "sample_elapsed_seconds": 10.002060074000013,
+  "mapped_seconds_after_launch": 0.3520256980000056,
+  "first_tick_seconds_after_launch": 0.38691359700001726,
+  "cpu_seconds_before_map": 0.353957244,
+  "cpu_seconds_sample": 4.527668584,
+  "cpu_seconds_total": 4.881625828,
+  "rusage_user_seconds": 4.674272,
+  "rusage_system_seconds": 0.651759,
+  "max_rss_kib": 107036,
+  "tick_intervals": {
+    "count": 462,
+    "median_ms": 16.7065,
+    "p95_ms": 33.35,
+    "over_33_5ms": 5
+  },
+  "after_paint_intervals": {
+    "count": 462,
+    "median_ms": 17.0835,
+    "p95_ms": 31.932,
+    "over_33_5ms": 10
+  },
+  "tick_count": 463,
+  "after_paint_count": 463,
+  "scroll_changed": true,
+  "libraries": [
+    "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+    "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887",
+    "/usr/lib/aarch64-linux-gnu/libadwaita-1.so.0",
+    "/usr/lib/aarch64-linux-gnu/libcairo-gobject.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo-script-interpreter.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libcairo.so.2.11804.4",
+    "/usr/lib/aarch64-linux-gnu/libgtk-4.so.1.1800.6",
+    "/usr/share/locale/zh_CN/LC_MESSAGES/libadwaita.mo"
+  ],
+  "session_before": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_after": {
+    "locked": false,
+    "overview_active": false
+  },
+  "session_check_scope": "start and end only",
+  "interrupted": false,
+  "physical_display_verified": false,
+  "metric": "GTK frame-clock tick and monotonic after-paint callback intervals; not scanout/presentation"
+}
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 12%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   1% 
+           3D:  11% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 

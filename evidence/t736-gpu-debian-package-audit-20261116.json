@@ -1,0 +1,366 @@
+{
+  "audit_scope": {
+    "date": "2026-11-16",
+    "method": "Read-only SDK package/source inspection, readelf and targeted strings; current v7 rootfs read through debugfs without -w",
+    "no_board_access": true,
+    "no_install_build_or_deployment": true,
+    "hardware_acceleration_validated_this_audit": false
+  },
+  "ddk": {
+    "version": "24.2.6603887",
+    "gpu": "IMG BXM-4-64 MC1 (parent-reported board identification)",
+    "firmware_bvnc": "36.56.104.183",
+    "kernel_requirement": "Matching pvrsrvkm Services ABI, build options, BVNC and firmware; an upstream powervr node alone does not establish proprietary ABI compatibility"
+  },
+  "current_v7_packages": {
+    "libc6": "2.41-12+deb13u4",
+    "libstdc++6": "14.2.0-19",
+    "libglvnd0": "1.7.0-1+b2",
+    "libmutter-16-0": "48.7-0+deb13u1",
+    "Mesa": "25.0.7-2+deb13u1"
+  },
+  "buildroot_bundle": {
+    "path": "platform/allwinner/display/libgpu/img-bxm/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu",
+    "variants": ["x11", "wayland"],
+    "architecture": "AArch64 ELF64, GNU libc",
+    "mesa_version": "24.0.1",
+    "highest_observed_glibc_requirement": "GLIBC_2.33",
+    "highest_observed_glibcxx_requirement": "GLIBCXX_3.4.18",
+    "x11_apis": [
+      "EGL/X11 with XCB DRI2/DRI3 dependencies",
+      "GLES1/GLES2+ modules",
+      "GBM including modifier and per-plane FD exports",
+      "GLX loader",
+      "Vulkan IMG ICD declares 1.3.277",
+      "Mesa DRI entry points pvr, sunxi_drm, zink"
+    ],
+    "wayland_apis": ["EGL/Wayland", "GLES", "GBM", "Vulkan IMG ICD and WSI layer"],
+    "firmware_sha256": "43eb5d054ee98bc975274198d2ed440e2f0f50b7ffcd0996a4022949f2c7909f",
+    "shader_firmware_sha256": "71e1b1da9b4c6b42468e378e8b835306920568088bc6669879db4a108a7747c9",
+    "warning": "Keep the chosen winsys bundle coherent; identical DDK filenames do not imply byte-identical x11, wayland or Debian-build libraries."
+  },
+  "debian_package_integration_findings": {
+    "highest_observed_glibc_requirement": "GLIBC_2.30",
+    "basic_libc_compatibility": "Target glibc 2.41 supplies a newer versioned ABI; this does not prove full dependency or graphics protocol compatibility.",
+    "postinst": "Enables and may start lightdm.service",
+    "prerm_postrm": "Stop, mask or purge lightdm.service state",
+    "bundled_service": "/lib/systemd/system/lightdm.service with display-manager.service alias and vendor LD_LIBRARY_PATH",
+    "do_not_install_unchanged_into_gdm_candidate": true,
+    "glvnd": "No __egl_Main export in audited vendor libEGL, and no vendor libGLX or EGL GLVND JSON found. Treat as a complete legacy stack, not a GLVND plug-in.",
+    "native_opengl_gap": "libpvr_dri_support references libGL_PVR_MESA.so, but that module was not found in either SDK IMG bundle or the Debian package. A libGL/GLX loader does not prove native accelerated desktop OpenGL.",
+    "zink": "Buildroot 10.3 x11 DRI exports zink; audited Debian package does not.",
+    "firmware_difference": "Debian rgx.fw differs from Buildroot and historical baseline despite the same BVNC filename. Do not substitute based only on filename."
+  },
+  "mutter48_gles_x11": {
+    "conclusion": "GNOME/Mutter 48 has a GLES2 plus EGL_XLIB path for an Xorg session. Missing libGL_PVR_MESA.so does not make Wayland or Zink mandatory.",
+    "source_tag": "48.7",
+    "source_behavior": [
+      "src/backends/x11/meta-renderer-x11.c lines 57-67 maps GLES2 to EGL_XLIB and GL3 to GLX.",
+      "cogl/cogl/cogl-renderer.c accepts COGL_DRIVER=gles2. Default selection prefers GL3; a custom winsys does not establish automatic fallback after GL3 failure.",
+      "meson.build enables EGL_XLIB when EGL and X11 are enabled.",
+      "cogl-winsys-egl-x11.c implements X11 window surfaces and EGL image/pixmap texture handling."
+    ],
+    "actual_candidate_binary": {
+      "rootfs": "/home/ubuntu/t736-mainline/output/rootfs-armbian-source-v7.ext4",
+      "file": "/usr/lib/aarch64-linux-gnu/mutter-16/libmutter-cogl-16.so.0.0.0",
+      "bytes": 658504,
+      "targeted_strings": [
+        "COGL_DRIVER", "gles2", "libEGL.so.1", "libGLESv2.so.2",
+        "cogl_driver_gles2_get_read_pixels_format",
+        "../cogl/cogl/winsys/cogl-winsys-egl-x11.c:546"
+      ]
+    },
+    "source_urls": [
+      "https://gitlab.gnome.org/GNOME/mutter/-/raw/48.7/src/backends/x11/meta-renderer-x11.c",
+      "https://gitlab.gnome.org/GNOME/mutter/-/raw/48.7/cogl/cogl/cogl-renderer.c",
+      "https://gitlab.gnome.org/GNOME/mutter/-/raw/48.7/cogl/cogl/winsys/cogl-winsys-egl-x11.c"
+    ],
+    "runtime_status": "Capability supported by source and installed binary; vendor EGL/GLES GNOME session not run in this audit."
+  },
+  "historical_evidence_boundary": {
+    "files": [
+      "analysis/armbian-adaptation/gpu-npu-audit.json",
+      "analysis/armbian-adaptation/actual-audit.txt",
+      "analysis/distro-20261111/status.json",
+      "analysis/debian-adaptation/CHECK-ROOTFS.txt"
+    ],
+    "findings": [
+      "Historical baseline records identify pvrsrvkm rogueddk24.2@6603887 and report Weston IMG BXM OpenGL ES3.2.",
+      "Historical Debian/Armbian adaptation records explicitly leave GPU runtime validation pending; the first Debian boot failed in ATF.",
+      "A reported Buildroot Weston baseline does not prove GNOME48/Xorg, Linux6.18, this Debian package or present firmware selection."
+    ],
+    "original_weston_renderer_log_independently_revalidated": false
+  },
+  "recommended_next_candidate": {
+    "priority": "Retain GNOME48 Xorg and fixed 1080p60; first investigate the coherent vendor x11 EGL/GLES stack with COGL_DRIVER=gles2.",
+    "packaging": "Inherit SDK bundle selection and DDK dependencies in an isolated candidate package/directory without LightDM hooks. Preserve the working software-rendering image and recovery.",
+    "minimum_coherent_stack": [
+      "Vendor libEGL, libGLESv2, libglapi and libgbm",
+      "Matching pvr/sunxi-drm DRI module",
+      "Matching libpvr_dri_support, libsrv_um and compiler/USC modules",
+      "Matching kernel Services ABI and selected rgx firmware"
+    ],
+    "environment": "Scope vendor library/DRI paths and COGL_DRIVER=gles2 to the candidate. Existing LIBGL_ALWAYS_SOFTWARE=true and GALLIUM_DRIVER=llvmpipe must be absent from the GPU experiment session. Preserve rollback; shell profile LD_LIBRARY_PATH alone may not reach both GDM and the desktop.",
+    "acceptance_sequence": [
+      "Validate kernel, BVNC, firmware and render node first.",
+      "Validate vendor EGL X11, GLES context, renderer string and buffer sharing before GNOME.",
+      "Reassess current Xorg AccelMethod none and DRI/pixmap import availability; GLES support alone does not prove accelerated composition.",
+      "Validate GDM, normal-user login, GNOME and app windows at 1080p, then logout/relogin and reboot."
+    ],
+    "fallbacks": "Wayland EGL/GLES or Vulkan/Zink remain alternatives if X11 sharing fails; neither is established as required.",
+    "not_done": ["No installation", "No library replacement", "No build", "No firmware deployment", "No board GPU test"]
+  },
+  "package": "debian/packages/arm64/libgpu/libimg/debian11/libgpu-img-bxm-24.2rtm-x11-gbm_1.1-2_arm64.deb",
+  "libraries": [
+    {
+      "path": "./usr/local/lib/aarch64-linux-gnu/libEGL.so.1.0.0",
+      "bytes": 266656,
+      "sha256": "d7636cf3fcc043834fbfe1eea9f818da1015cf2e5cf4524ec0d6f7c91e760045",
+      "needed": [
+        "libgbm.so.1",
+        "libglapi.so.0",
+        "libexpat.so.1",
+        "libX11-xcb.so.1",
+        "libxcb.so.1",
+        "libxcb-dri2.so.0",
+        "libxcb-randr.so.0",
+        "libxcb-xfixes.so.0",
+        "libdrm.so.2",
+        "libdl.so.2",
+        "libxcb-dri3.so.0",
+        "libxcb-present.so.0",
+        "libxcb-sync.so.1",
+        "libxshmfence.so.1",
+        "libm.so.6",
+        "libpthread.so.0",
+        "libc.so.6"
+      ],
+      "rpath": [],
+      "symbol_versions": [
+        "GLIBC_2.17",
+        "GLIBC_2.28",
+        "GLIBC_2.29"
+      ],
+      "selected_exports": []
+    },
+    {
+      "path": "./usr/local/lib/aarch64-linux-gnu/libGL.so.1.2.0",
+      "bytes": 520688,
+      "sha256": "4fdfd53e0510890da00e907d7d4a25d081dedc6fd22422f4e1620deb9f9ca391",
+      "needed": [
+        "libglapi.so.0",
+        "libdrm.so.2",
+        "libdl.so.2",
+        "libX11.so.6",
+        "libxcb-glx.so.0",
+        "libxcb.so.1",
+        "libX11-xcb.so.1",
+        "libxcb-dri2.so.0",
+        "libXext.so.6",
+        "libXfixes.so.3",
+        "libXxf86vm.so.1",
+        "libxcb-shm.so.0",
+        "libexpat.so.1",
+        "libxshmfence.so.1",
+        "libxcb-randr.so.0",
+        "libxcb-dri3.so.0",
+        "libxcb-present.so.0",
+        "libxcb-sync.so.1",
+        "libxcb-xfixes.so.0",
+        "libm.so.6",
+        "libpthread.so.0",
+        "libc.so.6"
+      ],
+      "rpath": [],
+      "symbol_versions": [
+        "GLIBC_2.17",
+        "GLIBC_2.28",
+        "GLIBC_2.29"
+      ],
+      "selected_exports": [
+        "glXCreateNewContext",
+        "glXQueryVersion"
+      ]
+    },
+    {
+      "path": "./usr/local/lib/aarch64-linux-gnu/libGLESv2_PVR_MESA.so.24.2.6603887",
+      "bytes": 1642056,
+      "sha256": "a50236e6750f8784376bc34a9ffb0dab7be2fc474fa136af28c4563cdb8764f8",
+      "needed": [
+        "libpvr_dri_support.so",
+        "libsrv_um.so",
+        "libglslcompiler.so",
+        "libusc.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "librt.so.1",
+        "libc.so.6"
+      ],
+      "rpath": [
+        "/usr/local/lib"
+      ],
+      "symbol_versions": [
+        "GLIBC_2.17",
+        "GLIBC_2.29"
+      ],
+      "selected_exports": []
+    },
+    {
+      "path": "./usr/local/lib/aarch64-linux-gnu/libVK_IMG.so.24.2.6603887",
+      "bytes": 919776,
+      "sha256": "417d53bb0c4e3cf855cea3638287604aebd01119a8b50a094b715248ab0f9e58",
+      "needed": [
+        "libsrv_um.so",
+        "libusc.so",
+        "libufwriter.so",
+        "libm.so.6",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libdrm.so.2",
+        "libX11-xcb.so.1",
+        "libX11.so.6",
+        "libxcb.so.1",
+        "libc.so.6"
+      ],
+      "rpath": [
+        "/usr/local/lib"
+      ],
+      "symbol_versions": [
+        "GLIBC_2.17"
+      ],
+      "selected_exports": []
+    },
+    {
+      "path": "./usr/local/lib/aarch64-linux-gnu/libgbm.so.1.0.0",
+      "bytes": 68408,
+      "sha256": "a923a7ac80f4a83050064c3c8d28ce6fec763ffa0c1beeb213c0787c1cadbab8",
+      "needed": [
+        "libdrm.so.2",
+        "libdl.so.2",
+        "libexpat.so.1",
+        "libxcb-randr.so.0",
+        "libm.so.6",
+        "libpthread.so.0",
+        "libc.so.6"
+      ],
+      "rpath": [],
+      "symbol_versions": [
+        "GLIBC_2.17",
+        "GLIBC_2.28",
+        "GLIBC_2.29"
+      ],
+      "selected_exports": [
+        "gbm_bo_get_fd_for_plane",
+        "gbm_bo_get_modifier",
+        "gbm_bo_get_plane_count"
+      ]
+    },
+    {
+      "path": "./usr/local/lib/aarch64-linux-gnu/libsrv_um.so.24.2.6603887",
+      "bytes": 473832,
+      "sha256": "d263e82944fb048051e2b7bff5267fd911346a9b1f90883052daea586b9f3122",
+      "needed": [
+        "libm.so.6",
+        "libdl.so.2",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdrm.so.2",
+        "libc.so.6"
+      ],
+      "rpath": [
+        "/usr/local/lib"
+      ],
+      "symbol_versions": [
+        "GLIBC_2.17",
+        "GLIBC_2.28",
+        "GLIBC_2.30"
+      ],
+      "selected_exports": []
+    },
+    {
+      "path": "./usr/local/lib/dri/pvr_dri.so",
+      "bytes": 13733192,
+      "sha256": "38b6b964cf5b4bc1dc57390502fa75690c89005c0363fd390d8f894122ef5585",
+      "needed": [
+        "libglapi.so.0",
+        "libdrm.so.2",
+        "libexpat.so.1",
+        "libz.so.1",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6"
+      ],
+      "rpath": [],
+      "symbol_versions": [
+        "CXXABI_1.3",
+        "CXXABI_1.3.9",
+        "GLIBCXX_3.4",
+        "GLIBCXX_3.4.11",
+        "GLIBCXX_3.4.18",
+        "GLIBC_2.17",
+        "GLIBC_2.27",
+        "GLIBC_2.28",
+        "GLIBC_2.29"
+      ],
+      "selected_exports": [
+        "__driDriverGetExtensions_armada_drm",
+        "__driDriverGetExtensions_exynos",
+        "__driDriverGetExtensions_gm12u320",
+        "__driDriverGetExtensions_hdlcd",
+        "__driDriverGetExtensions_hx8357d",
+        "__driDriverGetExtensions_ili9163",
+        "__driDriverGetExtensions_ili9225",
+        "__driDriverGetExtensions_ili9341",
+        "__driDriverGetExtensions_ili9486",
+        "__driDriverGetExtensions_imx_dcss",
+        "__driDriverGetExtensions_imx_drm",
+        "__driDriverGetExtensions_imx_lcdif",
+        "__driDriverGetExtensions_ingenic_drm",
+        "__driDriverGetExtensions_kirin",
+        "__driDriverGetExtensions_kms_swrast",
+        "__driDriverGetExtensions_komeda",
+        "__driDriverGetExtensions_mali_dp",
+        "__driDriverGetExtensions_mcde",
+        "__driDriverGetExtensions_mediatek",
+        "__driDriverGetExtensions_meson",
+        "__driDriverGetExtensions_mi0283qt",
+        "__driDriverGetExtensions_mxsfb_drm",
+        "__driDriverGetExtensions_panel_mipi_dbi",
+        "__driDriverGetExtensions_pl111",
+        "__driDriverGetExtensions_pvr",
+        "__driDriverGetExtensions_rcar_du",
+        "__driDriverGetExtensions_repaper",
+        "__driDriverGetExtensions_rockchip",
+        "__driDriverGetExtensions_st7586",
+        "__driDriverGetExtensions_st7735r",
+        "__driDriverGetExtensions_sti",
+        "__driDriverGetExtensions_stm",
+        "__driDriverGetExtensions_sun4i_drm",
+        "__driDriverGetExtensions_sunxi_drm",
+        "__driDriverGetExtensions_swrast",
+        "__driDriverGetExtensions_udl"
+      ]
+    }
+  ],
+  "firmware": [
+    {
+      "path": "./lib/firmware/rgx.fw.36.56.104.183",
+      "bytes": 139264,
+      "sha256": "ff97e596559764b32023115897b5e57a1c20d69bae7d4366adaf7e1076a44aa9"
+    },
+    {
+      "path": "./lib/firmware/rgx.sh.36.56.104.183",
+      "bytes": 272408,
+      "sha256": "71e1b1da9b4c6b42468e378e8b835306920568088bc6669879db4a108a7747c9"
+    }
+  ],
+  "small_configs": {
+    "./etc/ld.so.conf.d/00-img.conf": "#img userspace driver default configuration\n/usr/local/lib\n",
+    "./lib/systemd/system/lightdm.service": "[Unit]\nDescription=Light Display Manager\nDocumentation=man:lightdm(1)\nAfter=systemd-user-sessions.service\n\n# replaces plymouth-quit since lightdm quits plymouth on its own\nConflicts=plymouth-quit.service\nAfter=plymouth-quit.service\n\n# lightdm takes responsibility for stopping plymouth, so if it fails\n# for any reason, make sure plymouth still stops\nOnFailure=plymouth-quit.service\n\n[Service]\n#IMG GPU LIB PATH\nEnvironment=\"LD_LIBRARY_PATH=/usr/local/lib/aarch64-linux-gnu:$LD_LIBRARY_PATH\"\nExecStart=/usr/sbin/lightdm\nRestart=always\nBusName=org.freedesktop.DisplayManager\n\n[Install]\nAlias=display-manager.service\n",
+    "./usr/share/vulkan/icd.d/powervr_icd.json": "{\n    \"file_format_version\": \"1.0.0\",\n    \"ICD\": {\n        \"library_path\": \"libVK_IMG.so\",\n        \"api_version\": \"1.3.277\"\n    }\n}"
+  }
+}

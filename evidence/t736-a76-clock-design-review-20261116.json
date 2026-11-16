@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-16T08:55:35.512569+00:00",
+  "status": "runtime_A76_v4_PASS; UBoot_B2_A55_A76_candidate_compiled_and_reviewed_pending_board_acceptance",
+  "reviewer": "event_review",
+  "opp_evidence": "evidence/t736-cpu-supply-source-audit-20261116.json",
+  "frequency_targets": [
+    {
+      "mhz": 416,
+      "input_hz": 26000000,
+      "N": 32,
+      "external_divider": 2,
+      "pll_hz": 832000000,
+      "CTRL": "0xf8802000",
+      "CLK": "0x03010000",
+      "minimum_donor_uv": 800000
+    },
+    {
+      "mhz": 1014,
+      "input_hz": 26000000,
+      "N": 39,
+      "external_divider": 1,
+      "pll_hz": 1014000000,
+      "CTRL": "0xf8802700",
+      "CLK": "0x03000000",
+      "minimum_donor_uv": 800000
+    }
+  ],
+  "parameter_basis": {
+    "manual_VCO_range_hz": [
+      650000000,
+      2260000000
+    ],
+    "manual_lines": "reference-1.txt:17449-17512",
+    "donor_26m_N_limits": [
+      26,
+      86
+    ],
+    "donor_lines": "ccu-sun60iw2-cpupll.c:231-239",
+    "OPP_26m_all_bins": "sun60iw2p1-cpu-vf.dtsi:972 (416MHz), 1041 (1014MHz)"
+  },
+  "scope_interpretation": "One experimental variable is A76 target frequency; A55, DSU, modulation, voltage and power/reset programming remain unchanged. Select low-VCO N39/ext1 rather than unnecessary 2028MHz VCO with N78/ext2.",
+  "output_commit_review": {
+    "manual": "PLL_UPDATE bit26 commits cfg to PLL (reference-1.txt:17489-17496)",
+    "cpu_specific_donor": "ccu-sun60iw2-cpupll.c:295-302 enables output then commits UPDATE and waits lock",
+    "generic_donor": "ccu_gate.c:197-203 commits UPDATE and waits lock before output, without another UPDATE",
+    "decision": "Trial now commits UPDATE after output while mux remains slow, then confirms lock and effective status before selecting PLL"
+  },
+  "v1_review": {
+    "source": "tools/validation/t736-a76-clock-trial.c",
+    "sha256": "eeac0f40a811d1a740299237bc7db4a76be7c57db4be68c54e9add26beac42e4",
+    "status": "source_review_did_not_predict_runtime_shadow_latching; candidate_not_validated",
+    "checks": [
+      "CPU6/7 offline and cpus_read_lock prevent concurrent hotplug",
+      "PMIC owner API serializes six fixed register reads; enable/voltage/phase checked",
+      "Default audit has no CPU MMIO writes",
+      "Strict measured baseline and modulation/slow-source preconditions",
+      "Bounded UPDATE and lock polls",
+      "Output committed and effective status read before switching mux",
+      "Readback of slow mux before disabling PLL",
+      "Supply checked again after enable; failure restores slow baseline",
+      "No A55/DSU/voltage/reset writes"
+    ]
+  },
+  "v2_review": {
+    "source": "tools/validation/t736-a76-clock-trial-v2.c",
+    "initial_review_sha256": "d9b8f8c3fca6832f4338718fd9d28217440220cf24f273bf1c6aeab4a5bf5a91",
+    "normal_path": "parameters and switch-under-slow sequencing correct",
+    "requested_failure_path_refinements": [
+      "After parking/stopping PLL, bound a wait for disabled effective state and LOCK clear before reprogramming, preventing stale old lock acceptance",
+      "If unmodified guards change, avoid reconstructing 416MHz under unknown conditions; reduce to slow and require reset with A76 offline"
+    ],
+    "failure_path_refinements_reviewed": "Disabled/unlocked CTRL+STAT bounded check and guard-failure-only-slow rollback were added and reviewed; independent CTRL shadow blocker now supersedes deployment readiness",
+    "reviewed_sha256": "d9b8f8c3fca6832f4338718fd9d28217440220cf24f273bf1c6aeab4a5bf5a91"
+  },
+  "persistence_proposal": {
+    "implementation_status": "SPL v5 candidate abandoned for SRAM headroom and stale compiled shadow assumptions; original SPL v4 stays unchanged. U-Boot cpu-b1 compiled, exact cold-boot acceptance pending.",
+    "location": "U-Boot board_early_init_r, after serial_initialize and before cpu_secondary_init_r",
+    "ownership": "Use existing SPL S_TWI0 hardware configuration with the same tested byte engine; no init call, verify ownership/configuration/idle before and after each PMIC read",
+    "preconditions": [
+      "Executing bootstrap core must be A55",
+      "A76 secondaries must not have been released",
+      "Read oscillator, exact PLL/mux/modulation baseline, and PMIC ID/enable/phase/setpoints before programming"
+    ],
+    "recovery": "Keep existing source SPL recovery window before DDR/CPU changes; bounded failure path parks A76 on verified slow source and logs failure",
+    "TF_A_source_review": "sun60i_a733/platform.mk disables regulator setup; native_pm_ncat2.c CPU hotplug uses PPU/HOTPLUG registers and does not program CPU PLL; CPU_PLL_CFG_BASE only appears as a definition in the reviewed TF-A source",
+    "post_boot_validation": [
+      "Cold boot records of CTRL/STAT/mux/modulation plus PMIC setpoints",
+      "Actual pinned CPU6/7 work and hotplug checks",
+      "Sustained load and reboot, with thermal/stability observations"
+    ],
+    "truthful_reporting": "Do not fabricate frequency via DTS clock-frequency or a fixed-clock placeholder. Future CCF should derive rates from live registers, validate supported states and gating, and avoid writes during recalc.",
+    "boundary": "Register decode establishes configured nominal rate; it is not a precision physical frequency measurement. PMIC values are setpoints, not ADC rail measurements.",
+    "superseded_SPL_candidate": {
+      "packed_sha256": "efb82937067248c0483a0603c393fbcc5a1b1a21fc14e24d6f899395e4410fef",
+      "bss_end": "0x7cfc0",
+      "report_base": "0x7d000",
+      "static_margin_bytes": 64,
+      "thumb_units": [
+        "spl/cpuclock/cpuclock.c",
+        "spl/storage/emmc.c"
+      ],
+      "original_v4_sha256_unchanged": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea",
+      "hardware_tested": false,
+      "deployable": false
+    },
+    "uboot_candidate": {
+      "build_evidence": "evidence/source-uboot-cpu-b1-build-20261116.json",
+      "payload_sha256": "23e945f30da353ba6adedb22b5304fd5c518340cfb1050ac6101d364d90110f7",
+      "payload_size": 259176,
+      "hardware_tested": false,
+      "PMIC_required_uv": 900000,
+      "independent_review": "backup_audit reviewed no new blocker"
+    },
+    "uboot_b2_candidate": {
+      "build_evidence": "evidence/source-uboot-cpu-b2-build-20261116.json",
+      "independent_package_review": "evidence/source-uboot-cpu-b2-independent-review-20261116.json",
+      "payload_sha256": "240a52c18fd3b3e744ca24a923dea646c91cf4f34839dc0172d9c8250a12dc51",
+      "package_sha256": "306fb10d7612c7fcc9bd16b8588737e3153c67103ea470226b34c7d28fdbcfa1",
+      "A55_A76_target_hz": 1014000000,
+      "A55_method": "CPU0 self-clock warm transition under independent CNT24MHz; CPU1..7PPU OFF, IRQ/FIQ explicitly masked; PLL_EN retained; errors after mutation or guards cause halt",
+      "hardware_tested": false,
+      "cpu0_hotplug_fixed": false
+    }
+  },
+  "updated_at_utc": "2026-11-16T09:47:59.435368+00:00",
+  "runtime_update": {
+    "reported_by": "root, board owner",
+    "evidence": "evidence/source-v9-cpu-a76-416-20261116.log",
+    "observation": "B_CLK ext2 write read back; B_CTRL desired40802000 read40801400 before UPDATE; v1 rejected and exact original40801400/CLK0 restore succeeded",
+    "implication": "Do not verify a buffered N write before commit; preserve desired control word in software and commit desired|UPDATE, never read old CTRL and accidentally lose pending N",
+    "scope": "v1/v2 and initial SPL candidate share this assumption; corrected v3 sequence and actual hardware validation pending",
+    "PMIC_setpoints_reported_uv": {
+      "DCDC3": 900000,
+      "DCDC4": 900000
+    },
+    "phase": 0,
+    "feedback": 0,
+    "XO": "0x983fb0f7"
+  },
+  "runtime_v4": {
+    "reported_by": "root, exclusive board owner",
+    "evidence": "evidence/source-v9-cpu-a76-v4-20261116.log",
+    "sequence": "enable416 then upgrade1014 then online0-7 PASS",
+    "CTRL": "0xf8802700",
+    "STAT": "0xf8802700",
+    "CLK": "0x03000000",
+    "DCDC3_DCDC4_setpoint_uv": 900000,
+    "A55_DSU_guards": "unchanged per root report",
+    "sha16MiB_seconds_cpu6_cpu7": [
+      0.026398,
+      0.026321
+    ],
+    "review": "v4 diff independently reviewed: only cold ENABLE/LOCK_EN and warm LOCK_EN reopening accept old or desired N; all other fields remain strict; post-UPDATE exact target required"
+  },
+  "linear_PLL_semantics": {
+    "manual_lines": "reference-1.txt:14542-14580;14618-14638",
+    "buffered_N": "may read old value before explicit UPDATE",
+    "hardware_early_N_latch": "observed on cold startup and when LOCK_EN reopens during runtime change",
+    "commit": "cache desired N; write desired|UPDATE while enabled; never OR UPDATE into stale readback",
+    "stop_fallback": "slow mux confirmed, PLL off, retained committed N; disabled UPDATE cannot restore cosmetic old N",
+    "native_models": [
+      "N delayed until enabled UPDATE",
+      "N latches on ENABLE",
+      "N latches on LOCK_EN",
+      "unexpected N rejected before commit"
+    ]
+  },
+  "A55_readonly_assessment": {
+    "target_hz": 1014000000,
+    "N": 39,
+    "external_divider": 1,
+    "all_26m_VF_OPP_uv": 800000,
+    "implementation_or_board_writes": false,
+    "runtime_requirement": "coordinate all A55 cores while transitioning their shared clock; keep PLL ENABLE/LDO and use non-LFM change path",
+    "DSU": "leave494MHz unchanged for single-variable test; 75 percent is a performance recommendation",
+    "scheduler": "DT currently lacks capacity and clock; cpu_scale defaults1024 in drivers/base/topology.c:212; do not fake rate with a fixed clock",
+    "superseded_by_B2": true
+  },
+  "A55_runtime_rejection": {
+    "evidence": "evidence/t736-cpu0-hotplug-rejection-20261116.json",
+    "mutation_attempted": false,
+    "observation": "Root reports Linux offline0-5 but CPU0 PPU remains108 ON; native CPU_ON waits OFF without timeout; board recovered by root power-cycle",
+    "resolved": false,
+    "B2_relation": "B2 avoids CPU0 hotplug by initializing its clock before Linux; this is not a hotplug fix"
+  }
+}

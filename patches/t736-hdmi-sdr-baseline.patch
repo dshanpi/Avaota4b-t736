@@ -1,0 +1,15 @@
+--- a/drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.c
++++ b/drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.c
+@@ -470,10 +470,8 @@
+  ******************************************************************************/
+ u32 sunxi_hdmi_get_support_hdr_mode(void)
+ {
+-	u32 mode = 0;
+-
+-	if (dw_sink_support_sdr())
+-		mode |= BIT(SHDMI_SDR);
++	/* SDR is the baseline even when EDID has no HDR metadata block. */
++	u32 mode = BIT(SHDMI_SDR);
+ 
+ 	if (dw_sink_support_hdr10())
+ 		mode |= BIT(SHDMI_HDR10);

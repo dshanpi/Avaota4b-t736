@@ -1,0 +1,385 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v16-package-audit",
+  "status": "passed-static-package-audit",
+  "board_accepted": false,
+  "kernel_release": "6.18.63-t736-storage-v16",
+  "package": {
+    "path": "/home/ubuntu/t736-mainline/build/linux-image-6.18.63-t736-storage-v16_6.18.63-16_arm64.deb",
+    "size": 5590080,
+    "sha256": "520b42929ee4700a29ab8da5f020b828948a607c87a6eb8dd98c8ecacd6170c6",
+    "control": {
+      "Package": "linux-image-6.18.63-t736-storage-v16",
+      "Source": "linux-upstream",
+      "Version": "6.18.63-16",
+      "Architecture": "arm64",
+      "Maintainer": "ubuntu <ubuntu@ubuntu2404>",
+      "Installed-Size": "9303",
+      "Section": "kernel",
+      "Priority": "optional",
+      "Homepage": "https://www.kernel.org/",
+      "Description": "Linux kernel, version 6.18.63-t736-storage-v16"
+    }
+  },
+  "matched_build_artifacts": {
+    "boot/vmlinuz-6.18.63-t736-storage-v16": {
+      "build_file": "build/linux-storage-v16/arch/arm64/boot/Image.gz",
+      "size": 5031392,
+      "sha256": "0244c994eb6092e2d68f8ae4bef9347c9ce11507790b8eb351db1a5a8023ccee",
+      "compression": "gzip",
+      "uncompressed_size": 11800584,
+      "uncompressed_sha256": "86d49744a35fd1260ff81f1d351a15b4c1dc28943b846696d8117ba5a9f7937d"
+    },
+    "boot/config-6.18.63-t736-storage-v16": {
+      "build_file": "build/linux-storage-v16/.config",
+      "size": 99051,
+      "sha256": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/t736-gpu-candidate.dtb": {
+      "build_file": "build/linux-storage-v16/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb",
+      "size": 11337,
+      "sha256": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5"
+    }
+  },
+  "regular_file_manifest": {
+    "boot/System.map-6.18.63-t736-storage-v16": {
+      "size": 2637798,
+      "sha256": "ebdda5fb6f14eacb6775602f3cc245af86c87f4780d6d4a046c886d29d608ea5"
+    },
+    "boot/config-6.18.63-t736-storage-v16": {
+      "size": 99051,
+      "sha256": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e"
+    },
+    "boot/vmlinuz-6.18.63-t736-storage-v16": {
+      "size": 5031392,
+      "sha256": "0244c994eb6092e2d68f8ae4bef9347c9ce11507790b8eb351db1a5a8023ccee",
+      "compression": "gzip",
+      "uncompressed_size": 11800584,
+      "uncompressed_sha256": "86d49744a35fd1260ff81f1d351a15b4c1dc28943b846696d8117ba5a9f7937d"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.alias": {
+      "size": 45,
+      "sha256": "a29f59569ef743ade2eada4d545211be2c5ba409842cb442c0548ecb51ec33bb"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.alias.bin": {
+      "size": 12,
+      "sha256": "87b6e280f77dbc7f4d6708f6d83aa23dac73185bc345bd7c98e5f619fc78ec37"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.builtin": {
+      "size": 5423,
+      "sha256": "265e7be2bd1e57306132e9c523f7b2a77e98f5bab2c9c1a7b611959be2639871"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.builtin.alias.bin": {
+      "size": 47124,
+      "sha256": "66f458497d12b1f2f636fd3a25006c08f05b5169e4d2005f7aa12a938dd188c5"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.builtin.bin": {
+      "size": 7634,
+      "sha256": "24c65a66050a77d6ee72306f8f4072a5413613d3b06fe81c2914d74266096bdb"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.builtin.modinfo": {
+      "size": 78901,
+      "sha256": "f5c5a40cf039d2d80ba1a33602b078f4a1f2e38a543c6d1f5ebb8c6cbbe3c9fa"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.dep": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.dep.bin": {
+      "size": 12,
+      "sha256": "87b6e280f77dbc7f4d6708f6d83aa23dac73185bc345bd7c98e5f619fc78ec37"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.devname": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.order": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.softdep": {
+      "size": 55,
+      "sha256": "ac2de753255c506934be29e69261f1485f51ee9cf9c2bf467bcc0c4cf95f8713"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.symbols": {
+      "size": 49,
+      "sha256": "e1d07394350b0dc9be149c69080c47fb1faf4d88fabb900387b6016e6fff3976"
+    },
+    "lib/modules/6.18.63-t736-storage-v16/modules.symbols.bin": {
+      "size": 12,
+      "sha256": "87b6e280f77dbc7f4d6708f6d83aa23dac73185bc345bd7c98e5f619fc78ec37"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a100-allwinner-perf1.dtb": {
+      "size": 16152,
+      "sha256": "458b9b1bbd47169837908fbd7a1b089fb71c65932a49269976431298aa9bd3a3"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a133-liontron-h-a133l.dtb": {
+      "size": 16600,
+      "sha256": "cd55cf1d10dfcb4fe6593502c8f5af04c9a26e4d537fff091e9e2e04f621e5af"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-amarula-relic.dtb": {
+      "size": 29926,
+      "sha256": "c825782ef37b9b99ae2431f9775cf6154fe0a0d7d651d8aecbc62f42330191d3"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-bananapi-m64.dtb": {
+      "size": 30272,
+      "sha256": "d2d1bcf6c7576dc78aa854d70fbdbcc694abfb6786e11a14968ef8fbc36822bb"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-nanopi-a64.dtb": {
+      "size": 28987,
+      "sha256": "4899a090d7cee84b98bbf37182ecdbe9797dcc7274416718c9be8ccaeca46d56"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-oceanic-5205-5inmfd.dtb": {
+      "size": 28630,
+      "sha256": "d2e0823e84f6c5df0514847b0af4f1d71f6e7b63e59b196f9f41dfb1cf4b64d8"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-olinuxino-emmc.dtb": {
+      "size": 30170,
+      "sha256": "3d0a94d59ce01c40428dd55a56adbf84000ebe3be1ed445b0c68776dda5765d2"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-olinuxino.dtb": {
+      "size": 30025,
+      "sha256": "7fa0bacf7d54f82c09c0845a1344ad40365a31968bf00b373853bd6615da8480"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-orangepi-win.dtb": {
+      "size": 30832,
+      "sha256": "85822bb09b717cd9188a26f9378914847484925f1240538a8c421ac07c51ee0a"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-pine64-lts.dtb": {
+      "size": 29799,
+      "sha256": "0a5fb885e1b87abd3bf3911e593a4cd208b5b94b641f91e520958c3b5994fb5f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-pine64-plus.dtb": {
+      "size": 29209,
+      "sha256": "a2952c307907642621940a5bf9fb892958f73686df794dc8d1760973b90f55c8"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-pine64.dtb": {
+      "size": 29153,
+      "sha256": "fd85da99ac093a0f31a932bac4f56d5b972bd121bbf21173d673814a3e752413"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-pinebook.dtb": {
+      "size": 31534,
+      "sha256": "242671276289db0239ac2d72732eaa737dbca29650d2f51b51ca1ec92c1e026f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-pinephone-1.0.dtb": {
+      "size": 32983,
+      "sha256": "0f568ecb9d3efac37413730a121369e068e4a7c9c364e90af35b54e78d6fc2ad"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-pinephone-1.1.dtb": {
+      "size": 33153,
+      "sha256": "7e6a5ed0f3987b4caccaab50a8ccf23038ffa96abeaf5227e1369af6254be440"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-pinephone-1.2.dtb": {
+      "size": 33263,
+      "sha256": "e24caca4d85b3993f661c1713887b62376bd48af4208038acdcec658014d53d1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-pinetab-early-adopter.dtb": {
+      "size": 31942,
+      "sha256": "5a82ec1165427e5a2022f1ce5209ee0afd8bab1c57c19b4a4623cb92d531ac68"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-pinetab.dtb": {
+      "size": 31974,
+      "sha256": "85cc6603ad4b22a9fed235cbd34c825f13f7fcfffc5be1f491261059883310b1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-sopine-baseboard.dtb": {
+      "size": 29663,
+      "sha256": "e13a175a41296777ec329314c1083dd972849c46969928da72accfdad875145f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-a64-teres-i.dtb": {
+      "size": 30978,
+      "sha256": "8fbb25435b167a04f4740158680b3893307cc17555409ae7f2bf5a8523ceec36"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h313-tanix-tx1.dtb": {
+      "size": 21818,
+      "sha256": "588729c4189ca7de71aad102931637b7b82dc3ce8ec35cb5170a227b0273f026"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h313-x96q.dtb": {
+      "size": 21705,
+      "sha256": "e4ee8371e1e02505be60a9c7d91a326816185b43303f4fbd817b1d10638f520c"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dtb": {
+      "size": 25196,
+      "sha256": "e3734e08a07f3a2ce1d74693528c40f554103bee43985a6ff18a77976ae94cc5"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-bananapi-m2-plus.dtb": {
+      "size": 23819,
+      "sha256": "0f9413aa33dca2106a3d7384daaaa923125534fbd18fbaad5d2bd8ad4008027d"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-emlid-neutis-n5-devboard.dtb": {
+      "size": 23566,
+      "sha256": "d68ae08945c68cbaa23722ac945a41e357f8adb11c96d608a5ed38cb2bcb28e5"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-libretech-all-h3-cc.dtb": {
+      "size": 23942,
+      "sha256": "93ab23e76eb1ecea3bbf65ef20a7a3f65af9f455566aa60eb8f8233bd87ab9f1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-libretech-all-h3-it.dtb": {
+      "size": 22585,
+      "sha256": "afe9e1c9b3fa341fb870f5d80158d6689362907a5a37083d49c70f2ae1332e08"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-libretech-all-h5-cc.dtb": {
+      "size": 24423,
+      "sha256": "84ea273f2d297787b64790df9b762659e4d90d59b7750e7e9f81a48ffcc25135"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-nanopi-neo-plus2.dtb": {
+      "size": 22970,
+      "sha256": "ada04d36dc9a8aa8a8149db00cc735faa21c49cf97f38ece1698568a3bedc84e"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-nanopi-neo2.dtb": {
+      "size": 21849,
+      "sha256": "0ce9bacc5498aa43d33356c806dbb5235138d85b0acbc9f3786538b5b9c0fe8f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-nanopi-r1s-h5.dtb": {
+      "size": 23971,
+      "sha256": "c70c3b3808304d1615774d9d49f13dd0b46652912fc06395c38dd072c6ca8843"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-orangepi-pc2.dtb": {
+      "size": 23779,
+      "sha256": "dda8498626dfcc696736eeef4d8f0751438cb15f6de7bab55fe524455bb560e6"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-orangepi-prime.dtb": {
+      "size": 22541,
+      "sha256": "dbc9c01f2843581f66e4636005740b635081ab5dcdaa1d670bf45559c61e25c6"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-orangepi-zero-plus.dtb": {
+      "size": 21922,
+      "sha256": "f24e1ce4bf9fff95e89b51a6ce191ca28f3e3dd9a4d1fb9d23f48653b69c1623"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h5-orangepi-zero-plus2.dtb": {
+      "size": 21854,
+      "sha256": "9cd02eec4edd615b71be74922314d8c0558eebb9ea6a7aa1b065a69c61a61580"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h6-beelink-gs1.dtb": {
+      "size": 25957,
+      "sha256": "30095e2fda5b23460ad1b31ce686963fa3304c23c9a41048145df8308348df07"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h6-orangepi-3.dtb": {
+      "size": 25222,
+      "sha256": "3e122fd8c29130c26bffae7d8a9eaf33905148b9816b332014d37881764e79c2"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h6-orangepi-lite2.dtb": {
+      "size": 23322,
+      "sha256": "5b124bc9a0f585390664200842ab74c29b4cff7b3b6e7939d8419a0e3b01e222"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h6-orangepi-one-plus.dtb": {
+      "size": 23099,
+      "sha256": "94b0d767266d75e5bef1a00d7f67fe2887e6e2f2085045fe6b7b897d777a2c02"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h6-pine-h64-model-b.dtb": {
+      "size": 25556,
+      "sha256": "958351864abe58fa998335a7bf512f8d83c69aab048b6e56751b9d33dec54ce3"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h6-pine-h64.dtb": {
+      "size": 25202,
+      "sha256": "413569ad8e886e964545eb9126a550bd406297ac139a565e789c8b5e9f660eb1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h6-tanix-tx6-mini.dtb": {
+      "size": 23219,
+      "sha256": "b9cbcff966b1652883c965f8b9e42f0cad7326a447536decbf2b054c08535a04"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h6-tanix-tx6.dtb": {
+      "size": 23490,
+      "sha256": "170b3ca606496377d5df760f0d005ad502ed6e4b47843c11b75184c89f2618f4"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h616-bigtreetech-cb1-manta.dtb": {
+      "size": 21601,
+      "sha256": "372d0af23e976ad60afa1cccbde6c1019502226e5b6452171674d3780286d6e5"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h616-bigtreetech-pi.dtb": {
+      "size": 21553,
+      "sha256": "0c4ec9ff8afacff50029b144e55058c90e14b5e2b5c6727e1a715bbdd1d6554f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h616-orangepi-zero2.dtb": {
+      "size": 22809,
+      "sha256": "beb16ef0edeeffc037ec45b49bab3a050e9d814a99b3315c96bbe3e16c746690"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h616-x96-mate.dtb": {
+      "size": 21780,
+      "sha256": "6b2a35e6fcf0162da7762c3f60ca75ebeded0b5bd99743df89874de8c78aa6c1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h618-longanpi-3h.dtb": {
+      "size": 21989,
+      "sha256": "c3ec0d0df09a6327fc4808d4154c2b2f1a24ba715b630609f25655f7cb3d581f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h618-orangepi-zero2w.dtb": {
+      "size": 21710,
+      "sha256": "c8c3adf58ea37829bf87cc77b2204e0bc0071dc1d5c85e304221d6a2095701b5"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h618-orangepi-zero3.dtb": {
+      "size": 22291,
+      "sha256": "0e14330535f7a8b9c985d33c3fd5cc4097cb90e9e0da10dd0ad3f8c2ac2071c0"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h618-transpeed-8k618-t.dtb": {
+      "size": 21948,
+      "sha256": "719c4a4941faf747d5160a086b393232569161d0947227764e8f7b0a6eb750bd"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h618-yuzukihd-chameleon.dtb": {
+      "size": 22028,
+      "sha256": "c42c3c246ec3fe696788adf20a2c2cbb68c92fdefea1917b5ba7802c6ff739d6"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h64-remix-mini-pc.dtb": {
+      "size": 30037,
+      "sha256": "329a2d54591b4e3744bb8213c11cd04c49e16f42f9273eef7af1613a05d9110e"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h700-anbernic-rg35xx-2024.dtb": {
+      "size": 24501,
+      "sha256": "772efdf550a332bc1b9a86dcfaffb0aad2d2ab690003e14829bb429aa9a26824"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h700-anbernic-rg35xx-h.dtb": {
+      "size": 27281,
+      "sha256": "0b06fb4682a62d93ff1427ede9c8d5fc60cd992ddad3d03293577bf242277046"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h700-anbernic-rg35xx-plus.dtb": {
+      "size": 25461,
+      "sha256": "a86ca6a0762ea206242e389ac90dd239aeb50a856c93a239152bfc7ff4a54206"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb": {
+      "size": 25757,
+      "sha256": "da60137e6e6d254b0a0a6d545011f26ff17a773f98e37203b2e22de89cee61b2"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun55i-a527-cubie-a5e.dtb": {
+      "size": 16938,
+      "sha256": "623f0efb2e74daea4bc69413699e66e001e964afcf36412014760d60da5b9d20"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun55i-h728-x96qpro+.dtb": {
+      "size": 16004,
+      "sha256": "85bbe125435751f361316812f89569f1ce8727731f616bc42ee1e61ce0bf673b"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun55i-t527-avaota-a1.dtb": {
+      "size": 17112,
+      "sha256": "f24cc9a8529a8294c6cfbbd69900fc7fcb7aaaf06a0b75aa5fef95eb965cda19"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/sun55i-t527-orangepi-4a.dtb": {
+      "size": 18305,
+      "sha256": "ff7880d17be694ffc1640219a635b31c7d9f1838b21b837f795ac69dd7bf9bc6"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/t736-gpu-candidate.dtb": {
+      "size": 11337,
+      "sha256": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/t736-hdmi-candidate.dtb": {
+      "size": 10027,
+      "sha256": "d81986f7035f252583ae30f861dc3e55675d296547f12704ba81678fd7fe03ed"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v16/allwinner/t736-mainline-bringup.dtb": {
+      "size": 6723,
+      "sha256": "eeaa34295e2b260511928a60dc01a55fad2b9024b1a8934ea2868a92030cd7f8"
+    },
+    "usr/share/doc/linux-image-6.18.63-t736-storage-v16/changelog.Debian.gz": {
+      "size": 144,
+      "sha256": "8bbc86939d0257d458edc7ae827ee6de8c981d2144a5075ee6a15d491034d6b7"
+    },
+    "usr/share/doc/linux-image-6.18.63-t736-storage-v16/copyright": {
+      "size": 691,
+      "sha256": "eb173b7d0714dfb8d4e6024ba85900caa2515882b6f23abf98a9a7c5bc1c1b5a"
+    }
+  },
+  "maintainer_scripts": {
+    "postinst": "#!/bin/sh\n\nset -e\n\n# Pass maintainer script parameters to hook scripts\nexport DEB_MAINT_PARAMS=\"$*\"\n\n# Tell initramfs builder whether it's wanted\nexport INITRD=Yes\n\n# run-parts will error out if one of its directory arguments does not\n# exist, so filter the list of hook directories accordingly.\nhookdirs=\nfor dir in /etc/kernel /usr/share/kernel; do\ntest -d \"$dir/postinst.d\" || continue\nhookdirs=\"$hookdirs $dir/postinst.d\"\ndone\nhookdirs=\"${hookdirs# }\"\ntest -n \"$hookdirs\" && run-parts --arg=\"6.18.63-t736-storage-v16\" --arg=\"/boot/vmlinuz-6.18.63-t736-storage-v16\" $hookdirs\nexit 0\n",
+    "postrm": "#!/bin/sh\n\nset -e\n\n# Pass maintainer script parameters to hook scripts\nexport DEB_MAINT_PARAMS=\"$*\"\n\n# Tell initramfs builder whether it's wanted\nexport INITRD=Yes\n\n# run-parts will error out if one of its directory arguments does not\n# exist, so filter the list of hook directories accordingly.\nhookdirs=\nfor dir in /etc/kernel /usr/share/kernel; do\ntest -d \"$dir/postrm.d\" || continue\nhookdirs=\"$hookdirs $dir/postrm.d\"\ndone\nhookdirs=\"${hookdirs# }\"\ntest -n \"$hookdirs\" && run-parts --arg=\"6.18.63-t736-storage-v16\" --arg=\"/boot/vmlinuz-6.18.63-t736-storage-v16\" $hookdirs\nexit 0\n",
+    "preinst": "#!/bin/sh\n\nset -e\n\n# Pass maintainer script parameters to hook scripts\nexport DEB_MAINT_PARAMS=\"$*\"\n\n# Tell initramfs builder whether it's wanted\nexport INITRD=Yes\n\n# run-parts will error out if one of its directory arguments does not\n# exist, so filter the list of hook directories accordingly.\nhookdirs=\nfor dir in /etc/kernel /usr/share/kernel; do\ntest -d \"$dir/preinst.d\" || continue\nhookdirs=\"$hookdirs $dir/preinst.d\"\ndone\nhookdirs=\"${hookdirs# }\"\ntest -n \"$hookdirs\" && run-parts --arg=\"6.18.63-t736-storage-v16\" --arg=\"/boot/vmlinuz-6.18.63-t736-storage-v16\" $hookdirs\nexit 0\n",
+    "prerm": "#!/bin/sh\n\nset -e\n\n# Pass maintainer script parameters to hook scripts\nexport DEB_MAINT_PARAMS=\"$*\"\n\n# Tell initramfs builder whether it's wanted\nexport INITRD=Yes\n\n# run-parts will error out if one of its directory arguments does not\n# exist, so filter the list of hook directories accordingly.\nhookdirs=\nfor dir in /etc/kernel /usr/share/kernel; do\ntest -d \"$dir/prerm.d\" || continue\nhookdirs=\"$hookdirs $dir/prerm.d\"\ndone\nhookdirs=\"${hookdirs# }\"\ntest -n \"$hookdirs\" && run-parts --arg=\"6.18.63-t736-storage-v16\" --arg=\"/boot/vmlinuz-6.18.63-t736-storage-v16\" $hookdirs\nexit 0\n"
+  },
+  "maintainer_scripts_executed": false,
+  "external_pvr_module": "Built and accepted separately by the primary agent"
+}

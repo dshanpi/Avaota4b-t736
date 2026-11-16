@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "kind": "storage-v20-guarded-updater-preparation",
+  "date": "2026-11-16",
+  "status": "ready-for-board-check-apply-and-one-shot-trial",
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v20.py": "c0734b130d4f4fbdfc2067da4cdf6537dfe4b7c9c009599132e88c09a239b2f6",
+    "tools/validation/test_update_t736_storage_v20.py": "98162585daa0431b40177be6cd6a090bef33d82f57599a259429ff7dfc833349",
+    "tools/validation/audit_dma_storage_v20_package.py": "a09360cd6a85d370934a2bf609124306e24d0b45a524271e126e54fe62464970",
+    "evidence/storage-v20-updater-offline-tests-20261116.log": "fd4830d8fa5c7e6d47be389246fc320547a4e803b22f66503854bcae645bdb42",
+    "evidence/storage-v20-updater-exact-inputs-20261116.json": "25279b0d3ed064e26c259d4bd47a54625344f33d4032b7d83f2b168b16535c5d",
+    "evidence/storage-v20-updater-independent-review-20261116.json": "3dd3df663b7b4e1ca98da0fa90700bda74e579b6c1647a265372f65f6732c3ff",
+    "evidence/storage-v20-package-20261116.json": "a8b98d54a4cf4308ba8b7c9010f0f99c3a6e8faef5b23f0ba8539c6973882ca4",
+    "evidence/storage-v20-updater-bindings-20261116.json": "af511bff0a609263f7acee5ea2870cf740ca33ebfdae385806f318d8b2dac258",
+    "evidence/storage-v20-hrtimer-feasibility-review-20261116.json": "774a5d3172e74f449dbc43e91d4b69b7419743cae8e783a7d59bd1d55f1c7933"
+  },
+  "bindings": {
+    "kernel_sha256": "107f0359050f6dcf5a806cc26e995c41462fc77393e5414eb4307c53f35f5e11",
+    "kernel_bytes": 5597638,
+    "pvr_sha256": "2a9bd492c5b69785639c2afa3df0b1499196fedc028dc1d4f769b05e96e95132",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "5e2ffb3a87a8c4991d54bb388c37d42cff69fabeb05b0c79abbd48bc1eb98bcc",
+    "payload_manifest_sha256": "1c76c2e2344480552303c26e49cc73c1153d682721d230982f1d29752e50854b",
+    "raw_image_sha256": "90793bc0396b1ebf6183eb6f9b39863cd40cd3948910a7c3ea8812201822b888",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "candidate_dtb_bytes": 11960,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "offline_tests": {
+    "passed": 14,
+    "includes": [
+      "verified-running-v19 acceptance with corrupt-file rejection",
+      "running-v19 and fixed-v16-fallback reported separately",
+      "process-group timeout/active-child rollback exclusion",
+      "backup corruption and failed-final-verification rollback",
+      "path traversal and symlink handling"
+    ]
+  },
+  "exact_inputs": "82 complete payload entries and control/payload manifests match; maintainer scripts not executed during audit",
+  "independent_review": "code_index PASS at final updater SHA c0734b130d4f4fbdfc2067da4cdf6537dfe4b7c9c009599132e88c09a239b2f6",
+  "state_separation": {
+    "allowed_running": [
+      "6.18.63-t736-storage-v16",
+      "6.18.63-t736-storage-v19"
+    ],
+    "fixed_default_fallback": "6.18.63-t736-storage-v16",
+    "default_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate": "6.18.63-t736-storage-v20"
+  },
+  "planned_board_flow": [
+    "root checks and applies pinned transaction",
+    "root immediately restores default selection from fresh BACKUP_FSYNC_VERIFIED directory",
+    "v20 package/kernel/initrd/DT/PVR remain installed for explicit-path U-Boot boot without saveenv"
+  ],
+  "candidate_scope": "HIGH_RES_TIMERS plus derived TICK_ONESHOT/SCHED_HRTICK and release identity only; v19 source/DT unchanged",
+  "expected_dmesg_label": "DMA driver banner still says v19 because source is frozen; candidate identity must use uname, config and artifact hashes",
+  "board_operations_by_this_agent": false,
+  "candidate_board_accepted": false,
+  "private_home_archive_included": false,
+  "delivery": "Root confirmed all three artifacts are on board via SFTP; use SFTP for future deliveries. Already started restricted HTTP expires by itself."
+}

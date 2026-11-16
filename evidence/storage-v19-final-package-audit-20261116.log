@@ -1,0 +1,46 @@
+{
+  "evidence": "/home/ubuntu/t736-mainline/evidence/storage-v19-package-20261116.json",
+  "package": {
+    "path": "/home/ubuntu/t736-mainline/build/linux-image-6.18.63-t736-storage-v19_6.18.63-19_arm64.deb",
+    "size": 5592228,
+    "sha256": "31e82d9ff94ba0a0a26915410a914aa74878ab4ace21434485a8fddb2b40a7b9",
+    "control": {
+      "Package": "linux-image-6.18.63-t736-storage-v19",
+      "Source": "linux-upstream",
+      "Version": "6.18.63-19",
+      "Architecture": "arm64",
+      "Maintainer": "ubuntu <ubuntu@ubuntu2404>",
+      "Installed-Size": "9305",
+      "Section": "kernel",
+      "Priority": "optional",
+      "Homepage": "https://www.kernel.org/",
+      "Description": "Linux kernel, version 6.18.63-t736-storage-v19"
+    }
+  },
+  "matched_build_artifacts": {
+    "boot/vmlinuz-6.18.63-t736-storage-v19": {
+      "build_file": "build/linux-storage-v19/arch/arm64/boot/Image.gz",
+      "size": 5032635,
+      "sha256": "b9c5dade09a6b8a3f43551fbe97b040f423b37b4c52e37fab7a1e90fb70e8218",
+      "compression": "gzip",
+      "uncompressed_size": 11800584,
+      "uncompressed_sha256": "34522f80371d20ca9e76cfebcb1c025061d569997defe9b23aa47214bb89c12b"
+    },
+    "boot/config-6.18.63-t736-storage-v19": {
+      "build_file": "build/linux-storage-v19/.config",
+      "size": 99051,
+      "sha256": "6aab4229067aee5bea1c432d441cd4083b532766d400507e45bb4396c0672778"
+    },
+    "boot/System.map-6.18.63-t736-storage-v19": {
+      "build_file": "build/linux-storage-v19/System.map",
+      "size": 2637945,
+      "sha256": "8b628485d026da2b34719ac1b4321774a69e0a4c6537310023b44f1cf3730464"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/t736-gpu-candidate.dtb": {
+      "build_file": "build/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb",
+      "size": 11960,
+      "sha256": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c"
+    }
+  },
+  "regular_file_count": 82
+}

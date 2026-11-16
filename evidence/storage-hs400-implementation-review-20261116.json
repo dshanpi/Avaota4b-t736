@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "kind": "t736-hs400-implementation-independent-review",
+  "date": "2026-11-16",
+  "reviewer": "backup_audit",
+  "status": "PASS-source-review-and-build-evidence-not-board-acceptance",
+  "files": [
+    {
+      "path": "boards/t736_mmc_hs400_draft.c",
+      "sha256": "515d7f75b871ee9da838ef71199706ddedb5425ae6cfac186c3089831d8598e5",
+      "bytes": 42516
+    },
+    {
+      "path": "boards/t736_mmc_hs400_policy_draft.h",
+      "sha256": "ae7f25d6309e1f6b1489277b2edab2fd06bc3f7c64f5a05b7103ea8036922384",
+      "bytes": 2295
+    },
+    {
+      "path": "boards/t736_mmc_hs400_tuning_draft.h",
+      "sha256": "c202f8f5dc5fb625e568c5b8f9f87f2d3c3e2531e2b3a859d361a805fda1c2bf",
+      "bytes": 1533
+    },
+    {
+      "path": "tests/test_mmc_hs400_policy.py",
+      "sha256": "7d766d78f7a8179adf0ee89b84b6ec8f34bb054fdd2b05f7657ed1c27a9ce8cb",
+      "bytes": 6453
+    },
+    {
+      "path": "evidence/build/mmc-hs400-draft-check-20261116.log",
+      "sha256": "fde3b952126ba8f4273ee0fcfc973a962d5b16205577b3f3ae7e0af461cc8907",
+      "bytes": 823
+    },
+    {
+      "path": "evidence/storage-hs400-design-20261116.json",
+      "sha256": "3ea32248c9358c4a5a843a060ce37ce16e6df0488b14baee30f9f6e73ad853b0",
+      "bytes": 8302
+    }
+  ],
+  "core_references": {
+    "mmc.c_sha256": "3fd819d40cb6aa118a3689a1ee82041383a64506546f4e5faee308fc63d1949d",
+    "mmc_ops.c_sha256": "21ce493f0638b9b778af03ed01be9780ca5bcff12ec0e365a112af0137ad193f",
+    "inspected_functions": [
+      "mmc_compare_ext_csds",
+      "mmc_select_hs400",
+      "mmc_hs400_to_hs200",
+      "__mmc_send_status",
+      "mmc_get_ext_csd",
+      "mmc_send_abort_tuning"
+    ]
+  },
+  "checks": [
+    {
+      "subject": "CMD13 command eye",
+      "result": "PASS",
+      "details": "Native CMD13 RCA<<16/R1/AC with mmc_wait_for_cmd(...,0), equivalent to core native __mmc_send_status zero-retry path. R1_STATUS plus explicit SWITCH_ERROR, READY_FOR_DATA and TRAN required. CRC-valid protocol/state failure returns EPROTO and is fatal."
+    },
+    {
+      "subject": "EXT_CSD reference",
+      "result": "PASS",
+      "details": "Exactly26 core read-only fields, same offsets and decoded low-speed card->ext_csd values; fresh512B allocation and DMA poison each trial; current HS_TIMING includes selected drive strength and BUS_WIDTH must equal6 without enhanced-strobe bit."
+    },
+    {
+      "subject": "DS transfer and recovery",
+      "result": "PASS",
+      "details": "Command center held fixed, mandatory per-trial DMA stop and ownership/IDST guard retained. Error classifier is restricted to read-only tuning. CMD8 failure issues explicit zero-retry CMD12 because core mmc_send_abort_tuning(CMD8) is a no-op. Post-abort fatal command/FIFO/controller errors terminate tuning."
+    },
+    {
+      "subject": "Core transition states",
+      "result": "PASS",
+      "details": "Initial HS200->HS->HS400 and retune HS400->DDR52->HS->HS200->HS400 paths match core. DDR52 is transient only, data rejected. Fixed8bit/1.8V, HS400 independent valid/frequency state; ordinary data gated until successful tuning, non-data protocol commands allowed."
+    },
+    {
+      "subject": "Register policy",
+      "result": "PASS",
+      "details": "HS400 genericCTRL.DDR clear, NTSR31/0 clear, EDSD31 set, CSDC6, CMD180/DATA90, module2x/div0. DDR8 transient CTRL.DDR set, DATA180, EDSD0, CSDC3, module4x/div1 and50MHz seed25. Existing sharedPLL/rail writes remain absent."
+    },
+    {
+      "subject": "Scan and failure boundaries",
+      "result": "PASS",
+      "details": "Separate64tap command andDS scans,20successful trials/tap, minimum12 linear window,16center confirmations.30s soft deadline each eye, command calls bounded. FinalCMD13 beforehs400_valid. Failure clearsvalid, stopsDMA/clock and setsios_error."
+    },
+    {
+      "subject": "Build and host tests",
+      "result": "PASS-observed-build-log",
+      "details": "ActualC ASan/UBSan HS400 policy/comparator/status/error tests;26RO bindings checked againstcore; prior HS200 classifier and2080linearwindow testsPASS. ARM64 module CC/MODPOST/LD succeeded againstfrozenv23 kernel tree."
+    }
+  ],
+  "limits": [
+    "Review and compilation do not establish electrical HS400 timing or board acceptance.",
+    "HS400100MHz and200MHz require distinct one-shot boot/tuning/integrity/health evidence before any default promotion.",
+    "Finite scans and register readback do not measure analog timing margins or DLL calibration.",
+    "CMD13 status and26RO EXT_CSD comparisons are bounded read-only checks; ordinary storage integrity needs a separate scratch-file phase.",
+    "v23 accepted HS200 source and v16 persistent fallback remain separate frozen states."
+  ],
+  "board_operations_by_reviewer": false,
+  "hardware_accepted": false,
+  "blocking_findings": []
+}

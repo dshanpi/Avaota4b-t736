@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-16",
+  "kernel_release": "6.18.63-t736-gpu-v15",
+  "kernel_image_sha256": "7f72afa793c50f64292bce835cf79784d1ba7ea0d2a14db9317a3f6005d39bd7",
+  "kernel_symvers_sha256": "ffa6c60ed5c82a67352688a48375f25965a14fa93055a21531ee67a45ad7b8eb",
+  "module_path": "/home/ubuntu/t736-mainline/output/pvrsrvkm-6.18.63-t736-gpu-v15-final.ko",
+  "module_sha256": "605305b2384f72b013236885f52f527f725ff2ae62c29d694f4aad025b769939",
+  "module_size": 1913784,
+  "vermagic": "6.18.63-t736-gpu-v15 SMP mod_unload aarch64",
+  "undefined_symbols_checked": 231,
+  "missing_exports": [],
+  "relink": "Forced pvrsrvkm.ko, pvrsrvkm.mod.o and external Module.symvers regeneration against final production kernel; MODPOST+CC+LD succeeded",
+  "identity_to_gbm_validated_module": true,
+  "original_module_retained_sha256": "485befc21972d597536af1146d03a723e5b801d3051696b33d6052680d8c104d",
+  "hardware_scope": "Same bytes as module validated by GBM/GLES3.2/60-frame pixel test; final integrated production kernel cold boot remains to be validated by root.",
+  "log": "evidence/pvr-bxm-v15-final-kernel-relink-20261116.log"
+}

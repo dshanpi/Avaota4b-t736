@@ -1,0 +1,51 @@
+insmod /tmp/t736-transfer/cpu-clock-ro.ko; echo CPU_CLOCK_RO_RC=$?; dmesg | grep t736-cpu-clock-ro | tail -n 28; rmmod t736_cpu_clock_readonly; cat /home/t736/.config/monitors.xml; echo CPU_AND_MONITOR_DONE
+
+CPU_CLOCK_RO_RC=0
+[ 3439.775285] t736-cpu-clock-ro: begin read-only snapshot base=0x08870000
+[ 3439.775329] t736-cpu-clock-ro: CPU_BACK_CTRL addr=0x08870000 value=0x40104a00
+[ 3439.775347] t736-cpu-clock-ro: A55_CTRL addr=0x08871000 value=0xf8801300
+[ 3439.775362] t736-cpu-clock-ro: A55_PAT0 addr=0x08871004 value=0x00000000
+[ 3439.775377] t736-cpu-clock-ro: A55_PAT1 addr=0x08871008 value=0x30000000
+[ 3439.775392] t736-cpu-clock-ro: A55_LFM addr=0x08871018 value=0x40000001
+[ 3439.775406] t736-cpu-clock-ro: A55_CLK addr=0x0887101c value=0x03000000
+[ 3439.775420] t736-cpu-clock-ro: A55_CTRL_STAT addr=0x0887102c value=0xf8801300
+[ 3439.775434] t736-cpu-clock-ro: A76_CTRL addr=0x08872000 value=0x40801400
+[ 3439.775448] t736-cpu-clock-ro: A76_PAT0 addr=0x08872004 value=0x00000000
+[ 3439.775462] t736-cpu-clock-ro: A76_PAT1 addr=0x08872008 value=0x30000000
+[ 3439.775476] t736-cpu-clock-ro: A76_LFM addr=0x08872018 value=0x40000001
+[ 3439.775491] t736-cpu-clock-ro: A76_CLK addr=0x0887201c value=0x00000000
+[ 3439.775504] t736-cpu-clock-ro: A76_CTRL_STAT addr=0x0887202c value=0x40801400
+[ 3439.775519] t736-cpu-clock-ro: DSU_CTRL addr=0x08873000 value=0xf8801300
+[ 3439.775533] t736-cpu-clock-ro: DSU_PAT0 addr=0x08873004 value=0x00000000
+[ 3439.775546] t736-cpu-clock-ro: DSU_PAT1 addr=0x08873008 value=0x30000000
+[ 3439.775560] t736-cpu-clock-ro: DSU_LFM addr=0x08873018 value=0x40000001
+[ 3439.775574] t736-cpu-clock-ro: DSU_CLK addr=0x0887301c value=0x03000105
+[ 3439.775588] t736-cpu-clock-ro: DSU_CTRL_STAT addr=0x0887302c value=0xf8801300
+[ 3439.775602] t736-cpu-clock-ro: CPU_SLOW_CLK addr=0x08873034 value=0x00000000
+[ 3439.775621] t736-cpu-clock-ro: end; no MMIO writes performed
+<monitors version="2">
+  <configuration>
+    <layoutmode>physical</layoutmode>
+    <logicalmonitor>
+      <x>0</x>
+      <y>0</y>
+      <scale>1</scale>
+      <primary>yes</primary>
+      <monitor>
+        <monitorspec>
+          <connector>HDMI-1</connector>
+          <vendor>DEL</vendor>
+          <product>DELL U2518D</product>
+          <serial>3M7K89A9066L</serial>
+        </monitorspec>
+        <mode>
+          <width>2560</width>
+          <height>1440</height>
+          <rate>59.951</rate>
+        </mode>
+      </monitor>
+    </logicalmonitor>
+  </configuration>
+</monitors>
+CPU_AND_MONITOR_DONE
+root@t736:~# 

@@ -1,0 +1,8 @@
+{
+  "status": "V16_RESTORED_NOT_REBOOTED",
+  "backup_directory": "/var/backups/t736-storage-v20/20261116T121945Z-fyefiy1a",
+  "rebooted": false
+}
+vmlinuz-6.18.63-t736-storage-v16
+6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b  /boot/dtb/allwinner/t736-mainline-bringup.dtb
+823f2e47dcb90e970079940987c7e99b9d3c31cf6a21dcf063535ae77530a633  /boot/vmlinuz-6.18.63-t736-storage-v20

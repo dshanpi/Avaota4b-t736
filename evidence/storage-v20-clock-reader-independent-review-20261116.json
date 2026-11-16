@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "kind": "t736-emmc-clocks-readonly-independent-review",
+  "status": "passed-static-source-review",
+  "source": "tools\\validation\\t736-emmc-clocks-readonly.c",
+  "source_sha256": "6cdee150d67934c8af06bec155a52d5b3098bafe160462b8fcf33ee495c59d5d",
+  "checked": [
+    "ExactCCUbase02002000,size1000",
+    "Seven offsets0,c0,c8,cc,d30,5e0,59c are ordinary configuration/status registers without read-clear",
+    "NoW1C lock interrupt-status register sampled",
+    "Three bounded passes21readl,no MMIO writes or CCF/reset/regulator/DMA/MMC requests",
+    "Snapshot is explicitly non-atomic and not physical frequency measurement"
+  ],
+  "blockers": []
+}

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "source_sha256": "babfde92cf76aa785dadd2d6ee6f935346c671807ffd5fe83ebeb30a7bebefe6",
+  "baseline_source_sha256": "d190f83e5c132aa7944781d92dc31f0c4e159da00e918bf6e2a9d7f3a93530b8",
+  "status": "approved for a bounded diagnostic observation by parent; not executed by reviewer",
+  "diff_review": "Only adds page0xa42 CTRL1000 and STAT1000 before existing samples and updates descriptive comments. All original PHY ID/address guards, MDIO mutex, sole page-selector writes and error-path original-page restore/readback are unchanged.",
+  "observation_caveat": "STAT1000 bit15 and low8bits are read-clear. First page0xa42 sample consumes them; later page0 differences in those fields alone do not show a page-alias mismatch. CTRL1000 and non-read-clear STAT1000 bits remain comparable.",
+  "datasheet": "https://www.wch.cn/uploads/file/20210908/1631089341753290.pdf",
+  "datasheet_findings": [
+    "Standard IEEE registers0..15 permit page0 or0xa42",
+    "GBCR bit9 is RW full-duplex1000Base-T advertisement",
+    "No evidence found that downshift automatically clears GBCR bit9; do not claim it does"
+  ],
+  "board_access": false
+}

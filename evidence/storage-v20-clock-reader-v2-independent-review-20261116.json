@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "kind": "t736-emmc-clocks-readonly-v2-independent-review",
+  "status": "passed-static-source-and-diff-review",
+  "source": "tools/validation/t736-emmc-clocks-readonly-v2.c",
+  "source_sha256": "8cff1dca8e790b3d10fa8bae11b5f269fb337ca8d2c1d915b9321f23330b39e0",
+  "readl_count": 30,
+  "checks": [
+    "All addressed registers within exact mapped blocks",
+    "Configuration/clock status/version reads only; no command/FIFO/read-clear offsets",
+    "NoMMIO/CCF/reset/regulator/DMA/MMC writes",
+    "Acquisition precedes unmap then printing; no atomicity or physical-frequency claim"
+  ],
+  "blockers": []
+}

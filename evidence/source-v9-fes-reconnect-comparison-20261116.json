@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-16",
+  "scope": "Read-only comparison of saved flash/scan evidence. No board, serial, USB or port access; no flash tool execution; no CLI source/network investigation.",
+  "inputs_sha256": {
+    "source-v8-flash-status-20261116.json": "3092ea7aca4e31eb5d539b81d5f13c45cf86ed7a8ffcfc127d7fbc0c92fe7e3f",
+    "source-v8-flash-status-attempt2-20261116.json": "cdc0ccdb4dfc4798dd78993da53f028f87cf748b19b1633843a0d9666deae471",
+    "source-v9-flash-status-20261116.json": "ff2de8b0342c4443642d6b330758d548010ad08fed3ff9bd9367f5b7cc53f661",
+    "source-v9-flash-status-reconnect-20261116.json": "596453c816bc2f3f76a17dcff689afdd938ec8049c4dd3b90ee5b19bccf38062",
+    "source-v9-flash-failure-scan-20261116.json": "000fd9b5c05b8a1afd9f2811731ade95d29af0eaca05e101dfa2bad563597989"
+  },
+  "v8_first_attempt": {
+    "taskId": "flash-1794812127890553000",
+    "executableVersion": "openixcli 0.2.11",
+    "state": "failed",
+    "phase": "reconnecting",
+    "startedAt": 1794812129,
+    "finishedAt": 1794812178,
+    "transferredBytes": 0,
+    "committedBytes": null,
+    "writtenBytes": null,
+    "verifyState": "not_run",
+    "error": "openixcli exited with 1"
+  },
+  "v8_second_attempt": {
+    "taskId": "flash-1794812230911010000",
+    "executableVersion": "openixcli 0.2.11",
+    "state": "success",
+    "phase": "complete",
+    "startedAt": 1794812231,
+    "finishedAt": 1794812561,
+    "transferredBytes": 8589934592,
+    "committedBytes": 8589934592,
+    "writtenBytes": 8589934592,
+    "verifyState": "success",
+    "error": null
+  },
+  "v9_first_attempt": {
+    "taskId": "flash-1794819409244704500",
+    "executableVersion": "openixcli 0.2.11",
+    "state": "failed",
+    "phase": "reconnecting",
+    "startedAt": 1794819410,
+    "finishedAt": 1794819458,
+    "transferredBytes": 0,
+    "committedBytes": null,
+    "writtenBytes": null,
+    "verifyState": "not_run",
+    "error": "openixcli exited with 1"
+  },
+  "v9_second_attempt_snapshot": {
+    "taskId": "flash-1794819549918460800",
+    "executableVersion": "openixcli 0.2.11",
+    "state": "running",
+    "phase": "write",
+    "startedAt": 1794819551,
+    "finishedAt": null,
+    "transferredBytes": 1300299776,
+    "committedBytes": null,
+    "writtenBytes": null,
+    "verifyState": "pending",
+    "error": null
+  },
+  "v9_rescan": {
+    "chipVendor": "allwinner",
+    "configuredBinding": "location:pciroot(0)#pci(1400)#usbroot(0)#usb(10)#usb(2)",
+    "devices": [
+      {
+        "bus": 0,
+        "chip": "Allwinner",
+        "flasherKind": "openixcli",
+        "key": "location:pciroot(0)#pci(1400)#usbroot(0)#usb(10)#usb(2)",
+        "mode": "fel/fes",
+        "pid": 61416,
+        "port": "2",
+        "usbSpeed": "unknown",
+        "usbTheoreticalMbps": null,
+        "vid": 7994
+      }
+    ],
+    "flasherKind": "openixcli",
+    "online": true,
+    "protocol": "FEL / FES",
+    "state": "online"
+  },
+  "identical_error": "Raw disk flash failed: Device reconnect failed: expected=pciroot(0)#pci(1400)#usbroot(0)#usb(10)#usb(2); devices=[scan_error=Device not found]; last_open=[stage=efex_init location=libusb:0:10 bus=0 port=10 error=USB transfer failed]",
+  "v8_v9_initial_errors_byte_identical": true,
+  "shared_observations": [
+    "Both use openixcli 0.2.11 and the same configured Windows USB location.",
+    "Both first attempts finish DRAM initialization and download/execute the 1245184-byte vendor U-Boot/FES payload in RAM.",
+    "Both release the stale FEL handle, report Windows-location to libusb:0:10 topology migration, then fail at efex_init USB transfer during reconnect.",
+    "Both first attempts report transferredBytes=0, writtenBytes/committedBytes=null, verifyState=not_run and no erase/write stage reached. This is evidence of pre-disk-write failure, not a successful flash.",
+    "V8 second task completed and verified all8589934592bytes. V9 rescan reports the same binding online; its new task has reached write with1300299776bytes transferred in this captured snapshot."
+  ],
+  "conclusion": "This is the same observed FEL-to-FES reconnect failure pattern already recovered by reopening the task for v8. V9 rescan plus renewed write activity shows the same recovery path is working. Evidence does not isolate the lower-level cause to a specific libusb, timing, driver-binding or firmware defect.",
+  "limitations": "The v9 second-attempt file was a running snapshot at analysis time. Its transferred byte count does not prove committed bytes or final verification; those remain the main agent's active acceptance task."
+}

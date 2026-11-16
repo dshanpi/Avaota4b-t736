@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "kind": "t736-hs200-software-tuning-design",
+  "status": "draft-static-review-and-compile-check-not-board-tested",
+  "baseline": "frozen v21 HS25/HS50 accepted; HRT/v19 IDIE DMA retained",
+  "files": {
+    "boards/t736_mmc_hs200_draft.c": "db179f33c161bd134d13698df41f41e6973f5465bd2e2c84777cadca68f57bbe",
+    "boards/t736_mmc_clock_hs200_draft.h": "33f4c8eae7d5b7c73534e07c4c24652a01d0400fc00f286b9212116ee83cd5a2",
+    "boards/t736_mmc_tuning_draft.h": "2ba574aec0bf5fe06d4d0a90319891c0c3c7b2871cbdddaa6ae004e91d66eeb0",
+    "tests/test_mmc_hs200_tuning.py": "6494ad2b9fab897d2a6affa23da52bcc2cf85b00579022b9d7cac5a42a5c9b56"
+  },
+  "enablement": {
+    "default_enabled": false,
+    "first_stage_hz": 100000000,
+    "later_stage_hz": 200000000,
+    "boot_parameters": [
+      "t736_mmc_pio.enable_hs200=1",
+      "t736_mmc_pio.hs200_max_hz=100000000"
+    ],
+    "capabilities": [
+      "MMC_CAP2_HS200_1_8V_SDR only"
+    ],
+    "excluded": [
+      "DDR52",
+      "HS400",
+      "HS400_ES",
+      "1.2V switching",
+      "CQE"
+    ]
+  },
+  "actual_t736_donor": {
+    "root": "/home/ubuntu/t736-aiot/tina",
+    "bsp/drivers/mmc/sunxi-mmc-v4p5x.c": "f7b14c8dce66eefc222ac7d06b8aad041ea132c463a1f035a201dd940fb95f7f",
+    "bsp/drivers/mmc/sunxi-mmc.c": "52c7f92db77290437b7818f3c3a92a2956c1ab637214794e56220d0dde99ce16",
+    "bsp/drivers/mmc/sunxi-mmc.h": "0945ee0ea5e47082c2ff159e578380671f86f4cd797f4fb3a853bc6f8cde0da3",
+    "references": [
+      "v4p5x.c271-307 CMD180/DATA90; MMC_HS200 does not take SD SDR104 DATA180 case",
+      "v4p5x.c854-913 THLD request policy;1395 v5p6x hook",
+      "sunxi-mmc.c2415-2635 optional kernel tuning; sample_win_th12 and64 taps",
+      "sunxi-mmc.h611 MMC_TUNING_RETRY_TIMES20",
+      "sunxi-mmc.c4253 execute_tuning_in_kernel gate"
+    ],
+    "correction": "Earlier T527 tree read is not the board donor; actual T736 source DOES contain optional execute_tuning. Effective eMMC DT lacks its enable property (SDIO has it). No claim that existing eMMC BSP capture performed kernel tuning."
+  },
+  "manual": {
+    "path": "evidence/vendor-reference/reference-1.txt",
+    "sections": [
+      "11.3.9.17 FIFO thresholds",
+      "11.3.9.30 THLD [28:16],read0/write2,BCIG1",
+      "11.3.9.31 SFC block-gap flow control",
+      "11.3.9.37 DRV phases",
+      "11.3.9.38 SAMP six-bit software delay",
+      "11.3.9.39 DS delay"
+    ]
+  },
+  "clock_and_electrical": {
+    "source": "already-verified PERI0_800M/mux1 with REF/source/lock/SDM read checks; noPLL writes",
+    "100MHz": "800M/(2*M4*N1), module200M,reg81000003",
+    "200MHz": "800M/(2*M2*N1), module400M,reg81000001",
+    "signal": "fixed1.8V callback only; no rail/pad voltage writes",
+    "phases": "SDR,CTRL.DDR10=0,NTSR31/0=0,EDSD31=0,CSDC3,DRV CMD180/DATA90,DSdelay0"
+  },
+  "board_seed": {
+    "source": "actual effective eMMC sm3 freq0=2020ffff/freq1=ffff3128",
+    "le25M": 0,
+    "le50M": 32,
+    "le100M": 32,
+    "le150M": 40,
+    "le200M": 49,
+    "meaning": "seed only; never accepted without freshCMD21 patterns"
+  },
+  "tuning": {
+    "pattern": "Linux6.18 mmc_send_tuning uses full JEDEC128-byte pattern on8bit",
+    "each_trial": "poison coherent buffer0xa5, CMD21 via existing DMA, directional event+OWN clear, mandatoryDMAstop, copy, corememcmp",
+    "scan": "64linear taps,20successful trials per passing tap",
+    "selection": "longest contiguous nonwrapping window>=12; center with>=5tap edge margin; deterministic first tie",
+    "final_verification": "16fresh full-pattern trials atselected center",
+    "no_match": "returns error, never silentlysuccess",
+    "abort": "CMD12 after a failed tap; bad-tap response CRC/timeout recorded separately, not countedpass; subsequent operations remainread-onlyCMD21. Mainline Renesas driver has same ignored-abort-return precedent. No host->card use during initialtune because core assigns it later.",
+    "fatal": "DMAdead/ios_error,IDST4/5,FIFOorillegal-commandRINT11/12 stop scan; abort also checks controllerfaults",
+    "bounds": "30s softdeadline checked eachtap/trial/abort; each command200ms; bounded clock-update/reset andcleanup may extend deadline",
+    "retuning": "validtap retained only atsameactualfrequency; changedfrequency invalidates+requestsretune",
+    "data_gate": "HS200 ordinarydata rejected untilsuccessful tuning; onlyCMD21 trials allowedbeforevalid"
+  },
+  "flow_control": {
+    "HS200_reads": "THLD=blksz128/512,readenable;FIFO>=1024 vsRX60+block",
+    "HS200_writes": "THLD=512,writeenable;TX240words=960 fits",
+    "preserved": "BCIG and allunrelatedTHLD fields; noSFCwrite",
+    "legacy_exit": "restore pre-HS200 THLD policy",
+    "diagnostics": "THLD/SFC included in successful tuning log"
+  },
+  "failure_and_fallback": {
+    "host": "return negative; valid=false and ios_error block data; cleanup abort/DMA-stop/clock-stop results recorded. DMA reset failure quarantines buffers; tuning cleanup/set_ios skip clock programming after dma_dead. The command tail may still clear IRQSTATUS.",
+    "core": "mmc_init_card tuningfailure exitsinitialization; no automatic HS52downgrade promised",
+    "boot": "parent usesone-shotHS200 and preservespersistentv16 fallback plusinstalledacceptedv21; no saveenv/rawbootchanges"
+  },
+  "hs400_dependencies": [
+    "successful HS200 at targetfrequency before core transition",
+    "core must switch HS_TIMINGHS,lowerclock,switch8-bitDDRbus,HS_TIMING3,then hostHS400",
+    "controllerHS400 mode+NTSR new-sampling choice+EDSD31+CSDC HS400 parameter need separatestaticreview",
+    "independent command and data-strobe delay seed/tuning; BSP sm4 andsm4_cmd values are onlyseeds",
+    "strobe routing,HS400ES hostcapability and RETUNE downgrade/re-upgrade remainunimplemented",
+    "do not enable HS400 caps based solely on cardEXT_CSD or oldBSP runtime"
+  ],
+  "validation": {
+    "actual_c_unit_tests": "PASS ASan/UBSan:100/200MHz,2080linearwindows,noendpointwrap,minmargin,seedboundaries",
+    "ARM64_driver_compile": "PASS externalmodulecompile-only; nottransferred/loaded",
+    "board_tuning_and_io": "pending"
+  },
+  "next": "peer finalstaticreview then separatev22 package withunchangedv21DT/config exceptrelease;100MHz one-shot first"
+}

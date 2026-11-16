@@ -1,0 +1,16 @@
+runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority /usr/bin/t736-img-run probe-gbm /dev/dri/renderD128 >/root/source-v9-validation/gbm-user.log 2>&1; echo GBM_USER_RC=$?; tail -n 5 /root/source-v9-validation/gbm-user.log; runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority /usr/bin/t736-img-run probe-x11 >/root/source-v9-validation/x11-user.log 2>&1; echo X11_USER_RC=$?; tail -n 5 /root/source-v9-validation/x11-user.log; echo GPU_USER_PROBES_DONE
+
+GBM_USER_RC=0
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+X11_USER_RC=0
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+GPU_USER_PROBES_DONE
+root@t736:~# 

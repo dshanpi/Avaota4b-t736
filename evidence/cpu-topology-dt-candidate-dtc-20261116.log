@@ -1,0 +1,82 @@
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/baseline.dts: Warning (graph_child_address): /display-engine@5000000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/baseline.dts: Warning (graph_child_address): /tcon@5730000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/baseline.dts: Warning (graph_child_address): /hdmi@5520000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:135.3-29: Warning (clocks_property): /pinctrl@7025000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:135.3-29: Warning (clocks_property): /pinctrl@7025000:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:135.3-29: Warning (clocks_property): /pinctrl@7025000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:159.3-19: Warning (clocks_property): /clock-controller@2003300:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:168.3-54: Warning (clocks_property): /phy@4200800:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:168.3-54: Warning (clocks_property): /phy@4200800:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:168.3-54: Warning (clocks_property): /phy@4200800:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:168.3-54: Warning (clocks_property): /phy@4200800:clocks: cell 6 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:181.3-24: Warning (clocks_property): /usb@4200000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:192.3-34: Warning (clocks_property): /usb@4200400:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:192.3-34: Warning (clocks_property): /usb@4200400:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:219.3-29: Warning (clocks_property): /pinctrl@2000000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:219.3-29: Warning (clocks_property): /pinctrl@2000000:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:219.3-29: Warning (clocks_property): /pinctrl@2000000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:262.3-19: Warning (clocks_property): /serial@2500000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:300.3-29: Warning (clocks_property): /clock-controller@2003410:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:300.3-29: Warning (clocks_property): /clock-controller@2003410:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:300.3-29: Warning (clocks_property): /clock-controller@2003410:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:311.3-44: Warning (clocks_property): /ethernet@4500000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:311.3-44: Warning (clocks_property): /ethernet@4500000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:311.3-44: Warning (clocks_property): /ethernet@4500000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 3 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 5 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:361.3-24: Warning (clocks_property): /power-controller@7061000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:394.3-54: Warning (clocks_property): /display-engine@5000000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:394.3-54: Warning (clocks_property): /display-engine@5000000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:394.3-54: Warning (clocks_property): /display-engine@5000000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:394.3-54: Warning (clocks_property): /display-engine@5000000:clocks: cell 6 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:421.3-34: Warning (clocks_property): /tcon-top@5510000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:421.3-34: Warning (clocks_property): /tcon-top@5510000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:433.3-24: Warning (clocks_property): /tcon@5730000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 6 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 8 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:520.3-29: Warning (clocks_property): /clock-controller@2002b20:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:520.3-29: Warning (clocks_property): /clock-controller@2002b20:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:520.3-29: Warning (clocks_property): /clock-controller@2002b20:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 6 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 8 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 10 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:545.3-44: Warning (clocks_property): /gpu@1800000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:545.3-44: Warning (clocks_property): /gpu@1800000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:545.3-44: Warning (clocks_property): /gpu@1800000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:183.3-17: Warning (phys_property): /usb@4200000:phys: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:194.3-17: Warning (phys_property): /usb@4200400:phys: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:393.3-31: Warning (power_domains_property): /display-engine@5000000:power-domains: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:425.3-31: Warning (power_domains_property): /tcon-top@5510000:power-domains: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:470.3-31: Warning (power_domains_property): /hdmi@5520000:power-domains: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:549.3-31: Warning (power_domains_property): /gpu@1800000:power-domains: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:170.3-24: Warning (resets_property): /phy@4200800:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:182.3-24: Warning (resets_property): /usb@4200000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:193.3-24: Warning (resets_property): /usb@4200400:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:313.3-34: Warning (resets_property): /ethernet@4500000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:313.3-34: Warning (resets_property): /ethernet@4500000:resets: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:396.3-34: Warning (resets_property): /display-engine@5000000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:396.3-34: Warning (resets_property): /display-engine@5000000:resets: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:423.3-34: Warning (resets_property): /tcon-top@5510000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:423.3-34: Warning (resets_property): /tcon-top@5510000:resets: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:435.3-24: Warning (resets_property): /tcon@5730000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:473.3-44: Warning (resets_property): /hdmi@5520000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:473.3-44: Warning (resets_property): /hdmi@5520000:resets: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:473.3-44: Warning (resets_property): /hdmi@5520000:resets: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:533.3-24: Warning (resets_property): /power-controller@7065000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:547.3-24: Warning (resets_property): /gpu@1800000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:150.3-32: Warning (gpios_property): /regulator-usb1-vbus:gpio: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:330.4-40: Warning (gpios_property): /ethernet@4500000/mdio:reset-gpios: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:400.9-415.5: Warning (graph_child_address): /display-engine@5000000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:443.11-453.6: Warning (graph_child_address): /tcon@5730000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+/home/ubuntu/t736-mainline/build/cpu-topology-dt-candidate-20261116/candidate.dts:489.9-501.5: Warning (graph_child_address): /hdmi@5520000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary

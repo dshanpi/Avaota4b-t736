@@ -1,0 +1,58 @@
+drwxrwxr-x 5 root root 4096 11月16日 10:45 /opt/t736-cedar-bridge-v1
+drwxrwxr-x 3 root root 4096 11月16日 10:45 /opt/t736-cedar-bridge-v1/lib
+drwxrwxr-x 2 root root 4096 11月16日 10:45 /opt/t736-cedar-bridge-v1/lib/gstreamer-1.0
+总计 360
+-rwxrwxr-x 1 root root 366672 11月16日 10:45 libgstomx.so
+	linux-vdso.so.1 (0x0000ffff8c43c000)
+	libgstvideo-1.0.so.0 => /lib/aarch64-linux-gnu/libgstvideo-1.0.so.0 (0x0000ffff8c2a0000)
+	libgstbase-1.0.so.0 => /lib/aarch64-linux-gnu/libgstbase-1.0.so.0 (0x0000ffff8c1f0000)
+	libgstreamer-1.0.so.0 => /lib/aarch64-linux-gnu/libgstreamer-1.0.so.0 (0x0000ffff8c050000)
+	libgobject-2.0.so.0 => /lib/aarch64-linux-gnu/libgobject-2.0.so.0 (0x0000ffff8bfc0000)
+	libglib-2.0.so.0 => /lib/aarch64-linux-gnu/libglib-2.0.so.0 (0x0000ffff8be30000)
+	libgstaudio-1.0.so.0 => /lib/aarch64-linux-gnu/libgstaudio-1.0.so.0 (0x0000ffff8bd80000)
+	libgmodule-2.0.so.0 => /lib/aarch64-linux-gnu/libgmodule-2.0.so.0 (0x0000ffff8bd50000)
+	libgstallocators-1.0.so.0 => /lib/aarch64-linux-gnu/libgstallocators-1.0.so.0 (0x0000ffff8bd20000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffff8bb60000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffff8c400000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffff8bab0000)
+	liborc-0.4.so.0 => /lib/aarch64-linux-gnu/liborc-0.4.so.0 (0x0000ffff8b9e0000)
+	libffi.so.8 => /lib/aarch64-linux-gnu/libffi.so.8 (0x0000ffff8b9b0000)
+	libatomic.so.1 => /lib/aarch64-linux-gnu/libatomic.so.1 (0x0000ffff8b980000)
+	libpcre2-8.so.0 => /lib/aarch64-linux-gnu/libpcre2-8.so.0 (0x0000ffff8b8c0000)
+	libgsttag-1.0.so.0 => /lib/aarch64-linux-gnu/libgsttag-1.0.so.0 (0x0000ffff8b860000)
+	libdrm.so.2 => /lib/aarch64-linux-gnu/libdrm.so.2 (0x0000ffff8b820000)
+	libz.so.1 => /lib/aarch64-linux-gnu/libz.so.1 (0x0000ffff8b7e0000)
+0:00:00.302449520 11767 0xaaaabcca0fa0 DEBUG     GST_PLUGIN_LOADING gstplugin.c:843:_priv_gst_plugin_load_file_for_registry: attempt to load plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgsteffectv.so"
+0:00:00.318223631 11766 0xaaaae45dc4f0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:863:handle_rx_packet:<registry0> Received plugin details from child w/ tag 100. 2525 bytes info
+0:00:00.304458948 11767 0xaaaabcca0fa0 INFO      GST_PLUGIN_LOADING gstplugin.c:999:_priv_gst_plugin_load_file_for_registry: plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgsteffectv.so" loaded
+0:00:00.304898237 11767 0xaaaabcca0fa0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:737:do_plugin_load: Plugin scanner loading file /usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstavi.so. tag 103
+0:00:00.304944408 11767 0xaaaabcca0fa0 DEBUG     GST_PLUGIN_LOADING gstplugin.c:843:_priv_gst_plu0:00:00.320696141 11766 0xaaaae45dc4f0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:863:handle_gin_load_file_for_registry: attempt to load plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstavi.so"
+rx_packet:<registry0> Received plugin details from child w/ tag 101. 1272 bytes info
+0:00:00.308173152 11767 0xaaaabcca0fa0 INFO      GST_PLUGIN_LOADING gstplugin.c:999:_priv_gst_plugin_load_file_for_registry: plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstavi.so" loaded
+0:00:00.308582146 11767 0xaaaabcca0fa0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:737:do_plugin_load: Plugin scanner loading file /usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstrtsp.so. tag 104
+0:00:00.308623858 11767 0xaaaabcca0fa0 DEBUG     GST_PLUGIN_LOADING gstplugin.c:843:_priv_gst_plugin_load_file_for_registry: attempt to load plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstrtsp.so"
+0:00:00.324413804 11766 0xaaaae45dc4f0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:863:handle_rx_packet:<registry0> Received plugin details from child w/ tag 102. 7812 bytes info
+0:00:00.312810854 11767 0xaaaabcca0fa0 INFO      GST_PLUGIN_LOADING gstplugin.c:999:_priv_gst_plugin_load_file_for_registry: plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstrtsp.so" loaded
+0:00:00.313252310 11767 0xaaaabcca0fa0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:737:do_plugin_load: Plugin scanner loading file /usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstvideotestsrc.so. tag 105
+0:00:00.313305773 11767 0xaaaabcca0fa0 DEBUG     GST_PLUGIN_LOADING gstplugin.c:843:_priv_gst_plugin_load_file_for_registry: attempt to load plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstvideotestsrc.so"
+0:00:00.329104260 11766 0xaaaae45dc4f0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:863:handle_rx_packet:<registry0> Received plugin details from child w/ tag 103. 16335 bytes info
+0:00:00.315130434 11767 0xaaaabcca0fa0 INFO      GST_PLUGIN_LOADING gstplugin.c:999:_priv_gst_plugin_load_file_for_registry: plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstvideotestsrc.so" loaded
+0:00:00.315528553 11767 0xaaaabcca0fa0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:737:do_plugin_load: Plugin scanner loading file /usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstauparse.so. tag 106
+0:00:00.315573515 11767 0xaaaabcca0fa0 DEBUG     GST_PLUGIN_LOADING gstplugin.c:843:_priv_gst_plugin_load_file_for_registry: attempt to load plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstauparse.so"
+0:00:00.331343750 11766 0xaaaae45dc4f0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:863:handle_rx_packet:<registry0> Received plugin details from child w/ tag 104. 1215 bytes info
+0:00:00.316994224 11767 0xaaaabcca0fa0 INFO      GST_PLUGIN_LOADING gstplugin.c:999:_priv_gst_plugin_load_file_for_registry: plugin "/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstauparse.so" loaded
+0:00:00.334096619 11766 0xaaaae45dc4f0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:863:handle_rx_packet:<registry0> Received plugin details from child w/ tag 105. 2456 bytes info
+0:00:00.334916483 11766 0xaaaae45dc4f0 DEBUG     GST_PLUGIN_LOADING gstpluginloader.c:863:handle_rx_packet:<registry0> Received plugin details from child w/ tag 106. 1132 bytes info
+Plugin Details:
+  Name                     omx
+  Description              GStreamer OpenMAX Plug-ins
+  Filename                 /opt/t736-cedar-bridge-v1/lib/gstreamer-1.0/libgstomx.so
+  Version                  1.20.1
+  License                  LGPL
+  Source module            gst-omx
+  Source release date      2022-03-14
+  Binary package           GStreamer OpenMAX Plug-ins
+  Origin URL               Unknown package origin
+
+  0 features:
+

@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "kind": "t736-hs-draft-peri0-parent-redirect-review",
+  "status": "source-mapping-confirmed-live-pattern-read-pending",
+  "hardware_access": false,
+  "previous_review": "evidence/storage-hs-draft-parent-clock-review-20261116.json",
+  "decision": "Reuse already-enabled PERI0 output1 via SMHC3 mux1; do not enable PERI1 or modify shared PLL registers",
+  "source_agreement": {
+    "manual": "A733 reference-1.txt section4.1.6.133 explicitly mux001=PERI0_800M, mux011=PERI1_800M",
+    "generated_header": "sun60iw2p1/clock_autogen.h lines173ff define PERI0_CTRL/PAT fields; lines2724-2728 define SMHC3 mux",
+    "linux_tina": "ccu-sun60iw2.c smhc2_parents index1 pll-peri0-800m is also used by smhc3_clk"
+  },
+  "readonly_window": {
+    "base": "0x020020a0",
+    "minimum_bytes": 16,
+    "reads": {
+      "0x020020a0": "PERI0_CTRL",
+      "0x020020a8": "PERI0_PAT0",
+      "0x020020ac": "PERI0_PAT1"
+    }
+  },
+  "same_as_peri1_fields": {
+    "CTRL31": "enable",
+    "CTRL28": "lock",
+    "CTRL26": "output1gate",
+    "CTRL24": "FREF_SEL0=HOSC,1=REFPLL",
+    "CTRL18_16": "P1 encoded+1",
+    "CTRL15_8": "N encoded+1",
+    "CTRL1": "inputM1 encoded+1",
+    "PAT0_31": "sigma-delta patternenable",
+    "PAT1_27": "PLL_SDM_EN",
+    "PAT1_26": "SDM_BUSY"
+  },
+  "reported_values_not_measured_by_reviewer": {
+    "REF": "0xf8675f00",
+    "PERI1": "0x40126310 disabled",
+    "PERI0_from_v20_startup_log": "0xff126310"
+  },
+  "exact_decode": {
+    "REF": "26,000,000*96/(1*104)=24,000,000",
+    "PERI0_integer_output1": "24,000,000*100/(1*3)=800,000,000",
+    "PERI0_ready": "ff126310 has PLLenable31/LOCK28/output1gate26/FREF24 set",
+    "PERI1_ready": "40126310 lacks enable31/LOCK28/output1gate26; reject"
+  },
+  "required_before_use": [
+    "Fresh primaryagent read of PERI0CTRL/PAT0/PAT1",
+    "Reject PAT0bit31 or PAT1bits27/26 set using existing guard",
+    "Resource must map PERI0a0 notPERI1c0; planner source1 not3",
+    "Keep low-speedmux0, exactparentcross-products, localmoduleclockgating/readback and noPLLwrites"
+  ],
+  "review_scope": "Mapping/field equivalence confirmed, no inspection of a future rewritten source hash and no hardware acceptance claimed."
+}

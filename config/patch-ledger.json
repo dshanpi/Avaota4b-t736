@@ -286,7 +286,7 @@
       "upstream_status": "local source port; board-tested; not submitted upstream",
       "compat_patch_sha256": "f286cb4cffd96eb7210cf4fb6fafc4274be1925ed57b0b8269bb22cc03e22351",
       "backup_file_sha256": {
-        "patches/t736-display-linux618-compat.patch": "f286cb4cffd96eb7210cf4fb6fafc4274be1925ed57b0b8269bb22cc03e22351",
+        "patches/t736-display-linux618-compat.patch": "a488c25895e082c1f29d42e0c480777d2a50bdbd896f551542bd10958e01be3b",
         "boards/clk-t736-display.c": "682d520a482a03f06ca7efc208d2f87756c44ec6f8380a6bab138b232a24f34e",
         "boards/t736-display-power.c": "42c0f4930e3f71dadfd348128a05f78855cff4a02778e4961dec7d89559b1b5f",
         "boards/t736-hdmi.dtsi": "5cb10e4d76c6b57c229fc3f70523853781b2c615a09fbb98293246b58d320a89"

@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "scope": "Isolated Cedar2.0/OpenMAX bridge compile and real-board GStreamer plugin registration",
+  "package": {
+    "package": "/home/ubuntu/t736-mainline/build/cedar-bridge-package-v2/t736-cedar-bridge-v2.tar.gz",
+    "bytes": 1103293,
+    "sha256": "39199fe332a5e2320e308ea8a5c1f0039bce5e277b892ab71af5f6bccc8fc226",
+    "manifest_sha256": "0fc81c078c839248c3475a77d5898d568f0b6885a0cdb713bb9b2783a6140b64",
+    "files": 32
+  },
+  "source_builder": "tools/build_cedar_bridge.py",
+  "wrapper": "tools/validation/cedar-env",
+  "wrapper_sha256": "0a1b9bad7fb92b3dd56cdd3c7cef93f5a3cb7ce49c9c24db2e86eb664b25e2e0",
+  "vendor_package_sha256": "229b69699184bbf7b0bade1540cc06cda50e20ccb5cd6da9f8c365d1bc1023d0",
+  "upstream_bridge": "gst-omx 1.20.1 with Tina 19-patch series",
+  "compile_results": {
+    "aarch64_plugin": true,
+    "aarch64_vdecoderdemo": true,
+    "highest_glibc_version": "2.30"
+  },
+  "v1_failure": {
+    "source": "storage-v16-cedar-plugin-debug-20261116.log",
+    "cause": "gst-omx g_file_test rejects soname-only core-name before dlopen",
+    "features": 0,
+    "artifact_preserved": true
+  },
+  "v2_fix": "Wrapper creates a temporary GKeyFile configuration with absolute private libOmxCore.so path; preserves rank 0; removes temporary configuration on exit",
+  "wrapper_host_validation": "sh -n and generated configuration check with a directory containing spaces passed",
+  "board_registration": {
+    "source": "storage-v16-cedar-v2-inspect-20261116.log",
+    "source_sha256": "531b4b74c98ef28e401d2c9fb7f74b830b7d68d69feff6430a50d8f2e8663c98",
+    "gst_version_reported_by_board_operator": "1.26.2-2",
+    "plugin_path": "/opt/t736-cedar-bridge-v2/lib/gstreamer-1.0/libgstomx.so",
+    "element": "omxh264dec",
+    "rank": 0,
+    "afbc_default": false,
+    "advertised_linear_formats": [
+      "YV12",
+      "NV21"
+    ],
+    "advertised_dmabuf": true,
+    "status": "passed; advertised caps only, no decoded frames"
+  },
+  "allocator_binary_audit": {
+    "libcdc_base_sha256": "2d1c8b9a0be3c75445290f749e877c9baeb54657d9d8acad92216baae51f507f",
+    "CdcIonGetMemType": "Function at ELF text 0x5900 unconditionally returns MEMORY_IOMMU=1",
+    "selected_heap": "/dev/dma_heap/system",
+    "method": "readelf/objdump/strings; binary not executed on build host",
+    "reserved_heap_fallback_justified": false
+  },
+  "acceptance": {
+    "plugin_registered_on_board": true,
+    "decoder_device_open_verified": false,
+    "decoded_frames_verified": false,
+    "browser_hardware_decode_verified": false
+  },
+  "next_kernel_work": "Separate linux-media-v17 IOMMU-v20/dma_heap/VE provider preparation; no media nodes enabled and no candidate kernel deployment"
+}

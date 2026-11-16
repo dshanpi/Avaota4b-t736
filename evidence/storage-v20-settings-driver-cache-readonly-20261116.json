@@ -1,0 +1,89 @@
+{
+  "config": {
+    "v20": {
+      "sha256": "8b72287839477b99c008ad37a0756bf57ea50a24dad5c14682c29ea40c558841",
+      "values": [
+        "CONFIG_HIGH_RES_TIMERS=y",
+        "# CONFIG_TASKSTATS is not set",
+        "CONFIG_HZ=250"
+      ]
+    },
+    "v19": {
+      "sha256": "6aab4229067aee5bea1c432d441cd4083b532766d400507e45bb4396c0672778",
+      "values": [
+        "# CONFIG_HIGH_RES_TIMERS is not set",
+        "# CONFIG_TASKSTATS is not set",
+        "CONFIG_HZ=250"
+      ]
+    }
+  },
+  "binaries": [
+    {
+      "path": "/home/ubuntu/t736-mainline/build/gpu-userspace-v2/package-root/opt/t736-img-ddk-24.2-x11/lib/libGLESv1_CM_PVR_MESA.so.24.2.6603887",
+      "sha256": "98f89f4d423955d62a7e40296da72f84887c8f9de4ce7bd5daec4171daf0fe14",
+      "matching_strings": [
+        "OptimisedValidation"
+      ]
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/gpu-userspace-v2/package-root/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+      "sha256": "7442a27ca4a28586a7699b97f224541d9b6ecdf2717a9c4e815ce57afada2a7f",
+      "matching_strings": [
+        "OptimisedValidation",
+        "OptimiseTexStateLoading",
+        "OptimiseDiscardWithDWD",
+        "Optimised4xAniso",
+        "OptimiseProgram: Out of memory",
+        "OptimiseProgram",
+        "Optimise program"
+      ]
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/gpu-userspace-v2/package-root/opt/t736-img-ddk-24.2-x11/lib/libVK_IMG.so.24.2.6603887",
+      "sha256": "ac182122ff87ed2ade0deca78c360324069351e050860952175670f78f92230e",
+      "matching_strings": [
+        "OptimiseAttribDMAs",
+        "Optimised4xAniso",
+        "OptimiseDiscardWithDWD",
+        "EnableOptimisedDMAs",
+        "VK Cached HWBGOBj USC fragment shader"
+      ]
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/gpu-userspace-v2/package-root/opt/t736-img-ddk-24.2-x11/lib/libpvr_mesa_wsi.so",
+      "sha256": "a71d6aac9cd82399240815b0780aedb74206f5baf42e1b1606114ac643ca3ad1",
+      "matching_strings": [
+        "MESA_SHADER_CACHE_SHOW_STATS",
+        "MESA_SHADER_CACHE_MAX_SIZE",
+        "*** MESA_GLSL_CACHE_MAX_SIZE is deprecated; use MESA_SHADER_CACHE_MAX_SIZE instead ***",
+        "disk shader cache:  hits = %u, misses = %u",
+        "Cannot use %s for shader cache (not a directory)---disabling.",
+        "Failed to create %s for shader cache (%s)---disabling.",
+        "mesa_shader_cache_sf",
+        "mesa_shader_cache",
+        "mesa_shader_cache_db",
+        "MESA_SHADER_CACHE_DIR",
+        "*** MESA_GLSL_CACHE_DIR is deprecated; use MESA_SHADER_CACHE_DIR instead ***",
+        "MESA_SHADER_CACHE_DISABLE",
+        "*** MESA_GLSL_CACHE_DISABLE is deprecated; use MESA_SHADER_CACHE_DISABLE instead ***",
+        "VK_STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT",
+        "VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT"
+      ]
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/gpu-userspace-v2/package-root/opt/t736-img-ddk-24.2-x11/lib/libsrv_um.so.24.2.6603887",
+      "sha256": "a717b17927a7679e83548ae62e0f0df2568ea9a6716201ca0b62ef4ee3cdd756",
+      "matching_strings": [
+        "(dwt)"
+      ]
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/gpu-userspace-v2/package-root/opt/t736-img-ddk-24.2-x11/lib/libufwriter.so.24.2.6603887",
+      "sha256": "c8d0f919b82d15f094d2b20f7b1569a4dcc410b6a44450d4b6a7d240617c1dd6",
+      "matching_strings": [
+        "OptimiseGenericPointerCastsPass",
+        "OptimisePhisPass"
+      ]
+    }
+  ]
+}

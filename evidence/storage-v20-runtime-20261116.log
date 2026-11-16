@@ -1,0 +1,28 @@
+6.18.63-t736-storage-v20
+35b3e969-ebf4-4627-acdb-be4296b74b0d
+CONFIG_TICK_ONESHOT=y
+CONFIG_HIGH_RES_TIMERS=y
+CONFIG_HZ=250
+CONFIG_SCHED_HRTICK=y
+{
+  "requested_sleep_us": 50,
+  "samples": 40,
+  "median_us": 114.398,
+  "min_us": 98.71,
+  "max_us": 139.461,
+  "scope": "userspace nanosleep; supports but does not trace kernel driver usleep"
+}
+clock:		12000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	0 (legacy)
+signal voltage:	0 (3.30 V)
+driver type:	0 (driver type B)
+Startup finished in 4.446s (kernel) + 14.417s (userspace) = 18.863s 
+graphical.target reached after 11.783s in userspace.
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.

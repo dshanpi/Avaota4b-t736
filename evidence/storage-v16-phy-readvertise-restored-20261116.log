@@ -1,0 +1,78 @@
+{
+  "interface": "end0",
+  "read_only": true,
+  "method": "two ETHTOOL_GLINKSETTINGS ioctl calls; no setters",
+  "speed_mbps": 100,
+  "duplex": 1,
+  "phy_address": 1,
+  "autoneg": 1,
+  "mdix_ctrl": 0,
+  "master_slave_cfg": 0,
+  "nwords": 4,
+  "supported": {
+    "words_u32_low_first": [
+      25327,
+      0,
+      0,
+      0
+    ],
+    "hex": "0x62ef"
+  },
+  "advertising": {
+    "words_u32_low_first": [
+      25327,
+      0,
+      0,
+      0
+    ],
+    "hex": "0x62ef"
+  },
+  "lp_advertising": {
+    "words_u32_low_first": [
+      24687,
+      0,
+      0,
+      0
+    ],
+    "hex": "0x606f"
+  },
+  "advertising_named_bits": {
+    "10baseT_Half": true,
+    "10baseT_Full": true,
+    "100baseT_Half": true,
+    "100baseT_Full": true,
+    "1000baseT_Half": false,
+    "1000baseT_Full": true,
+    "Autoneg": true,
+    "TP": true,
+    "Pause": true,
+    "Asym_Pause": true
+  },
+  "candidate_remove_100half_only_hex": "0x62eb",
+  "restore_original_advertising_hex": "0x62ef"
+}
+[ 2534.422723] t736-phy-snapshot: begin id=001cc916 address=1 original_page=0a42
+[ 2534.422754] t736-phy-snapshot: reads consume BMSR latches and STAT1000 fault/idle-error status
+[ 2534.422760] t736-phy-snapshot: PAGE_A42_CTRL1000 page=0a42 reg=09 value=0000
+[ 2534.422770] t736-phy-snapshot: PAGE_A42_STAT1000 page=0a42 reg=0a value=0800
+[ 2534.422778] t736-phy-snapshot: BMCR page=0000 reg=00 value=1040
+[ 2534.422785] t736-phy-snapshot: BMSR_first page=0000 reg=01 value=79ad
+[ 2534.422792] t736-phy-snapshot: BMSR_current page=0000 reg=01 value=79ad
+[ 2534.422799] t736-phy-snapshot: ADVERTISE page=0000 reg=04 value=0de1
+[ 2534.422806] t736-phy-snapshot: LPA page=0000 reg=05 value=dde1
+[ 2534.422813] t736-phy-snapshot: CTRL1000 page=0000 reg=09 value=0000
+[ 2534.422820] t736-phy-snapshot: STAT1000 page=0000 reg=0a value=0800
+[ 2534.422827] t736-phy-snapshot: ESTATUS page=0000 reg=0f value=2000
+[ 2534.422834] t736-phy-snapshot: PHYCR1 page=0a43 reg=18 value=2118
+[ 2534.422841] t736-phy-snapshot: PHYCR2 page=0a43 reg=19 value=0843
+[ 2534.422848] t736-phy-snapshot: TX_DELAY page=0d08 reg=11 value=0009
+[ 2534.422855] t736-phy-snapshot: RX_DELAY page=0d08 reg=15 value=0019
+[ 2534.422862] t736-phy-snapshot: end original_page=0a42 final_page=0a42 restore_rc=0 rc=0; writes_limited_to_page_selector=1
+[  955.622281] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[  955.638303] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+[ 2495.318798] t736-dwmac 4500000.ethernet end0: Link is Down
+[ 2508.698243] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[ 2508.714267] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+[ 2509.498228] t736-dwmac 4500000.ethernet end0: Link is Down
+[ 2522.872330] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[ 2522.888359] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx

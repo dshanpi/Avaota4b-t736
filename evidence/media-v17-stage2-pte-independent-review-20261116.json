@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "scope": "Only stage2 physical-page encoding correction; no board access",
+  "baseline_review": "media-v17-stage1-independent-review-20261116.json",
+  "source_sha256": {
+    "stage1_pgtable": "b7a17318df407932fc2a13d0eeb7cf9313d002e0f5479b09ccf080fedb5b317f",
+    "stage2_pgtable": "10b7d8eb0e62ae58362a0a1e2fcab564c6198cc9072c7d5a864c2f3f1fd6135f",
+    "patch": "695d08b7726f46c9f840ce5c01bc3aca34e2d12dd7b0f00d2c2dddd68d45b255"
+  },
+  "finding_id": "pte-4g-carry",
+  "finding_status": "fixed and independently reviewed",
+  "changes": "Each full-width physical page is passed to sunxi_mk_pte; no arithmetic on previously encoded u32 descriptor. Exact source diff changes only pent_val declaration/initialization and the entry assignment plus comment.",
+  "test_review": "Read tests/test_media_iommu_pgtable.py: extracts actual C functions, expects exact RW PTE values at4GiB/8GiB, checks L1 crossing and exclusive end coverage. Mocks do not establish hardware/DMA correctness. code_index reported stage1 address tests FAIL and stage2 PASS plus Image/modules link PASS.",
+  "reviewer_arithmetic": "4GiB,8GiB,12GiB transitions now carry into descriptor bits9:8. 32bit IOVA/34bit physical bounds remain a separate map callback check.",
+  "remaining_findings": [
+    "unmap-order",
+    "table-dma-ownership",
+    "completion-evidence",
+    "domain-lifetime",
+    "master-ownership",
+    "mapping-conflict",
+    "probe-and-power-unwind",
+    "group-and-of-refs"
+  ],
+  "hardware_validation": false,
+  "approved_for_deployment": false
+}

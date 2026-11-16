@@ -1,0 +1,17 @@
+python3 -c "import os; fd=os.open(\"/dev/dri/renderD128\",os.O_RDWR); print(fd); os.close(fd)"; echo DRM_OPEN_RC=$?; dmesg | tail -n 8
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import os; fd=os.open("/dev/dri/renderD128",os.O_RDWR); print(fd); os.close(fd)
+                  ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument: '/dev/dri/renderD128'
+DRM_OPEN_RC=1
+[  749.724501]  do_sys_openat2+0x8c/0xc0
+[  749.726882]  do_sys_open+0x30/0x38
+[  749.729002]  __arm64_sys_openat+0x1c/0x28
+[  749.731731]  do_el0_svc+0xa8/0xd0
+[  749.733764]  el0_svc+0x18/0x48
+[  749.735539]  el0t_64_sync_handler+0x58/0x134
+[  749.738527]  el0t_64_sync+0x154/0x158
+[  749.740906] ---[ end trace 0000000000000000 ]---
+root@t736:~# 

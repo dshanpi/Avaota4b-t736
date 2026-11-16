@@ -1,0 +1,79 @@
+{
+  "schema": "t736-egl-sync-probe-build-v1",
+  "date": "2026-11-16",
+  "status": "COMPILE_PREFLIGHT_AND_INDEPENDENT_REVIEW_PASS",
+  "source_path": "tools/validation/egl_x11_sync_feedback_probe.c",
+  "source_sha256": "7adbfd0c33fbcdec80a6f090eeb233bb7d79dc23522631924f13ee397a98becf",
+  "binary_path": "build/desktop-validation/egl-sync-probe-v2",
+  "binary_sha256": "8cdfdfdb4371ca6d72cd6358cb832a6d1e6f2854b1fd2d9789d37dd43875fc3a",
+  "remote_build_directory": "/tmp/t736-egl-sync-probe.9fmG0J",
+  "build_host": "192.168.1.228",
+  "build_results": [
+    {
+      "command": "aarch64-linux-gnu-gcc -O2 -Wall -Wextra -Werror -std=c11 /tmp/t736-egl-sync-probe.9fmG0J/egl_x11_sync_feedback_probe.c -ldl -o /tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "gcc -O2 -Wall -Wextra -Werror -std=c11 /tmp/t736-egl-sync-probe.9fmG0J/egl_x11_sync_feedback_probe.c -ldl -o /tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe-host",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "preflight_results": [
+    {
+      "command": "/tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe-host bad",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Usage: egl-sync-probe 0|1 (test-surface swap interval)\n"
+    },
+    {
+      "command": "env -u DISPLAY -u XAUTHORITY /tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe-host 1",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Explicit DISPLAY and XAUTHORITY required\n"
+    },
+    {
+      "command": "env DISPLAY= XAUTHORITY= /tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe-host 1",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Explicit DISPLAY and XAUTHORITY required\n"
+    }
+  ],
+  "file": {
+    "command": "file /tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe",
+    "exit_code": 0,
+    "stdout": "/tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=c16f90b8f943439adc928d11ccb302a974d1c9a4, for GNU/Linux 3.7.0, not stripped\n",
+    "stderr": ""
+  },
+  "independent_review": {
+    "reviewer": "/root/backup_audit",
+    "status": "PASS",
+    "reviewed_source_sha256": "7adbfd0c33fbcdec80a6f090eeb233bb7d79dc23522631924f13ee397a98becf",
+    "checks": [
+      "CHROMIUM int64_t UST/MSC/SBC ABI matches extension specification.",
+      "Empty and unset DISPLAY/XAUTHORITY rejected.",
+      "EGLNativeWindowType unsigned long and EGLProc return type match X11/EGL ABI.",
+      "Submitted and completed swap counters remain distinct; bounded drain and samples.",
+      "No per-frame output, no compositor/global configuration changes."
+    ],
+    "forced_exit_limit": "SIGALRM does not guarantee JSON or user-space cleanup."
+  },
+  "board_run": "NOT_RUN",
+  "limits": [
+    "One temporary 320x240 window; all global desktop configuration unchanged.",
+    "Parameter 0 or 1 selects swap interval only for the test surface.",
+    "UST/MSC is retrace feedback; SBC counts completed swaps and is logged separately from submitted_swaps.",
+    "OBSERVATION_COMPLETE is not a claim that rate/sync queries succeeded; raw ok/error values must be checked.",
+    "No physical monitor validation.",
+    "SIGALRM after eight seconds terminates a stalled process; forced termination does not guarantee JSON output or user-space cleanup, although X connection teardown removes its window."
+  ],
+  "review_corrections": [
+    "Reject both unset and empty DISPLAY/XAUTHORITY.",
+    "Use unsigned long EGLNativeWindowType for X11 and the EGL generic function pointer return type."
+  ],
+  "version": "v2",
+  "remote_binary_path": "/tmp/t736-egl-sync-probe.9fmG0J/egl-sync-probe-v2"
+}

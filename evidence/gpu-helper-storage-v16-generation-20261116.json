@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "kernel_release": "6.18.63-t736-storage-v16",
+  "hardware_accepted": false,
+  "source_sha256": {
+    "tools/validation/gpu_profile.py": "0fba997bd7f93f381b9a55a82c3194739fde7305a18ecd6c095212786a2ddbcf",
+    "tools/validation/gpu_runtime_check.sh": "c2443ec18d5403839f4959579caa592f0a4cfc9d54b3688d57289acb945b14d0",
+    "config/gpu-v9/acceptance.template.json": "23f4a113fa5f3eaf643ab09d852d686ab06bd9fec408b67ff5888ba701738e69",
+    "config/gpu-v10/20-t736-modesetting-1080p.conf": "ad0e2b03a3b31450a69a272f437760ea1f2adaffb77a6e15703c3b5f1c3c101d",
+    "tools/validation/mutter_set_1080p.py": "099c6baacd7653d3ef93f597f067b68baaf68d231bb8f493bcc462ebb8d2ace7"
+  },
+  "files": {
+    "t736-gpu-profile": {
+      "bytes": 18300,
+      "sha256": "6f1b83b0ce54f102ef6def3dc60ff046b85ceed356d6c0a96ae792cbf4768172"
+    },
+    "t736-gpu-runtime-check": {
+      "bytes": 1404,
+      "sha256": "6a16e3ad5761a564b1c9f3cd84723a34a4e24c06743c3dd9e90879a580e2a713"
+    },
+    "acceptance.template.json": {
+      "bytes": 844,
+      "sha256": "f9fc7595cac93598e4e53471be636abe4a24beb00d2bf27836394a9668366a0a"
+    },
+    "20-t736-modesetting-1080p.conf": {
+      "bytes": 862,
+      "sha256": "ad0e2b03a3b31450a69a272f437760ea1f2adaffb77a6e15703c3b5f1c3c101d"
+    },
+    "t736-mutter-1080p": {
+      "bytes": 9717,
+      "sha256": "099c6baacd7653d3ef93f597f067b68baaf68d231bb8f493bcc462ebb8d2ace7"
+    }
+  },
+  "changes": [
+    "Profile release constant and runtime uname guard changed from v15 to v16",
+    "Runtime comment updated; profile logic, 1080p config and Mutter helper unchanged",
+    "Acceptance template remains pending with all checks false"
+  ],
+  "excluded_legacy_tools": [
+    "gpu_session_trial.sh",
+    "t736-a76-clock-trial.ko"
+  ]
+}

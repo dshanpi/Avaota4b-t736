@@ -1,0 +1,6 @@
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+ethtool -r end0; echo ANEG_RESTART_RC=$?
+
+ANEG_RESTART_RC=0
+root@t736:~# 

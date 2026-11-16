@@ -1,0 +1,8 @@
+python3 /home/t736/update_t736_storage_v18.py --rollback /var/backups/t736-storage-v18/20261116T114329Z-8tl153rk --apply
+
+{
+  "status": "V16_RESTORED_NOT_REBOOTED",
+  "backup_directory": "/var/backups/t736-storage-v18/20261116T114329Z-8tl153rk",
+  "rebooted": false
+}
+root@t736:~# 

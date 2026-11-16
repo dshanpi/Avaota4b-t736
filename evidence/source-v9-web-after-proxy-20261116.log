@@ -1,0 +1,8 @@
+echo WEB_AFTER_PROXY_DISABLED; for u in https://www.baidu.com https://mirrors.aliyun.com/debian/ https://www.kernel.org; do curl -q -4 --noproxy '*' -sS --connect-timeout 4 --max-time 8 -o /dev/null -w "$u HTTP=%{http_code} TLS=%{time_appconnect} TOTAL=%{time_total}\n" "$u"; done; echo WEB_AFTER_PROXY_DONE
+
+WEB_AFTER_PROXY_DISABLED
+https://www.baidu.com HTTP=200 TLS=0.286882 TOTAL=0.297144
+https://mirrors.aliyun.com/debian/ HTTP=200 TLS=0.077447 TOTAL=0.090547
+https://www.kernel.org HTTP=200 TLS=0.308386 TOTAL=0.382074
+WEB_AFTER_PROXY_DONE
+root@t736:~# 

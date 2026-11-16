@@ -1,0 +1,55 @@
+{"pid": 17915, "comm": "gnome-control-c", "previous": [0, 1, 2, 3, 4, 5, 6, 7], "current": [6, 7], "scope": "current Settings main thread only; no CPU hotplug or persistent setting"}
+/home/t736/read-link-advertising.py: 成功
+{
+  "interface": "end0",
+  "read_only": true,
+  "method": "two ETHTOOL_GLINKSETTINGS ioctl calls; no setters",
+  "speed_mbps": 100,
+  "duplex": 1,
+  "phy_address": 1,
+  "autoneg": 1,
+  "mdix_ctrl": 0,
+  "master_slave_cfg": 0,
+  "nwords": 4,
+  "supported": {
+    "words_u32_low_first": [
+      25327,
+      0,
+      0,
+      0
+    ],
+    "hex": "0x62ef"
+  },
+  "advertising": {
+    "words_u32_low_first": [
+      25327,
+      0,
+      0,
+      0
+    ],
+    "hex": "0x62ef"
+  },
+  "lp_advertising": {
+    "words_u32_low_first": [
+      24687,
+      0,
+      0,
+      0
+    ],
+    "hex": "0x606f"
+  },
+  "advertising_named_bits": {
+    "10baseT_Half": true,
+    "10baseT_Full": true,
+    "100baseT_Half": true,
+    "100baseT_Full": true,
+    "1000baseT_Half": false,
+    "1000baseT_Full": true,
+    "Autoneg": true,
+    "TP": true,
+    "Pause": true,
+    "Asym_Pause": true
+  },
+  "candidate_remove_100half_only_hex": "0x62eb",
+  "restore_original_advertising_hex": "0x62ef"
+}

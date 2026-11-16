@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v21-hs-peri0-independent-static-review",
+  "status": "passed-static-review-hardware-hs-acceptance-pending",
+  "date": "2026-11-16",
+  "hardware_access_by_reviewer": false,
+  "source_mutations_by_reviewer": false,
+  "scope": "Final PERI0 HS source, DT fragment and build-time semantic DT allowlist; interpretation of primary-agent read-only gate evidence.",
+  "files": {
+    "boards/t736_mmc_hs_draft.c": "177a977333e1cc330b1984e6e4f5914aca2123c790e6efe73b02000ca247ae14",
+    "boards/t736_mmc_clock_hs_draft.h": "dcb8a5df6be4c0bdb2b68d5c5419b2c2f8405f9d5c874d01247e57d7defaaab1",
+    "boards/t736-smhc3-hs-draft.dtsi": "8bf0dcf154f2f3554ab03092440c623dfced2807c48ddda0d8b08e0fea143b6f",
+    "tools/build_hs_storage_kernel.sh": "86e0e9f49fe0b68bf7d00c1d7b2383b74d6a18e54680da3d0a769fa3eaffb096",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tests/test_mmc_hs_clock.py": "060b050148dd91e956fd7124e7e9c6fdfd3f03798bf1ac36861f15bd54ddb22d"
+  },
+  "source_evidence": {
+    "platform_clock_autogen": {
+      "path": "brandy/brandy-2.0/u-boot-2018/arch/arm/include/asm/arch-sunxi/plat-sun60iw2p1/clock_autogen.h",
+      "sha256": "0132e8257e86d7f68903371fb4f494f3807f20168149fd151a15157395c4162d",
+      "facts": [
+        "SMHC3 mux1 selects PERI0_800M; mux3 selects PERI1_800M",
+        "PERI0 FREF_SEL bit24: 0=HOSC/DCXO, 1=REFPLL",
+        "PERI0 PAT0 bit31 enables SDM pattern; PAT1 bit27 enables SDM, bit26 indicates busy"
+      ]
+    },
+    "manual": {
+      "path": "evidence/vendor-reference/reference-1.txt",
+      "sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483",
+      "sections": [
+        "4.1.6.133 SMHC3 clock",
+        "4.1.6.254 PERI0PLL gate enable",
+        "4.1.6.263 PERI0PLL gate status"
+      ],
+      "conflict": "The PDF marks PERI CTRL bits24:23 reserved; exact sun60iw2 platform generated header defines FREF_SEL24. Source conservatively requires REFPLL selection and never writes the selector."
+    },
+    "timing_review": {
+      "path": "evidence/storage-v19-hs52-timing-review-20261116.json",
+      "sha256": "92b37b9e6e0d1f900ba75a13cd5f63569c8dea2401f18cc1eacddcdb3bce786e"
+    },
+    "board_parent_and_gate_log": {
+      "path": "evidence/storage-v20-emmc-clocks-readonly-v3-20261116.log",
+      "sha256": "b62be5b90210ad19d96e69cf5f7066f82929767be9d54536dcef4d5b12338cac",
+      "observed_registers": {
+        "PLL_REF_CTRL": {
+          "address": "0x02002000",
+          "value": "0xf8675f00",
+          "matching_passes": 3
+        },
+        "PLL_PERI0_CTRL": {
+          "address": "0x020020a0",
+          "value": "0xff126310",
+          "matching_passes": 3
+        },
+        "PLL_PERI0_PAT0": {
+          "address": "0x020020a8",
+          "value": "0x00000000",
+          "matching_passes": 3
+        },
+        "PLL_PERI0_PAT1": {
+          "address": "0x020020ac",
+          "value": "0x30000000",
+          "matching_passes": 3
+        },
+        "PERI0PLL_GATE_EN": {
+          "address": "0x02003908",
+          "value": "0x8fff0fff",
+          "matching_passes": 3
+        },
+        "PERI0PLL_GATE_STAT": {
+          "address": "0x02003988",
+          "value": "0x0fff0000",
+          "matching_passes": 3
+        }
+      }
+    }
+  },
+  "accepted_static_checks": {
+    "parent": {
+      "dcxo_hz": 26000000,
+      "ref": "Ready bits31/28/27 and exact u64 cross-product prove 24 MHz from observed 26 MHz board reference.",
+      "peri0": "Ready bits31/28/26; FREF_SEL24=1; PAT0.31=0; PAT1.27/26=0; exact rational output1=800 MHz.",
+      "actual_decode": [
+        "26 MHz * 96 / 104 = 24 MHz",
+        "24 MHz * 100 / 3 = 800 MHz"
+      ],
+      "no_shared_pll_or_voltage_writes": true
+    },
+    "mapping": "REF exact base0x02002000 size>=4; PERI0 exact base0x020020a0 size>=16. Reads CTRL+0, PAT0+8 and PAT1+12 only; LOCK+4 not read.",
+    "clock_plan": "Linear M,N each1..32; mux0 for <=12 MHz enumeration, mux1 for HS above12 MHz; u64 rational inequality prevents target overspeed before integer card_hz flooring.",
+    "hs_cap": "25 MHz default; only boot-time read-only parameter values25/50 MHz accepted; only MMC_HIGHSPEED advertised, no DDR/HS200/HS400.",
+    "timing": "Disable/update card clock before module or phase changes. Module gated for divider/phase changes. Readbacks precede module enable, then card-clock update. SDR CTRL10=0, CLKDIV0; HS NTSR31/0=0, EDSD31=0 preservingbit0, CSDC low4=3, DRV16=1/17=0, SAMP7=1 delay0 at<=25MHz or32 above25MHz, DS7=1 delay0. Other bits are preserved by masks.",
+    "voltage": "Callback accepts fixed1.8 V only; no CMD11, regulator or pad voltage writes.",
+    "dma_unchanged": {
+      "baseline": "boards/t736_mmc_dma_v19.c",
+      "baseline_sha256": "f29554e12658287abbd4af5068d1c8fa567946af7b281e6d032441f8a295e639",
+      "method": "Exact source substring comparison from t736_dma_stop through the request worker section before mmc_host_ops",
+      "matched": true
+    },
+    "builder": "Isolated v21 source/output cloned from v19 source and v20 HRT output. Frozen v20 file hashes and v19 source hash checked before/after build; config difference limited to LOCALVERSION; actual-C clock test invoked. This review inspects builder logic and does not claim the pending build completed.",
+    "dt_allowlist": {
+      "reservation_map_unchanged": true,
+      "node_set_unchanged": true,
+      "scope": "Only /mmc@4023000 reg, clocks, clock-names differ; equality compares every property of every node, including additions/deletions.",
+      "reg": "Append only REF0x02002000/4 and PERI00x020020a0/16 to old resources.",
+      "clocks": "Exactly old /dcxo phandle bytes.",
+      "clock-names": "Exactly dcxo plus NUL.",
+      "other_properties": "Byte-for-byte equivalent semantic property values."
+    }
+  },
+  "downstream_gate_evidence": {
+    "status": "satisfied-for-the-three-observed-passes",
+    "gate_en": "0x8fff0fff: bit26=1 software gate enabled; bit10=1 No-Auto.",
+    "gate_stat": "0x0fff0000: bit26=1 actual PERI0_800M gate enabled.",
+    "bit10_caution": "Despite AUTO_GATE_EN name, manual defines0=Auto and1=No-Auto. Zero alone is not proof of a stopped clock.",
+    "candidate_scope": "Candidate neither maps nor reads/writes0x02003908/0x02003988. This board evidence supports use of existing parent without shared gate writes; it is not continuous driver enforcement."
+  },
+  "blocking_static_findings": [],
+  "limits": [
+    "Register snapshots are three stable sequential read passes, not an atomic snapshot or physical frequency measurement.",
+    "HS25/50 MHz board boot, integrity, performance and GPU coexistence acceptance remain pending primary-agent results.",
+    "No installer or package artifact execution is certified by this source review.",
+    "No shared clock writes are proposed. Preserve accepted fallback until candidate runtime acceptance."
+  ],
+  "supersedes": [
+    "evidence/storage-hs-draft-parent-clock-review-20261116.json covers the earlier PERI1 draft; its source hashes do not describe final PERI0 candidate.",
+    "evidence/storage-hs-draft-peri0-redirect-review-20261116.json confirmed mapping only; this record binds final source hashes."
+  ]
+}

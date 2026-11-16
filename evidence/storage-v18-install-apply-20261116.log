@@ -1,0 +1,15 @@
+BACKUP_FSYNC_VERIFIED /var/backups/t736-storage-v18/20261116T114329Z-8tl153rk
+{
+  "backup_directory": "/var/backups/t736-storage-v18/20261116T114329Z-8tl153rk",
+  "rebooted": false,
+  "hardware_accepted": false,
+  "status": "INSTALLED_AND_SELECTED_NOT_BOOT_TESTED",
+  "final_sha256": {
+    "kernel": "019a93aac90af99554ef1a2bdb8dbd7eaff8c545f53cef52134ed849d6f12ff8",
+    "config": "7f257a234e1e3e7dc8af46d090ccd9b6c789c2fdb7eec6bf01c3a2395b4db4e7",
+    "dtb": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "pvr": "c5d60148497ae144c1e41938825259f347f149971c26f500b75da2b9454ad6eb",
+    "initrd": "0b6283516f7f0ade239815755c9fbab37ef16151729a5696c69bc88e4bade8cd",
+    "modules_dep": "a04354f94edd7ebf9b94fe65b273460c00e8a0d4b60956054937f43544b0230b"
+  }
+}

@@ -1,0 +1,1 @@
+Usage: gpu-probe x11 | gbm /dev/dri/renderD<N>

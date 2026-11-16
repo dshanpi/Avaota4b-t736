@@ -1,0 +1,5 @@
+/home/t736/t736-mmc-readonly-v2-v16.ko: 成功
+[ 2383.036173] t736-mmc-ro: SMHC3_SMCV addr=04023300 value=03050610
+[ 2383.036211] t736-mmc-ro: STORE_MBUS_GATE addr=020025e0 value=f1055803
+[ 2383.036226] t736-mmc-ro: MSI_LITE1_GATE addr=0200259c value=00030001
+[ 2383.036233] t736-mmc-ro: no MMIO writes performed

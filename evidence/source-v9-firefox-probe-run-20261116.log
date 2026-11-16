@@ -1,0 +1,7 @@
+apt-get update > /root/source-v9-validation/apt-update.log 2>&1 & printf 'APT_UPDATE_PID=%s\n' "$!"; runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus python3 /tmp/t736-transfer/firefox-renderer-probe.py --reference-pid 2279 --mode both --output /home/t736/firefox-renderer-probe-20261116.json > /home/t736/firefox-probe-console.log 2>&1 & printf 'FIREFOX_PROBE_PID=%s\n' "$!"
+
+[1] 2307
+APT_UPDATE_PID=2307
+[2] 2308
+FIREFOX_PROBE_PID=2308
+root@t736:~# 

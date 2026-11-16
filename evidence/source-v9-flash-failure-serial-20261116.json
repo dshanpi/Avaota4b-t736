@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"bytesRead\":39,\"connected\":true,\"handle\":\"serial-7\",\"hex\":\"736574206164647265737320307831380d0a73657420616464726573732030783138206f6b0d0a\",\"port\":\"COM17\",\"text\":\"set address 0x18\\r\\nset address 0x18 ok\\r\\n\"}"
+    }
+  ],
+  "isError": false
+}

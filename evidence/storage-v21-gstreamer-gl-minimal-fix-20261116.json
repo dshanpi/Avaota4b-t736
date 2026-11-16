@@ -1,0 +1,382 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "status": "GSTREAMER_GL_ELEMENTS_INSTALLED_AND_NEGOTIATED_ON_BOARD_SOURCE_DECLARATION_FIXED",
+  "problem": "镜像用 --no-install-recommends 安装桌面，却没有显式声明 gstreamer1.0-gl。核心 libgstgl 可创建上下文，但 glsinkbin/glupload/glcolorconvert factory 不存在。GTK 因此保留裸 sink，实际帧是普通内存 RGB。",
+  "board_action_by": "parent",
+  "board_package": "gstreamer1.0-gl:arm64",
+  "installed_version": "1.26.2-1+deb13u2",
+  "apt_plan": "仅新增一包，无升级或卸载；计划日志及实际安装日志已绑定。",
+  "before": {
+    "set_caps_total": 18,
+    "actual_glmemory_rgba": 0,
+    "actual_plain_memory_rgb": 18,
+    "gdk_make_current_warnings": 1,
+    "gst_error_level": 0,
+    "gst_warning_level": 0
+  },
+  "after": {
+    "set_caps_total": 9,
+    "actual_glmemory_rgba": 9,
+    "actual_plain_memory_rgb": 0,
+    "gdk_make_current_warnings": 0,
+    "gst_error_level": 0,
+    "gst_warning_level": 0
+  },
+  "validation": {
+    "three_factories_inspectable": true,
+    "libgstopengl_in_target_maps": true,
+    "pvr_driver_status": "OK",
+    "pvr_firmware_status": "OK",
+    "pvr_server_errors": 0,
+    "pvr_hwr_events": 0,
+    "xrandr_mode": "1920x1080 60Hz",
+    "private_screenshot": "父代理已在本地查看截图，确认设置页和图示正常；本记录不复制或公开私有截图。",
+    "continuous_animation_playback_validated": false,
+    "hardware_video_decoder_validated": false,
+    "hover_playback_trigger_exercised": true,
+    "animation_frame_rate_accepted": false
+  },
+  "scope_of_success": "已验证 Settings 媒体帧经过 GLMemory/RGBA 上传与转换连接；这不是 VE/Cedar 硬解或全桌面流畅性验收。",
+  "performance": "无DEBUG暖静态样本映射1.157657秒，0majorfault、3.91CPU秒；同进程鼠标页首次切入0majorfault、4.14CPU秒。已完成10秒图示悬停：5.34CPU秒，GstGL和VPX线程持续工作。没有补包前同图示播放对照，不能宣称加速比例，也不能由初始化CPU或广告caps推断播放收益。",
+  "source_changes": [
+    {
+      "file": {
+        "path": "G:\\codex\\t736\\mainline\\config\\desktop-v7-packages.txt",
+        "sha256": "98484d4425f78b62635b0ba569328a0b02babd8c6c032509fa6784f508cb26d9",
+        "bytes": 877
+      },
+      "consumer": "tools/build_source_rootfs_v7.sh:197–215 读取该清单并执行 --no-install-recommends 安装",
+      "change": "新增 gstreamer1.0-gl，说明三个 GL factory 的用途。"
+    },
+    {
+      "file": {
+        "path": "G:\\codex\\t736\\mainline\\tools\\build_source_rootfs_v10.sh",
+        "sha256": "62adadc873cb036f38d5da27040ffa20c47a4bafdf3b84f01beb439f2dc99140",
+        "bytes": 25843
+      },
+      "consumer": "当前 source-v10 离线 rootfs 构建入口，从已经构建的 source-v9.ext4 复制",
+      "change": "在现有 FFmpeg/libavcodec 安装段显式补装 gstreamer1.0-gl；检查包 installed 状态与 libgstopengl.so；新构建 manifest 记录实际包版本和插件字节 SHA。",
+      "why_needed": "仅修改基础清单无法补齐已存在的 v9 rootfs，因此增量构建段必须显式安装。"
+    }
+  ],
+  "source_validation": {
+    "linux_sh_n": "PASS",
+    "embedded_python_blocks_ast_parse": 4,
+    "image_build_executed_by_reviewer": false,
+    "historical_images_modified": false,
+    "historical_acceptance_records_modified": false,
+    "tina_modified": false,
+    "global_graphics_environment_modified_by_reviewer": false,
+    "source_check_log": {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\desktop-gstreamer-gl-source-check-20261116.log",
+      "sha256": "61cbe846cbe06779d96ae2902d8bc10d1a9eada40bc785b673951a4f748eb778",
+      "bytes": 347
+    },
+    "independent_review": {
+      "reviewer": "backup_audit",
+      "result": "PASS",
+      "scope": "核对当前两个源码文件、--check 提前返回边界、实际安装检查、manifest 参数索引与插件 SHA；未运行构建，也未声称历史镜像已更新。"
+    },
+    "parent_build_checkout_synced_and_hash_verified": true,
+    "sync_reported_by": "parent; 2 files copied to the main build checkout and read-back hashes matched"
+  },
+  "remaining": [
+    "最终镜像需要重新构建并做冷启动验收；历史 source-v10 镜像不会因源码清单修改而自动包含此包。",
+    "真实GTK负载的有效HS50样本是381帧回调/10秒；GL媒体插件修复不等于这个绘制性能问题已经解决。GTK4.18.6的gl/opengl/ngl返回同一个GskGLRenderer。",
+    "CPU软件VPX解码与VE硬解是独立路径；本次没有宣称接通硬件视频解码。"
+  ],
+  "evidence": [
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-gstreamer-gl-presence-20261116.log",
+      "sha256": "6339eabf13cc923ed08387aefcbf9c62743149b99c59932d6c6ca7bbdb1a6343",
+      "bytes": 188
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-gstreamer-gl-plan-20261116.log",
+      "sha256": "4de0b4307cd1d1f309cc730a955ede02db10382a770fa1ffb6d1d0c9f3007f74",
+      "bytes": 452
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-gstreamer-gl-install-20261116.log",
+      "sha256": "3d7d4ce336a313494d99e6051279b14b002a2d4f3bae3279395149ef81bdeb08",
+      "bytes": 3534
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-mouse-debug.json.app.log",
+      "sha256": "c048b0a4f71a2b523b9b7742ca7d7010cdd5421b25ca0d4c3b9f42c1091e674d",
+      "bytes": 1520905
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-mouse-gl-plugin.json",
+      "sha256": "21241607996268ca9d070f3d480b9ccfbab2a16e6aa7360a4d57b3d9592cb845",
+      "bytes": 1253096
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-mouse-gl-plugin.json.app.log",
+      "sha256": "b3273f0d249bfffbe9817bf4f38b453e18b582d81e0840e805602d32dcc2b8a5",
+      "bytes": 655388
+    },
+    {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-post-gl-health-20261116.log",
+      "sha256": "b71beba45596a2d2452a358d64c499e802c49c014ddcdafb67ac259e8ed9827e",
+      "bytes": 958
+    }
+  ],
+  "no_board_operations_by_reviewer": true,
+  "normal_no_debug_samples": [
+    {
+      "evidence": {
+        "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-gl-normal-static.json",
+        "sha256": "200fbe24f4b5f5f888bcbe5e2d711f3c42edb6a3009b5ba803ed595b798acf87",
+        "bytes": 165262
+      },
+      "pid": 9569,
+      "status": "COMPLETE",
+      "mode": "new_process_launch",
+      "panel": "multitasking",
+      "observed_seconds": 20.003619472999958,
+      "cpu_seconds": 3.91,
+      "major_faults": 0,
+      "cpu99_observed_seconds": 5.063547244999995,
+      "intervals_with_positive_cpu_ticks": 9,
+      "observed_intervals": 40,
+      "mapped": {
+        "pid": 9569,
+        "display": ":0",
+        "metric": "First viewable X11 client window with matching _NET_WM_PID",
+        "complete_render_verified": false,
+        "input_sent": false,
+        "timeout_seconds": 20.0,
+        "start_monotonic": 771.697554445,
+        "observer_start_monotonic": 771.833108299,
+        "start_origin": "launcher",
+        "status": "mapped",
+        "window": "0x1e00004",
+        "elapsed_seconds": 1.157657,
+        "observer_seconds": 1.022103,
+        "width": 1920,
+        "height": 1048
+      },
+      "main_cpu_samples": {
+        "2": 1,
+        "7": 40
+      },
+      "top_threads": [
+        {
+          "tid": 9569,
+          "comm": "gnome-control-c",
+          "cpu_seconds_lower_bound": 2.52,
+          "last_sampled_cpu": 7
+        },
+        {
+          "tid": 9592,
+          "comm": "Optimise p(dwt)",
+          "cpu_seconds_lower_bound": 1.15,
+          "last_sampled_cpu": 6
+        },
+        {
+          "tid": 9575,
+          "comm": "[pango] fontcon",
+          "cpu_seconds_lower_bound": 0.06,
+          "last_sampled_cpu": 3
+        },
+        {
+          "tid": 9576,
+          "comm": "pool-0",
+          "cpu_seconds_lower_bound": 0.05,
+          "last_sampled_cpu": 2
+        },
+        {
+          "tid": 9574,
+          "comm": "gdbus",
+          "cpu_seconds_lower_bound": 0.01,
+          "last_sampled_cpu": 1
+        },
+        {
+          "tid": 9572,
+          "comm": "pool-spawner",
+          "cpu_seconds_lower_bound": 0.0,
+          "last_sampled_cpu": 1
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-gl-normal-mouse.json",
+        "sha256": "a14e086bcaf4fc3981ef3520360af21681674f69fbf30b2d8f5586cbdcf939fe",
+        "bytes": 1284914
+      },
+      "pid": 9569,
+      "status": "COMPLETE",
+      "mode": "panel_activation",
+      "panel": "mouse",
+      "observed_seconds": 20.012798862000068,
+      "cpu_seconds": 4.14,
+      "major_faults": 0,
+      "cpu99_observed_seconds": 2.079541961000018,
+      "intervals_with_positive_cpu_ticks": 3,
+      "observed_intervals": 39,
+      "mapped": {
+        "status": "not_measured_for_reused_window",
+        "reason": "Existing-window mapping cannot measure panel completion"
+      },
+      "main_cpu_samples": {
+        "7": 39,
+        "4": 1
+      },
+      "top_threads": [
+        {
+          "tid": 9569,
+          "comm": "gnome-control-c",
+          "cpu_seconds_lower_bound": 0.83,
+          "last_sampled_cpu": 7
+        },
+        {
+          "tid": 9855,
+          "comm": "TQM free m(dwt)",
+          "cpu_seconds_lower_bound": 0.41,
+          "last_sampled_cpu": 6
+        },
+        {
+          "tid": 9799,
+          "comm": "multiqueue1:src",
+          "cpu_seconds_lower_bound": 0.18,
+          "last_sampled_cpu": 5
+        },
+        {
+          "tid": 9847,
+          "comm": "multiqueue5:src",
+          "cpu_seconds_lower_bound": 0.16,
+          "last_sampled_cpu": 4
+        },
+        {
+          "tid": 9821,
+          "comm": "multiqueue2:src",
+          "cpu_seconds_lower_bound": 0.15,
+          "last_sampled_cpu": 1
+        },
+        {
+          "tid": 9839,
+          "comm": "multiqueue4:src",
+          "cpu_seconds_lower_bound": 0.15,
+          "last_sampled_cpu": 1
+        }
+      ]
+    }
+  ],
+  "hover_playback_sample": {
+    "evidence": {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-settings-gl-hover-playback.json",
+      "sha256": "7eb45408a47331f2f54edb79e7257abde41130662b48eb13ae6fd78c552317ae",
+      "bytes": 674042
+    },
+    "pid": 9569,
+    "status": "COMPLETE",
+    "mode": "panel_activation",
+    "panel": "mouse",
+    "observed_seconds": 10.045940497999936,
+    "cpu_seconds": 5.34,
+    "major_faults": 0,
+    "cpu99_observed_seconds": 10.045940497999936,
+    "intervals_with_positive_cpu_ticks": 19,
+    "observed_intervals": 19,
+    "mapped": {
+      "status": "not_measured_for_reused_window",
+      "reason": "Existing-window mapping cannot measure panel completion"
+    },
+    "main_cpu_samples": {
+      "1": 5,
+      "4": 2,
+      "2": 5,
+      "0": 2,
+      "5": 2,
+      "6": 1,
+      "3": 2,
+      "7": 1
+    },
+    "top_threads": [
+      {
+        "tid": 9569,
+        "comm": "gnome-control-c",
+        "cpu_seconds_lower_bound": 2.05,
+        "last_sampled_cpu": 3
+      },
+      {
+        "tid": 9788,
+        "comm": "gstglcontext",
+        "cpu_seconds_lower_bound": 1.7,
+        "last_sampled_cpu": 5
+      },
+      {
+        "tid": 9800,
+        "comm": "multiqueue0:src",
+        "cpu_seconds_lower_bound": 0.64,
+        "last_sampled_cpu": 1
+      },
+      {
+        "tid": 9826,
+        "comm": "vqueue:src",
+        "cpu_seconds_lower_bound": 0.35,
+        "last_sampled_cpu": 0
+      },
+      {
+        "tid": 9806,
+        "comm": "vpx tile worker",
+        "cpu_seconds_lower_bound": 0.27,
+        "last_sampled_cpu": 6
+      },
+      {
+        "tid": 13312,
+        "comm": "TQM free m(dwt)",
+        "cpu_seconds_lower_bound": 0.17,
+        "last_sampled_cpu": 2
+      }
+    ],
+    "trigger": {
+      "performed_by": "parent",
+      "pointer_enter": [
+        940,
+        520
+      ],
+      "pointer_leave": [
+        700,
+        800
+      ],
+      "method": "motion only, no click; coordinates chosen by parent from observed private screenshot",
+      "helper": {
+        "path": "G:\\codex\\t736\\mainline\\tools\\validation\\x11_input.py",
+        "sha256": "336ec0de2b36c818a43f867aa4115ba25cb4ad8f8cf1f0618257c7414a8363e4",
+        "bytes": 8539
+      },
+      "source_confirmation": "GCC48.4 CcIllustratedRow motion enter sets loop=true/play; leave sets loop=false/pause.",
+      "physical_frame_timing_verified": false,
+      "pre_install_matching_hover_control": false
+    }
+  },
+  "gtk_ui_current_limit": {
+    "evidence": {
+      "path": "G:\\codex\\t736\\mainline\\evidence\\storage-v21-hs50-gtk-ui-measured-20261116.log",
+      "sha256": "f95f55483483fadff0c502552e5a60dca628482ce5c6706022c2a26440186ae2",
+      "bytes": 2583
+    },
+    "status": "COMPLETE",
+    "usable": true,
+    "renderer": "GskGLRenderer",
+    "sample_seconds": 10.001678249000008,
+    "after_paint_count": 381,
+    "process_cpu_seconds": 3.61062497,
+    "after_paint_median_ms": 17.319000000000003,
+    "after_paint_p95_ms": 33.586,
+    "session_before": {
+      "locked": false,
+      "overview_active": false
+    },
+    "session_after": {
+      "locked": false,
+      "overview_active": false
+    },
+    "conclusion": "381个after-paint回调/10秒，约38.1回调每秒；含新进程启动后的shader/资源工作，不是稳定扫描输出帧率。尚未达到完整60Hz桌面验收。"
+  }
+}

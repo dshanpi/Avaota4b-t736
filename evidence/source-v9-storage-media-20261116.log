@@ -1,0 +1,146 @@
+cat /proc/2279/stack; cat /proc/2279/io; cat /proc/diskstats | grep mmcblk0; cat /sys/kernel/debug/mmc0/ios; dmesg | grep -Ei 'mmc|timeout|error' | tail -18; free -m; ps -eo pid,ppid,etime,stat,wchan:24,comm | grep -E 'firefox|glxtest'; LC_ALL=C apt-get -y --no-install-recommends install libavcodec61 ffmpeg > /root/source-v9-validation/media-install.log 2>&1 & printf 'MEDIA_INSTALL_PID=%s\n' "$!"
+
+cat: /proc/2279/stack: 没有那个文件或目录
+cat: /proc/2279/io: 没有那个文件或目录
+ 179       0 mmcblk0 109776 0 878194 6558865 12819 0 102512 3539989 0 234192 10101793 0 0 0 0 146 2939
+ 179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0
+ 179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0
+ 179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0
+ 179       4 mmcblk0p4 105767 0 846130 6366216 12818 0 102512 3539986 59 235372 9906202 0 0 0 0 0 0
+ 179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0
+ 179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0
+ 179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0
+ 179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0
+clock:		12000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	0 (legacy)
+signal voltage:	0 (3.30 V)
+driver type:	0 (driver type B)
+[    0.927770] [drm:commit_init_connecting.isra.0] *ERROR* offline mode: init connecting not found sunxi_drm_offline_mode_pre_init
+[    1.603842] [drm] sunxi-hdmi: [error] dw edid parse dtd timing pixel clock[0KHz] invalid!
+[    2.272767] mmc0: new MMC card at address 0001
+[    2.277416] mmcblk0: mmc0:0001 A31Y5C 58.2 GiB
+[    2.300996] GPT: Use GNU Parted to correct GPT errors.
+[    2.304893]  mmcblk0: p1 p2 p3 p4 p5 p6
+[    2.309727] mmcblk0boot0: mmc0:0001 A31Y5C 4.00 MiB
+[    2.322075] mmcblk0boot1: mmc0:0001 A31Y5C 4.00 MiB
+[    7.599357] EXT4-fs (mmcblk0p4): mounted filesystem 355deac2-71e0-4194-a1c2-f7d457b94137 r/w with ordered data mode. Quota mode: disabled.
+[   17.189168] EXT4-fs (mmcblk0p4): re-mounted 355deac2-71e0-4194-a1c2-f7d457b94137.
+[  109.991857] [drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[  110.199842] [drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+               total        used        free      shared  buff/cache   available
+内存：          7747         657        6589          10         575        7090
+交换：             0           0           0
+   2279       1       02:08 Dsl  folio_wait_bit_common    firefox-esr
+[1] 2541
+MEDIA_INSTALL_PID=2541
+root@t736:~# ps -p 2541 -o pid,etime,stat,comm; tail -4 /root/source-v9-validation/media-install.log; ps -eo pid,ppid,etime,stat,wchan:24,comm | grep -E 'firefox|glxtest'; cat /proc/pressure/io; cat /proc/pressure/cpu; ls -lh /usr/lib/firefox-esr/libxul.so
+
+    PID     ELAPSED STAT COMMAND
+   2541       00:27 S    apt-get
+Get:4 http://deb.debian.org/debian trixie/main arm64 libvdpau1 arm64 1.5-3+b1 [24.4 kB]
+Get:5 http://deb.debian.org/debian trixie/main arm64 ocl-icd-libopencl1 arm64 2.3.3-1 [42.7 kB]
+Get:6 http://deb.debian.org/debian trixie/main arm64 libavutil59 arm64 7:7.1.5-0+deb13u1 [392 kB]
+Get:7 http://deb.debian.org/debian trixie/main arm64 libcodec2-1.2 arm64 1.2.0-3 [8163 kB]
+   2279       1       02:36 Dsl  folio_wait_bit_common    firefox-esr
+cat: /proc/pressure/io: 没有那个文件或目录
+cat: /proc/pressure/cpu: 没有那个文件或目录
+-rw-r--r-- 1 root root 164M 11月11日 00:14 /usr/lib/firefox-esr/libxul.so
+root@t736:~# ps -eo pid,ppid,etime,stat,wchan:24,comm | grep -E 'firefox|glxtest'; tail -4 /root/source-v9-validation/media-install.log; cat /proc/loadavg; cat /sys/kernel/debug/pvr/status 2>/dev/null; runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority xrandr --current | grep -E '\*| connected'
+
+   2279       1       03:13 Dsl  blk_mq_get_tag           firefox-esr
+Get:36 http://deb.debian.org/debian trixie/main arm64 libzmq5 arm64 4.3.5-1+b3 [253 kB]
+Get:37 http://deb.debian.org/debian trixie/main arm64 libavformat61 arm64 7:7.1.5-0+deb13u1 [1140 kB]
+Get:38 http://deb.debian.org/debian trixie/main arm64 libbs2b0 arm64 3.1.0+dfsg-8+b1 [11.4 kB]
+Get:39 http://deb.debian.org/debian trixie/main arm64 libflite1 arm64 2.2-7 [12.8 MB]
+4.93 3.53 1.64 1/518 2565
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+HDMI-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 553mm x 311mm
+   1920x1080     60.00*+  50.00    59.94  
+root@t736:~# ps -p 2541 -o pid,etime,stat,comm; tail -4 /root/source-v9-validation/media-install.log; ps -eo pid,ppid,etime,stat,wchan:24,comm | grep -E 'firefox|glxtest'; cat /proc/diskstats | grep ' mmcblk0 '; cat /home/t736/firefox-main-start.log
+
+    PID     ELAPSED STAT COMMAND
+   2541       01:34 S    apt-get
+Get:36 http://deb.debian.org/debian trixie/main arm64 libzmq5 arm64 4.3.5-1+b3 [253 kB]
+Get:37 http://deb.debian.org/debian trixie/main arm64 libavformat61 arm64 7:7.1.5-0+deb13u1 [1140 kB]
+Get:38 http://deb.debian.org/debian trixie/main arm64 libbs2b0 arm64 3.1.0+dfsg-8+b1 [11.4 kB]
+Get:39 http://deb.debian.org/debian trixie/main arm64 libflite1 arm64 2.2-7 [12.8 MB]
+   2279       1       03:43 Dsl  folio_wait_bit_common    firefox-esr
+ 179       0 mmcblk0 113022 0 904162 7452880 26903 0 215184 8436443 0 329752 15893698 0 0 0 0 172 4374
+[GFX1-]: RenderThread::InitDeviceTask is slow: 4745
+glx: failed to create dri3 screen
+failed to load driver: sunxi-drm
+glx: failed to create dri2 screen
+failed to load driver: sunxi-drm
+root@t736:~# ps -p 2541 -o pid,etime,stat,comm; tail -4 /root/source-v9-validation/media-install.log; cat /home/t736/firefox-main-start.log; ls /root/.ssh; cat /sys/block/mmcblk0/queue/scheduler; ps -L -p 2279 -o tid,pcpu,stat,wchan:24,comm | head -15
+
+    PID     ELAPSED STAT COMMAND
+   2541       04:34 T    apt-get
+
+[1]+  已停止               LC_ALL=C apt-get -y --no-install-recommends install libavcodec61 ffmpeg > /root/source-v9-validation/media-install.log 2>&1
+Get:62 http://deb.debian.org/debian trixie/main arm64 ffmpeg arm64 7:7.1.5-0+deb13u1 [1990 kB]
+Fetched 47.5 MB in 2min 57s (268 kB/s)
+Selecting previously unselected package libva2:arm64.
+
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+[GFX1-]: RenderThread::InitDeviceTask is slow: 4745
+glx: failed to create dri3 screen
+failed to load driver: sunxi-drm
+glx: failed to create dri2 screen
+failed to load driver: sunxi-drm
+[GFX1-]: Calling WaitFlushedEvent::Run: is delayed: 14260
+[none] mq-deadline kyber bfq 
+    TID %CPU STAT WCHAN                    COMMAND
+   2279  2.1 Dsl  blk_mq_get_tag           firefox-esr
+   2295  0.0 Ssl  anon_pipe_read           AsyncSi~lThread
+   2300  0.0 Ssl  futex_do_wait            pool-spawner
+   2301  0.0 Ssl  do_sys_poll              gmain
+   2303  0.0 Ssl  do_sys_poll              gdbus
+   2305  0.0 Ssl  futex_do_wait            glean.dispatche
+   2318  0.0 Ssl  do_epoll_wait            IPC I/O Parent
+   2337  0.0 Ssl  futex_do_wait            Timer
+   2338  0.0 Ssl  do_sys_poll              Netlink Monitor
+   2339  0.0 Ssl  do_sys_poll              Socket Thread
+   2346  0.0 Ssl  futex_do_wait            IPDL Background
+   2359  0.0 Ssl  futex_do_wait            [pango] fontcon
+   2382  0.0 Ssl  do_sys_poll              dconf worker
+   2383  0.0 Ssl  futex_do_wait            HTML5 Parser
+root@t736:~# 

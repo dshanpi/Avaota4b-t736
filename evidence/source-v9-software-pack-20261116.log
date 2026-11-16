@@ -1,0 +1,164 @@
+e2fsck 1.47.0 (5-Feb-2023)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+rootfs: 46843/476720 files (0.1% non-contiguous), 695711/1904960 blocks
+/home/ubuntu/t736-mainline/output/t736-armbian-source-v9.raw.img:
+No errors detected.
+Header version: 1.0
+Using 6 out of 6 partitions.
+A total of 1 free sectors is available in 1 segment.
+{
+  "raw": {
+    "path": "t736-armbian-source-v9.raw.img",
+    "bytes": 8589934592,
+    "sha256": "831e8ea5679d3adb6f3616027114ddaa4cfb83c0032c24fb847ad81a94b73f0e",
+    "physical_sector_zero": true,
+    "regions": [
+      {
+        "name": "primary-gpt",
+        "sector": 0,
+        "bytes": 2048,
+        "sha256": "00d1c106552923c83f3d38d3b6ece1ada954def16908b1ebfd72dd81067ef1bb"
+      },
+      {
+        "name": "source-spl",
+        "sector": 16,
+        "bytes": 221184,
+        "sha256": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea"
+      },
+      {
+        "name": "source-boot-package",
+        "sector": 24576,
+        "bytes": 313856,
+        "sha256": "cb35e82d844f6fda24f86a2a52975555e7e7725339c6a38d5b85ad2581ae6067"
+      },
+      {
+        "name": "gpt-compatibility-mirror",
+        "sector": 40960,
+        "bytes": 2048,
+        "sha256": "00d1c106552923c83f3d38d3b6ece1ada954def16908b1ebfd72dd81067ef1bb"
+      },
+      {
+        "name": "backup-gpt",
+        "sector": 16777213,
+        "bytes": 1536,
+        "sha256": "80c168f365b4080d7c5b97432017af73f97419dfe4d40cc144b4c6f1015e1c43"
+      },
+      {
+        "name": "rootfs",
+        "sector": 368640,
+        "bytes": 7802716160,
+        "sha256": "d3c56757a3ab03aff75c6796e92c4acb64396f5d144fc659466aed6c4f2b2d9a"
+      }
+    ],
+    "partitions": [
+      [
+        "boot-resource",
+        73728,
+        65536
+      ],
+      [
+        "env",
+        139264,
+        32768
+      ],
+      [
+        "boot",
+        172032,
+        196608
+      ],
+      [
+        "rootfs",
+        368640,
+        15239680
+      ],
+      [
+        "private",
+        15608320,
+        32768
+      ],
+      [
+        "UDISK",
+        15641088,
+        1136094
+      ]
+    ]
+  },
+  "boot_images": [
+    {
+      "path": "build/source-handoff-v1/stage64.bin",
+      "address": "0x47000000",
+      "sector": 24577,
+      "bytes": 5040,
+      "sha256": "44aeb8e56f64f2ccd80a1cd286460eda6d0232f9cc1e82618866826b23298535"
+    },
+    {
+      "path": "output/independent-candidates/t736-bl31.bin",
+      "address": "0x48000000",
+      "sector": 24587,
+      "bytes": 53924,
+      "sha256": "81f53c1d1f571c74bd907317d813a5ed56c64382479caa75edd3cec43ada6dc6"
+    },
+    {
+      "path": "output/independent-candidates/u-boot-source-ddr-autoboot.bin",
+      "address": "0x52000000",
+      "sector": 24693,
+      "bytes": 253648,
+      "sha256": "c9b05a7d207781a730c5e12aaae2bdfaf113194f8a3ea4b1e625d330e3f4018b"
+    }
+  ],
+  "vendor_executables": [
+    "authorized DDR library and embedded training in boot chain",
+    "authorized IMG BXM 24.2.6603887 GPU userspace, firmware and shader binaries in rootfs"
+  ],
+  "vendor_ddr_sha256": "5361d148fa097ccc14e15a173523783d0eb1a71969bc76d57eb8e1229ddc6d90",
+  "boot_chain": "source eGON SPL + authorized DDR -> source TF-A -> source U-Boot -> Linux -> Armbian",
+  "source_spl_build_record": "build/emmc-spl-v4/build-record.json",
+  "cold_boot_validated": false,
+  "loader": "output/t736-tina-fes-loader.img (RAM only)",
+  "credential": "Existing user-selected credentials inherited from v7; no credentials in manifest",
+  "recovery": "Pre-DDR fixed efex enters ROM 0x20 directly; no dependency on vendor Boot0 RTC handling",
+  "variant": "v9",
+  "peripheral_power_enabled": true,
+  "display_candidate": true,
+  "rootfs": "rootfs-armbian-source-v9.ext4",
+  "kernel_release": "6.18.63-t736-gpu-v15",
+  "desktop": "GNOME on Xorg with Mesa llvmpipe software rendering; IMG profile remains opt-in",
+  "gpu_userspace_manifest": "/opt/t736-img-ddk-24.2-x11/manifest.json",
+  "gpu_runtime_validated": false,
+  "gpu_userspace_manifest_source": "finalized rootfs",
+  "gpu_userspace_manifest_sha256": "9ae49ed015dd2fafc55361eeaab3f23789f9b42f0f18a36eb341cb1ff3b02a69",
+  "gpu_runtime_view_manifest_sha256": "3201fa05a36f0add5e88008438557d7305587f53214d14254ffb9839b14cb332",
+  "desktop_profile": "software",
+  "gpu_components_validated": false,
+  "gpu_artifacts": {
+    "schema": 1,
+    "variant": "v9",
+    "desktop_profile": "software",
+    "kernel_release": "6.18.63-t736-gpu-v15",
+    "kernel_deb_sha256": "441110b370051a19bb38e67f29cb3737b3c7c04cbc8ad6e853d6707ca9b74a60",
+    "module_input_sha256": "605305b2384f72b013236885f52f527f725ff2ae62c29d694f4aad025b769939",
+    "userspace_deb_sha256": "1455889d0c10ec5d0b49e839e0e9d3f7560869e65da5fbee02e477039c78e16e",
+    "installed_files": {
+      "/boot/vmlinuz-6.18.63-t736-gpu-v15": "d09d4cf9394948b6415d4f2115e2c6f9c3cd4604a2f02faaa7625d76a45c1749",
+      "/boot/initrd.img-6.18.63-t736-gpu-v15": "47eb5fc72a60332c46611dfd69668f053cabd7e622fbd180728522c22948afda",
+      "/boot/config-6.18.63-t736-gpu-v15": "244faa52e7d012b65edfbc02f1dff1fd937b255f80ff2da1b90d366bd8673e5d",
+      "/boot/dtb/allwinner/t736-mainline-bringup.dtb": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5",
+      "/usr/lib/modules/6.18.63-t736-gpu-v15/extra/pvrsrvkm.ko": "605305b2384f72b013236885f52f527f725ff2ae62c29d694f4aad025b769939",
+      "/etc/environment": "3b4620c95cc12d11a58688c919b02b1d101d9f7dab7e4bf57c6236a608f185b8",
+      "/etc/X11/xorg.conf.d/20-t736-modesetting.conf": "b0d4eb77ec13baed08772b694cb8a869f3642cca6d6d5e5180fbc661a7e32777",
+      "/opt/t736-img-ddk-24.2-x11/manifest.json": "9ae49ed015dd2fafc55361eeaab3f23789f9b42f0f18a36eb341cb1ff3b02a69",
+      "/opt/t736-img-ddk-24.2-x11/runtime-gles.json": "3201fa05a36f0add5e88008438557d7305587f53214d14254ffb9839b14cb332",
+      "/usr/share/t736-gpu-profile/20-t736-modesetting-1080p.conf": "ad0e2b03a3b31450a69a272f437760ea1f2adaffb77a6e15703c3b5f1c3c101d",
+      "/usr/local/sbin/t736-gpu-profile": "0fba997bd7f93f381b9a55a82c3194739fde7305a18ecd6c095212786a2ddbcf",
+      "/usr/local/sbin/t736-gpu-session-trial": "880d9e9bf7bbe6309d3ec54d89ebfd27a48e0a2c55b97c0917e58a77f23244a4",
+      "/usr/local/sbin/t736-mutter-1080p": "099c6baacd7653d3ef93f597f067b68baaf68d231bb8f493bcc462ebb8d2ace7",
+      "/etc/sysctl.d/90-t736-console.conf": "c9cbbccafb02d9f6d5225d6daf421477a87d1054978f8b6b9e1a9748743095c6"
+    },
+    "final_image_cold_boot_validated": false,
+    "gpu_acceptance_sha256": null
+  }
+}

@@ -1,0 +1,23 @@
+mkdir -p /run/systemd/resolved.conf.d; cp /tmp/t736-transfer/resolved-tls.conf /run/systemd/resolved.conf.d/60-t736-desktop.conf; resolvectl revert end0; systemctl restart systemd-resolved; timeout 8 getent ahostsv4 www.kernel.org | head -n 1; resolvectl status --no-pager | head -n 16; curl --silent --show-error --output /dev/null --write-out "DNS_HTTPS_HTTP=%{http_code}\n" --connect-timeout 5 --max-time 8 https://www.debian.org/; printf "DNS_HTTPS_RC=%s\n" "$?"
+
+199.232.161.55  STREAM dualstack.m.sni.global.fastly.net
+Global
+         Protocols: +LLMNR -mDNS +DNSOverTLS DNSSEC=no/unsupported
+  resolv.conf mode: foreign
+Current DNS Server: 223.5.5.5#dns.alidns.com
+       DNS Servers: 223.5.5.5#dns.alidns.com 223.6.6.6#dns.alidns.com
+        DNS Domain: ~.
+
+Link 2 (end0)
+    Current Scopes: DNS LLMNR/IPv4 LLMNR/IPv6
+         Protocols: +DefaultRoute +LLMNR -mDNS +DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 10.0.0.1
+       DNS Servers: 10.0.0.1 fd67:b33e:a9c2::1
+     Default Route: yes
+
+Link 3 (sit0)
+    Current Scopes: none
+curl: (35) TLS connect error: error:0A000126:SSL routines::unexpected eof while reading
+DNS_HTTPS_HTTP=000
+DNS_HTTPS_RC=35
+root@t736:~# 

@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-16",
+  "kind": "isolated-runtime-A55-candidate",
+  "hardware_tested": false,
+  "source": "tools/validation/t736-a55-clock-trial-v1.c",
+  "source_sha256": "ff102b6dbb0c02eaba3df6b2488d684f6c71fd5134449d51c088be1724df1687",
+  "module": "output/t736-a55-clock-trial-v1.ko",
+  "module_sha256": "49a27230c49af5d5d945ebafb7125aa09c0d0fbc8d5451e4f1cc736f3b9538f3",
+  "kernel_release": "6.18.63-t736-gpu-v15",
+  "build": "make -C build/linux-gpu-v15 M=build/a55-clock-trial-v1 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- W=1 modules",
+  "compile_result": "PASS; no warnings",
+  "test": "tools/validation/test_t736_a55_clock_trial.py",
+  "test_sha256": "7c10847a6bf6c80cdfb9be186ce92a4576ca0131101712a7bd759fd158504e8d",
+  "test_result": "10 cases PASS from actual source functions: success, unexpected N, stuck UPDATE, no LOCK, mux readback failure, each with update-only and early-lock N latch models; all writes retain PLL_EN, fallback writes no CTRL",
+  "review": "event_review independently reviewed source hash and found no blocking issues",
+  "linux_source_capability": {
+    "CONFIG_SMP": "y",
+    "CONFIG_HOTPLUG_CPU": "y",
+    "CONFIG_ARM_PSCI_FW": "y",
+    "hotplug_registration": "arch/arm64/kernel/setup.c: arch_cpu_is_hotpluggable -> cpu_can_disable -> PSCI !psci_tos_resident_on; no CPU0-specific rejection",
+    "disable": "arch/arm64/kernel/psci.c rejects missing CPU_OFF or resident Trusted OS; caller must confirm actual cpu0/online exists and successful offline",
+    "tf_a": "native sunxi_native_pm_ncat2.c indexes core by MPIDR Aff1, no CPU0 exception; PPU_PWSR(core+1)"
+  },
+  "preconditions": {
+    "cpu_online": "6,7 only; 0..5 offline, cpus_read_lock held through trial",
+    "execution": "MIDR part Cortex-A76",
+    "A55": "CTRL=STAT=f8801300 CLK=03000000",
+    "A76": "CTRL=STAT=f8802700 CLK=03000000; root previously verified 1014MHz workload",
+    "PPU_CPU0_through_5": "07052008..07057008 step1000, low nibble OFF=0",
+    "PMIC": "owner snapshot only; DCDC3/4 selector40=900mV; id03, enabled, no combined phase; before/after exactly same",
+    "crystal": "26MHz RTC bit15 set bit14 clear",
+    "A55_modulation": "PAT0=0 PAT1=30000000 LFM=40000001; CPU_SLOW=0"
+  },
+  "sequence": "A55 mux slow; output off; detector off; cache N39; detector on allowing only N19 or N39; explicit UPDATE; exact CTRL/STAT and 3 LOCK samples plus20us; output on; exact CTRL/STAT plus20us; mux PLL/1",
+  "target": "A55 26MHz*39=1014MHz, ext1; CTRL/STAT=f8802700 CLK03000000",
+  "never_changed": [
+    "PLL_EN",
+    "PMIC configuration",
+    "DSU registers",
+    "A76 registers",
+    "GPU registers",
+    "BACK PLL"
+  ],
+  "failure": "write/verify only A55 mux slow; preserve PLL_EN and committed N; no retry N19 and no N38 fallback; caller must leave0..5offline and arrange reset or root review",
+  "guards": "A76/DSU/BACK and PAT/LFM fields; RTC XO exact; CPU_SLOW; CPU mask; PPU0..5 OFF, checked before/after including rollback",
+  "operator": "root exclusively owns board/serial/USB/power; child performed no hardware access",
+  "controlled_flow": [
+    "root audit module with all CPUs online, unload",
+    "taskset -c6 shell verifies cpu0..5/online paths then offlines1..5,0; stop if any write fails",
+    "taskset -c6 insmod module action=upgrade",
+    "only after rc0 plus SUCCESS exact clocks, online0..5 and verify mask0-7; on failure keep0..5offline",
+    "rmmod retains clocks without MMIO writes; root performs short CPU0/5 and CPU6/7 workload comparisons"
+  ],
+  "limits": [
+    "Source review proves software permits hotplug, not that current firmware/board can complete CPU0 offline/online",
+    "Host MMIO tests are behavioral models, not silicon validation",
+    "Inherited N19=494MHz VCO is below documented650MHz VCO floor; never recommitted as fallback",
+    "No automatic persistence or image replacement in this candidate"
+  ]
+}

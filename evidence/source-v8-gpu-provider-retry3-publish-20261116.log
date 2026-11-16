@@ -1,0 +1,29 @@
+rmmod t736_gpu_power_retry3 && insmod /tmp/t736-transfer/t736-gpu-power-retry3-v15.ko publish_domain=1; printf "GENPD_PUBLISH_RC=%s\n" "$?"; readlink /sys/bus/platform/devices/7065000.power-controller/driver; test ! -e /sys/module/pvrsrvkm && printf "PVR_STILL_UNLOADED\n"; printf "PUBLISH_DONE\n"
+
+t736-gpu-power-retry 7065000.power-controller: remove: bootstrap-only cleanup starts
+t736-gpu-power-retry 7065000.power-controller: GPU_CORE cancellation requested: control=00000000 status=00000000 (no ACK interpretation)
+t736-gpu-power-retry 7065000.power-controller: remove: reset/CORE cleanup requests issued; releasing resources (check errors above)
+t736-gpu-power-retry 7065000.power-controller: cleanup: disabling GPU bus/core clock references
+t736-gpu-power-retry 7065000.power-controller: cleanup: disabling PPU/AHB/MBUS clock references
+t736-gpu-power-retry 7065000.power-controller: cleanup: releasing DCDC5 enable reference
+t736-gpu-power-retry 7065000.power-controller: stage 01: probe starts, publish_domain=1
+t736-gpu-power-retry 7065000.power-controller: stage 02: resources acquired; enabling supply
+t736-gpu-power-retry 7065000.power-controller: stage 03: DCDC5=900000 uV; enabling PPU/AHB/MBUS
+t736-gpu-power-retry 7065000.power-controller: stage 04: master clocks enabled; setting TOP delays
+t736-gpu-power-retry 7065000.power-controller: stage 05: requesting TOP and waiting for TOP ACK
+t736-gpu-power-retry 7065000.power-controller: stage 06: TOP ACK confirmed; writing Tina CORE policy/request
+t736-gpu-power-retry 7065000.power-controller: stage 07: CORE request written; deasserting GPU reset
+t736-gpu-power-retry 7065000.power-controller: stage 08: reset-deassert returned 0; enabling GPU bus/core
+t736-gpu-power-retry 7065000.power-controller: stage 09: bus/core enabled; reading CCF rate
+t736-gpu-power-retry 7065000.power-controller: stage 10: CCF rate=400000000; reading CORE diagnostic registers
+t736-gpu-power-retry 7065000.power-controller: stage 11: CORE control=00000008 status=00000000 (not an ACK)
+t736-gpu-power-retry 7065000.power-controller: stage 12: initializing genpd
+t736-gpu-power-retry 7065000.power-controller: stage 13: genpd initialized; releasing temporary reset reference
+t736-gpu-power-retry 7065000.power-controller: stage 14: publishing genpd; DDK may probe after this
+t736-gpu-power-retry 7065000.power-controller: stage 15: genpd published; reading final CCF rate
+t736-gpu-power-retry 7065000.power-controller: stage 16: GPU_TOP ACK on; Tina CORE request issued: control=00000008 status=00000000 (not an ACK); GPU=400000000 Hz DCDC5=900000 uV reset-deassert=0; DDK HW/FW validation required
+GENPD_PUBLISH_RC=0
+../../../bus/platform/drivers/t736-gpu-power-retry
+PVR_STILL_UNLOADED
+PUBLISH_DONE
+root@t736:~# 

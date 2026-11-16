@@ -1,0 +1,100 @@
+perl /tmp/t736-transfer/ethernet_link_probe.pl 100; sleep 5; ip -br addr show end0; perl /tmp/t736-transfer/ethernet_link_probe.pl show; cat /sys/class/net/end0/statistics/rx_pack 
+ets; networkctl renew end0
+
+supported=000062ef advertising=000062ef speed=1000 duplex=1 autoneg=1 partner=0000606f
+Temporarily advertising 100baseT full duplex
+PHY[00]=1040
+PHY[01]=79ad
+PHY[02]=001c
+PHY[03]=c916
+PHY[04]=0d01
+t736-dwmac 4500000.ethernet end0: Link is Down
+PHY[05]=0000
+PHY[09]=0000
+PHY[0a]=0000
+PHY[11]=0000
+PHY[12]=0000
+PHY[1a]=3000
+PHY[1f]=0a42
+t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+end0             UP             fe80::68c5:26ff:fe43:3952/64 
+supported=000062ef advertising=000062c8 speed=100 duplex=1 autoneg=1 partner=0000606f
+PHY[00]=1040
+PHY[01]=79ad
+PHY[02]=001c
+PHY[03]=c916
+PHY[04]=0d01
+PHY[05]=dde1
+PHY[09]=0000
+PHY[0a]=0800
+PHY[11]=0000
+PHY[12]=0000
+PHY[1a]=30de
+PHY[1f]=0a42
+0
+root@t736:~# cat /sys/class/net/end0/statistics/rx_packets; perl /run/ethernet_stats.pl | head - 
+45; perl /tmp/t736-transfer/ethernet_link_probe.pl restore
+
+0
+ETHTOOL_STATS_COUNT=214
+mmc_tx_octetcount_gb=8628
+mmc_tx_framecount_gb=45
+mmc_tx_broadcastframe_g=19
+mmc_tx_multicastframe_g=26
+mmc_tx_65_to_127_octets_gb=26
+mmc_tx_256_to_511_octets_gb=19
+mmc_tx_multicast_gb=26
+mmc_tx_broadcast_gb=19
+mmc_tx_octetcount_g=8628
+mmc_tx_framecount_g=45
+mmc_rx_framecount_gb=2
+mmc_rx_octetcount_gb=103
+mmc_rx_octetcount_g=0
+mmc_rx_broadcastframe_g=0
+mmc_rx_multicastframe_g=0
+mmc_rx_crc_error=0
+mmc_rx_align_error=2
+mmc_rx_run_error=0
+mmc_rx_jabber_error=0
+mmc_rx_undersize_g=0
+mmc_rx_oversize_g=0
+mmc_rx_64_octets_gb=0
+mmc_rx_65_to_127_octets_gb=0
+mmc_rx_128_to_255_octets_gb=0
+mmc_rx_256_to_511_octets_gb=0
+mmc_rx_512_to_1023_octets_gb=0
+mmc_rx_1024_to_max_octets_gb=0
+mmc_rx_unicast_g=0
+mmc_rx_length_error=0
+mmc_rx_autofrangetype=0
+mmc_rx_pause_frames=0
+mmc_rx_fifo_overflow=0
+mmc_rx_vlan_frames_gb=0
+mmc_rx_watchdog_error=0
+mmc_rx_error=0
+mmc_rx_lpi_usec=0
+mmc_rx_lpi_tran=1
+mmc_rx_discard_frames_gb=0
+mmc_rx_discard_octets_gb=0
+mmc_rx_align_err_frames=0
+mmc_rx_ipv4_gd=0
+mmc_rx_ipv4_hderr=0
+mmc_rx_ipv4_nopay=0
+mmc_rx_ipv4_frag=0
+supported=000062ef advertising=000062c8 speed=100 duplex=1 autoneg=1 partner=0000606f
+Restored original link advertisement
+PHY[00]=1040
+t736-dwmac 4500000.ethernet end0: Link is Down
+
+PHY[01]=79ad
+PHY[02]=001c
+PHY[03]=c916
+PHY[04]=0de1
+PHY[05]=0000
+PHY[09]=0200
+PHY[0a]=0000
+PHY[11]=0000
+PHY[12]=0000
+PHY[1a]=3002
+PHY[1f]=0a42
+root@t736:~# t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx

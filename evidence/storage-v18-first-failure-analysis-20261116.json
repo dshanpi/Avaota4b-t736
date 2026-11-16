@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "kind": "storage-v18-first-board-failure-independent-analysis",
+  "date": "2026-11-16",
+  "scope": "read-only saved logs, manual and Tina source review; no board operations",
+  "board_result": "CMD8 DMA timeout, rootfs not mounted",
+  "log": "evidence/storage-v18-coldboot-20261116.log",
+  "log_sha256": "8ba456af4ed0c9ae21a5972a0c14d976f2308f66c4cbca5c895f6de615074bd4",
+  "observed": {
+    "cmd": 8,
+    "bytes": 512,
+    "error": -110,
+    "rintsts": "0x2c",
+    "idst": "0x0",
+    "successful_dma_requests": 0,
+    "descriptor_dma": "0xae000000",
+    "data_dma": "0xebba0000"
+  },
+  "interpretation": [
+    "RINTSTS0x2c has CMD_DONE,DATA_OVER,RX_FIFO_REQ: card data phase completed, so focus on FIFO-to-DMA and status feedback",
+    "No timeout-time OWN,buffer,TBC0/TBC1,CTRL/DMAC/DLBA values were preserved; cannot distinguish no transfer from completion-status gating",
+    "A successful controller/pin/clock readback does not validate the DMA path"
+  ],
+  "bsp_confirmed_same": [
+    "SMCV>=5p3 uses descriptor/data/DLBA >>2",
+    "v5p6 dma_tl=0x300f00f0",
+    "1KiB chunks fit both manual12bit and BSP11bit limit"
+  ],
+  "bsp_differences": {
+    "read_IDIE": {
+      "v18": "0",
+      "Tina": "RX_INT bit1 enabled"
+    },
+    "DMAC": {
+      "v18": "0x80",
+      "Tina": "0x82"
+    },
+    "single_descriptor_flags": {
+      "v18": "0x8000000c",
+      "Tina": "0x8000001c"
+    },
+    "last_next_pointer": {
+      "v18": "0",
+      "Tina": "word address of following descriptor slot"
+    },
+    "reset_order": {
+      "v18": "DMAIF,DMAC,FIFO",
+      "Tina": "FIFO,DMAIF,DMAC"
+    },
+    "DBGC_0x50": {
+      "v18": "not written",
+      "Tina": "0xdeb"
+    }
+  },
+  "recommendation": "Single-variable IDIE completion-status enable test with bounded pre-reset MMIO, TBC0/TBC1 and all descriptor OWN sampling; keep global interrupt gate off. Do not attribute failure to removed reserved bits before distinguishing actual transfer versus feedback.",
+  "manual_probe_decoders": {
+    "STATUS": "bit31 DMA_REQ; bits27:17 FIFO filled locations",
+    "TBC0_0x48": "card-to/from-FIFO transferred byte count",
+    "TBC1_0x4c": "host/DMA-to/from-FIFO transferred byte count"
+  },
+  "next_candidate": "v19 keeps DMAC0x80 and descriptor/next unchanged; only directional IDIE plus diagnostics"
+}

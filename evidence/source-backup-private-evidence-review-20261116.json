@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "kind": "independent-public-backup-private-evidence-exclusion-review",
+  "status": "passed-static-review",
+  "reviewer": "code_index",
+  "script": "tools/prepare_source_backup.py",
+  "sha256": "26f32d93e90c7ecada3c63109ec4198e77acd7f5c10690396cf5442f4164940f",
+  "scope": "New auth/tunnel/credential/password path exclusion, not a claim of complete secret discovery",
+  "findings": [
+    "private_evidence_path restricts evidence basenames with auth/tunnel/credential/password tokens plus original private prefixes",
+    "Final names filter applies after tracked and referenced evidence are merged, preventing accidental reintroduction",
+    "verify checks manifest paths before reading their contents",
+    "Final target enumeration rejects pre-existing private evidence instead of deleting user files",
+    "No publication checkout modified or upload attempted by this review"
+  ],
+  "validation": [
+    "Python compile passed",
+    "Independent source review; implementer reports synthetic basename and verify-before-read cases passed"
+  ],
+  "publication_gate": "Existing full manifest coverage, private-value scan and exact-hash checks remain active"
+}

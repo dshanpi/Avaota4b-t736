@@ -1,0 +1,19 @@
+bash /tmp/t736-transfer/source_v8_finalize_gpt.sh >/root/source-v8-gpt-finalize.log 2>&1; printf "GPT_FINALIZE_RC=%s\n" "$?"; sed -n "1,/GPT_primary_BEGIN/p" /root/source-v8-gpt-finalize.log | tail -n 15
+
+GPT_FINALIZE_RC=0
+501d92984e39b8dab83a1cb12879825ab7150188b3febd0367d2c5db02e30606  /root/t736-source-v8-gpt-before-20261116/device-tail.bin
+49759f32f170c1d874c4bd27380344cc9b629d4d672b4dd189f368d3e111429f  /root/t736-source-v8-gpt-before-20261116/old-tail.bin
+f596f45a4a06dbbb9ae4ca4667d35b9ecef17c78b71e1c56d991dce09a6ac979  /root/t736-source-v8-gpt-before-20261116/primary.bin
+f596f45a4a06dbbb9ae4ca4667d35b9ecef17c78b71e1c56d991dce09a6ac979  /root/t736-source-v8-gpt-before-20261116/vendor-mirror.bin
+GPT PMBR size mismatch (16777215 != 122142719) will be corrected by write.
+The backup GPT table is not on the end of the device. This problem will be corrected by write.
+
+The partition table has been altered.
+/dev/mmcblk0:
+No errors detected.
+Header version: 1.0
+Using 6 out of 6 partitions.
+A total of 105365535 free sectors is available in 1 segment.
+GPT_RELOCATED_PARTITIONS_UNCHANGED
+GPT_primary_BEGIN
+root@t736:~# 

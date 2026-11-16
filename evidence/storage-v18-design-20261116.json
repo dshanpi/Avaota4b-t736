@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "kind": "t736-smhc3-dma-v18-design",
+  "status": "compiled-and-host-tested-not-board-accepted",
+  "baseline": "6.18.63-t736-storage-v16",
+  "candidate": "6.18.63-t736-storage-v18",
+  "scope": {
+    "change": "PIO data movement replaced with word-addressed IDMA through a coherent bounce buffer",
+    "clock_hz": 12000000,
+    "timing": "MMC legacy",
+    "width_bits": 8,
+    "voltage_writes": false,
+    "shared_clock_gate_writes": false,
+    "cq_enabled": false,
+    "high_speed_caps_added": false
+  },
+  "hardware_identity": {
+    "controller": "sun60iw2 SMHC3 at 0x04023000, Tina v5p6x",
+    "observed_smc_version": "0x03050610",
+    "card": "Samsung A31Y5C",
+    "cid": "ec290041333159354330982b37b69ccd",
+    "ext_csd_card_type": "0x57",
+    "ext_csd_strobe_support": 1,
+    "electrical_evidence": "evidence/emmc-electrical-capability-audit-20261116.json"
+  },
+  "dma": {
+    "mask_bits": 32,
+    "bounce_bytes": 65536,
+    "descriptor_bytes": 16,
+    "descriptor_count": 64,
+    "segment_bytes": 1024,
+    "address_shift": 2,
+    "descriptor_length_bits": 12,
+    "max_length_zero_encoding_used": false,
+    "scatter_gather": "Linux SG copied via sg_copy_to/from_buffer; no streaming mapping or virtual-to-physical cast",
+    "ordering": "dma_wmb before enabling engine; MMIO status then dma_rmb before reading ownership/results",
+    "descriptor_length_reference": "A733 Table11-6: SMHC3 bits11:0; zero skips buffer. 1KiB is below both manual12-bit and conservative Tina11-bit configuration.",
+    "descriptor_flags": "Only OWN31/FD3/LD2; old SMHC0-2 CH/DIC/ER/CES bits are reserved on SMHC3 and never written/interpreted."
+  },
+  "register_scope": {
+    "controller_writes": [
+      "CTRL DMA enable and FIFO/DMA interface reset",
+      "FIFOTHRESHOLD 0x300f00f0 (SMHC3 MBUS outstanding encoding3, RX15, TX240)",
+      "DMAC reset bit0 / enable bit7 only; reserved bit1 not written",
+      "DLBA descriptor DMA address >>2",
+      "IDIE=0 (polling only)",
+      "IDST W1C 0x133; error bits4/5 only"
+    ],
+    "inherited_v16_writes": "command, response lifecycle, width, reset, 24MHz clock divider and legacy timing unchanged",
+    "extra_dt_resources_read_only": {
+      "0x020025e0": "STORE_MBUS bit30, observed 0xf1055803",
+      "0x0200259c": "MSI_LITE1 bit0, observed 0x00030001"
+    }
+  },
+  "completion": [
+    "CMD_DONE",
+    "DATA_OVER or AUTO_CMD_DONE when applicable",
+    "directional IDST TX/RX done (may occur per descriptor)",
+    "OWN clear in every used descriptor",
+    "IDMA/FIFO reset acknowledged before results copied or allocation reused"
+  ],
+  "failure_handling": [
+    "DMA/controller errors return zero bytes transferred; RINT bit13 is read-start error or normal write-busy clear; bits8/9/10/18 are timeouts in this fixed legacy host.",
+    "Every data request stops and resets DMA before completion",
+    "Existing explicit CMD12 error recovery retained unless engine is quarantined",
+    "A reset timeout poisons host I/O and retains both coherent allocations until reboot; unsafe memory is neither reused nor freed"
+  ],
+  "validation": {
+    "host": "Actual SMHC3 descriptor/completion C compiled with gcc -Wall -Wextra -Werror -fsanitize=address,undefined. Passed reserved bits zero, low4G boundaries, alignment/overflow, all-descriptor ownership, command/data/directional completion, write busy-clear vs read-start-error, timeout and error precedence.",
+    "kernel": "Image, DTB and modules built in independent source/output; config differs only by localversion",
+    "package": "Debian control fields, config, decompressed kernel and DTB matched to final output hashes",
+    "board": "pending, parent agent exclusively handles board"
+  },
+  "board_acceptance": [
+    "Keep v16 boot option and matching v16 PVR for rollback",
+    "Install candidate with freshly compiled v18 PVR module",
+    "Verify SMCV, gate read-only values, low4G allocation logs and first IDMA request completion",
+    "Check rootfs mount, journal/dmesg for MMC timeout/CRC/DMA errors",
+    "Compare bounded scratch-file write/read SHA256, repeated cached-vs-direct sequential throughput and CPU use against v16",
+    "Confirm 12MHz legacy 8-bit remains unchanged",
+    "Reboot/cold boot and recheck successful filesystem/GPU/desktop operation before promotion"
+  ],
+  "next_modes": [
+    "HS52: implement verified parent/mux/divisor and MMC high-speed timing at conservative steps; retain physical 1.8V board rail and check errors",
+    "HS200: add explicit 1.8V capability/ios semantics, CMD21 tuning scan and valid-window center selection with retuning support",
+    "HS400: require successful HS200 pre-tuning plus DDR mode, strobe delay/HS400 transition and integrity/temperature evidence; no frequency-only enable"
+  ],
+  "address_correction": {
+    "invalid_first_reads": [
+      "0x020005e0",
+      "0x0200059c"
+    ],
+    "reason": "Those omitted CCU base +0x2000 and were PIO-range reads. Their zero values are invalid gate evidence. Correct CCU base is 0x02002000.",
+    "corrected_record": "evidence/storage-v18-smhc-version-gates-corrected-20261116.log",
+    "superseded_candidate_record": "evidence/storage-v18-stage1-build-20261116.json",
+    "gate_write_draft": "Removed before final build; no board writes ever performed by this agent"
+  },
+  "reference_sha256": {
+    "Tina sunxi-mmc.c": "52c7f92db77290437b7818f3c3a92a2956c1ab637214794e56220d0dde99ce16",
+    "Tina sunxi-mmc-v4p5x.c": "f7b14c8dce66eefc222ac7d06b8aad041ea132c463a1f035a201dd940fb95f7f",
+    "Tina sun60iw2p1.dtsi": "0cc81b5b49dda81c94f629a477e3d64373678d4c4ca1f378138d2648b159cefe",
+    "Linux v16 sunxi-mmc.c": "885cb0dec475d25436a5602eb890b71a95c3bcb036b87b14e5dba4ccc674a01a"
+  },
+  "files": {
+    "boards/t736_mmc_dma_v18.c": "3656bef4cc9d5db40f4d95c3f0f5ea5c69d5d160c2264e40e743606084ecd1eb",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tests/test_mmc_dma_descriptor.py": "0878dcfdbfc3ccf49e109fa40454021628fc1b0fa4a581d53b39708ac53cd8b6",
+    "tools/build_dma_storage_kernel.sh": "faa6c0e681862881e99f218de56ca46ecf12f1ebb0b4257d2bfea307ce517a47",
+    "tools/validation/audit_dma_storage_package.py": "854e6e3064cc441954aaafaa4838ec2c9132dfd0bc8e1bf1475d2779085bf5c8",
+    "tools/repack_storage_v18_topology.py": "5f22f3d72c05d53e504baa8d951bc878540fc87c9c8c8bbd2081233e87ba518b"
+  },
+  "media_state": "v17 stage2 remains unaccepted and undeployed; per-domain coherent IOMMU draft remains unintegrated and uncompiled; Cedar v2 has gst-inspect acceptance only. Media work paused for storage priority.",
+  "manual_specialization": {
+    "source": "evidence/vendor-reference/reference-1.txt",
+    "sections": [
+      "Table11-4 SMHC3 DES0",
+      "Table11-6 SMHC3 DES1",
+      "11.3.9.1 CTRL",
+      "11.3.9.15 RINTSTS",
+      "11.3.9.17 FIFOTH",
+      "11.3.9.26 DMAC",
+      "11.3.9.27 DLBA",
+      "11.3.9.28 IDST"
+    ],
+    "superseded_generic_donor_candidate": "evidence/storage-v18-pre-smhc3-build-20261116.json",
+    "correction": "Tina common descriptor/IDMA definitions include old SMHC0-2 bits. Final driver follows SMHC3 manual and independently reviewed direction-specific status semantics."
+  },
+  "topology_preserved": {
+    "runtime_confirmed_by_parent": true,
+    "accepted_v16_dtb": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "final_v18_dtb": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "merge_record": "evidence/storage-v18-topology-merge-20261116.json",
+    "reproduce": [
+      "sh tools/build_dma_storage_kernel.sh",
+      "python3 tools/repack_storage_v18_topology.py --topology-dtb output/t736-cpu-topology-candidate.dtb"
+    ],
+    "note": "Initial build is DMA-only. Second command reconstructs and structurally verifies the accepted topology without rebuilding Image/PVR."
+  }
+}

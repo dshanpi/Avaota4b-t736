@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-11-16T10:59:27.319106+00:00",
+  "expires_utc": "2026-11-16T11:59:27.319106+00:00",
+  "base_url": "http://192.168.1.228:18748/ac8a59d6a000bb5ef376988cea9fd443",
+  "pid": 947991,
+  "files": {
+    "t736-phy-snapshot-storage-v16.ko": {
+      "path": "output/t736-phy-snapshot-storage-v16.ko",
+      "bytes": 7552,
+      "sha256": "0dfcd1f8f3d6bd86f397d1b738de6744bb865686929c26471c43fff50a191f25"
+    },
+    "t736-phy-snapshot.c": {
+      "path": "tools/validation/t736-phy-snapshot.c",
+      "bytes": 3168,
+      "sha256": "d190f83e5c132aa7944781d92dc31f0c4e159da00e918bf6e2a9d7f3a93530b8"
+    }
+  },
+  "reviewer": "desktop_review",
+  "hardware_actions": false,
+  "configuration_writes": false,
+  "page_selector_writes": true,
+  "restore": "single MDIO lock covers saved page, all selector/read operations and restored page readback; errors still attempt restore",
+  "read_side_effects": [
+    "BMSR latch-low bits",
+    "STAT1000 bit15 master/slave fault latch and low8bits idle-error counter"
+  ],
+  "http_readback_sha256": "ALL_PASS"
+}

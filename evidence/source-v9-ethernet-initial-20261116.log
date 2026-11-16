@@ -1,0 +1,141 @@
+echo NET_STATE; ip -br address; ip route; ip route get 192.168.1.228; ip -s link show end0; for n in speed duplex carrier operstate; do printf '%s=' "$n"; cat /sys/class/net/end0/$n; done; command -v ethtool; dmesg | grep -Ei 'end0.*(link|error)|dwmac.*(error|fail|reset)' | tail -n 15; echo NET_STATE_DONE
+
+NET_STATE
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+end0             UP             10.0.0.249/24 metric 1024 fd67:b33e:a9c2:0:c884:85ff:fe01:e58e/64 fe80::c884:85ff:fe01:e58e/64 
+sit0@NONE        DOWN           
+default via 10.0.0.1 dev end0 proto dhcp src 10.0.0.249 metric 1024 
+10.0.0.0/24 dev end0 proto kernel scope link src 10.0.0.249 metric 1024 
+10.0.0.1 dev end0 proto dhcp scope link src 10.0.0.249 metric 1024 
+192.168.1.228 via 10.0.0.1 dev end0 src 10.0.0.249 uid 0 
+    cache 
+2: end0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether ca:84:85:01:e5:8e brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+        105455     983      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+        236071    1076      0       0       0       0 
+speed=100
+duplex=full
+carrier=1
+operstate=up
+/usr/sbin/ethtool
+[    1.610589] t736-dwmac 4500000.ethernet: RGMII configuration retained after MAC reset: 0x11545
+[   21.633320] t736-dwmac 4500000.ethernet end0: configuring for phy/rgmii-rxid link mode
+[   34.268624] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+NET_STATE_DONE
+root@t736:~# echo ETH_DETAILS; ethtool end0; ethtool -i end0; ethtool -k end0 | head -n 26; ethtool -S end0 | grep -Ei 'crc|error|drop|fail|timeout|overflow' | head -n 30; ping -c 3 -W 2 10.0.0.1; ping -c 3 -W 2 192.168.1.228; echo ETH_DETAILS_DONE
+
+ETH_DETAILS
+Settings for end0:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Full
+	Advertised pause frame use: Symmetric Receive-only
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Link partner advertised link modes:  10baseT/Half 10baseT/Full
+	                                     100baseT/Half 100baseT/Full
+	                                     1000baseT/Full
+	Link partner advertised pause frame use: Symmetric Receive-only
+	Link partner advertised auto-negotiation: Yes
+	Link partner advertised FEC modes: Not reported
+	Speed: 100Mb/s
+	Duplex: Full
+	Auto-negotiation: on
+	master-slave cfg: preferred slave
+	Port: Twisted Pair
+	PHYAD: 1
+	Transceiver: external
+	MDI-X: Unknown
+	Supports Wake-on: ug
+	Wake-on: d
+        Current message level: 0x0000003f (63)
+                               drv probe link timer ifdown ifup
+	Link detected: yes
+driver: st_gmac
+version: 6.18.63-t736-gpu-v15
+firmware-version: 
+expansion-rom-version: 
+bus-info: 4500000.ethernet
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: no
+supports-register-dump: yes
+supports-priv-flags: no
+Features for end0:
+rx-checksumming: on
+tx-checksumming: on
+	tx-checksum-ipv4: on
+	tx-checksum-ip-generic: off [fixed]
+	tx-checksum-ipv6: on
+	tx-checksum-fcoe-crc: off [fixed]
+	tx-checksum-sctp: off [fixed]
+scatter-gather: on
+	tx-scatter-gather: on
+	tx-scatter-gather-fraglist: off [fixed]
+tcp-segmentation-offload: off
+	tx-tcp-segmentation: off [fixed]
+	tx-tcp-ecn-segmentation: off [fixed]
+	tx-tcp-mangleid-segmentation: off [fixed]
+	tx-tcp6-segmentation: off [fixed]
+	tx-tcp-accecn-segmentation: off [fixed]
+generic-segmentation-offload: on
+generic-receive-offload: on
+large-receive-offload: off [fixed]
+rx-vlan-offload: off [fixed]
+tx-vlan-offload: off [fixed]
+ntuple-filters: off [fixed]
+receive-hashing: off [fixed]
+highdma: on [fixed]
+rx-vlan-filter: off [fixed]
+     mmc_tx_underflow_error: 0
+     mmc_tx_carrier_error: 0
+     mmc_rx_crc_error: 0
+     mmc_rx_align_error: 0
+     mmc_rx_run_error: 0
+     mmc_rx_jabber_error: 0
+     mmc_rx_length_error: 0
+     mmc_rx_fifo_overflow: 0
+     mmc_rx_watchdog_error: 0
+     mmc_rx_error: 0
+     mmc_sgf_fail_fragment_cntr: 0
+     tx_payload_error: 0
+     tx_ip_header_error: 0
+     sa_filter_fail: 0
+     overflow_error: 0
+     ipc_csum_error: 0
+     rx_crc_errors: 0
+     rx_gmac_overflow: 0
+     da_rx_filter_fail: 0
+     sa_rx_filter_fail: 0
+     rx_overflow_cntr: 0
+     rx_overflow_irq: 0
+     fatal_bus_error_irq: 0
+     phy_eee_wakeup_error_n: 0
+     timestamp_dropped: 0
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.539 ms
+64 bytes from 10.0.0.1: icmp_seq=2 ttl=64 time=0.533 ms
+64 bytes from 10.0.0.1: icmp_seq=3 ttl=64 time=0.467 ms
+
+--- 10.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2052ms
+rtt min/avg/max/mdev = 0.467/0.513/0.539/0.032 ms
+PING 192.168.1.228 (192.168.1.228) 56(84) bytes of data.
+64 bytes from 192.168.1.228: icmp_seq=1 ttl=63 time=1.33 ms
+64 bytes from 192.168.1.228: icmp_seq=2 ttl=63 time=1.33 ms
+64 bytes from 192.168.1.228: icmp_seq=3 ttl=63 time=1.41 ms
+
+--- 192.168.1.228 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 1.325/1.353/1.408/0.038 ms
+ETH_DETAILS_DONE
+root@t736:~# 

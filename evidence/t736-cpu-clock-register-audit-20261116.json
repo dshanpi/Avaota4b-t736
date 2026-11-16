@@ -1,0 +1,133 @@
+{
+  "date": "2026-11-16",
+  "scope": "Read-only documentation and donor code review; no hardware register access, clock change, CCF registration or production build modification.",
+  "base": "0x08870000",
+  "base_reference": "evidence/vendor-reference/reference-1.txt:1431,14845 (newline-based line numbering)",
+  "registers": [
+    {
+      "name": "CPU_BACK_PLL_CTRL",
+      "offset": "0x0000",
+      "absolute": "0x08870000",
+      "access": "R/W control, bit28 read-only lock; no read-clear described"
+    },
+    {
+      "name": "CPU_BACK_PLL_PAT0/PAT1",
+      "offsets": [
+        "0x0008",
+        "0x000c"
+      ],
+      "access": "Read configuration only"
+    },
+    {
+      "name": "CPU_L_PLL (A55 CPU0-5)",
+      "ctrl": "0x1000",
+      "pat0": "0x1004",
+      "pat1": "0x1008",
+      "lfm": "0x1018",
+      "clock_mux": "0x101c",
+      "control_status": "0x102c"
+    },
+    {
+      "name": "CPU_B_PLL (A76 CPU6-7)",
+      "ctrl": "0x2000",
+      "pat0": "0x2004",
+      "pat1": "0x2008",
+      "lfm": "0x2018",
+      "clock_mux": "0x201c",
+      "control_status": "0x202c"
+    },
+    {
+      "name": "CPU_DSU_PLL",
+      "ctrl": "0x3000",
+      "pat0": "0x3004",
+      "pat1": "0x3008",
+      "lfm": "0x3018",
+      "clock_mux": "0x301c",
+      "control_status": "0x302c"
+    },
+    {
+      "name": "CPU_SLOW_CLK_SEL",
+      "offset": "0x3034",
+      "absolute": "0x08873034",
+      "access": "bits1:0 R/W; reads have no stated side effect"
+    }
+  ],
+  "register_list_reference": "reference-1.txt:14972-15035",
+  "mux": {
+    "little_big": {
+      "field": "CLK[26:24]",
+      "values": {
+        "3": "matching CPU_L/B_PLL divided by external P",
+        "4": "PERI0PLL_DIV2",
+        "5": "CPU_BACK_PLL",
+        "0,1,2": "CPU_SLOW_CLK",
+        "6,7": "reserved/unresolved"
+      },
+      "references": [
+        "reference-1.txt:17286-17319",
+        "reference-1.txt:17733-17765"
+      ]
+    },
+    "slow": {
+      "field": "SLOW[1:0]",
+      "values": {
+        "0": "DCXO",
+        "1": "CLK32K",
+        "2": "CLK16M_RC",
+        "3": "reserved"
+      },
+      "reference": "reference-1.txt:18389-18401"
+    },
+    "external_divider": {
+      "field": "CLK[17:16]",
+      "values": {
+        "0": 1,
+        "1": 2,
+        "2": 4,
+        "3": "reserved by manual; do not report a verified frequency"
+      },
+      "note": "Applied to mux3 PLL output; not blindly applied to all parent selections."
+    },
+    "dsu_conflict": {
+      "manual": "CLK mux4=CPU0PLL, mux5=PERI0_600M (reference-1.txt:18197-18209)",
+      "donor": "Parent array uses mux4=pll-peri0-2x, mux5=pll-cpu-back (ccu-sun60iw2-cpupll.c:138-141)",
+      "decision": "If observed mux4/5, retain raw data and flag unresolved source mapping; do not fabricate a definite frequency."
+    }
+  },
+  "pll_formulas": {
+    "little_big_dsu_ctrl": {
+      "integer_nominal": "f_PLL = f_input * N / (P_internal * M0 * M1)",
+      "N": "(CTRL >> 8) & 0xff, no +1",
+      "P_internal": "((CTRL >> 16) & 0xf) + 1",
+      "M0": "((CTRL >> 20) & 3) + 1",
+      "M1": "(CTRL & 0xf) + 1",
+      "mux3_output": "f_CPU = f_PLL / external_divider",
+      "references": [
+        "reference-1.txt:16998-17004,17043-17073",
+        "ccu-sun60iw2-cpupll.c:64-123",
+        "ccu_nkmp.c:154-187"
+      ],
+      "qualification": "Donor CCU models N with offset0 and external power-of-two divider, while assuming internal divider fields stay at their initialized values. The simple f_input*N/2^ext formula is only valid when internal divisors are 1 and modulation is not active."
+    },
+    "cpu_back_manual": {
+      "integer_nominal": "f_BACK = f_input * (((CTRL>>8)&0xff)+1) / ((((CTRL>>20)&7)+1) * (((CTRL>>1)&1)+1))",
+      "reference": "reference-1.txt:16782-16850",
+      "qualification": "Manual formula. Donor ccu_nm declaration at ccu-sun60iw2-cpupll.c:45-61 models different factor encoding, so this is not a fully cross-validated measured frequency."
+    },
+    "input": "The board's established DCXO is 26 MHz; do not confuse derived PLL_REF=24 MHz with CPU PLL input or assume a generic 24 MHz crystal.",
+    "ready_bits": "CTRL enable31/LDO30/lock-detect29/lock28/output27; CTRL update26 must be stable/clear before reporting a stable setting.",
+    "status_conflict": "Control register description gives N=raw and default N=20 gives 480 MHz at 24 MHz, matching donor offset0. CTRL_STAT descriptions elsewhere say N=raw+1; treat this as a documentation inconsistency, preserve CTRL and CTRL_STAT raw values, and do not apply +1 solely from the status text.",
+    "modulation": "Capture PAT0, PAT1 and LFM. Active fractional/SDM/linear-frequency modulation makes an integer-only decode nominal, not a clock measurement. Repeated identical samples can establish stable register settings, not precise physical frequency."
+  },
+  "read_safety": {
+    "method": "Independent init-only module with readl of the enumerated aligned words; no clock/reset/regulator registration and no writes.",
+    "semantics": "Selected CTRL, CLK, PAT and LFM fields are ordinary R/W or R; CTRL_STAT is read-only. None of the proposed reads are described as clear-on-read. Avoid unlock interrupt status/control and gating keys in a read-only frequency probe.",
+    "boundary": "Documentation supports non-mutating read semantics. It does not alone prove nonsecure bus access succeeds on the running firmware; actual accessibility remains a hardware result.",
+    "vendor_calls_forbidden_for_readonly_probe": "Do not call donor CPU CCU probe: lines274-292 write PAT/LFM/UPD. Do not use vendor ccu_nkmp recalc as a presumed pure read: lines191-193 can update SDM settings.",
+    "false_proxies": "CNTFRQ/timer frequency, BogoMIPS, missing cpufreq sysfs and device-tree clock-frequency alone are not actual CPU clock measurements."
+  },
+  "donor_sources": [
+    "/home/ubuntu/t736-aiot/tina/bsp/drivers/clk/sunxi-ng/ccu-sun60iw2-cpupll.c",
+    "/home/ubuntu/t736-aiot/tina/bsp/drivers/clk/sunxi-ng/ccu_nkmp.c"
+  ]
+}

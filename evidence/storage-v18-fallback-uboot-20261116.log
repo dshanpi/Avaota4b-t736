@@ -1,0 +1,98 @@
+T736 source SRAM host + authorized libdram v1
+init_DRAM begin seed tpr3=110000 tpr13=6063
+DRAM BOOT DRIVE INFO: V0.6035
+DDR rail dcdc8 requested=1100 effective=1100 rc=0
+DDR rail eldo1 requested=660 effective=650 rc=0
+DRAM_VCC set to 1100 mv
+DRAM CLK =1800 MHZ
+DRAM Type =8 (8:LPDDR4,9:LPDDR5)
+Training result is = 7
+DRAM Pstate 0 training, frequency is 1800 Mhz
+DRAM SIZE =8192 MBytes, para1 = 311a, para2 = a0001001, dram_tpr13 = 6063
+DRAM simple test OK.
+init_DRAM returned 8192 MiB, ticks=78631976
+MEM PASS: 8 x 64KiB windows, 4 address/data patterns, 524288 words checked; upper physical RAM pending
+BOARD power rc=0 DCDC1 en=ff voltage=17 DC1SW1=17->1f DLDO2=d->d LDO_EN3=40->42
+CCU after DDR: PERI0=ff126310 AHB=3000002 APB0=3000005
+SPL eMMC open rc=0 sectors=122142720 irq=0 r1=900
+SPL load addr=47000000 bytes=5040 LBA=24577
+SPL load addr=48000000 bytes=53924 LBA=24587
+SPL load addr=52000000 bytes=265256 LBA=24693
+SPL payload CRCs passed; source AArch64 handoff
+H00c51838 81000000 47000000 00000001 00000000 
+AT736 A64 source handoff EL=000000000000000c
+A64 MEM PASS 262144 x 64-bit checks, including RAM above 4GiB and final 64KiB
+Entering source TF-A 0x48000000
+
+NOTICE:  BL31: v2.15.0(debug):t736-independent-candidate-7d322909
+NOTICE:  BL31: Built : 06:57:46, Nov 13 2026
+INFO:    GICv3 without legacy support detected.
+INFO:    ARM GICv3 driver initialized in EL3
+INFO:    Maximum SPI INTID supported: 287
+NOTICE:  BL31: Detected Allwinner A733 SoC (1903)
+NOTICE:  BL31: Found U-Boot DTB at 0x5203f930, model: T736 custom board RAM bring-up
+INFO:    Configuring SPC Controller
+INFO:    BL31: Platform setup done
+INFO:    BL31: Initializing runtime services
+INFO:    BL31: cortex_a55: CPU workaround for erratum 1530923 was applied
+INFO:    PSCI: Suspend is unavailable
+INFO:    BL31: Preparing for EL3 exit to normal world
+INFO:    Entry point address = 0x52000000
+INFO:    SPSR = 0x3c9
+INFO:    Changed devicetree.
+
+<debug_uart>
+
+U-Boot 2026.10-t736-bringup (Nov 14 2026 - 09:08:11 +0000)
+
+Model: T736 custom board RAM bring-up
+Board: T736 source boot candidate; authorized vendor DDR library
+DRAM:  8 GiB
+Core:  4 devices, 4 uclasses, devicetree: separate
+CPU-D A76 step=1 reg=201c before=00000000 desired=00010000 actual=00010000 CTRL=40801400 STAT=40801400 CLK=00010000 rc=0
+CPU-D A76 step=2 reg=2000 before=40801400 desired=40801400 actual=40801400 CTRL=40801400 STAT=40801400 CLK=00010000 rc=0
+CPU-D A76 step=3 reg=2000 before=40801400 desired=48801400 actual=48801400 CTRL=48801400 STAT=48801400 CLK=00010000 rc=0
+CPU-D A76 step=4 reg=2000 before=48801400 desired=48802000 actual=48801400 CTRL=48801400 STAT=48802000 CLK=00010000 rc=0
+CPU-D A76 step=5 reg=2000 before=48801400 desired=c8802000 actual=c8801400 CTRL=c8801400 STAT=c8802000 CLK=00010000 rc=0
+CPU-D A76 step=6 reg=2000 before=c8802000 desired=e8802000 actual=e8802000 CTRL=e8802000 STAT=e8802000 CLK=00010000 rc=0
+CPU-D A76 step=7 reg=2000 before=f8802000 desired=ec802000 actual=f8802000 CTRL=f8802000 STAT=f8802000 CLK=00010000 rc=0
+CPU-D A76 step=8 reg=2000 before=f8802000 desired=f8802000 actual=f8802000 CTRL=f8802000 STAT=f8802000 CLK=00010000 rc=0
+CPU-D A76 step=9 reg=201c before=00010000 desired=03010000 actual=03010000 CTRL=f8802000 STAT=f8802000 CLK=03010000 rc=0
+CPU-D A76 step=10 reg=201c before=03010000 desired=00000000 actual=00000000 CTRL=f8802000 STAT=f8802000 CLK=00000000 rc=0
+CPU-D A76 step=11 reg=2000 before=f8802000 desired=e0802000 actual=f0802000 CTRL=f0802000 STAT=f0802000 CLK=00000000 rc=0
+CPU-D A76 step=12 reg=2000 before=f0802000 desired=c0802000 actual=c0802000 CTRL=c0802000 STAT=c0802000 CLK=00000000 rc=0
+CPU-D A76 step=13 reg=2000 before=c0802000 desired=c0802700 actual=c0802000 CTRL=c0802700 STAT=c0802700 CLK=00000000 rc=0
+CPU-D A76 step=14 reg=2000 before=c0802700 desired=e0802700 actual=e0802700 CTRL=e0802700 STAT=e0802700 CLK=00000000 rc=0
+CPU-D A76 step=15 reg=2000 before=f0802700 desired=e4802700 actual=f0802700 CTRL=f0802700 STAT=f0802700 CLK=00000000 rc=0
+CPU-D A76 step=16 reg=2000 before=f0802700 desired=f0802700 actual=f0802700 CTRL=f0802700 STAT=f0802700 CLK=00000000 rc=0
+CPU-D A76 step=17 reg=2000 before=f0802700 desired=e8802700 actual=f8802700 CTRL=f8802700 STAT=f8802700 CLK=00000000 rc=0
+CPU-D A76 step=18 reg=2000 before=f8802700 desired=f8802700 actual=f8802700 CTRL=f8802700 STAT=f8802700 CLK=00000000 rc=0
+CPU-D A76 step=19 reg=201c before=00000000 desired=03000000 actual=03000000 CTRL=f8802700 STAT=f8802700 CLK=03000000 rc=0
+CPU-D: A76 rc=0 stage=8 CTRL=f8802700 STAT=f8802700 CLK=03000000 mutation=1 rollback=0/0 slow=0 guard=0 trace=19
+CPU-D: A76 PMIC 03/ff/28/28/00/00 -> 03/ff/28/28/00/00
+CPU-D: A76 cold416 then warm1014 PASS
+CPU-D A55 step=1 reg=101c before=03000000 desired=00000000 actual=00000000 CTRL=f8801300 STAT=f8801300 CLK=00000000 rc=0
+CPU-D A55 step=2 reg=1000 before=f8801300 desired=e0801300 actual=f0801300 CTRL=f0801300 STAT=f0801300 CLK=00000000 rc=0
+CPU-D A55 step=3 reg=1000 before=f0801300 desired=c0801300 actual=c0801300 CTRL=c0801300 STAT=c0801300 CLK=00000000 rc=0
+CPU-D A55 step=4 reg=1000 before=c0801300 desired=c0802700 actual=c0802700 CTRL=c0802700 STAT=c0802700 CLK=00000000 rc=0
+CPU-D A55 step=5 reg=1000 before=c0802700 desired=e0802700 actual=e0802700 CTRL=f0802700 STAT=f0802700 CLK=00000000 rc=0
+CPU-D A55 step=6 reg=1000 before=f0802700 desired=e4802700 actual=f0802700 CTRL=f0802700 STAT=f0802700 CLK=00000000 rc=0
+CPU-D A55 step=7 reg=1000 before=f0802700 desired=f0802700 actual=f0802700 CTRL=f0802700 STAT=f0802700 CLK=00000000 rc=0
+CPU-D A55 step=8 reg=1000 before=f0802700 desired=e8802700 actual=f8802700 CTRL=f8802700 STAT=f8802700 CLK=00000000 rc=0
+CPU-D A55 step=9 reg=1000 before=f8802700 desired=f8802700 actual=f8802700 CTRL=f8802700 STAT=f8802700 CLK=00000000 rc=0
+CPU-D A55 step=10 reg=101c before=00000000 desired=03000000 actual=03000000 CTRL=f8802700 STAT=f8802700 CLK=03000000 rc=0
+CPU-D A55 step=11 reg=101c before=03000000 desired=03000000 actual=03000000 CTRL=f8802700 STAT=f8802700 CLK=03000000 rc=0
+CPU-D: A55 rc=0 stage=8 core=412fd050/81000000 CNT=24000000 DAIF=2c0/2c0
+CPU-D: A55 f8801300/f8801300/03000000 -> f8802700/f8802700/03000000 mutation=1 rollback=0 slow=0 guard=0
+CPU-D: PMIC 03/ff/28/28/00/00 -> 03/ff/28/28/00/00
+CPU-D: A55/A76 configured N39/1=1014MHz; DSU and PMIC unchanged
+MMC:   T736 SMHC3 read-only PIO: 0
+Loading Environment from nowhere...
+Loading Environment from nowhere... OK
+In:    serial@2500000
+Out:   serial@2500000
+Err:   serial@2500000
+
+Hit any key to stop autoboot: 3
+Hit any key to stop autoboot: 0
+T736-mainline=> 

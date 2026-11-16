@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "author": "desktop_review",
+  "source": "tools/validation/gtk_ui_frame_probe.py",
+  "source_sha256": "155dc13dac62bcd6ac5c0fdc3cbb20732c2376be4307f8df32f4cb02e789be70",
+  "purpose": "Short real GTK4/libadwaita GSK scroll comparison with current renderer versus per-process Cairo",
+  "workload": {
+    "seconds_default": 10,
+    "seconds_allowed": [
+      8,
+      12
+    ],
+    "cards": 24,
+    "controls": [
+      "labels",
+      "GtkButton",
+      "GtkSwitch"
+    ],
+    "effects": [
+      "rounded card backgrounds",
+      "box shadows",
+      "continuous 240px/s scroll"
+    ],
+    "GLArea": false,
+    "direct_GL_calls": false
+  },
+  "records": [
+    "renderer GType",
+    "frame-clock tick intervals",
+    "monotonic after-paint callback intervals",
+    "map and first tick latency",
+    "CPU time before map and during sample",
+    "process graphics-library maps",
+    "start/end lock and Overview state"
+  ],
+  "validity": "Requires unblocked session before and after, a renderer, changed scroll offset, and at least120 after-paint intervals. Does not verify physical scanout, input latency or intermediate session changes. Native stalls can delay GLib timers; caller should bound process lifetime externally.",
+  "validation": [
+    "Python py_compile passed"
+  ],
+  "runtime_test_by_author": false,
+  "board_access_by_author": false,
+  "user_configuration_modified": false,
+  "run_pair": [
+    "python3 gtk_ui_frame_probe.py --seconds 10",
+    "env GSK_RENDERER=cairo python3 gtk_ui_frame_probe.py --seconds 10"
+  ],
+  "comparison_constraints": "Fresh NON_UNIQUE process for each. Keep all other environment equal; do not globally switch desktop renderer. Report cold/warm order because shader and font caches can affect results."
+}

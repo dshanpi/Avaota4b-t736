@@ -1,0 +1,23 @@
+--- a/board/t736/bringup/Makefile
++++ b/board/t736/bringup/Makefile
+@@ -1,2 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0+
+ obj-y += board.o
++obj-y += cpuclock.o cpuclock_c.o twi.o a55clock.o t736-uboot-cpuclock-c.o
+--- a/board/t736/bringup/board.c
++++ b/board/t736/bringup/board.c
+@@ -52,6 +52,14 @@ int board_init(void)
+ 	return 0;
+ }
+ 
++int t736_uboot_cpuclock_init(void);
++
++int board_early_init_r(void)
++{
++	/* Serial is ready; no secondary CPU has been released. */
++	return t736_uboot_cpuclock_init();
++}
++
+ int checkboard(void)
+ {
+ 	puts("Board: T736 source boot candidate; authorized vendor DDR library\n");

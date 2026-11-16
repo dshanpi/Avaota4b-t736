@@ -1,0 +1,8 @@
+none {"pid": 17519, "display": ":0", "metric": "First viewable X11 client window with matching _NET_WM_PID", "complete_render_verified": false, "input_sent": false, "timeout_seconds": 30.0, "start_monotonic": 1672.389051898, "observer_start_monotonic": 1672.6589273, "start_origin": "launcher", "status": "mapped", "window": "0x1e00004", "elapsed_seconds": 2.903782, "observer_seconds": 2.633907, "width": 980, "height": 640}
+
+none {"elapsed": 7.99, "ticks": 1092, "major_faults": 0, "threads": "13"}
+none {"elapsed": 13.0, "ticks": 1403, "major_faults": 0, "threads": "13"}
+none {"elapsed": 18.0, "ticks": 1403, "major_faults": 0, "threads": "13"}
+Traceback (most recent call last):
+  File "<stdin>", line 17, in <module>
+AssertionError

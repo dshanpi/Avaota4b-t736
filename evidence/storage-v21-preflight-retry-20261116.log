@@ -1,0 +1,14 @@
+    PID COMMAND
+   5746 gnome-control-c
+{"status": "COMPLETE", "mode": "panel_activation", "panel": "multitasking", "pid": 5746, "mapped": {"status": "not_measured_for_reused_window", "reason": "Existing-window mapping cannot measure panel completion"}, "dispatch": {"exit_code": 0, "observed_exit_seconds": 1.038727644000005, "observation_resolution_seconds": 0.5, "metric": "CLI request return, not first paint or completed panel"}, "summary": {"clock_ticks_per_second": 100, "process_counter_delta": {"user_ticks": 37, "system_ticks": 5, "minor_faults": 209, "major_faults": 0, "blkio_delay_ticks": 0}, "process_cpu_seconds": 0.42, "proc_io_delta": {}, "main_thread_last_cpu_sample_counts": {"7": 21}, "main_thread_state_samples": {"S": 21}, "largest_thread_cpu_lower_bounds": [{"tid": 5746, "comm": "gnome-control-c", "cpu_seconds_lower_bound": 0.34, "last_sampled_cpu": 7}, {"tid": 5751, "comm": "gdbus", "cpu_seconds_lower_bound": 0.01, "last_sampled_cpu": 6}, {"tid": 6189, "comm": "multiqueue2:src", "cpu_seconds_lower_bound": 0.01, "last_sampled_cpu": 7}, {"tid": 5749, "comm": "pool-spawner", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 0}, {"tid": 5750, "comm": "gmain", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 5}, {"tid": 5752, "comm": "[pango] fontcon", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 2}, {"tid": 5755, "comm": "dconf worker", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 0}, {"tid": 6159, "comm": "GtkGstPlay", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 5}, {"tid": 6160, "comm": "gldisplay-event", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 2}, {"tid": 6161, "comm": "gstglcontext", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 6}, {"tid": 6162, "comm": "GtkGstPlay", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 5}, {"tid": 6163, "comm": "gldisplay-event", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 3}, {"tid": 6164, "comm": "gstglcontext", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 4}, {"tid": 6165, "comm": "GtkGstPlay", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 7}, {"tid": 6166, "comm": "gldisplay-event", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 0}, {"tid": 6167, "comm": "gstglcontext", "cpu_seconds_lower_bound": 0.0, "last_sampled_cpu": 3}], "note": "last_cpu is a polling sample, not measured CPU residency; exited-thread accounting can be incomplete; CPU counters are tick-quantized and can miss short activity; process CPU excludes MMC kernel workers"}, "error": null}
+{
+  "status": "CHECK_PASS",
+  "running_release": "6.18.63-t736-storage-v20",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v21",
+  "write_attempted": false,
+  "hardware_accepted": false,
+  "baseline_files": 94,
+  "kernel_sha256": "ecafdd041f47e7cf44dfca6dc8646f11f6907f71d016ba7238eebe9e12393b54",
+  "pvr_sha256": "9ba54fb4a0b585b9db1edea6d8dfd541174583a06cf732d2ecc0d38897c103c9"
+}

@@ -1,0 +1,67 @@
+runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri COGL_DRIVER=gles2 gnome-control-center display >/root/t736-gpu-debug/control-center.log 2>&1 & echo GTK_TEST_PID=$!; echo GTK_LAUNCH_SENT
+
+[1] 4581
+GTK_TEST_PID=4581
+GTK_LAUNCH_SENT
+root@t736:~# p=$(pgrep -f "^gnome-control-center display$" | head -n 1); echo GTK_APP_PID=$p; test -z "$p" || awk "/libEGL|libGLES|libvulkan|swrast|llvmpipe|LLVM|libvulkan_lvp/ {print \$NF}" /proc/$p/maps | sort -u; tail -n 18 /root/t736-gpu-debug/control-center.log; cat /sys/kernel/debug/pvr/status | head -n 15; echo GTK_APP_CHECK_DONE
+
+GTK_APP_PID=
+Running gnome-control-center is only supported under GNOME and Unity, exiting
+[1]+  退出 1                runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri COGL_DRIVER=gles2 gnome-control-center display > /root/t736-gpu-debug/control-center.log 2>&1
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+GTK_APP_CHECK_DONE
+root@t736:~# runuser -u t736 -- env XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_TYPE=x11 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri COGL_DRIVER=gles2 gnome-control-center display >/root/t736-gpu-debug/control-center.log 2>&1 & echo GTK_TEST_PID=$!; echo GTK_LAUNCH_SENT
+
+[1] 4603
+GTK_TEST_PID=4603
+GTK_LAUNCH_SENT
+root@t736:~# 
+
+root@t736:~# [drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+p=$(pgrep -f '^gnome-control-center display$' | head -n 1); echo GTK_APP_PID=$p; if test -n "$p"; then awk '/libEGL|libGLES|libvulkan|swrast|llvmpipe|LLVM|libvulkan_lvp|libpvr/ {print $NF}' /proc/$p/maps | sort -u; fi; tail -n 20 /root/t736-gpu-debug/control-center.log; ps -C gnome-shell -o pid,user,etime,pcpu; echo GTK_APP_CHECK_DONE
+
+GTK_APP_PID=4606
+libEGL warning: egl: failed to create dri2 screen
+glx: failed to create drisw screen
+failed to load driver: swrast
+08:17:03.9399                  Gtk[ 4606]: WARNING: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+    PID USER         ELAPSED %CPU
+   4175 t736           03:00 23.3
+[1]+  已完成               runuser -u t736 -- env XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_TYPE=x11 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri COGL_DRIVER=gles2 gnome-control-center display > /root/t736-gpu-debug/control-center.log 2>&1
+GTK_APP_CHECK_DONE
+root@t736:~# DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority xrandr --output HDMI-1 --mode 1920x1080 --rate 60; echo MODE_1080_RC=$?; gnome-text-editor --help | tail -n 15; ps -eo pid,stat,comm | grep -E 'gnome-control|gnome-text|gnome-shell'; echo GTK_TEST_PREP_DONE
+
+[drm] suxni tcon hdmi set rate: 148500000Hz and get diff: 148500000Hz
+MODE_1080_RC=0
+用法：
+  gnome-text-editor [选项…] [FILES…]
+
+帮助选项：
+  -h, --help                 显示帮助选项
+  --help-all                 显示全部帮助选项
+  --help-gapplication        显示 GApplication 选项
+
+应用程序选项：
+  -i, --ignore-session       不要在启动时恢复会话
+  -n, --new-window           在新窗口打开提供的文件
+  -s, --standalone           运行文本编辑器的新实例（暗示 --ignore-session）
+  --version                  显示版本信息并退出
+
+Bugs may be reported at: https://www.debian.org/Bugs/Reporting
+   4175 Ssl  gnome-shell
+GTK_TEST_PREP_DONE
+root@t736:~# 

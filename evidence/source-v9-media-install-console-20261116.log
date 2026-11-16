@@ -1,0 +1,43 @@
+fg %1
+
+LC_ALL=C apt-get -y --no-install-recommends install libavcodec61 ffmpeg > /root/source-v9-validation/media-install.log 2>&1
+
+[1]+  已停止               LC_ALL=C apt-get -y --no-install-recommends install libavcodec61 ffmpeg > /root/source-v9-validation/media-install.log 2>&1
+root@t736:~# tail -12 /root/source-v9-validation/media-install.log; ps -eo pid,ppid,stat,wchan:22,comm | grep -E 'apt-get|dpkg|ldconfig|update-|firefox'; cat /proc/diskstats | grep ' mmcblk0 '; fg %1
+
+Get:54 http://deb.debian.org/debian trixie/main arm64 libjack-jackd2-0 arm64 1.9.22~dfsg-4 [265 kB]
+Get:55 http://deb.debian.org/debian trixie/main arm64 libopenal-data all 1:1.24.2-1 [168 kB]
+Get:56 http://deb.debian.org/debian trixie/main arm64 libopenal1 arm64 1:1.24.2-1 [577 kB]
+Get:57 http://deb.debian.org/debian trixie/main arm64 libxss1 arm64 1:1.2.3-1+b3 [17.1 kB]
+Get:58 http://deb.debian.org/debian trixie/main arm64 libsdl2-2.0-0 arm64 2.32.4+dfsg-1 [603 kB]
+Get:59 http://deb.debian.org/debian trixie/main arm64 libxcb-shape0 arm64 1.17.0-2+b1 [106 kB]
+Get:60 http://deb.debian.org/debian trixie/main arm64 libxv1 arm64 2:1.0.11-1.1+b3 [23.3 kB]
+Get:61 http://deb.debian.org/debian trixie/main arm64 libavdevice61 arm64 7:7.1.5-0+deb13u1 [123 kB]
+Get:62 http://deb.debian.org/debian trixie/main arm64 ffmpeg arm64 7:7.1.5-0+deb13u1 [1990 kB]
+Fetched 47.5 MB in 2min 57s (268 kB/s)
+Selecting previously unselected package libva2:arm64.
+
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+   2279       1 Ssl  do_sys_poll            firefox-esr
+   2541    1244 T    do_signal_stop         apt-get
+   2913    2541 Ds+  mmc_blk_rw_wait        dpkg
+   3745    2913 S+   do_wait                dpkg-deb
+   3746    3745 Z+   -                      dpkg-deb
+   3747    3745 Sl+  anon_pipe_write        dpkg-deb
+ 179       0 mmcblk0 153211 0 1225674 14686162 88331 0 705264 23865793 0 733440 38578840 0 0 0 0 1677 26884
+LC_ALL=C apt-get -y --no-install-recommends install libavcodec61 ffmpeg > /root/source-v9-validation/media-install.log 2>&1

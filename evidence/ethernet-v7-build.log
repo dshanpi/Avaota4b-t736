@@ -1,0 +1,167 @@
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-armbian'
+  GEN     Makefile
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-armbian'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'
+T736 Armbian kernel prerequisites passed (22 symbols)
+PASS: 85 register/shift/mask checks; T736 main PIO, R-PIO, legacy and D1
+PASS: IRQ table for 216 pins; absent PA, R-PIO and non-IRQ/gap banks
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-armbian'
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+  GEN     Makefile
+  DTC     arch/arm64/boot/dts/allwinner/t736-mainline-bringup.dtb
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  UPD     init/utsversion-tmp.h
+  CC      init/version.o
+  CC      drivers/phy/allwinner/phy-t736-usb2.o
+  CC      drivers/pinctrl/sunxi/pinctrl-t736-r.o
+  CC      drivers/pinctrl/sunxi/pinctrl-t736.o
+  AR      init/built-in.a
+  AR      drivers/pinctrl/sunxi/built-in.a
+  AR      drivers/pinctrl/built-in.a
+  AR      drivers/phy/allwinner/built-in.a
+  AR      drivers/phy/built-in.a
+  CC      drivers/clk/clk-t736-usb.o
+  CC      drivers/clk/clk-t736-gmac.o
+  CC      drivers/mmc/host/t736_mmc_pio.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac-t736.o
+  AR      drivers/clk/built-in.a
+  AR      drivers/mmc/host/built-in.a
+  AR      drivers/mmc/built-in.a
+  AR      drivers/net/ethernet/stmicro/stmmac/built-in.a
+  AR      drivers/net/ethernet/stmicro/built-in.a
+  AR      drivers/net/ethernet/built-in.a
+  AR      drivers/net/built-in.a
+  AR      drivers/built-in.a
+  AR      built-in.a
+  AR      vmlinux.a
+  LD      vmlinux.o
+  MODPOST Module.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-armbian'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'
+b63062e2616a13d06d25a4c891560b2dfb569118e2328044352c84b8b3e42d89  /home/ubuntu/t736-mainline/output/Image-6.18.63-t736-armbian
+a6b2f423609cb8ff3e897051dd5269671f022e3b67d1c48cfafbf585211f91ef  /home/ubuntu/t736-mainline/output/t736-mainline-armbian.dtb
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-armbian'
+  GEN     debian
+dpkg-buildpackage --build=binary --no-pre-clean --unsigned-changes -R'make -f debian/rules' -j1 -a$(cat debian/arch)
+dpkg-buildpackage: info: source package linux-upstream
+dpkg-buildpackage: info: source version 6.18.63-7
+dpkg-buildpackage: info: source distribution noble
+dpkg-buildpackage: info: source changed by ubuntu <ubuntu@ubuntu2404>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture arm64
+ make -f debian/rules binary
+  GEN     Makefile
+#
+# No change to .config
+#
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux/scripts/checksyscalls.sh
+  GZIP    arch/arm64/boot/Image.gz
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-amarula-relic.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-bananapi-m64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-nanopi-a64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-oceanic-5205-5inmfd.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-olinuxino.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-olinuxino-emmc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-orangepi-win.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-pine64-lts.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-pine64-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-pine64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-pinebook.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-pinephone-1.0.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-pinephone-1.1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-pinephone-1.2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-pinetab.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-pinetab-early-adopter.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-sopine-baseboard.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a64-teres-i.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h64-remix-mini-pc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a100-allwinner-perf1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-a133-liontron-h-a133l.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-bananapi-m2-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-emlid-neutis-n5-devboard.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-libretech-all-h3-cc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-libretech-all-h3-it.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-libretech-all-h5-cc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-nanopi-neo2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-nanopi-neo-plus2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-nanopi-r1s-h5.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-orangepi-pc2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-orangepi-prime.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-orangepi-zero-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h5-orangepi-zero-plus2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h6-beelink-gs1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h6-orangepi-3.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h6-orangepi-lite2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h6-orangepi-one-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h6-pine-h64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h6-pine-h64-model-b.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h6-tanix-tx6.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h6-tanix-tx6-mini.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h313-tanix-tx1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h313-x96q.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h616-bigtreetech-cb1-manta.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h616-bigtreetech-pi.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h616-orangepi-zero2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h616-x96-mate.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h618-longanpi-3h.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h618-orangepi-zero2w.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h618-orangepi-zero3.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h618-transpeed-8k618-t.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h618-yuzukihd-chameleon.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h700-anbernic-rg35xx-2024.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h700-anbernic-rg35xx-h.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h700-anbernic-rg35xx-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun55i-a527-cubie-a5e.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun55i-h728-x96qpro+.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun55i-t527-avaota-a1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/sun55i-t527-orangepi-4a.dtb
+  INSTALL debian/linux-image-6.18.63-t736-armbian/usr/lib/linux-image-6.18.63-t736-armbian/allwinner/t736-mainline-bringup.dtb
+  SYMLINK debian/linux-image-6.18.63-t736-armbian/lib/modules/6.18.63-t736-armbian/build
+  INSTALL debian/linux-image-6.18.63-t736-armbian/lib/modules/6.18.63-t736-armbian/modules.order
+  INSTALL debian/linux-image-6.18.63-t736-armbian/lib/modules/6.18.63-t736-armbian/modules.builtin
+  INSTALL debian/linux-image-6.18.63-t736-armbian/lib/modules/6.18.63-t736-armbian/modules.builtin.modinfo
+  DEPMOD  debian/linux-image-6.18.63-t736-armbian/lib/modules/6.18.63-t736-armbian
+  INSTALL debian/linux-libc-dev/usr/include
+dpkg-deb: building package 'linux-image-6.18.63-t736-armbian' in '../linux-image-6.18.63-t736-armbian_6.18.63-7_arm64.deb'.
+dpkg-deb: building package 'linux-libc-dev' in '../linux-libc-dev_6.18.63-7_arm64.deb'.
+ dpkg-genbuildinfo --build=binary -O../linux-upstream_6.18.63-7_arm64.buildinfo
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/../../../../aarch64-linux-gnu/bin/ld: cannot find Scrt1.o: No such file or directory
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/../../../../aarch64-linux-gnu/bin/ld: cannot find crti.o: No such file or directory
+collect2: error: ld returned 1 exit status
+dpkg-genbuildinfo: warning: dpkg-genbuildinfo: error: aarch64-linux-gnu-gcc -w -x c - subprocess returned exit status 1
+
+ dpkg-genchanges --build=binary -O../linux-upstream_6.18.63-7_arm64.changes
+dpkg-genchanges: info: binary-only upload (no source code included)
+ dpkg-source --after-build .
+dpkg-buildpackage: info: binary-only upload (no source included)
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-armbian'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux'

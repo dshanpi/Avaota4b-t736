@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "finding": "The tested storage-v16 CPU DT omits heterogeneous capacity and cpu-map metadata, so all CPUs retain the default1024 capacity. This agrees with the parent live sysfs observation.",
+  "baseline": {
+    "kernel_config_sha256": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e",
+    "gpu_candidate_dts_sha256": "840bb5917c306c5a98b2f0a4bcceb479c4d4849ef043d7ba79416cea2e5dd93c",
+    "dtb_sha256": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5",
+    "config_enabled": [
+      "CONFIG_SMP",
+      "CONFIG_GENERIC_ARCH_TOPOLOGY"
+    ],
+    "config_disabled": [
+      "CONFIG_CPU_FREQ",
+      "CONFIG_CPU_IDLE",
+      "CONFIG_ARM64_AMU_EXTN",
+      "CONFIG_SCHED_MC",
+      "CONFIG_SCHED_CLUSTER",
+      "CONFIG_SCHED_SMT"
+    ]
+  },
+  "kernel_evidence": [
+    {
+      "path": "drivers/base/topology.c:212",
+      "meaning": "cpu_scale initializes to SCHED_CAPACITY_SCALE=1024."
+    },
+    {
+      "path": "drivers/base/arch_topology.c:670",
+      "meaning": "parse_dt_topology returns immediately without cpu-map."
+    },
+    {
+      "path": "drivers/base/arch_topology.c:474-485",
+      "meaning": "CPU references in cpu-map trigger topology_parse_cpu_capacity."
+    },
+    {
+      "path": "drivers/base/arch_topology.c:272",
+      "meaning": "capacity-dmips-mhz supplies raw CPU capacity; core compatible alone is not a capacity table."
+    },
+    {
+      "path": "drivers/base/arch_topology.c:289-299",
+      "meaning": "Without CPU clock providers, capacity normalization assumes equal frequency; matches fixed1014MHz baseline."
+    },
+    {
+      "path": "kernel/sched/topology.c:1774",
+      "meaning": "MC/CLUSTER add optional scheduling domain levels; PKG domain exists without them and asymmetric capacity detection is not gated on these two options."
+    }
+  ],
+  "donor": {
+    "path": "/home/ubuntu/t736-aiot/tina/bsp/configs/linux-6.6/sun60iw2p1.dtsi",
+    "sha256": "d68616db1d2755fbf13730d34e1edadb474cf7e5deb93ca982295b6e2a5edba4",
+    "lines": "125-299",
+    "a55_capacity": 430,
+    "a76_capacity": 1024,
+    "topology": "cluster0 CPUs0-5; cluster1 CPUs6-7"
+  },
+  "candidates": {
+    "dt_fragment": "boards/t736-cpu-topology-candidate.dtsi",
+    "dt_fragment_sha256": "0af7e42afb7f75ba6c71c51b2bc605b329b71f8966cb90f114e5d1b48687cbc1",
+    "optional_config": "config/t736-scheduler-domains-candidate.config",
+    "optional_config_sha256": "032ec2c9d71f00c457c84e43ea92f38893889870b18d4df84840db09cc621c5c",
+    "compiled_dtb": "output/independent-candidates/t736-cpu-topology-v16.dtb",
+    "compiled_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "build_record": "evidence/cpu-topology-dt-candidate-build-20261116.json",
+    "status": "compile-only, not deployed"
+  },
+  "validation": "DTC passed; original memreserve, all non-CPU nodes/properties and old CPU properties match the fixed baseline exactly. All8 new phandle references and capacities verified. Decompilation/recompilation emits numeric-phandle source-marker warnings; full log retained; this is not a warning-free DTS-source build.",
+  "experiment_order": [
+    "First use unchanged kernel with the DT-only candidate; verify online0-7, capacities430x6/1024x2 and cluster topology, then unpinned identical GSK probe and Settings timing.",
+    "Keep original DTB as rollback. Do not combine this trial with v18 storage/DMA changes.",
+    "Only after DT comparison, evaluate optional MC/CLUSTER config separately if warranted."
+  ],
+  "gsk_observations": {
+    "renderer_log": "evidence/storage-v16-gtk-ui-renderers-20261116.log",
+    "affinity_log": "evidence/storage-v16-gtk-ui-affinity-20261116.log",
+    "parent_summary": "OpenGL exceeds Cairo; pinnedA76 improves443frames/10seconds and3.70CPU seconds vs A55358frames and7.77CPU seconds. This supports a CPU-placement contribution, not complete60Hz performance acceptance."
+  },
+  "hardware_clock_changes": false,
+  "v18_build_modified": false,
+  "board_access_by_reviewer": false,
+  "runtime_validated": false
+}

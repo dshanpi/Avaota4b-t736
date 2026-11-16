@@ -1,0 +1,7 @@
+{
+  "method": "Static dynamic-symbol comparison against bundled Debian13 ARM64 GStreamer 1.26.2 packages",
+  "gst_symbols": 202,
+  "missing_gst_symbols": [],
+  "target_runtime_verified": false,
+  "GstVideoInfo_declaration_identical": true
+}

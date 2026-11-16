@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v19-dma-functional-stage-review",
+  "reviewed_utc": "2026-11-16T12:10:11.008944+00:00",
+  "status": "passed-bounded-dma-functional-stage",
+  "performance_accepted": false,
+  "release_promoted_to_default": false,
+  "running_release": "6.18.63-t736-storage-v19",
+  "boot_id": "d690073f-430f-4a18-8435-3203cd535295",
+  "default_fallback": {
+    "release": "6.18.63-t736-storage-v16",
+    "dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "selection": "Restored immediately after candidate staging; candidate boot used explicit U-Boot paths without saveenv",
+    "evidence": "evidence/storage-v19-stage-restore-default-20261116.log"
+  },
+  "observations": {
+    "first_dma_request": {
+      "command": 8,
+      "bytes": 512,
+      "irq": "0x0000002c",
+      "idst": "0x00000002",
+      "completed": true
+    },
+    "rootfs": {
+      "device": "/dev/mmcblk0p4",
+      "filesystem": "ext4",
+      "mounted_read_write": true
+    },
+    "storage_ios": {
+      "clock_hz": 12000000,
+      "bus_width_bits": 8,
+      "timing": "legacy",
+      "voltage_changed": false,
+      "clock_hz_kind": "software reported; not a physical clock measurement"
+    },
+    "cpus_online": "0-7",
+    "bounded_integrity": {
+      "status": "PASS",
+      "file_bytes": 8388608,
+      "patterns": 2,
+      "write_chunk_bytes": [
+        4096,
+        65536
+      ],
+      "read_checks": [
+        {
+          "phase": 1,
+          "read_chunk_bytes": 4096,
+          "order": "sequential",
+          "covers_full_file": true,
+          "read_count": 2048,
+          "status": "PASS",
+          "actual_sha256": "132b4b161516ea75521963d4fd7d39aadc0ab402c47704e89166b589cfa1a4d5",
+          "expected_sha256": "132b4b161516ea75521963d4fd7d39aadc0ab402c47704e89166b589cfa1a4d5"
+        },
+        {
+          "phase": 1,
+          "read_chunk_bytes": 4096,
+          "order": "fixed_seed_random",
+          "covers_full_file": false,
+          "read_count": 64,
+          "status": "PASS",
+          "actual_sha256": "6d05d01d7657f83a2aa100152b41c93f674e03d487bce32ff2c83dfaac507a75",
+          "expected_sha256": "6d05d01d7657f83a2aa100152b41c93f674e03d487bce32ff2c83dfaac507a75"
+        },
+        {
+          "phase": 1,
+          "read_chunk_bytes": 65536,
+          "order": "sequential",
+          "covers_full_file": true,
+          "read_count": 128,
+          "status": "PASS",
+          "actual_sha256": "132b4b161516ea75521963d4fd7d39aadc0ab402c47704e89166b589cfa1a4d5",
+          "expected_sha256": "132b4b161516ea75521963d4fd7d39aadc0ab402c47704e89166b589cfa1a4d5"
+        },
+        {
+          "phase": 1,
+          "read_chunk_bytes": 65536,
+          "order": "fixed_seed_random",
+          "covers_full_file": false,
+          "read_count": 64,
+          "status": "PASS",
+          "actual_sha256": "ac0c2d8c982bcfd3edf0a33556f5f1aa248078692ebd71d975498dae2bff0641",
+          "expected_sha256": "ac0c2d8c982bcfd3edf0a33556f5f1aa248078692ebd71d975498dae2bff0641"
+        },
+        {
+          "phase": 2,
+          "read_chunk_bytes": 4096,
+          "order": "sequential",
+          "covers_full_file": true,
+          "read_count": 2048,
+          "status": "PASS",
+          "actual_sha256": "e32080fa74db942a488f3384ac6e2d0ad3e3d6dfed50b036917ed992b6bbd98a",
+          "expected_sha256": "e32080fa74db942a488f3384ac6e2d0ad3e3d6dfed50b036917ed992b6bbd98a"
+        },
+        {
+          "phase": 2,
+          "read_chunk_bytes": 4096,
+          "order": "fixed_seed_random",
+          "covers_full_file": false,
+          "read_count": 64,
+          "status": "PASS",
+          "actual_sha256": "50485d3081f141783bff31b64d3e344847ab77a3089d1f4ef467db2d52390c74",
+          "expected_sha256": "50485d3081f141783bff31b64d3e344847ab77a3089d1f4ef467db2d52390c74"
+        },
+        {
+          "phase": 2,
+          "read_chunk_bytes": 65536,
+          "order": "sequential",
+          "covers_full_file": true,
+          "read_count": 128,
+          "status": "PASS",
+          "actual_sha256": "e32080fa74db942a488f3384ac6e2d0ad3e3d6dfed50b036917ed992b6bbd98a",
+          "expected_sha256": "e32080fa74db942a488f3384ac6e2d0ad3e3d6dfed50b036917ed992b6bbd98a"
+        },
+        {
+          "phase": 2,
+          "read_chunk_bytes": 65536,
+          "order": "fixed_seed_random",
+          "covers_full_file": false,
+          "read_count": 64,
+          "status": "PASS",
+          "actual_sha256": "1bdab60b1772f211a18c7bc935211a5fe9b6bce6ed1e13ce1952c71834f10fca",
+          "expected_sha256": "1bdab60b1772f211a18c7bc935211a5fe9b6bce6ed1e13ce1952c71834f10fca"
+        }
+      ],
+      "scratch_retained": false,
+      "raw_device_access": false,
+      "buffered_fallback": false
+    },
+    "post_probe_health": {
+      "gbm_readback": "PASS",
+      "frames": 60,
+      "quadrants": 4,
+      "pvr_driver_status": "OK",
+      "pvr_firmware_status": "OK",
+      "pvr_reported_error_counters": 0,
+      "systemd_failed_units": 0,
+      "cpu_capacity_samples": [
+        430,
+        1024
+      ],
+      "reported_mmc_errors": 0,
+      "scope": "Saved post-integrity health output and coldboot/runtime records; no physical monitor acceptance implied"
+    },
+    "startup_seconds": {
+      "kernel": 8.112,
+      "userspace": 24.24,
+      "total": 32.352
+    }
+  },
+  "limitations": [
+    "One 8 MiB regular-file probe with two phases is bounded integrity evidence, not an exhaustive filesystem, eMMC or DMA proof.",
+    "v19 uses HIGH_RES_TIMERS=n and HZ=250; usleep_range(50,100) can be quantized to a 4 ms tick. Performance remains unresolved.",
+    "Historical v16 probe used 32 MiB while v19 used 8 MiB. Their complete-run elapsed times are not directly comparable.",
+    "/proc stat CPU counters are tick-quantized and may underestimate brief activity; they do not establish exact MMC-worker CPU usage. Probe process CPU excludes kernel workers.",
+    "Empty proc_self_io_delta maps provide no additional I/O attribution.",
+    "Successful GBM readback is not GNOME, HDMI or physical-display validation.",
+    "v20 is a separate pending HRT-only candidate; no v20 hardware result is inferred.",
+    "SMHC3 mux0 is documented SYS_CLK24M, distinct from the board DCXO26 MHz. The driver uses a24 MHz parent constant; this is supported by source definitions but IOS alone is not a physical calibration. A later HS candidate must verify the PLL source/selection and divisors from saved readback."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/storage-v19-coldboot-20261116.log",
+      "bytes": 38295,
+      "sha256": "f9cf510cd7ae3cc0746c9c1edf6458b1bd0e1e8f09515752d6453ffdb2bd7291"
+    },
+    {
+      "path": "evidence/storage-v19-runtime-20261116.log",
+      "bytes": 1542,
+      "sha256": "c854f761dfd8519064d90b189e402a8edabe8a2e522cb3dc36f588ed55625a31"
+    },
+    {
+      "path": "evidence/storage-v19-dma-integrity-20261116.json",
+      "bytes": 17422,
+      "sha256": "ac4bf5d4e25a30194d49836da05b5c078cf6b802869ffd039542856d5214d996"
+    },
+    {
+      "path": "evidence/storage-v19-dma-integrity-20261116.log",
+      "bytes": 1354,
+      "sha256": "62afa52f0d415c58196f4c419377835d9fde9f993784a4a4f51f749d72460d3a"
+    },
+    {
+      "path": "evidence/storage-v19-post-integrity-health-20261116.log",
+      "bytes": 873,
+      "sha256": "113e72b7fe180090c59a57880412788e4192c595c29fda5ec63f955111586131"
+    },
+    {
+      "path": "evidence/storage-v19-stage-restore-default-20261116.log",
+      "bytes": 550,
+      "sha256": "12eea547739bbdc40c571516f4dafbd6530c54a70bdaeffd4bedd39513744fde"
+    },
+    {
+      "path": "evidence/storage-v16-v19-integrity-system-counters-20261116.json",
+      "bytes": 1268,
+      "sha256": "ad973c99189a9c437cac4a5c69aa97f789b23c186beaebf5a2bdc965b6747dc6"
+    }
+  ]
+}

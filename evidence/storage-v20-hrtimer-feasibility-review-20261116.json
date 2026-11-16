@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v20-high-resolution-timer-feasibility-review",
+  "reviewed_utc": "2026-11-16T12:10:11.008944+00:00",
+  "status": "statically-feasible-runtime-validation-pending",
+  "hardware_accepted": false,
+  "baseline_release": "6.18.63-t736-storage-v19",
+  "candidate_release": "6.18.63-t736-storage-v20",
+  "observed_baseline": {
+    "clocksource": "arch_sys_counter",
+    "timer": "24 MHz physical ARM architecture timer",
+    "counter_cycle_ns": 41.666666666666664,
+    "config_high_res_timers": false,
+    "config_hz": 250,
+    "config_hz_periodic": true,
+    "storage_poll_sleep_us": [
+      50,
+      100
+    ]
+  },
+  "source_findings": [
+    {
+      "path": "sources/work/linux-storage-v19/drivers/clocksource/arm_arch_timer.c",
+      "sha256": "0613e2f5d21a736e98fb993db17e8db5c8e050b813c59035fb5bd4a696dd7ead",
+      "locations": {
+        "continuous_clocksource": 155,
+        "physical_next_event": 642,
+        "oneshot_feature": 679,
+        "clockevent_registration": 711
+      },
+      "clockevent_minimum_cycles": 15,
+      "theoretical_minimum_us": 0.625
+    },
+    {
+      "path": "sources/work/linux-storage-v19/kernel/time/Kconfig",
+      "sha256": "ab77e005c1d2b53e20f584c3295630f864d036cb35401c662e573785dbbf79b6",
+      "high_res_timers_line": 191,
+      "select_tick_oneshot_line": 193
+    },
+    {
+      "path": "build/linux-storage-v19/.config",
+      "sha256": "6aab4229067aee5bea1c432d441cd4083b532766d400507e45bb4396c0672778"
+    },
+    {
+      "path": "boards/t736_mmc_dma_v19.c",
+      "sha256": "f29554e12658287abbd4af5068d1c8fa567946af7b281e6d032441f8a295e639",
+      "polling_sleep_line": 304
+    },
+    {
+      "path": "sources/work/linux-storage-v19/kernel/Kconfig.hz",
+      "sha256": "431fa2be4e9d65ac9416dc41fdcdf902e84aa95c5178ec02dcc3609fb986c148",
+      "sched_hrtick_line": 58,
+      "derived_default": "def_bool HIGH_RES_TIMERS"
+    },
+    {
+      "path": "sources/work/linux-storage-v19/kernel/sched/features.h",
+      "sha256": "569b885f44b0d840b566d2dd72856a426f0dc8272a2fce873c06be0ca3952648",
+      "runtime_defaults": {
+        "HRTICK": false,
+        "HRTICK_DL": false
+      },
+      "lines": [
+        66,
+        67
+      ]
+    }
+  ],
+  "expected_configuration_delta": {
+    "CONFIG_HIGH_RES_TIMERS": "y",
+    "CONFIG_TICK_ONESHOT": "y (derived select)",
+    "CONFIG_LOCALVERSION": "-t736-storage-v20 (release identity only)",
+    "CONFIG_SCHED_HRTICK": "y (derived def_bool HIGH_RES_TIMERS; runtime features remain disabled by default)"
+  },
+  "held_constant": [
+    "HZ=250",
+    "HZ_PERIODIC=y",
+    "NO_HZ disabled",
+    "preemption policy",
+    "SMHC3 DMA source",
+    "storage software IOS 12 MHz legacy 8-bit; existing parent-clock assumption unchanged",
+    "DTB contents",
+    "voltage and PMIC/DSU settings"
+  ],
+  "reasoning": "The active continuous clocksource and oneshot clock-event driver support the requested timer resolution statically. Enabling HRT can avoid a full 4 ms tick for each 50-100 us sleep; actual scheduled wake latency still depends on runtime activation, load and scheduling.",
+  "runtime_requirements": [
+    "Confirm v20 and CONFIG_HIGH_RES_TIMERS=y on the same board identity.",
+    "Confirm the architecture clock-event/clocksource remain active and high-resolution operation is enabled or demonstrate a short timer delay distribution.",
+    "Repeat bounded direct-I/O integrity checks with matched size/modes and inspect MMC/PVR errors.",
+    "Compare matched per-operation timing and boot/UI observations; do not treat aggregate unequal-size test durations or quantized CPU ticks as precise performance proof."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/storage-v19-coldboot-20261116.log",
+      "bytes": 38295,
+      "sha256": "f9cf510cd7ae3cc0746c9c1edf6458b1bd0e1e8f09515752d6453ffdb2bd7291"
+    },
+    {
+      "path": "evidence/storage-v19-runtime-20261116.log",
+      "bytes": 1542,
+      "sha256": "c854f761dfd8519064d90b189e402a8edabe8a2e522cb3dc36f588ed55625a31"
+    },
+    {
+      "path": "evidence/storage-v20-updater-offline-tests-20261116.log",
+      "bytes": 3955,
+      "sha256": "fd4830d8fa5c7e6d47be389246fc320547a4e803b22f66503854bcae645bdb42"
+    }
+  ],
+  "storage_clock_caveat": "SMHC3 mux0 is documented SYS_CLK24M, distinct from the board DCXO26 MHz. The driver uses a24 MHz parent constant; this is supported by source definitions but IOS alone is not a physical calibration. A later HS candidate must verify the PLL source/selection and divisors from saved readback. The HRT clocksource observation is independent: ARM physical arch_timer reports24 MHz."
+}

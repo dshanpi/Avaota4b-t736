@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "kind": "t736-emmc-clocks-readonly-storage-v20-module",
+  "status": "built-and-independently-reviewed-not-board-loaded-by-author",
+  "source": {
+    "path": "tools/validation/t736-emmc-clocks-readonly.c",
+    "sha256": "6cdee150d67934c8af06bec155a52d5b3098bafe160462b8fcf33ee495c59d5d"
+  },
+  "module": {
+    "local_path": "output/t736-emmc-clocks-readonly-storage-v20.ko",
+    "remote_path": "build/emmc-clocks-readonly-storage-v20/t736-emmc-clocks-readonly.ko",
+    "bytes": 7112,
+    "sha256": "af4213782fb1686f9b746ce9553a5411bb895e2955b79c03efe849ee37333a4b",
+    "module_name": "t736_emmc_clocks_readonly",
+    "vermagic": "6.18.63-t736-storage-v20 SMP mod_unload aarch64"
+  },
+  "build": {
+    "kernel_output": "build/linux-storage-v20",
+    "kernel_config_sha256": "8b72287839477b99c008ad37a0756bf57ea50a24dad5c14682c29ea40c558841",
+    "kernel_symvers_sha256": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "command": "make -C /home/ubuntu/t736-mainline/build/linux-storage-v20 M=/home/ubuntu/t736-mainline/build/emmc-clocks-readonly-storage-v20 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules",
+    "log": "evidence/build/emmc-clocks-readonly-storage-v20-build-20261116.log",
+    "log_sha256": "df35e4b1ae45d66d2913748d645bd134ac858d0b1a00ffc8a2522135e6ca693d",
+    "warnings": []
+  },
+  "registers": [
+    {
+      "name": "PLL_REF_CTRL",
+      "address": "0x02002000",
+      "semantics": "R/W configuration with read-only lock status; no clear-on-read"
+    },
+    {
+      "name": "PLL_PERI1_CTRL",
+      "address": "0x020020c0",
+      "semantics": "R/W configuration with read-only lock status; no clear-on-read"
+    },
+    {
+      "name": "PLL_PERI1_PAT0",
+      "address": "0x020020c8",
+      "semantics": "R/W pattern configuration; no clear-on-read"
+    },
+    {
+      "name": "PLL_PERI1_PAT1",
+      "address": "0x020020cc",
+      "semantics": "R/W pattern configuration; no clear-on-read"
+    },
+    {
+      "name": "SMHC3_CLK",
+      "address": "0x02002d30",
+      "semantics": "R/W gating/mux/divider configuration; no clear-on-read"
+    },
+    {
+      "name": "STORE_MBUS_GATE",
+      "address": "0x020025e0",
+      "semantics": "R/W master gate configuration; no clear-on-read"
+    },
+    {
+      "name": "MSI_LITE1_GATE",
+      "address": "0x0200259c",
+      "semantics": "R/W bus gate/reset configuration; no clear-on-read"
+    }
+  ],
+  "sampling": {
+    "passes": 3,
+    "registers_per_pass": 7,
+    "total_readl_calls": 21,
+    "mapping": "CCU0x02002000 size0x1000",
+    "print_after_unmap": true,
+    "atomic_snapshot": false,
+    "physical_frequency_measurement": false
+  },
+  "read_only_audit": {
+    "mmio_writes": 0,
+    "clear_on_read_targets": 0,
+    "ccf_calls": 0,
+    "mmc_requests": 0,
+    "devmem_access": false,
+    "dma_operations": 0,
+    "clock_reset_voltage_changes": false,
+    "old_diagnostic_sources_modified": false,
+    "undefined_symbols": [
+      "arm64_use_ng_mappings",
+      "__ioremap_prot",
+      "iounmap",
+      "memset",
+      "of_machine_compatible_match",
+      "_printk"
+    ]
+  },
+  "references": {
+    "manual": "evidence/vendor-reference/reference-1.txt",
+    "manual_sections": [
+      "4.1.6.11 PERI1 CTRL",
+      "4.1.6.13 PERI1 PAT0",
+      "4.1.6.14 PERI1 PAT1",
+      "4.1.6.78 MSI_LITE1",
+      "4.1.6.82 MBUS_MAT_CLK_GATING",
+      "4.1.6.133 SMHC3 CLK"
+    ],
+    "pll_ref_donor": "Tina U-Boot plat-sun60iw2p1/clock_autogen.h lines3-43; Linux ccu-sun60iw2.c39-55",
+    "parent_clock_review": "evidence/storage-hs-parent-clock-independent-review-20261116.json"
+  },
+  "independent_source_review": {
+    "reviewer": "code_index",
+    "status": "PASS",
+    "source_sha256": "6cdee150d67934c8af06bec155a52d5b3098bafe160462b8fcf33ee495c59d5d",
+    "findings": "All seven offsets fit mapped CCU range; no clear registers;21 readl only; no writel/CCF/reset/regulator/DMA/MMC operation; stability limited to3 non-atomic observations",
+    "board_touched_by_reviewer": false
+  },
+  "runtime_commands": [
+    "test \"$(uname -r)\" = 6.18.63-t736-storage-v20",
+    "sudo insmod /home/t736/t736-emmc-clocks-readonly-storage-v20.ko",
+    "sudo dmesg | grep 't736-emmc-clocks-ro:'",
+    "sudo rmmod t736_emmc_clocks_readonly"
+  ],
+  "hardware_accessibility": "Real nonsecure bus access and resulting register values remain root-owned board validation, not guaranteed by static register semantics.",
+  "board_operations_by_author": false
+}

@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-16",
+  "version": "24.2.6603887-2",
+  "package": "/home/ubuntu/t736-mainline/build/gpu-userspace-v2/t736-img-userspace-candidate_24.2.6603887-2_arm64.deb",
+  "package_sha256": "1455889d0c10ec5d0b49e839e0e9d3f7560869e65da5fbee02e477039c78e16e",
+  "manifest_sha256": "9ae49ed015dd2fafc55361eeaab3f23789f9b42f0f18a36eb341cb1ff3b02a69",
+  "runtime_view_sha256": "3201fa05a36f0add5e88008438557d7305587f53214d14254ffb9839b14cb332",
+  "factory_payload_entries_identical_to_v1": 54,
+  "validation": [
+    "Every original factory file hash and symlink record matches -1",
+    "Extracted resulting .deb and checked every manifest file/link",
+    "Extracted runtime-gles view passed packaged helper --verify",
+    "Wrapper/env shell syntax verified; no default Vulkan ICD override"
+  ],
+  "hardware_basis": "Root reports minimal runtime-gles view keeps GNOME shell running, vendor EGL/GLES plus system libvulkan1.4.309, no swrast/llvmpipe in GNOME shell mappings, firmware OK/HWR0. Newly packaged -2 bytes still require deployment acceptance.",
+  "original_v1_retained": true
+}

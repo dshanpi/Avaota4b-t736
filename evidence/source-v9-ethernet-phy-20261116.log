@@ -1,0 +1,33 @@
+echo PHY_READ; perl -e 'socket(my $s,2,2,0) or die $!; for my $r (0,1,1,4,5,9,10,15,17,18,26,31) {my $q=pack("a16SSSS x16","end0",1,$r,0,0); ioctl($s,0x8948,$q) or die $!; printf "PHY[%02x]=%04x\n",$r,unpack("S",substr($q,22,2));}'; ethtool --show-eee end0; ethtool end0 | grep -E 'Speed:|Duplex:|master-slave|Link detected'; cat /sys/class/net/end0/phydev/phy_id; dmesg | grep -Ei 'downshift|end0.*Link' | tail -n 8; echo PHY_READ_DONE
+
+PHY_READ
+PHY[00]=1040
+PHY[01]=79ad
+PHY[01]=79ad
+PHY[04]=0de1
+PHY[05]=dde1
+PHY[09]=0000
+PHY[0a]=0800
+PHY[0f]=2000
+PHY[11]=0000
+PHY[12]=0000
+PHY[1a]=30dc
+PHY[1f]=0a42
+EEE settings for end0:
+	EEE status: enabled - inactive
+	Tx LPI: 1000000 (us)
+	Supported EEE link modes:  100baseT/Full
+	                           1000baseT/Full
+	Advertised EEE link modes:  100baseT/Full
+	                            1000baseT/Full
+	Link partner advertised EEE link modes:  Not reported
+	Speed: 100Mb/s
+	Duplex: Full
+	master-slave cfg: preferred slave
+	Link detected: yes
+0x001cc916
+[   29.769910] t736-dwmac 4500000.ethernet end0: configuring for phy/rgmii-rxid link mode
+[   43.273386] RTL8211F Gigabit Ethernet stmmac-0:01: Downshift occurred from negotiated speed 1Gbps to actual speed 100Mbps, check cabling!
+[   43.289431] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+PHY_READ_DONE
+root@t736:~# 

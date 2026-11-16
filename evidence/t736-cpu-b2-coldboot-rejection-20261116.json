@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-16",
+  "status": "B2_STORAGE_UPDATE_VERIFIED_BUT_CPU_COLD_BOOT_ACCEPTANCE_FAILED",
+  "log": "evidence\\source-v9-cpu-b2-coldboot-20261116.log",
+  "log_sha256": "4cb0fc2d8abead59b2ef3276966dcd97f958ec0206f513562613a08bd8d0628a",
+  "package_sha256": "306fb10d7612c7fcc9bd16b8588737e3153c67103ea470226b34c7d28fdbcfa1",
+  "observed": {
+    "a76_rc": -5,
+    "a76_stage": 4,
+    "before": "40801400/40801400/00000000",
+    "after_safe_rollback": "40802700/40802700/00000000",
+    "mutation": 1,
+    "rollback": 1,
+    "rollback_rc": 0,
+    "slow_verified": 1,
+    "guard_failed": 0,
+    "a55_rc": -2,
+    "a55_stage": 1,
+    "a55_mutation": 0,
+    "a55_final": "f8801300/f8801300/03000000",
+    "linux_booted": true
+  },
+  "interpretation": "B1 hit verification error while configuring A76, then restored verified slow/PLL-off retaining committedN39. A55 refused its required A76 target precondition and remained unchanged. Successful package storage write/readback is not CPU frequency acceptance.",
+  "uncertain": "stage4 covers mux/LDO/OUTPUT/N/EN/LOCK_EN/UPDATE, so existing log does not identify the failing write/readback; no unique hardware root cause asserted.",
+  "comparison": "B1 cold-enabled N39 directly; validated runtime v4 first cold-enabledN32/ext2=416MHz then warm-retunedN39/ext1=1014MHz. Other strict readback timing differences are under review.",
+  "decision": "Do not promote B2 as successful v10 default. Preserve B1/B2; prepare separately named C candidate with exact proven two-stage runtime sequence, detailed failure substages, strict old/desired N and safe rollback. CPU0 runtime hotplug remains unsupported."
+}

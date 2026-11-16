@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "kind": "t736-v23-updater-independent-review",
+  "status": "PASS-static-AST-bindings-and-identity-review",
+  "reviewer": "code_index",
+  "updater": {
+    "path": "tools/validation/update_t736_storage_v23.py",
+    "sha256": "d6b3c43bfb99d94b53544ae9586fa83c5a9be2ff233086eb947da5574d3c3541"
+  },
+  "baseline_updater": {
+    "path": "tools/validation/update_t736_storage_v22.py",
+    "sha256": "77d4a68f9a2cfb3669162e9b3ca3028383adae269589cdc9c6bda4ded7cf8275"
+  },
+  "validation": [
+    "Python compile passed",
+    "All28 function ASTs equal frozen v22 after exactly7 approved version-string mappings plus matching environment-keyword rename; no transaction/control-flow changes",
+    "All11 fixed artifact bindings equal final v23 build/package/PVR evidence",
+    "Previous running-release hashes equal frozen v22; permanent fallback OLD and baseline hashes remain v16",
+    "Expected running-release tuple remains OLD/PREVIOUS; new version23 and rootUUID checked",
+    "Read source diff for identity/mount namespace/lock/tempfile changes; no raw disk/SPL/GPT/bootcmd operations introduced"
+  ],
+  "bound_artifacts": {
+    "kernel_sha256": "64b25cd6f4160d239aceab28222ad74b2c734f43f4f1adaafd4fedb0ea682ff0",
+    "kernel_bytes": 5604114,
+    "pvr_sha256": "fb0f38a957f84854805ce208601c043c6604b8f47c7737b4541cebef3d762104",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "674aa1ca981d81b18826321fc76208698d9fc2ba04206c1a43484dd0f26cb589",
+    "payload_manifest_sha256": "dc45423f85a6d77a836215631c56860e6fb46028ec2ef96a3921e3cd67dd646e",
+    "raw_image_sha256": "89e626ddc88c62693f1e45047896b46e899b2e21bc477b4fd6caaf412d007e94",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "candidate_dtb_bytes": 12028,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "scope": "Static independent review only; actual inputs and14 offline injection tests owned by backup_audit; board acceptance and application owned by root",
+  "referenced_evidence": {
+    "evidence/storage-v23-build-20261116.json": "d6fa32fa281370f9ea7cdb9b1eb90c56b632bbb686c8154719319089c71e2747",
+    "evidence/storage-v23-package-20261116.json": "5dcf467fc27568bf4e49ec61e5b08b78062df50573d0b8f4a58d86ab670b2604",
+    "evidence/storage-v23-pvr-build-20261116.json": "bb35ce642456ff1bdae0eb321aee42529a53c5e1335159bb696017f9bf3dab5d"
+  },
+  "board_accepted": false
+}

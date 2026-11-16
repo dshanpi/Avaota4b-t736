@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "source": "source-v9-firefox-renderer-egl-v2-20261116.json",
+  "source_sha256": "b98a5db8cdd33220e69eb81f70c248b1164997de13abed03c9895c5646b497da",
+  "test": "egl-gles",
+  "about_support_extraction_completed": false,
+  "tcp_connected_at_seconds": 68.332,
+  "protocol_greeting_received": false,
+  "failure_stage": "After TCP connect, waiting for the initial Marionette protocol greeting; 20-second socket timeout in schema2",
+  "timeout_interpretation": "The schema2 field marionette_ready_seconds actually measured TCP connection, not a complete Marionette greeting or session. This was not a 120-second listener startup failure.",
+  "sample_window_seconds": 66.98,
+  "sample_count": 14,
+  "processes": [
+    {
+      "pid": 2279,
+      "comm": "firefox-esr",
+      "sample_count": 14,
+      "sampled_states": {
+        "D": 12,
+        "S": 2
+      },
+      "sampled_wait_channels": {
+        "folio_wait_bit_common": 2,
+        "blk_mq_get_tag": 10,
+        "do_sys_poll": 1,
+        "futex_do_wait": 1
+      },
+      "counter_deltas": {
+        "major_faults": 110,
+        "minor_faults": 15457,
+        "user_ticks": 264,
+        "system_ticks": 47
+      }
+    },
+    {
+      "pid": 2621,
+      "comm": "firefox-esr",
+      "sample_count": 14,
+      "sampled_states": {
+        "R": 1,
+        "S": 6,
+        "D": 7
+      },
+      "sampled_wait_channels": {
+        "0": 1,
+        "do_sys_poll": 5,
+        "blk_mq_get_tag": 5,
+        "futex_do_wait": 1,
+        "folio_wait_bit_common": 2
+      },
+      "counter_deltas": {
+        "major_faults": 37,
+        "minor_faults": 11880,
+        "user_ticks": 250,
+        "system_ticks": 32
+      }
+    },
+    {
+      "pid": 2634,
+      "comm": "glxtest",
+      "sample_count": 10,
+      "sampled_states": {
+        "Z": 10
+      },
+      "sampled_wait_channels": {
+        "0": 10
+      },
+      "counter_deltas": {
+        "major_faults": 0,
+        "minor_faults": 0,
+        "user_ticks": 0,
+        "system_ticks": 0
+      }
+    }
+  ],
+  "partition_io": {
+    "device": "mmcblk0p4",
+    "completed_reads": 7844,
+    "completed_writes": 8568,
+    "read_MiB": 30.640625,
+    "written_MiB": 33.46875,
+    "aggregate_MiB_per_second": 0.9571420573305464,
+    "mean_bytes_per_read_request": 4096.0,
+    "mean_bytes_per_write_request": 4096.0,
+    "mean_read_completion_ms_including_queue": 213.53760836308007,
+    "mean_write_completion_ms_including_queue": 280.0329131652661,
+    "sampled_inflight_min": 57,
+    "sampled_inflight_max": 64,
+    "weighted_io_time_delta_ms": 4074310,
+    "scope": "Whole root partition, including simultaneous apt activity; cannot attribute these byte totals solely to Firefox"
+  },
+  "limitations": [
+    "5-second samples are snapshots, not continuous blocked-time measurements",
+    "Per-process /proc/PID/io is unavailable in this kernel; no per-process byte attribution",
+    "Request completion time includes queueing; this is not intrinsic eMMC medium latency",
+    "No protocol greeting, about:support page or compositor result was obtained"
+  ],
+  "conclusion": "Observed queued block I/O and page waits explain startup non-responsiveness sufficiently to prioritize storage and CPU fixes. This run neither verifies nor disproves EGL/GLES hardware WebRender.",
+  "next_probe": "tools/validation/firefox_renderer_probe.py schema3 separates TCP, greeting and command phases and retains normal sandbox/blocklist policy"
+}

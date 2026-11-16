@@ -1,0 +1,11 @@
+echo CPU_RATE_COMPARE; for c in 0 6; do echo CPU=$c; timeout 15 taskset -c "$c" python3 -c 'import hashlib,time; b=bytes(1048576); t=time.monotonic(); [hashlib.sha256(b).digest() for _ in range(16)]; print("sha256_16MiB_seconds",time.monotonic()-t)'; done; echo 0 > /sys/devices/system/cpu/cpu7/online; echo 0 > /sys/devices/system/cpu/cpu6/online; echo TEMP_A55_ONLY; cat /sys/devices/system/cpu/online; dmesg -n 4; echo CPU_DIAG_DONE
+
+CPU_RATE_COMPARE
+CPU=0
+sha256_16MiB_seconds 0.07840085199995883
+CPU=6
+sha256_16MiB_seconds 1.1371721760001492
+TEMP_A55_ONLY
+0-5
+CPU_DIAG_DONE
+root@t736:~# 

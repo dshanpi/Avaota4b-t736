@@ -1,0 +1,33 @@
+/home/t736/t736-emmc-clocks-readonly-v2-storage-v20.ko: 成功
+[  352.836314] t736-emmc-clocks-ro-v2: begin samples=3 registers=10; raw reads only
+[  352.836343] t736-emmc-clocks-ro-v2: sample=0 PLL_REF_CTRL addr=0x02002000 value=0xf8675f00
+[  352.836354] t736-emmc-clocks-ro-v2: sample=0 PLL_PERI0_CTRL addr=0x020020a0 value=0xff126310
+[  352.836362] t736-emmc-clocks-ro-v2: sample=0 PLL_PERI0_PAT0 addr=0x020020a8 value=0x00000000
+[  352.836370] t736-emmc-clocks-ro-v2: sample=0 PLL_PERI0_PAT1 addr=0x020020ac value=0x30000000
+[  352.836378] t736-emmc-clocks-ro-v2: sample=0 PLL_PERI1_CTRL addr=0x020020c0 value=0x40126310
+[  352.836386] t736-emmc-clocks-ro-v2: sample=0 PLL_PERI1_PAT0 addr=0x020020c8 value=0x00000000
+[  352.836393] t736-emmc-clocks-ro-v2: sample=0 PLL_PERI1_PAT1 addr=0x020020cc value=0x30000000
+[  352.836401] t736-emmc-clocks-ro-v2: sample=0 SMHC3_CLK addr=0x02002d30 value=0x80000000
+[  352.836408] t736-emmc-clocks-ro-v2: sample=0 STORE_MBUS_GATE addr=0x020025e0 value=0xf1055803
+[  352.836416] t736-emmc-clocks-ro-v2: sample=0 MSI_LITE1_GATE addr=0x0200259c value=0x00030001
+[  352.836424] t736-emmc-clocks-ro-v2: sample=1 PLL_REF_CTRL addr=0x02002000 value=0xf8675f00
+[  352.836431] t736-emmc-clocks-ro-v2: sample=1 PLL_PERI0_CTRL addr=0x020020a0 value=0xff126310
+[  352.836438] t736-emmc-clocks-ro-v2: sample=1 PLL_PERI0_PAT0 addr=0x020020a8 value=0x00000000
+[  352.836446] t736-emmc-clocks-ro-v2: sample=1 PLL_PERI0_PAT1 addr=0x020020ac value=0x30000000
+[  352.836454] t736-emmc-clocks-ro-v2: sample=1 PLL_PERI1_CTRL addr=0x020020c0 value=0x40126310
+[  352.836461] t736-emmc-clocks-ro-v2: sample=1 PLL_PERI1_PAT0 addr=0x020020c8 value=0x00000000
+[  352.836469] t736-emmc-clocks-ro-v2: sample=1 PLL_PERI1_PAT1 addr=0x020020cc value=0x30000000
+[  352.836476] t736-emmc-clocks-ro-v2: sample=1 SMHC3_CLK addr=0x02002d30 value=0x80000000
+[  352.836484] t736-emmc-clocks-ro-v2: sample=1 STORE_MBUS_GATE addr=0x020025e0 value=0xf1055803
+[  352.836491] t736-emmc-clocks-ro-v2: sample=1 MSI_LITE1_GATE addr=0x0200259c value=0x00030001
+[  352.836499] t736-emmc-clocks-ro-v2: sample=2 PLL_REF_CTRL addr=0x02002000 value=0xf8675f00
+[  352.836506] t736-emmc-clocks-ro-v2: sample=2 PLL_PERI0_CTRL addr=0x020020a0 value=0xff126310
+[  352.836514] t736-emmc-clocks-ro-v2: sample=2 PLL_PERI0_PAT0 addr=0x020020a8 value=0x00000000
+[  352.836521] t736-emmc-clocks-ro-v2: sample=2 PLL_PERI0_PAT1 addr=0x020020ac value=0x30000000
+[  352.836529] t736-emmc-clocks-ro-v2: sample=2 PLL_PERI1_CTRL addr=0x020020c0 value=0x40126310
+[  352.836536] t736-emmc-clocks-ro-v2: sample=2 PLL_PERI1_PAT0 addr=0x020020c8 value=0x00000000
+[  352.836544] t736-emmc-clocks-ro-v2: sample=2 PLL_PERI1_PAT1 addr=0x020020cc value=0x30000000
+[  352.836551] t736-emmc-clocks-ro-v2: sample=2 SMHC3_CLK addr=0x02002d30 value=0x80000000
+[  352.836559] t736-emmc-clocks-ro-v2: sample=2 STORE_MBUS_GATE addr=0x020025e0 value=0xf1055803
+[  352.836566] t736-emmc-clocks-ro-v2: sample=2 MSI_LITE1_GATE addr=0x0200259c value=0x00030001
+[  352.836574] t736-emmc-clocks-ro-v2: end stable_across_three_passes=1; no MMIO writes performed

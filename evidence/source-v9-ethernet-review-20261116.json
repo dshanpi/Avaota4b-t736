@@ -1,0 +1,190 @@
+{
+  "schema": 1,
+  "status": "100/full round trips and direct HTTPS verified; gigabit acceptance not passed",
+  "board_control": "serial, USB, power and flashing remain with the primary agent",
+  "current_evidence": "source-v9-ethernet-initial-20261116.log",
+  "baseline": {
+    "kernel": "6.18.63-t736-gpu-v15",
+    "interface": "end0",
+    "address": "10.0.0.249/24",
+    "gateway": "10.0.0.1",
+    "speed_mbps": 100,
+    "duplex": "full",
+    "local_and_partner_advertise_1000full": true,
+    "rx_checksum": true,
+    "tx_checksum": true,
+    "tso": false,
+    "listed_mac_crc_alignment_fifo_checksum_bus_errors": 0,
+    "gateway_ping": {
+      "sent": 3,
+      "received": 3,
+      "average_ms": 0.513
+    },
+    "build_host_ping": {
+      "sent": 3,
+      "received": 3,
+      "average_ms": 1.353
+    }
+  },
+  "routing": {
+    "build_host": "192.168.1.228",
+    "build_host_route_to_board": "10.0.0.249 via 192.168.1.1 dev ens33 src 192.168.1.228",
+    "previous_board_tcp_nat_source": "192.168.1.50",
+    "conclusion": "Inbound SSH timeout is not evidence of a MAC or TCP defect; use board-initiated transfers.",
+    "host_network_changes": false,
+    "current_board_tcp_nat_source": "192.168.1.53",
+    "nat_upstream_mac": "60:be:b4:01:48:ad",
+    "nat_inside_gateway_mac": "60:be:b4:01:48:ac",
+    "old_and_current_nat_addresses_have_same_upstream_mac": true
+  },
+  "previous_verified_configuration": {
+    "evidence": [
+      "ethernet-v11-selftest.log",
+      "ethernet-v11-network.log",
+      "ethernet-v11-network-server.json"
+    ],
+    "boot_chain": "old vendor chain; cannot substitute for independent-chain acceptance",
+    "phy_mode": "rgmii-rxid",
+    "mac_tx_taps": 13,
+    "mac_rx_taps": 10,
+    "phy_rx_delay_ns": 2,
+    "phy_tx_delay_ns": 0,
+    "speed_mbps": 1000,
+    "download_and_upload_bytes_each": 67108864,
+    "sha256_verified": true,
+    "mac_error_counters_increased": false
+  },
+  "clock_review": {
+    "v9_first_boot_pll_peri0": "0xff126310",
+    "old_vendor_boot_pll_peri0": "0xff126310",
+    "manual_formula": "GMAC0_PHY_CLK = PERI0_150M / (FACTOR_M + 1)",
+    "driver_factor_m": 5,
+    "expected_phy_clock_hz": 25000000,
+    "gpu_driver_checks_pll_ref24m_and_peri400m": true,
+    "scope": "configuration evidence only; not a physical frequency measurement",
+    "next_readback": [
+      "PLL_REF 0x02002000",
+      "PLL_PERI0 0x020020a0",
+      "PERI0PLL_GATE_EN 0x02003908",
+      "PERI0PLL_GATE_STAT 0x02003988",
+      "GMAC0_PHY_CLK 0x02003410"
+    ]
+  },
+  "dns_and_https": {
+    "old_udp_dns_failed_with_offload_on_and_off": true,
+    "old_udp_inchecksumerrors": 0,
+    "old_alidns_tls_dns_succeeded": true,
+    "old_https_tls_unexpected_eof": "source-v7-direct-https-probe-20261116.log",
+    "separate_clock_certificate_failure_fixed_by_utc": "desktop-state-network-backup-retry-20261116.log",
+    "build_host_comparison_utc": "2026-11-16T09:28:39Z",
+    "build_host_direct_ipv4_https": {
+      "www.baidu.com": 200,
+      "mirrors.aliyun.com/debian/": 200,
+      "www.kernel.org": 200
+    },
+    "current_board_browser_acceptance": "Direct IPv4 HTTPS via curl passed for three sites after the user disabled the OpenWrt proxy; Firefox rendering and video remain separate validation",
+    "current_board_clock_correct_and_ntp_synchronized": true,
+    "current_board_dns_example_com_success_ms": 126.3,
+    "current_clock_or_dns_cause_not_supported": true,
+    "packet_comparison": "source-v9-web-buildhost-comparison-20261116.json",
+    "build_host_same_target_ip": "183.3.205.11",
+    "build_host_incoming_ttl": 55,
+    "build_host_default_tls_tls12_http_all_200": true,
+    "packet_analysis": "source-v9-web-path-analysis-20261116.json",
+    "target_gateway": "OpenWrt at 10.0.0.1",
+    "single_target_relay_http_status": 200,
+    "relay_curl_rc": 0,
+    "relay_tls_certificate_verified": true,
+    "persistent_proxy_configured": false,
+    "conclusion": "Failure isolated to the OpenWrt gateway/public-egress path; direct HTTPS recovered after the user disabled its proxy. No board TLS, MAC-delay or offload change was needed for this recovery.",
+    "pre_gateway_change_tls_eof_multiple_sites": true,
+    "pre_gateway_change_http_empty_reply": true,
+    "latest_direct_https_evidence": "source-v9-web-after-proxy-20261116.log",
+    "current_board_direct_ipv4_https": {
+      "https://www.baidu.com": {
+        "http_status": 200,
+        "tls_seconds": 0.286882,
+        "total_seconds": 0.297144
+      },
+      "https://mirrors.aliyun.com/debian/": {
+        "http_status": 200,
+        "tls_seconds": 0.077447,
+        "total_seconds": 0.090547
+      },
+      "https://www.kernel.org": {
+        "http_status": 200,
+        "tls_seconds": 0.308386,
+        "total_seconds": 0.382074
+      }
+    }
+  },
+  "tools": {
+    "server": "tools/validation/ethernet_roundtrip_server.py",
+    "client": "tools/validation/ethernet_roundtrip_client.py",
+    "default_rounds": 3,
+    "default_bytes_each_direction_per_round": 67108864,
+    "default_server_deadline_seconds": 600,
+    "localhost_selftest": {
+      "bytes": 1048576,
+      "rounds": 1,
+      "sha256_both_directions": true,
+      "unknown_path_http404": true,
+      "server_auto_stopped": true
+    },
+    "selftest_is_not_board_acceptance": true,
+    "web_probe": "tools/validation/ethernet_web_probe.py"
+  },
+  "next_steps": [
+    "Retrieve final board counter deltas from the completed three-round transfer record before claiming error-free acceptance.",
+    "Diagnose PHY downshift before changing established RGMII delays or MAC offloads.",
+    "Require sustained 1000/full with real throughput, hashes, no increasing error counters and cold boot before declaring gigabit passed."
+  ],
+  "current_roundtrip": {
+    "server_evidence": "source-v9-ethernet-server-20261116.json",
+    "rounds": 3,
+    "bytes_per_direction_per_round": 67108864,
+    "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc",
+    "all_roundtrips_match": true,
+    "server_download_mbps": [
+      94.8345,
+      95.7193,
+      95.7665
+    ],
+    "server_upload_mbps": [
+      94.0779,
+      94.0802,
+      94.0868
+    ],
+    "current_link_mbps": 100,
+    "gigabit_accepted": false,
+    "server_closed_after_test": true
+  },
+  "phy_readonly": {
+    "evidence": "source-v9-ethernet-phy-20261116.log",
+    "phy_id": "0x001cc916",
+    "registers": {
+      "00": "1040",
+      "01": "79ad",
+      "04": "0de1",
+      "05": "dde1",
+      "09": "0000",
+      "0a": "0800",
+      "0f": "2000",
+      "11": "0000",
+      "12": "0000",
+      "1a": "30dc",
+      "1f": "0a42"
+    },
+    "eee": "enabled, inactive; partner EEE modes not reported",
+    "explicit_kernel_downshift": true,
+    "master_slave_failure_flag_reported": false,
+    "thousandbase_local_remote_rx_ok_flags_reported": false,
+    "cached_advertisement_vs_reg9_discrepancy": true,
+    "cable_fault_proven": false,
+    "cable_test_supported_by_current_rtl8211f_driver": false,
+    "cable_test_performed": false,
+    "page_or_advertisement_writes_performed": false,
+    "nway_restart_note": "ethtool -r reaches phy_restart_aneg/genphy_restart_aneg and sets BMCR restart only; it does not rewrite MII_CTRL1000 advertisement. Do not use a restart alone to interpret missing register9 advertisement bits.",
+    "next_hardware_discriminator": "Use a known gigabit-capable full-eight-wire Cat5e/6 cable and known gigabit LAN port, then observe reinitialization on the next already-planned cold boot. If downshift persists, collect PHY reference-clock and supply readback."
+  }
+}

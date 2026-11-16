@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "status": "isolated compile-only preparation; not deployable",
+  "baseline": "/home/ubuntu/t736-mainline/sources/work/linux-storage-v16",
+  "source": "/home/ubuntu/t736-mainline/sources/work/linux-media-v17",
+  "output": "/home/ubuntu/t736-mainline/build/linux-media-v17",
+  "enabled_hardware_nodes": [],
+  "board_access": false,
+  "baseline_config_sha256": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e",
+  "candidate_config_sha256": "574cf5431f8a933457bdc12920ed591d0763fab7251dff123fc16a00a707e880",
+  "imports": [
+    {
+      "source": "bsp/drivers/iommu/sunxi-iommu-common.c",
+      "source_sha256": "9999c2ec6db09146bc4648f1134031e1265312222c0df67c32f18e57138096c5",
+      "target": "drivers/iommu/t736/sunxi-iommu-common.c",
+      "target_sha256": "9999c2ec6db09146bc4648f1134031e1265312222c0df67c32f18e57138096c5"
+    },
+    {
+      "source": "bsp/drivers/iommu/sunxi-iommu-pgtable.c",
+      "source_sha256": "c48d2f4c80f3d15455e811eaddbea0ab485af217654f9823e927fe299f329b76",
+      "target": "drivers/iommu/t736/sunxi-iommu-pgtable.c",
+      "target_sha256": "c48d2f4c80f3d15455e811eaddbea0ab485af217654f9823e927fe299f329b76"
+    },
+    {
+      "source": "bsp/drivers/iommu/sunxi-iommu-v2.c",
+      "source_sha256": "2cfa66d29a1223d259486c29ef6722fc6eb3679990f39592c8c4d4b11442e31d",
+      "target": "drivers/iommu/t736/sunxi-iommu-v2.c",
+      "target_sha256": "149acf6f6aab50846254c31dd6fdc8dd77483e1295b9972a444458dd614e6633"
+    },
+    {
+      "source": "bsp/drivers/iommu/sunxi-iommu.h",
+      "source_sha256": "1e156fd9cef40a7bebb8b95cb3141a510d60a6367c5ecedebb0e2dda79e1011a",
+      "target": "drivers/iommu/t736/sunxi-iommu.h",
+      "target_sha256": "f336f3216ce72a5cc0ef2b2feb384805bc85f583fb0e68627797d5897eaf50f4"
+    },
+    {
+      "source": "bsp/drivers/iommu/sunxi-iommu-pgtable.h",
+      "source_sha256": "93ff578b4632306c9403f1edd9c5e1841558d465ecc112caf07346d47373eba3",
+      "target": "drivers/iommu/t736/sunxi-iommu-pgtable.h",
+      "target_sha256": "93ff578b4632306c9403f1edd9c5e1841558d465ecc112caf07346d47373eba3"
+    },
+    {
+      "source": "bsp/include/sunxi-iommu.h",
+      "source_sha256": "1fa3cf8addfe1838ec395d2e36209ebcaa2873f99c5b3721b5420ee0aac946ea",
+      "target": "drivers/iommu/t736/include/sunxi-iommu.h",
+      "target_sha256": "1fa3cf8addfe1838ec395d2e36209ebcaa2873f99c5b3721b5420ee0aac946ea"
+    }
+  ],
+  "intentional_pending": [
+    "Linux 6.18 IOMMU API port",
+    "domain/group lifetime and attach semantics",
+    "VE/NSI/IOMMU clock and reset providers",
+    "VE_DEC power domain",
+    "Cedar ioctl/DMA safety port"
+  ]
+}

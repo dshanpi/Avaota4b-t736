@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-16",
+  "type": "read_only_external_reference",
+  "repository": "https://github.com/alexcaoys/allwinner-bsp",
+  "ref": "linux-6.18.y",
+  "commit": "656a550c826787e7e72fae58ca793df9e0988ac8",
+  "evidence_scope": "Repository author reports Radxa Cubie A7Z results. Not a T736 board validation. No files applied or software deployed.",
+  "readme": {
+    "url": "https://github.com/alexcaoys/allwinner-bsp/blob/linux-6.18.y/README.md",
+    "blob_sha": "11cc1c7951d6fbc823685347458f6d56cca9ce47",
+    "excerpt": "The Imagination driver on Linux 6.18 works well on the A733. \\\nAfter placing the firmware [here](https://gitlab.freedesktop.org/imagination/linux-firmware/-/tree/powervr/powervr) in the correct location, the driver loads successfully. \\\nBuilding the Mesa driver from the main branch enables full functionality: `vulkaninfo` can detects the GPU, Wayland `sway` works with GLES, `vkmark` runs on-screen. \\\nThanks to icenowy & iuncuim for assistance with debugging."
+  },
+  "power_domain_patch": {
+    "url": "https://github.com/alexcaoys/allwinner-bsp/blob/656a550c826787e7e72fae58ca793df9e0988ac8/patches/0005-pmdomain-sunxi-support-power-domain-flags-for-pck600.patch",
+    "blob_sha": "7122533ee2677a570fc13577ec614e07948f631a",
+    "change": "A733 GPU_CORE uses GENPD_FLAG_ALWAYS_ON; GPU_TOP is separate.",
+    "upstream_message": "https://lore.kernel.org/linux-sunxi/20260510-pck600-a733-gpu-v1-1-d6393646d714@gmail.com/"
+  },
+  "device_tree": {
+    "url": "https://github.com/alexcaoys/allwinner-bsp/blob/656a550c826787e7e72fae58ca793df9e0988ac8/configs/linux-6.18/sun60iw2p1.dtsi",
+    "blob_sha": "2053831600045b72c84ca949fe374694581f6dac",
+    "excerpt": "\t\tgpu: gpu@1800000 {\n\t\t\tcompatible = \"img,img-bxm-4-64\", \"img,img-rogue\";\n\t\t\treg = <0x0 0x01800000 0x0 0x8ffff>;\n\t\t\tinterrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;\n\t\t\tclocks = <&ccu CLK_GPU0>,\n\t\t\t\t <&ccu CLK_PLL_GPU0>,\n\t\t\t\t <&ccu CLK_BUS_GPU0>;\n\t\t\tclock-names = \"core\", \"mem\", \"sys\";\n\t\t\tpower-domains = <&pck600 PD_GPU_CORE>,\n\t\t\t\t<&pck600 PD_GPU_TOP>;\n\t\t\tpower-domain-names = \"a\", \"b\";\n\t\t\tresets = <&ccu RST_BUS_GPU0>;\n\t\t\toperating-points-v2 = <&gpu_opp_table>;\n\t\t\t#cooling-cells = <2>;\n\t\t};"
+  },
+  "conclusion": "This is an upstream PowerVR kernel plus matching Mesa stack alternative, not a ready-made port of Tina DDK 24.2. Do not combine upstream DRM UAPI with Tina proprietary userspace. Primary plan uses Tina DDK and GNOME GLES2/EGL first."
+}

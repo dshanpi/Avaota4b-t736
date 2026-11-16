@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v20-hrtimer-design",
+  "status": "built-and-statically-reviewed-hardware-status-tracked-separately",
+  "baseline": "v19 IDIE candidate with successful CMD8, filesystem mount, scratch-file DMA integrity and GPU readback",
+  "baseline_evidence": "evidence/storage-v19-dma-integrity-20261116.json",
+  "observed_problem": {
+    "requested_sleep_us": 50,
+    "median_actual_sleep_us": 3999.1555,
+    "config_high_res_timers": false,
+    "hz": 250,
+    "root_reported_boot_seconds": 32.35
+  },
+  "change": "Enable CONFIG_HIGH_RES_TIMERS only as a user-selectable feature",
+  "required_derived_config": [
+    "CONFIG_TICK_ONESHOT=y",
+    "CONFIG_SCHED_HRTICK=y (Kconfig def_bool HIGH_RES_TIMERS)"
+  ],
+  "unchanged": [
+    "HZ250/HZ_PERIODIC",
+    "runtime HRTICK/HRTICK_DL feature defaults false",
+    "MMC source, IDIE,12MHz legacy8bit,coherent DMA",
+    "DTB b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "voltage,PLL,gate configuration",
+    "GPU/display/media drivers"
+  ],
+  "build_isolation": {
+    "source": "sources/work/linux-storage-v19 reused frozen/read-only",
+    "output": "build/linux-storage-v20 copied from v19; keeps compiler source paths stable",
+    "verification": "assert exact config delta and all recorded v19 input/source hashes unchanged after build"
+  },
+  "board_checks": [
+    "High-resolution timer activation",
+    "Same50us sleep distribution and DMA poll latency",
+    "Same bounded scratch-file integrity/performance workload",
+    "Boot time, dmesg/MMC/EXT4 errors and GPU/desktop",
+    "One-shot trial with v16 default fallback retained"
+  ],
+  "not_integrated_drafts": [
+    "boards/t736_mmc_hs_draft.c",
+    "boards/t736_mmc_clock_hs_draft.h",
+    "boards/t736_mmc_clock_v19.h"
+  ],
+  "high_speed_status": "HS52 draft is uncompiled and not part of v20; no25/50/52MHz change in this candidate",
+  "builder": "tools/build_hrtimer_kernel.sh",
+  "builder_sha256": "ce4df0aac48eb61184579c6954cda177787c504ae09d17a396a6957c462be389",
+  "build_record": "evidence/storage-v20-build-20261116.json",
+  "package_record": "evidence/storage-v20-package-20261116.json",
+  "pvr_record": "evidence/storage-v20-pvr-build-20261116.json",
+  "updater_review": "evidence/storage-v20-updater-independent-review-20261116.json"
+}

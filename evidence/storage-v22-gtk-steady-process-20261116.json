@@ -1,0 +1,3088 @@
+{
+  "schema": "t736-ui-process-observation-v1",
+  "kernel": "6.18.63-t736-storage-v22",
+  "boot_id": "0efb1034-4c52-4c73-96de-8a8db4386a96",
+  "sample_hz": 1,
+  "scope": "Xorg and GNOME Shell process/thread CPU and driver GPU util during unchanged steady probe; no scheduler changes",
+  "hz": 100,
+  "samples": [
+    {
+      "time": 0.001373251000018172,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 533,
+            "stime": 379,
+            "start_ticks": 9441,
+            "last_cpu": 2
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 498,
+              "stime": 335,
+              "start_ticks": 9441,
+              "last_cpu": 2
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 48915,
+              "last_cpu": 3
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1237,
+            "stime": 202,
+            "start_ticks": 9674,
+            "last_cpu": 2
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1082,
+              "stime": 180,
+              "start_ticks": 9674,
+              "last_cpu": 2
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 3
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 20,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 1
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 8%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   0% \n           3D:   8% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 1.0049460419999718,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 537,
+            "stime": 380,
+            "start_ticks": 9441,
+            "last_cpu": 4
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 502,
+              "stime": 336,
+              "start_ticks": 9441,
+              "last_cpu": 4
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 48915,
+              "last_cpu": 3
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1243,
+            "stime": 204,
+            "start_ticks": 9674,
+            "last_cpu": 6
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1087,
+              "stime": 181,
+              "start_ticks": 9674,
+              "last_cpu": 6
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 1
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 1%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   0% \n           3D:   1% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 2.008642571999985,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 539,
+            "stime": 382,
+            "start_ticks": 9441,
+            "last_cpu": 4
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 504,
+              "stime": 338,
+              "start_ticks": 9441,
+              "last_cpu": 4
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 48915,
+              "last_cpu": 3
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1246,
+            "stime": 205,
+            "start_ticks": 9674,
+            "last_cpu": 0
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1090,
+              "stime": 182,
+              "start_ticks": 9674,
+              "last_cpu": 0
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 1
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 49548,
+              "last_cpu": 2
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 10%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   1% \n           3D:   9% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 3.0124004670000204,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 553,
+            "stime": 392,
+            "start_ticks": 9441,
+            "last_cpu": 5
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 517,
+              "stime": 346,
+              "start_ticks": 9441,
+              "last_cpu": 5
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 1,
+              "stime": 2,
+              "start_ticks": 48915,
+              "last_cpu": 4
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1264,
+            "stime": 210,
+            "start_ticks": 9674,
+            "last_cpu": 1
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1107,
+              "stime": 188,
+              "start_ticks": 9674,
+              "last_cpu": 1
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 1
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 49548,
+              "last_cpu": 7
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 98%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  96% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 4.015730626999982,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 559,
+            "stime": 400,
+            "start_ticks": 9441,
+            "last_cpu": 6
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 521,
+              "stime": 353,
+              "start_ticks": 9441,
+              "last_cpu": 6
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 2,
+              "stime": 2,
+              "start_ticks": 48915,
+              "last_cpu": 5
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1278,
+            "stime": 216,
+            "start_ticks": 9674,
+            "last_cpu": 1
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1121,
+              "stime": 193,
+              "start_ticks": 9674,
+              "last_cpu": 1
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 1
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 49548,
+              "last_cpu": 0
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 99%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  96% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 5.019051358000013,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 566,
+            "stime": 404,
+            "start_ticks": 9441,
+            "last_cpu": 6
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 527,
+              "stime": 356,
+              "start_ticks": 9441,
+              "last_cpu": 6
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 3,
+              "stime": 4,
+              "start_ticks": 48915,
+              "last_cpu": 5
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1294,
+            "stime": 220,
+            "start_ticks": 9674,
+            "last_cpu": 1
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1137,
+              "stime": 197,
+              "start_ticks": 9674,
+              "last_cpu": 1
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 1
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 49548,
+              "last_cpu": 0
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 99%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  97% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 6.022495832999994,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 570,
+            "stime": 410,
+            "start_ticks": 9441,
+            "last_cpu": 6
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 530,
+              "stime": 360,
+              "start_ticks": 9441,
+              "last_cpu": 6
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 4,
+              "stime": 5,
+              "start_ticks": 48915,
+              "last_cpu": 5
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1309,
+            "stime": 225,
+            "start_ticks": 9674,
+            "last_cpu": 7
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1151,
+              "stime": 202,
+              "start_ticks": 9674,
+              "last_cpu": 7
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 49548,
+              "last_cpu": 1
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 93%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   8% \n           3D:  90% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 7.033736333999968,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 575,
+            "stime": 415,
+            "start_ticks": 9441,
+            "last_cpu": 6
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 534,
+              "stime": 365,
+              "start_ticks": 9441,
+              "last_cpu": 6
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 5,
+              "stime": 6,
+              "start_ticks": 48915,
+              "last_cpu": 5
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "R",
+            "utime": 1318,
+            "stime": 226,
+            "start_ticks": 9674,
+            "last_cpu": 7
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1161,
+              "stime": 203,
+              "start_ticks": 9674,
+              "last_cpu": 7
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 49548,
+              "last_cpu": 4
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 97%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  93% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 8.045414337000011,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 580,
+            "stime": 420,
+            "start_ticks": 9441,
+            "last_cpu": 7
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 539,
+              "stime": 369,
+              "start_ticks": 9441,
+              "last_cpu": 7
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 6,
+              "stime": 7,
+              "start_ticks": 48915,
+              "last_cpu": 6
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "R",
+            "utime": 1332,
+            "stime": 231,
+            "start_ticks": 9674,
+            "last_cpu": 1
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1175,
+              "stime": 207,
+              "start_ticks": 9674,
+              "last_cpu": 1
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 49548,
+              "last_cpu": 5
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 99%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  96% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 9.055683537999982,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 589,
+            "stime": 427,
+            "start_ticks": 9441,
+            "last_cpu": 0
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 547,
+              "stime": 375,
+              "start_ticks": 9441,
+              "last_cpu": 0
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 6,
+              "stime": 8,
+              "start_ticks": 48915,
+              "last_cpu": 2
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1347,
+            "stime": 236,
+            "start_ticks": 9674,
+            "last_cpu": 1
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1189,
+              "stime": 212,
+              "start_ticks": 9674,
+              "last_cpu": 1
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 49548,
+              "last_cpu": 7
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 99%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   8% \n           3D:  96% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 10.06547013300002,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "R",
+            "utime": 600,
+            "stime": 437,
+            "start_ticks": 9441,
+            "last_cpu": 1
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "R",
+              "utime": 558,
+              "stime": 383,
+              "start_ticks": 9441,
+              "last_cpu": 1
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 6,
+              "stime": 9,
+              "start_ticks": 48915,
+              "last_cpu": 5
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "R",
+            "utime": 1363,
+            "stime": 240,
+            "start_ticks": 9674,
+            "last_cpu": 2
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1205,
+              "stime": 216,
+              "start_ticks": 9674,
+              "last_cpu": 2
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 49548,
+              "last_cpu": 7
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 99%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  96% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 11.075360431999968,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 614,
+            "stime": 444,
+            "start_ticks": 9441,
+            "last_cpu": 1
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 571,
+              "stime": 388,
+              "start_ticks": 9441,
+              "last_cpu": 1
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 7,
+              "stime": 12,
+              "start_ticks": 48915,
+              "last_cpu": 5
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1377,
+            "stime": 246,
+            "start_ticks": 9674,
+            "last_cpu": 2
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "R",
+              "utime": 1220,
+              "stime": 221,
+              "start_ticks": 9674,
+              "last_cpu": 2
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 2,
+              "start_ticks": 49548,
+              "last_cpu": 7
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 99%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  97% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 12.084563203000016,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 625,
+            "stime": 454,
+            "start_ticks": 9441,
+            "last_cpu": 1
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 581,
+              "stime": 397,
+              "start_ticks": 9441,
+              "last_cpu": 1
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 8,
+              "stime": 13,
+              "start_ticks": 48915,
+              "last_cpu": 2
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1393,
+            "stime": 250,
+            "start_ticks": 9674,
+            "last_cpu": 4
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1235,
+              "stime": 225,
+              "start_ticks": 9674,
+              "last_cpu": 4
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "R",
+              "utime": 0,
+              "stime": 2,
+              "start_ticks": 49548,
+              "last_cpu": 3
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 99%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  96% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 13.093872013999999,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 638,
+            "stime": 462,
+            "start_ticks": 9441,
+            "last_cpu": 3
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "R",
+              "utime": 592,
+              "stime": 405,
+              "start_ticks": 9441,
+              "last_cpu": 3
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 9,
+              "stime": 13,
+              "start_ticks": 48915,
+              "last_cpu": 2
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "R",
+            "utime": 1409,
+            "stime": 255,
+            "start_ticks": 9674,
+            "last_cpu": 5
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "R",
+              "utime": 1251,
+              "stime": 230,
+              "start_ticks": 9674,
+              "last_cpu": 5
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 0,
+              "stime": 2,
+              "start_ticks": 49548,
+              "last_cpu": 0
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 99%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  96% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 14.103349658000013,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 650,
+            "stime": 471,
+            "start_ticks": 9441,
+            "last_cpu": 3
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 603,
+              "stime": 413,
+              "start_ticks": 9441,
+              "last_cpu": 3
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 11,
+              "stime": 14,
+              "start_ticks": 48915,
+              "last_cpu": 2
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1425,
+            "stime": 259,
+            "start_ticks": 9674,
+            "last_cpu": 5
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1267,
+              "stime": 234,
+              "start_ticks": 9674,
+              "last_cpu": 5
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 1,
+              "stime": 2,
+              "start_ticks": 49548,
+              "last_cpu": 0
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 98%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  95% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 15.112611707999974,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 660,
+            "stime": 482,
+            "start_ticks": 9441,
+            "last_cpu": 3
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "S",
+              "utime": 613,
+              "stime": 421,
+              "start_ticks": 9441,
+              "last_cpu": 3
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 11,
+              "stime": 17,
+              "start_ticks": 48915,
+              "last_cpu": 2
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "S",
+            "utime": 1440,
+            "stime": 264,
+            "start_ticks": 9674,
+            "last_cpu": 5
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "S",
+              "utime": 1281,
+              "stime": 239,
+              "start_ticks": 9674,
+              "last_cpu": 5
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 5
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 1,
+              "stime": 2,
+              "start_ticks": 49548,
+              "last_cpu": 1
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 99%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   9% \n           3D:  96% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    },
+    {
+      "time": 16.121945172999972,
+      "processes": {
+        "1927": {
+          "process": {
+            "comm": "Xorg",
+            "state": "S",
+            "utime": 669,
+            "stime": 489,
+            "start_ticks": 9441,
+            "last_cpu": 3
+          },
+          "threads": {
+            "1927": {
+              "comm": "Xorg",
+              "state": "R",
+              "utime": 621,
+              "stime": 429,
+              "start_ticks": 9441,
+              "last_cpu": 4
+            },
+            "1930": {
+              "comm": "InputThread",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9502,
+              "last_cpu": 4
+            },
+            "4510": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 12,
+              "stime": 17,
+              "start_ticks": 48915,
+              "last_cpu": 7
+            }
+          }
+        },
+        "2059": {
+          "process": {
+            "comm": "gnome-shell",
+            "state": "R",
+            "utime": 1454,
+            "stime": 267,
+            "start_ticks": 9674,
+            "last_cpu": 1
+          },
+          "threads": {
+            "2059": {
+              "comm": "gnome-shell",
+              "state": "R",
+              "utime": 1295,
+              "stime": 242,
+              "start_ticks": 9674,
+              "last_cpu": 1
+            },
+            "2061": {
+              "comm": "pool-spawner",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 4
+            },
+            "2062": {
+              "comm": "gmain",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9689,
+              "last_cpu": 1
+            },
+            "2064": {
+              "comm": "gdbus",
+              "state": "S",
+              "utime": 34,
+              "stime": 8,
+              "start_ticks": 9689,
+              "last_cpu": 6
+            },
+            "2065": {
+              "comm": "dconf worker",
+              "state": "S",
+              "utime": 0,
+              "stime": 1,
+              "start_ticks": 9690,
+              "last_cpu": 6
+            },
+            "2066": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 21,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2067": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 2,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 3
+            },
+            "2068": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2069": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 1,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2070": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2071": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 5
+            },
+            "2072": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 0
+            },
+            "2073": {
+              "comm": "JS Helper",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 9690,
+              "last_cpu": 2
+            },
+            "2397": {
+              "comm": "module-rt",
+              "state": "S",
+              "utime": 0,
+              "stime": 0,
+              "start_ticks": 10268,
+              "last_cpu": 1
+            },
+            "2406": {
+              "comm": "[pango] fontcon",
+              "state": "S",
+              "utime": 5,
+              "stime": 0,
+              "start_ticks": 10329,
+              "last_cpu": 1
+            },
+            "4700": {
+              "comm": "Destroy te(dwt)",
+              "state": "S",
+              "utime": 1,
+              "stime": 2,
+              "start_ticks": 49548,
+              "last_cpu": 6
+            }
+          }
+        }
+      },
+      "pvr_status": "Driver Status:   OK\n\nDevice ID: 0:128\nFirmware Status: OK\nServer Errors:   0\nHWR Event Count: 0\nCRR Event Count: 0\nSLR Event Count: 0\nWGP Error Count: 0\nTRP Error Count: 0\nFWF Event Count: 0\nAPM Event Count: 0\nGPU Utilisation: 83%\nDM Utilisation:  VM0\n           2D:   0% \n         GEOM:   7% \n           3D:  80% \n          CDM:   0% \n          RAY:   0% \n        GEOM2:   0% \n"
+    }
+  ]
+}

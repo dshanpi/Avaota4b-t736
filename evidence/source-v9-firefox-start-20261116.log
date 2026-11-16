@@ -1,0 +1,34 @@
+python3 - <<'PY'
+
+1902/environ','rb').read().split(b'\0') if b'=' in v)
+print({k:e.get(k) for k in ('DISPLAY','XAUTHORITY','LD_LIBRARY_PATH','COGL_DRIVER')})
+with open('/home/t736/firefox-main-start.log','a') as f:
+ q=subprocess.Popen(['/usr/bin/firefox-esr','about:blank'],env=e,stdout=f,stderr=f,start_new_session=True,user=p.pw_uid,group=p.pw_gid,extra_groups=os.getgrouplist(p.pw_name,p.pw_gid)); print('FIREFOX_PID',q.pid)
+PY
+apt-get -s --no-install-recommends install libavcodec61 ffmpeg | tail -12
+> import os,pwd,subprocess
+
+> p=pwd.getpwnam('t736'); e=dict(v.decode().split('=',1) for v in open('/proc/1902/environ','rb').read().split(b'\0') if b'=' in v)
+
+> print({k:e.get(k) for k in ('DISPLAY','XAUTHORITY','LD_LIBRARY_PATH','COGL_DRIVER')})
+
+> with open('/home/t736/firefox-main-start.log','a') as f:
+
+>  q=subprocess.Popen(['/usr/bin/firefox-esr','about:blank'],env=e,stdout=f,stderr=f,start_new_session=True,user=p.pw_uid,group=p.pw_gid,extra_groups=os.getgrouplist(p.pw_name,p.pw_gid)); print('FIREFOX_PID',q.pid)
+
+> PY
+
+{'DISPLAY': ':0', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LD_LIBRARY_PATH': '/opt/t736-img-ddk-24.2-x11/runtime-gles', 'COGL_DRIVER': 'gles2'}
+FIREFOX_PID 2279
+root@t736:~# apt-get -s --no-install-recommends install libavcodec61 ffmpeg | tail -12
+
+E: 软件包 libavcodec61 没有可安装候选
+E: 无法定位软件包 ffmpeg
+正在读取软件包列表...
+正在分析软件包的依赖关系树...
+正在读取状态信息...
+没有可用的软件包 libavcodec61，但是它被其它的软件包引用了。
+这可能意味着这个缺失的软件包可能已被废弃，
+或者只能在其他发布源中找到
+
+root@t736:~# 

@@ -1,0 +1,27 @@
+98e572c5aedf48d9a0fafc62faf04678cd874296be2005f7054e8c7697f8d2b9  tools/build_source_rootfs_v9.sh
+b03464d7c50f2a366fcd12beea8fdf30253a4ac071747a8650e255abc0ddf18d  tools/validation/gpu_profile.py
+297e8917473deb88dbd1f0bf72b4ee569b270854dcaf9c4ba13d16b73603ca33  tools/validation/gpu_profile.README.md
+548d9a1417d419bb5a776f08c2db93fe484093af4f58012d95f8c6f2a1d33ece  tools/validation/test_gpu_profile.py
+e9de048e14eed3f19e775e6e7ddc03cb05e426579721bcfc6ea2ddc44861c11c  config/gpu-v9/acceptance.template.json
+9bb497e20eb48d61f1765eea43adb6326eaa2a042ad3219135461ab9fdd9371c  tools/pack_t736_source_boot.py
+usage: gpu_profile.py [-h] [--root ROOT] [--evidence EVIDENCE]
+                      {status,software,gpu}
+
+Install/restore the persistent T736 desktop profile, live or in an offline
+root.
+
+positional arguments:
+  {status,software,gpu}
+
+options:
+  -h, --help            show this help message and exit
+  --root ROOT           Offline mounted root; default is live system
+  --evidence EVIDENCE   Passed GPU board acceptance JSON bound to exact
+                        installed artifacts
+usage: pack_t736_source_boot.py [-h] [--variant {v3,v4,v5,v6,v7,v8,v9}]
+
+Fixed board boot payload and complete Armbian raw. No legacy boot executable.
+
+options:
+  -h, --help            show this help message and exit
+  --variant {v3,v4,v5,v6,v7,v8,v9}

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "board": "t736",
+  "kernel_release": "6.18.63-t736-storage-v16",
+  "status": "pending",
+  "boot_id": "28f7406c-ced2-4927-b045-7ed129e5f43b",
+  "renderer": "",
+  "checks": {
+    "gbm_probe": false,
+    "x11_probe": false,
+    "gnome_hardware_renderer": false,
+    "gtk_hardware_renderer": false,
+    "hdmi_1080p": false
+  },
+  "kernel_deb_sha256": "",
+  "userspace_deb_sha256": "",
+  "evidence_logs": {},
+  "artifacts": {
+    "/boot/vmlinuz-6.18.63-t736-storage-v16": "0244c994eb6092e2d68f8ae4bef9347c9ce11507790b8eb351db1a5a8023ccee",
+    "/boot/config-6.18.63-t736-storage-v16": "c2a5adf5941401efa3a4b474fb43afae3183049ec6a5c61194c4f2aeedb6449e",
+    "/boot/dtb/allwinner/t736-mainline-bringup.dtb": "2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5",
+    "/usr/lib/modules/6.18.63-t736-storage-v16/extra/pvrsrvkm.ko": "abd38db687c93b91757719564e1f0fe35b10b137f23d78ea425ff2845d8c8474",
+    "/opt/t736-img-ddk-24.2-x11/manifest.json": "9ae49ed015dd2fafc55361eeaab3f23789f9b42f0f18a36eb341cb1ff3b02a69",
+    "/usr/lib/firmware/rgx.fw.36.56.104.183": "43eb5d054ee98bc975274198d2ed440e2f0f50b7ffcd0996a4022949f2c7909f",
+    "/usr/lib/firmware/rgx.sh.36.56.104.183": "71e1b1da9b4c6b42468e378e8b835306920568088bc6669879db4a108a7747c9",
+    "/opt/t736-img-ddk-24.2-x11/runtime-gles.json": "3201fa05a36f0add5e88008438557d7305587f53214d14254ffb9839b14cb332"
+  },
+  "gnome_pid": 2896,
+  "gnome_libraries": [
+    "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0",
+    "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+    "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887"
+  ],
+  "gnome_environment": {
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+    "COGL_DRIVER": "gles2",
+    "GDK_BACKEND": "x11"
+  }
+}

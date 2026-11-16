@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-16",
+  "superseded_gate_observation": "storage-v18-smhc-version-gates-20261116.log",
+  "correction": "First diagnostic used PIO base 0x02000000 instead of main CCU base 0x02002000 for gate offsets; its two gate=0 observations are invalid. SMHC3 version address was correct. No MMIO writes were performed by either diagnostic.",
+  "corrected_evidence": "storage-v18-smhc-version-gates-corrected-20261116.log",
+  "corrected_reads": {
+    "0x04023300": "0x03050610",
+    "0x020025e0": "0xf1055803",
+    "0x0200259c": "0x00030001"
+  },
+  "storage_gate_already_on": true,
+  "msi_lite1_gate_already_on": true,
+  "new_gate_write_needed": false,
+  "readonly_source_sha256": "f485e3da55d076fdce991245db2cb184e2b938ef53edcb1629b86f82974584b1",
+  "readonly_module_sha256": "d7980ba0f42e93741f9911ba9687e70ea4563181d8ec8e3e4af10ba40555d23d"
+}

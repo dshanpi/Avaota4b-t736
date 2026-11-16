@@ -1,0 +1,33 @@
+insmod /root/t736-gpu-debug/pvrsrvkm-diag2.ko early_secure=1; echo DDK_DIAG2_RC=$?; ls -l /dev/dri; echo DDK_DIAG2_DONE
+
+pvrsrvkm 1800000.gpu: PVRDIAG before pvr_drm_load
+PVRDIAG before SysDevInit
+pvrsrvkm 1800000.gpu: PVRDIAG platform init enter
+pvrsrvkm 1800000.gpu: PVRDIAG platform before regulator enable
+pvrsrvkm 1800000.gpu: PVRDIAG platform regulator ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before regulator voltage
+pvrsrvkm 1800000.gpu: PVRDIAG platform voltage=900000
+pvrsrvkm 1800000.gpu: PVRDIAG platform before runtime resume
+pvrsrvkm 1800000.gpu: PVRDIAG platform runtime resume ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before parent clock
+pvrsrvkm 1800000.gpu: PVRDIAG platform parent ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before set400
+pvrsrvkm 1800000.gpu: PVRDIAG platform set400 ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before bus clock
+pvrsrvkm 1800000.gpu: PVRDIAG platform bus ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before reset deassert
+pvrsrvkm 1800000.gpu: PVRDIAG platform reset ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform before core clock
+pvrsrvkm 1800000.gpu: PVRDIAG platform core ret=0
+pvrsrvkm 1800000.gpu: PVRDIAG platform power-on completed
+pvrsrvkm 1800000.gpu: PVRDIAG early_secure=1
+pvrsrvkm 1800000.gpu: PVRDIAG before early secure configuration
+PVRDIAG before secure SMC write 0x0a0000b0=2
+PVRDIAG after secure SMC write; before GPU_GLB 0x01880014=0
+PVRDIAG after secure GPU_GLB write
+pvrsrvkm 1800000.gpu: PVRDIAG after early secure ret=0
+PVRDIAG after SysDevInit ret=0
+PVRDIAG registers mapped; before BVNC init
+PVRDIAG BVNC configuration enter
+PVRDIAG before hardware BVNC
+PVRDIAG before PBVNC read high=0x01800024 low=0x01800020 core=0

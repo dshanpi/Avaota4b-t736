@@ -1,0 +1,247 @@
+echo BROWSER_MEDIA_STATE; dpkg-query -W -f='${binary:Package} ${Version}\n' firefox-esr libavcodec61 libva2 2>/dev/null; ps -eo pid,ppid,psr,pcpu,comm,args | grep -E 'firefox|RDD Process|Web Content' | head -n 18; for p in $(pgrep -u t736 -f '/usr/lib/firefox-esr/firefox-esr'); do echo FIREFOX_PID=$p; tr '\0' '\n' </proc/$p/environ | grep -E '^(LD_LIBRARY_PATH=|LIBGL|GALLIUM|MESA|GDK|MOZ_|DISPLAY=|XDG_SESSION_TYPE=)'; grep -E 'libEGL|libGLES|libGLX|libGL\.so|pvr|swrast|gallium|libva|libavcodec|libvpx|libdav1d' /proc/$p/maps | awk '{print $NF}' | sort -u; done; ls -l /dev/dri /dev/video* /dev/cedar* /dev/ve* 2>/dev/null; echo BROWSER_MEDIA_STATE_DONE
+
+BROWSER_MEDIA_STATE
+firefox-esr 153.7.0esr-1~deb13u1
+libavcodec61 
+   2291    1841   3 86.2 firefox-esr     /usr/lib/firefox-esr/firefox-esr
+   2309    1626   7  0.0 crashhelper     /usr/lib/firefox-esr/crashhelper 2291 9 /tmp/ 11
+   2421    2291   4  0.0 forkserver      /usr/lib/firefox-esr/firefox-esr -contentproc -ipcHandle 0 -signalPipe 1 -initialChannelId {9532d963-24a6-4059-87ca-b890b100ec20} -parentPid 2291 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 1 forkserver
+   2427    2421   1  0.0 Socket Process  /usr/lib/firefox-esr/firefox-esr -contentproc -parentBuildID 20261103151912 -prefsHandle 0:30012 -prefMapHandle 1:288297 -sandboxReporter 2 -chrootClient 3 -ipcHandle 4 -initialChannelId {09a03a4f-a164-454e-8dde-7ef055ea3c73} -parentPid 2291 -crashHelperPid 2309 -crashHelper 5 -crashReporter 6 -appDir /usr/lib/firefox-esr/browser 2 socket
+   2476    2421   4  1.8 Privileged Cont /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:30233 -prefMapHandle 1:288297 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {41a9ab56-fd8d-4975-9ee4-fd320114fcb0} -parentPid 2291 -crashHelperPid 2309 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 3 tab
+   2483    2421   0 62.1 RDD Process     /usr/lib/firefox-esr/firefox-esr -contentproc -parentBuildID 20261103151912 -prefsHandle 0:30233 -prefMapHandle 1:288297 -sandboxReporter 2 -chrootClient 3 -ipcHandle 4 -initialChannelId {edac8c39-268c-4f6c-a4a9-43bd6c296d6c} -parentPid 2291 -crashHelperPid 2309 -crashHelper 5 -crashReporter 6 -appDir /usr/lib/firefox-esr/browser 4 rdd
+   2570    2421   3  1.3 WebExtensions   /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:30320 -prefMapHandle 1:288297 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {62cb2a73-0296-46d4-821a-c66800db5394} -parentPid 2291 -crashHelperPid 2309 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 5 tab
+   2690    2421   2  0.0 Utility Process /usr/lib/firefox-esr/firefox-esr -contentproc -parentBuildID 20261103151912 -sandboxingKind 0 -prefsHandle 0:43810 -prefMapHandle 1:288297 -sandboxReporter 2 -chrootClient 3 -ipcHandle 4 -initialChannelId {e3796de6-7fe6-45d9-942c-0f2761ea6916} -parentPid 2291 -crashHelperPid 2309 -crashHelper 5 -crashReporter 6 -appDir /usr/lib/firefox-esr/browser 8 utility
+   2697    2421   7  8.7 Isolated Web Co /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:41632 -prefMapHandle 1:288297 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {81bdfb0d-57bd-4a40-b91e-0afc570c045f} -parentPid 2291 -crashHelperPid 2309 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 9 tab
+   2760    2421   0 48.3 Isolated Web Co /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:41684 -prefMapHandle 1:288297 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {552c9bc5-b88b-48b6-82ad-2fc008618ba7} -parentPid 2291 -crashHelperPid 2309 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 10 tab
+   2762    2421   0  0.3 Isolated Web Co /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:41684 -prefMapHandle 1:288297 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {f49fa83f-ac64-405b-98c7-050c9ed64d79} -parentPid 2291 -crashHelperPid 2309 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 11 tab
+   2872    2421   0  0.1 Web Content     /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:41684 -prefMapHandle 1:288297 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {c4846ea6-af25-419b-bf11-af470128b1ea} -parentPid 2291 -crashHelperPid 2309 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 12 tab
+   2947    2421   4  0.2 Web Content     /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:41684 -prefMapHandle 1:288297 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {16423eff-f997-4d31-bd80-a6fc9931101f} -parentPid 2291 -crashHelperPid 2309 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 13 tab
+   3107    2421   2  0.2 Web Content     /usr/lib/firefox-esr/firefox-esr -contentproc -isForBrowser -prefsHandle 0:41684 -prefMapHandle 1:288297 -jsInitHandle 2:156236 -parentBuildID 20261103151912 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {2a95fa0f-3640-4128-8bd6-514c1b4b0e75} -parentPid 2291 -crashHelperPid 2309 -crashHelper 6 -crashReporter 7 -greomni /usr/lib/firefox-esr/omni.ja -appomni /usr/lib/firefox-esr/browser/omni.ja -appDir /usr/lib/firefox-esr/browser 14 tab
+   3847    1271   4  0.0 grep            grep -E firefox|RDD Process|Web Content
+FIREFOX_PID=2291
+LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+DISPLAY=:1
+XDG_SESSION_TYPE=x11
+/opt/t736-img-ddk-24.2-x11/lib/dri/pvr_dri.so
+/opt/t736-img-ddk-24.2-x11/lib/dri/swrast_dri.so
+/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0
+/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887
+/usr/lib/aarch64-linux-gnu/libdav1d.so.7.0.0
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2421
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=0
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2427
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2476
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2483
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2570
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2690
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2697
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2760
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2762
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2872
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=2947
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+FIREFOX_PID=3107
+DISPLAY=:1
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+LD_LIBRARY_PATH=/usr/lib/firefox-esr:/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+MOZ_APP_SILENT_START=
+MOZ_ASSUME_USER_NS=1
+MOZ_CRASHREPORTER_DATA_DIRECTORY=/home/t736/.config/mozilla/firefox/Crash Reports
+MOZ_CRASHREPORTER_EVENTS_DIRECTORY=/home/t736/.config/mozilla/firefox/kp9y8qet.default-esr/crashes/events
+MOZ_CRASHREPORTER_PING_DIRECTORY=/home/t736/.config/mozilla/firefox/Pending Pings
+MOZ_CRASHREPORTER_RESTART_ARG_1=
+MOZ_LAUNCHED_CHILD=
+MOZ_PROFILER_STARTUP=
+MOZ_SANDBOX_USE_CHROOT=1
+XDG_SESSION_TYPE=x11
+/usr/lib/aarch64-linux-gnu/libvpx.so.9.1.0
+/dev/dri:
+总计 0
+drwxr-xr-x  2 root root        100 11月16日 09:34 by-path
+crw-rw----+ 1 root video  226,   0 11月16日 09:34 card0
+crw-rw----+ 1 root video  226,   1 11月16日 09:34 card1
+crw-rw----+ 1 root render 226, 128 11月16日 09:34 renderD128
+BROWSER_MEDIA_STATE_DONE
+root@t736:~# 

@@ -1,0 +1,114 @@
+{
+  "schema": "t736-egl-x11-frame-feedback-gap-v1",
+  "date": "2026-11-16",
+  "status": "MISSING_COGL_EGL_XLIB_FEEDBACK_PATH_IDENTIFIED",
+  "raw_log": {
+    "path": "evidence/storage-v22-gtk-frame-timings-20261116.log",
+    "sha256": "8c0f4356a1de04d2ff8f6d720485214af3e8f191e8e488dc34dea0a759634cb3"
+  },
+  "egl_capability_log": {
+    "path": "evidence/storage-v22-gnome-egl-feedback-capabilities-20261116.log",
+    "sha256": "9eb5873f4d4dbfe9f5b82a49bd19ce7abb32de6d038adfdab9c69a73ea5d818e"
+  },
+  "probe_sha256": "979b87842b71b590a437715cc5358a581007586cad7e220d2f76da7611c15215",
+  "runtime": {
+    "sample_seconds": 10.001103154999896,
+    "after_paint_count": 492,
+    "process_cpu_seconds": 2.817956187,
+    "per_second_paints": [
+      46,
+      40,
+      45,
+      52,
+      51,
+      52,
+      52,
+      52,
+      50,
+      52
+    ],
+    "sample_records": 492,
+    "all_timing_identities_valid": true,
+    "complete_count": 491,
+    "presentation_nonzero_count": 0,
+    "refresh_nonzero_count": 0,
+    "predicted_equals_frame_plus_16667_count": 492,
+    "paint_callback_span_us": {
+      "count": 492,
+      "min": 2866,
+      "median": 5481.0,
+      "p95": 6267,
+      "max": 7514
+    },
+    "next_before_minus_after_us": {
+      "count": 491,
+      "min": 8483,
+      "median": 11507,
+      "p95": 28262,
+      "max": 30163
+    },
+    "observer_overflow": 0,
+    "observer_missing_before": 0
+  },
+  "source_findings": [
+    {
+      "url": "https://github.com/GNOME/mutter/blob/48.7/src/backends/x11/meta-renderer-x11.c",
+      "sha256": "cbc3e6df7b97c3a5c97014c71a3ec86e74df8b8df97424c0d668fc9b1ea7aecc",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\mutter-meta-renderer-x11.c",
+      "lines": "57-67",
+      "finding": "COGL_DRIVER=gles2 chooses EGL_XLIB; GL3 chooses GLX."
+    },
+    {
+      "url": "https://github.com/GNOME/mutter/blob/48.7/cogl/cogl/winsys/cogl-winsys-egl-feature-functions.h",
+      "sha256": "9ad139694c4981ba3bbfe6b0737c1a91e0bd5000238d2854c86d32b907ee0619",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\mutter-cogl-winsys-egl-feature-functions.h",
+      "lines": "entire extension table",
+      "finding": "No CHROMIUM sync_control or ANGLE sync_control_rate procedures are loaded."
+    },
+    {
+      "url": "https://github.com/GNOME/mutter/blob/48.7/cogl/cogl/winsys/cogl-onscreen-xlib.c",
+      "sha256": "8b3ff2e89969283f750cc82faea65102fd239a6cf66f99363cb5a72493077a16",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\mutter-cogl-onscreen-xlib.c",
+      "lines": "274-284",
+      "finding": "Xlib subclass does not override EGL swap or add completion feedback."
+    },
+    {
+      "url": "https://github.com/GNOME/mutter/blob/48.7/cogl/cogl/winsys/cogl-onscreen-egl.c",
+      "sha256": "d4a448bd358b24eb0a0c70796c2cb79b4841aabe82782f36cd29a19db719869e",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\mutter-cogl-onscreen-egl.c",
+      "lines": "300-348",
+      "finding": "EGL swap path swaps buffers then flushes; does not assign presentation time or refresh rate."
+    },
+    {
+      "url": "https://github.com/GNOME/mutter/blob/48.7/cogl/cogl/cogl-onscreen.c",
+      "sha256": "c927a2eb74522458346a1573a30d939a4ad6566e04137183622ee02753a77912",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\mutter-cogl-onscreen.c",
+      "lines": "301-310",
+      "finding": "Without SYNC_AND_COMPLETE_EVENT, queues synthetic SYNC and COMPLETE events with the pending frame info."
+    },
+    {
+      "url": "https://github.com/GNOME/mutter/blob/48.7/cogl/cogl/winsys/cogl-winsys-egl-x11.c",
+      "sha256": "567dd58a56a72616e1bc01f52a6adbb69736306f47f5b22c6eaace83c41da5eb",
+      "cached_path": "C:\\Users\\\u4e16\u7389\u8f69\\AppData\\Local\\Temp\\t736-settings-source-review\\mutter-cogl-winsys-egl-x11.c",
+      "lines": "323-336",
+      "finding": "EGL-X11 context initialization sets dirty-event support, without enabling sync/complete events."
+    }
+  ],
+  "conclusions": [
+    "Runtime supports both EGL_CHROMIUM_sync_control and EGL_ANGLE_sync_control_rate; missing extension advertisement is not the observed cause.",
+    "The reviewed Mutter 48.7 EGL-Xlib implementation does not consume these extensions and synthesizes completion events. This matches complete=true with missing presentation/refresh feedback.",
+    "Paint callback wall spans remain below 8ms in this sample; much of the 16/33ms cadence is outside measured paint callbacks. This does not by itself identify all waiting time.",
+    "This sample varies from 40 to 52 callbacks/s, so 40Hz is not a universal fixed limit.",
+    "No compositor patch, global synchronization setting, or permanent CPU affinity change has been applied."
+  ],
+  "next_probe": {
+    "source": "tools/validation/egl_x11_sync_feedback_probe.c",
+    "sha256": "7adbfd0c33fbcdec80a6f090eeb233bb7d79dc23522631924f13ee397a98becf",
+    "purpose": "Observe actual EGL rate and UST/MSC/completed-SBC separately from submission sequence."
+  },
+  "semantic_limits": [
+    "GDK complete does not imply valid presentation timestamps.",
+    "UST/MSC is the latest retrace pair; it must not be automatically assigned to a just-submitted frame.",
+    "No physical-monitor acceptance is claimed."
+  ]
+}

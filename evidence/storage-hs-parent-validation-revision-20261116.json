@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "kind": "t736-smhc3-hs-parent-validation-revision",
+  "status": "draft-unit-tested-and-compile-checked-not-integrated-not-board-tested",
+  "scope": "HS SDR staged 25/50MHz; frozen v20 HRT candidate unchanged",
+  "changes": [
+    "PLL_REF exact rational 26M-to-24M validation before initial clock writes and before each set_ios",
+    "PERI1 FREF_SEL24 must select REFPLL; direct26M input rejected",
+    "PAT0 enable31/PAT1 SDM27 or busy26 rejected without modifying PLL",
+    "PERI1 readonly mapping coversCTRL/PAT0/PAT1 at020020c0 length16; REF base02002000 length4",
+    "SYS24M path remains mux0; no silent substitution of DCXO26M",
+    "Planner rejects nonvalidated parents and uses rational cap comparison so truncation cannot conceal overspeed"
+  ],
+  "tests": {
+    "actual_c_helper": "PASS ASan/UBSan; exact400k/12M/25M/50M plans, ready/source/SDM negative cases,32146 request sweep",
+    "compile": "PASS ARM64 external module against frozen v20 output; compile check only, never transferred or loaded",
+    "frozen_v20_build_files": "All recorded SHA256 values unchanged after compile"
+  },
+  "files": {
+    "boards/t736_mmc_clock_hs_draft.h": "4a0483cce5ebdbd7020d78ec72f647b220bbec58dbc208f91f6778d144cefb83",
+    "boards/t736_mmc_hs_draft.c": "c7a5f66f46eb40c58dcef26d2be488a8ed0933088ccdcfca393ec11be0511323",
+    "tests/test_mmc_hs_clock.py": "9fcc2951380b502aa6e2e1cef0ec1b551469bed9bc62c49343b64cedbfd96dc0",
+    "build/mmc-hs-draft-check/t736_mmc_hs_draft.ko": "000f22b1158881dddb57bff83affb400207afeaca679b56eadca0b156364b35c"
+  },
+  "pending": [
+    "Parent read-only board clock snapshot",
+    "Name and build separate HS candidate only after source-clock observations match",
+    "25MHz then50MHz one-shot hardware integrity/performance acceptance"
+  ],
+  "parent_clock_review": "evidence/storage-hs-parent-clock-independent-review-20261116.json"
+}

@@ -12,6 +12,9 @@
 #ifdef T736_PERIPHERAL_POWER
 #include "board_power.h"
 #endif
+#ifdef T736_CPUCLOCK
+#include "cpuclock.h"
+#endif
 
 #define UART 0x02500000u
 #define TWI 0x07083000u
@@ -145,6 +148,9 @@ int probe_main(void) {
         power.ldo_before,power.ldo_after);
  if(power_rc)printf("BOARD peripheral supply setup failed; console boot continues\n");
  else udelay(10000);
+#endif
+#ifdef T736_CPUCLOCK
+ if(t736_cpuclock_boot(pr,0)<0)fail(0xec50);
 #endif
  __asm__ volatile("dsb sy" ::: "memory");return 0;
 }

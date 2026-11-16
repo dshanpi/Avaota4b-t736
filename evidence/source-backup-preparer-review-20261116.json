@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "kind": "source-backup-preparer-maintenance",
+  "date": "2026-11-16",
+  "file": "tools/prepare_source_backup.py",
+  "sha256": "b2c68b404b74b49fdddc76786563445bf7919e42292f0fcf5479d282f3224e72",
+  "changes": [
+    "XML source inclusion for monitors.xml",
+    "storage/PHY/eMMC/GPU/Firefox/Ethernet evidence prefixes",
+    "explicit project-confined JSON artifact/provenance selection",
+    "dynamic date and neutral acceptance-scoped purpose instead of hardcoded v6 success",
+    "Include CPU topology/PVR evidence and matching evidence/build logs, without sweeping historical full board captures",
+    "Include settings- evidence prefix for current measurement plans and parser checks",
+    "Exclude raw auth/tunnel/credential/password evidence after tracked/referenced selection; reject any existing private evidence path during manifest verification.",
+    "Explicit gtk-ui- and egl-feedback- diagnostic evidence prefixes; existing source tool inclusion retained and binary screenshots remain excluded.",
+    "Include .txt source package lists (only config/desktop-v7-packages.txt currently) and explicit egl-x11-sync- build/review evidence prefix.",
+    "Exclude zero-byte evidence JSON placeholders from selection and record their paths/reason in omitted_source_artifacts, preserving workspace originals."
+  ],
+  "validation": [
+    "Python compilation",
+    "real temporary-directory valid JSON selection",
+    "reject absolute/path traversal/binary/malformed JSON artifact records",
+    "Private auth/tunnel path rejection, safe runtime/integrity selection and verify failure before reading private evidence.",
+    "New JSON/log prefixes included; PNG/JPG remain outside evidence suffix allowlist; private auth/tunnel exclusions still apply to new prefixes.",
+    "Confirmed sole new source .txt is the desktop package list; existing private-path and binary evidence filters unchanged.",
+    "First full snapshot rejected five empty mapped JSON placeholders; no nonempty invalid JSON found. New untracked zero-byte target copies removed after confined-path/empty/untracked verification."
+  ],
+  "backup_checkout_modified": false,
+  "publication_performed": false,
+  "known_limits": [
+    "Raw binaries/rootfs/vendor binaries and private backups remain excluded",
+    "Explicit artifact JSON records must be selected for the intended publication",
+    "Original workspace log hashes and normalized public-copy hashes remain separately recorded"
+  ],
+  "previous_reviewed_sha256": "26f32d93e90c7ecada3c63109ec4198e77acd7f5c10690396cf5442f4164940f",
+  "latest_prefix_change_validation": "Source .txt and egl-x11-sync- inclusion added for checkpoint preparation; privacy guard unchanged; full prepare/verify follows.",
+  "independent_privacy_review": {
+    "reviewer": "code_index",
+    "status": "PASS",
+    "source_sha256": "26f32d93e90c7ecada3c63109ec4198e77acd7f5c10690396cf5442f4164940f",
+    "scope": "Final selection prevents tracked/referenced re-entry; verify rejects private paths before reads; existing private target files are rejected without deletion."
+  }
+}

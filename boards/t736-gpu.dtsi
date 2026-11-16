@@ -1,0 +1,47 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/* Fixed LPDDR4x T736 board GPU, independent from Radxa LPDDR5 device trees.
+ * Include after t736-hdmi.dtsi and the real AXP8191 gpu_dcdc5 provider.
+ * Clock IDs: core=0, bus=1, measured PERI400=2, AHB=3, MBUS=4, PLL_GPU0=5.
+ * DDK contract: DVFS/ActivePM disabled, no direct GPU_CORE PPU writes.
+ */
+/ {
+	gpu_ccu: clock-controller@2002b20 {
+		compatible = "allwinner,t736-gpu-ccu";
+		reg = <0 0x02002b20 0 8>, <0 0x02002000 0 4>,
+		      <0 0x020020a0 0 4>, <0 0x020025c0 0 4>,
+		      <0 0x020025e0 0 4>, <0 0x020020e0 0 4>;
+		reg-names = "gpu", "pll-ref", "pll-peri0", "ahb-master", "mbus-master", "pll-gpu0";
+		clocks = <&dcxo>, <&ahb_fw>, <&mbus_fw>;
+		clock-names = "dcxo", "ahb", "mbus";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	gpu_pd: power-controller@7065000 {
+		compatible = "allwinner,t736-gpu-power";
+		reg = <0 0x07065000 0 0x1000>, <0 0x07066000 0 0x1000>;
+		reg-names = "top", "core";
+		clocks = <&gpu_ccu 5>, <&display_ccu 11>, <&gpu_ccu 3>, <&gpu_ccu 4>,
+			 <&gpu_ccu 1>, <&gpu_ccu 0>;
+		clock-names = "pll-gpu0", "ppu", "ahb", "mbus", "gpu-bus", "gpu";
+		resets = <&gpu_ccu 0>;
+		reset-names = "reset_bus";
+		gpu-supply = <&gpu_dcdc5>;
+		#power-domain-cells = <1>;
+	};
+
+	gpu: gpu@1800000 {
+		compatible = "img,gpu";
+		reg = <0 0x01800000 0 0x8ffff>;
+		interrupts = <0 63 4>;
+		interrupt-names = "IRQGPU";
+		clocks = <&gpu_ccu 0>, <&gpu_ccu 1>, <&gpu_ccu 2>;
+		clock-names = "clk", "clk_bus", "clk_400";
+		resets = <&gpu_ccu 0>;
+		reset-names = "reset_bus";
+		power-domains = <&gpu_pd 0>;
+		gpu-supply = <&gpu_dcdc5>;
+		clk_rate = <400000000>;
+		status = "disabled";
+	};
+};

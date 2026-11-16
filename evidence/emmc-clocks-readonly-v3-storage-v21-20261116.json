@@ -1,0 +1,220 @@
+{
+  "schema": 1,
+  "kind": "t736-emmc-clocks-readonly-v3-storage-v21-module",
+  "status": "built-and-independently-reviewed-not-board-loaded-by-author",
+  "source": {
+    "path": "tools/validation/t736-emmc-clocks-readonly-v3.c",
+    "sha256": "d41fddbae90823f0e7af14832eaa365209de6aff5613a5a1540948c9f910bff1"
+  },
+  "module": {
+    "local_path": "output/t736-emmc-clocks-readonly-v3-storage-v21.ko",
+    "remote_path": "build/emmc-clocks-readonly-v3-storage-v21/t736-emmc-clocks-readonly-v3.ko",
+    "bytes": 8064,
+    "sha256": "778ee20320f84543c3e2063ee776792cee31a15c730a540676dd28a97474b072",
+    "module_name": "t736_emmc_clocks_readonly_v3",
+    "vermagic": "6.18.63-t736-storage-v21 SMP mod_unload aarch64"
+  },
+  "build": {
+    "kernel_output": "build/linux-storage-v21",
+    "kernel_config_sha256": "5e1feec11b9a6d992936f969c0f237e448bac33070d946922c46bce2467af362",
+    "kernel_symvers_sha256": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "command": "make -C /home/ubuntu/t736-mainline/build/linux-storage-v21 M=/home/ubuntu/t736-mainline/build/emmc-clocks-readonly-v3-storage-v21 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules",
+    "log": "evidence/build/emmc-clocks-readonly-v3-storage-v21-build-20261116.log",
+    "log_sha256": "7b5cec8c60c30d59f0310d1b884fddfe482595bba01cd759fe66d04cefde9ec4",
+    "warnings": []
+  },
+  "registers": [
+    {
+      "name": "PLL_REF_CTRL",
+      "address": "0x02002000",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI0_CTRL",
+      "address": "0x020020a0",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI0_PAT0",
+      "address": "0x020020a8",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI0_PAT1",
+      "address": "0x020020ac",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI1_CTRL",
+      "address": "0x020020c0",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI1_PAT0",
+      "address": "0x020020c8",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI1_PAT1",
+      "address": "0x020020cc",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_CLK",
+      "address": "0x02002d30",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_BGR",
+      "address": "0x02002d3c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "STORE_MBUS_GATE",
+      "address": "0x020025e0",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "MSI_LITE1_GATE",
+      "address": "0x0200259c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PERI0PLL_GATE_EN",
+      "address": "0x02003908",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PERI0PLL_GATE_STAT",
+      "address": "0x02003988",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_CTRL",
+      "address": "0x04023000",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_CLKDIV",
+      "address": "0x04023004",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_WIDTH",
+      "address": "0x0402300c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_CSDC",
+      "address": "0x04023054",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_NTSR",
+      "address": "0x0402305c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_EDSD",
+      "address": "0x0402310c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_DRV_DL",
+      "address": "0x04023140",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_SAMP_DL",
+      "address": "0x04023144",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_DS_DL",
+      "address": "0x04023148",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_SMCV",
+      "address": "0x04023300",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    }
+  ],
+  "sampling": {
+    "passes": 3,
+    "registers_per_pass": 23,
+    "total_readl_calls": 69,
+    "mapping": [
+      "CCU0x02002000 size0x2000",
+      "SMHC3 0x04023000 size0x400"
+    ],
+    "print_after_unmap": true,
+    "atomic_snapshot": false,
+    "physical_frequency_measurement": false,
+    "transient_control_changes": "SMHC3 CTRL may change during normal I/O; raw values retained without treating changes as a fault"
+  },
+  "read_only_audit": {
+    "mmio_writes": 0,
+    "clear_on_read_targets": 0,
+    "ccf_calls": 0,
+    "mmc_requests": 0,
+    "devmem_access": false,
+    "dma_operations": 0,
+    "clock_reset_voltage_changes": false,
+    "old_diagnostic_sources_modified": false,
+    "undefined_symbols": [
+      "arm64_use_ng_mappings",
+      "__ioremap_prot",
+      "iounmap",
+      "memset",
+      "of_machine_compatible_match",
+      "_printk"
+    ]
+  },
+  "references": {
+    "manual": "evidence/vendor-reference/reference-1.txt",
+    "manual_sections": [
+      "4.1.6.11 PERI1 CTRL",
+      "4.1.6.13 PERI1 PAT0",
+      "4.1.6.14 PERI1 PAT1",
+      "4.1.6.78 MSI_LITE1",
+      "4.1.6.82 MBUS_MAT_CLK_GATING",
+      "4.1.6.133 SMHC3 CLK",
+      "4.1.6.6 PERI0 CTRL",
+      "4.1.6.8 PERI0 PAT0",
+      "4.1.6.9 PERI0 PAT1",
+      "4.1.6.134 SMHC3 BGR",
+      "4.1.6.254 PERI0PLL_GATE_EN",
+      "4.1.6.263 PERI0PLL_GATE_STAT",
+      "11.3.9 CTRL/CLKDIV/WIDTH/CSDC/NTSR/EDSD/DRV_DL/SAMP_DL/DS_DL/SMCV"
+    ],
+    "pll_ref_donor": "Tina U-Boot plat-sun60iw2p1/clock_autogen.h lines3-43; Linux ccu-sun60iw2.c39-55",
+    "parent_clock_review": "evidence/storage-hs-parent-clock-independent-review-20261116.json"
+  },
+  "independent_source_review": {
+    "reviewer": "code_index",
+    "status": "PASS",
+    "source_sha256": "d41fddbae90823f0e7af14832eaa365209de6aff5613a5a1540948c9f910bff1",
+    "findings": "PASS:23x3=69 readl; offsets bounded by two mappings; no CMD/IRQ/FIFO/read-clear targets; partial ioremap failure releases earlier mapping; no MMIO write/CCF/reset/regulator/MMC/DMA operations; CTRL concurrency and non-atomic/frequency limitations accurate.",
+    "board_touched_by_reviewer": false
+  },
+  "runtime_commands": [
+    "test \"$(uname -r)\" = 6.18.63-t736-storage-v21",
+    "sudo insmod /home/t736/t736-emmc-clocks-readonly-v3-storage-v21.ko",
+    "sudo dmesg | grep 't736-emmc-clocks-ro-v3:'",
+    "sudo rmmod t736_emmc_clocks_readonly_v3"
+  ],
+  "hardware_accessibility": "Real nonsecure bus access and resulting register values remain root-owned board validation, not guaranteed by static register semantics.",
+  "board_operations_by_author": false,
+  "previous_v1_preserved": {
+    "source_sha256": "6cdee150d67934c8af06bec155a52d5b3098bafe160462b8fcf33ee495c59d5d",
+    "module_sha256": "af4213782fb1686f9b746ce9553a5411bb895e2955b79c03efe849ee37333a4b",
+    "reason_for_v2": "v20 live PERI1_CTRL40126310 is off; inspect already-enabled PERI0 instead of enabling a shared PLL."
+  },
+  "previous_v2_preserved": {
+    "source_sha256": "8cff1dca8e790b3d10fa8bae11b5f269fb337ca8d2c1d915b9321f23330b39e0",
+    "module_sha256": "8b475ecd6eef85ad1012ba6329bab56063c681eb532c9195d5b334e77a5d5942"
+  },
+  "reason_for_v3": "Capture PERI0 distribution gate config/status and all first-step HS SDR timing/clock configuration together before v21 trial, without modifying hardware.",
+  "rebuild_scope": "Unmodified previously reviewed v3 source rebuilt against v21; no added register or operation. Intended for separate25MHz and50MHz readback after each trial."
+}

@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-16",
+  "status": "CPU-B2_COMPILE_AND_PACKAGE_REVIEW_PASS; HARDWARE_ACCEPTANCE_PENDING",
+  "candidate": "output/t736-source-boot-package-cpu-b2.bin",
+  "files_sha256": {
+    "tools/pack_t736_cpu_boot.py": "256fce1e21230fef4440c2d1c559dc71f15ff3b81d9d8bb07e416579178b88fb",
+    "output/t736-source-boot-package-cpu-b2.bin": "306fb10d7612c7fcc9bd16b8588737e3153c67103ea470226b34c7d28fdbcfa1",
+    "output/t736-source-boot-package-cpu-b2.manifest.json": "5fc9794a1b14d4541f560a5a9d7f618a980f41444cdb6e6d04c2c029f9a80c39"
+  },
+  "uboot_sha256": "240a52c18fd3b3e744ca24a923dea646c91cf4f34839dc0172d9c8250a12dc51",
+  "build_record_sha256": "0f4dcce5bf032aef32dda7c1ccb3a970389d787bea37d04835c902ad2183a672",
+  "wrapper_sha256": "26c8852392178acbb13bcfbceddd5734a60cc3b6aad6c3787de6f94bda2ad101",
+  "a55_algorithm_sha256": "b2c4daaa22e519d6a48321913a0836ba6b70a4f30415214f026d2abbcf97c36c",
+  "design_checks": [
+    "board_early_init_r executes after relocation/caches/serial initialization and before secondary release",
+    "A76 sequence reuses unchanged B1; A55 new routine requires CPU0 A55 MPIDR Aff1=0, PPU0 ON and PPU1..7 OFF",
+    "A55 source f8801300/03000000, A76 exact target f8802700/03000000, 26MHz crystal, disabled modulation; PMIC selectors40=900mV checked through existing inherited TWI callbacks",
+    "U-Boot arm64 disable_interrupts is a stub: B2 instead explicitly saves DAIF, masks IRQ/FIQ via DAIFset#3 and verifies mask",
+    "A55 warm transition first switches executing CPU0 to slow and uses DSB/ISB after MMIO, CNT24MHz timing independent of CPU clock",
+    "Output off, lock detector off, cached N39, detector on only permits old/desired early latch, enabled UPDATE, strict CTRL/STAT LOCK observations and delays, output on then mux PLL/1",
+    "A55 PLL_EN and LDO remain on; A76/DSU/BACK/PAT/LFM/XO/PPU and PMIC snapshots are guarded",
+    "A55 failure path writes only slow mux, never CTRL/PLL_EN or recommits inherited below-spec N19",
+    "Any mutation failure or guard failure keeps interrupts masked and returns error to INITCALL halt before secondary release; only ordinary precondition rejection with no mutation and no guard failure may continue unchanged"
+  ],
+  "review_correction": "First B2 wrapper restored DAIF and continued on any !mutation. Review tightened both branches to !mutation && !guard_failure, followed by complete isolated rebuild. Obsolete 6824... candidate was not packaged.",
+  "tests": "Both A76 and A55 native fault suites passed with -Wall -Wextra -Werror. A55 covers update-only/early-N, bad N, UPDATE/LOCK timeouts, frozen STAT, PMIC/guard/PPU drift, mux failure, rollback failure and bounded timer failure.",
+  "package_checks": {
+    "bytes": 323072,
+    "sectors": 631,
+    "start_lba": 24576,
+    "end_lba_exclusive": 25207,
+    "limit_lba": 32800,
+    "uboot_sector": 24693,
+    "uboot_address": "52000000",
+    "uboot_bytes": 262832,
+    "format": "existing T736/SPL1 v1,3 entries; header and each payload CRC verified",
+    "baseline_sha256": "cb35e82d844f6fda24f86a2a52975555e7e7725339c6a38d5b85ad2581ae6067",
+    "preserved": "stage64/TF-A payloads and padding identical; all LBAs/addresses same; only header CRC and U-Boot length/CRC field changed",
+    "independent_check": "all build-record source hashes matched; payload bytes matched final u-boot.bin; independent zlib CRC and header diff checks passed",
+    "parser_negative_checks": "bit corruption in signature/header CRC/entry length/stage64/padding each rejected"
+  },
+  "unchanged": [
+    "SPL v4",
+    "original source-v6 U-Boot payload",
+    "B1 files and artifact",
+    "original v9 package",
+    "whole-disk source packer",
+    "TF-A",
+    "kernel/rootfs/GPT"
+  ],
+  "cpu0_hotplug": "Not supported by current board/firmware observation; no fix or repeat test claimed. B2 avoids CPU0 runtime offlining.",
+  "hardware_owner": "root only; this agent performed no board/serial/USB/power/storage operations",
+  "remaining": "Root verifies existing storage, backs up bounded package range, writes/readback-verifies candidate, then cold boots and checks both PLLs=1014, all8online, workload and desktop behavior."
+}

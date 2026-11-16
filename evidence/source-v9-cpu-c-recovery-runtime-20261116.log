@@ -1,0 +1,17 @@
+dmesg -n 4; ip -br address; dmesg | grep -Ei "phy|ethernet|regulator" | tail -10; cat /sys/devices/system/cpu/online
+
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+end0             DOWN           
+sit0@NONE        DOWN           
+[    1.037417] t736-dwmac 4500000.ethernet: Wake-Up On Lan supported
+[    1.042257] t736-dwmac 4500000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+[    1.048681] t736-dwmac 4500000.ethernet: device MAC address fe:68:3b:39:28:cc
+[    1.054552] t736-dwmac 4500000.ethernet: Enabled RFS Flow TC (entries=10)
+[    1.060057] t736-dwmac 4500000.ethernet: Using 32/40 bits DMA host/device width
+[    1.252519] t736-dwmac 4500000.ethernet: RGMII configuration retained after MAC reset: 0x11545
+[    1.353149] t736-r-pinctrl 7025000.pinctrl: supply vcc-pl not found, using dummy regulator
+[    3.078640] t736-dwmac 4500000.ethernet end0: renamed from eth0
+[   24.045407] t736-dwmac 4500000.ethernet end0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[   24.049256] t736-dwmac 4500000.ethernet end0: cannot attach to PHY (error: -19)
+0-7
+root@t736:~# 

@@ -1,0 +1,56 @@
+{
+  "schema": "t736-gtk-frame-timings-probe-review-v1",
+  "date": "2026-11-16",
+  "status": "OFFLINE_INDEPENDENT_AND_BOARD_IDENTITY_CHECKS_PASS",
+  "probe_path": "tools/validation/gtk_ui_frame_timings_probe.py",
+  "probe_sha256": "979b87842b71b590a437715cc5358a581007586cad7e220d2f76da7611c15215",
+  "frozen_steady_sha256": "b60e9578cf7dc4e831bfbd67dd6b44cd37f78a024838f3b7db22f7f6a58230f2",
+  "checks": {
+    "python_compile": "PASS",
+    "help_without_GI": "PASS",
+    "UI_setup_AST_identical": "PASS",
+    "scroll_tick_AST_identical": "PASS",
+    "feedback_read_after_mutation": "PASS",
+    "phase_uses_before_paint_arrival": "PASS",
+    "gaps_and_spans_known_input": "PASS",
+    "missing_feedback_zero_preserved": "PASS",
+    "boxed_identity_mismatch_detected": "PASS",
+    "duplicate_and_record_bound": "PASS",
+    "missing_timing_object": "PASS"
+  },
+  "scope": "offline fake timing-object test, not GTK or hardware validation",
+  "independent_review": {
+    "reviewer": "/root/backup_audit",
+    "status": "PASS_WITH_INTERPRETATION_LIMITS",
+    "reviewed_sha256": "979b87842b71b590a437715cc5358a581007586cad7e220d2f76da7611c15215",
+    "checks": [
+      "Before/after callbacks only capture counter, monotonic time and boxed reference.",
+      "Sample time/CPU cut-off precedes export and diagnostic reads.",
+      "Record limit, missing pairs, identity, completion and zero values remain observable.",
+      "GTK 4.18.6 boxed copy is gdk_frame_timings_ref; held Python GI wrappers have the expected lifetime semantics."
+    ],
+    "interpretation": "Inherited COMPLETE/timing_usable describes callback sampling only. Backend feedback must independently exclude invalid identities, incomplete records and unavailable zero timestamps."
+  },
+  "board_run": {
+    "performed_by": "/root",
+    "raw_log": {
+      "path": "evidence/storage-v22-gtk-frame-timings-20261116.log",
+      "sha256": "8c0f4356a1de04d2ff8f6d720485214af3e8f191e8e488dc34dea0a759634cb3"
+    },
+    "identity_valid_count": 492,
+    "sample_count": 492,
+    "complete_count": 491,
+    "nonzero_presentation_count": 0,
+    "nonzero_refresh_count": 0,
+    "interpretation": "Capture valid; backend presentation/refresh feedback unavailable."
+  },
+  "limits": [
+    "Per-frame callbacks add observation overhead.",
+    "Retained GI boxed timing identity is verified in output; real GI lifetime still requires runtime result.",
+    "Feedback is read before event drain; final frames may be incomplete.",
+    "Before/after-paint span is callback phase wall time, not GPU execution time.",
+    "GDK presentation feedback is not physical monitor proof.",
+    "Legacy smoothed tick frame timestamps can cross the warmup boundary; raw frame phases use callback arrival.",
+    "Inherited COMPLETE/timing_usable describes callback sampling only. Backend feedback must independently exclude invalid identities, incomplete records and unavailable zero timestamps."
+  ]
+}

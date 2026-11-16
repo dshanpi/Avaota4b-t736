@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-16",
+  "status": "Compiled and independently reviewed v4; this record does not claim v4 hardware validation.",
+  "observed_inputs_sha256": {
+    "evidence/source-v9-cpu-a76-v3-416-20261116.log": "3c9093eb708df600596123d151d773601912cdd7289c517821eb3c16a9c9a770",
+    "evidence/source-v9-cpu-a76-v3-1014-20261116.log": "b63fe728d84638b19d510ebf75ac75f24d8ba601dc8024aa4b0b74f600aba448"
+  },
+  "observations": [
+    "Cold v3 startup staged N32 while CTRL still read N20; after enabling the PLL and reopening LOCK_EN, the readback became desired N32 before explicit UPDATE. Old-only validation rejected it and safe rollback retained N32 with PLL disabled.",
+    "Retrying reviewed v3 from stopped N32 succeeded at416MHz with CTRL/STAT=f8802000 and CLK03010000; both A76 cores were brought online. Saved log reports16MiB SHA256 CPU6=0.063866356s, CPU7=0.064012296s, CPU0=0.078484925s.",
+    "V3 upgrade similarly observed desired N39 on LOCK_EN reopening before explicit UPDATE; old-only check rejected it, and safe rollback reported CTRL/STAT40802700, CLK0."
+  ],
+  "change": "V4 permits exactly old committed N or requested N during cold PLL_EN, cold LOCK_EN and warm LOCK_EN reopening. It still requires ENABLE set for that exception. Other stages retain old-only N validation; immediate gate validation and post-UPDATE exact CTRL/CTRL_STAT checks remain unchanged.",
+  "scope": "Candidate adjustment follows observed startup/detector transition behavior; it does not accept arbitrary N and does not remove final commit validation.",
+  "source": "tools/validation/t736-a76-clock-trial-v4.c",
+  "source_sha256": "4d006a436d11f79e72b585f476fc843ec9dac8926240757ad1af2891e310508f",
+  "module": "output/t736-a76-clock-trial-v4.ko",
+  "module_sha256": "4dfd55105e3db489267caf04076a4702c29da95381e1fe514a17d123d0858203",
+  "module_name": "t736_a76_clock_trial_v4",
+  "vermagic": "6.18.63-t736-gpu-v15 SMP mod_unload aarch64",
+  "W1_build_passed": true,
+  "peer_review": "event_review: only three scoped old/desired-N acceptance windows; ENABLE, gates and final UPDATE checks remain strict; no new blocker.",
+  "preserved": [
+    "v1",
+    "v2",
+    "v3"
+  ],
+  "hardware_touched_by_this_agent": false
+}

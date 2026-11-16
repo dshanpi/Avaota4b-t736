@@ -4,13 +4,14 @@ set -eu
 root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd -P)
 [ "$root" = /home/ubuntu/t736-mainline ]
 src="$root/sources/work/linux"
+sh "$root/tools/apply_display_fixes.sh"
 revision=${1:-12}
-case "$revision" in 12|13) ;; *) exit 2 ;; esac
+case "$revision" in 12|13|14) ;; *) exit 2 ;; esac
 out="$root/build/linux-hdmi-v$revision"
 export KBUILD_BUILD_VERSION=$revision
 mkdir -p "$out"
 if [ ! -f "$out/.config" ]; then
-    cp "$root/userpatches/linux-t736-hdmi-v12.config" "$out/.config"
+    cp "$root/userpatches/linux-t736-hdmi-v$revision.config" "$out/.config"
 fi
 cp "$root/boards/clk-t736-display.c" "$src/drivers/clk/"
 cp "$root/boards/t736-display-power.c" "$src/drivers/pmdomain/sunxi/"

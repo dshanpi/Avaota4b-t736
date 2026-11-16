@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v20-updater-independent-static-review",
+  "status": "passed-static-diff-and-final-binding-review-not-executed-by-reviewer",
+  "updater_sha256": "c0734b130d4f4fbdfc2067da4cdf6537dfe4b7c9c009599132e88c09a239b2f6",
+  "baseline_reviewer_record": "evidence/storage-v19-updater-independent-review-20261116.json",
+  "final_bindings_match_build_pvr_records": true,
+  "bindings": {
+    "kernel_sha256": "107f0359050f6dcf5a806cc26e995c41462fc77393e5414eb4307c53f35f5e11",
+    "kernel_bytes": 5597638,
+    "pvr_sha256": "2a9bd492c5b69785639c2afa3df0b1499196fedc028dc1d4f769b05e96e95132",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "5e2ffb3a87a8c4991d54bb388c37d42cff69fabeb05b0c79abbd48bc1eb98bcc",
+    "payload_manifest_sha256": "1c76c2e2344480552303c26e49cc73c1153d682721d230982f1d29752e50854b",
+    "raw_image_sha256": "90793bc0396b1ebf6183eb6f9b39863cd40cd3948910a7c3ea8812201822b888",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "candidate_dtb_bytes": 11960,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "fixed_default_fallback": "v16 plus accepted CPU capacity topology DT",
+  "reviewed_scope": [
+    "Permits running v16 or verified v19; installed v19 package metadata and kernel/config/System.map/DT hashes pinned",
+    "Rollback allows v16/v19/v20 and restores fixed v16 baseline defaults",
+    "Process-group timeout termination and bounded communicate safeguards retained",
+    "Private mount namespace, frozen inputs, fsync and verified backups retained",
+    "No reboot, saveenv, SPL, GPT, raw media or bootcmd writes"
+  ],
+  "material_new_blockers": [],
+  "tests": "Peer reported 14 offline fault-injection cases and actual input audit (82 payload entries); reviewer did not repeat tests or touch board",
+  "peer_input_record": "evidence/storage-v20-updater-exact-inputs-20261116.json",
+  "board_acceptance": "Not established by this static review"
+}

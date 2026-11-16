@@ -1,0 +1,10 @@
+sh /tmp/t736-transfer/private-backup-network.sh; printf "BACKUP_NETWORK_RC=%s\n" "$?"
+
+curl: (60) SSL certificate problem: certificate is not yet valid
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the webpage mentioned above.
+BACKUP_NETWORK_RC=60
+root@t736:~# 

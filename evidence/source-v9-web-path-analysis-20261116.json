@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "board_evidence": "source-v9-web-packets-20261116.log",
+  "build_host_evidence": "source-v9-web-buildhost-comparison-20261116.json",
+  "target_ip": "183.3.205.11",
+  "target_hostname": "mirrors.aliyun.com",
+  "board": [
+    {
+      "client_port": 55756,
+      "target_port": 443,
+      "synack_rtt_ms": 0.302,
+      "incoming_ttls": [
+        64
+      ],
+      "incoming_payload_bytes": 0,
+      "outgoing_payload_bytes_before_incoming_fin": 1578,
+      "incoming_fin": true,
+      "incoming_reset": true,
+      "all_outgoing_payload_acknowledged_before_fin": true,
+      "fin_after_full_ack_ms": 60.641
+    },
+    {
+      "client_port": 55760,
+      "target_port": 443,
+      "synack_rtt_ms": 0.648,
+      "incoming_ttls": [
+        64
+      ],
+      "incoming_payload_bytes": 0,
+      "outgoing_payload_bytes_before_incoming_fin": 229,
+      "incoming_fin": true,
+      "incoming_reset": true,
+      "all_outgoing_payload_acknowledged_before_fin": true,
+      "fin_after_full_ack_ms": 47.779
+    },
+    {
+      "client_port": 43176,
+      "target_port": 80,
+      "synack_rtt_ms": 0.609,
+      "incoming_ttls": [
+        64
+      ],
+      "incoming_payload_bytes": 0,
+      "outgoing_payload_bytes_before_incoming_fin": 89,
+      "incoming_fin": true,
+      "incoming_reset": false,
+      "all_outgoing_payload_acknowledged_before_fin": true,
+      "fin_after_full_ack_ms": 86.595
+    }
+  ],
+  "build_host": [
+    {
+      "client_port": 58104,
+      "target_port": 443,
+      "synack_rtt_ms": 5.94,
+      "incoming_ttls": [
+        55
+      ],
+      "incoming_payload_bytes": 37876,
+      "outgoing_payload_bytes_before_incoming_fin": 793,
+      "incoming_fin": true,
+      "incoming_reset": false,
+      "all_outgoing_payload_acknowledged_before_fin": true,
+      "fin_after_full_ack_ms": 0.825
+    },
+    {
+      "client_port": 58108,
+      "target_port": 443,
+      "synack_rtt_ms": 10.426,
+      "incoming_ttls": [
+        55
+      ],
+      "incoming_payload_bytes": 36687,
+      "outgoing_payload_bytes_before_incoming_fin": 467,
+      "incoming_fin": true,
+      "incoming_reset": false,
+      "all_outgoing_payload_acknowledged_before_fin": true,
+      "fin_after_full_ack_ms": 0.522
+    },
+    {
+      "client_port": 37686,
+      "target_port": 80,
+      "synack_rtt_ms": 6.367,
+      "incoming_ttls": [
+        55
+      ],
+      "incoming_payload_bytes": 31692,
+      "outgoing_payload_bytes_before_incoming_fin": 88,
+      "incoming_fin": true,
+      "incoming_reset": false,
+      "all_outgoing_payload_acknowledged_before_fin": true,
+      "fin_after_full_ack_ms": 15.866
+    }
+  ],
+  "relay_comparison": {
+    "board_evidence": "source-v9-web-relay-20261116.log",
+    "server_evidence": "source-v9-web-relay-20261116.json",
+    "board_http_status": 200,
+    "board_curl_rc": 0,
+    "tls_seconds": 0.2363,
+    "total_seconds": 0.257662,
+    "tls_certificate_verification_disabled": false,
+    "persistent_proxy_configured": false,
+    "server_auto_closed": true
+  },
+  "gateway": {
+    "inside_address": "10.0.0.1",
+    "identified_web_ui": "OpenWrt LuCI",
+    "inside_mac": "60:be:b4:01:48:ac",
+    "upstream_nat_address": "192.168.1.53",
+    "upstream_mac": "60:be:b4:01:48:ad"
+  },
+  "pre_gateway_change_conclusion": "Direct board HTTP and both TLS versions reach a nearby TCP terminator which acknowledges the entire request and sends FIN without any response payload. The same board curl succeeds with normal TLS certificate validation through a one-target LAN relay using the build host public-egress path. This isolates the web failure to the OpenWrt gateway/public-egress path; DNS, time, board TLS and basic Ethernet transport are working. The exact gateway proxy/firewall service has not yet been inspected. Direct browser access is still not accepted.",
+  "resolution": {
+    "evidence": "source-v9-web-after-proxy-20261116.log",
+    "change": "User disabled the OpenWrt proxy",
+    "direct_board_https": {
+      "https://www.baidu.com": 200,
+      "https://mirrors.aliyun.com/debian/": 200,
+      "https://www.kernel.org": 200
+    },
+    "curl_ignores_proxy_settings": true,
+    "tls_verification_enabled": true,
+    "interactive_firefox_rendering_accepted": false
+  },
+  "conclusion": "After the gateway proxy was disabled, the board directly reached all three HTTPS sites with HTTP 200 and normal certificate validation. This confirms the earlier gateway-path diagnosis; Firefox compositor/video performance is a separate issue."
+}

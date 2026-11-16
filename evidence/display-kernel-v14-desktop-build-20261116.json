@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-16T03:13:23.735533+00:00",
+  "purpose": "Build desktop-stability candidate kernel v14 for T736 GNOME software rendering validation",
+  "status": "build_passed_hardware_validation_pending",
+  "kernel_release": "6.18.63-t736-hdmi-v14",
+  "build_command": "bash tools/build_display_kernel.sh 14",
+  "build_exit_code": 0,
+  "package_metadata": "Package: linux-image-6.18.63-t736-hdmi-v14\nVersion: 6.18.63-14\nArchitecture: arm64",
+  "artifacts": {
+    "crtc_source_before": {
+      "path": "/home/ubuntu/t736-mainline/evidence/sunxi_drm_crtc-v13-before-v14.c",
+      "bytes": 77911,
+      "sha256": "2876438c010668472b2e194e41ffd2926b41250518c3a1f5ad111163133204e2"
+    },
+    "crtc_source_after": {
+      "path": "/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c",
+      "bytes": 79008,
+      "sha256": "f6d9655ca81324458a46fafb3c48ac6715ae04481faa1974d9c69e24f8793a5e"
+    },
+    "targeted_diff": {
+      "path": "/home/ubuntu/t736-mainline/evidence/display-v14-crtc-fixes-20261116.diff",
+      "bytes": 6988,
+      "sha256": "95f9086af54b3deb4e2043df6111a01e715c8d962e46a62a49a6e1ac8abb015e"
+    },
+    "compatibility_patch": {
+      "path": "/home/ubuntu/t736-mainline/patches/t736-display-linux618-compat.patch",
+      "bytes": 25651,
+      "sha256": "a488c25895e082c1f29d42e0c480777d2a50bdbd896f551542bd10958e01be3b"
+    },
+    "config": {
+      "path": "/home/ubuntu/t736-mainline/userpatches/linux-t736-hdmi-v14.config",
+      "bytes": 99048,
+      "sha256": "038cf51cb4dfb1680883976a6144aa15186bb5601dd60a57357b8c3d38a25618"
+    },
+    "build_script": {
+      "path": "/home/ubuntu/t736-mainline/tools/build_display_kernel.sh",
+      "bytes": 2828,
+      "sha256": "45fbd86fa481f59572ecf71c6e0035ca76e3689967aa00161074ea18551e74b9"
+    },
+    "Image": {
+      "path": "/home/ubuntu/t736-mainline/build/linux-hdmi-v14/arch/arm64/boot/Image",
+      "bytes": 11798536,
+      "sha256": "ab0675a77ec971a47d76403b5929de646e8b3bda9d166e2bfd95f769a335df5e"
+    },
+    "Image_gz": {
+      "path": "/home/ubuntu/t736-mainline/build/linux-hdmi-v14/arch/arm64/boot/Image.gz",
+      "bytes": 5026379,
+      "sha256": "a957558def3674a44220fc87d26afcb0703ffd5f88c50a8749cbca6be0aeb0ca"
+    },
+    "dtb": {
+      "path": "/home/ubuntu/t736-mainline/build/linux-hdmi-v14/arch/arm64/boot/dts/allwinner/t736-hdmi-candidate.dtb",
+      "bytes": 10027,
+      "sha256": "d81986f7035f252583ae30f861dc3e55675d296547f12704ba81678fd7fe03ed"
+    },
+    "deb": {
+      "path": "/home/ubuntu/t736-mainline/build/linux-image-6.18.63-t736-hdmi-v14_6.18.63-14_arm64.deb",
+      "bytes": 5583912,
+      "sha256": "a5e1e14d2432bf99389cd2b1f117f2fe62e82daa127f261808dcc15608167264"
+    },
+    "log": {
+      "path": "/home/ubuntu/t736-mainline/evidence/display-kernel-v14-desktop-build-20261116.log",
+      "bytes": 213442,
+      "sha256": "fbbb3411c3100828ba5cb09d05ac7ed5a1dae5c0cdd2723b62978258280241b2"
+    }
+  },
+  "package_payload_checks": {
+    "./boot/vmlinuz-6.18.63-t736-hdmi-v14": {
+      "sha256": "a957558def3674a44220fc87d26afcb0703ffd5f88c50a8749cbca6be0aeb0ca",
+      "matches_build": true,
+      "decompressed_matches_Image": true
+    },
+    "./usr/lib/linux-image-6.18.63-t736-hdmi-v14/allwinner/t736-hdmi-candidate.dtb": {
+      "sha256": "d81986f7035f252583ae30f861dc3e55675d296547f12704ba81678fd7fe03ed",
+      "matches_build": true
+    },
+    "./boot/config-6.18.63-t736-hdmi-v14": {
+      "sha256": "038cf51cb4dfb1680883976a6144aa15186bb5601dd60a57357b8c3d38a25618",
+      "matches_build": true
+    }
+  },
+  "source_replay": {
+    "display_source_replay_files": 264,
+    "all_match_compiled_tree": true
+  },
+  "fixes": [
+    "Plane reset removes uninitialized free, clears destroyed state, and handles kzalloc/property blob failures with NULL state.",
+    "CRTC reset clears destroyed state and checks kzalloc/property blob failures before use.",
+    "Event ownership moves after hardware atomic flush; only successful vblank_get stores an event, and send pairs it with one vblank_put.",
+    "Failed vblank_get sends after flush without put; unexpected old event is drained without losing the current RCQ ready flag.",
+    "Disable (including early exits) and all CRTC destruction paths drain pending owned events; inactive state events are sent without vblank_put."
+  ],
+  "review": {
+    "independent_agent": "/root/backup_audit/event_review",
+    "result": "No required fixes found after final diff review of locking/refcounts, disable/destruction, and allocation failure paths.",
+    "vblank_invariant": "Each non-NULL scrtc->event owns one successful drm_crtc_vblank_get; completion/force drain clears pointer and drops exactly one reference under event_lock."
+  },
+  "configuration": {
+    "same_as_v13_except_localversion": true,
+    "v13_build_preserved": true,
+    "v13_deb_preserved": true,
+    "CMA_SIZE_MBYTES": 128,
+    "gpu_acceleration_added": false
+  },
+  "compiler_warning_count": 175,
+  "validation_boundaries": [
+    "Compiled Image, DTB, modules and arm64 deb; no board, serial, rootfs or flash operations by this build task.",
+    "Desktop rendering/page flips, memory pressure, disable/re-enable and shutdown need real-board validation.",
+    "Existing RCQ ready flag is set after submission and remains set after the existing RCQ timeout; it is not proof of successful hardware completion.",
+    "GNOME recommendation remains Xorg modesetting with Mesa llvmpipe software rendering; no GPU acceleration claim."
+  ],
+  "compiler_warning_comparison": {
+    "baseline": "display-kernel-v13-build-20261114.log",
+    "baseline_sha256": "0dee1429b36ad8a0b9d10c0e7cbf1c8063fb518f0026a7fec5f90db365e2d043",
+    "normalization": "Strip source line/column numbers; compare warning line multiset",
+    "baseline_count": 176,
+    "current_count": 175,
+    "added": {},
+    "removed": {
+      "/home/ubuntu/t736-mainline/sources/work/linux/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c: warning: no previous prototype for ‘sunxi_fbdev_register’ [-Wmissing-prototypes]": 1
+    }
+  }
+}

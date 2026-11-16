@@ -1,0 +1,763 @@
+{
+  "schema": 2,
+  "reference_pid": 2279,
+  "startup_timeout_seconds": 120.0,
+  "reference_profile_modified": false,
+  "binary": "/usr/lib/firefox-esr/firefox-esr",
+  "environment": {
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "DISPLAY": ":0",
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+    "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri",
+    "XAUTHORITY": "/run/user/1000/gdm/Xauthority",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "XDG_SESSION_TYPE": "x11"
+  },
+  "sandbox_disabled": false,
+  "blocklist_overridden": false,
+  "tests": [
+    {
+      "mode": "egl-gles",
+      "complete": false,
+      "startup_samples": [
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 16450,
+              "major_faults": 759,
+              "user_ticks": 384,
+              "system_ticks": 76,
+              "comm": "firefox-esr",
+              "wchan": "folio_wait_bit_common",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "R",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 3055,
+              "major_faults": 0,
+              "user_ticks": 5,
+              "system_ticks": 2,
+              "comm": "firefox-esr",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 114128 0 913010 7710077 29245 0 233920 9225636 0 346996 16940436 0 0 0 0 178 4722",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 110119 0 880946 7517428 29244 0 233920 9225633 57 348244 16743062 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 0.088
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 18787,
+              "major_faults": 771,
+              "user_ticks": 412,
+              "system_ticks": 82,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "S",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 9977,
+              "major_faults": 5,
+              "user_ticks": 97,
+              "system_ticks": 10,
+              "comm": "firefox-esr",
+              "wchan": "do_sys_poll",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 114970 0 919746 7901020 29772 0 238136 9349228 0 352120 17255223 0 0 0 0 182 4973",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 110961 0 887682 7708372 29771 0 238136 9349225 64 353384 17057598 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 5.227
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 19426,
+              "major_faults": 787,
+              "user_ticks": 419,
+              "system_ticks": 85,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "S",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 10146,
+              "major_faults": 11,
+              "user_ticks": 100,
+              "system_ticks": 11,
+              "comm": "firefox-esr",
+              "wchan": "do_sys_poll",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 115606 0 924834 8056824 30334 0 242632 9500208 0 357216 17562314 0 0 0 0 184 5281",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 111597 0 892770 7864175 30334 0 242640 9500573 58 358508 17364749 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 10.348
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 19609,
+              "major_faults": 792,
+              "user_ticks": 433,
+              "system_ticks": 85,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "S",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 11065,
+              "major_faults": 14,
+              "user_ticks": 126,
+              "system_ticks": 13,
+              "comm": "firefox-esr",
+              "wchan": "do_sys_poll",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 115854 0 926818 8106163 31203 0 249584 9756093 0 362344 17867570 0 0 0 0 186 5312",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 111845 0 894754 7913515 31202 0 249584 9756090 62 363632 17669606 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 15.474
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 20448,
+              "major_faults": 797,
+              "user_ticks": 454,
+              "system_ticks": 86,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "S",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 12011,
+              "major_faults": 17,
+              "user_ticks": 141,
+              "system_ticks": 14,
+              "comm": "firefox-esr",
+              "wchan": "do_sys_poll",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 116307 0 930442 8219735 31855 0 254800 9959684 0 367440 18184732 0 0 0 0 186 5312",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 112298 0 898378 8027086 31854 0 254800 9959681 60 368752 17986768 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 20.595
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 21904,
+              "major_faults": 810,
+              "user_ticks": 481,
+              "system_ticks": 92,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "S",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 12402,
+              "major_faults": 18,
+              "user_ticks": 155,
+              "system_ticks": 16,
+              "comm": "firefox-esr",
+              "wchan": "do_sys_poll",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 116897 0 935162 8340435 32644 0 261112 10156788 0 372540 18502568 0 0 0 0 188 5344",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 112888 0 903098 8147786 32643 0 261112 10156785 64 373876 18304572 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 25.718
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 22943,
+              "major_faults": 817,
+              "user_ticks": 490,
+              "system_ticks": 95,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "D",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 12556,
+              "major_faults": 21,
+              "user_ticks": 184,
+              "system_ticks": 18,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 117902 0 943202 8534232 33157 0 265216 10272429 0 377656 18812024 0 0 0 0 190 5362",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 113893 0 911138 8341584 33156 0 265216 10272426 64 379000 18614010 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 30.842
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 25065,
+              "major_faults": 823,
+              "user_ticks": 515,
+              "system_ticks": 97,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "S",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 12638,
+              "major_faults": 24,
+              "user_ticks": 187,
+              "system_ticks": 19,
+              "comm": "firefox-esr",
+              "wchan": "futex_do_wait",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 118359 0 946858 8630204 33879 0 270992 10491479 0 382780 19127061 0 0 0 0 192 5378",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 114350 0 914794 8437555 33878 0 270992 10491476 64 384128 18929032 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 35.971
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 26125,
+              "major_faults": 832,
+              "user_ticks": 526,
+              "system_ticks": 100,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "D",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 12875,
+              "major_faults": 28,
+              "user_ticks": 194,
+              "system_ticks": 22,
+              "comm": "firefox-esr",
+              "wchan": "folio_wait_bit_common",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 119218 0 953730 8802647 34449 0 275552 10627288 0 387876 19435565 0 0 0 0 194 5629",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 115209 0 921666 8609999 34448 0 275552 10627285 59 389252 19237284 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 41.094
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 26522,
+              "major_faults": 841,
+              "user_ticks": 539,
+              "system_ticks": 103,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "D",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 12960,
+              "major_faults": 29,
+              "user_ticks": 199,
+              "system_ticks": 22,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 119588 0 956690 8896814 35175 0 281360 10843341 0 392980 19745801 0 0 0 0 196 5645",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 115579 0 924626 8704166 35174 0 281360 10843338 59 394376 19547504 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 46.218
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "S",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 27985,
+              "major_faults": 849,
+              "user_ticks": 576,
+              "system_ticks": 109,
+              "comm": "firefox-esr",
+              "wchan": "do_sys_poll",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "D",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 13113,
+              "major_faults": 30,
+              "user_ticks": 205,
+              "system_ticks": 22,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            },
+            {
+              "pid": 2634,
+              "state": "Z",
+              "ppid": 2621,
+              "pgrp": 2621,
+              "minor_faults": 1080,
+              "major_faults": 0,
+              "user_ticks": 10,
+              "system_ticks": 7,
+              "comm": "glxtest",
+              "wchan": "0",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2634/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 120012 0 960082 8988196 35856 0 286808 11060884 0 398084 20054726 0 0 0 0 196 5645",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 116003 0 928018 8795548 35855 0 286808 11060881 58 399496 19856429 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 51.339
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 29411,
+              "major_faults": 860,
+              "user_ticks": 604,
+              "system_ticks": 118,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "D",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 14807,
+              "major_faults": 32,
+              "user_ticks": 245,
+              "system_ticks": 33,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 120707 0 965642 9143034 36428 0 291384 11215463 0 403172 20364171 0 0 0 0 198 5673",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 116698 0 933578 8950386 36427 0 291384 11215460 63 404616 20165846 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 56.457
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "D",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 31560,
+              "major_faults": 865,
+              "user_ticks": 633,
+              "system_ticks": 123,
+              "comm": "firefox-esr",
+              "wchan": "folio_wait_bit_common",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "D",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 14859,
+              "major_faults": 34,
+              "user_ticks": 251,
+              "system_ticks": 33,
+              "comm": "firefox-esr",
+              "wchan": "folio_wait_bit_common",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 121695 0 973546 9331957 36896 0 295128 11339368 0 408268 20677000 0 0 0 0 198 5673",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 117686 0 941482 9139309 36895 0 295128 11339365 64 409736 20478674 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 61.578
+        },
+        {
+          "processes": [
+            {
+              "pid": 2279,
+              "state": "S",
+              "ppid": 1,
+              "pgrp": 2279,
+              "minor_faults": 31907,
+              "major_faults": 869,
+              "user_ticks": 648,
+              "system_ticks": 123,
+              "comm": "firefox-esr",
+              "wchan": "futex_do_wait",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2279/io'"
+            },
+            {
+              "pid": 2621,
+              "state": "D",
+              "ppid": 2619,
+              "pgrp": 2621,
+              "minor_faults": 14935,
+              "major_faults": 37,
+              "user_ticks": 255,
+              "system_ticks": 34,
+              "comm": "firefox-esr",
+              "wchan": "blk_mq_get_tag",
+              "io_error": "[Errno 2] No such file or directory: '/proc/2621/io'"
+            }
+          ],
+          "mmc_diskstats": [
+            "179       0 mmcblk0 121972 0 975762 9385065 37813 0 302464 11624958 0 413748 21015716 0 0 0 0 200 5692",
+            "179       1 mmcblk0p1 532 0 4256 23528 0 0 0 0 0 3580 23528 0 0 0 0 0 0",
+            "179       2 mmcblk0p2 532 0 4256 25991 0 0 0 0 0 3508 25991 0 0 0 0 0 0",
+            "179       3 mmcblk0p3 876 0 7008 51136 0 0 0 0 0 3920 51136 0 0 0 0 0 0",
+            "179       4 mmcblk0p4 117963 0 943698 9192417 37812 0 302464 11624955 62 415224 20817372 0 0 0 0 0 0",
+            "179       5 mmcblk0p5 532 0 4256 29821 0 0 0 0 0 2380 29821 0 0 0 0 0 0",
+            "179       6 mmcblk0p6 884 0 7064 53421 0 0 0 0 0 3148 53421 0 0 0 0 0 0",
+            "179       8 mmcblk0boot0 50 0 400 185 0 0 0 0 0 48 185 0 0 0 0 0 0",
+            "179      16 mmcblk0boot1 50 0 400 197 0 0 0 0 0 56 197 0 0 0 0 0 0"
+          ],
+          "elapsed_seconds": 67.068
+        }
+      ],
+      "preferences": {
+        "marionette.port": 40511,
+        "browser.shell.checkDefaultBrowser": false,
+        "browser.startup.homepage": "about:blank",
+        "browser.startup.page": 0,
+        "browser.startup.firstrunSkipsHomepage": true,
+        "browser.aboutwelcome.enabled": false,
+        "gfx.egl.prefer-gles.enabled": true
+      },
+      "MOZ_X11_EGL": "1",
+      "pid": 2621,
+      "marionette_ready_seconds": 68.332,
+      "error": "TimeoutError: timed out",
+      "exit_code": -15,
+      "profile_removed": true,
+      "log": "/home/t736/firefox-renderer-egl-v2-20261116.files/egl-gles.log"
+    }
+  ]
+}

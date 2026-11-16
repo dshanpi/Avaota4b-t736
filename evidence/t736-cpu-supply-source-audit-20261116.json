@@ -1,0 +1,640 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-16T08:45:32.232483+00:00",
+  "status": "source_audit_complete_cpu_rail_readback_pending",
+  "board_contacted_by_this_audit": false,
+  "pmic": {
+    "model": "AXP8191",
+    "i2c_address": "0x36",
+    "id_register": "0x0e",
+    "expected_id": 3
+  },
+  "rails": [
+    {
+      "name": "DCDC3",
+      "loads": [
+        "Cortex-A55 CPUs 0..5",
+        "DSU"
+      ],
+      "voltage_register": "0x14",
+      "enable_register": "0x10",
+      "enable_bit": 2
+    },
+    {
+      "name": "DCDC4",
+      "loads": [
+        "Cortex-A76 CPUs 6..7"
+      ],
+      "voltage_register": "0x15",
+      "enable_register": "0x10",
+      "enable_bit": 3
+    },
+    {
+      "name": "DCDC5",
+      "loads": [
+        "GPU"
+      ],
+      "voltage_register": "0x16",
+      "enable_register": "0x10",
+      "enable_bit": 4
+    }
+  ],
+  "voltage_encoding": {
+    "selector_mask": "0x7f",
+    "dvm_bit": 7,
+    "ranges": [
+      {
+        "first": 0,
+        "last": 70,
+        "base_uv": 500000,
+        "step_uv": 10000
+      },
+      {
+        "first": 71,
+        "last": 87,
+        "base_uv": 1220000,
+        "step_uv": 20000
+      }
+    ],
+    "reserved_selectors": "0x58..0x7f"
+  },
+  "mode_registers": {
+    "0x1b": {
+      "bit6": "DCDC2+3 poly-phase",
+      "bit7": "DCDC4+5 poly-phase",
+      "independent_rails_require": "(value & 0xc0) == 0"
+    },
+    "0x1d": {
+      "bit1": "DCDC3 remote-feedback disable",
+      "bit2": "DCDC4 remote-feedback disable",
+      "bit3": "DCDC5 remote-feedback disable",
+      "zero_means": "feedback enabled"
+    }
+  },
+  "source_locations": {
+    "line_counting": "LF newline only; do not count PDF form-feed as a newline",
+    "AXP8191_datasheet": {
+      "file": "reference-2.txt",
+      "enable": [
+        1330,
+        1341
+      ],
+      "DCDC3": [
+        1381,
+        1393
+      ],
+      "DCDC4": [
+        1395,
+        1405
+      ],
+      "phase_and_feedback": [
+        1473,
+        1504
+      ]
+    },
+    "board_schematic": {
+      "file": "reference-3.txt",
+      "DCDC3_to_VDD_CPUL": [
+        406,
+        409
+      ],
+      "DCDC4_to_VDD_CPUB": [
+        437,
+        439
+      ]
+    },
+    "demo_aiot_board_dts": {
+      "cpu0_supply": "reg_dcdc3",
+      "dsu_supply": "reg_dcdc3",
+      "cpu6_supply": "reg_dcdc4"
+    }
+  },
+  "owner_api": {
+    "name": "t736_pmic_read_cpu_supplies",
+    "header": "boards/t736-pmic.h",
+    "snapshot_fields": [
+      "id",
+      "enable",
+      "dcdc3",
+      "dcdc4",
+      "phase",
+      "feedback"
+    ],
+    "registers": [
+      "0x0e",
+      "0x10",
+      "0x14",
+      "0x15",
+      "0x1b",
+      "0x1d"
+    ],
+    "locking": "owner publication mutex holds lifetime; existing owner transaction mutex covers all reads",
+    "publication": "after successful GPU owner probe; devm action withdraws before resource release",
+    "failure": "negative errno, output object unchanged; ID mismatch fails",
+    "pmic_configuration_writes": false,
+    "controller_operations": "ordinary register reads issue TWI control writes and PMIC register-address bytes",
+    "not_allowed": [
+      "second TWI owner",
+      "i2cget on an unregistered controller",
+      "independent controller ioremap",
+      "bus reinitialization for diagnostics",
+      "private driver ABI casts"
+    ]
+  },
+  "26mhz_opp_tables": {
+    "cluster0_opp_table": [
+      {
+        "hz": 416000000,
+        "line": 323,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 800000,
+          "vf0200": 800000,
+          "vf0300": 800000,
+          "vf0400": 800000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 728000000,
+        "line": 346,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 0,
+          "vf0200": 0,
+          "vf0300": 0,
+          "vf0400": 0,
+          "vf0500": 0,
+          "vf0600": 0,
+          "vf0401": 0,
+          "vf0501": 0
+        }
+      },
+      {
+        "hz": 780000000,
+        "line": 369,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 800000,
+          "vf0200": 800000,
+          "vf0300": 800000,
+          "vf0400": 800000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 1014000000,
+        "line": 392,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 800000,
+          "vf0200": 800000,
+          "vf0300": 800000,
+          "vf0400": 800000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 1092000000,
+        "line": 415,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 800000,
+          "vf0200": 0,
+          "vf0300": 0,
+          "vf0400": 0,
+          "vf0500": 0,
+          "vf0600": 0,
+          "vf0401": 0,
+          "vf0501": 0
+        }
+      },
+      {
+        "hz": 1196000000,
+        "line": 438,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 850000,
+          "vf0200": 800000,
+          "vf0300": 800000,
+          "vf0400": 800000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 1300000000,
+        "line": 461,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 900000,
+          "vf0200": 800000,
+          "vf0300": 0,
+          "vf0400": 0,
+          "vf0500": 0,
+          "vf0600": 0,
+          "vf0401": 0,
+          "vf0501": 0
+        }
+      },
+      {
+        "hz": 1404000000,
+        "line": 484,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 950000,
+          "vf0200": 850000,
+          "vf0300": 860000,
+          "vf0400": 840000,
+          "vf0500": 800000,
+          "vf0600": 840000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 1508000000,
+        "line": 507,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 1000000,
+          "vf0200": 900000,
+          "vf0300": 0,
+          "vf0400": 880000,
+          "vf0500": 820000,
+          "vf0600": 0,
+          "vf0401": 820000,
+          "vf0501": 820000
+        }
+      },
+      {
+        "hz": 1586000000,
+        "line": 530,
+        "microvolts_by_26m_vf": {
+          "vf0000": 900000,
+          "vf0100": 0,
+          "vf0200": 0,
+          "vf0300": 0,
+          "vf0400": 0,
+          "vf0500": 0,
+          "vf0600": 0,
+          "vf0401": 0,
+          "vf0501": 0
+        }
+      },
+      {
+        "hz": 1612000000,
+        "line": 553,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 1050000,
+          "vf0200": 950000,
+          "vf0300": 0,
+          "vf0400": 920000,
+          "vf0500": 860000,
+          "vf0600": 0,
+          "vf0401": 860000,
+          "vf0501": 840000
+        }
+      },
+      {
+        "hz": 1716000000,
+        "line": 576,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 0,
+          "vf0200": 1000000,
+          "vf0300": 0,
+          "vf0400": 960000,
+          "vf0500": 900000,
+          "vf0600": 0,
+          "vf0401": 900000,
+          "vf0501": 860000
+        }
+      },
+      {
+        "hz": 1794000000,
+        "line": 599,
+        "microvolts_by_26m_vf": {
+          "vf0000": 1000000,
+          "vf0100": 0,
+          "vf0200": 1050000,
+          "vf0300": 0,
+          "vf0400": 1000000,
+          "vf0500": 950000,
+          "vf0600": 0,
+          "vf0401": 950000,
+          "vf0501": 900000
+        }
+      }
+    ],
+    "cluster1_opp_table": [
+      {
+        "hz": 416000000,
+        "line": 972,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 800000,
+          "vf0200": 800000,
+          "vf0300": 800000,
+          "vf0400": 800000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 728000000,
+        "line": 995,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 0,
+          "vf0200": 0,
+          "vf0300": 0,
+          "vf0400": 0,
+          "vf0500": 0,
+          "vf0600": 0,
+          "vf0401": 0,
+          "vf0501": 0
+        }
+      },
+      {
+        "hz": 780000000,
+        "line": 1018,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 800000,
+          "vf0200": 800000,
+          "vf0300": 800000,
+          "vf0400": 800000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 1014000000,
+        "line": 1041,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 800000,
+          "vf0200": 800000,
+          "vf0300": 800000,
+          "vf0400": 800000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 1196000000,
+        "line": 1064,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 800000,
+          "vf0200": 800000,
+          "vf0300": 800000,
+          "vf0400": 800000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 1300000000,
+        "line": 1087,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 800000,
+          "vf0200": 0,
+          "vf0300": 0,
+          "vf0400": 0,
+          "vf0500": 0,
+          "vf0600": 0,
+          "vf0401": 0,
+          "vf0501": 0
+        }
+      },
+      {
+        "hz": 1404000000,
+        "line": 1110,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 850000,
+          "vf0200": 800000,
+          "vf0300": 820000,
+          "vf0400": 800000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 1508000000,
+        "line": 1133,
+        "microvolts_by_26m_vf": {
+          "vf0000": 800000,
+          "vf0100": 900000,
+          "vf0200": 800000,
+          "vf0300": 860000,
+          "vf0400": 820000,
+          "vf0500": 800000,
+          "vf0600": 800000,
+          "vf0401": 800000,
+          "vf0501": 800000
+        }
+      },
+      {
+        "hz": 1586000000,
+        "line": 1156,
+        "microvolts_by_26m_vf": {
+          "vf0000": 850000,
+          "vf0100": 0,
+          "vf0200": 0,
+          "vf0300": 0,
+          "vf0400": 0,
+          "vf0500": 0,
+          "vf0600": 0,
+          "vf0401": 0,
+          "vf0501": 0
+        }
+      },
+      {
+        "hz": 1612000000,
+        "line": 1179,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 950000,
+          "vf0200": 850000,
+          "vf0300": 900000,
+          "vf0400": 840000,
+          "vf0500": 820000,
+          "vf0600": 850000,
+          "vf0401": 820000,
+          "vf0501": 820000
+        }
+      },
+      {
+        "hz": 1690000000,
+        "line": 1202,
+        "microvolts_by_26m_vf": {
+          "vf0000": 900000,
+          "vf0100": 0,
+          "vf0200": 0,
+          "vf0300": 0,
+          "vf0400": 0,
+          "vf0500": 0,
+          "vf0600": 0,
+          "vf0401": 0,
+          "vf0501": 0
+        }
+      },
+      {
+        "hz": 1716000000,
+        "line": 1225,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 1000000,
+          "vf0200": 900000,
+          "vf0300": 0,
+          "vf0400": 870000,
+          "vf0500": 850000,
+          "vf0600": 0,
+          "vf0401": 850000,
+          "vf0501": 840000
+        }
+      },
+      {
+        "hz": 1794000000,
+        "line": 1248,
+        "microvolts_by_26m_vf": {
+          "vf0000": 950000,
+          "vf0100": 1050000,
+          "vf0200": 950000,
+          "vf0300": 0,
+          "vf0400": 920000,
+          "vf0500": 900000,
+          "vf0600": 0,
+          "vf0401": 900000,
+          "vf0501": 870000
+        }
+      },
+      {
+        "hz": 1898000000,
+        "line": 1271,
+        "microvolts_by_26m_vf": {
+          "vf0000": 1000000,
+          "vf0100": 0,
+          "vf0200": 1000000,
+          "vf0300": 0,
+          "vf0400": 970000,
+          "vf0500": 940000,
+          "vf0600": 0,
+          "vf0401": 940000,
+          "vf0501": 900000
+        }
+      },
+      {
+        "hz": 1950000000,
+        "line": 1294,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 0,
+          "vf0200": 0,
+          "vf0300": 0,
+          "vf0400": 1000000,
+          "vf0500": 970000,
+          "vf0600": 0,
+          "vf0401": 970000,
+          "vf0501": 930000
+        }
+      },
+      {
+        "hz": 1976000000,
+        "line": 1317,
+        "microvolts_by_26m_vf": {
+          "vf0000": 1050000,
+          "vf0100": 0,
+          "vf0200": 0,
+          "vf0300": 0,
+          "vf0400": 0,
+          "vf0500": 0,
+          "vf0600": 0,
+          "vf0401": 0,
+          "vf0501": 0
+        }
+      },
+      {
+        "hz": 2002000000,
+        "line": 1340,
+        "microvolts_by_26m_vf": {
+          "vf0000": 0,
+          "vf0100": 0,
+          "vf0200": 1050000,
+          "vf0300": 0,
+          "vf0400": 1050000,
+          "vf0500": 1000000,
+          "vf0600": 0,
+          "vf0401": 1000000,
+          "vf0501": 960000
+        }
+      }
+    ]
+  },
+  "opp_interpretation": {
+    "zero_voltage": "entry unavailable for that VF selection, not zero-volt operation",
+    "416mhz": "both CPU clusters specify 800000 uV for every listed 26MHz VF column",
+    "higher_rates": "VF and clock-dependent; do not infer from a different bin or the 24MHz table",
+    "runtime_voltage": "not measured by this source audit; datasheet 900mV reset default is not a readback"
+  },
+  "sources": [
+    {
+      "path": "evidence/vendor-reference/reference-2.txt",
+      "sha256": "074fb32e0a831807732ed5e51791e85d56de53820245307756a0f28d06283941"
+    },
+    {
+      "path": "evidence/vendor-reference/reference-3.txt",
+      "sha256": "da3a0b60e0d385fe3f27879d901130904a225e42e0d0cb54d1b0d9c8ded06e26"
+    },
+    {
+      "path": "boards/t736-gpu-supply.c",
+      "sha256": "697544d5d9a46d6eadf0896bc7a71f634f5ec5124e5b9c4b8b2070c4c37dafda"
+    },
+    {
+      "path": "boards/t736-pmic.h",
+      "sha256": "15f03f9b3b7b97f5e59959cf926762dd79c8f249f1c7462f7e50344488368033"
+    },
+    {
+      "remote": "/home/ubuntu/t736-aiot/tina/bsp/configs/linux-6.6/sun60iw2p1-cpu-vf.dtsi",
+      "sha256": "d5535630db3d0acdeace832d1dfad684fab9ab0c31c482b493e36a7f3387e5ad"
+    },
+    {
+      "remote": "/home/ubuntu/t736-aiot/tina/device/config/chips/t736/configs/demo_aiot/linux-6.6/board.dts",
+      "sha256": "f7e3f2cf21f62061198affbc7a99b8fc1ad597314542394bc73bc8365efc8a56"
+    },
+    {
+      "remote": "/home/ubuntu/t736-aiot/tina/bsp/drivers/power/regulator/axp2101-regulator.c",
+      "sha256": "531edf18fe85ae9ccfd09e0693f01e162d579ae1aa6d4071a23485013a61ac2c"
+    },
+    {
+      "remote": "/home/ubuntu/t736-aiot/tina/bsp/drivers/power/include/axp2101.h",
+      "sha256": "19520e273bcc03273662aea37525cfe16b6a720563aeef66b8dbf2b8a74eef56"
+    }
+  ]
+}

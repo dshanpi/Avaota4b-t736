@@ -1,0 +1,353 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v21-hs-sdr-stage-record",
+  "updated_utc": "2026-11-16T12:48:08.277168+00:00",
+  "status": "HS25-and-HS50-bounded-stages-passed-default-still-v16",
+  "high_speed_accepted": true,
+  "default_promoted": false,
+  "kernel_release": "6.18.63-t736-storage-v21",
+  "fixed_artifacts": {
+    "package": {
+      "path": "build/linux-image-6.18.63-t736-storage-v21_6.18.63-21_arm64.deb",
+      "size": 5597090,
+      "sha256": "ecafdd041f47e7cf44dfca6dc8646f11f6907f71d016ba7238eebe9e12393b54"
+    },
+    "updater_sha256": "79b074547330fa68f7c29b4dc4ab366d28bcb7173c825d2735c6df26194aea76",
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "pvr_sha256": "9ba54fb4a0b585b9db1edea6d8dfd541174583a06cf732d2ecc0d38897c103c9"
+  },
+  "transaction": {
+    "check": "PASS as reported by root; detailed preflight/retry evidence retained",
+    "apply": "INSTALLED_AND_SELECTED_NOT_BOOT_TESTED",
+    "backup_directory": "/var/backups/t736-storage-v21/20261116T123935Z-kfcxg6ca",
+    "immediate_rollback": "V16_RESTORED_NOT_REBOOTED",
+    "running_kernel_during_install": "6.18.63-t736-storage-v20",
+    "persistent_fallback": "6.18.63-t736-storage-v16",
+    "persistent_fallback_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate_files_preserved_for_explicit_boot": true
+  },
+  "stages": {
+    "hs25": {
+      "status": "passed-bounded-hs25-boot-integrity-and-health-stage",
+      "accepted": true,
+      "boot_id": "3ddde8d6-b4cd-4a7c-b798-c193929f6860",
+      "software_ios": {
+        "requested_hz": 25000000,
+        "actual_hz": 25000000,
+        "timing": "mmc high-speed",
+        "width_bits": 8,
+        "signal_voltage": "1.80 V"
+      },
+      "observed_clock_register": "0x8100000f",
+      "observed_sample_delay_register": "0x00000080",
+      "expected": {
+        "parent": "verified existing PERI0_800M mux1",
+        "M": 16,
+        "N": 1,
+        "sample_tap": 0,
+        "sample_software_enable": true
+      },
+      "boot_seconds": {
+        "kernel": 3.705,
+        "userspace": 10.391,
+        "total": 14.096
+      },
+      "integrity": {
+        "status": "PASS",
+        "file_bytes": 33554432,
+        "phases": 2,
+        "raw_device_access": false,
+        "buffered_fallback": false,
+        "scratch_retained": false,
+        "total_seconds": 18.597428205,
+        "phases_summary": [
+          {
+            "phase": 1,
+            "write_chunk_bytes": 4096,
+            "write_mib_per_second": 7.87014990096456,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 8.787566815526237,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 8.697303300219257,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 15.401268924792811,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 15.384583313676309,
+                "hash_match": true
+              }
+            ]
+          },
+          {
+            "phase": 2,
+            "write_chunk_bytes": 65536,
+            "write_mib_per_second": 19.6370922010473,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 8.751784421153873,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 8.705248537111759,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 15.405537660124601,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 15.350174316579642,
+                "hash_match": true
+              }
+            ]
+          }
+        ]
+      },
+      "post_probe_health": {
+        "gpu_probe": "PASS",
+        "frames": 60,
+        "quadrants": 4,
+        "pvr_driver": "OK",
+        "pvr_firmware": "OK",
+        "pvr_reported_error_counters": 0,
+        "mmc_filesystem_errors": "none reported in root posthealth check",
+        "scope": "Uses corrected health-verified log; initial usage-error log has no measurement and is excluded from pass evidence"
+      },
+      "physical_display_test": null
+    },
+    "hs50": {
+      "status": "passed-bounded-hs50-boot-integrity-and-health-stage",
+      "accepted": true,
+      "boot_parameter": "t736_mmc_pio.hs_max_hz=50000000",
+      "expected": {
+        "parent": "verified existing PERI0_800M mux1",
+        "M": 8,
+        "N": 1,
+        "clock_register_masked": "0x81000007",
+        "sample_tap": 32,
+        "sample_delay_masked": "0x000000a0"
+      },
+      "boot_id": "a2c59f54-97a0-49be-83aa-45e8aea7390c",
+      "integrity": {
+        "status": "PASS",
+        "file_bytes": 33554432,
+        "phases": 2,
+        "raw_device_access": false,
+        "buffered_fallback": false,
+        "scratch_retained": false,
+        "total_seconds": 14.77352191499999,
+        "phases_summary": [
+          {
+            "phase": 1,
+            "write_chunk_bytes": 4096,
+            "write_mib_per_second": 9.392096848466295,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 11.914030501912936,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 9.345730107872368,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 20.94914941016447,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 20.90059755226442,
+                "hash_match": true
+              }
+            ]
+          },
+          {
+            "phase": 2,
+            "write_chunk_bytes": 65536,
+            "write_mib_per_second": 33.62888227146996,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 9.542255700904306,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 9.371596587557123,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 20.944042711343297,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 20.89006945634682,
+                "hash_match": true
+              }
+            ]
+          }
+        ]
+      },
+      "post_probe_health": {
+        "gpu_probe": "PASS",
+        "frames": 60,
+        "quadrants": 4,
+        "pvr_driver": "OK",
+        "pvr_firmware": "OK",
+        "pvr_reported_error_counters": 0,
+        "mmc_filesystem_errors": "none reported in root posthealth check",
+        "scope": "bounded post-integrity GPU readback and driver health, not GNOME/physical HDMI validation"
+      },
+      "software_ios": {
+        "requested_hz": 50000000,
+        "actual_hz": 50000000,
+        "timing": "mmc high-speed",
+        "width_bits": 8,
+        "signal_voltage": "1.80 V"
+      },
+      "observed_clock_register": "0x81000007",
+      "observed_sample_delay_register": "0x000020a0",
+      "observed_strobe_delay_register": "0x00000080",
+      "register_readbacks_three_passes_equal": true,
+      "boot_seconds": {
+        "kernel": 2.842,
+        "userspace": 6.774,
+        "total": 9.616
+      }
+    }
+  },
+  "acceptance_boundary": [
+    "Installation, boot and software IOS/readback are distinct from bounded file-integrity and error checks.",
+    "HS25 and HS50 require separate runtime evidence; one stage does not imply the other passes.",
+    "Read/write throughput comparison requires matched32MiB modes and reports validation overhead; whole-run time is not a raw-device benchmark.",
+    "GPU readback and PVR health do not imply physical HDMI or GNOME acceptance.",
+    "HS200 is separate draft work; this record makes no HS200 hardware claim.",
+    "Persistent fallback remainsv16 even while a one-shotv21 kernel is running.",
+    "Full SAMP_DL0x20a0 at50MHz contains bits outside the software delay mask0xbf; tap32/software-enable match the planned0xa0.",
+    "No PLL or rail retune was needed: both stages selected already-enabled verified PERI0_800M."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/storage-v21-install-20261116.log",
+      "sha256": "49dcb0b701593057501b5ef0c3d41ecb8b6c3b604018382403dbd6551034aab5",
+      "bytes": 1055
+    },
+    {
+      "path": "evidence/storage-v21-restore-default-poweroff-20261116.log",
+      "sha256": "641b5852a3acb097b0f46d15f0e45e08fd85728760fdb2840bebde0fcf23e2ed",
+      "bytes": 151
+    },
+    {
+      "path": "evidence/storage-v21-hs25-runtime-20261116.log",
+      "sha256": "6039ed583e9a8092a6600f5c6d6a906e7aa6ad05ddb88f41f6d38e1eaf5ccff3",
+      "bytes": 10614
+    },
+    {
+      "path": "evidence/storage-v21-updater-independent-review-20261116.json",
+      "sha256": "907602a1883824cfd9f0ad513e25c5b49482ef8a1b221cdd0721165ead175a04",
+      "bytes": 1904
+    },
+    {
+      "path": "evidence/storage-v21-hs25-coldboot-20261116.log",
+      "sha256": "954d5f40c3c6daae36cb9a2a31e2b8bd29c12ba9750228ee000125fd081248f8",
+      "bytes": 44814
+    },
+    {
+      "path": "evidence/storage-v21-hs25-integrity-20261116.json",
+      "sha256": "ec5d348d7a9c8b37b4963435b0e3f13be424e82f63b420f361f92ecf97e2cfa8",
+      "bytes": 17591
+    },
+    {
+      "path": "evidence/storage-v21-hs25-integrity-20261116.log",
+      "sha256": "043b90ac96201050d10984e67606ff2414ca03a8589e74cb5140a20a86d6ebff",
+      "bytes": 18165
+    },
+    {
+      "path": "evidence/storage-v21-hs25-health-verified-20261116.log",
+      "sha256": "788fb0e74094a74594903567c31641e35bc297c0b7ba54c9710011ed2cdfbded",
+      "bytes": 873
+    },
+    {
+      "path": "evidence/storage-v21-hs50-runtime-20261116.log",
+      "sha256": "be584f053c5198c58e76bfbf16517daf8681723a2442a68211b7509c8ddc27bb",
+      "bytes": 7449
+    },
+    {
+      "path": "evidence/storage-v21-hs50-coldboot-20261116.log",
+      "sha256": "1ca4c993895f71e9ce6fcc39161e7fd8ab6df955e8ddc540fa567f582dc84e50",
+      "bytes": 43958
+    },
+    {
+      "path": "evidence/storage-v21-hs50-integrity-20261116.json",
+      "sha256": "5ccef28907bb1d1a71e91ce352adec7fd7cd82d55554439c40b68f77da998906",
+      "bytes": 17570
+    },
+    {
+      "path": "evidence/storage-v21-hs50-integrity-health-20261116.log",
+      "sha256": "e098c041abd81279e548382cea6dd7c8a3e5206a3e8ff266f278ff0af705b5de",
+      "bytes": 2450
+    }
+  ],
+  "accepted_scope": "Bounded HS SDR25MHz and50MHz only; noHS200/full-release/physical-display acceptance",
+  "excluded_from_acceptance_evidence": [
+    {
+      "path": "evidence/storage-v21-hs25-health-20261116.log",
+      "reason": "Probe usage failure; contains no valid health measurement; historical failure retained"
+    }
+  ]
+}

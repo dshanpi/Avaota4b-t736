@@ -1,0 +1,16 @@
+systemctl stop gdm.service; test ! -e /sys/module/pvrsrvkm && insmod /tmp/t736-transfer/gpu-pll-enable.ko; echo GPU_PLL_ENABLE_RC=$?; dmesg | grep t736-gpu-pll-enable | tail -n 15; cp /tmp/t736-transfer/gpu-pll-enable.ko /root/t736-gpu-debug/; sync; echo GPU_PLL_DONE
+
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+GPU_PLL_ENABLE_RC=0
+[  574.712070] t736-gpu-pll-enable: initial PLL_GPU0=40104500 GPU0_CLK=00000000 GPU_BGR=00000000
+[  574.712113] t736-gpu-pll-enable: preserving N=70 M=2 and all frequency controls; integer nominal 840MHz at 24MHz reference
+[  574.712125] t736-gpu-pll-enable: output-off expected=40104500 actual=40104500
+[  574.712142] t736-gpu-pll-enable: ldo-on expected=40104500 actual=40104500
+[  574.712157] t736-gpu-pll-enable: enable-on expected=c0104500 actual=c0104500
+[  574.712172] t736-gpu-pll-enable: lock-detect-on expected=e0104500 actual=e0104500
+[  574.712197] t736-gpu-pll-enable: lock samples=3 consecutive=3 control=f0104500
+[  574.712232] t736-gpu-pll-enable: output-on expected=f8104500 actual=f8104500
+[  574.712247] t736-gpu-pll-enable: SUCCESS PLL_GPU0=f8104500 core=00000000 bus=00000000 unchanged; PLL left enabled until reset
+GPU_PLL_DONE
+root@t736:~# 

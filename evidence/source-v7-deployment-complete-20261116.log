@@ -1,0 +1,9 @@
+LC_ALL=C bash /tmp/t736-transfer/source-v7-finalize-gpt.sh > /root/source-v7-gpt-readback-20261116.log 2>&1; printf "GPT_FINALIZE_RC=%s\n" "$?"; uname -r; systemctl is-active display-manager.service; systemctl get-default; pgrep -a gnome-shell; printf "KERNEL_TAINT="; cat /proc/sys/kernel/tainted; sync
+
+GPT_FINALIZE_RC=0
+6.18.63-t736-hdmi-v14
+active
+graphical.target
+1063 /usr/bin/gnome-shell
+KERNEL_TAINT=0
+root@t736:~# 

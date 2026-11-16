@@ -1,0 +1,16 @@
+( set -eu; curl --noproxy '*' --fail --max-time 30 http://192.168.1.228:18737/probe -o /run/t736-probe.bin; sha256sum /run/t736-probe.bin; curl --noproxy '*' --fail --max-time 30 --data-binary @/run/t736-probe.bin http://192.168.1.228:18737/probe; echo BIDIRECTIONAL_TEST_FINISHED ); perl /tmp/t736-transfer/ethernet_stats.pl | grep -E 'mmc_rx_crc|mmc_rx_align|mmc_rx_run|fatal_bus'
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 4096k  100 4096k    0     0  78.4M      0 --:--:-- --:--:-- --:--:-- 80.0M
+51cc83333c3a072d5c495bbcd1a5f7709edf8bbc1cd5b8800e26b3a4f749f7f2  /run/t736-probe.bin
+51cc83333c3a072d5c495bbcd1a5f7709edf8bbc1cd5b8800e26b3a4f749f7f2
+BIDIRECTIONAL_TEST_FINISHED
+mmc_rx_crc_error=10
+mmc_rx_align_error=0
+mmc_rx_run_error=1
+mmc_rx_align_err_frames=0
+fatal_bus_error_irq=0
+root@t736:~# 

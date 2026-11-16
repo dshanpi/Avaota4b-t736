@@ -1,0 +1,30 @@
+{
+  "recorded_at_utc": "2026-11-16T09:47:59.434144+00:00",
+  "reviewer": "event_review",
+  "hardware_accessed": false,
+  "hardware_tested": false,
+  "payload_sha256": "240a52c18fd3b3e744ca24a923dea646c91cf4f34839dc0172d9c8250a12dc51",
+  "package_sha256": "306fb10d7612c7fcc9bd16b8588737e3153c67103ea470226b34c7d28fdbcfa1",
+  "package_bytes": 323072,
+  "start_lba": 24576,
+  "sector_count": 631,
+  "end_lba_exclusive": 25207,
+  "limit_lba": 32800,
+  "checks": [
+    "Independently decoded header and all three entries using struct, without importing package generator",
+    "Header CRC and three payload CRC values independently recomputed",
+    "stage64 and TF-A including padding equal baseline byte-for-byte",
+    "U-Boot equal exact final build byte-for-byte",
+    "Header changes limited to CRC and third payload length/CRC",
+    "All payload sector padding zero; fixed addresses and SPL size bounds respected",
+    "Manifest package hash, component hashes and build-record hash independently verified",
+    "ELF disassembly confirms explicit DAIF mask/restore and DSB/ISB for local CPU clock writes",
+    "ELF has TWI read8 but no TWI init/write8 symbols",
+    "Native A55/A76 fault tests passed; no compiler warnings/errors"
+  ],
+  "baseline_sector_count": 613,
+  "tail_extension_sectors": 18,
+  "backup_requirement": "Back up all631 sectors before writing; baseline cb35e82d hash applies only to first613 sectors; preserve tail18 for complete rollback",
+  "cpu0_hotplug_fixed": false,
+  "cold_boot_acceptance": "pending root, exclusive board owner"
+}

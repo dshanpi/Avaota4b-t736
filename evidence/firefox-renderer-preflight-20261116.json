@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "status": "prepared; fresh runtime renderer result pending after CPU/storage repair",
+  "installed_firefox": "153.7.0esr-1~deb13u1 arm64",
+  "binary_audit": {
+    "source": "libxul.so extracted read-only from rootfs-armbian-source-v9.ext4",
+    "path": "192.168.1.228:/home/ubuntu/t736-mainline/build/firefox153-audit/libxul.so",
+    "sha256": "ac62348ec9bab27e26f3f9bdf6ec95fc16188168dd0b3bc10e4a9f6cf892846d",
+    "confirmed_strings": [
+      "MOZ_DRM_DEVICE",
+      "MOZ_X11_EGL",
+      "gfx.egl.prefer-gles.enabled",
+      "DMABufDevice::OpenDRMFd() DRM device %s",
+      "Failed to open drm render node %s error %s",
+      "FEATURE_FAILURE_NO_DRM_DEVICE"
+    ],
+    "conclusion": "The installed build contains the DRM-node environment option and matching DMA-BUF device-open implementation strings; the selected-node experiment still needs runtime verification"
+  },
+  "drm_environment_semantics": {
+    "upstream_reference": "https://github.com/mozilla-firefox/firefox/blob/d7161e35da7704cff60e48ee86fb7747ffcc93c7/widget/gtk/DMABufDevice.cpp#L262",
+    "reference_scope": "Pinned current upstream implementation, not claimed to be the exact source revision of the installed Debian binary",
+    "behavior": "MOZ_DRM_DEVICE supplies the DMA-BUF render-node path before falling back to gfxVars::DrmRenderDevice; OpenDRMFd then opens that node",
+    "does_not_establish": [
+      "Successful GLX or EGL context creation",
+      "Hardware WebRender acceptance or a blocklist override",
+      "Hardware video decoding or a supported VAAPI backend"
+    ],
+    "candidate_node": "/dev/dri/renderD128",
+    "required_live_checks": [
+      "The selected path is a renderD character node, not a display card node",
+      "sysfs device/driver/module resolves to pvrsrvkm",
+      "The desktop user can read and write the render node",
+      "The private runtime-gles libraries and the PVR module match the accepted kernel"
+    ],
+    "glx_warning_interpretation": "The ordinary Firefox instance's failed-to-load sunxi-drm messages describe its GLX probe path; they do not demonstrate failure of the separate EGL/GLES candidate"
+  },
+  "probe": {
+    "source": "tools/validation/firefox_renderer_probe.py",
+    "source_sha256": "5f3052e0db910f33aa417dfdb55f41fe5901f00b5ab8ca653804e7294a8aabf8",
+    "transfer_bundle": "analysis/t736-firefox-renderer-probe-v4.gz.b64",
+    "output_schema": 3,
+    "default_startup_timeout_seconds": 120,
+    "default_protocol_timeout_seconds": 60,
+    "phase_tracking": ["wait_for_tcp_listener", "wait_for_protocol_greeting", "new_session", "navigate_about_support", "extract_about_support", "complete"],
+    "marionette_command_audit": {
+      "installed_archive": "firefox153-audit/omni.ja",
+      "new_session_entry": "chrome/remote/content/marionette/driver.sys.mjs:2422",
+      "session_constructor": "chrome/remote/content/shared/webdriver/Session.sys.mjs:230",
+      "capability_parser": "chrome/remote/content/shared/webdriver/Capabilities.sys.mjs:572",
+      "new_session_parameters": {"acceptInsecureCerts": false},
+      "note": "Direct Marionette consumes flat negotiated capabilities; HTTP WebDriver's capabilities/alwaysMatch wrapper belongs to geckodriver"
+    },
+    "profiles": [
+      {"mode": "baseline", "graphics_environment_changes": {}, "graphics_preferences": {}},
+      {"mode": "egl-gles", "graphics_environment_changes": {"MOZ_X11_EGL": "1"}, "graphics_preferences": {"gfx.egl.prefer-gles.enabled": true}},
+      {"mode": "egl-gles-drm", "graphics_environment_changes": {"MOZ_X11_EGL": "1", "MOZ_DRM_DEVICE": "/dev/dri/renderD128"}, "graphics_preferences": {"gfx.egl.prefer-gles.enabled": true}, "requires_explicit_drm_device_argument": true}
+    ],
+    "existing_profile_modified": false,
+    "sandbox_disabled": false,
+    "blocklist_overridden": false,
+    "vaapi_forced": false,
+    "persistent_firefox_settings_written": false
+  },
+  "runtime_interpretation": {
+    "prior_io_analysis": "source-v9-firefox-io-analysis-20261116.json",
+    "prior_result": "TCP connected at 68.332 seconds, then protocol greeting timed out; root partition had 57-64 queued requests and approximately 0.957 MiB/s aggregate I/O",
+    "complete_flag_means": "The probe extracted about:support; it does not mean hardware acceleration passed",
+    "hardware_renderer_evidence_needed": [
+      "about:support Compositing reports hardware WebRender, not WebRender Software",
+      "GPU/renderer and decision logs identify the IMG/PVR path without a software fallback",
+      "The GPU render node and libraries match the intended PVR stack",
+      "Browser remains usable during a bounded page/scroll test without new GPU errors"
+    ],
+    "media_is_separate": "Installing libavcodec61 supplies software codecs; neither an IMG compositor nor this DRM-node option verifies VE decoding"
+  }
+}

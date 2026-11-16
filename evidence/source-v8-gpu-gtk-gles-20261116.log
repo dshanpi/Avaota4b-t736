@@ -1,0 +1,16 @@
+runuser -u t736 -- env XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_TYPE=x11 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri GDK_BACKEND=x11 GDK_DISABLE=gl-api,glx,vulkan GSK_RENDERER=opengl GDK_DEBUG=opengl gnome-text-editor --standalone >/root/t736-gpu-debug/text-editor-gles.log 2>&1 & echo GTK_GLES_TEST_PID=$!; echo GTK_GLES_LAUNCH_SENT
+
+[1] 5229
+GTK_GLES_TEST_PID=5229
+GTK_GLES_LAUNCH_SENT
+root@t736:~# tail -n 65 /root/t736-gpu-debug/text-editor-gles.log; echo GTK_GLES_PROCESSES; ps -eo pid,stat,comm | grep -E 'gnome-text|gnome-shell'; echo GTK_GLES_RESULT_DONE
+
+libEGL warning: egl: failed to create dri2 screen
+libEGL warning: egl: failed to create dri2 screen
+
+(gnome-text-editor:5232): Gtk-WARNING **: 08:21:21.035: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+GTK_GLES_PROCESSES
+   4175 Ssl  gnome-shell
+   5232 Sl   gnome-text-edit
+GTK_GLES_RESULT_DONE
+root@t736:~# 

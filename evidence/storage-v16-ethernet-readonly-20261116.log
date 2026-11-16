@@ -1,0 +1,28 @@
+EEE settings for end0:
+	EEE status: enabled - inactive
+	Tx LPI: 1000000 (us)
+	Supported EEE link modes:  100baseT/Full
+	                           1000baseT/Full
+	Advertised EEE link modes:  100baseT/Full
+	                            1000baseT/Full
+	Link partner advertised EEE link modes:  Not reported
+Cannot Get PHY downshift count: Operation not supported
+no stats available
+2: end0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether ca:84:85:01:e5:8e brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+      58617546   45623      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+       4204853   29037      0       0       0       0 
+attached_dev
+c45_phy_ids
+driver
+of_node
+phy_dev_flags
+phy_has_fixups
+phy_id
+phy_interface
+power
+statistics
+subsystem
+uevent

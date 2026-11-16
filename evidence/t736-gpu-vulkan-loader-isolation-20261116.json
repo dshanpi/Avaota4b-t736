@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-16",
+  "issue": "Vendor X11 Vulkan loader shadows Debian libvulkan.so.1; GTK4 resolves vkCreateWaylandSurfaceKHR at load time even for an Xorg desktop",
+  "loader": {
+    "path": "/home/ubuntu/t736-mainline/build/gpu-userspace/package-root/opt/t736-img-ddk-24.2-x11/lib/libvulkan.so.1.3.280",
+    "sha256": "f91ccd196bfa9fef3ecf7ec4b8da74174b476cc196345f96e9c0f49b3816c0ba",
+    "soname": "libvulkan.so.1",
+    "symbols": {
+      "vkCreateWaylandSurfaceKHR": false,
+      "vkCreateXlibSurfaceKHR": true,
+      "vkCreateXcbSurfaceKHR": true,
+      "vkGetInstanceProcAddr": true
+    },
+    "rpath": "/usr/local/lib"
+  },
+  "vendor_icd": {
+    "path": "/home/ubuntu/t736-mainline/build/gpu-userspace/package-root/opt/t736-img-ddk-24.2-x11/lib/libVK_IMG.so.24.2.6603887",
+    "sha256": "ac182122ff87ed2ade0deca78c360324069351e050860952175670f78f92230e",
+    "symbols": {
+      "vk_icdGetInstanceProcAddr": true,
+      "vkGetInstanceProcAddr": true,
+      "vk_icdNegotiateLoaderICDInterfaceVersion": true
+    },
+    "private_json": {
+      "file_format_version": "1.0.0",
+      "ICD": {
+        "library_path": "/opt/t736-img-ddk-24.2-x11/lib/libVK_IMG.so",
+        "api_version": "1.3.277",
+        "device_type": "VK_DEVICE_TYPE_PHYSICAL_DEVICE"
+      }
+    }
+  },
+  "minimal_isolation": {
+    "view": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+    "exclude": [
+      "libvulkan.so",
+      "libvulkan.so.1",
+      "libvulkan.so.1.3.280"
+    ],
+    "original_payload": "untouched; new sibling symlink view only",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+    "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri",
+    "VK_ICD_FILENAMES": "do not set by default",
+    "warning": "Old t736-img-run sources original session.env and reintroduces vendor loader; use direct probe command for controlled view test until package -2 replaces the project-owned wrapper/env."
+  },
+  "helper_sha256": "0bdf9800033a80104d0ee50988701e11d804328b275adb08aeae02142dff4db4",
+  "hardware_validation": "pending root-controlled directory switch; no board operations by this audit"
+}

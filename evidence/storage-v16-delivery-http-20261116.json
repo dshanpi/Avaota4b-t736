@@ -1,0 +1,24 @@
+{
+  "created_utc": "2026-11-16T10:33:34.917530+00:00",
+  "expires_utc": "2026-11-16T11:33:34.917530+00:00",
+  "pid": 897603,
+  "base_url": "http://192.168.1.228:18746/f6173a12d15feb50a1e0c98cc95f2330",
+  "lifetime_seconds": 3600,
+  "files": {
+    "kernel.deb": {
+      "bytes": 5590080,
+      "sha256": "520b42929ee4700a29ab8da5f020b828948a607c87a6eb8dd98c8ecacd6170c6"
+    },
+    "pvrsrvkm.ko": {
+      "bytes": 1913816,
+      "sha256": "abd38db687c93b91757719564e1f0fe35b10b137f23d78ea425ff2845d8c8474"
+    },
+    "update_t736_storage_v16.py": {
+      "bytes": 24338,
+      "sha256": "cf6ad0b32e1ffbd5d6687e54d1a4204f2e7ecd24a0bc44bdeb71f76d79aded7f"
+    }
+  },
+  "wrong_path_status": 404,
+  "hardware_actions": false,
+  "candidate_hardware_accepted": false
+}

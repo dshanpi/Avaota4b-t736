@@ -1,0 +1,21 @@
+{
+    "programs": [
+
+    ],
+    "stream_groups": [
+
+    ],
+    "streams": [
+        {
+            "codec_name": "h264",
+            "width": 320,
+            "height": 240,
+            "pix_fmt": "yuv420p",
+            "nb_read_frames": "30"
+        }
+    ]
+}
+470c8bb5cfb3159fb1566f115e452bf29791975686db6662fbc6a71a2ba6d267  sample-320x240-30frames.h264
+bbacb31e9e456976928fcb503e4f881636ee5b8122ef62ff4529f7c9ad1c9866  reference-yuv420p.yuv
+38003 sample-320x240-30frames.h264
+3456000 reference-yuv420p.yuv

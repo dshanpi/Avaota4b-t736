@@ -1,0 +1,19 @@
+{
+  "files": {
+    "update_t736_storage_v19.py": {
+      "path": "tools/validation/update_t736_storage_v19.py",
+      "bytes": 27247,
+      "sha256": "2c04f02dc7faba327bdd42e33dfd3d6d84458fe64c3dc4c40d0fae89dfc12fb2"
+    },
+    "kernel-storage-v19.deb": {
+      "path": "build/linux-image-6.18.63-t736-storage-v19_6.18.63-19_arm64.deb",
+      "bytes": 5592228,
+      "sha256": "31e82d9ff94ba0a0a26915410a914aa74878ab4ace21434485a8fddb2b40a7b9"
+    },
+    "pvrsrvkm-storage-v19.ko": {
+      "path": "build/pvr-storage-v19/target_aarch64/pvrsrvkm.ko",
+      "bytes": 1913816,
+      "sha256": "c0aa70e73e90f41c739b8d26781ad1fe6efc2d221712cda2adcf4647e8af11ad"
+    }
+  }
+}

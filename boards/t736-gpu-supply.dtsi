@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/ {
+	/* Exclusive byte-mode owner of the PMIC bus; only DCDC5 is exposed. */
+	gpu_dcdc5: regulator@7083000 {
+		compatible = "allwinner,t736-gpu-supply";
+		reg = <0 0x07083000 0 0x400>, <0 0x07010010 0 4>,
+		      <0 0x0701019c 0 4>, <0 0x07025000 0 4>;
+		reg-names = "twi", "apbs1", "twi-gate", "pins";
+		regulator-name = "axp8191-gpu-dcdc5";
+		regulator-min-microvolt = <800000>;
+		regulator-max-microvolt = <960000>;
+		regulator-boot-on;
+		regulator-always-on;
+	};
+};

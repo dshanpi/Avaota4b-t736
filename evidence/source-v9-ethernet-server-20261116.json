@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "started_utc": "2026-11-16T09:27:26Z",
+  "listen": "192.168.1.228:18738",
+  "payload": {
+    "bytes": 67108864,
+    "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc",
+    "rounds": 3
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "client": "192.168.1.53",
+      "bytes": 67108864,
+      "seconds": 5.661135722999461,
+      "mbps": 94.83448874381475
+    },
+    {
+      "method": "POST",
+      "client": "192.168.1.53",
+      "bytes": 67108864,
+      "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc",
+      "match": true,
+      "seconds": 5.706665195990354,
+      "mbps": 94.0778709739655,
+      "error": null
+    },
+    {
+      "method": "GET",
+      "client": "192.168.1.53",
+      "bytes": 67108864,
+      "seconds": 5.608806286996696,
+      "mbps": 95.71928223741065
+    },
+    {
+      "method": "POST",
+      "client": "192.168.1.53",
+      "bytes": 67108864,
+      "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc",
+      "match": true,
+      "seconds": 5.70652612298727,
+      "mbps": 94.08016373347593,
+      "error": null
+    },
+    {
+      "method": "GET",
+      "client": "192.168.1.53",
+      "bytes": 67108864,
+      "seconds": 5.606038281985093,
+      "mbps": 95.76654403613784
+    },
+    {
+      "method": "POST",
+      "client": "192.168.1.53",
+      "bytes": 67108864,
+      "sha256": "3ec741c6355acabe198b2a3ba0a3fd6d337912c0d1dff65c25932f6cf6e741bc",
+      "match": true,
+      "seconds": 5.706122645991854,
+      "mbps": 94.08681609343144,
+      "error": null
+    }
+  ],
+  "completed_roundtrips": 3,
+  "accepted": true,
+  "finished_utc": "2026-11-16T09:30:30Z"
+}

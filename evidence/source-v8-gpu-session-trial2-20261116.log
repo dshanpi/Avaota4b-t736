@@ -1,0 +1,12 @@
+bash -n /tmp/t736-transfer/gpu_session_trial2.sh && bash /tmp/t736-transfer/gpu_session_trial2.sh enable >/root/t736-gpu-debug/session-trial2.log 2>&1; echo GPU_SESSION2_RC=$?; tail -n 25 /root/t736-gpu-debug/session-trial2.log; echo GPU_SESSION2_DONE
+
+GPU_SESSION2_RC=0
+Candidate enabled; PageFlip remains false. Diagnostics: /root/t736-gpu-session-trial/runs/20261116T075851Z-2914
+Verify actual Xorg/GNOME process libraries and hardware renderer; use rollback on failure.
+GPU_SESSION2_DONE
+root@t736:~# [drm] suxni tcon hdmi set rate: 241500000Hz and get diff: 241500000Hz
+[drm] suxni tcon hdmi set rate: 148500000Hz and get diff: 148500000Hz
+echo SESSION_SCRIPT_RETURNED
+
+SESSION_SCRIPT_RETURNED
+root@t736:~# 

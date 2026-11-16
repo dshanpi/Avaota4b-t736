@@ -1,0 +1,8 @@
+grep "^Udp:" /proc/net/snmp; readlink /sys/class/net/end0/device/driver; networkctl status end0 --no-pager | grep -E "Link File|Network File"
+
+Udp: InDatagrams NoPorts InErrors OutDatagrams RcvbufErrors SndbufErrors InCsumErrors IgnoredMulti MemErrors
+Udp: 29 0 0 66 0 0 0 8 0
+../../../bus/platform/drivers/t736-dwmac
+                   Link File: /usr/lib/systemd/network/99-default.link
+                Network File: /etc/systemd/network/20-wired.network
+root@t736:~# 

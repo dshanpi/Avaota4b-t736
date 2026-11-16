@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v22-hs200-stage-record",
+  "updated_utc": "2026-11-16T13:10:57.309183+00:00",
+  "status": "HS200-100MHz-bounded-stage-passed-200MHz-first-boot-failed",
+  "default_promoted": false,
+  "kernel_release": "6.18.63-t736-storage-v22",
+  "previous_accepted_stages": {
+    "path": "evidence/storage-v21-hs-stage-record-20261116.json",
+    "sha256": "da58c5149dedae97fb129603df6a5396c7dd769d5eb139998c06a791332da253",
+    "scope": "Frozen v21 HS SDR25MHz and50MHz bounded stages retained unchanged."
+  },
+  "fixed_artifacts": {
+    "package": {
+      "path": "build/linux-image-6.18.63-t736-storage-v22_6.18.63-22_arm64.deb",
+      "size": 5601780,
+      "sha256": "8a6eb70cdc43190df40c2c06d2683a666a9b73e870bf79674321514fd986108f"
+    },
+    "updater_sha256": "77d4a68f9a2cfb3669162e9b3ca3028383adae269589cdc9c6bda4ded7cf8275",
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "pvr_sha256": "c717b37d6dba72b2ba708e747d222282b06aac15dc317a1cf532a2a8dfd92c1a"
+  },
+  "transaction": {
+    "check": "CHECK_PASS",
+    "apply": "INSTALLED_AND_SELECTED_NOT_BOOT_TESTED",
+    "backup_directory": "/var/backups/t736-storage-v22/20261116T130059Z-mla1i_el",
+    "immediate_rollback": "V16_RESTORED_NOT_REBOOTED as reported by root",
+    "rollback_evidence_source": "Root message confirming immediate rollback before one-shot HS200 boot; separate rollback transcript not yet attached.",
+    "running_kernel_during_install": "6.18.63-t736-storage-v21",
+    "persistent_fallback": "6.18.63-t736-storage-v16",
+    "persistent_fallback_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate_files_preserved_for_explicit_boot": true,
+    "installed_final_sha256": {
+      "kernel": "b652ac7920053b87dbe7ea6eb967d255b4ddcb03a3261c55866755b9a496588a",
+      "config": "04ab0af6fcb29c0dfe2934590a2cb9f9b9943828930c6f9164814e8019d9428e",
+      "dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+      "pvr": "c717b37d6dba72b2ba708e747d222282b06aac15dc317a1cf532a2a8dfd92c1a",
+      "initrd": "5d8315570847ee90b8e3cb960808c3c2d1c96f54b1d59a216991f1270b7e7185",
+      "modules_dep": "a04354f94edd7ebf9b94fe65b273460c00e8a0d4b60956054937f43544b0230b"
+    }
+  },
+  "stages": {
+    "hs200_100": {
+      "status": "passed-bounded-hs200-100MHz-boot-tuning-integrity-and-health-stage",
+      "accepted": true,
+      "boot_id": "1dffb096-86a0-413a-a2e9-2cef18af47df",
+      "boot_parameters": [
+        "t736_mmc_pio.enable_hs200=1",
+        "t736_mmc_pio.hs200_max_hz=100000000"
+      ],
+      "software_ios": {
+        "requested_hz": 100000000,
+        "actual_hz": 100000000,
+        "timing": 9,
+        "timing_name": "mmc HS200",
+        "width_bits": 8,
+        "signal_voltage": "1.80V",
+        "card_hs_timing": "0x02"
+      },
+      "boot_seconds": {
+        "kernel": 3.79,
+        "userspace": 6.37,
+        "total": 10.16
+      },
+      "tuning": {
+        "frequency_hz": 100000000,
+        "passing_bitmap": "0xffffffffffffffff",
+        "abort_failure_bitmap": "0x0000000000000000",
+        "linear_window_first": 0,
+        "linear_window_count": 64,
+        "chosen_tap": 31,
+        "successful_transfers_per_passing_tap": 20,
+        "center_verification_transfers": 16,
+        "pattern_bytes": 128,
+        "tuning_thld": "0x00800001",
+        "sfc": "0x00000006",
+        "boundary": "All64 tested taps passed at100MHz; no failing eye boundary was observed within this finite scan. Midpoint31 is the algorithm choice, not proof of the physical optimum."
+      },
+      "readbacks": {
+        "passes": 3,
+        "registers_per_pass": 25,
+        "all_three_passes_match": true,
+        "values": {
+          "PLL_REF_CTRL": "0xf8675f00",
+          "PLL_PERI0_CTRL": "0xff126310",
+          "PLL_PERI0_PAT0": "0x00000000",
+          "PLL_PERI0_PAT1": "0x30000000",
+          "PLL_PERI1_CTRL": "0x40126310",
+          "PLL_PERI1_PAT0": "0x00000000",
+          "PLL_PERI1_PAT1": "0x30000000",
+          "SMHC3_CLK": "0x81000003",
+          "SMHC3_BGR": "0x00010001",
+          "STORE_MBUS_GATE": "0xf1055803",
+          "MSI_LITE1_GATE": "0x00030001",
+          "PERI0PLL_GATE_EN": "0x8fff0fff",
+          "PERI0PLL_GATE_STAT": "0x0fff0000",
+          "SMHC3_CTRL": "0x20000000",
+          "SMHC3_CLKDIV": "0x00010000",
+          "SMHC3_WIDTH": "0x00000002",
+          "SMHC3_CSDC": "0x00000003",
+          "SMHC3_NTSR": "0x01710000",
+          "SMHC3_THLD": "0x02000001",
+          "SMHC3_SFC": "0x00000006",
+          "SMHC3_EDSD": "0x00000000",
+          "SMHC3_DRV_DL": "0x00010000",
+          "SMHC3_SAMP_DL": "0x00001f9f",
+          "SMHC3_DS_DL": "0x00000080",
+          "SMHC3_SMCV": "0x03050610"
+        },
+        "sample_delay_software_mask": "0x000000bf",
+        "sample_delay_masked": "0x0000009f",
+        "normal_read_thld": "0x02000001",
+        "qualification": "Non-atomic register snapshots, not physical frequency measurement or DLL calibration."
+      },
+      "integrity": {
+        "status": "PASS",
+        "file_bytes": 33554432,
+        "phases": 2,
+        "raw_device_access": false,
+        "buffered_fallback": false,
+        "scratch_retained": false,
+        "total_seconds": 11.321426833999993,
+        "phases_summary": [
+          {
+            "phase": 1,
+            "write_chunk_bytes": 4096,
+            "write_mib_per_second": 10.114332375240974,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 16.052999733109843,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 10.855554943787686,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 35.06266333448647,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 34.317367841414274,
+                "hash_match": true
+              }
+            ]
+          },
+          {
+            "phase": 2,
+            "write_chunk_bytes": 65536,
+            "write_mib_per_second": 59.45579921182083,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 14.174742379151331,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 9.3157780849,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 25.52335377698139,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 25.461240070984346,
+                "hash_match": true
+              }
+            ]
+          }
+        ]
+      },
+      "post_probe_health": {
+        "gpu_probe": "PASS",
+        "frames": 60,
+        "quadrants": 4,
+        "pvr_driver": "OK",
+        "pvr_firmware": "OK",
+        "pvr_reported_error_counters": 0,
+        "mmc_filesystem_errors": "No errors reported by root post-probe check; final filtered log contains tuning success only.",
+        "scope": "Bounded GPU readback and driver health; not GNOME responsiveness or physical-display acceptance."
+      },
+      "physical_display_test": null
+    },
+    "hs200_200": {
+      "status": "failed-first-boot-tuning-stopped-on-card-error-summary",
+      "accepted": false,
+      "expected": {
+        "actual_hz": 200000000,
+        "clock_reg": "0x81000001",
+        "M": 2,
+        "N": 1,
+        "parent": "Verified existing PERI0_800M mux1"
+      },
+      "observed": {
+        "requested_hz": 200000000,
+        "programmed_clock": "0x81000001",
+        "passing_taps_before_stop": "0..31 each completed20 CMD21 validations",
+        "passing_bitmap": "0x00000000ffffffff",
+        "first_failed_tap": 32,
+        "tap_identity_basis": "Inferred from monotonically scanned taps and first32-bit passing bitmap; failure line does not print tap separately.",
+        "error": -84,
+        "rint": "0x000000ac",
+        "idst": "0x00000022",
+        "descriptor_owned": "0/1",
+        "card_bytes": 128,
+        "host_bytes": 128,
+        "cleanup_abort": -110,
+        "dma_stop": 0,
+        "clock_stop": 0,
+        "dma_dead": false,
+        "card_initialization": "failed",
+        "root_mounted": false
+      },
+      "diagnosis": {
+        "path": "evidence/storage-v22-hs200-200-failure-review-20261116.json",
+        "sha256": "d107e0baea8aefce5da689091f624135d25e3c680cc397e52f4b36148082e1cf"
+      }
+    }
+  },
+  "acceptance_boundary": [
+    "100MHz and200MHz are separate stages; no200MHz acceptance is inferred from100MHz.",
+    "HS200 tuning validates known CMD21 reads; separate bounded scratch-file phases provide additional read/write integrity evidence.",
+    "Reported throughput includes compare/hash/poison overhead and may vary with background workload.",
+    "GPU/PVR checks do not imply physical HDMI or GNOME acceptance.",
+    "HS400 remains separate design-only work and is not claimed by this record.",
+    "Persistent fallback remains v16 during one-shot candidate trials.",
+    "Authentication/tunnel logs, private screenshots and credentials are excluded from public backup."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/storage-v22-preflight-20261116.log",
+      "sha256": "5452817ef83d8cd2aebf23c2955bea7f3c84de2b7725c2d170743e68714d4e2b",
+      "bytes": 548
+    },
+    {
+      "path": "evidence/storage-v22-install-20261116.log",
+      "sha256": "1ea8272fdb859bda7605297522f7214fe84472fdcfb447d1cfc0aa899382dae9",
+      "bytes": 950
+    },
+    {
+      "path": "evidence/storage-v22-hs200-100-coldboot-20261116.log",
+      "sha256": "a5373ce7216e88d16cf2aba00e8c1cc91f0da82c5ce77eb5fe836070a529744b",
+      "bytes": 44425
+    },
+    {
+      "path": "evidence/storage-v22-hs200-100-runtime-20261116.log",
+      "sha256": "75cf869f7347872555492fed13ecf4feb30077d616371d2c4c83ed4e2dc32353",
+      "bytes": 8327
+    },
+    {
+      "path": "evidence/storage-v22-hs200-100-integrity-20261116.json",
+      "sha256": "d117d8581d037d2b05e849bee8b5df8ce1d134d5b63a9ddcf3221ece78ea6b0e",
+      "bytes": 17550
+    },
+    {
+      "path": "evidence/storage-v22-hs200-100-integrity-health-20261116.log",
+      "sha256": "527336d5a43c1093a85c11d21275d742d5325c10a1c4f5e9e30132da003691cd",
+      "bytes": 2633
+    },
+    {
+      "path": "evidence/storage-v22-hs200-200-coldboot-20261116.log",
+      "sha256": "000943b4f5ba1ed9fb6125d5413300f480a7ce966139310cade395efe9d83861",
+      "bytes": 26572
+    },
+    {
+      "path": "evidence/storage-v22-hs200-200-failure-review-20261116.json",
+      "sha256": "d107e0baea8aefce5da689091f624135d25e3c680cc397e52f4b36148082e1cf",
+      "bytes": 3994
+    }
+  ],
+  "board_operations_by_record_author": false
+}

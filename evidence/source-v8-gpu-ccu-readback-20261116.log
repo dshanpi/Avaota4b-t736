@@ -1,0 +1,8 @@
+insmod /tmp/t736-transfer/ccu-readonly.ko; echo CCU_READONLY_RC=$?; rmmod t736_gpu_ccu_readonly; cp /tmp/t736-transfer/apply_binary_delta.py /root/t736-gpu-debug/; cp /tmp/t736-transfer/pvrsrvkm-diag1-to-diag2.delta /root/t736-gpu-debug/; cp /tmp/t736-transfer/ccu-readonly.ko /root/t736-gpu-debug/; python3 /root/t736-gpu-debug/apply_binary_delta.py /root/t736-gpu-debug/pvrsrvkm-diag1.ko /root/t736-gpu-debug/pvrsrvkm-diag1-to-diag2.delta /root/t736-gpu-debug/pvrsrvkm-diag2.ko; sync; echo DIAG2_PREPARED=$?
+
+t736-gpu-ccu-readonly: reading DT GPU CCU resource 0x0000000002002b20 (8 bytes)
+t736-gpu-ccu-readonly: GPU0_CLK=83000000 GPU_BGR=00010001 update_req_ack=0 core_gate=1 mux=3 div_encoding=0 bus_gate=1 reset_deasserted=1
+CCU_READONLY_RC=0
+48317a4b097cbd156ecbdc351096f408e170ee9490dd878a116fc12086e2ed5f  /root/t736-gpu-debug/pvrsrvkm-diag2.ko
+DIAG2_PREPARED=0
+root@t736:~# 

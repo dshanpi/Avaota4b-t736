@@ -1,0 +1,53 @@
+insmod /tmp/t736-transfer/a76-clock-v3.ko action=enable; echo CPU_V3_ENABLE_RC=$?; dmesg | grep t736-a76-clock-trial-v3 | tail -n 22; echo CPU_V3_ENABLE_DONE
+
+t736-a76-clock-trial-v3: trial failed=-5; reducing to slow with committed N retained
+insmod: ERROR: could not insert module /tmp/t736-transfer/a76-clock-v3.ko: Input/output error
+CPU_V3_ENABLE_RC=1
+[  660.615087] t736-a76-clock-trial-v3: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[  660.615133] t736-a76-clock-trial-v3: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[  660.615188] t736-a76-clock-trial-v3: action=enable XO=983fb0f7 CTRL=40801400 STAT=40801400 CLK=00000000 online6=0 online7=0
+[  660.615217] t736-a76-clock-trial-v3: mux expected=00010000 actual=00010000
+[  660.615232] t736-a76-clock-trial-v3: stage desired=40801400 committed=00001400 actual=40801400
+[  660.615247] t736-a76-clock-trial-v3: stage desired=48801400 committed=00001400 actual=48801400
+[  660.615262] t736-a76-clock-trial-v3: stage desired=48802000 committed=00001400 actual=48801400
+[  660.615277] t736-a76-clock-trial-v3: stage desired=c8802000 committed=00001400 actual=c8801400
+[  660.615292] t736-a76-clock-trial-v3: stage desired=e8802000 committed=00001400 actual=e8802000
+[  660.615309] t736-a76-clock-trial-v3: trial failed=-5; reducing to slow with committed N retained
+[  660.622853] t736-a76-clock-trial-v3: mux expected=00000000 actual=00000000
+[  660.622892] t736-a76-clock-trial-v3: SAFE_SLOW: CTRL=40802000 STAT=40802000 CLK=00000000 retained_N=32; PLL disabled, no N20 re-enable
+[  660.622925] t736-a76-clock-trial-v3: finished rc=-5 mutation_attempted=1
+CPU_V3_ENABLE_DONE
+root@t736:~# insmod /tmp/t736-transfer/a76-clock-v3.ko action=enable; echo CPU_V3_RETRY_RC=$?; dmesg | grep t736-a76-clock-trial-v3 | tail -n 19; echo CPU_V3_RETRY_DONE
+
+CPU_V3_RETRY_RC=0
+[  660.615309] t736-a76-clock-trial-v3: trial failed=-5; reducing to slow with committed N retained
+[  660.622853] t736-a76-clock-trial-v3: mux expected=00000000 actual=00000000
+[  660.622892] t736-a76-clock-trial-v3: SAFE_SLOW: CTRL=40802000 STAT=40802000 CLK=00000000 retained_N=32; PLL disabled, no N20 re-enable
+[  660.622925] t736-a76-clock-trial-v3: finished rc=-5 mutation_attempted=1
+[  712.536379] t736-a76-clock-trial-v3: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[  712.536425] t736-a76-clock-trial-v3: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[  712.536481] t736-a76-clock-trial-v3: action=enable XO=983fb0f7 CTRL=40802000 STAT=40802000 CLK=00000000 online6=0 online7=0
+[  712.536511] t736-a76-clock-trial-v3: mux expected=00010000 actual=00010000
+[  712.536525] t736-a76-clock-trial-v3: stage desired=40802000 committed=00002000 actual=40802000
+[  712.536541] t736-a76-clock-trial-v3: stage desired=48802000 committed=00002000 actual=48802000
+[  712.536556] t736-a76-clock-trial-v3: stage desired=48802000 committed=00002000 actual=48802000
+[  712.536571] t736-a76-clock-trial-v3: stage desired=c8802000 committed=00002000 actual=c8802000
+[  712.536586] t736-a76-clock-trial-v3: stage desired=e8802000 committed=00002000 actual=e8802000
+[  712.536603] t736-a76-clock-trial-v3: commit desired=e8802000 CTRL=f8802000 STAT=f8802000
+[  712.536661] t736-a76-clock-trial-v3: mux expected=03010000 actual=03010000
+[  712.539254] t736-a76-clock-trial-v3: PMIC id=03 enable=ff dcdc3=28 dcdc4=28 phase=00 feedback=00
+[  712.539275] t736-a76-clock-trial-v3: owner setpoints DCDC3=900000uV DCDC4=900000uV
+[  712.539293] t736-a76-clock-trial-v3: SUCCESS: A76=416MHz CTRL=f8802000 STAT=f8802000 CLK=03010000; PMIC untouched
+[  712.539321] t736-a76-clock-trial-v3: finished rc=0 mutation_attempted=1
+CPU_V3_RETRY_DONE
+root@t736:~# rmmod t736_a76_clock_trial_v3; echo 1 > /sys/devices/system/cpu/cpu6/online; echo 1 > /sys/devices/system/cpu/cpu7/online; cat /sys/devices/system/cpu/online; for c in 0 6 7; do echo CPU=$c; timeout 15 taskset -c "$c" python3 -c 'import hashlib,time; b=bytes(1048576); t=time.monotonic(); [hashlib.sha256(b).digest() for _ in range(16)]; print("sha256_16MiB_seconds",time.monotonic()-t)'; done; echo CPU_416_ONLINE_DONE
+
+0-7
+CPU=0
+sha256_16MiB_seconds 0.07848492499999793
+CPU=6
+sha256_16MiB_seconds 0.06386635599994861
+CPU=7
+sha256_16MiB_seconds 0.06401229599998715
+CPU_416_ONLINE_DONE
+root@t736:~# 

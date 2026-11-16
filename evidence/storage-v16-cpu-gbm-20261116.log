@@ -1,0 +1,77 @@
+t736-cpu-clock-readonly.ko: 成功
+gpu-helpers.tar.gz: 成功
+[   78.861570] t736-cpu-clock-ro: begin read-only snapshot base=0x08870000
+[   78.861608] t736-cpu-clock-ro: CPU_BACK_CTRL addr=0x08870000 value=0x40104a00
+[   78.861620] t736-cpu-clock-ro: A55_CTRL addr=0x08871000 value=0xf8802700
+[   78.861628] t736-cpu-clock-ro: A55_PAT0 addr=0x08871004 value=0x00000000
+[   78.861636] t736-cpu-clock-ro: A55_PAT1 addr=0x08871008 value=0x30000000
+[   78.861644] t736-cpu-clock-ro: A55_LFM addr=0x08871018 value=0x40000001
+[   78.861651] t736-cpu-clock-ro: A55_CLK addr=0x0887101c value=0x03000000
+[   78.861658] t736-cpu-clock-ro: A55_CTRL_STAT addr=0x0887102c value=0xf8802700
+[   78.861665] t736-cpu-clock-ro: A76_CTRL addr=0x08872000 value=0xf8802700
+[   78.861672] t736-cpu-clock-ro: A76_PAT0 addr=0x08872004 value=0x00000000
+[   78.861679] t736-cpu-clock-ro: A76_PAT1 addr=0x08872008 value=0x30000000
+[   78.861686] t736-cpu-clock-ro: A76_LFM addr=0x08872018 value=0x40000001
+[   78.861693] t736-cpu-clock-ro: A76_CLK addr=0x0887201c value=0x03000000
+[   78.861700] t736-cpu-clock-ro: A76_CTRL_STAT addr=0x0887202c value=0xf8802700
+[   78.861708] t736-cpu-clock-ro: DSU_CTRL addr=0x08873000 value=0xf8801300
+[   78.861714] t736-cpu-clock-ro: DSU_PAT0 addr=0x08873004 value=0x00000000
+[   78.861721] t736-cpu-clock-ro: DSU_PAT1 addr=0x08873008 value=0x30000000
+[   78.861728] t736-cpu-clock-ro: DSU_LFM addr=0x08873018 value=0x40000001
+[   78.861736] t736-cpu-clock-ro: DSU_CLK addr=0x0887301c value=0x03000105
+[   78.861743] t736-cpu-clock-ro: DSU_CTRL_STAT addr=0x0887302c value=0xf8801300
+[   78.861749] t736-cpu-clock-ro: CPU_SLOW_CLK addr=0x08873034 value=0x00000000
+[   78.861763] t736-cpu-clock-ro: end; no MMIO writes performed
+20-t736-modesetting-1080p.conf
+__pycache__/
+acceptance.template.json
+manifest.json
+t736-gpu-profile
+t736-gpu-runtime-check
+t736-mutter-1080p
+KERNEL=6.18.63-t736-storage-v16
+DRM_DEVICES
+总计 0
+drwxr-xr-x  2 root root        100 11月16日 10:44 by-path
+crw-rw----+ 1 root video  226,   0 11月16日 10:44 card0
+crw-rw----+ 1 root video  226,   1 11月16日 10:44 card1
+crw-rw----+ 1 root render 226, 128 11月16日 10:44 renderD128
+GPU_CLOCKS
+    t736-gpu-mbus                    1       1        0        600000000   0          0     50000      Y      7065000.power-controller        mbus                     
+    t736-gpu-ahb                     1       1        0        200000000   0          0     50000      Y      7065000.power-controller        ahb                      
+    t736-gpu-bus                     2       2        0        200000000   0          0     50000      Y      1800000.gpu                     clk_bus                  
+    t736-gpu-peri400                 2       2        0        400000000   0          0     50000      Y      1800000.gpu                     clk_400                  
+       t736-gpu                      2       2        0        400000000   0          0     50000      Y         1800000.gpu                     clk                      
+    t736-display-ppu                 2       2        0        26000000    0          0     50000      Y      7065000.power-controller        ppu                      
+GPU_SUPPLY
+ axp8191-gpu-dcdc5                3    2      0 unknown   900mV     0mA   800mV   960mV 
+    1800000.gpu-gpu               1                                 0mA     0mV     0mV
+    7065000.power-controller-gpu   1                                 0mA     0mV     0mV
+GPU_DRIVER_LOG
+[    0.519140] t736-gpu-ccu 2002b20.clock-controller: GPU fixed PERI400 clock with independent PLL_GPU0 power prerequisite
+[    0.545082] t736-gpu-supply 7083000.regulator: AXP8191 DCDC5 verified at 900000 uV, fixed GPU supply policy
+[    1.239212] t736-gpu-power 7065000.power-controller: GPU_TOP/CORE ACK=8; PLL_GPU0 ready, GPU=400000000 Hz, DCDC5=900000 uV, reset verified
+[   10.452997] pvrsrvkm: loading out-of-tree module taints kernel.
+[   10.462328] pvrsrvkm 1800000.gpu: T736 GPU fixed 400000000 Hz, supply 900000 uV, CCF/genpd enabled
+[   10.462438] PVR_K:  353: Read BVNC 36.56.104.183 from HW device registers
+[   10.462471] PVR_K:  353: RGX Device registered BVNC 36.56.104.183 with 1 core in the system
+[   10.463309] [drm] Initialized pvr 24.2.6603887 for 1800000.gpu on minor 1
+[   21.798231] PVR_K:  479: RGX Firmware image 'rgx.fw.36.56.104.183' loaded
+[   21.855475] PVR_K:  479: Shader binary image 'rgx.sh.36.56.104.183' loaded
+TEST_RENDER_NODE=/dev/dri/renderD128
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+POST_RENDER_LOG
+[   10.452997] pvrsrvkm: loading out-of-tree module taints kernel.
+[   10.462328] pvrsrvkm 1800000.gpu: T736 GPU fixed 400000000 Hz, supply 900000 uV, CCF/genpd enabled
+[   10.462438] PVR_K:  353: Read BVNC 36.56.104.183 from HW device registers
+[   10.462471] PVR_K:  353: RGX Device registered BVNC 36.56.104.183 with 1 core in the system
+[   10.463309] [drm] Initialized pvr 24.2.6603887 for 1800000.gpu on minor 1
+[   21.798231] PVR_K:  479: RGX Firmware image 'rgx.fw.36.56.104.183' loaded
+[   21.855475] PVR_K:  479: Shader binary image 'rgx.sh.36.56.104.183' loaded

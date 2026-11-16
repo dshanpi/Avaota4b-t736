@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "source_sha256": "cc6bb3bb89f4255b2110689d24494f6751005cdcaa567fe95674c36d8365ec68",
+  "fragmented_utf8_frames": true,
+  "response_sequence": true,
+  "protocol_errors_preserved": true,
+  "live_proc_snapshot_self": true,
+  "browser_or_board_test": false
+}

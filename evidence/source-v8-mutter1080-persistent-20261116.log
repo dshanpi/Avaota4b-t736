@@ -1,0 +1,79 @@
+runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gdbus call --session --dest org.gnome.Mutter.DisplayConfig --object-path /org/gnome/Mutter/DisplayConfig --method org.gnome.Mutter.DisplayConfig.ApplyMonitorsConfig 5 1 "[(0, 0, 1.0, uint32 0, true, [('HDMI-1', '1920x1080@60.000', @a{sv} {})])]" "{'layout-mode': <uint32 2>}"; echo MONITOR_TEMP_APPLY_RC=$?; runuser -u t736 -- env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gdbus call --session --dest org.gnome.Mutter.DisplayConfig --object-path /org/gnome/Mutter/DisplayConfig --method org.gnome.Mutter.DisplayConfig.GetCurrentState | head -c 500; echo; echo MONITOR_APPLY_DONE
+
+错误：GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Can't set layout mode
+(According to introspection data, you need to pass 'uua(iiduba(ssa{sv}))a{sv}')
+MONITOR_TEMP_APPLY_RC=1
+(uint32 5, [(('HDMI-1', 'DEL', 'DELL U2518D', '3M7K89A9066L'), [('1920x1080@60.000', 1920, 1080, 60.0, 1.0, [1.0, 2.0], {'is-preferred': <true>}), ('2560x1440@59.951', 2560, 1440, 59.950550079345703, 1.0, [1.0, 2.0, 3.0], {'is-current': <true>}), ('2048x1080@59.998', 2048, 1080, 59.997848510742188, 1.0, [1.0, 2.0], {}), ('2048x1080@23.997', 2048, 1080, 23.996618270874023, 1.0, [1.0, 2.0], {}), ('1920x1080@50.000', 1920, 1080, 50.0, 1.0, [1.0, 2.0], {}), ('1920x1080@59.940', 1920, 1080, 59.940200
+MONITOR_APPLY_DONE
+root@t736:~# runuser -u t736 -- env DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gdbus call --session --dest org.gnome.Mutter.DisplayConfig --object-path /org/gnome/Mutter/DisplayConfig --method org.gnome.Mutter.DisplayConfig.ApplyMonitorsConfig 5 1 "[(0, 0, 1.0, uint32 0, true, [('HDMI-1', '1920x1080@60.000', @a{sv} {})])]" "@a{sv} {}"; echo MONITOR_TEMP_APPLY_RC=$?; runuser -u t736 -- env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gdbus call --session --dest org.gnome.Mutter.DisplayConfig --object-path /org/gnome/Mutter/DisplayConfig --method org.gnome.Mutter.DisplayConfig.GetCurrentState | head -c 500; echo
+
+()
+MONITOR_TEMP_APPLY_RC=0
+(uint32 8, [(('HDMI-1', 'DEL', 'DELL U2518D', '3M7K89A9066L'), [('1920x1080@60.000', 1920, 1080, 60.0, 1.0, [1.0, 2.0], {'is-current': <true>, 'is-preferred': <true>}), ('2560x1440@59.951', 2560, 1440, 59.950550079345703, 1.0, [1.0, 2.0, 3.0], {}), ('2048x1080@59.998', 2048, 1080, 59.997848510742188, 1.0, [1.0, 2.0], {}), ('2048x1080@23.997', 2048, 1080, 23.996618270874023, 1.0, [1.0, 2.0], {}), ('1920x1080@50.000', 1920, 1080, 50.0, 1.0, [1.0, 2.0], {}), ('1920x1080@59.940', 1920, 1080, 59.9402
+root@t736:~# echo USER_DESKTOP_RENDER; for p in $(pgrep -u t736 -x gnome-shell); do echo PID=$p; grep -E 'libEGL|libGLES|swrast|pvr_dri' /proc/$p/maps | awk '{print $NF}' | sort -u; tr '\0' '\n' < /proc/$p/environ | grep -E '^(COGL|GDK_|GSK_|LD_LIBRARY|LIBGL_)'; done; cat /sys/kernel/debug/dri/0/state | grep -A4 'mode:'; dmesg | grep -Ei 'rcq.*timeout|fifo.*(error|under|over)|PVR.*(error|fail)|sunxi-hdmi.*error' | tail -n 8; echo DESKTOP_RENDER_DONE
+
+USER_DESKTOP_RENDER
+PID=5951
+/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887
+LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles
+LIBGL_DRIVERS_PATH=/opt/t736-img-ddk-24.2-x11/lib/dri
+COGL_DRIVER=gles2
+GDK_BACKEND=x11
+GDK_DISABLE=gl-api,glx,vulkan
+GSK_RENDERER=opengl
+	mode: "": 60 148500 1920 2008 2052 2200 1080 1084 1089 1125 0x0 0x5
+	on: 1920x1080@60&600Mhz->tcon4	irqcnt:40577	err:0	fps:0.0
+		format_space:0	yuv_sampling:0	eotf:4	cs:1	color_range:1	data_bits:0
+	offline composite fps:99.84	timeout:40577
+	    vsync: 40577 last rcq at vsync: 39943 offline: disable
+[    1.603817] [drm] sunxi-hdmi: [error] dw edid parse dtd timing pixel clock[0KHz] invalid!
+[   53.648869] [drm] sunxi-hdmi: [error] hdmi drv set dynamic range 1 unsupport!
+[  166.943531] [drm] sunxi-hdmi: [error] hdmi drv set dynamic range 1 unsupport!
+[ 1273.927365] [drm] sunxi-hdmi: [error] hdmi drv set dynamic range 1 unsupport!
+[ 1679.895063] [drm] sunxi-hdmi: [error] hdmi drv set dynamic range 1 unsupport!
+[ 2153.318851] [drm] sunxi-hdmi: [error] hdmi drv set dynamic range 1 unsupport!
+[ 3324.074970] [drm] sunxi-hdmi: [error] hdmi drv set dynamic range 1 unsupport!
+DESKTOP_RENDER_DONE
+root@t736:~# runuser -u t736 -- env XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus python3 /tmp/t736-transfer/mutter-set-1080p-v1.py --persist --config /home/t736/.config/monitors.xml; echo MUTTER_PERSIST_RC=$?; echo MONITOR_PERSIST_DONE
+
+{
+  "plan": {
+    "serial": 8,
+    "spec": [
+      "HDMI-1",
+      "DEL",
+      "DELL U2518D",
+      "3M7K89A9066L"
+    ],
+    "mode_id": "1920x1080@60.000",
+    "width": 1920,
+    "height": 1080,
+    "refresh": 60.0,
+    "scale": 1.0,
+    "transform": 0,
+    "x": 0,
+    "y": 0,
+    "primary": true,
+    "layout_mode": 2,
+    "layout_name": "physical"
+  },
+  "currently_matches": true,
+  "apply_method": 1,
+  "global_dbus_properties": {},
+  "persistent_file_written": true,
+  "session_restart_verified": false,
+  "physical_screen_verified": false,
+  "xml_backup": "/home/t736/.config/monitors.xml.pre-t736-1080p-20261116T084703-6542",
+  "config": "/home/t736/.config/monitors.xml",
+  "stable_samples": 26,
+  "stable_seconds": 25,
+  "final_serial": 8,
+  "current_mode_verified": true,
+  "mode_applied": false
+}
+MUTTER_PERSIST_RC=0
+MONITOR_PERSIST_DONE
+root@t736:~# 

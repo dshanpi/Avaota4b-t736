@@ -1,0 +1,23 @@
+test ! -L /sys/bus/platform/devices/7065000.power-controller/driver && printf 't736-gpu-power-retry' > /sys/bus/platform/devices/7065000.power-controller/driver_override && insmod /tmp/t736-transfer/t736-gpu-power-retry-v15.ko; printf 'PROVIDER_RC=%s\n' "$?"; sleep 1; readlink /sys/bus/platform/devices/7065000.power-controller/driver; ls -l /dev/dri; dmesg | grep -Ei 't736-gpu|pvr|rogue|gpu.*fail|rgx' | tail -n 45; printf 'PROVIDER_TEST_DONE\n'
+
+t736-gpu-power-retry 7065000.power-controller: GPU_CORE after clocks/reset power-on timeout: status=00000000
+t736-gpu-power-retry 7065000.power-controller: probe with driver t736-gpu-power-retry failed with error -110
+PROVIDER_RC=0
+总计 0
+drwxr-xr-x  2 root root      60 11月16日 06:50 by-path
+crw-rw----+ 1 root video 226, 0 11月16日 06:50 card0
+[    0.000000] Linux version 6.18.63-t736-gpu-v15 (ubuntu@ubuntu2404) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #15 SMP Mon Nov 16 01:38:25 EST 2026
+[    0.608038] t736-gpu-ccu 2002b20.clock-controller: GPU fixed 400 MHz from verified PERI0; shared PLLs unchanged
+[    0.637258] t736-gpu-supply 7083000.regulator: AXP8191 DCDC5 verified at 900000 uV, fixed GPU supply policy
+[    1.763274] t736-gpu-power 7065000.power-controller: GPU_CORE power-on timeout: status=00000000
+[    1.772729] t736-gpu-power 7065000.power-controller: probe with driver t736-gpu-power failed with error -110
+[   14.026449] systemd[1]: kmod-static-nodes.service - Create List of Static Device Nodes skipped, unmet condition check ConditionFileNotEmpty=/lib/modules/6.18.63-t736-gpu-v15/modules.devname
+[   20.326994] pvrsrvkm: loading out-of-tree module taints kernel.
+[  377.463073] t736-gpu-power-retry 7065000.power-controller: GPU_CORE after clocks/reset power-on timeout: status=00000000
+[  377.472735] t736-gpu-power-retry 7065000.power-controller: probe with driver t736-gpu-power-retry failed with error -110
+PROVIDER_TEST_DONE
+root@t736:~# test ! -L /sys/bus/platform/devices/7065000.power-controller/driver && rmmod t736_gpu_power_retry; printf "RETRY_UNLOAD_RC=%s\n" "$?"; dmesg -n 4; printf "GPU_IDLE\n"
+
+RETRY_UNLOAD_RC=0
+GPU_IDLE
+root@t736:~# 

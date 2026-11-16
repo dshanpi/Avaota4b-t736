@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "kind": "independent-cpu-d-updater-review",
+  "reviewer": "backup_audit",
+  "status": "OFFLINE_REVIEW_PASS_HARDWARE_PENDING",
+  "hardware_actions": false,
+  "hardware_accepted": false,
+  "updater_sha256": "f6845306cc7bfa4984481813d87add0796afc25ab3d0c9e348ad3768b8456327",
+  "baseline": {
+    "package": "cpu-c",
+    "sectors": 633,
+    "sha256": "a7e2e06cc9843a9d2fbd37514d9923f3ed8fcd23fd7fc09f30e484f1774a721d"
+  },
+  "candidate": {
+    "package": "cpu-d",
+    "sectors": 636,
+    "sha256": "f2ea2157acc3b65b2cc7416dfdba39650e7daa6679693c558fbbdcc30ef9780a"
+  },
+  "write_range": {
+    "first_lba": 24576,
+    "last_lba": 25211,
+    "full_backup_and_rollback_sectors": 636
+  },
+  "review": [
+    "Diff from independently reviewed C updater contains only pinned constants, fixed names, lengths, hashes and backup/lock paths",
+    "Actual C and D packages passed D updater validate_package on build host",
+    "Fixed v4 SPL retained; stage64/TF-A unchanged",
+    "Default check only; no reboot; fixed block device/root/GPT guard retained",
+    "Full636 sectors frozen and fsynced before write; direct readback; adjacent sectors and metadata preserved; rollback verifies complete636 sectors"
+  ],
+  "related_records": [
+    "t736-a55-d-preparation-review-20261116.json",
+    "storage-v16-updater-review-20261116.json"
+  ],
+  "limits": [
+    "No CPU-D cold-boot acceptance claimed",
+    "CPU and kernel experiments must be separately cold-booted by root"
+  ]
+}

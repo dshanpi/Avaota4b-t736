@@ -1,0 +1,9 @@
+root@t736:~# insmod /tmp/t736-transfer/ccu-readonly2.ko; echo CCU_RO2_RC=$?; rmmod t736_gpu_ccu_readonly2; cp /tmp/t736-transfer/ccu-readonly2.ko /root/t736-gpu-debug/; echo CCU_RO2_DONE
+
+t736-gpu-ccu-readonly: reading DT GPU CCU resource 0x0000000002002b20 (8 bytes)
+t736-gpu-ccu-readonly: GPU0_CLK=00000000 GPU_BGR=00000000 update_req_ack=0 core_gate=0 mux=0 div_encoding=0 bus_gate=0 reset_deasserted=0
+t736-gpu-ccu-readonly: reading documented PLL_GPU0 control 0x00000000020020e0
+t736-gpu-ccu-readonly: PLL_GPU0=40104500 enable=0 ldo=1 lock_detect=0 locked=0 output=0 n_encoding=69 m_encoding=1
+CCU_RO2_RC=0
+CCU_RO2_DONE
+root@t736:~# 

@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "tests": {
+    "roundtrip": {
+      "loopback_bytes_each_direction": 1048576,
+      "sha256_match": true,
+      "unknown_path_http404": true,
+      "server_auto_closed": true,
+      "board_run": "evidence/source-v9-ethernet-server-20261116.json"
+    },
+    "web_probe": {
+      "build_host_target": "183.3.205.11",
+      "default_tls_http200": true,
+      "tls12_http200": true,
+      "plain_http200": true,
+      "incoming_ttl": 55,
+      "captured_tcp_headers_both_directions": true,
+      "capture_payload": false,
+      "evidence": "evidence/source-v9-web-buildhost-comparison-20261116.json"
+    },
+    "web_relay": {
+      "localhost_connect_http200": true,
+      "tls_certificate_verified": true,
+      "server_auto_closed": true,
+      "board_run": {
+        "server_evidence": "evidence/source-v9-web-relay-20261116.json",
+        "client_evidence": "evidence/source-v9-web-relay-20261116.log",
+        "http_status": 200,
+        "client_rc": 0,
+        "certificate_verification_enabled": true,
+        "server_auto_closed": true
+      }
+    }
+  },
+  "sources": {
+    "tools/validation/ethernet_roundtrip_server.py": {
+      "bytes": 6382,
+      "sha256": "aad74c389ec6a971d294123e905dd77460f99665eb1a5e751389f3c8d3a4cf3d"
+    },
+    "tools/validation/ethernet_roundtrip_client.py": {
+      "bytes": 5589,
+      "sha256": "39e96c177fbee6d4dbef891de8d6b0b091afc33495adad4434ffd64ffc794783"
+    },
+    "tools/validation/ethernet_web_probe.py": {
+      "bytes": 5390,
+      "sha256": "727c9ee79dd0ba3b5e8a523b8a9bb2aac34a8dee54352d73874d51dc0b22655d"
+    },
+    "tools/validation/ethernet_web_relay.py": {
+      "bytes": 4066,
+      "sha256": "5c610ecaa20c982a0924a1c80e322a9351f86df3c2b2b3152d110a63a645e18f"
+    }
+  },
+  "network_configuration_changes": false,
+  "board_control_by_this_agent": false
+}

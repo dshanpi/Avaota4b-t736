@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "client": "192.168.1.53",
+  "host": "mirrors.aliyun.com",
+  "remote_ip": "183.3.205.11",
+  "remote_port": 443,
+  "scope": "single target CONNECT diagnostic; TLS bytes relayed without inspecting payload",
+  "client_to_remote_bytes": 1928,
+  "remote_to_client_bytes": 37259,
+  "request": "CONNECT mirrors.aliyun.com:443 HTTP/1.1",
+  "tunnel_seconds": 0.2618257360300049,
+  "completed": true,
+  "duration_seconds": 47.52190066204639
+}

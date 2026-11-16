@@ -1,0 +1,36 @@
+insmod /tmp/t736-transfer/t736_data_diag.ko; dmesg | tail -18; rmmod t736_data_diag 
+g
+
+t736_data_diag: loading out-of-tree module taints kernel.
+t736-data: PH_DRV0=11111111
+t736-data: PH_DRV1=11111111
+t736-data: PH_PUL0=00000000
+t736-data: GMAC_CFG=00011545
+t736-data: GMAC_CLK_GATE=00000000
+t736-data: RXQ_CTRL0=00000000
+t736-data: MTL_RXQ_OPMODE=01f1c4e0
+t736-data: MTL_RXQ_DEBUG=00000000
+t736-data: MAC_DEBUG=00000000
+t736-data: MAC_HW_FEATURE0=1a7d71f7
+t736-data: MAC_HW_FEATURE1=01024146
+t736-data: MAC_HW_FEATURE2=00c30000
+t736-data: PHYCR1=2118 PHYCR2=0843 TX_DELAY=0009 RX_DELAY=0011
+[  773.910730] t736-dwmac 4500000.ethernet end0: Link is Down
+[  777.034712] t736-dwmac 4500000.ethernet end0: Link is Up - 100Mbps/Full - flow control rx/tx
+[  792.054733] t736-dwmac 4500000.ethernet end0: Link is Down
+[  795.178713] t736-dwmac 4500000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+[  870.695481] t736_data_diag: loading out-of-tree module taints kernel.
+[  870.701248] t736-data: PH_DRV0=11111111
+[  870.704551] t736-data: PH_DRV1=11111111
+[  870.707369] t736-data: PH_PUL0=00000000
+[  870.709913] t736-data: GMAC_CFG=00011545
+[  870.712913] t736-data: GMAC_CLK_GATE=00000000
+[  870.716236] t736-data: RXQ_CTRL0=00000000
+[  870.719213] t736-data: MTL_RXQ_OPMODE=01f1c4e0
+[  870.722363] t736-data: MTL_RXQ_DEBUG=00000000
+[  870.725802] t736-data: MAC_DEBUG=00000000
+[  870.728783] t736-data: MAC_HW_FEATURE0=1a7d71f7
+[  870.732281] t736-data: MAC_HW_FEATURE1=01024146
+[  870.735779] t736-data: MAC_HW_FEATURE2=00c30000
+[  870.802688] t736-data: PHYCR1=2118 PHYCR2=0843 TX_DELAY=0009 RX_DELAY=0011
+root@t736:~# 

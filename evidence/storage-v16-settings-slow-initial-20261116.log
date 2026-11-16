@@ -1,0 +1,34 @@
+  UID     PID    PPID     ELAPSED COMMAND         S WCHAN                          %CPU
+ 1000   14145    2896       01:25 gnome-control-c S do_sys_poll                     243
+    0   14691   14690       00:00 ps              R -                               200
+ 1000    2896    2304       18:21 gnome-shell     S do_sys_poll                     7.1
+    0   14679   14677       00:00 sudo            S do_sys_poll                     6.6
+ 1000    2601    2598       18:25 Xorg            S do_epoll_wait                   6.6
+    0      11       2       20:20 kworker/u32:0-t I worker_thread                   6.3
+    0      91       2       20:19 kworker/u32:1-p I worker_thread                   3.7
+ 1000    3426    3313       18:16 ibus-extension- S do_sys_poll                     1.2
+    0   14504     897       00:03 sshd-session    S do_sys_poll                     0.7
+    0       1       0       20:20 systemd         S do_epoll_wait                   0.5
+    0   14131       2       03:49 kworker/u32:2-p I worker_thread                   0.5
+  996     473       1       20:09 dbus-daemon     S do_epoll_wait                   0.2
+ 1000    2304       1       18:31 systemd         S do_epoll_wait                   0.2
+    0    1175       1       19:44 systemd         S do_epoll_wait                   0.2
+    0     392       2       20:09 pvr_defer_free  S LinuxEventObjectWait            0.1
+ 1000    3489    2304       18:16 localsearch-3   S do_sys_poll                     0.1
+ 1000    3313    2304       18:16 ibus-daemon     S do_sys_poll                     0.1
+    0     246       1       20:13 systemd-journal S do_epoll_wait                   0.1
+ 1000    2334    2304       18:29 wireplumber     S do_sys_poll                     0.1
+ 1000    2329    2304       18:29 dbus-daemon     S do_epoll_wait                   0.1
+    0      14       2       20:20 rcu_sched       I rcu_gp_fqs_loop                 0.1
+  990     288       1       20:12 systemd-resolve S do_epoll_wait                   0.1
+ 1000    3491    2304       18:16 xdg-desktop-por S do_sys_poll                     0.1
+    0     479       1       20:09 systemd-logind  S do_epoll_wait                   0.1
+  983     814       1       20:07 polkitd         S do_sys_poll                     0.0
+    0    1278       1       19:39 ssh             S do_sys_poll                     0.0
+ 1000    2927    2896       18:20 mutter-x11-fram S do_sys_poll                     0.0
+APP 14145 gnome-control-c
+11月 16 11:03:41 t736 gnome-control-c[14145]: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+11月 16 11:04:01 t736 gnome-control-c[14145]: Failed to get service state GDBus.Error:org.freedesktop.DBus.Error.FileNotFound: No such file or directory
+11月 16 11:04:03 t736 dbus-daemon[473]: [system] Activating via systemd: service name='org.freedesktop.hostname1' unit='dbus-org.freedesktop.hostname1.service' requested by ':1.284' (uid=1000 pid=14145 comm="/usr/bin/gnome-control-center")
+11月 16 11:04:13 t736 gnome-control-c[14196]: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+cat: /proc/pressure/io: 没有那个文件或目录

@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-16",
+  "status": "Prepared and peer-reviewed; hardware validation owned by root and not claimed here.",
+  "discovery": {
+    "source_log": "evidence/source-v9-cpu-a76-416-20261116.log",
+    "source_log_sha256": "99a9e8a2a2479755c4e463080c2fbd3d0ef6de8d69a8caad8aa7139673ab1380",
+    "v1_observed": "B_CLK /2 write/read succeeded; B_CTRL desired40802000 read40801400 before UPDATE, causing immediate-check rejection. Exact old-state rollback succeeded. DCDC3/DCDC4 setpoints both900mV, phase0, feedback0, both A76 offline.",
+    "interpretation": "Observed old N is specified manual-update behavior, not proof of a failed write or inadequate voltage."
+  },
+  "manual_reference": {
+    "file": "evidence/vendor-reference/reference-1.txt",
+    "section": "5.1.4.2 Linear PLL Frequency Modulation",
+    "lines": [
+      14543,
+      14557,
+      14561,
+      14581
+    ],
+    "facts": [
+      "Only N and LFM use manual UPDATE; before UPDATE, N reads the committed old value.",
+      "UPDATE is invalid when PLL_EN is off. Updates must be separated by at least1us.",
+      "Cold enable order: LDO, OUTPUT, factors, PLL_EN, LOCK_ENABLE, UPDATE, wait clear, three lock observations,20us."
+    ],
+    "donor_crosscheck": "ccu_nkmp_set_rate retains desired reg in software and writes reg|clear rather than recomputing N from pre-commit readback.",
+    "manual_inconsistency": "Non-LFM steps repeat UPDATE and describe waiting LOCK clear. Use donor set_rate single commit, bounded UPDATE clear, committed CTRL/CTRL_STAT factor verification and LOCK set checks; do not copy ambiguous text literally."
+  },
+  "v3": {
+    "source": "tools/validation/t736-a76-clock-trial-v3.c",
+    "source_sha256": "38f99ee1fdb8d3b9ab22b1ab6f7a65d1bd4f36e7eef33d56ef545eea73ee6f70",
+    "module": "output/t736-a76-clock-trial-v3.ko",
+    "module_sha256": "0a96181f3715b64abf1b186134e835b9c6abf0aabc3d6b224ca5c868e80c46ca",
+    "module_name": "t736_a76_clock_trial_v3",
+    "vermagic": "6.18.63-t736-gpu-v15 SMP mod_unload aarch64",
+    "W1_build_passed": true,
+    "peer_review": "event_review confirmed complete cold sequence, cached N, CTRL/STAT commit validation, active-PLL upgrade, safe retained-N rollback and post-rollback guards.",
+    "hardware_tested_by_this_agent": false
+  },
+  "changes": [
+    "Pre-commit writes verify immediate gate fields and the exact previous committed N; they do not pretend desired N should read back yet.",
+    "Commit writes cached desired|UPDATE directly with ENABLE on and1us delay; after clear both CTRL and CTRL_STAT must match the desired configuration.",
+    "Enable416 follows the documented cold sequence; target N32, VCO832MHz, external/2.",
+    "Upgrade1014 keeps PLL_EN on while CPU selects slow: output/lock detector off, cached N39, detector on, commit, lock/20us, output on, mux last.",
+    "Any failure reduces to slow and disables PLL without committing N while disabled. Accepted retained factors are N20/32/39; all other stopped bits must equal40800000, CTRL=STAT, CLK=0 and CPU_SLOW=0.",
+    "No attempt is made to run an out-of-range N20 VCO to cosmetically recover the original factor.",
+    "All mutations require CPU6/7 offline with cpus_read_lock; owner PMIC checks before and after target remain800..1100mV with no voltage writes.",
+    "Guard changes still force offline/reset, including a second guard check after rollback."
+  ],
+  "preserved_v1_v2": "Historical source and modules unchanged; do not use their pre-UPDATE immediate N check as the active experimental path."
+}

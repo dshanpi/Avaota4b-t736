@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v16-updater-review",
+  "date": "2026-11-16",
+  "status": "offline-tests-and-input-review-passed-board-check-pending",
+  "hardware_accepted": false,
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v16.py": "cf6ad0b32e1ffbd5d6687e54d1a4204f2e7ecd24a0bc44bdeb71f76d79aded7f",
+    "tools/validation/test_update_t736_storage_v16.py": "de649bc0b9ceb2c229ea94b0a51f00474c26eb7992c1d4d0db0cd2bf35bc2aec",
+    "evidence/storage-v16-package-20261116.json": "b985f8c35d72a41e3e9a20a1fbc2ed25b1e4b7e12356c4e08bdc82ac0d4a3f4f"
+  },
+  "inputs": {
+    "kernel": {
+      "path": "build/linux-image-6.18.63-t736-storage-v16_6.18.63-16_arm64.deb",
+      "bytes": 5590080,
+      "sha256": "520b42929ee4700a29ab8da5f020b828948a607c87a6eb8dd98c8ecacd6170c6"
+    },
+    "pvr": {
+      "path": "build/pvr-storage-v16/target_aarch64/pvrsrvkm.ko",
+      "bytes": 1913816,
+      "sha256": "abd38db687c93b91757719564e1f0fe35b10b137f23d78ea425ff2845d8c8474"
+    },
+    "release": "6.18.63-t736-storage-v16",
+    "version": "6.18.63-16",
+    "payload_members_verified": 82,
+    "board_accepted": false
+  },
+  "operation": {
+    "default": "check; no install, mount or boot alias mutation",
+    "apply": "root-only private mount namespace, fixed v15->v16 transition; refuses pre-existing v16 candidate",
+    "identity": [
+      "aarch64",
+      "running v15",
+      "root /dev/mmcblk0p4",
+      "PARTUUID a0085546-4166-744a-a353-fca9272b8e48",
+      "v15 package configured",
+      "v9 aliases select v15",
+      "dpkg audit empty"
+    ],
+    "backup": "durable per-file blobs and full v15 boot, modules, DTB tree snapshots, generic Debian links and dpkg metadata before installation",
+    "hooks": "empty bind mounts on /etc/kernel, /usr/share/kernel and /etc/initramfs/post-update.d only inside private namespace",
+    "order": [
+      "install fixed deb without triggers",
+      "verify all package bytes",
+      "install exact external PVR",
+      "depmod target release",
+      "create target initrd",
+      "verify immutable payload/PVR resolution/gzip raw Image/CMA/initrd module release/fsck.ext4",
+      "record final hashes",
+      "replace fixed v9 DTB and two aliases",
+      "verify selected bytes and retained v15"
+    ],
+    "rollback": "automatic on transaction failure; explicit --rollback DIR is check-only until --apply. Restore payloads before aliases; keep v16 installed for diagnosis; no reboot",
+    "child_processes": "independent session/process group per command; timeout/exception kills full group and reaps before rollback",
+    "journal_failure": "stdout preserves actual rollback result even if failure.json cannot be saved",
+    "raw_device_writes": false,
+    "bootcmd_changed": false
+  },
+  "verification": {
+    "tests": 9,
+    "result": "PASS",
+    "cases": [
+      "unsafe archive paths/hardlinks rejected",
+      "real descendant killed on command timeout",
+      "atomic replace never follows old symlink",
+      "corrupt backup rejected before restoration",
+      "restore v15 payload and alias without deleting candidate",
+      "missing fixed hash rejects apply",
+      "final-byte failure never selects candidate",
+      "alias-switch failure restores v15",
+      "failed failure journal preserves restoration status"
+    ],
+    "inputs_checked_on_build_host": true,
+    "independent_reviewer": "backup_audit",
+    "review_result": "C/D identity/CRC checks and v16 82-member input check passed; all 4 maintainer scripts only execute suppressed kernel hook directories; process-group cleanup finding fixed and tested"
+  },
+  "known_limits": [
+    "This record is offline preparation, not a board installation or cold-boot acceptance",
+    "Existing board GPU helpers are still v15-specific; v16 acceptance needs ABI-specific helper/evidence",
+    "Three boot-selection files are each atomically replaced and fsynced; this is not an atomic multi-file power-loss transaction",
+    "SPL/GPT/U-Boot/raw media are outside this updater"
+  ]
+}

@@ -1,0 +1,4 @@
+gzip -dc /tmp/t736-transfer/cpu-d-package.gz > /tmp/t736-transfer/cpu-d.bin && python3 /tmp/t736-transfer/update-cpu-d.py --package /tmp/t736-transfer/cpu-d.bin --manifest /tmp/t736-transfer/cpu-d.manifest.json > /root/source-v9-validation/cpu-d-check.json && python3 -c 'import json;d=json.load(open("/root/source-v9-validation/cpu-d-check.json"));print(d["status"],d["new_sha256"],d["sector_count"])'
+
+CHECK_PASS f2ea2157acc3b65b2cc7416dfdba39650e7daa6679693c558fbbdcc30ef9780a 636
+root@t736:~# 

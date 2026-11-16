@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "kind": "t736-dma-v19-kernel-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v19",
+  "baseline_release": "6.18.63-t736-storage-v18",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "dt_changes": [],
+  "delta_from_v18": [
+    "IDIE enables directional completion plus valid SMHC3 error events; CTRL IRQ remains off",
+    "Before-reset failure snapshot includes descriptor OWN and full 11-bit FIFO count"
+  ],
+  "storage_clock_hz": 12000000,
+  "max_request_bytes": 65536,
+  "dma_enabled": true,
+  "dma_address_bits": 32,
+  "descriptor_address_shift": 2,
+  "descriptor_segment_bytes": 1024,
+  "voltage_or_timing_change": false,
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v19_6.18.63-19_arm64.deb",
+    "size": 5592228,
+    "sha256": "31e82d9ff94ba0a0a26915410a914aa74878ab4ace21434485a8fddb2b40a7b9"
+  },
+  "baseline_files": {
+    "build/linux-storage-v18/.config": "7f257a234e1e3e7dc8af46d090ccd9b6c789c2fdb7eec6bf01c3a2395b4db4e7",
+    "build/linux-storage-v18/arch/arm64/boot/Image": "6c671b870e204d3c3b9e8f202932d2dabd90887d8df6009f0d7d06a0d02f3b43",
+    "boards/t736_mmc_dma_v18.c": "3656bef4cc9d5db40f4d95c3f0f5ea5c69d5d160c2264e40e743606084ecd1eb"
+  },
+  "files": {
+    "boards/t736_mmc_dma_v19.c": "f29554e12658287abbd4af5068d1c8fa567946af7b281e6d032441f8a295e639",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts": "2d4f935044ae65104f75f3773c4416939c2401e8cbfc90b7d4c3de48545bddd2",
+    "build/linux-storage-v19/.config": "6aab4229067aee5bea1c432d441cd4083b532766d400507e45bb4396c0672778",
+    "build/linux-storage-v19/arch/arm64/boot/Image": "34522f80371d20ca9e76cfebcb1c025061d569997defe9b23aa47214bb89c12b",
+    "build/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "build/linux-storage-v19/Module.symvers": "9813e3b9b67d85cb230cf921dd984154868d53e8df9b33d1d88325c460d5106c"
+  },
+  "board_validation": "pending; verify cold boot, rootfs reads, bounded scratch-file write/read hashes, throughput and dmesg before promotion"
+}

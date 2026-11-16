@@ -1,0 +1,18 @@
+python3 /tmp/t736-transfer/gpu_runtime_view.py && systemctl stop gdm.service && systemctl stop user@101.service user-runtime-dir@101.service && python3 -c 'from pathlib import Path; p=Path("/etc/environment"); t=p.read_text(); a="LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/lib\n"; assert t.count(a)==1; p.write_text(t.replace(a,"LD_LIBRARY_PATH=/opt/t736-img-ddk-24.2-x11/runtime-gles\n"))' && systemctl start gdm.service; echo RUNTIME_GLES_SESSION_RC=$?; echo RUNTIME_GLES_SESSION_DONE
+
+{
+  "runtime_path": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+  "manifest_path": "/opt/t736-img-ddk-24.2-x11/runtime-gles.json",
+  "manifest_sha256": "ee0d0436aa72f4f02bc16f012c3b24ef05b25ab5540dd67bf1f8e4ef100fc816",
+  "links": 46,
+  "excluded": [
+    "libvulkan.so",
+    "libvulkan.so.1",
+    "libvulkan.so.1.3.280"
+  ]
+}
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+RUNTIME_GLES_SESSION_RC=0
+RUNTIME_GLES_SESSION_DONE
+root@t736:~# 

@@ -1,0 +1,5 @@
+
+root@t736:~# stty sane; printf "UPLOAD_RECOVERED\n"
+
+UPLOAD_RECOVERED
+root@t736:~# 

@@ -1,0 +1,26 @@
+/tmp/t736-transfer/ethtool-csum end0 --tx on && /tmp/t736-transfer/ethtool-csum end0 --rx on; resolvectl dns end0 223.5.5.5#dns.alidns.com; resolvectl dnsovertls end0 yes; resolvectl flush-caches; timeout 10 resolvectl query --type=A www.debian.org; printf "DNS_TLS_RC=%s\n" "$?"
+
+BEFORE (read only)
+end0 RXCSUM=off raw=0
+end0 TXCSUM=off raw=0
+REQUEST SET_TXCSUM=on
+AFTER (readback)
+end0 RXCSUM=off raw=0
+end0 TXCSUM=on raw=1
+BEFORE (read only)
+end0 RXCSUM=off raw=0
+end0 TXCSUM=on raw=1
+REQUEST SET_RXCSUM=on
+AFTER (readback)
+end0 RXCSUM=on raw=1
+end0 TXCSUM=on raw=1
+www.debian.org IN A 194.177.211.216                         -- link: end0
+www.debian.org IN A 128.31.0.62                             -- link: end0
+www.debian.org IN A 130.89.148.77                           -- link: end0
+www.debian.org IN A 140.211.166.200                         -- link: end0
+
+-- Information acquired via protocol DNS in 88.0ms.
+-- Data is authenticated: no; Data was acquired via local or encrypted transport: yes
+-- Data from: network
+DNS_TLS_RC=0
+root@t736:~# 

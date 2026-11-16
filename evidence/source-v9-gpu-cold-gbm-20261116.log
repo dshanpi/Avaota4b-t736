@@ -1,0 +1,47 @@
+unset LIBGL_ALWAYS_SOFTWARE GALLIUM_DRIVER MESA_LOADER_DRIVER_OVERRIDE; dmesg -n 4; cat /proc/sys/kernel/random/boot_id; modprobe pvrsrvkm; echo PVR_LOAD_RC=$?; /usr/local/sbin/t736-gpu-runtime-check gbm > /root/source-v9-gbm.log 2>&1; echo GBM_RC=$?; tail -n 20 /root/source-v9-gbm.log; cat /sys/kernel/debug/pvr/status; echo GPU_COLD_DONE
+
+5aa9e408-22a7-4e2f-9c7b-84bae272338e
+PVR_LOAD_RC=0
+GBM_RC=0
+[   20.757811] [drm] Initialized pvr 24.2.6603887 for 1800000.gpu on minor 1
+[   42.247489] PVR_K:  499: RGX Firmware image 'rgx.fw.36.56.104.183' loaded
+[   42.348724] PVR_K:  499: Shader binary image 'rgx.sh.36.56.104.183' loaded
+TEST_RENDER_NODE=/dev/dri/renderD128
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2
+LIBRARY /opt/t736-img-ddk-24.2-x11/lib/libgbm.so.1
+EGL 1.5 vendor=Mesa Project
+GL_VENDOR=Imagination Technologies
+GL_RENDERER=PowerVR B-Series BXM-4-64
+GL_VERSION=OpenGL ES 3.2 build 24.2@6603887
+GPU_PROBE_PASS frames=60 quadrants=4 readback=verified (not a GNOME or physical-monitor test)
+POST_RENDER_LOG
+[   20.724023] pvrsrvkm: loading out-of-tree module taints kernel.
+[   20.749812] pvrsrvkm 1800000.gpu: T736 GPU fixed 400000000 Hz, supply 900000 uV, CCF/genpd enabled
+[   20.749990] PVR_K:  355: Read BVNC 36.56.104.183 from HW device registers
+[   20.750041] PVR_K:  355: RGX Device registered BVNC 36.56.104.183 with 1 core in the system
+[   20.757811] [drm] Initialized pvr 24.2.6603887 for 1800000.gpu on minor 1
+[   42.247489] PVR_K:  499: RGX Firmware image 'rgx.fw.36.56.104.183' loaded
+[   42.348724] PVR_K:  499: Shader binary image 'rgx.sh.36.56.104.183' loaded
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+GPU_COLD_DONE
+root@t736:~# 

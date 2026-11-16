@@ -1,6 +1,8 @@
 # T736 源码导航
 
-整理日期：2026-11-15（Asia/Shanghai）。当前实板版本为 **source-v6 raw + v4 SPL + Linux hdmi-v13**。这三个版本号对应不同组件；历史 `raw-v6` 也不等于当前 `source-v6`。
+2026-11-16 阶段补充：HS200 200 MHz 的 v23 有界阶段已通过，默认回退仍为 v16；HS400、GNOME响应与最终镜像验收未完成。最新代码/证据入口见 [阶段备份记录](BACKUP_STAGE_20261116.md) 和 [README阶段快照](../README.md)。以下v6/v7内容保留为早期版本导航，其“当前”措辞仅对应当时快照。
+
+整理日期：2026-11-16（Asia/Shanghai）。当前已验收实板基线为 **source-v6 raw + v4 SPL + Linux hdmi-v13**；**source-v7 + hdmi-v14 GNOME 桌面候选正在构建，未上板验证**。这些版本号对应不同组件；历史 `raw-v6` 也不等于当前 `source-v6`。
 
 先读 [当前状态](../README.md)、[构建说明](BUILD.md) 和 [source-v6 验收](../evidence/source-v6-emmc-acceptance-20261114.json)。本次备份范围与验证边界见 [备份记录](BACKUP_SOURCE_V6.md)。
 
@@ -23,6 +25,22 @@
 | 完整 raw 组装 | `tools/pack_t736_source_boot.py --variant v6` | 使用 v4 SPL 和源码交接、TF-A、U-Boot；校验载荷哈希、分区布局与文件系统 |
 
 显示修复的关键点：以主线 DMA framebuffer helpers 提供绘图和读写回调，替代不存在的 `CONFIG_AW_FB_CONSOLE` 开关；初次 modeset 完成并释放锁后才注册 framebuffer，避免控制台接管时的空指针调用和锁重入。
+
+## source-v7 桌面候选入口
+
+以下文件用于构建中候选，不能替代 source-v6 的验收记录。v7 继续固定本板 LPDDR4x 参数和 v4 SPL，不重新启用 DDR 类型探测。
+
+| 功能 | 源码与配置 | 入口与边界 |
+|---|---|---|
+| v14 显示内核 | `userpatches/linux-t736-hdmi-v14.config`、现有板级显示移植 | `tools/build_display_kernel.sh 14`；release `6.18.63-t736-hdmi-v14` |
+| 两阶段离线 rootfs | `tools/build_source_rootfs_v7.sh` | `prepare`、`resume-prepare`、`finalize`；从 v6 创建独立候选，保留 v4/v6 内核恢复副本 |
+| 桌面包及稳定 Mesa | `config/desktop-v7-packages.txt`、`config/desktop-v7/apt-preferences` | GNOME、Firefox、中文输入；五个 Mesa 包锁定 `25.0.7-2+deb13u1` |
+| GDM 与 Xorg | `config/desktop-v7/gdm3-daemon.conf`、`config/desktop-v7/20-t736-modesetting.conf` | 普通账户 `t736`、GNOME Xorg、llvmpipe；无自动登录，保留 root 图形登录限制 |
+| 时钟 | v7 builder 的 prepare/finalize 阶段 | 启用 systemd-timesyncd，保留 fake-hwclock split units；finalize 保存构建机 UTC 作为首次启动基准 |
+| v7 raw 组装 | `tools/pack_t736_source_boot.py --variant v7` | 要求 finalize 完成及 rootfs SHA256 一致；仍用锁定 v4 SPL 和源码 TF-A/U-Boot |
+| 桌面、输入及 GPT 验收工具 | `tools/validation/source_v7_desktop_check.sh`、`x11_input.py`、`source_v7_finalize_gpt.sh`、`verify_source_v7_gpt.py` | 见 [工具行为与验收边界](../tools/validation/README.md)；静态检查不代表实板通过 |
+
+构建机私有输入为 `build/private/source-v7-preserved-state.tgz` 和 `build/private/source-v7-password`，分别保存本板状态与用户选择的凭据，不纳入公开源码或证据。构建器可通过 `T736_V7_APT_MIRROR=aliyun` 暂时切换 Debian 下载源，正常 cleanup 会恢复；续跑条件、完整命令及异常恢复边界见 [构建说明](BUILD.md)。最终实际会话必须核对为普通账户、X11 和 llvmpipe，并单独验证登录、锁屏解锁、截图、HDMI、重启及联网校时。
 
 ## 重建入口与外部输入
 
@@ -52,7 +70,7 @@ python3 tools/pack_t736_source_boot.py --variant v6
 | `tools/build_raw_rootfs_v6.sh` 至 `v11.sh`、`pack_armbian_raw_v6.py` | 历史运行时镜像；当前打包器仍复用其中 GPT/布局函数，不能整批删除 |
 | `tools/install_*` | 早期运行时安装实验；当前持久固件更新使用完整 raw/FES |
 | `tests/`、模块内 `test_*.c` | 主机侧工具、边界和组件检查；编译/测试通过不等于上板通过 |
-| `tools/validation/` | 从已验证分析脚本整理的验收工具；显示采集和 GPT 离线核验可复用，板上 GPT 迁移有写操作、仅手动执行 |
+| `tools/validation/` | v6 已执行脚本与 v7 待实板验收工具；显示采集和 GPT 离线核验可复用，GPT 迁移写盘、X11 helper 注入输入，均须按各自说明执行 |
 | `evidence/` | 实板、构建和故障记录；以 source-v6 最终验收为当前状态，保留失败历史 |
 
 当前仍未解决纯源码 ZCal 的 PU/PD 问题。授权 DDR 库实现的成功启动不能记作纯源码训练成功。
@@ -60,6 +78,7 @@ python3 tools/pack_t736_source_boot.py --variant v6
 ## 验收索引
 
 - [验收工具说明](../tools/validation/README.md)：运行时与重启检查、只读 framebuffer 抓取、可移植 GPT 日志核验及写盘边界。
+- v7 桌面验收入口：`tools/validation/source_v7_desktop_check.sh --help`；当前只有构建及静态准备，不存在已通过的 v7 实板验收结论。
 - [最终验收](../evidence/source-v6-emmc-acceptance-20261114.json)：三次无人干预启动、root 登录、内存与存储检查。
 - [HDMI 状态](../evidence/source-v6-display-state-20261114.log)：PHY 锁定、active CRTC、帧中断与错误计数。
 - [帧缓冲抓图](../evidence/source-v6-hdmi-framebuffer-20261114.png)：Armbian tty1 登录文字；不是实体显示器照片。

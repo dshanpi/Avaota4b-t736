@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "source": "tools/validation/update_t736_cpu_topology_v16.py",
+  "source_sha256": "a7feb52eb8267350361edcd1494fdc29c9a5da225b782e828026aba60618a434",
+  "candidate": "output/t736-cpu-topology-candidate.dtb",
+  "candidate_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+  "node_diff_review": "evidence/cpu-topology-dt-node-diff-review-20261116.json",
+  "mode_default": "read-only check",
+  "apply_guard": [
+    "fixed running kernel6.18.63-t736-storage-v16",
+    "fixed board model",
+    "regular nonsymlink DT path and candidate",
+    "oldDT SHA2ef0f4b2c0870fac80a6f66d0d6cb31b0cd795b5d69d89b31207e3d6ea8592b5",
+    "fixed candidate size11928 and SHA"
+  ],
+  "transaction": [
+    "flock original target and retain identity/stat tuple",
+    "write originalDT and fixedmanifest backup with file/directoryfsync",
+    "verify backup SHA and manifest",
+    "write replacement in targetdirectory preservingmode/uid/gid andfsync",
+    "verify tempSHA then atomicreplace; fsyncdirectory and targetSHA readback"
+  ],
+  "rollback": "Requires fixed backup/manifest and current pinned state; restores original bytes with the sameatomic/fsync/readback path. No reboot.",
+  "tests": "evidence/cpu-topology-dt-updater-tests-20261116.log",
+  "tests_scope": "Linux temporarydirectory transactions; platform/model/root identities mocked. No board access.",
+  "tests_passed": 6,
+  "independent_reviewer": "backup_audit",
+  "independent_review": "No blocking issue found; incompletebackup is rejected beforeDT writes. Remember a later kernelpackage can overwrite candidateDT and must be handled as separate integration.",
+  "board_applied_by_author": false,
+  "reboots_by_author": 0
+}

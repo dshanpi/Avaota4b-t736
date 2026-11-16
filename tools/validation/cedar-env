@@ -1,0 +1,35 @@
+#!/bin/sh
+# Isolated Cedar candidate environment; no system installation or device access.
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+if [ "$#" -eq 0 ]; then
+    echo "Usage: $0 COMMAND [ARGS...]" >&2
+    echo "Inspect: $0 gst-inspect-1.0 omxh264dec" >&2
+    exit 2
+fi
+runtime=$(mktemp -d "${TMPDIR:-/tmp}/t736-cedar-bridge.XXXXXXXX")
+trap 'rm -f "$runtime/registry.bin" "$runtime/gstomx.conf"; rmdir "$runtime" 2>/dev/null || true' EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+# gst-omx verifies core-name with g_file_test before trying the dynamic loader;
+# a soname alone is insufficient. Generate a relocatable absolute GKeyFile path.
+python3 - "$root" "$runtime" <<'PY'
+from pathlib import Path
+import sys
+root, runtime = map(Path, sys.argv[1:])
+core = root / 'lib/libOmxCore.so'
+if not core.is_file():
+    raise SystemExit('Missing private OpenMAX core: ' + str(core))
+config = (root / 'config/gstomx.conf').read_text()
+key = 'core-name=libOmxCore.so'
+if config.count(key) != 1:
+    raise SystemExit('Unexpected private gstomx.conf core-name')
+escaped = str(core).replace('\\', '\\\\').replace('\n', '\\n').replace('\r', '\\r')
+(runtime / 'gstomx.conf').write_text(config.replace(key, 'core-name=' + escaped))
+PY
+export LD_LIBRARY_PATH="$root/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export GST_PLUGIN_PATH_1_0="$root/lib/gstreamer-1.0"
+export GST_OMX_CONFIG_DIR="$runtime"
+export GST_REGISTRY_1_0="$runtime/registry.bin"
+unset GST_AW_OMX_DEFAULT_ARM_AFBC AW_AFBC_MODE
+"$@"

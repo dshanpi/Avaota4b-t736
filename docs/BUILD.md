@@ -4,6 +4,50 @@
 完整 FES 镜像仍依赖本板厂家固件、SDK 打包工具及官方 Armbian rootfs 输入。
 不能仅从本仓库生成无厂家依赖的完整固件。
 
+## 2026-11-16 source-v7 桌面候选：构建中，未上板验证
+
+`source-v7` 沿用已验收的固定 8 GiB LPDDR4x 参数、v4 SPL、授权 DDR 库和源码 TF-A/U-Boot，候选内核为 `6.18.63-t736-hdmi-v14`，Debian 包版本 `6.18.63-14`。桌面目标是 GNOME 48、Xorg 和 Mesa llvmpipe 软件渲染。构建完成、静态检查通过或出现 GDM 均不能代替实际登录、HDMI、输入设备、重启和存储验收；当前已验收基线仍是下文 source-v6。
+
+新增入口是 `tools/build_source_rootfs_v7.sh`，分为 `prepare` 和 `finalize` 两阶段，脚本自行进入私有 mount namespace 并持有构建锁。输入为 `output/rootfs-armbian-source-v6.ext4`，输出为独立的 `output/rootfs-armbian-source-v7.ext4`，两者长度均为 7802716160 字节。脚本不覆盖 v6，保留 `/boot/t736-source-v4-recovery`，并把原 v13 内核、initrd、配置、System.map 和 DTB 存入 `/boot/t736-source-v6-recovery`。
+
+准备以下私有输入后，在既有、已审核的 Linux 工程目录执行。私有文件不随源码备份、公开记录或镜像清单发布：
+
+- `build/private/source-v7-preserved-state.tgz`：本板 `/etc`、`/root`、`/home` 状态归档；脚本核对固定 SHA256，拒绝范围外成员。归档包含账户及其他私有状态，不能当作普通源码附件。
+- `build/private/source-v7-password`：用户选择的凭据，由私有渠道写入。文件必须归 root 所有、权限为 `0400` 或 `0600`，内容为一行非空值且不能含冒号。脚本为 root 与普通桌面账户 `t736` 注入该值，不打印口令或 shadow 哈希；公开文档只记录注入方式。
+
+```sh
+cd /home/ubuntu/t736-mainline
+sudo -n sh tools/build_source_rootfs_v7.sh prepare
+sh tools/build_display_kernel.sh 14
+sudo -n sh tools/build_source_rootfs_v7.sh finalize
+python3 tools/pack_t736_source_boot.py --variant v7
+```
+
+内核编译可以与 rootfs `prepare` 并行进行；必须等两者成功后才能 `finalize`。内核构建使用 `userpatches/linux-t736-hdmi-v14.config` 和 `build/linux-hdmi-v14`；finalize 要求 `build/linux-image-6.18.63-t736-hdmi-v14_6.18.63-14_arm64.deb`，安装后核对包版本、解压 Image、DTB、initrd 所需 fsck 工具，并更新源码 U-Boot 的兼容加载符号链接。
+
+如果 `prepare` 因下载中断而退出，先确认该进程及包管理子进程已经结束、cleanup 已完成且 staging 目录为空，再使用以下入口续跑。它要求候选 image/state 已存在且没有完成标志，重新校验私有归档和凭据文件、两个恢复目录的 SHA256，随后继续安装配置；不会重做 v6 复制、归档解包或恢复目录创建。不要对已完成的 prepare 使用此入口，也不要通过删除完成标志强行重复执行。
+
+```sh
+sudo -n sh tools/build_source_rootfs_v7.sh resume-prepare
+```
+
+可为 `prepare` 或 `resume-prepare` 选择构建期间的阿里云 Debian 下载镜像：
+
+```sh
+sudo -n env T736_V7_APT_MIRROR=aliyun \
+  sh tools/build_source_rootfs_v7.sh resume-prepare
+```
+
+该选项先将原 `sources.list.d` 和存在的 `sources.list` 保存到 `build/source-rootfs-v7-state/prepare.apt-sources.tar`，只替换 Debian 与 Debian security 的下载 URI，保留签名验证。成功退出或正常信号清理时恢复原 sources，不作为最终系统的永久软件源配置。`SIGKILL`、主机掉电等无法执行 trap 的中断后，必须先核查挂载、文件系统和该备份的恢复情况，不能直接再次备份已经替换的 sources。`/etc/resolv.conf` 和原 `policy-rc.d` 同样在正常清理时恢复；包安装期间由临时 policy 阻止服务启动。
+
+软件包清单为 `config/desktop-v7-packages.txt`，安装不使用 recommends。五个 Mesa 包固定为 `25.0.7-2+deb13u1`，`config/desktop-v7/apt-preferences` 排除 Armbian beta 来源。GNOME、Firefox、中文字体、ibus-libpinyin、GTK 输入模块和 im-config 均由清单显式列出；其他依赖没有完整快照锁定，以实际生成的 dpkg 清单为准。
+
+`config/desktop-v7/gdm3-daemon.conf` 禁用 Wayland、自动登录和定时登录；AccountsService 为普通账户 `t736` 选择 `gnome-xorg`。保留 GDM 默认禁止 root 图形登录的 PAM 条件，以及串口登录入口。`20-t736-modesetting.conf` 使用 `/dev/dri/card0`，关闭加速与 page flip、启用软件光标；`/etc/environment` 选择 `LIBGL_ALWAYS_SOFTWARE=true` 和 `GALLIUM_DRIVER=llvmpipe`。这是待实板验收的配置，不代表 GPU 硬件加速可用。
+
+prepare 安装并启用 `systemd-timesyncd`，保留 fake-hwclock 0.14 的 load/save 服务及每小时保存 timer。finalize 把构建机当前 UTC 写入候选 `/etc/fake-hwclock.data` 并保存 `evidence/source-v7-build-clock-utc.txt`；构建前应核对宿主机时间。该值只为首次离线开机提供接近构建时刻的时间下界，联网后的实际 NTP 同步仍需验收。
+
+每阶段生成包清单、dpkg audit、空间与只读 fsck 记录，完成标志位于 `build/source-rootfs-v7-state/`。finalize 另生成 `output/rootfs-armbian-source-v7.ext4.sha256`；v7 打包器同时要求 `finalize.complete` 和当前 rootfs 哈希匹配，输出 `output/t736-armbian-source-v7.raw.img`，拒绝覆盖同名 raw。打包不会烧录板卡；完整 raw/FES 仍使用专用工具部署，FES loader 仅用于 RAM 传输。桌面、时钟、GPT 和登录验收入口见 [验收工具说明](../tools/validation/README.md)。
+
 ## 2026-11-14 固定 LPDDR4x 与已验证 HDMI 控制台
 
 当前正常启动链只保留用户授权的固定 DDR 库及内嵌训练程序；SPL、交接、TF-A、U-Boot 均为源码构建。厂家 FES loader 仅用于 RAM 烧录。`source-v6` 已通过三次无人干预 eMMC 启动、HDMI tty1 帧缓冲、内存及文件系统校验，沿用 v4 的独立外围供电；RTL8211F DHCP/100 Mbps 链路和 USB 枚举可用，千兆尚未通过。最终验收见 `evidence/source-v6-emmc-acceptance-20261114.json`。
@@ -114,7 +158,7 @@ sudo env KERNEL_PACKAGE_REVISION=4 unshare --mount --fork sh tools/build_armbian
 `/path/to/verified-rootfs.tar.zst` 必须替换为实际文件，staging 目录不能混入其他系统内容。
 脚本需要前述内核包、Armbian BSP 包以及 SDK 的 `img2simg`。
 脚本创建与已验证 rootfs 分区等长的 ext4 和 Android sparse 镜像。
-初始 root 密码为 Armbian 调试默认值 `1234`，首次登录强制更改。
+该历史入口使用脚本定义的调试初始凭据并在首次登录强制更改；source-v7 使用前述用户选择的私有凭据，不能沿用历史默认值。
 脚本会安装软件包，包仓库尚未做完整快照锁定。
 
 Armbian family 的 `write_uboot_platform()` 仍会停止普通整盘镜像写入流程。

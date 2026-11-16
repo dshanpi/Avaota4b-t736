@@ -1,0 +1,39 @@
+{
+  "board": "t736",
+  "kernel": "6.18.63-t736-gpu-v15",
+  "source_image": "source-v8",
+  "gpu_runtime_validated": false,
+  "experiments": [
+    {
+      "name": "retry1",
+      "change": "Enable GPU bus/core and deassert reset before polling CORE PSTATUS",
+      "result": "CORE PSTATUS remained 0; probe returned -110 and cleanup completed",
+      "log": "source-v8-gpu-provider-retry1-20261116.log"
+    },
+    {
+      "name": "retry2",
+      "change": "Follow active Tina CORE policy=0/control=8 path without generic CORE delay writes or unproven ACK prerequisite",
+      "result": "Console became unresponsive with DDK already loaded; recovered by power cycle",
+      "log": "source-v8-gpu-provider-retry2-20261116.log"
+    },
+    {
+      "name": "retry3-bootstrap-only",
+      "module_sha256": "c859d1d07934b5a86e60ad13c3555469e4cc6b33d93994c67774ccec1138c834",
+      "result": "Completed stage 12 with DDK unloaded; normal rmmod cleanup succeeded",
+      "supply_uv": 900000,
+      "clock_hz": 400000000,
+      "core_control": "0x00000008",
+      "core_status": "0x00000000",
+      "core_status_interpretation": "Not treated as confirmed power ACK",
+      "log": "source-v8-gpu-provider-retry3-bootstrap-20261116.log"
+    },
+    {
+      "name": "retry3-genpd-published",
+      "result": "Completed stage 16 with DDK unloaded; provider bound and console responsive",
+      "module_lifetime": "Pinned until reboot after genpd publication",
+      "log": "source-v8-gpu-provider-retry3-publish-20261116.log"
+    }
+  ],
+  "next_test": "Load diagnostic DDK with GDM stopped; record platform and hardware BVNC checkpoints before any GPU userspace probe",
+  "not_established": ["GPU hardware identity read", "firmware startup", "GPU rendering", "accelerated GNOME", "final image acceptance"]
+}

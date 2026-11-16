@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "kind": "t736-hs-draft-parent-clock-independent-review",
+  "status": "passed-static-review-uncompiled-unaccepted-draft",
+  "hardware_access": false,
+  "review_scope": "Parent/reference frequency interpretation and read-only PLL mapping only; no high-speed runtime acceptance",
+  "files": {
+    "boards/t736_mmc_clock_hs_draft.h": "4a0483cce5ebdbd7020d78ec72f647b220bbec58dbc208f91f6778d144cefb83",
+    "boards/t736_mmc_hs_draft.c": "c7a5f66f46eb40c58dcef26d2be488a8ed0933088ccdcfca393ec11be0511323"
+  },
+  "source_evidence": {
+    "tina_platform_generated_header": {
+      "path": "brandy/brandy-2.0/u-boot-2018/arch/arm/include/asm/arch-sunxi/plat-sun60iw2p1/clock_autogen.h",
+      "sha256": "0132e8257e86d7f68903371fb4f494f3807f20168149fd151a15157395c4162d",
+      "lines": "329-332: PERI1 CTRL FREF_SEL bit24, 0=HOSC,1=REFPLL; PAT0 SIG_DELT_PAT_EN31; PAT1 PLL_SDM_EN27/SDM_BUSY26"
+    },
+    "tina_ccu": {
+      "path": "bsp/drivers/clk/sunxi-ng/ccu-sun60iw2.c",
+      "sha256": "1d32bb8555f8ff205d35210f638f9d42cc28aa9295c46963aa1c810d47b06d77",
+      "facts": [
+        "pll_ref parent dcxo, N8bit at8, P7bit at16",
+        "pll_peri1 parent hardcoded pll-ref in software model",
+        "PERI1 output1 divider bits18:16, PLL_N15:8, input divider1",
+        "SDM_INFO_PATTERN1 uses PAT0+0xc8/BIT31 and PAT1+0xcc/BIT27"
+      ]
+    },
+    "sdm_helper": {
+      "path": "bsp/drivers/clk/sunxi-ng/ccu_sdm.c",
+      "sha256": "50d7df603c7243dbe2a6702b2f5b8cdb289478aa39e1d2a2cbf4e0aa9b802ad6",
+      "fact": "Fraction/spreading rate path is conditional on SDM enable. New draft checks registers directly and does not depend on clk_summary."
+    },
+    "manual": {
+      "path": "evidence/vendor-reference/reference-1.txt",
+      "sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483",
+      "sections": [
+        "4.1.3.3 typical PLL configurations",
+        "4.1.3.4 distribution",
+        "4.1.6.11 PERI1 CTRL",
+        "4.1.6.13 PAT0",
+        "4.1.6.14 PAT1",
+        "4.1.6.133 SMHC3 module clock"
+      ],
+      "conflict": "This PDF marks PERI1 CTRL24:23 reserved, while exact sun60iw2 generated register header names FREF_SEL24. The draft conservatively requires the chip-specific REFPLL selector; it never writes it."
+    }
+  },
+  "resolved_initial_findings": [
+    "Initial helper always used24MHz regardless PERI1 FREF_SEL; fixed by requiring bit24=1 and rejecting direct26MHz DCXO path.",
+    "Initial helper read no pattern registers and could report800MHz for modulated/fractional parent; now requires PAT0.31/PAT1.27/PAT1.26 allzero.",
+    "Initial PERI1 resource length4 did not cover PAT0/PAT1; now requires exactbase020020c0 and length>=16.",
+    "Initial frequency equality checked after division; now exactu64 cross-products prove24MHz REF and800MHz PERI1 output1."
+  ],
+  "accepted_checks": {
+    "dcxo_hz": 26000000,
+    "ref": "ready enable31/lock28/output27; DCXO*(N+1)==24000000*(M+1)*(P+1)",
+    "peri1": "ready enable31/lock28/output1gate26; FREF_SEL24=1; pattern0bit31=0; pattern1bits27,26=0; REF*(N+1)==800000000*(M1+1)*(P1+1)",
+    "low_speed": "mux0 remains SYS_CLK24M, notDCXO26M. Driver requires a ready24MHzREF but explicitly does not claim to have measured SYS24 or read an undocumented mux.",
+    "plan": "M,N are linear1..32; parent inequality usesu64 to reject realfrequency above target before flooring integer actual_clock; mux3 selectsPERI1_800 and target\u226450MHz",
+    "timing_validation": "Atprobe before existingcontrollerwrites and beforeevery set_ios clockchange; no PLL writes"
+  },
+  "readonly_register_scope": [
+    {
+      "address": "0x02002000",
+      "length": 4,
+      "reads": [
+        "PLL_REF_CTRL"
+      ]
+    },
+    {
+      "address": "0x020020c0",
+      "length": 16,
+      "reads": [
+        "PERI1_CTRL+0",
+        "PERI1_PAT0+8",
+        "PERI1_PAT1+12"
+      ],
+      "not_read": "LOCK_CTRL+4"
+    }
+  ],
+  "frac_bit20_assessment": "No evidence found that PAT1.FRAC_EN20 changes output while both SDM enables areoff and SDM_BUSY0. Prior suggestion to reject this inactive configuration is withdrawn; no blocking finding remains for that bit.",
+  "synthetic_examples_not_board_measurements": [
+    "26MHz*96/104=24MHz REF. REF24MHz*100/3=800MHz PERI1.",
+    "WithPERI1 FREF_SEL0 andotherwiseN100/P1=3, actualintegerparent would26MHz*100/3\u2248866.667MHz; this draft correctlyrejects thatcase instead ofcallingit800MHz."
+  ],
+  "limits": [
+    "Hardware PLL snapshots and oscillator frequency remain required from primaryagent; no board access performed here.",
+    "Older BSP clk_summary says800MHz but uses hardcodedpll-ref softwaremodel; it doesnotindependentlyproveFREF_SEL hardwarevalue.",
+    "ThisreviewdoesnotpromoteHScandidate orenableHS52; v20HRT/DMA acceptance remains primaryagentwork.",
+    "ParentownsactualCtestimplementation; reviewer didnotmodifydraftsources orrunparallelbuild."
+  ]
+}

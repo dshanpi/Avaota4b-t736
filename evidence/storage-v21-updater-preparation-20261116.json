@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "kind": "storage-v21-guarded-updater-preparation",
+  "date": "2026-11-16",
+  "status": "ready-for-board-check-apply-and-one-shot-trial",
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v21.py": "79b074547330fa68f7c29b4dc4ab366d28bcb7173c825d2735c6df26194aea76",
+    "tools/validation/test_update_t736_storage_v21.py": "d4c2c71667ecc4a65cf0829a74c9bc32416ae390ce81dc86fdf504b582151f39",
+    "tools/validation/audit_dma_storage_v21_package.py": "8ab7d090eebb431a5e09b46b913d44991c520e838cdb7d61f782c0cd8a67bd2e",
+    "evidence/storage-v21-updater-offline-tests-20261116.log": "d82559c5c5a7d8f2eb3aea3aefb734fff8a217fea08dd0c94b4b9419e4c8dc48",
+    "evidence/storage-v21-updater-exact-inputs-20261116.json": "c9928b96897cf8cc453a7c34ed23bc2fcb1b1c77d58391bc96b72e097241a1a4",
+    "evidence/storage-v21-updater-independent-review-20261116.json": "907602a1883824cfd9f0ad513e25c5b49482ef8a1b221cdd0721165ead175a04",
+    "evidence/storage-v21-package-20261116.json": "4971f55965a05542dba10edc591b51a1ef9e8438db336a3c8706ebafe72994dd",
+    "evidence/storage-v21-updater-bindings-20261116.json": "d95ece1b59584281a8f482447a5d251f9ec03d311e6ee180bd721eb448caa8d0",
+    "evidence/storage-v20-emmc-parent-clock-review-20261116.json": "42806b96f3d5193025f8a8b427c6fe730af6954ab1fcb293f66c3485cec9de4b"
+  },
+  "bindings": {
+    "kernel_sha256": "ecafdd041f47e7cf44dfca6dc8646f11f6907f71d016ba7238eebe9e12393b54",
+    "kernel_bytes": 5597090,
+    "pvr_sha256": "9ba54fb4a0b585b9db1edea6d8dfd541174583a06cf732d2ecc0d38897c103c9",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "eca8f32968a1291ef6afdf3432e59679777d56322f9096ded8d7e124c47b26a9",
+    "payload_manifest_sha256": "5ccf4e37b033a97829bdacee425e2cff9edeecde95032a451115424625a19962",
+    "raw_image_sha256": "7bd0feb73be66535f147ead12533ea7f0664f71fabfba6be4f9532ec7f46d24e",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "candidate_dtb_bytes": 12028,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "offline_tests": {
+    "passed": 14,
+    "includes": [
+      "verified-running-v20 identity and corruption rejection",
+      "running-v20 separated from fixed-v16-fallback",
+      "timeout-child quiescence before rollback",
+      "backup corruption/final-verification faults/path escape protection"
+    ]
+  },
+  "exact_inputs": "82 payload entries and complete control/payload manifests match; four maintainer scripts equal v20 except release identity, never executed in audit",
+  "independent_review": "code_index PASS at final updater SHA 79b074547330fa68f7c29b4dc4ab366d28bcb7173c825d2735c6df26194aea76",
+  "state_separation": {
+    "allowed_running": [
+      "6.18.63-t736-storage-v16",
+      "6.18.63-t736-storage-v20"
+    ],
+    "fixed_default_fallback": "6.18.63-t736-storage-v16",
+    "default_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate": "6.18.63-t736-storage-v21"
+  },
+  "planned_board_flow": [
+    "root checks and applies pinned transaction",
+    "root immediately restores default selection from fresh BACKUP_FSYNC_VERIFIED directory",
+    "v21 kernel/initrd/packageDT/PVR stay installed for explicit-path U-Boot boot without saveenv"
+  ],
+  "candidate_scope": "HS SDR25MHz first stage, v20 HRT and v19 coherent IDMA retained; exact candidate DT adds read-only parent resources. Existing verified PERI0_800M mux1 requires no shared PLL/rail/gate writes.",
+  "second_stage": "50MHz remains a separate opt-in boot-parameter trial requiring its own runtime results; not implied by25MHz outcome.",
+  "board_operations_by_this_agent": false,
+  "candidate_board_accepted": false,
+  "private_home_archive_included": false,
+  "delivery": "SFTP only; no new HTTP service"
+}

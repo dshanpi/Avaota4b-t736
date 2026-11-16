@@ -1,0 +1,8 @@
+Script SHA256 a535d38cfdc17e9009bc99b7a0689e39d5b9d9194ecd16fbd0f0d7876fb1225f
+Remote upload verified byte-for-byte
+bash syntax: rc=0
+help only: rc=0
+SKIP shellcheck unavailable (previous availability check; nothing installed)
+Manual static review: no executable package/service/boot mutation, persistent file write, credential output, raw input capture, or board access.
+GLX preserves only selected session DISPLAY/XAUTHORITY and LIBGL_ALWAYS_SOFTWARE/GALLIUM_DRIVER/LIBGL_DRI3_DISABLE; Mesa shader disk cache disabled.
+No runtime board acceptance performed.
