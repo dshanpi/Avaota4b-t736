@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-17T06:48:50.763583+00:00",
+  "purpose": "Frozen source archive of completed diagnostic variant only;not a namespace fix or default launcher",
+  "wire_protocol": 2,
+  "original_build_directory": "build/cedar-shm-client-diag-v1-20261117",
+  "artifact": {
+    "path": "build/cedar-shm-client-diag-v1-20261117/libt736_cedar_client_diag.so",
+    "bytes": 24448,
+    "sha256": "ec2de17d17a229f631eb45b9d827467479d801f4452256e0e0773dd635b0b5ee"
+  },
+  "source_files": [
+    {
+      "path": "cedar_client.c",
+      "bytes": 12709,
+      "sha256": "0c83e60160be1f9171b08c08432e55888c0558b2008e634ec583b49f186c5b91",
+      "original_snapshot": "build/cedar-shm-client-diag-v1-20261117/cedar_client.c"
+    },
+    {
+      "path": "cedar_shm.h",
+      "bytes": 8234,
+      "sha256": "131eefbfceaa017249b06658bfa4446f6096c6912b1d4a96d4397afddb94908e",
+      "original_snapshot": "build/cedar-shm-client-diag-v1-20261117/cedar_shm.h"
+    },
+    {
+      "path": "cedar_diagnostic.h",
+      "bytes": 2604,
+      "sha256": "353a01fff1dd55737a3c21fe357afa417a52b0bcd2dff67ac06f73d458d1282b",
+      "original_snapshot": "build/cedar-shm-client-diag-v1-20261117/cedar_diagnostic.h"
+    },
+    {
+      "path": "cedar_protocol.h",
+      "bytes": 1459,
+      "sha256": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646",
+      "original_snapshot": "build/cedar-shm-client-diag-v1-20261117/cedar_protocol.h"
+    },
+    {
+      "path": "cedar_client.h",
+      "bytes": 1181,
+      "sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+      "original_snapshot": "build/cedar-shm-client-diag-v1-20261117/cedar_client.h"
+    },
+    {
+      "path": "cedar_backend.h",
+      "bytes": 2505,
+      "sha256": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b",
+      "original_snapshot": "build/cedar-shm-client-diag-v1-20261117/cedar_backend.h"
+    },
+    {
+      "path": "test_cedar_shm_client_fork.c",
+      "bytes": 6148,
+      "sha256": "0af413ec7f7876678f6b8787d272bb039febbe9c20096eaac0400f461baadf54",
+      "original_snapshot": "build/cedar-shm-client-diag-v1-20261117/test_cedar_shm_client_fork.c"
+    },
+    {
+      "path": "test_cedar_shm_seals.c",
+      "bytes": 22643,
+      "sha256": "3bd88c3d91baa3ec56c6ce6e21718b1559f7f0bf7f96a8a868f4f47b399bc3a4",
+      "original_snapshot": "build/cedar-shm-client-diag-v1-20261117/test_cedar_shm_seals.c"
+    }
+  ],
+  "frozen_v2_inputs": {
+    "cedar_client.c": "84ec6f08321aa4ac76f449fbb05d82cfd97467d3774d200a11d85431bc06778a",
+    "cedar_shm.h": "c99cefb5bad2318bec39e57fa6f7ef27a33013bb58dae15d3c237bef97e2590c",
+    "cedar_client.h": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+    "cedar_protocol.h": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646",
+    "cedar_backend.h": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b"
+  },
+  "canonical_test_inputs": {
+    "test_cedar_shm_client_fork.c": "f1d2710f5555ac5065330b71d15898c5424e3f30792285335fc2fb6f370765a4",
+    "test_cedar_shm_seals.c": "341fab86314c3a04d27dc31d10a311b5ef3f7eccab6d44b3e495262f6c8ab102"
+  },
+  "test_source_adjustment": "Replace ../tools/browser/shm_v2/ include prefix with empty string and normalize line endings to LF;test logic unchanged.",
+  "validation": [
+    "Native ASan/UBSan/LSan actual-client fork/exec PASS",
+    "Native ASan/UBSan/LSan58-case helper PASS;200ms test-only setup deadline",
+    "Independent diff reviewPASS;all v2 guards and cleanup retained",
+    "Board diagnostic confirms uid999 lookup vs65534 directoryowner rejection;no authentication adaptation implemented"
+  ],
+  "evidence": [
+    "evidence/cedar-shm-v2-client-diagnostic-build-20261117.json",
+    "build/cedar-shm-client-diag-v1-20261117/test-client_fork.log",
+    "build/cedar-shm-client-diag-v1-20261117/test-seals.log",
+    "build/cedar-shm-client-diag-v1-20261117/board-firefox-constructor.log"
+  ],
+  "unimplemented": "Clientv3/usernamespace adaptation remains design and test-matrix only;no implementation directory/binary/completedtest suite.",
+  "board_access_by_archiver": false,
+  "public_media_or_vendor_binary_included": false
+}

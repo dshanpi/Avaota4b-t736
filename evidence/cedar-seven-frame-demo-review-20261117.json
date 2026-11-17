@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "DIAGNOSTIC_V2_READY_FULL_DECODE_PENDING",
+  "scope": "Offline source/parser review after root-operated first hardware decode; no board access by this reviewer.",
+  "first_hardware_evidence": {
+    "result": "evidence/media-v27-first-decode-result-full-20261117.json",
+    "result_sha256": "9f338e792012cf577992d7ed7ab01d61e6c4a11a0a475cd109f59519b9a55225",
+    "verified_frames": 7,
+    "decoded_bytes": 806400,
+    "irq_delta": 9,
+    "exit": "25-second deadline; TERM; child exited",
+    "version": "0x3331000021320",
+    "phy_offset": "0x0",
+    "limit": "First seven frame contents match the reference; this is not full 30-frame or sustained playback acceptance."
+  },
+  "trace_observation": "Root trace reports complete 38003-byte input read and parser EOF exit; decoder repeatedly obtains/releases 0x310/0x311 locks without a blocking IRQ wait. No driver timeout/poison observed.",
+  "confirmed_parser_defect": {
+    "original_nals": 32,
+    "original_vcl_nals": 29,
+    "submitted_bytes": 37080,
+    "dropped_final_nal_bytes": 923,
+    "fixed_nals": 33,
+    "fixed_vcl_nals": 30,
+    "fixed_submitted_bytes": 38003,
+    "fixed_source_sha256": "f135cb09580339d3b90ba82e8572fba295fd3544e2e5571b8ad7537cba9a3717",
+    "independent_validation": "code_index ran original and fixed parser with ASan/UBSan against the same fixed fixture; fixed parser consumes all bytes.",
+    "causal_limit": "Dropping the last NAL explains a missing final frame, but does not independently explain a seven-frame stall."
+  },
+  "unconfirmed_buffer_hypothesis": "Original demo retains one display picture while missing cedarc.conf selects nDisplayHoldingFrameBufferNum=0. Diagnostic v2 returns each saved picture immediately and records all decoder result transitions and SBM/FBM counts; still needs board evidence.",
+  "corrected_review_statement": "Initial suspicion of int* passed to pthread_join was incorrect: original ChannelThread nRet was already void*. v2 uses int for initDecoder status and NULL for ignored join result, removing the vendor int-to-pointer warning; no stack-overflow cause is claimed.",
+  "diagnostic_v2": {
+    "schema": 1,
+    "status": "COMPILED_HARDWARE_PENDING",
+    "original_sources": {
+      "vdecoderDemo.c": "3ffac6640087f5967c9cfd26f5e87ecef1f86c52cdb793e94e348bf40297cfbc",
+      "rawStreamParser.c": "f557f6d74fabf41943bf32dc2a75c48500e43ea528b61c6411ef16a2e8b59a3b",
+      "rawStreamParser.h": "2f30726818bdcefc6a935a3e07d876ac66cc1b59301643da30fcd3230dc2564a"
+    },
+    "modified_sources": {
+      "vdecoderDemo.c": "9c4c37ecbfeb9701b333e45a677d8475ad06d2efe6fc17c8827a8acb84bc3e7e",
+      "rawStreamParser.c": "f135cb09580339d3b90ba82e8572fba295fd3544e2e5571b8ad7537cba9a3717",
+      "rawStreamParser.h": "2f30726818bdcefc6a935a3e07d876ac66cc1b59301643da30fcd3230dc2564a"
+    },
+    "executable": "/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v2-20261117/vdecoderdemo-diagnostic",
+    "executable_sha256": "caba8d5ebdd148a95f7d48732711225f734ac74fb48914701ff875ff6a1d7cef",
+    "executable_bytes": 153840,
+    "command": [
+      "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-gcc",
+      "-O2",
+      "-g",
+      "-I/home/ubuntu/t736-mainline/build/cedar-bridge-package-v2/cedar/usr/include",
+      "-I/home/ubuntu/t736-aiot/tina/platform/allwinner/multimedia/libcedarc_v2.0/base/include",
+      "-I/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v2-20261117",
+      "/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v2-20261117/vdecoderDemo.c",
+      "/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v2-20261117/rawStreamParser.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v2-20261117/vdecoderdemo-diagnostic",
+      "-L/home/ubuntu/t736-mainline/build/cedar-bridge-package-v2/cedar/usr/lib/aarch64-linux-gnu",
+      "-Wl,-rpath-link,/home/ubuntu/t736-mainline/build/cedar-bridge-package-v2/cedar/usr/lib/aarch64-linux-gnu",
+      "-lcdc_base",
+      "-lMemAdapter",
+      "-lvdecoder",
+      "-lfbm",
+      "-lsbm",
+      "-lpthread",
+      "-lm",
+      "-lrt",
+      "-ldl",
+      "-lVE",
+      "-lvideoengine"
+    ],
+    "changes": [
+      "Immediate ReturnPicture after saving, with return-code check.",
+      "Decode return transitions, periodic progress, SBM/FBM counts, EOF and saved frame diagnostics.",
+      "Separate integer initialization status from unused pthread_join return values; remove vendor int-to-pointer warning.",
+      "EOF-fixed Annex-B parser"
+    ],
+    "parser_source": "/home/ubuntu/t736-mainline/build/cedar-parser-review-20261117/rawStreamParser_fixed.c",
+    "limits": [
+      "Parser validated offline only; hardware completion remains pending.",
+      "No modification to original WC bundle or Tina source.",
+      "Run through the private WC wrapper; this executable is a separate private artifact."
+    ]
+  },
+  "checks": {
+    "compile_log_bytes": 0,
+    "actual_wc_r2_loader_exit": 0,
+    "loader_log_sha256": "8b72952b62a6a9031a8b9a0b8cb6c0793be4eb0107c839d2e1c6752b82c42182"
+  },
+  "deployment": "Use the existing cedar-env wrapper with the separate vdecoderdemo-diagnostic-v2 executable. Do not overwrite the WC bundle or use the frozen original-demo comparator without explicitly changing/pinning the selected executable."
+}

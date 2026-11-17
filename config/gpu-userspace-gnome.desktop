@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=GNOME (T736 IMG candidate)
+Comment=GNOME Xorg using the isolated T736 IMG EGL and GLES candidate
+Exec=/usr/bin/t736-img-run gnome-session
+TryExec=/usr/bin/gnome-session
+Type=Application
+DesktopNames=GNOME;
+X-GDM-SessionRegisters=true

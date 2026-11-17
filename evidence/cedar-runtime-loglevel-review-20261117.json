@@ -1,0 +1,64 @@
+{
+  "schema": "t736-cedar-logging-api-config-review-v1",
+  "date": "2026-11-17",
+  "reviewer": "code_index/media_ve_review",
+  "result": "READ_ONLY_SOURCE_AND_BUILD_BINARY_REVIEW",
+  "board_access": false,
+  "service_or_config_changed": false,
+  "supersedes_precision_of": "evidence/cedar-logging-clock-policy-audit-20261117.json logging lifetime/API details",
+  "api": {
+    "prototype": "void log_setlevel(unsigned level);",
+    "header": "Tina platform/allwinner/multimedia/libcedarc_v2.0/base/include/cdc_log.h:99",
+    "header_sha256": "172f38bbbf3af0a08199365ed7f8c7951e1c20cab26a118498061b30fa8e97f7",
+    "implementation": "base/CdcLog.c:71-93",
+    "implementation_sha256": "3ab804c67ccb545f78365a86ab02509f9c4ee529270e08f24b7788ab3ff3eae4",
+    "linux_behavior": "Assigns GLOBAL_LOG_LEVEL; no bounds validation and no Linux environment override. Use defined enum value 6 (LOG_LEVEL_ERROR).",
+    "levels": {
+      "verbose": 2,
+      "debug": 3,
+      "info": 4,
+      "warning": 5,
+      "error": 6
+    },
+    "global_scope": "Process-global Cedar logger state, not per decoder."
+  },
+  "crop_warning": {
+    "callsite": "openmax/vdec/src/omx_vdec.c:1802-1808, __AwOmxVdecGetConfig, OMX_IndexConfigCommonOutputCrop",
+    "macro": "omx_logw at base/include/cdc_log.h:94 maps to CDCLOG(LOG_LEVEL_WARNING).",
+    "linux_filter": "cdc_log.h:67-72 prints only when level >= GLOBAL_LOG_LEVEL; level 6 suppresses crop warning 5 and preserves errors 6.",
+    "does_not_fix": "Does not stop polling, alter crop values, recover idle failure or change decoder state."
+  },
+  "configuration": {
+    "linux_path": "/etc/cedarc.conf",
+    "android_path": "/vendor/etc/cedarc.conf",
+    "exact_ini": "[paramter]\ncdc_log_level = 6\n",
+    "section_spelling": "paramter is the literal vendor spelling; parameter is incorrect.",
+    "parser_source": "base/cdcIniparser/cdcIniparserapi.c:20-33,67-75,111-115",
+    "parser_sha256": "565d1a63bfb3838ff9151af5b6b64df13964ad92a0c354d2616011661a96bb7e",
+    "misleading_log_literal": "CdcLog.c:73 prints /vendor/etc/cedarc.conf even on Linux; use the parser source/binary path, not that log text.",
+    "path_override": "No path parameter or environment override in reviewed Linux implementation."
+  },
+  "lifetime": [
+    "CdcIniParserGetInt lazily initializes only when g_ini is NULL; otherwise it reads the cached dictionary. Editing the file alone does not refresh a retained component.",
+    "__AwOmxVdecComponentCreate in openmax/vdec/src/omx_vdec.c:2189-2191 explicitly calls CdcIniParserInit, reloading the configured file on component creation.",
+    "AwOmxComponentDestrory in openmax/omxcore/aw_omx_component.c:31 calls CdcIniParserDestory, freeing and clearing the dictionary.",
+    "AwOmxComponentInit at aw_omx_component.c:45 sets log level from cdc_log_level with default 5.",
+    "Linux decoder preparation at omx_vdec_aw_decoder_linux.c:1582-1588 temporarily sets 6 before loading plugins and creating VideoDecoder.",
+    "CreateVideoDecoder invokes DebugCheckConfig (vdecoder/vdecoder.c:426), whose normal bShowLogFlag==0 path at 392-396 sets log level from cdc_log_level with default 4. An earlier direct setlevel call can therefore be overwritten."
+  ],
+  "build_binary_checks": {
+    "directory": "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/t736-cedar-wc-v4/lib",
+    "libcdc_base_sha256": "9077522122e67391c09bf44668b091f4e1ecb01c0b1d832dd54a71b37c4a2f03",
+    "libOmxVdec_sha256": "a524cdbda7b9c7becbf4a5d1bdc83afb859aa8297b18b1b092157b6d26c6e24e",
+    "readelf": "libcdc_base exports log_setlevel, GLOBAL_LOG_LEVEL, CdcIniParserInit and CdcIniParserDestory. libOmxVdec imports the logger variable/function and CdcIniParserInit.",
+    "limit": "Read-only build-host identity, not a fresh check of the installed board libraries."
+  },
+  "recommended_private_binding": {
+    "prepare": "Copy the existing complete cedarc.conf into the experiment's private config directory and change only [paramter] cdc_log_level to 6, preserving other settings. If no config exists, the minimal exact_ini uses vendor defaults for all other keys.",
+    "service": "t736-cedar-experiment.service",
+    "runtime_dropin_example": "[Service]\nBindReadOnlyPaths=/opt/t736-browser-v1/config/cedarc.conf:/etc/cedarc.conf\nPrivateMounts=yes\n",
+    "activation": "Have root apply the private binding before the next authorized new service process; namespace setup precedes decoder/config initialization. No change to the host-wide configuration is required.",
+    "reason": "Later decoder initialization consistently reloads the configured level, unlike an early one-off direct log_setlevel call.",
+    "rollback": "Remove only the experiment-specific drop-in for the next process start. Do not redirect or suppress unrelated stdout/stderr."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "kind": "t736-source-v11-inputs",
+  "status": "pending-hardware-acceptance-and-input-review",
+  "storage_mode": "hs400-200",
+  "allowed_storage_modes": ["hs400-200"],
+  "kernel": {"path": "build/linux-image-6.18.63-t736-storage-v24_6.18.63-24_arm64.deb", "sha256": "c58e56fab073adf8f62c14148ab7d79d7feb7ee43e134744c834556079ac0578"},
+  "pvr": {"path": "build/pvr-storage-v24/target_aarch64/pvrsrvkm.ko", "sha256": "badb7af910bd31bf60df0642db893111d77031f9f3560b3f2a23303d0ed700ea"},
+  "storage_acceptance": {"path": "evidence/storage-v24-hs400-stage-record-20261116.json", "sha256": "1b8d1b66c3915fde3626da8d73b62ed09b0eb38949b149b9399f115c2d410cbb"},
+  "gpu_acceptance": {"path": null, "sha256": null},
+  "gstreamer_gl_deb": {"path": "build/gstgl-v11-artifacts/gstreamer1.0-gl_1.26.2-1+deb13u2_arm64.deb", "sha256": "d11878da40f521674727914e53c15ae4ea16129190f606bd3aa9dd0069199b08"},
+  "note": "Do not mark ready until the explicit kernel/mode/GPU evidence is complete. V24 build success alone is not HS400 acceptance. This template contains no credentials."
+}

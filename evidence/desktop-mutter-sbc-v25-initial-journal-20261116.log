@@ -1,0 +1,14 @@
+11月 16 14:38:31 t736 gnome-shell[5491]: Running GNOME Shell (using mutter 48.7) as a X11 window and compositing manager
+11月 16 14:38:31 t736 gnome-shell[5491]: Enabling experimental feature 'scale-monitor-framebuffer'
+11月 16 14:38:31 t736 gnome-shell[5491]: Enabling experimental feature 'xwayland-native-scaling'
+11月 16 14:38:31 t736 gnome-shell[5491]: Obtained a high priority EGL context
+11月 16 14:38:31 t736 gnome-shell[5491]: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+11月 16 14:38:31 t736 gnome-shell[5491]: cannot register existing type 'ClutterActor'
+11月 16 14:38:31 t736 gnome-shell[5491]: cannot add private field to invalid (non-instantiatable) type '<invalid>'
+11月 16 14:38:31 t736 gnome-shell[5491]: g_type_add_interface_static: assertion 'G_TYPE_IS_INSTANTIATABLE (instance_type)' failed
+11月 16 14:38:31 t736 gnome-shell[5491]: g_type_add_interface_static: assertion 'G_TYPE_IS_INSTANTIATABLE (instance_type)' failed
+11月 16 14:38:31 t736 gnome-shell[5491]: g_once_init_leave_pointer: assertion 'result != 0' failed
+11月 16 14:38:31 t736 gnome-shell[5491]: JS ERROR: Error: Unsupported type (null), deriving from fundamental (null)
+                                          @resource:///org/gnome/shell/ui/environment.js:273:39
+11月 16 14:38:31 t736 gnome-shell[5491]: Execution of main.js threw exception: Module resource:///org/gnome/shell/ui/init.js threw an exception
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.gnome.Shell was not provided by any .service files

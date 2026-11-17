@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "READ_ONLY_SOURCE_AND_BINARY_AUDIT",
+  "board_access": false,
+  "clock_or_config_changed": false,
+  "reviewer": "code_index/media_ve_review",
+  "logging": {
+    "actual_path": "/etc/cedarc.conf",
+    "section": "paramter",
+    "key": "cdc_log_level",
+    "default": 4,
+    "warnings": 5,
+    "errors_only": 6,
+    "path_override": "No API parameter or environment override in audited Linux implementation",
+    "lifetime": "INI dictionary cached in process; decoder initialization reads key and calls log_setlevel again",
+    "isolation_options": [
+      "Private mount namespace mapping of private file to /etc/cedarc.conf",
+      "Call exported log_setlevel(6) after actual decoder initialization"
+    ],
+    "caveat": "Warning suppression does not stop the idle decode loop; use WC-v4 explicit idle action",
+    "evidence": [
+      "libcedarc_v2.0/base/cdcIniparser/cdcIniparserapi.c:20-33,67-75,111-115",
+      "libcedarc_v2.0/base/CdcLog.c:71-93",
+      "libcdc_base.so .rodata 0xa7d0 /etc/cedarc.conf and 0xa7a8 paramter:%s",
+      "libvdecoder.so DebugCheckConfig 0x5630..0x5640 reads default4; cdc_log_level at0xd748"
+    ]
+  },
+  "current_clock": {
+    "hz": 200000000,
+    "source": "PERI0_800M divided by4",
+    "provider": "boards/clk-t736-ve.c:15,121-140",
+    "power_check": "boards/t736-ve-power.c:73",
+    "ioctl": "boards/t736-cedar-wc.c:662,687,699: SET_FREQ and default report actual fixed rate; load DVFS no-op"
+  },
+  "vendor_clock_policy": {
+    "source": "Tina bsp/drivers/ve/cedar-ve/platforms/ve_plat_sun60iw2.c:69-104",
+    "load_1080p60": "L3: >1920*1088*30 and <=1920*1088*60 pixels/s",
+    "mhz": {
+      "h264": {
+        "1080p30": 200,
+        "1080p60": 360,
+        "higher": 624
+      },
+      "h265": {
+        "1080p30": 150,
+        "1080p60": 360,
+        "higher": 624
+      },
+      "vp9": {
+        "1080p30": 200,
+        "1080p60": 360,
+        "higher": 624
+      }
+    },
+    "opp_source": "Tina bsp/configs/linux-6.6/sun60iw2p1-cpu-vf.dtsi:2142-2189; VE-specific VF tables624MHz/800mV",
+    "opp_reader": "ve_plat_sun60iw2.c:337-419",
+    "not_board_validation": "Generic driver50-900MHz accepted parameters are not a verified range for this board"
+  },
+  "conclusion": "Current200MHz is below vendor360MHz policy for1080p60 and is a plausible bottleneck, not an established root cause; separate actual format/map/copy throughput evidence required",
+  "binary_sha256": {
+    "libcdc_base.so": "9077522122e67391c09bf44668b091f4e1ecb01c0b1d832dd54a71b37c4a2f03",
+    "libvdecoder.so": "ec47b638c4f3880689d2b148579a32548edcd371d9ff8ff4dcbee82ca9473f9e"
+  }
+}

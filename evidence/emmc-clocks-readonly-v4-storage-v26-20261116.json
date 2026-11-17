@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "kind": "t736-emmc-clocks-readonly-v4-storage-v26-module",
+  "status": "COMPILED_NOT_BOARD_RUN",
+  "kernel_release": "6.18.63-t736-storage-v26",
+  "source": {
+    "path": "tools/validation/t736-emmc-clocks-readonly-v4.c",
+    "sha256": "91987660977d31436f81467cb57b78f94976ec84428db90b1ce624aa02f41834"
+  },
+  "module": {
+    "remote_path": "build/emmc-clocks-readonly-v4-storage-v26/t736-emmc-clocks-readonly-v4.ko",
+    "bytes": 8176,
+    "sha256": "bd72801246d99b89406be5533c1d55e8afa2724e12862a2bd0c1c664ffe67ab9",
+    "name": "t736_emmc_clocks_readonly_v4",
+    "vermagic": "6.18.63-t736-storage-v26 SMP mod_unload aarch64"
+  },
+  "build": {
+    "command": [
+      "make",
+      "-C",
+      "/home/ubuntu/t736-mainline/build/linux-storage-v26",
+      "M=/home/ubuntu/t736-mainline/build/emmc-clocks-readonly-v4-storage-v26",
+      "ARCH=arm64",
+      "CROSS_COMPILE=aarch64-linux-gnu-",
+      "modules"
+    ],
+    "log": "evidence/build/emmc-clocks-readonly-v4-storage-v26-build-20261116.log",
+    "log_sha256": "cfef09c16db722ce0321b66aba44be94c52f74fb3adb98a80321ecdd8f3ebaf5"
+  },
+  "scope": "Unchanged readonly-v4 source compiled only for v26 ABI; no board access by build agent"
+}

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "kind": "browser-cedar-client-hardware-trial",
+  "codec": "HEVC Main 8-bit",
+  "width": 1920,
+  "height": 1080,
+  "input_rate": 60,
+  "expected_frames": 180,
+  "runs": [],
+  "passed": false,
+  "error": "AssertionError('pull returned -5')",
+  "close_after_error": -5
+}

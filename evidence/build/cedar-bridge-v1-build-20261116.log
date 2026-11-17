@@ -1,0 +1,231 @@
+ninja: Entering directory `/home/ubuntu/t736-mainline/build/cedar-bridge-package-v1/build'
+[1/37] Compiling C object omx/libgstomx.so.p/gstomxallocator.c.o
+[2/37] Compiling C object omx/libgstomx.so.p/gstomxbufferpool.c.o
+[3/37] Compiling C object omx/libgstomx.so.p/gstomxvideo.c.o
+[4/37] Compiling C object omx/libgstomx.so.p/gstomxaudiodec.c.o
+[5/37] Compiling C object omx/libgstomx.so.p/gstomxvideoenc.c.o
+../src/omx/gstomxvideoenc.c: In function ‘gst_omx_video_enc_configure_input_buffer’:
+../src/omx/gstomxvideoenc.c:2117:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+ 2117 |   GstVideoCropMeta *crop_meta = gst_buffer_get_video_crop_meta (input);
+      |   ^~~~~~~~~~~~~~~~
+In file included from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gst.h:55,
+                 from ../src/omx/gstomxvideoenc.c:25:
+../src/omx/gstomxvideoenc.c:2134:9: warning: format ‘%d’ expects argument of type ‘int’, but argument 10 has type ‘OMX_U32’ {aka ‘long unsigned int’} [-Wformat=]
+ 2134 |         "using crop information to output frame: %dx%d (input original: %dx%d)",
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2135 |         crop_meta->width, crop_meta->height,
+ 2136 |         port_def.format.video.nFrameWidth, port_def.format.video.nFrameHeight);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |
+      |                              OMX_U32 {aka long unsigned int}
+/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstinfo.h:691:31: note: in definition of macro ‘GST_CAT_LEVEL_LOG’
+  691 |         (GObject *) (object), __VA_ARGS__);    \
+      |                               ^~~~~~~~~~~
+../src/omx/gstomxvideoenc.c:2133:5: note: in expansion of macro ‘GST_INFO_OBJECT’
+ 2133 |     GST_INFO_OBJECT (self,
+      |     ^~~~~~~~~~~~~~~
+../src/omx/gstomxvideoenc.c:2134:74: note: format string is defined here
+ 2134 |         "using crop information to output frame: %dx%d (input original: %dx%d)",
+      |                                                                         ~^
+      |                                                                          |
+      |                                                                          int
+      |                                                                         %ld
+In file included from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gst.h:55,
+                 from ../src/omx/gstomxvideoenc.c:25:
+../src/omx/gstomxvideoenc.c:2134:9: warning: format ‘%d’ expects argument of type ‘int’, but argument 11 has type ‘OMX_U32’ {aka ‘long unsigned int’} [-Wformat=]
+ 2134 |         "using crop information to output frame: %dx%d (input original: %dx%d)",
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2135 |         crop_meta->width, crop_meta->height,
+ 2136 |         port_def.format.video.nFrameWidth, port_def.format.video.nFrameHeight);
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                 |
+      |                                                                 OMX_U32 {aka long unsigned int}
+/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstinfo.h:691:31: note: in definition of macro ‘GST_CAT_LEVEL_LOG’
+  691 |         (GObject *) (object), __VA_ARGS__);    \
+      |                               ^~~~~~~~~~~
+../src/omx/gstomxvideoenc.c:2133:5: note: in expansion of macro ‘GST_INFO_OBJECT’
+ 2133 |     GST_INFO_OBJECT (self,
+      |     ^~~~~~~~~~~~~~~
+../src/omx/gstomxvideoenc.c:2134:77: note: format string is defined here
+ 2134 |         "using crop information to output frame: %dx%d (input original: %dx%d)",
+      |                                                                            ~^
+      |                                                                             |
+      |                                                                             int
+      |                                                                            %ld
+../src/omx/gstomxvideoenc.c:2121:19: warning: variable ‘err’ set but not used [-Wunused-but-set-variable]
+ 2121 |     OMX_ERRORTYPE err;
+      |                   ^~~
+In file included from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gst.h:55,
+                 from ../src/omx/gstomxvideoenc.c:25:
+../src/omx/gstomxvideoenc.c:2142:9: warning: format ‘%d’ expects argument of type ‘int’, but argument 8 has type ‘OMX_U32’ {aka ‘long unsigned int’} [-Wformat=]
+ 2142 |         "no crop information available, using original frame dimensions: %dx%d",
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2143 |         port_def.format.video.nFrameWidth, port_def.format.video.nFrameHeight);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |
+      |                              OMX_U32 {aka long unsigned int}
+/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstinfo.h:691:31: note: in definition of macro ‘GST_CAT_LEVEL_LOG’
+  691 |         (GObject *) (object), __VA_ARGS__);    \
+      |                               ^~~~~~~~~~~
+../src/omx/gstomxvideoenc.c:2141:5: note: in expansion of macro ‘GST_DEBUG_OBJECT’
+ 2141 |     GST_DEBUG_OBJECT (self,
+      |     ^~~~~~~~~~~~~~~~
+../src/omx/gstomxvideoenc.c:2142:75: note: format string is defined here
+ 2142 |         "no crop information available, using original frame dimensions: %dx%d",
+      |                                                                          ~^
+      |                                                                           |
+      |                                                                           int
+      |                                                                          %ld
+In file included from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gst.h:55,
+                 from ../src/omx/gstomxvideoenc.c:25:
+../src/omx/gstomxvideoenc.c:2142:9: warning: format ‘%d’ expects argument of type ‘int’, but argument 9 has type ‘OMX_U32’ {aka ‘long unsigned int’} [-Wformat=]
+ 2142 |         "no crop information available, using original frame dimensions: %dx%d",
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2143 |         port_def.format.video.nFrameWidth, port_def.format.video.nFrameHeight);
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                 |
+      |                                                                 OMX_U32 {aka long unsigned int}
+/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstinfo.h:691:31: note: in definition of macro ‘GST_CAT_LEVEL_LOG’
+  691 |         (GObject *) (object), __VA_ARGS__);    \
+      |                               ^~~~~~~~~~~
+../src/omx/gstomxvideoenc.c:2141:5: note: in expansion of macro ‘GST_DEBUG_OBJECT’
+ 2141 |     GST_DEBUG_OBJECT (self,
+      |     ^~~~~~~~~~~~~~~~
+../src/omx/gstomxvideoenc.c:2142:78: note: format string is defined here
+ 2142 |         "no crop information available, using original frame dimensions: %dx%d",
+      |                                                                             ~^
+      |                                                                              |
+      |                                                                              int
+      |                                                                             %ld
+[6/37] Compiling C object omx/libgstomx.so.p/gstomxmjpegdec.c.o
+[7/37] Compiling C object omx/libgstomx.so.p/gstomxaudioenc.c.o
+[8/37] Compiling C object omx/libgstomx.so.p/gstomx.c.o
+[9/37] Compiling C object omx/libgstomx.so.p/gstomxvideodec.c.o
+In file included from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gst.h:55,
+                 from ../src/omx/gstomxvideodec.c:27:
+../src/omx/gstomxvideodec.c: In function ‘add_meta_to_output’:
+../src/omx/gstomxvideodec.c:188:31: warning: format ‘%d’ expects argument of type ‘int’, but argument 10 has type ‘gsize’ {aka ‘long unsigned int’} [-Wformat=]
+  188 |         GST_INFO_OBJECT(NULL, "plane %d: stride=%d, offset=%d", i, vmeta->stride[i], vmeta->offset[i]);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                       ~~~~~~~~~~~~~~~~
+      |                                                                                                   |
+      |                                                                                                   gsize {aka long unsigned int}
+/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstinfo.h:691:31: note: in definition of macro ‘GST_CAT_LEVEL_LOG’
+  691 |         (GObject *) (object), __VA_ARGS__);    \
+      |                               ^~~~~~~~~~~
+../src/omx/gstomxvideodec.c:188:9: note: in expansion of macro ‘GST_INFO_OBJECT’
+  188 |         GST_INFO_OBJECT(NULL, "plane %d: stride=%d, offset=%d", i, vmeta->stride[i], vmeta->offset[i]);
+      |         ^~~~~~~~~~~~~~~
+../src/omx/gstomxvideodec.c:188:61: note: format string is defined here
+  188 |         GST_INFO_OBJECT(NULL, "plane %d: stride=%d, offset=%d", i, vmeta->stride[i], vmeta->offset[i]);
+      |                                                            ~^
+      |                                                             |
+      |                                                             int
+      |                                                            %ld
+../src/omx/gstomxvideodec.c:197:7: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  197 |       gint offset = 0, max = 0;
+      |       ^~~~
+../src/omx/gstomxvideodec.c:198:73: warning: passing argument 2 of ‘gst_memory_get_sizes’ from incompatible pointer type [-Wincompatible-pointer-types]
+  198 |       gint size = gst_memory_get_sizes(gst_buffer_peek_memory (buf, 0), &offset, &max);
+      |                                                                         ^~~~~~~
+      |                                                                         |
+      |                                                                         gint * {aka int *}
+In file included from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstallocator.h:26,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstbuffer.h:29,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstpad.h:70,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstelement.h:223,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstbin.h:27,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gst.h:35,
+                 from ../src/omx/gstomxvideodec.c:27:
+/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstmemory.h:350:64: note: expected ‘gsize *’ {aka ‘long unsigned int *’} but argument is of type ‘gint *’ {aka ‘int *’}
+  350 | gsize          gst_memory_get_sizes    (GstMemory *mem, gsize *offset, gsize *maxsize);
+      |                                                         ~~~~~~~^~~~~~
+../src/omx/gstomxvideodec.c:198:82: warning: passing argument 3 of ‘gst_memory_get_sizes’ from incompatible pointer type [-Wincompatible-pointer-types]
+  198 |       gint size = gst_memory_get_sizes(gst_buffer_peek_memory (buf, 0), &offset, &max);
+      |                                                                                  ^~~~
+      |                                                                                  |
+      |                                                                                  gint * {aka int *}
+In file included from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstallocator.h:26,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstbuffer.h:29,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstpad.h:70,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstelement.h:223,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstbin.h:27,
+                 from /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gst.h:35,
+                 from ../src/omx/gstomxvideodec.c:27:
+/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0/gst/gstmemory.h:350:79: note: expected ‘gsize *’ {aka ‘long unsigned int *’} but argument is of type ‘gint *’ {aka ‘int *’}
+  350 | gsize          gst_memory_get_sizes    (GstMemory *mem, gsize *offset, gsize *maxsize);
+      |                                                                        ~~~~~~~^~~~~~~
+../src/omx/gstomxvideodec.c: In function ‘gst_omx_video_dec_open’:
+../src/omx/gstomxvideodec.c:428:5: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  428 |     OMX_CONFIG_SCALEFACTORTYPE config;
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/omx/gstomxvideodec.c:453:5: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  453 |     OMX_ERRORTYPE err;
+      |     ^~~~~~~~~~~~~
+../src/omx/gstomxvideodec.c: In function ‘check_dma_caps_support’:
+../src/omx/gstomxvideodec.c:1553:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+ 1553 |   GstCaps *peer_caps = gst_pad_peer_query_caps(srcpad, dma_caps);
+      |   ^~~~~~~
+../src/omx/gstomxvideodec.c: In function ‘gst_omx_video_dec_reconfigure_output_port’:
+../src/omx/gstomxvideodec.c:1850:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+ 1850 |   gint ext_flag = 0x00;
+      |   ^~~~
+../src/omx/gstomxvideodec.c:1887:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+ 1887 |   gchar *caps_str = gst_caps_to_string(state->caps);
+      |   ^~~~~
+../src/omx/gstomxvideodec.c: In function ‘gst_omx_video_dec_loop’:
+../src/omx/gstomxvideodec.c:2278:7: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+ 2278 |       OmxPrivateBuffer *sOmxOutPrivateBuffer = (OmxPrivateBuffer*)(buf->omx_buf->pBuffer);
+      |       ^~~~~~~~~~~~~~~~
+[10/37] Compiling C object omx/libgstomx.so.p/gstomxmpeg2videodec.c.o
+[11/37] Compiling C object omx/libgstomx.so.p/gstomxmpeg4videodec.c.o
+[12/37] Compiling C object omx/libgstomx.so.p/gstomxh264utils.c.o
+[13/37] Compiling C object omx/libgstomx.so.p/gstomxh264dec.c.o
+[14/37] Compiling C object omx/libgstomx.so.p/gstomxwmvdec.c.o
+[15/37] Compiling C object omx/libgstomx.so.p/gstomxh263dec.c.o
+[16/37] Compiling C object omx/libgstomx.so.p/gstomxmpeg4videoenc.c.o
+[17/37] Compiling C object omx/libgstomx.so.p/gstomxh263enc.c.o
+[18/37] Compiling C object omx/libgstomx.so.p/gstomxh264enc.c.o
+../src/omx/gstomxh264enc.c: In function ‘gst_omx_h264_enc_set_format’:
+../src/omx/gstomxh264enc.c:730:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  730 |   int mode = 1;
+      |   ^~~
+[19/37] Compiling C object omx/libgstomx.so.p/gstomxaacdec.c.o
+[20/37] Compiling C object omx/libgstomx.so.p/gstomxmp3dec.c.o
+[21/37] Compiling C object omx/libgstomx.so.p/gstomxaacenc.c.o
+[22/37] Compiling C object omx/libgstomx.so.p/gstomxanalogaudiosink.c.o
+[23/37] Compiling C object omx/libgstomx.so.p/gstomxamrdec.c.o
+[24/37] Compiling C object omx/libgstomx.so.p/gstomxhdmiaudiosink.c.o
+[25/37] Compiling C object omx/libgstomx.so.p/gstomxmp3enc.c.o
+[26/37] Compiling C object omx/libgstomx.so.p/gstomxavsdec.c.o
+[27/37] Compiling C object omx/libgstomx.so.p/gstomxdivx4dec.c.o
+[28/37] Compiling C object omx/libgstomx.so.p/gstomxdivxdec.c.o
+[29/37] Compiling C object omx/libgstomx.so.p/gstomxmpeg1dec.c.o
+[30/37] Compiling C object omx/libgstomx.so.p/gstomxaudiosink.c.o
+[31/37] Compiling C object omx/libgstomx.so.p/gstomxmjpegenc.c.o
+../src/omx/gstomxmjpegenc.c: In function ‘gst_omx_mjpeg_enc_set_format’:
+../src/omx/gstomxmjpegenc.c:110:19: warning: variable ‘s’ set but not used [-Wunused-but-set-variable]
+  110 |     GstStructure *s;
+      |                   ^
+../src/omx/gstomxmjpegenc.c:143:1: warning: label ‘unsupported_level’ defined but not used [-Wunused-label]
+  143 | unsupported_level:
+      | ^~~~~~~~~~~~~~~~~
+../src/omx/gstomxmjpegenc.c:138:1: warning: label ‘unsupported_profile’ defined but not used [-Wunused-label]
+  138 | unsupported_profile:
+      | ^~~~~~~~~~~~~~~~~~~
+../src/omx/gstomxmjpegenc.c: In function ‘gst_omx_mjpeg_enc_get_caps’:
+../src/omx/gstomxmjpegenc.c:157:18: warning: unused variable ‘level’ [-Wunused-variable]
+  157 |   guint profile, level;
+      |                  ^~~~~
+../src/omx/gstomxmjpegenc.c:157:9: warning: unused variable ‘profile’ [-Wunused-variable]
+  157 |   guint profile, level;
+      |         ^~~~~~~
+[32/37] Compiling C object omx/libgstomx.so.p/gstomxvp8dec.c.o
+[33/37] Compiling C object omx/libgstomx.so.p/gstomxh265utils.c.o
+[34/37] Compiling C object omx/libgstomx.so.p/gstomxvp9dec.c.o
+[35/37] Compiling C object omx/libgstomx.so.p/gstomxh265enc.c.o
+../src/omx/gstomxh265enc.c: In function ‘gst_omx_h265_enc_set_format’:
+../src/omx/gstomxh265enc.c:563:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  563 |   int mode = 1;
+      |   ^~~
+[36/37] Compiling C object omx/libgstomx.so.p/gstomxh265dec.c.o
+[37/37] Linking target omx/libgstomx.so

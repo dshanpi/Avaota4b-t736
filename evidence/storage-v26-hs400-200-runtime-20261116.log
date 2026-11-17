@@ -1,0 +1,137 @@
+6.18.63-t736-storage-v26
+earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused t736_mmc_pio.enable_hs200=1 t736_mmc_pio.hs200_max_hz=200000000 t736_mmc_pio.enable_hs400=1 t736_mmc_pio.collect_timing=1 t736_mmc_pio.hs400_max_hz=200000000
+4b3ad302-5619-49f8-94e3-bab3f8bbc2cd
+clock:		200000000 Hz
+actual clock:	200000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	10 (mmc HS400)
+signal voltage:	1 (1.80 V)
+driver type:	0 (driver type B)
+filename:       /lib/modules/6.18.63-t736-storage-v26/extra/pvrsrvkm.ko
+vermagic:       6.18.63-t736-storage-v26 SMP mod_unload aarch64
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+[    6.247074] t736-smhc3-pio 4023000.mmc: DMA desc0 0000000c 00000200 3aee8000 00000000
+[    6.258464] t736-smhc3-pio 4023000.mmc: DMA snapshot CMD8 CTRL=20000020 DMAC=00000080 DLBA=2b800000 IDIE=00000032 IDST=00000022 RINT=000000ac STATUS=00004106 FIFO_words=0 FTH=300f00f0 owned=0/1
+[    6.274351] t736-smhc3-pio 4023000.mmc: DMA bytecounts card=512 host=512 OWN_bitmap=00000000:00000000
+[    6.282260] t736-smhc3-pio 4023000.mmc: DMA desc0 0000000c 00000200 3aee8000 00000000
+[    6.289046] t736-smhc3-pio 4023000.mmc: DMA snapshot CMD8 CTRL=20000020 DMAC=00000080 DLBA=2b800000 IDIE=00000032 IDST=00000022 RINT=000000ac STATUS=00004106 FIFO_words=0 FTH=300f00f0 owned=0/1
+[    6.304930] t736-smhc3-pio 4023000.mmc: DMA bytecounts card=512 host=512 OWN_bitmap=00000000:00000000
+[    6.312837] t736-smhc3-pio 4023000.mmc: DMA desc0 0000000c 00000200 3aee8000 00000000
+[    6.319604] t736-smhc3-pio 4023000.mmc: DMA snapshot CMD8 CTRL=20000020 DMAC=00000080 DLBA=2b800000 IDIE=00000032 IDST=00000022 RINT=000000ac STATUS=00004106 FIFO_words=0 FTH=300f00f0 owned=0/1
+[    6.335488] t736-smhc3-pio 4023000.mmc: DMA bytecounts card=512 host=512 OWN_bitmap=00000000:00000000
+[    6.343394] t736-smhc3-pio 4023000.mmc: DMA desc0 0000000c 00000200 3aee8000 00000000
+[    6.350163] t736-smhc3-pio 4023000.mmc: DMA snapshot CMD8 CTRL=20000020 DMAC=00000080 DLBA=2b800000 IDIE=00000032 IDST=00000022 RINT=000000ac STATUS=00004106 FIFO_words=0 FTH=300f00f0 owned=0/1
+[    6.366047] t736-smhc3-pio 4023000.mmc: DMA bytecounts card=512 host=512 OWN_bitmap=00000000:00000000
+[    6.373952] t736-smhc3-pio 4023000.mmc: DMA desc0 0000000c 00000200 3aee8000 00000000
+[    6.380720] t736-smhc3-pio 4023000.mmc: DMA snapshot CMD8 CTRL=20000020 DMAC=00000080 DLBA=2b800000 IDIE=00000032 IDST=00000022 RINT=000000ac STATUS=00004106 FIFO_words=0 FTH=300f00f0 owned=0/1
+[    6.396607] t736-smhc3-pio 4023000.mmc: DMA bytecounts card=512 host=512 OWN_bitmap=00000000:00000000
+[    6.404514] t736-smhc3-pio 4023000.mmc: DMA desc0 0000000c 00000200 3aee8000 00000000
+[    6.413346] t736-smhc3-pio 4023000.mmc: HS400 tuned card=200000000 cmd_pass=fffffff1ffffffff cmd_window=0+33 cmd=16 ds_pass=0000000003fffff0 ds_window=4+22 ds=14 abort_err=fffffffffc00000f verified=16xCMD13+16x512 EXT_CSD=03/06 R1=00000900 THLD=02000001 SFC=00000006
+[    6.436783] mmc0: new HS400 MMC card at address 0001
+[    6.440993] mmcblk0: mmc0:0001 A31Y5C 58.2 GiB
+[    6.468606] mmcblk0boot0: mmc0:0001 A31Y5C 4.00 MiB
+[    6.478523] mmcblk0boot1: mmc0:0001 A31Y5C 4.00 MiB
+[    7.556633] EXT4-fs (mmcblk0p4): mounted filesystem 355deac2-71e0-4194-a1c2-f7d457b94137 r/w with ordered data mode. Quota mode: disabled.
+[    9.998539] EXT4-fs (mmcblk0p4): re-mounted 355deac2-71e0-4194-a1c2-f7d457b94137.
+[   65.021431] t736-emmc-clocks-ro-v4: begin samples=3 registers=25; raw reads only
+[   65.021462] t736-emmc-clocks-ro-v4: sample=0 PLL_REF_CTRL addr=0x02002000 value=0xf8675f00
+[   65.021473] t736-emmc-clocks-ro-v4: sample=0 PLL_PERI0_CTRL addr=0x020020a0 value=0xff126310
+[   65.021482] t736-emmc-clocks-ro-v4: sample=0 PLL_PERI0_PAT0 addr=0x020020a8 value=0x00000000
+[   65.021489] t736-emmc-clocks-ro-v4: sample=0 PLL_PERI0_PAT1 addr=0x020020ac value=0x30000000
+[   65.021497] t736-emmc-clocks-ro-v4: sample=0 PLL_PERI1_CTRL addr=0x020020c0 value=0x40126310
+[   65.021505] t736-emmc-clocks-ro-v4: sample=0 PLL_PERI1_PAT0 addr=0x020020c8 value=0x00000000
+[   65.021512] t736-emmc-clocks-ro-v4: sample=0 PLL_PERI1_PAT1 addr=0x020020cc value=0x30000000
+[   65.021520] t736-emmc-clocks-ro-v4: sample=0 SMHC3_CLK addr=0x02002d30 value=0x81000001
+[   65.021527] t736-emmc-clocks-ro-v4: sample=0 SMHC3_BGR addr=0x02002d3c value=0x00010001
+[   65.021535] t736-emmc-clocks-ro-v4: sample=0 STORE_MBUS_GATE addr=0x020025e0 value=0xf1055803
+[   65.021542] t736-emmc-clocks-ro-v4: sample=0 MSI_LITE1_GATE addr=0x0200259c value=0x00030001
+[   65.021550] t736-emmc-clocks-ro-v4: sample=0 PERI0PLL_GATE_EN addr=0x02003908 value=0x8fff0fff
+[   65.021558] t736-emmc-clocks-ro-v4: sample=0 PERI0PLL_GATE_STAT addr=0x02003988 value=0x0fff0000
+[   65.021565] t736-emmc-clocks-ro-v4: sample=0 SMHC3_CTRL addr=0x04023000 value=0x20000000
+[   65.021573] t736-emmc-clocks-ro-v4: sample=0 SMHC3_CLKDIV addr=0x04023004 value=0x00010000
+[   65.021581] t736-emmc-clocks-ro-v4: sample=0 SMHC3_WIDTH addr=0x0402300c value=0x00000002
+[   65.021588] t736-emmc-clocks-ro-v4: sample=0 SMHC3_CSDC addr=0x04023054 value=0x00000006
+[   65.021595] t736-emmc-clocks-ro-v4: sample=0 SMHC3_NTSR addr=0x0402305c value=0x01710000
+[   65.021603] t736-emmc-clocks-ro-v4: sample=0 SMHC3_THLD addr=0x04023100 value=0x02000001
+[   65.021610] t736-emmc-clocks-ro-v4: sample=0 SMHC3_SFC addr=0x04023104 value=0x00000006
+[   65.021617] t736-emmc-clocks-ro-v4: sample=0 SMHC3_EDSD addr=0x0402310c value=0x80000000
+[   65.021625] t736-emmc-clocks-ro-v4: sample=0 SMHC3_DRV_DL addr=0x04023140 value=0x00010000
+[   65.021633] t736-emmc-clocks-ro-v4: sample=0 SMHC3_SAMP_DL addr=0x04023144 value=0x00001090
+[   65.021640] t736-emmc-clocks-ro-v4: sample=0 SMHC3_DS_DL addr=0x04023148 value=0x00000e8e
+[   65.021647] t736-emmc-clocks-ro-v4: sample=0 SMHC3_SMCV addr=0x04023300 value=0x03050610
+[   65.021655] t736-emmc-clocks-ro-v4: sample=1 PLL_REF_CTRL addr=0x02002000 value=0xf8675f00
+[   65.021662] t736-emmc-clocks-ro-v4: sample=1 PLL_PERI0_CTRL addr=0x020020a0 value=0xff126310
+[   65.021670] t736-emmc-clocks-ro-v4: sample=1 PLL_PERI0_PAT0 addr=0x020020a8 value=0x00000000
+[   65.021678] t736-emmc-clocks-ro-v4: sample=1 PLL_PERI0_PAT1 addr=0x020020ac value=0x30000000
+[   65.021685] t736-emmc-clocks-ro-v4: sample=1 PLL_PERI1_CTRL addr=0x020020c0 value=0x40126310
+[   65.021693] t736-emmc-clocks-ro-v4: sample=1 PLL_PERI1_PAT0 addr=0x020020c8 value=0x00000000
+[   65.021700] t736-emmc-clocks-ro-v4: sample=1 PLL_PERI1_PAT1 addr=0x020020cc value=0x30000000
+[   65.021708] t736-emmc-clocks-ro-v4: sample=1 SMHC3_CLK addr=0x02002d30 value=0x81000001
+[   65.021715] t736-emmc-clocks-ro-v4: sample=1 SMHC3_BGR addr=0x02002d3c value=0x00010001
+[   65.021722] t736-emmc-clocks-ro-v4: sample=1 STORE_MBUS_GATE addr=0x020025e0 value=0xf1055803
+[   65.021730] t736-emmc-clocks-ro-v4: sample=1 MSI_LITE1_GATE addr=0x0200259c value=0x00030001
+[   65.021738] t736-emmc-clocks-ro-v4: sample=1 PERI0PLL_GATE_EN addr=0x02003908 value=0x8fff0fff
+[   65.021745] t736-emmc-clocks-ro-v4: sample=1 PERI0PLL_GATE_STAT addr=0x02003988 value=0x0fff0000
+[   65.021753] t736-emmc-clocks-ro-v4: sample=1 SMHC3_CTRL addr=0x04023000 value=0x20000000
+[   65.021760] t736-emmc-clocks-ro-v4: sample=1 SMHC3_CLKDIV addr=0x04023004 value=0x00010000
+[   65.021768] t736-emmc-clocks-ro-v4: sample=1 SMHC3_WIDTH addr=0x0402300c value=0x00000002
+[   65.021776] t736-emmc-clocks-ro-v4: sample=1 SMHC3_CSDC addr=0x04023054 value=0x00000006
+[   65.021783] t736-emmc-clocks-ro-v4: sample=1 SMHC3_NTSR addr=0x0402305c value=0x01710000
+[   65.021790] t736-emmc-clocks-ro-v4: sample=1 SMHC3_THLD addr=0x04023100 value=0x02000001
+[   65.021798] t736-emmc-clocks-ro-v4: sample=1 SMHC3_SFC addr=0x04023104 value=0x00000006
+[   65.021805] t736-emmc-clocks-ro-v4: sample=1 SMHC3_EDSD addr=0x0402310c value=0x80000000
+[   65.021813] t736-emmc-clocks-ro-v4: sample=1 SMHC3_DRV_DL addr=0x04023140 value=0x00010000
+[   65.021820] t736-emmc-clocks-ro-v4: sample=1 SMHC3_SAMP_DL addr=0x04023144 value=0x00001090
+[   65.021828] t736-emmc-clocks-ro-v4: sample=1 SMHC3_DS_DL addr=0x04023148 value=0x00000e8e
+[   65.021835] t736-emmc-clocks-ro-v4: sample=1 SMHC3_SMCV addr=0x04023300 value=0x03050610
+[   65.021842] t736-emmc-clocks-ro-v4: sample=2 PLL_REF_CTRL addr=0x02002000 value=0xf8675f00
+[   65.021850] t736-emmc-clocks-ro-v4: sample=2 PLL_PERI0_CTRL addr=0x020020a0 value=0xff126310
+[   65.021857] t736-emmc-clocks-ro-v4: sample=2 PLL_PERI0_PAT0 addr=0x020020a8 value=0x00000000
+[   65.021865] t736-emmc-clocks-ro-v4: sample=2 PLL_PERI0_PAT1 addr=0x020020ac value=0x30000000
+[   65.021873] t736-emmc-clocks-ro-v4: sample=2 PLL_PERI1_CTRL addr=0x020020c0 value=0x40126310
+[   65.021880] t736-emmc-clocks-ro-v4: sample=2 PLL_PERI1_PAT0 addr=0x020020c8 value=0x00000000
+[   65.021888] t736-emmc-clocks-ro-v4: sample=2 PLL_PERI1_PAT1 addr=0x020020cc value=0x30000000
+[   65.021895] t736-emmc-clocks-ro-v4: sample=2 SMHC3_CLK addr=0x02002d30 value=0x81000001
+[   65.021902] t736-emmc-clocks-ro-v4: sample=2 SMHC3_BGR addr=0x02002d3c value=0x00010001
+[   65.021910] t736-emmc-clocks-ro-v4: sample=2 STORE_MBUS_GATE addr=0x020025e0 value=0xf1055803
+[   65.021917] t736-emmc-clocks-ro-v4: sample=2 MSI_LITE1_GATE addr=0x0200259c value=0x00030001
+[   65.021925] t736-emmc-clocks-ro-v4: sample=2 PERI0PLL_GATE_EN addr=0x02003908 value=0x8fff0fff
+[   65.021933] t736-emmc-clocks-ro-v4: sample=2 PERI0PLL_GATE_STAT addr=0x02003988 value=0x0fff0000
+[   65.021940] t736-emmc-clocks-ro-v4: sample=2 SMHC3_CTRL addr=0x04023000 value=0x20000000
+[   65.021948] t736-emmc-clocks-ro-v4: sample=2 SMHC3_CLKDIV addr=0x04023004 value=0x00010000
+[   65.021955] t736-emmc-clocks-ro-v4: sample=2 SMHC3_WIDTH addr=0x0402300c value=0x00000002
+[   65.021962] t736-emmc-clocks-ro-v4: sample=2 SMHC3_CSDC addr=0x04023054 value=0x00000006
+[   65.021970] t736-emmc-clocks-ro-v4: sample=2 SMHC3_NTSR addr=0x0402305c value=0x01710000
+[   65.021977] t736-emmc-clocks-ro-v4: sample=2 SMHC3_THLD addr=0x04023100 value=0x02000001
+[   65.021985] t736-emmc-clocks-ro-v4: sample=2 SMHC3_SFC addr=0x04023104 value=0x00000006
+[   65.021992] t736-emmc-clocks-ro-v4: sample=2 SMHC3_EDSD addr=0x0402310c value=0x80000000
+[   65.022000] t736-emmc-clocks-ro-v4: sample=2 SMHC3_DRV_DL addr=0x04023140 value=0x00010000
+[   65.022007] t736-emmc-clocks-ro-v4: sample=2 SMHC3_SAMP_DL addr=0x04023144 value=0x00001090
+[   65.022015] t736-emmc-clocks-ro-v4: sample=2 SMHC3_DS_DL addr=0x04023148 value=0x00000e8e
+[   65.022023] t736-emmc-clocks-ro-v4: sample=2 SMHC3_SMCV addr=0x04023300 value=0x03050610
+[   65.022030] t736-emmc-clocks-ro-v4: end stable_across_three_passes=1; no MMIO writes performed
+vmlinuz-6.18.63-t736-storage-v16
+6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b  /boot/dtb/allwinner/t736-mainline-bringup.dtb

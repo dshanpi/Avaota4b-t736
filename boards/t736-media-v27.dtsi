@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/* Private decoder experiment; include on top of the verified v26 GPU DT.
+ * No dma-coherent/iommus: only the private WC contiguous heap is accepted.
+ */
+/ {
+	ve_ccu: clock-controller@2002a88 {
+		compatible = "allwinner,t736-ve-ccu";
+		reg = <0 0x02002a88 0 8>, <0 0x02002000 0 4>,
+		      <0 0x020020a0 0 4>, <0 0x020025c0 0 4>,
+		      <0 0x020025e0 0 4>, <0 0x020025e4 0 4>,
+		      <0 0x020025b4 0 4>;
+		reg-names = "ve", "pll-ref", "pll-peri0", "ahb-master",
+			"mbus-master", "mbus-gate", "iommu1-sys";
+		clocks = <&{/dcxo}>, <&{/clock-ahb-firmware}>, <&{/clock-mbus-firmware}>;
+		clock-names = "dcxo", "ahb", "mbus";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+	ve_pd: power-controller@7062000 {
+		compatible = "allwinner,t736-ve-power";
+		reg = <0 0x07062000 0 0x1000>, <0 0x03910404 0 4>,
+		      <0 0x03910604 0 4>;
+		reg-names = "ppu", "dec0-bypass", "dec1-bypass";
+		clocks = <&{/clock-controller@2002a00} 11>, <&ve_ccu 2>, <&ve_ccu 3>,
+			 <&ve_ccu 4>, <&ve_ccu 1>, <&ve_ccu 6>, <&ve_ccu 5>, <&ve_ccu 0>;
+		clock-names = "ppu", "ahb", "mbus-master", "mbus", "bus",
+			"iommu1-mbus", "iommu1-sys", "ve";
+		resets = <&ve_ccu 0>;
+		reset-names = "ve";
+		#power-domain-cells = <0>;
+	};
+	ve: video-codec@1c0e000 {
+		compatible = "allwinner,t736-cedar-wc";
+		reg = <0 0x01c0e000 0 0x2000>;
+		interrupts = <0 49 4>;
+		clocks = <&ve_ccu 0>;
+		clock-names = "ve";
+		resets = <&ve_ccu 0>;
+		reset-names = "ve";
+		power-domains = <&ve_pd>;
+		status = "okay";
+	};
+};

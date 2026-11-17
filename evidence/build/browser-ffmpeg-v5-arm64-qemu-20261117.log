@@ -1,0 +1,132 @@
+synthetic backpressure_negative_pts_eos_flush_fatal_format PASS
+pooled_receive_lifetime width=320 direct=1 flush_reuse_and_close PASS
+pooled_receive_lifetime width=318 direct=0 flush_reuse_and_close PASS
+firefox_decode_order_dts codec=27 original_pts_dts_preserved_wire_dts_unknown PASS
+firefox_decode_order_dts codec=173 original_pts_dts_preserved_wire_dts_unknown PASS
+parameter_bootstrap codec=27 annexb_aud_flush_complete_and_container_no_duplicates PASS
+parameter_bootstrap codec=173 annexb_aud_flush_complete_and_container_no_duplicates PASS
+fallback mode=0 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=1 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=2 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=3 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=0 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+fallback mode=1 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+fallback mode=2 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+fallback mode=3 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+{"result":"PASS","checks":5827,"hardware_access":false}
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 first_input bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 first_filtered bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+[h264_cedar @ 0x400002cd42a0] T736_CEDAR_PROXY: explicit hardware failure after_delivery=1 error=-5
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+[h264_cedar @ 0x400002cd42a0] T736_CEDAR_PROXY: explicit hardware failure after_delivery=0 error=-71
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 first_input bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 first_filtered bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 first_input bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 first_filtered bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=7 key=1 length_prefix=0 first_nal=5 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=hevc_cedar bsf_output extradata_size=0 first8=none annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=7 key=1 length_prefix=0 first_nal=50 nals=1 parameter_count=0 parameter_mask=0 irap=0
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=7 key=1 length_prefix=0 first_nal=50 nals=1 parameter_count=0 parameter_mask=0 irap=0
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: generation=0 first_input bytes=4386 key=1 length_prefix=0 first_nal=9 nals=3 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=4386 key=1 length_prefix=0 first_nal=9 nals=3 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 parameter_bootstrap added=40 parameter_mask=6 complete=1
+T736_CEDAR_PROXY: generation=1 first_input bytes=4386 key=1 length_prefix=0 first_nal=9 nals=3 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 first_filtered bytes=4386 key=1 length_prefix=0 first_nal=9 nals=3 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 parameter_bootstrap added=40 parameter_mask=6 complete=1
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: generation=0 first_input bytes=4420 key=1 length_prefix=0 first_nal=6 nals=4 parameter_count=2 parameter_mask=6 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=4420 key=1 length_prefix=0 first_nal=6 nals=4 parameter_count=2 parameter_mask=6 irap=1
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: generation=0 first_input bytes=4416 key=1 length_prefix=0 first_nal=9 nals=4 parameter_count=1 parameter_mask=2 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=4416 key=1 length_prefix=0 first_nal=9 nals=4 parameter_count=1 parameter_mask=2 irap=1
+T736_CEDAR_PROXY: generation=0 parameter_bootstrap added=40 parameter_mask=6 complete=1
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=47 first8=0164000dffe1001a annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: generation=0 first_input bytes=4381 key=1 length_prefix=4 first_nal=6 nals=2 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=4420 key=1 length_prefix=0 first_nal=6 nals=4 parameter_count=2 parameter_mask=6 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: init codec=hevc_cedar bsf_output extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: generation=0 first_input bytes=5413 key=1 length_prefix=0 first_nal=35 nals=3 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=5413 key=1 length_prefix=0 first_nal=35 nals=3 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 parameter_bootstrap added=86 parameter_mask=7 complete=1
+T736_CEDAR_PROXY: generation=1 first_input bytes=5413 key=1 length_prefix=0 first_nal=35 nals=3 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 first_filtered bytes=5413 key=1 length_prefix=0 first_nal=35 nals=3 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=1 parameter_bootstrap added=86 parameter_mask=7 complete=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: init codec=hevc_cedar bsf_output extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: generation=0 first_input bytes=5492 key=1 length_prefix=0 first_nal=32 nals=5 parameter_count=3 parameter_mask=7 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=5492 key=1 length_prefix=0 first_nal=32 nals=5 parameter_count=3 parameter_mask=7 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: init codec=hevc_cedar bsf_output extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: generation=0 first_input bytes=5441 key=1 length_prefix=0 first_nal=35 nals=4 parameter_count=1 parameter_mask=1 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=5441 key=1 length_prefix=0 first_nal=35 nals=4 parameter_count=1 parameter_mask=1 irap=1
+T736_CEDAR_PROXY: generation=0 parameter_bootstrap added=86 parameter_mask=7 complete=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: init codec=hevc_cedar bsf_output extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: generation=0 first_input bytes=5460 key=1 length_prefix=0 first_nal=35 nals=4 parameter_count=1 parameter_mask=2 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=5460 key=1 length_prefix=0 first_nal=35 nals=4 parameter_count=1 parameter_mask=2 irap=1
+T736_CEDAR_PROXY: generation=0 parameter_bootstrap added=86 parameter_mask=7 complete=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=hevc_cedar bsf_output extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=5492 key=1 length_prefix=0 first_nal=32 nals=5 parameter_count=3 parameter_mask=7 irap=1
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=47 first8=0164000dffe1001a annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=4381 key=1 length_prefix=4 first_nal=6 nals=2 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=47 first8=0164000dffe1001a annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: generation=0 first_input bytes=4381 key=1 length_prefix=4 first_nal=6 nals=2 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=47 first8=0164000dffe1001a annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: generation=0 first_input bytes=4381 key=1 length_prefix=4 first_nal=6 nals=2 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=4420 key=1 length_prefix=0 first_nal=6 nals=4 parameter_count=2 parameter_mask=6 irap=1
+T736_CEDAR_PROXY: init codec=h264_cedar input extradata_size=47 first8=0164000dffe1001a annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=h264_cedar bsf_output extradata_size=40 first8=000000016764000d annexb_parameter_count=2 annexb_parameter_mask=6
+T736_CEDAR_PROXY: generation=0 first_input bytes=4381 key=1 length_prefix=4 first_nal=6 nals=2 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=4420 key=1 length_prefix=0 first_nal=6 nals=4 parameter_count=2 parameter_mask=6 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=hevc_cedar bsf_output extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=hevc_cedar bsf_output extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=5492 key=1 length_prefix=0 first_nal=32 nals=5 parameter_count=3 parameter_mask=7 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: init codec=hevc_cedar input extradata_size=2424 first8=0101600000009000 annexb_parameter_count=0 annexb_parameter_mask=0
+T736_CEDAR_PROXY: init codec=hevc_cedar bsf_output extradata_size=2397 first8=0000000140010c01 annexb_parameter_count=3 annexb_parameter_mask=7
+T736_CEDAR_PROXY: generation=0 first_input bytes=3095 key=1 length_prefix=4 first_nal=20 nals=1 parameter_count=0 parameter_mask=0 irap=1
+T736_CEDAR_PROXY: generation=0 first_filtered bytes=5492 key=1 length_prefix=0 first_nal=32 nals=5 parameter_count=3 parameter_mask=7 irap=1

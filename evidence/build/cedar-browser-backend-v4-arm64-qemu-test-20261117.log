@@ -1,0 +1,17 @@
+CEDAR_COPY frames=1 format=NV21 storage=8x8 crop=2,2,4,4 strides=12,12,0 map_us=362 copy_us=119 total_map_us=362 total_copy_us=119 avg_copy_us=119
+CEDAR_COPY frames=1 format=NV21 storage=8x8 crop=2,2,5,3 strides=12,12,0 map_us=3 copy_us=1 total_map_us=3 total_copy_us=1 avg_copy_us=1
+CEDAR_COPY frames=1 format=NV12 storage=8x8 crop=2,2,4,4 strides=12,12,0 map_us=2 copy_us=6 total_map_us=2 total_copy_us=6 avg_copy_us=6
+CEDAR_COPY frames=1 format=NV12 storage=8x8 crop=2,2,5,3 strides=12,12,0 map_us=1 copy_us=0 total_map_us=1 total_copy_us=0 avg_copy_us=0
+CEDAR_COPY frames=1 format=I420 storage=8x8 crop=2,2,4,4 strides=12,6,6 map_us=2 copy_us=42 total_map_us=2 total_copy_us=42 avg_copy_us=42
+CEDAR_COPY frames=1 format=I420 storage=8x8 crop=2,2,5,3 strides=12,6,6 map_us=2 copy_us=0 total_map_us=2 total_copy_us=0 avg_copy_us=0
+CEDAR_COPY frames=1 format=YV12 storage=8x8 crop=2,2,4,4 strides=12,6,6 map_us=1 copy_us=12 total_map_us=1 total_copy_us=12 avg_copy_us=12
+CEDAR_COPY frames=1 format=YV12 storage=8x8 crop=2,2,5,3 strides=12,6,6 map_us=1 copy_us=0 total_map_us=1 total_copy_us=0 avg_copy_us=0
+CEDAR_BACKEND_ERROR: decoded sample lacks authoritative GstVideoCropMeta (use WC-v3)
+CEDAR_BACKEND_ERROR: invalid/out-of-range or odd-origin 4:2:0 crop
+CEDAR_BACKEND_ERROR: invalid/out-of-range or odd-origin 4:2:0 crop
+CEDAR_BACKEND_ERROR: stream resolution changed: expected 4x4, got 2x4
+CEDAR_BACKEND_ERROR: raw-video crop extends beyond a mapped plane
+CEDAR_BACKEND_ERROR: raw-video crop extends beyond a mapped plane
+CEDAR_BACKEND_ERROR: raw-video crop extends beyond a mapped plane
+CEDAR_BACKEND_ERROR: appsrc0: OMX state=Executing started=1 port=1 | raw_state=3 pending=0 last_error=0x123
+PASS: actual Gst copy path; 4 layouts, padded strides/heights, crop origin, odd sizes, timestamps, color, malformed/missing crop, resolution change, mapped-plane span rejection; software EOS-flush-idle-resume-reuse and first-error preservation with mock action; UV vector/tail/unaligned ranges

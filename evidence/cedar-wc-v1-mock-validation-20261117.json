@@ -1,0 +1,27 @@
+{
+  "scope": "Actual final ARM64 candidate libraries under QEMU; VE/heap mocked; no hardware visibility acceptance",
+  "mock_command": [
+    "/usr/bin/qemu-aarch64-static",
+    "-L",
+    "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot",
+    "-E",
+    "LD_LIBRARY_PATH=/home/ubuntu/t736-mainline/build/cedar-wc-v1-r2-20261117/t736-cedar-wc-v1/lib",
+    "/home/ubuntu/t736-mainline/build/cedar-wc-v1-20261117/memadapter-mock"
+  ],
+  "returncode": 0,
+  "test_source_sha256": "1d21db0f3880733bdda31da4cd0765131a7f9bd5168d0adee3d7846206970ae9",
+  "test_executable_sha256": "1cd32be259c10bf14ddda1cca4e53c6d5386ef528ee4afffedab0a60316e754d",
+  "run_log_sha256": "ecfe4d6dcc562c7ce76ed38bc8f69c4b1015ae51aa7eff0d71144e1c08b03ad7",
+  "loader_exit": 0,
+  "inventory_files_verified": 34,
+  "final_libraries": {
+    "libcdc_base.so": {
+      "missing_exported_symbols": [],
+      "sha256": "9077522122e67391c09bf44668b091f4e1ecb01c0b1d832dd54a71b37c4a2f03"
+    },
+    "libMemAdapter.so": {
+      "missing_exported_symbols": [],
+      "sha256": "f89ed54db02e7d1aa0dfa84ee89a24170c7a073c3338e571e4c718195b626c74"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+PASS: actual RAM pool, 1024 three-party-barrier trials, 2048 worker threads; pre-existing idle block, concurrent frame return/close, last-reference teardown and held-frame pixels after close; no Gst init, hardware, vendor component or decoder opening

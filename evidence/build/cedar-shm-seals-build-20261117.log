@@ -1,0 +1,14 @@
+2026-11-17T05:57:01+00:00
+Linux ubuntu2404 7.0.0-28-generic #28~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jul  1 15:50:57 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+341fab86314c3a04d27dc31d10a311b5ef3f7eccab6d44b3e495262f6c8ab102  tests/test_cedar_shm_seals.c
+c99cefb5bad2318bec39e57fa6f7ef27a33013bb58dae15d3c237bef97e2590c  tools/browser/shm_v2/cedar_shm.h
+c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646  tools/browser/shm_v2/cedar_protocol.h
+6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113  tools/browser/shm_v2/cedar_client.h
++ gcc -std=c11 -Wall -Wextra -Werror -O1 -g -pthread -DT736_SETUP_TIMEOUT_MS=200 -fsanitize=address,undefined -fno-omit-frame-pointer tests/test_cedar_shm_seals.c -o test_cedar_shm_seals
++ gcc -std=c11 -Wall -Wextra -Werror -O2 -g -pthread tests/test_cedar_shm_seals.c -o test_cedar_shm_seals_default
++ set +x

@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "status": "COMPILED_COPY_CORRECTNESS_AND_ROOT_REPORTED_WC_CPU_COMPARISON_PASS",
+  "board_access": false,
+  "source": "mainline/tools/validation/cedar_wc_copy_bench.c",
+  "source_sha256": "be93e7907e23c451d8ca74852bfdcc186ca472bf9aa121d19c499f652c2ac458",
+  "binary": "mainline/build/cedar-wc-copy-bench-20261117/cedar-wc-copy-bench",
+  "binary_sha256": "b326b41486ee1a58456f9cc1585bfb1d4da64d38fabd8bc2bc5f10c9edeedbee",
+  "compiler_flags": [
+    "-std=c11",
+    "-O3",
+    "-fno-builtin-memcpy",
+    "-Wall",
+    "-Wextra",
+    "-Werror"
+  ],
+  "source_access": "pidfd_open + pidfd_getfd(existing fd) + fstat size validation + mmap PROT_READ; no ioctl, DMA allocation, import or source write",
+  "variants": [
+    "libc memcpy per row",
+    "libc memcpy per contiguous plane",
+    "NEON ld1/st1 64 bytes",
+    "NEON ldp/stp 64 bytes",
+    "NEON ldp/stp 128 bytes",
+    "NEON ldp/stp 256 bytes"
+  ],
+  "correctness": {
+    "result": "PASS",
+    "runtime": "qemu-aarch64-static",
+    "geometry": [
+      "1920x1080, storage height1088",
+      "318x178, storage height192",
+      "18x14, storage height18"
+    ],
+    "expected": "Every copied visible byte matches reference before and after each variant; varied plane lengths exercise tails",
+    "log": "mainline/build/cedar-wc-copy-bench-20261117/qemu-selftest.log",
+    "log_sha256": "d745bb21fcd0dd182032682c8150d16aecf09285a93c01745630462ddf735b35",
+    "timings_are_not_target_measurements": true
+  },
+  "target_method": "Use an existing idle output dma-buf exporter t736-ve-wc, confirmed storage1920x1088 I420/YV12, same 1920/960/960 strides. Root runs taskset -c 0 helper --pid BROKER_PID --fd OUTPUT_FD --iterations 8, then CPU6 or7. Compare pinned memory before/after; helper makes no new backing.",
+  "limitations": [
+    "Requires pidfd_getfd permission and kernel support",
+    "Only tightly strided visible-width planes with padded storage height are benchmarked",
+    "Caller must select an actual idle I420/YV12 output buffer and correct geometry",
+    "No inference about end-to-end Firefox frame rate from isolated copy timings; root is testing affinity with the same pipeline."
+  ],
+  "target_result_report": {
+    "source": "Root agent /root hardware test report; this subagent did not access board",
+    "buffer": {
+      "broker_pid": 7199,
+      "fd": 11,
+      "exporter": "t736-ve-wc",
+      "size": 3133440,
+      "visible_bytes": 3110400
+    },
+    "all_variants_exact": true,
+    "new_dma_allocations": 0,
+    "cpu0_A55": {
+      "libc_row_ms": 29.46,
+      "libc_plane_ms": 29.46,
+      "neon_ldp256_ms": 19.71
+    },
+    "cpu6_A76": {
+      "libc_row_ms": 8.34,
+      "libc_plane_ms": 8.01,
+      "neon_ldp256_ms": 8.64
+    },
+    "conclusion": "Scheduling the existing broker copy work on A76 is the first performance change to test: the same read-only WC source copied through libc-row is about 3.53x faster on CPU6 than CPU0. NEON does not improve the already faster A76 path; no YV12 copy replacement is justified by these measurements.",
+    "next_root_action": "Pin existing broker threads to CPUs6,7 and measure same-pipeline direct client reuse, without allocating new DMA backing.",
+    "raw_target_log_reference": "Owned by root agent; refer to root hardware evidence when archived."
+  }
+}

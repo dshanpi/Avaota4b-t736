@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "SOURCE_AUDIT_COMPLETE_ACTUAL_CAPTURE_HAS_PARAMETER_SETS_SOFTWARE_DECODE_PASS",
+  "board_access_by_author": false,
+  "operator_observation": "Real Bilibili HEVC1080 session9 accepted64 packets with0 outputs and0 VE IRQ, then native fallback; no initial broker bus error reported. This alone does not prove extradata format or root cause.",
+  "ffmpeg": {
+    "version": "7.1.5 actual build source",
+    "path": "sources/audit/ffmpeg-7.1.5-parameter-review/hevc_mp4toannexb.c",
+    "sha256": "7b7892ada1adb433b21ba603a6ea709ec029268513a08959ce6f7de5360538eb",
+    "evidence": {
+      "106-116": "AnnexB extradata or size<23 does not set extradata_parsed",
+      "135-138": "When extradata_parsed=false, packet is passed through without injecting extradata",
+      "162-181": "Only converted hvcC path prepends extradata to first IRAP within an AU"
+    }
+  },
+  "mozilla_source_boundary": {
+    "tag": "FIREFOX_153_0_RELEASE official source, not asserted byte-identical to runtime ESR package",
+    "linux_behavior": "FFmpegVideoDecoder.h:110-123 requests kNeedHVCC; HEVCChangeMonitor keeps HVCC config and converts sample only for kNeedAnnexB; FFmpegDataDecoder copies extradata",
+    "legal_case": "Out-of-band parameter sets with no repeated VPS/SPS/PPS in AU are explicitly accepted by HEVCChangeMonitor:335-355",
+    "not_established": "Linux Firefox153 default does not establish AnnexB extradata; Android-only ConvertHVCCExtraDataToAnnexB branch cannot be cited as Linux evidence",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/mozilla-firefox/firefox/FIREFOX_153_0_RELEASE/dom/media/platforms/wrappers/MediaChangeMonitor.cpp",
+        "sha256": "2bbcbcd410aae0fe7d23deca6fab1088f0f9819e96601f8728f554d918739bbc"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/mozilla-firefox/firefox/FIREFOX_153_0_RELEASE/dom/media/platforms/ffmpeg/FFmpegVideoDecoder.h",
+        "sha256": "aa1ce6919d1d5fc5fb04b9515fe0d65635f298b2a32a505c33918be4790c6706"
+      }
+    ]
+  },
+  "gstreamer_no_error_explanation": {
+    "version": "official1.26.2 audited source",
+    "path": "sources/audit/gstreamer-1.26.2-pts-review/gsth265parse.c",
+    "lines": "897-901 require SPS/PPS before slice;1339-1344 warn and skip invalid NAL rather than post GST_ELEMENT_ERROR",
+    "scope": "Consistent with missing configuration; not proof it caused the captured Bilibili trial"
+  },
+  "diagnostics_required": [
+    "avctx input extradata first bytes/size/format",
+    "BSF par_out extradata format and parameter NAL count/mask",
+    "first original and filtered AU length-prefix width/NAL types/key/IRAP",
+    "distinguish original extra from already-converted BSF par_out"
+  ],
+  "fixture_recipe": [
+    "Demux existing hevc-b2.mp4 and preserve AU boundaries/PTS/DTS/flags",
+    "Run existing hevc_mp4toannexb to obtain complete AnnexB packets and par_out config",
+    "Remove VPS/SPS/PPS from every AU; retain them as separate AnnexB extradata; reinitialize BSF with that extradata",
+    "Unfixed BSF must preserve parameter-free AU byte-for-byte; repaired wrapper first random-access packet must include parameter sets",
+    "Cover AUD+IRAP, noAUD+prefixSEI+IRAP, full-inband no-change, partialVPS and partialSPS, flush/reseed, EAGAIN retry,3/4byte startcodes and size/malformed-header rejection"
+  ],
+  "review_of_desktop_v5_helpers": {
+    "reviewed_functions": [
+      "start_code",
+      "next_nal",
+      "nal_type",
+      "nal_summary",
+      "seed_parameter_sets"
+    ],
+    "resolved_finding": "Missing-only common prefix could put PPS before existing SPS; now prefixes a complete dependency-ordered config when any required type is missing and full extra is available",
+    "placement": "AUD remains first; complete cached VPS/SPS/PPS prefix precedes original inband updates and prefix SEI/VCL; original inband updates remain later to override cached values",
+    "bounds": "NAL minimum header length guards second-byte access; aggregate packet size bound covers grow/memmove/copy; pending packet is prepared once before push retry",
+    "limitations": "Parameter-type presence does not validate all referenced IDs/RBSP semantics; actual parser still validates; adding parameter sets does not make a non-random-access VCL independently decodable"
+  },
+  "poison_failure": "Later close produced private OMX idle transition failed; retained poison is a separate cleanup failure under investigation, not evidence to silently clear/reopen hardware",
+  "actual_capture": {
+    "private_artifact": "build/browser-fixture-20261117/private-pre-reboot/.local/state/t736-bili-filtered-v5.bin",
+    "actual_wrapper_version": "v4 despite capture filename v5",
+    "capture_sha256": "88d021c26a4b8c730910f477f6d58c28f91108d8af775f31c5d91b61a1743747",
+    "packets": 64,
+    "elementary_bytes": 1022594,
+    "first_au": {
+      "bytes": 168645,
+      "pts_us": 225000000,
+      "dts_us": -9223372036854775808,
+      "nal_types": [
+        32,
+        33,
+        34,
+        39,
+        32,
+        33,
+        34,
+        39,
+        20
+      ]
+    },
+    "conclusion": "The captured first AU includes two complete VPS/SPS/PPS sets. Missing parameter sets do not explain this captured failure.",
+    "software_decode": {
+      "tool": "I:/ffmpeg/bin/ffmpeg.exe",
+      "frames": 64,
+      "format": "I420",
+      "frame_bytes": 3110400,
+      "exit_code": 0,
+      "decode_errors_log_bytes": 0,
+      "profile": "Main",
+      "level_idc": 150,
+      "visible_size": [
+        1920,
+        1080
+      ],
+      "bit_depth": 8,
+      "chroma_format_idc": 1,
+      "sps_dpb_frames": 7,
+      "sps_reorder_pictures": 4,
+      "vui_num_units_in_tick": 1,
+      "vui_time_scale": 30,
+      "reference": "build/browser-fixture-20261117/private-pre-reboot/software-reference/reference-i420.framemd5",
+      "timestamp_scope": "framemd5 raw elementary demux timestamps are synthetic; capture-record.json and .records retain actual wire timestamps",
+      "first_frame_md5": "ea951565f9843fce8e7ce1db488e770d",
+      "last_frame_md5": "1e836d7a727ca77c278d289e2c78093d"
+    }
+  },
+  "operator_reported_fresh_hardware_replay": {
+    "source": "root board operator message; author did not access board",
+    "backend": "v4",
+    "private_plugin": "WC-v5",
+    "broker_pid": 2961,
+    "input_packets": 64,
+    "output_frames": 64,
+    "all_frame_md5_match": true,
+    "all_pts_match_sorted_input": true,
+    "ve_irq_before": 0,
+    "ve_irq_after": 64,
+    "first_frame_seconds": 1.914,
+    "elapsed_seconds_including_hashes": 3.724,
+    "close_result": 0,
+    "scope": "Proves this capture and high absolute timestamps can decode in a fresh context; not a controlled single-variable explanation of the previous browser failure, and not real-page browser acceptance."
+  },
+  "remaining_hypotheses": [
+    {
+      "name": "premature first-frame fallback",
+      "evidence": "64 packet replay budget can fill before asynchronous appsrc produces output; actual fresh replay first frame required 1.914 seconds",
+      "status": "v6 adds bounded first-frame wait; actual browser test pending"
+    },
+    {
+      "name": "reconfiguration and pinned buffers",
+      "evidence": "OMX set_format treats fps/profile/level/tier/alignment/codec_data change as format change and may deallocate/reallocate; kernel pins imported memory until reboot",
+      "status": "not established as prior failure; continuing parser/caps lifecycle audit"
+    },
+    {
+      "name": "flush and sticky component failure",
+      "evidence": "GstBaseSrc seek return and GstVideoDecoder flush return do not establish successful OMX flush; private OMX last_error may be sticky without bus error",
+      "status": "WC-v5/backend-v4 retain diagnostics and poison; no silent recovery"
+    }
+  ]
+}

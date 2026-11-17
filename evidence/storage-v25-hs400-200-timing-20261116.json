@@ -1,0 +1,1604 @@
+{
+  "schema": "t736-mmc-timing-collection-v1",
+  "status": "OBSERVATION_COMPLETE",
+  "collector_sha256": "2a98c83e8154a850d1cd9a55e92cee3fffbec8eb27cecfef030cb39f7744c54b",
+  "kernel": "6.18.63-t736-storage-v25",
+  "boot_id": "c6c1f145-777f-49ad-8924-5951d59f0de3",
+  "preflight_inode": 3576,
+  "preflight_identity_matches_after": true,
+  "target_device_major_minor": "179:4",
+  "probe": {
+    "schema": "t736-mmc-read-cost-v1",
+    "status": "OBSERVATION_COMPLETE",
+    "script_sha256": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946",
+    "kernel": "6.18.63-t736-storage-v25",
+    "boot_id": "c6c1f145-777f-49ad-8924-5951d59f0de3",
+    "file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+    "file_bytes": 11632703,
+    "bytes": 536870912,
+    "repetitions": 64,
+    "bytes_per_repetition": 8388608,
+    "syscall_chunk_bytes": 1048576,
+    "seconds": 9.533278629999998,
+    "MiB_s": 53.70660188078444,
+    "process_cpu_seconds": 0.20282282399999998,
+    "clock_ticks": 100,
+    "system_cpu_tick_delta": [
+      6,
+      0,
+      536,
+      7014,
+      74,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mmcblk0_diskstats_delta": [
+      8192,
+      0,
+      1048576,
+      80654,
+      21,
+      18,
+      352,
+      449,
+      0,
+      9452,
+      81144,
+      0,
+      0,
+      0,
+      0,
+      4,
+      41
+    ],
+    "workers": [
+      {
+        "pid": 11,
+        "comm": "kworker/u32:0-t736-mmc-dma",
+        "cpu_seconds": 5.2,
+        "last_cpu_before": 5,
+        "last_cpu_after": 7
+      },
+      {
+        "pid": 202,
+        "comm": "kworker/5:1H-mmc_complete",
+        "cpu_seconds": 0.03,
+        "last_cpu_before": 5,
+        "last_cpu_after": 5
+      },
+      {
+        "pid": 200,
+        "comm": "kworker/7:1H-mmc_complete",
+        "cpu_seconds": 0.01,
+        "last_cpu_before": 7,
+        "last_cpu_after": 7
+      }
+    ],
+    "raw_device_access": false,
+    "storage_writes": false,
+    "content_validation": false,
+    "limits": [
+      "Repeated prefix reads may hit warm device-internal caches; O_DIRECT bypasses the Linux page cache.",
+      "System CPU counters include all processes; worker counters are tick-quantized and omit exited workers.",
+      "Endpoint processor values are not CPU residency measurements.",
+      "Disk request milliseconds include queue residence, not just controller service.",
+      "Destination prefault differs from earlier ad hoc observations; compare frozen-probe runs separately."
+    ]
+  },
+  "probe_stderr": "",
+  "before": {
+    "raw": "schema=1 snapshot_ns=118420260142 enabled=1\nscope=ordinary_CMD17_18_24_25_including_associated_SBC_and_error_stop\nunits=wall_ns calls=segment_invocations max=lifetime_not_subtractable\nnested=dma_start_includes_pre_reset_and_write_copy;worker_total_includes_service_and_callback\nlimits=wall_includes_interrupts_and_scheduling;CPU_endpoints_are_not_residency;worker_total_excludes_final_merge\nsnapshot=only_fully_merged_samples;completion_can_wake_user_before_merge;includes_background_block_IO\nsamples complete=11314 incomplete=0 dropped_events=0\nrequests direction=read attempted=9979 success=9979 failed=0 requested_bytes=400942080 completed_bytes=400942080 poll_iterations=58103 poll_sleep_attempts=48124\nsize_bins direction=read le4096=2693 le16384=1243 le65536=6043 gt65536=0\nsegment direction=read name=dispatch calls=9979 total_ns=273504079 max_ns=5840875 different_endpoints=9664 different_endpoint_ns=222609905\ncpu_endpoints direction=read segment=dispatch cpu_bucket=0 starts=1141 ends=1730 same_endpoints=3 same_endpoint_ns=135792\ncpu_endpoints direction=read segment=dispatch cpu_bucket=1 starts=1348 ends=1437 same_endpoints=37 same_endpoint_ns=2226502\ncpu_endpoints direction=read segment=dispatch cpu_bucket=2 starts=547 ends=897 same_endpoints=39 same_endpoint_ns=14221921\ncpu_endpoints direction=read segment=dispatch cpu_bucket=3 starts=1320 ends=1397 same_endpoints=90 same_endpoint_ns=3795130\ncpu_endpoints direction=read segment=dispatch cpu_bucket=4 starts=692 ends=1055 same_endpoints=5 same_endpoint_ns=11234917\ncpu_endpoints direction=read segment=dispatch cpu_bucket=5 starts=819 ends=2025 same_endpoints=2 same_endpoint_ns=88250\ncpu_endpoints direction=read segment=dispatch cpu_bucket=6 starts=2718 ends=624 same_endpoints=61 same_endpoint_ns=2453207\ncpu_endpoints direction=read segment=dispatch cpu_bucket=7 starts=1394 ends=814 same_endpoints=78 same_endpoint_ns=16738455\ncpu_endpoints direction=read segment=dispatch cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=worker_service_before_done calls=9979 total_ns=10156455839 max_ns=8325875 different_endpoints=349 different_endpoint_ns=447703446\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=0 starts=1730 ends=1726 same_endpoints=1681 same_endpoint_ns=1220372640\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=1 starts=1437 ends=1441 same_endpoints=1393 same_endpoint_ns=1654246044\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=2 starts=897 ends=895 same_endpoints=843 same_endpoint_ns=853232456\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=3 starts=1397 ends=1394 same_endpoints=1359 same_endpoint_ns=1775767427\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=4 starts=1055 ends=1056 same_endpoints=1017 same_endpoint_ns=1197815859\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=5 starts=2025 ends=2024 same_endpoints=1982 same_endpoint_ns=2259197448\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=6 starts=624 ends=634 same_endpoints=589 same_endpoint_ns=322047274\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=7 starts=814 ends=809 same_endpoints=766 same_endpoint_ns=426073245\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=dma_start calls=9979 total_ns=48891757 max_ns=36667 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=dma_start cpu_bucket=0 starts=1730 ends=1730 same_endpoints=1730 same_endpoint_ns=8401261\ncpu_endpoints direction=read segment=dma_start cpu_bucket=1 starts=1437 ends=1437 same_endpoints=1437 same_endpoint_ns=7423991\ncpu_endpoints direction=read segment=dma_start cpu_bucket=2 starts=897 ends=897 same_endpoints=897 same_endpoint_ns=4641908\ncpu_endpoints direction=read segment=dma_start cpu_bucket=3 starts=1397 ends=1397 same_endpoints=1397 same_endpoint_ns=7248571\ncpu_endpoints direction=read segment=dma_start cpu_bucket=4 starts=1055 ends=1055 same_endpoints=1055 same_endpoint_ns=5455005\ncpu_endpoints direction=read segment=dma_start cpu_bucket=5 starts=2025 ends=2025 same_endpoints=2025 same_endpoint_ns=10171515\ncpu_endpoints direction=read segment=dma_start cpu_bucket=6 starts=624 ends=624 same_endpoints=624 same_endpoint_ns=2405608\ncpu_endpoints direction=read segment=dma_start cpu_bucket=7 starts=814 ends=814 same_endpoints=814 same_endpoint_ns=3143898\ncpu_endpoints direction=read segment=dma_start cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=pre_reset calls=9979 total_ns=19786851 max_ns=24958 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=0 starts=1730 ends=1730 same_endpoints=1730 same_endpoint_ns=3445569\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=1 starts=1437 ends=1437 same_endpoints=1437 same_endpoint_ns=2875567\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=2 starts=897 ends=897 same_endpoints=897 same_endpoint_ns=1830731\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=3 starts=1397 ends=1397 same_endpoints=1397 same_endpoint_ns=2811645\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=4 starts=1055 ends=1055 same_endpoints=1055 same_endpoint_ns=2140697\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=5 starts=2025 ends=2025 same_endpoints=2025 same_endpoint_ns=4048328\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=6 starts=624 ends=624 same_endpoints=624 same_endpoint_ns=1137262\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=7 starts=814 ends=814 same_endpoints=814 same_endpoint_ns=1497052\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=write_copy calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=command_wait calls=9979 total_ns=5407346771 max_ns=8256583 different_endpoints=349 different_endpoint_ns=251514444\ncpu_endpoints direction=read segment=command_wait cpu_bucket=0 starts=1730 ends=1726 same_endpoints=1681 same_endpoint_ns=646504132\ncpu_endpoints direction=read segment=command_wait cpu_bucket=1 starts=1437 ends=1441 same_endpoints=1393 same_endpoint_ns=813795363\ncpu_endpoints direction=read segment=command_wait cpu_bucket=2 starts=897 ends=895 same_endpoints=843 same_endpoint_ns=448951490\ncpu_endpoints direction=read segment=command_wait cpu_bucket=3 starts=1397 ends=1394 same_endpoints=1359 same_endpoint_ns=853984839\ncpu_endpoints direction=read segment=command_wait cpu_bucket=4 starts=1055 ends=1056 same_endpoints=1017 same_endpoint_ns=594804803\ncpu_endpoints direction=read segment=command_wait cpu_bucket=5 starts=2025 ends=2024 same_endpoints=1982 same_endpoint_ns=1190022998\ncpu_endpoints direction=read segment=command_wait cpu_bucket=6 starts=624 ends=634 same_endpoints=589 same_endpoint_ns=258655942\ncpu_endpoints direction=read segment=command_wait cpu_bucket=7 starts=814 ends=809 same_endpoints=766 same_endpoint_ns=349112760\ncpu_endpoints direction=read segment=command_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=busy_wait calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=post_reset calls=9979 total_ns=19565452 max_ns=50875 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=post_reset cpu_bucket=0 starts=1726 ends=1726 same_endpoints=1726 same_endpoint_ns=3450521\ncpu_endpoints direction=read segment=post_reset cpu_bucket=1 starts=1441 ends=1441 same_endpoints=1441 same_endpoint_ns=2839970\ncpu_endpoints direction=read segment=post_reset cpu_bucket=2 starts=895 ends=895 same_endpoints=895 same_endpoint_ns=1830137\ncpu_endpoints direction=read segment=post_reset cpu_bucket=3 starts=1394 ends=1394 same_endpoints=1394 same_endpoint_ns=2740165\ncpu_endpoints direction=read segment=post_reset cpu_bucket=4 starts=1056 ends=1056 same_endpoints=1056 same_endpoint_ns=2089586\ncpu_endpoints direction=read segment=post_reset cpu_bucket=5 starts=2024 ends=2024 same_endpoints=2024 same_endpoint_ns=3992890\ncpu_endpoints direction=read segment=post_reset cpu_bucket=6 starts=634 ends=634 same_endpoints=634 same_endpoint_ns=1148466\ncpu_endpoints direction=read segment=post_reset cpu_bucket=7 starts=809 ends=809 same_endpoints=809 same_endpoint_ns=1473717\ncpu_endpoints direction=read segment=post_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=read_copy calls=9979 total_ns=4660060215 max_ns=2675041 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=read_copy cpu_bucket=0 starts=1726 ends=1726 same_endpoints=1726 same_endpoint_ns=587253503\ncpu_endpoints direction=read segment=read_copy cpu_bucket=1 starts=1441 ends=1441 same_endpoints=1441 same_endpoint_ns=859979096\ncpu_endpoints direction=read segment=read_copy cpu_bucket=2 starts=895 ends=895 same_endpoints=895 same_endpoint_ns=433117015\ncpu_endpoints direction=read segment=read_copy cpu_bucket=3 starts=1394 ends=1394 same_endpoints=1394 same_endpoint_ns=934064704\ncpu_endpoints direction=read segment=read_copy cpu_bucket=4 starts=1056 ends=1056 same_endpoints=1056 same_endpoint_ns=623680992\ncpu_endpoints direction=read segment=read_copy cpu_bucket=5 starts=2024 ends=2024 same_endpoints=2024 same_endpoint_ns=1078730509\ncpu_endpoints direction=read segment=read_copy cpu_bucket=6 starts=634 ends=634 same_endpoints=634 same_endpoint_ns=65166883\ncpu_endpoints direction=read segment=read_copy cpu_bucket=7 starts=809 ends=809 same_endpoints=809 same_endpoint_ns=78067513\ncpu_endpoints direction=read segment=read_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=completion_callback calls=9979 total_ns=54260733 max_ns=47250 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=0 starts=1726 ends=1726 same_endpoints=1726 same_endpoint_ns=10296409\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=1 starts=1441 ends=1441 same_endpoints=1441 same_endpoint_ns=8816090\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=2 starts=895 ends=895 same_endpoints=895 same_endpoint_ns=6195877\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=3 starts=1394 ends=1394 same_endpoints=1394 same_endpoint_ns=7985462\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=4 starts=1056 ends=1056 same_endpoints=1056 same_endpoint_ns=6197865\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=5 starts=2024 ends=2024 same_endpoints=2024 same_endpoint_ns=11046821\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=6 starts=634 ends=634 same_endpoints=634 same_endpoint_ns=1714920\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=7 starts=809 ends=809 same_endpoints=809 same_endpoint_ns=2007289\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=worker_total_before_merge calls=9979 total_ns=10212454036 max_ns=8336042 different_endpoints=349 different_endpoint_ns=450995029\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=0 starts=1730 ends=1726 same_endpoints=1681 same_endpoint_ns=1230550032\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=1 starts=1437 ends=1441 same_endpoints=1393 same_endpoint_ns=1662819948\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=2 starts=897 ends=895 same_endpoints=843 same_endpoint_ns=859039718\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=3 starts=1397 ends=1394 same_endpoints=1359 same_endpoint_ns=1783595191\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=4 starts=1055 ends=1056 same_endpoints=1017 same_endpoint_ns=1203760255\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=5 starts=2025 ends=2024 same_endpoints=1982 same_endpoint_ns=2270185591\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=6 starts=624 ends=634 same_endpoints=589 same_endpoint_ns=323567446\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=7 starts=814 ends=809 same_endpoints=766 same_endpoint_ns=427940826\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nrequests direction=write attempted=1335 success=1335 failed=0 requested_bytes=53415936 completed_bytes=53415936 poll_iterations=4273 poll_sleep_attempts=2938\nsize_bins direction=write le4096=353 le16384=175 le65536=807 gt65536=0\nsegment direction=write name=dispatch calls=1335 total_ns=16391413 max_ns=1165041 different_endpoints=1233 different_endpoint_ns=15360038\ncpu_endpoints direction=write segment=dispatch cpu_bucket=0 starts=8 ends=81 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=1 starts=109 ends=161 same_endpoints=3 same_endpoint_ns=113750\ncpu_endpoints direction=write segment=dispatch cpu_bucket=2 starts=116 ends=83 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=3 starts=7 ends=5 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=4 starts=25 ends=316 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=5 starts=1 ends=564 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=6 starts=911 ends=104 same_endpoints=96 same_endpoint_ns=880168\ncpu_endpoints direction=write segment=dispatch cpu_bucket=7 starts=158 ends=21 same_endpoints=3 same_endpoint_ns=37457\ncpu_endpoints direction=write segment=dispatch cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=worker_service_before_done calls=1335 total_ns=368801541 max_ns=7035958 different_endpoints=9 different_endpoint_ns=2341669\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=0 starts=81 ends=78 same_endpoints=78 same_endpoint_ns=12725419\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=1 starts=161 ends=160 same_endpoints=159 same_endpoint_ns=59648452\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=2 starts=83 ends=84 same_endpoints=81 same_endpoint_ns=14906250\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=3 starts=5 ends=6 same_endpoints=4 same_endpoint_ns=5432105\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=4 starts=316 ends=318 same_endpoints=316 same_endpoint_ns=92196130\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=5 starts=564 ends=564 same_endpoints=564 same_endpoint_ns=139637393\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=6 starts=104 ends=105 same_endpoints=104 same_endpoint_ns=34209932\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=7 starts=21 ends=20 same_endpoints=20 same_endpoint_ns=7704191\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=dma_start calls=1335 total_ns=33183954 max_ns=82375 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=dma_start cpu_bucket=0 starts=81 ends=81 same_endpoints=81 same_endpoint_ns=1456337\ncpu_endpoints direction=write segment=dma_start cpu_bucket=1 starts=161 ends=161 same_endpoints=161 same_endpoint_ns=4004041\ncpu_endpoints direction=write segment=dma_start cpu_bucket=2 starts=83 ends=83 same_endpoints=83 same_endpoint_ns=1659705\ncpu_endpoints direction=write segment=dma_start cpu_bucket=3 starts=5 ends=5 same_endpoints=5 same_endpoint_ns=188668\ncpu_endpoints direction=write segment=dma_start cpu_bucket=4 starts=316 ends=316 same_endpoints=316 same_endpoint_ns=9779331\ncpu_endpoints direction=write segment=dma_start cpu_bucket=5 starts=564 ends=564 same_endpoints=564 same_endpoint_ns=12651571\ncpu_endpoints direction=write segment=dma_start cpu_bucket=6 starts=104 ends=104 same_endpoints=104 same_endpoint_ns=3223298\ncpu_endpoints direction=write segment=dma_start cpu_bucket=7 starts=21 ends=21 same_endpoints=21 same_endpoint_ns=221003\ncpu_endpoints direction=write segment=dma_start cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=pre_reset calls=1335 total_ns=2603620 max_ns=30625 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=0 starts=81 ends=81 same_endpoints=81 same_endpoint_ns=158008\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=1 starts=161 ends=161 same_endpoints=161 same_endpoint_ns=315586\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=2 starts=83 ends=83 same_endpoints=83 same_endpoint_ns=162785\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=3 starts=5 ends=5 same_endpoints=5 same_endpoint_ns=10584\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=4 starts=316 ends=316 same_endpoints=316 same_endpoint_ns=640951\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=5 starts=564 ends=564 same_endpoints=564 same_endpoint_ns=1090539\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=6 starts=104 ends=104 same_endpoints=104 same_endpoint_ns=186875\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=7 starts=21 ends=21 same_endpoints=21 same_endpoint_ns=38292\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=write_copy calls=1335 total_ns=26606626 max_ns=77208 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=write_copy cpu_bucket=0 starts=81 ends=81 same_endpoints=81 same_endpoint_ns=1058575\ncpu_endpoints direction=write segment=write_copy cpu_bucket=1 starts=161 ends=161 same_endpoints=161 same_endpoint_ns=3200620\ncpu_endpoints direction=write segment=write_copy cpu_bucket=2 starts=83 ends=83 same_endpoints=83 same_endpoint_ns=1251793\ncpu_endpoints direction=write segment=write_copy cpu_bucket=3 starts=5 ends=5 same_endpoints=5 same_endpoint_ns=160918\ncpu_endpoints direction=write segment=write_copy cpu_bucket=4 starts=316 ends=316 same_endpoints=316 same_endpoint_ns=8132962\ncpu_endpoints direction=write segment=write_copy cpu_bucket=5 starts=564 ends=564 same_endpoints=564 same_endpoint_ns=9896213\ncpu_endpoints direction=write segment=write_copy cpu_bucket=6 starts=104 ends=104 same_endpoints=104 same_endpoint_ns=2774126\ncpu_endpoints direction=write segment=write_copy cpu_bucket=7 starts=21 ends=21 same_endpoints=21 same_endpoint_ns=131419\ncpu_endpoints direction=write segment=write_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=command_wait calls=1335 total_ns=330815423 max_ns=6997250 different_endpoints=9 different_endpoint_ns=1979208\ncpu_endpoints direction=write segment=command_wait cpu_bucket=0 starts=81 ends=78 same_endpoints=78 same_endpoint_ns=11116126\ncpu_endpoints direction=write segment=command_wait cpu_bucket=1 starts=161 ends=160 same_endpoints=159 same_endpoint_ns=55120828\ncpu_endpoints direction=write segment=command_wait cpu_bucket=2 starts=83 ends=84 same_endpoints=81 same_endpoint_ns=12977339\ncpu_endpoints direction=write segment=command_wait cpu_bucket=3 starts=5 ends=6 same_endpoints=4 same_endpoint_ns=5291395\ncpu_endpoints direction=write segment=command_wait cpu_bucket=4 starts=316 ends=318 same_endpoints=316 same_endpoint_ns=81228711\ncpu_endpoints direction=write segment=command_wait cpu_bucket=5 starts=564 ends=564 same_endpoints=564 same_endpoint_ns=124962908\ncpu_endpoints direction=write segment=command_wait cpu_bucket=6 starts=104 ends=105 same_endpoints=104 same_endpoint_ns=30691719\ncpu_endpoints direction=write segment=command_wait cpu_bucket=7 starts=21 ends=20 same_endpoints=20 same_endpoint_ns=7447189\ncpu_endpoints direction=write segment=command_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=busy_wait calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=post_reset calls=1335 total_ns=2588280 max_ns=18166 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=post_reset cpu_bucket=0 starts=78 ends=78 same_endpoints=78 same_endpoint_ns=151577\ncpu_endpoints direction=write segment=post_reset cpu_bucket=1 starts=160 ends=160 same_endpoints=160 same_endpoint_ns=311211\ncpu_endpoints direction=write segment=post_reset cpu_bucket=2 starts=84 ends=84 same_endpoints=84 same_endpoint_ns=164709\ncpu_endpoints direction=write segment=post_reset cpu_bucket=3 starts=6 ends=6 same_endpoints=6 same_endpoint_ns=12332\ncpu_endpoints direction=write segment=post_reset cpu_bucket=4 starts=318 ends=318 same_endpoints=318 same_endpoint_ns=632241\ncpu_endpoints direction=write segment=post_reset cpu_bucket=5 starts=564 ends=564 same_endpoints=564 same_endpoint_ns=1091585\ncpu_endpoints direction=write segment=post_reset cpu_bucket=6 starts=105 ends=105 same_endpoints=105 same_endpoint_ns=188586\ncpu_endpoints direction=write segment=post_reset cpu_bucket=7 starts=20 ends=20 same_endpoints=20 same_endpoint_ns=36039\ncpu_endpoints direction=write segment=post_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=read_copy calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=completion_callback calls=1335 total_ns=4981808 max_ns=21791 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=0 starts=78 ends=78 same_endpoints=78 same_endpoint_ns=322959\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=1 starts=160 ends=160 same_endpoints=160 same_endpoint_ns=674220\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=2 starts=84 ends=84 same_endpoints=84 same_endpoint_ns=338791\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=3 starts=6 ends=6 same_endpoints=6 same_endpoint_ns=37336\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=4 starts=318 ends=318 same_endpoints=318 same_endpoint_ns=1219260\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=5 starts=564 ends=564 same_endpoints=564 same_endpoint_ns=2155038\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=6 starts=105 ends=105 same_endpoints=105 same_endpoint_ns=180661\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=7 starts=20 ends=20 same_endpoints=20 same_endpoint_ns=53543\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=worker_total_before_merge calls=1335 total_ns=373992434 max_ns=7041292 different_endpoints=9 different_endpoint_ns=2399627\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=0 starts=81 ends=78 same_endpoints=78 same_endpoint_ns=13060710\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=1 starts=161 ends=160 same_endpoints=159 same_endpoint_ns=60335716\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=2 starts=83 ends=84 same_endpoints=81 same_endpoint_ns=15241168\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=3 starts=5 ends=6 same_endpoints=4 same_endpoint_ns=5457607\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=4 starts=316 ends=318 same_endpoints=316 same_endpoint_ns=93455845\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=5 starts=564 ends=564 same_endpoints=564 same_endpoint_ns=141882716\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=6 starts=104 ends=105 same_endpoints=104 same_endpoint_ns=34398769\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=7 starts=21 ends=20 same_endpoints=20 same_endpoint_ns=7760276\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_bucket_8=other;different_means_at_least_one_migration;same_does_not_exclude_migration\n",
+    "sha256": "113df4d5f43334b40448fa642fbb8b4e0e890b113fba88868128774dba144f45"
+  },
+  "first_after": {
+    "raw": "schema=1 snapshot_ns=128206219742 enabled=1\nscope=ordinary_CMD17_18_24_25_including_associated_SBC_and_error_stop\nunits=wall_ns calls=segment_invocations max=lifetime_not_subtractable\nnested=dma_start_includes_pre_reset_and_write_copy;worker_total_includes_service_and_callback\nlimits=wall_includes_interrupts_and_scheduling;CPU_endpoints_are_not_residency;worker_total_excludes_final_merge\nsnapshot=only_fully_merged_samples;completion_can_wake_user_before_merge;includes_background_block_IO\nsamples complete=19532 incomplete=0 dropped_events=0\nrequests direction=read attempted=18176 success=18176 failed=0 requested_bytes=938079232 completed_bytes=938079232 poll_iterations=107455 poll_sleep_attempts=89279\nsize_bins direction=read le4096=2693 le16384=1244 le65536=14239 gt65536=0\nsegment direction=read name=dispatch calls=18176 total_ns=355193994 max_ns=5840875 different_endpoints=17861 different_endpoint_ns=304299820\ncpu_endpoints direction=read segment=dispatch cpu_bucket=0 starts=3961 ends=1730 same_endpoints=3 same_endpoint_ns=135792\ncpu_endpoints direction=read segment=dispatch cpu_bucket=1 starts=1348 ends=1437 same_endpoints=37 same_endpoint_ns=2226502\ncpu_endpoints direction=read segment=dispatch cpu_bucket=2 starts=547 ends=897 same_endpoints=39 same_endpoint_ns=14221921\ncpu_endpoints direction=read segment=dispatch cpu_bucket=3 starts=1320 ends=1397 same_endpoints=90 same_endpoint_ns=3795130\ncpu_endpoints direction=read segment=dispatch cpu_bucket=4 starts=692 ends=1055 same_endpoints=5 same_endpoint_ns=11234917\ncpu_endpoints direction=read segment=dispatch cpu_bucket=5 starts=819 ends=7326 same_endpoints=2 same_endpoint_ns=88250\ncpu_endpoints direction=read segment=dispatch cpu_bucket=6 starts=3645 ends=700 same_endpoints=61 same_endpoint_ns=2453207\ncpu_endpoints direction=read segment=dispatch cpu_bucket=7 starts=5844 ends=3634 same_endpoints=78 same_endpoint_ns=16738455\ncpu_endpoints direction=read segment=dispatch cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=worker_service_before_done calls=18176 total_ns=19412617111 max_ns=8325875 different_endpoints=350 different_endpoint_ns=448438914\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=0 starts=1730 ends=1726 same_endpoints=1681 same_endpoint_ns=1220372640\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=1 starts=1437 ends=1441 same_endpoints=1393 same_endpoint_ns=1654246044\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=2 starts=897 ends=895 same_endpoints=843 same_endpoint_ns=853232456\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=3 starts=1397 ends=1394 same_endpoints=1359 same_endpoint_ns=1775767427\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=4 starts=1055 ends=1056 same_endpoints=1017 same_endpoint_ns=1197815859\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=5 starts=7326 ends=7325 same_endpoints=7283 same_endpoint_ns=9443085644\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=6 starts=700 ends=709 same_endpoints=664 same_endpoint_ns=377130741\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=7 starts=3634 ends=3630 same_endpoints=3586 same_endpoint_ns=2442527386\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=dma_start calls=18176 total_ns=87384215 max_ns=36667 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=dma_start cpu_bucket=0 starts=1730 ends=1730 same_endpoints=1730 same_endpoint_ns=8401261\ncpu_endpoints direction=read segment=dma_start cpu_bucket=1 starts=1437 ends=1437 same_endpoints=1437 same_endpoint_ns=7423991\ncpu_endpoints direction=read segment=dma_start cpu_bucket=2 starts=897 ends=897 same_endpoints=897 same_endpoint_ns=4641908\ncpu_endpoints direction=read segment=dma_start cpu_bucket=3 starts=1397 ends=1397 same_endpoints=1397 same_endpoint_ns=7248571\ncpu_endpoints direction=read segment=dma_start cpu_bucket=4 starts=1055 ends=1055 same_endpoints=1055 same_endpoint_ns=5455005\ncpu_endpoints direction=read segment=dma_start cpu_bucket=5 starts=7326 ends=7326 same_endpoints=7326 same_endpoint_ns=37254208\ncpu_endpoints direction=read segment=dma_start cpu_bucket=6 starts=700 ends=700 same_endpoints=700 same_endpoint_ns=2705148\ncpu_endpoints direction=read segment=dma_start cpu_bucket=7 starts=3634 ends=3634 same_endpoints=3634 same_endpoint_ns=14254123\ncpu_endpoints direction=read segment=dma_start cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=pre_reset calls=18176 total_ns=35195181 max_ns=24958 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=0 starts=1730 ends=1730 same_endpoints=1730 same_endpoint_ns=3445569\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=1 starts=1437 ends=1437 same_endpoints=1437 same_endpoint_ns=2875567\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=2 starts=897 ends=897 same_endpoints=897 same_endpoint_ns=1830731\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=3 starts=1397 ends=1397 same_endpoints=1397 same_endpoint_ns=2811645\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=4 starts=1055 ends=1055 same_endpoints=1055 same_endpoint_ns=2140697\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=5 starts=7326 ends=7326 same_endpoints=7326 same_endpoint_ns=14266511\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=6 starts=700 ends=700 same_endpoints=700 same_endpoint_ns=1273305\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=7 starts=3634 ends=3634 same_endpoints=3634 same_endpoint_ns=6551156\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=write_copy calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=command_wait calls=18176 total_ns=9870463009 max_ns=8256583 different_endpoints=350 different_endpoint_ns=252057367\ncpu_endpoints direction=read segment=command_wait cpu_bucket=0 starts=1730 ends=1726 same_endpoints=1681 same_endpoint_ns=646504132\ncpu_endpoints direction=read segment=command_wait cpu_bucket=1 starts=1437 ends=1441 same_endpoints=1393 same_endpoint_ns=813795363\ncpu_endpoints direction=read segment=command_wait cpu_bucket=2 starts=897 ends=895 same_endpoints=843 same_endpoint_ns=448951490\ncpu_endpoints direction=read segment=command_wait cpu_bucket=3 starts=1397 ends=1394 same_endpoints=1359 same_endpoint_ns=853984839\ncpu_endpoints direction=read segment=command_wait cpu_bucket=4 starts=1055 ends=1056 same_endpoints=1017 same_endpoint_ns=594804803\ncpu_endpoints direction=read segment=command_wait cpu_bucket=5 starts=7326 ends=7325 same_endpoints=7283 same_endpoint_ns=4129847845\ncpu_endpoints direction=read segment=command_wait cpu_bucket=6 starts=700 ends=709 same_endpoints=664 same_endpoint_ns=299433586\ncpu_endpoints direction=read segment=command_wait cpu_bucket=7 starts=3634 ends=3630 same_endpoints=3586 same_endpoint_ns=1831083584\ncpu_endpoints direction=read segment=command_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=busy_wait calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=post_reset calls=18176 total_ns=35055222 max_ns=50875 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=post_reset cpu_bucket=0 starts=1726 ends=1726 same_endpoints=1726 same_endpoint_ns=3450521\ncpu_endpoints direction=read segment=post_reset cpu_bucket=1 starts=1441 ends=1441 same_endpoints=1441 same_endpoint_ns=2839970\ncpu_endpoints direction=read segment=post_reset cpu_bucket=2 starts=895 ends=895 same_endpoints=895 same_endpoint_ns=1830137\ncpu_endpoints direction=read segment=post_reset cpu_bucket=3 starts=1394 ends=1394 same_endpoints=1394 same_endpoint_ns=2740165\ncpu_endpoints direction=read segment=post_reset cpu_bucket=4 starts=1056 ends=1056 same_endpoints=1056 same_endpoint_ns=2089586\ncpu_endpoints direction=read segment=post_reset cpu_bucket=5 starts=7325 ends=7325 same_endpoints=7325 same_endpoint_ns=14242463\ncpu_endpoints direction=read segment=post_reset cpu_bucket=6 starts=709 ends=709 same_endpoints=709 same_endpoint_ns=1284508\ncpu_endpoints direction=read segment=post_reset cpu_bucket=7 starts=3630 ends=3630 same_endpoints=3630 same_endpoint_ns=6577872\ncpu_endpoints direction=read segment=post_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=read_copy calls=18176 total_ns=9384910021 max_ns=2675041 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=read_copy cpu_bucket=0 starts=1726 ends=1726 same_endpoints=1726 same_endpoint_ns=587253503\ncpu_endpoints direction=read segment=read_copy cpu_bucket=1 starts=1441 ends=1441 same_endpoints=1441 same_endpoint_ns=859979096\ncpu_endpoints direction=read segment=read_copy cpu_bucket=2 starts=895 ends=895 same_endpoints=895 same_endpoint_ns=433117015\ncpu_endpoints direction=read segment=read_copy cpu_bucket=3 starts=1394 ends=1394 same_endpoints=1394 same_endpoint_ns=934064704\ncpu_endpoints direction=read segment=read_copy cpu_bucket=4 starts=1056 ends=1056 same_endpoints=1056 same_endpoint_ns=623680992\ncpu_endpoints direction=read segment=read_copy cpu_bucket=5 starts=7325 ends=7325 same_endpoints=7325 same_endpoint_ns=5274686476\ncpu_endpoints direction=read segment=read_copy cpu_bucket=6 starts=709 ends=709 same_endpoints=709 same_endpoint_ns=78951616\ncpu_endpoints direction=read segment=read_copy cpu_bucket=7 starts=3630 ends=3630 same_endpoints=3630 same_endpoint_ns=593176619\ncpu_endpoints direction=read segment=read_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=completion_callback calls=18176 total_ns=85603404 max_ns=47250 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=0 starts=1726 ends=1726 same_endpoints=1726 same_endpoint_ns=10296409\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=1 starts=1441 ends=1441 same_endpoints=1441 same_endpoint_ns=8816090\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=2 starts=895 ends=895 same_endpoints=895 same_endpoint_ns=6195877\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=3 starts=1394 ends=1394 same_endpoints=1394 same_endpoint_ns=7985462\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=4 starts=1056 ends=1056 same_endpoints=1056 same_endpoint_ns=6197865\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=5 starts=7325 ends=7325 same_endpoints=7325 same_endpoint_ns=37342352\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=6 starts=709 ends=709 same_endpoints=709 same_endpoint_ns=1853297\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=7 starts=3630 ends=3630 same_endpoints=3630 same_endpoint_ns=6916052\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=worker_total_before_merge calls=18176 total_ns=19501159818 max_ns=8336042 different_endpoints=350 different_endpoint_ns=451734247\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=0 starts=1730 ends=1726 same_endpoints=1681 same_endpoint_ns=1230550032\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=1 starts=1437 ends=1441 same_endpoints=1393 same_endpoint_ns=1662819948\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=2 starts=897 ends=895 same_endpoints=843 same_endpoint_ns=859039718\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=3 starts=1397 ends=1394 same_endpoints=1359 same_endpoint_ns=1783595191\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=4 starts=1055 ends=1056 same_endpoints=1017 same_endpoint_ns=1203760255\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=5 starts=7326 ends=7325 same_endpoints=7283 same_endpoint_ns=9481251927\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=6 starts=700 ends=709 same_endpoints=664 same_endpoint_ns=378797501\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=7 starts=3634 ends=3630 same_endpoints=3586 same_endpoint_ns=2449610999\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nrequests direction=write attempted=1356 success=1356 failed=0 requested_bytes=53596160 completed_bytes=53596160 poll_iterations=4316 poll_sleep_attempts=2960\nsize_bins direction=write le4096=370 le16384=176 le65536=810 gt65536=0\nsegment direction=write name=dispatch calls=1356 total_ns=16601626 max_ns=1165041 different_endpoints=1254 different_endpoint_ns=15570251\ncpu_endpoints direction=write segment=dispatch cpu_bucket=0 starts=8 ends=81 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=1 starts=109 ends=161 same_endpoints=3 same_endpoint_ns=113750\ncpu_endpoints direction=write segment=dispatch cpu_bucket=2 starts=116 ends=83 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=3 starts=7 ends=5 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=4 starts=26 ends=316 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=5 starts=1 ends=584 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=6 starts=912 ends=105 same_endpoints=96 same_endpoint_ns=880168\ncpu_endpoints direction=write segment=dispatch cpu_bucket=7 starts=177 ends=21 same_endpoints=3 same_endpoint_ns=37457\ncpu_endpoints direction=write segment=dispatch cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=worker_service_before_done calls=1356 total_ns=371569217 max_ns=7035958 different_endpoints=9 different_endpoint_ns=2341669\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=0 starts=81 ends=78 same_endpoints=78 same_endpoint_ns=12725419\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=1 starts=161 ends=160 same_endpoints=159 same_endpoint_ns=59648452\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=2 starts=83 ends=84 same_endpoints=81 same_endpoint_ns=14906250\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=3 starts=5 ends=6 same_endpoints=4 same_endpoint_ns=5432105\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=4 starts=316 ends=318 same_endpoints=316 same_endpoint_ns=92196130\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=142289359\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=6 starts=105 ends=106 same_endpoints=105 same_endpoint_ns=34325642\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=7 starts=21 ends=20 same_endpoints=20 same_endpoint_ns=7704191\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=dma_start calls=1356 total_ns=33427708 max_ns=82375 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=dma_start cpu_bucket=0 starts=81 ends=81 same_endpoints=81 same_endpoint_ns=1456337\ncpu_endpoints direction=write segment=dma_start cpu_bucket=1 starts=161 ends=161 same_endpoints=161 same_endpoint_ns=4004041\ncpu_endpoints direction=write segment=dma_start cpu_bucket=2 starts=83 ends=83 same_endpoints=83 same_endpoint_ns=1659705\ncpu_endpoints direction=write segment=dma_start cpu_bucket=3 starts=5 ends=5 same_endpoints=5 same_endpoint_ns=188668\ncpu_endpoints direction=write segment=dma_start cpu_bucket=4 starts=316 ends=316 same_endpoints=316 same_endpoint_ns=9779331\ncpu_endpoints direction=write segment=dma_start cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=12888867\ncpu_endpoints direction=write segment=dma_start cpu_bucket=6 starts=105 ends=105 same_endpoints=105 same_endpoint_ns=3229756\ncpu_endpoints direction=write segment=dma_start cpu_bucket=7 starts=21 ends=21 same_endpoints=21 same_endpoint_ns=221003\ncpu_endpoints direction=write segment=dma_start cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=pre_reset calls=1356 total_ns=2643869 max_ns=30625 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=0 starts=81 ends=81 same_endpoints=81 same_endpoint_ns=158008\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=1 starts=161 ends=161 same_endpoints=161 same_endpoint_ns=315586\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=2 starts=83 ends=83 same_endpoints=83 same_endpoint_ns=162785\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=3 starts=5 ends=5 same_endpoints=5 same_endpoint_ns=10584\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=4 starts=316 ends=316 same_endpoints=316 same_endpoint_ns=640951\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=1128996\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=6 starts=105 ends=105 same_endpoints=105 same_endpoint_ns=188667\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=7 starts=21 ends=21 same_endpoints=21 same_endpoint_ns=38292\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=write_copy calls=1356 total_ns=26752005 max_ns=77208 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=write_copy cpu_bucket=0 starts=81 ends=81 same_endpoints=81 same_endpoint_ns=1058575\ncpu_endpoints direction=write segment=write_copy cpu_bucket=1 starts=161 ends=161 same_endpoints=161 same_endpoint_ns=3200620\ncpu_endpoints direction=write segment=write_copy cpu_bucket=2 starts=83 ends=83 same_endpoints=83 same_endpoint_ns=1251793\ncpu_endpoints direction=write segment=write_copy cpu_bucket=3 starts=5 ends=5 same_endpoints=5 same_endpoint_ns=160918\ncpu_endpoints direction=write segment=write_copy cpu_bucket=4 starts=316 ends=316 same_endpoints=316 same_endpoint_ns=8132962\ncpu_endpoints direction=write segment=write_copy cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=10039426\ncpu_endpoints direction=write segment=write_copy cpu_bucket=6 starts=105 ends=105 same_endpoints=105 same_endpoint_ns=2776292\ncpu_endpoints direction=write segment=write_copy cpu_bucket=7 starts=21 ends=21 same_endpoints=21 same_endpoint_ns=131419\ncpu_endpoints direction=write segment=write_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=command_wait calls=1356 total_ns=333265550 max_ns=6997250 different_endpoints=9 different_endpoint_ns=1979208\ncpu_endpoints direction=write segment=command_wait cpu_bucket=0 starts=81 ends=78 same_endpoints=78 same_endpoint_ns=11116126\ncpu_endpoints direction=write segment=command_wait cpu_bucket=1 starts=161 ends=160 same_endpoints=159 same_endpoint_ns=55120828\ncpu_endpoints direction=write segment=command_wait cpu_bucket=2 starts=83 ends=84 same_endpoints=81 same_endpoint_ns=12977339\ncpu_endpoints direction=write segment=command_wait cpu_bucket=3 starts=5 ends=6 same_endpoints=4 same_endpoint_ns=5291395\ncpu_endpoints direction=write segment=command_wait cpu_bucket=4 starts=316 ends=318 same_endpoints=316 same_endpoint_ns=81228711\ncpu_endpoints direction=write segment=command_wait cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=127306742\ncpu_endpoints direction=write segment=command_wait cpu_bucket=6 starts=105 ends=106 same_endpoints=105 same_endpoint_ns=30798012\ncpu_endpoints direction=write segment=command_wait cpu_bucket=7 starts=21 ends=20 same_endpoints=20 same_endpoint_ns=7447189\ncpu_endpoints direction=write segment=command_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=busy_wait calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=post_reset calls=1356 total_ns=2628572 max_ns=18166 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=post_reset cpu_bucket=0 starts=78 ends=78 same_endpoints=78 same_endpoint_ns=151577\ncpu_endpoints direction=write segment=post_reset cpu_bucket=1 starts=160 ends=160 same_endpoints=160 same_endpoint_ns=311211\ncpu_endpoints direction=write segment=post_reset cpu_bucket=2 starts=84 ends=84 same_endpoints=84 same_endpoint_ns=164709\ncpu_endpoints direction=write segment=post_reset cpu_bucket=3 starts=6 ends=6 same_endpoints=6 same_endpoint_ns=12332\ncpu_endpoints direction=write segment=post_reset cpu_bucket=4 starts=318 ends=318 same_endpoints=318 same_endpoint_ns=632241\ncpu_endpoints direction=write segment=post_reset cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=1130085\ncpu_endpoints direction=write segment=post_reset cpu_bucket=6 starts=106 ends=106 same_endpoints=106 same_endpoint_ns=190378\ncpu_endpoints direction=write segment=post_reset cpu_bucket=7 starts=20 ends=20 same_endpoints=20 same_endpoint_ns=36039\ncpu_endpoints direction=write segment=post_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=read_copy calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=completion_callback calls=1356 total_ns=5058515 max_ns=21791 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=0 starts=78 ends=78 same_endpoints=78 same_endpoint_ns=322959\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=1 starts=160 ends=160 same_endpoints=160 same_endpoint_ns=674220\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=2 starts=84 ends=84 same_endpoints=84 same_endpoint_ns=338791\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=3 starts=6 ends=6 same_endpoints=6 same_endpoint_ns=37336\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=4 starts=318 ends=318 same_endpoints=318 same_endpoint_ns=1219260\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=2230120\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=6 starts=106 ends=106 same_endpoints=106 same_endpoint_ns=182286\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=7 starts=20 ends=20 same_endpoints=20 same_endpoint_ns=53543\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=worker_total_before_merge calls=1356 total_ns=376840069 max_ns=7041292 different_endpoints=9 different_endpoint_ns=2399627\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=0 starts=81 ends=78 same_endpoints=78 same_endpoint_ns=13060710\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=1 starts=161 ends=160 same_endpoints=159 same_endpoint_ns=60335716\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=2 starts=83 ends=84 same_endpoints=81 same_endpoint_ns=15241168\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=3 starts=5 ends=6 same_endpoints=4 same_endpoint_ns=5457607\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=4 starts=316 ends=318 same_endpoints=316 same_endpoint_ns=93455845\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=144612933\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=6 starts=105 ends=106 same_endpoints=105 same_endpoint_ns=34516187\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=7 starts=21 ends=20 same_endpoints=20 same_endpoint_ns=7760276\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_bucket_8=other;different_means_at_least_one_migration;same_does_not_exclude_migration\n",
+    "sha256": "e234c0c68d39408c6f71dea5c08d007438e85d5813959f04bde1cdbede0ab9b1"
+  },
+  "after": {
+    "raw": "schema=1 snapshot_ns=128225113498 enabled=1\nscope=ordinary_CMD17_18_24_25_including_associated_SBC_and_error_stop\nunits=wall_ns calls=segment_invocations max=lifetime_not_subtractable\nnested=dma_start_includes_pre_reset_and_write_copy;worker_total_includes_service_and_callback\nlimits=wall_includes_interrupts_and_scheduling;CPU_endpoints_are_not_residency;worker_total_excludes_final_merge\nsnapshot=only_fully_merged_samples;completion_can_wake_user_before_merge;includes_background_block_IO\nsamples complete=19532 incomplete=0 dropped_events=0\nrequests direction=read attempted=18176 success=18176 failed=0 requested_bytes=938079232 completed_bytes=938079232 poll_iterations=107455 poll_sleep_attempts=89279\nsize_bins direction=read le4096=2693 le16384=1244 le65536=14239 gt65536=0\nsegment direction=read name=dispatch calls=18176 total_ns=355193994 max_ns=5840875 different_endpoints=17861 different_endpoint_ns=304299820\ncpu_endpoints direction=read segment=dispatch cpu_bucket=0 starts=3961 ends=1730 same_endpoints=3 same_endpoint_ns=135792\ncpu_endpoints direction=read segment=dispatch cpu_bucket=1 starts=1348 ends=1437 same_endpoints=37 same_endpoint_ns=2226502\ncpu_endpoints direction=read segment=dispatch cpu_bucket=2 starts=547 ends=897 same_endpoints=39 same_endpoint_ns=14221921\ncpu_endpoints direction=read segment=dispatch cpu_bucket=3 starts=1320 ends=1397 same_endpoints=90 same_endpoint_ns=3795130\ncpu_endpoints direction=read segment=dispatch cpu_bucket=4 starts=692 ends=1055 same_endpoints=5 same_endpoint_ns=11234917\ncpu_endpoints direction=read segment=dispatch cpu_bucket=5 starts=819 ends=7326 same_endpoints=2 same_endpoint_ns=88250\ncpu_endpoints direction=read segment=dispatch cpu_bucket=6 starts=3645 ends=700 same_endpoints=61 same_endpoint_ns=2453207\ncpu_endpoints direction=read segment=dispatch cpu_bucket=7 starts=5844 ends=3634 same_endpoints=78 same_endpoint_ns=16738455\ncpu_endpoints direction=read segment=dispatch cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=worker_service_before_done calls=18176 total_ns=19412617111 max_ns=8325875 different_endpoints=350 different_endpoint_ns=448438914\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=0 starts=1730 ends=1726 same_endpoints=1681 same_endpoint_ns=1220372640\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=1 starts=1437 ends=1441 same_endpoints=1393 same_endpoint_ns=1654246044\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=2 starts=897 ends=895 same_endpoints=843 same_endpoint_ns=853232456\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=3 starts=1397 ends=1394 same_endpoints=1359 same_endpoint_ns=1775767427\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=4 starts=1055 ends=1056 same_endpoints=1017 same_endpoint_ns=1197815859\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=5 starts=7326 ends=7325 same_endpoints=7283 same_endpoint_ns=9443085644\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=6 starts=700 ends=709 same_endpoints=664 same_endpoint_ns=377130741\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=7 starts=3634 ends=3630 same_endpoints=3586 same_endpoint_ns=2442527386\ncpu_endpoints direction=read segment=worker_service_before_done cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=dma_start calls=18176 total_ns=87384215 max_ns=36667 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=dma_start cpu_bucket=0 starts=1730 ends=1730 same_endpoints=1730 same_endpoint_ns=8401261\ncpu_endpoints direction=read segment=dma_start cpu_bucket=1 starts=1437 ends=1437 same_endpoints=1437 same_endpoint_ns=7423991\ncpu_endpoints direction=read segment=dma_start cpu_bucket=2 starts=897 ends=897 same_endpoints=897 same_endpoint_ns=4641908\ncpu_endpoints direction=read segment=dma_start cpu_bucket=3 starts=1397 ends=1397 same_endpoints=1397 same_endpoint_ns=7248571\ncpu_endpoints direction=read segment=dma_start cpu_bucket=4 starts=1055 ends=1055 same_endpoints=1055 same_endpoint_ns=5455005\ncpu_endpoints direction=read segment=dma_start cpu_bucket=5 starts=7326 ends=7326 same_endpoints=7326 same_endpoint_ns=37254208\ncpu_endpoints direction=read segment=dma_start cpu_bucket=6 starts=700 ends=700 same_endpoints=700 same_endpoint_ns=2705148\ncpu_endpoints direction=read segment=dma_start cpu_bucket=7 starts=3634 ends=3634 same_endpoints=3634 same_endpoint_ns=14254123\ncpu_endpoints direction=read segment=dma_start cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=pre_reset calls=18176 total_ns=35195181 max_ns=24958 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=0 starts=1730 ends=1730 same_endpoints=1730 same_endpoint_ns=3445569\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=1 starts=1437 ends=1437 same_endpoints=1437 same_endpoint_ns=2875567\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=2 starts=897 ends=897 same_endpoints=897 same_endpoint_ns=1830731\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=3 starts=1397 ends=1397 same_endpoints=1397 same_endpoint_ns=2811645\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=4 starts=1055 ends=1055 same_endpoints=1055 same_endpoint_ns=2140697\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=5 starts=7326 ends=7326 same_endpoints=7326 same_endpoint_ns=14266511\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=6 starts=700 ends=700 same_endpoints=700 same_endpoint_ns=1273305\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=7 starts=3634 ends=3634 same_endpoints=3634 same_endpoint_ns=6551156\ncpu_endpoints direction=read segment=pre_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=write_copy calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=write_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=command_wait calls=18176 total_ns=9870463009 max_ns=8256583 different_endpoints=350 different_endpoint_ns=252057367\ncpu_endpoints direction=read segment=command_wait cpu_bucket=0 starts=1730 ends=1726 same_endpoints=1681 same_endpoint_ns=646504132\ncpu_endpoints direction=read segment=command_wait cpu_bucket=1 starts=1437 ends=1441 same_endpoints=1393 same_endpoint_ns=813795363\ncpu_endpoints direction=read segment=command_wait cpu_bucket=2 starts=897 ends=895 same_endpoints=843 same_endpoint_ns=448951490\ncpu_endpoints direction=read segment=command_wait cpu_bucket=3 starts=1397 ends=1394 same_endpoints=1359 same_endpoint_ns=853984839\ncpu_endpoints direction=read segment=command_wait cpu_bucket=4 starts=1055 ends=1056 same_endpoints=1017 same_endpoint_ns=594804803\ncpu_endpoints direction=read segment=command_wait cpu_bucket=5 starts=7326 ends=7325 same_endpoints=7283 same_endpoint_ns=4129847845\ncpu_endpoints direction=read segment=command_wait cpu_bucket=6 starts=700 ends=709 same_endpoints=664 same_endpoint_ns=299433586\ncpu_endpoints direction=read segment=command_wait cpu_bucket=7 starts=3634 ends=3630 same_endpoints=3586 same_endpoint_ns=1831083584\ncpu_endpoints direction=read segment=command_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=busy_wait calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=read segment=busy_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=post_reset calls=18176 total_ns=35055222 max_ns=50875 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=post_reset cpu_bucket=0 starts=1726 ends=1726 same_endpoints=1726 same_endpoint_ns=3450521\ncpu_endpoints direction=read segment=post_reset cpu_bucket=1 starts=1441 ends=1441 same_endpoints=1441 same_endpoint_ns=2839970\ncpu_endpoints direction=read segment=post_reset cpu_bucket=2 starts=895 ends=895 same_endpoints=895 same_endpoint_ns=1830137\ncpu_endpoints direction=read segment=post_reset cpu_bucket=3 starts=1394 ends=1394 same_endpoints=1394 same_endpoint_ns=2740165\ncpu_endpoints direction=read segment=post_reset cpu_bucket=4 starts=1056 ends=1056 same_endpoints=1056 same_endpoint_ns=2089586\ncpu_endpoints direction=read segment=post_reset cpu_bucket=5 starts=7325 ends=7325 same_endpoints=7325 same_endpoint_ns=14242463\ncpu_endpoints direction=read segment=post_reset cpu_bucket=6 starts=709 ends=709 same_endpoints=709 same_endpoint_ns=1284508\ncpu_endpoints direction=read segment=post_reset cpu_bucket=7 starts=3630 ends=3630 same_endpoints=3630 same_endpoint_ns=6577872\ncpu_endpoints direction=read segment=post_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=read_copy calls=18176 total_ns=9384910021 max_ns=2675041 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=read_copy cpu_bucket=0 starts=1726 ends=1726 same_endpoints=1726 same_endpoint_ns=587253503\ncpu_endpoints direction=read segment=read_copy cpu_bucket=1 starts=1441 ends=1441 same_endpoints=1441 same_endpoint_ns=859979096\ncpu_endpoints direction=read segment=read_copy cpu_bucket=2 starts=895 ends=895 same_endpoints=895 same_endpoint_ns=433117015\ncpu_endpoints direction=read segment=read_copy cpu_bucket=3 starts=1394 ends=1394 same_endpoints=1394 same_endpoint_ns=934064704\ncpu_endpoints direction=read segment=read_copy cpu_bucket=4 starts=1056 ends=1056 same_endpoints=1056 same_endpoint_ns=623680992\ncpu_endpoints direction=read segment=read_copy cpu_bucket=5 starts=7325 ends=7325 same_endpoints=7325 same_endpoint_ns=5274686476\ncpu_endpoints direction=read segment=read_copy cpu_bucket=6 starts=709 ends=709 same_endpoints=709 same_endpoint_ns=78951616\ncpu_endpoints direction=read segment=read_copy cpu_bucket=7 starts=3630 ends=3630 same_endpoints=3630 same_endpoint_ns=593176619\ncpu_endpoints direction=read segment=read_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=completion_callback calls=18176 total_ns=85603404 max_ns=47250 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=0 starts=1726 ends=1726 same_endpoints=1726 same_endpoint_ns=10296409\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=1 starts=1441 ends=1441 same_endpoints=1441 same_endpoint_ns=8816090\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=2 starts=895 ends=895 same_endpoints=895 same_endpoint_ns=6195877\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=3 starts=1394 ends=1394 same_endpoints=1394 same_endpoint_ns=7985462\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=4 starts=1056 ends=1056 same_endpoints=1056 same_endpoint_ns=6197865\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=5 starts=7325 ends=7325 same_endpoints=7325 same_endpoint_ns=37342352\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=6 starts=709 ends=709 same_endpoints=709 same_endpoint_ns=1853297\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=7 starts=3630 ends=3630 same_endpoints=3630 same_endpoint_ns=6916052\ncpu_endpoints direction=read segment=completion_callback cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=read name=worker_total_before_merge calls=18176 total_ns=19501159818 max_ns=8336042 different_endpoints=350 different_endpoint_ns=451734247\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=0 starts=1730 ends=1726 same_endpoints=1681 same_endpoint_ns=1230550032\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=1 starts=1437 ends=1441 same_endpoints=1393 same_endpoint_ns=1662819948\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=2 starts=897 ends=895 same_endpoints=843 same_endpoint_ns=859039718\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=3 starts=1397 ends=1394 same_endpoints=1359 same_endpoint_ns=1783595191\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=4 starts=1055 ends=1056 same_endpoints=1017 same_endpoint_ns=1203760255\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=5 starts=7326 ends=7325 same_endpoints=7283 same_endpoint_ns=9481251927\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=6 starts=700 ends=709 same_endpoints=664 same_endpoint_ns=378797501\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=7 starts=3634 ends=3630 same_endpoints=3586 same_endpoint_ns=2449610999\ncpu_endpoints direction=read segment=worker_total_before_merge cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nrequests direction=write attempted=1356 success=1356 failed=0 requested_bytes=53596160 completed_bytes=53596160 poll_iterations=4316 poll_sleep_attempts=2960\nsize_bins direction=write le4096=370 le16384=176 le65536=810 gt65536=0\nsegment direction=write name=dispatch calls=1356 total_ns=16601626 max_ns=1165041 different_endpoints=1254 different_endpoint_ns=15570251\ncpu_endpoints direction=write segment=dispatch cpu_bucket=0 starts=8 ends=81 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=1 starts=109 ends=161 same_endpoints=3 same_endpoint_ns=113750\ncpu_endpoints direction=write segment=dispatch cpu_bucket=2 starts=116 ends=83 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=3 starts=7 ends=5 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=4 starts=26 ends=316 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=5 starts=1 ends=584 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=dispatch cpu_bucket=6 starts=912 ends=105 same_endpoints=96 same_endpoint_ns=880168\ncpu_endpoints direction=write segment=dispatch cpu_bucket=7 starts=177 ends=21 same_endpoints=3 same_endpoint_ns=37457\ncpu_endpoints direction=write segment=dispatch cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=worker_service_before_done calls=1356 total_ns=371569217 max_ns=7035958 different_endpoints=9 different_endpoint_ns=2341669\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=0 starts=81 ends=78 same_endpoints=78 same_endpoint_ns=12725419\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=1 starts=161 ends=160 same_endpoints=159 same_endpoint_ns=59648452\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=2 starts=83 ends=84 same_endpoints=81 same_endpoint_ns=14906250\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=3 starts=5 ends=6 same_endpoints=4 same_endpoint_ns=5432105\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=4 starts=316 ends=318 same_endpoints=316 same_endpoint_ns=92196130\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=142289359\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=6 starts=105 ends=106 same_endpoints=105 same_endpoint_ns=34325642\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=7 starts=21 ends=20 same_endpoints=20 same_endpoint_ns=7704191\ncpu_endpoints direction=write segment=worker_service_before_done cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=dma_start calls=1356 total_ns=33427708 max_ns=82375 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=dma_start cpu_bucket=0 starts=81 ends=81 same_endpoints=81 same_endpoint_ns=1456337\ncpu_endpoints direction=write segment=dma_start cpu_bucket=1 starts=161 ends=161 same_endpoints=161 same_endpoint_ns=4004041\ncpu_endpoints direction=write segment=dma_start cpu_bucket=2 starts=83 ends=83 same_endpoints=83 same_endpoint_ns=1659705\ncpu_endpoints direction=write segment=dma_start cpu_bucket=3 starts=5 ends=5 same_endpoints=5 same_endpoint_ns=188668\ncpu_endpoints direction=write segment=dma_start cpu_bucket=4 starts=316 ends=316 same_endpoints=316 same_endpoint_ns=9779331\ncpu_endpoints direction=write segment=dma_start cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=12888867\ncpu_endpoints direction=write segment=dma_start cpu_bucket=6 starts=105 ends=105 same_endpoints=105 same_endpoint_ns=3229756\ncpu_endpoints direction=write segment=dma_start cpu_bucket=7 starts=21 ends=21 same_endpoints=21 same_endpoint_ns=221003\ncpu_endpoints direction=write segment=dma_start cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=pre_reset calls=1356 total_ns=2643869 max_ns=30625 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=0 starts=81 ends=81 same_endpoints=81 same_endpoint_ns=158008\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=1 starts=161 ends=161 same_endpoints=161 same_endpoint_ns=315586\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=2 starts=83 ends=83 same_endpoints=83 same_endpoint_ns=162785\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=3 starts=5 ends=5 same_endpoints=5 same_endpoint_ns=10584\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=4 starts=316 ends=316 same_endpoints=316 same_endpoint_ns=640951\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=1128996\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=6 starts=105 ends=105 same_endpoints=105 same_endpoint_ns=188667\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=7 starts=21 ends=21 same_endpoints=21 same_endpoint_ns=38292\ncpu_endpoints direction=write segment=pre_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=write_copy calls=1356 total_ns=26752005 max_ns=77208 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=write_copy cpu_bucket=0 starts=81 ends=81 same_endpoints=81 same_endpoint_ns=1058575\ncpu_endpoints direction=write segment=write_copy cpu_bucket=1 starts=161 ends=161 same_endpoints=161 same_endpoint_ns=3200620\ncpu_endpoints direction=write segment=write_copy cpu_bucket=2 starts=83 ends=83 same_endpoints=83 same_endpoint_ns=1251793\ncpu_endpoints direction=write segment=write_copy cpu_bucket=3 starts=5 ends=5 same_endpoints=5 same_endpoint_ns=160918\ncpu_endpoints direction=write segment=write_copy cpu_bucket=4 starts=316 ends=316 same_endpoints=316 same_endpoint_ns=8132962\ncpu_endpoints direction=write segment=write_copy cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=10039426\ncpu_endpoints direction=write segment=write_copy cpu_bucket=6 starts=105 ends=105 same_endpoints=105 same_endpoint_ns=2776292\ncpu_endpoints direction=write segment=write_copy cpu_bucket=7 starts=21 ends=21 same_endpoints=21 same_endpoint_ns=131419\ncpu_endpoints direction=write segment=write_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=command_wait calls=1356 total_ns=333265550 max_ns=6997250 different_endpoints=9 different_endpoint_ns=1979208\ncpu_endpoints direction=write segment=command_wait cpu_bucket=0 starts=81 ends=78 same_endpoints=78 same_endpoint_ns=11116126\ncpu_endpoints direction=write segment=command_wait cpu_bucket=1 starts=161 ends=160 same_endpoints=159 same_endpoint_ns=55120828\ncpu_endpoints direction=write segment=command_wait cpu_bucket=2 starts=83 ends=84 same_endpoints=81 same_endpoint_ns=12977339\ncpu_endpoints direction=write segment=command_wait cpu_bucket=3 starts=5 ends=6 same_endpoints=4 same_endpoint_ns=5291395\ncpu_endpoints direction=write segment=command_wait cpu_bucket=4 starts=316 ends=318 same_endpoints=316 same_endpoint_ns=81228711\ncpu_endpoints direction=write segment=command_wait cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=127306742\ncpu_endpoints direction=write segment=command_wait cpu_bucket=6 starts=105 ends=106 same_endpoints=105 same_endpoint_ns=30798012\ncpu_endpoints direction=write segment=command_wait cpu_bucket=7 starts=21 ends=20 same_endpoints=20 same_endpoint_ns=7447189\ncpu_endpoints direction=write segment=command_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=busy_wait calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=busy_wait cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=post_reset calls=1356 total_ns=2628572 max_ns=18166 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=post_reset cpu_bucket=0 starts=78 ends=78 same_endpoints=78 same_endpoint_ns=151577\ncpu_endpoints direction=write segment=post_reset cpu_bucket=1 starts=160 ends=160 same_endpoints=160 same_endpoint_ns=311211\ncpu_endpoints direction=write segment=post_reset cpu_bucket=2 starts=84 ends=84 same_endpoints=84 same_endpoint_ns=164709\ncpu_endpoints direction=write segment=post_reset cpu_bucket=3 starts=6 ends=6 same_endpoints=6 same_endpoint_ns=12332\ncpu_endpoints direction=write segment=post_reset cpu_bucket=4 starts=318 ends=318 same_endpoints=318 same_endpoint_ns=632241\ncpu_endpoints direction=write segment=post_reset cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=1130085\ncpu_endpoints direction=write segment=post_reset cpu_bucket=6 starts=106 ends=106 same_endpoints=106 same_endpoint_ns=190378\ncpu_endpoints direction=write segment=post_reset cpu_bucket=7 starts=20 ends=20 same_endpoints=20 same_endpoint_ns=36039\ncpu_endpoints direction=write segment=post_reset cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=read_copy calls=0 total_ns=0 max_ns=0 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=0 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=1 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=2 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=3 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=4 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=5 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=6 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=7 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_endpoints direction=write segment=read_copy cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=completion_callback calls=1356 total_ns=5058515 max_ns=21791 different_endpoints=0 different_endpoint_ns=0\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=0 starts=78 ends=78 same_endpoints=78 same_endpoint_ns=322959\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=1 starts=160 ends=160 same_endpoints=160 same_endpoint_ns=674220\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=2 starts=84 ends=84 same_endpoints=84 same_endpoint_ns=338791\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=3 starts=6 ends=6 same_endpoints=6 same_endpoint_ns=37336\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=4 starts=318 ends=318 same_endpoints=318 same_endpoint_ns=1219260\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=2230120\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=6 starts=106 ends=106 same_endpoints=106 same_endpoint_ns=182286\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=7 starts=20 ends=20 same_endpoints=20 same_endpoint_ns=53543\ncpu_endpoints direction=write segment=completion_callback cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\nsegment direction=write name=worker_total_before_merge calls=1356 total_ns=376840069 max_ns=7041292 different_endpoints=9 different_endpoint_ns=2399627\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=0 starts=81 ends=78 same_endpoints=78 same_endpoint_ns=13060710\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=1 starts=161 ends=160 same_endpoints=159 same_endpoint_ns=60335716\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=2 starts=83 ends=84 same_endpoints=81 same_endpoint_ns=15241168\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=3 starts=5 ends=6 same_endpoints=4 same_endpoint_ns=5457607\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=4 starts=316 ends=318 same_endpoints=316 same_endpoint_ns=93455845\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=5 starts=584 ends=584 same_endpoints=584 same_endpoint_ns=144612933\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=6 starts=105 ends=106 same_endpoints=105 same_endpoint_ns=34516187\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=7 starts=21 ends=20 same_endpoints=20 same_endpoint_ns=7760276\ncpu_endpoints direction=write segment=worker_total_before_merge cpu_bucket=8 starts=0 ends=0 same_endpoints=0 same_endpoint_ns=0\ncpu_bucket_8=other;different_means_at_least_one_migration;same_does_not_exclude_migration\n",
+    "sha256": "7ecc6d2fdd57c863a31512fc5b81fc1665769a9a62862175fdde135f7d636d5e"
+  },
+  "after_sample_counts_observed_stable": true,
+  "stability_observations": [
+    {
+      "snapshot_ns": 128225113498,
+      "samples": {
+        "complete": 19532,
+        "incomplete": 0,
+        "dropped_events": 0
+      }
+    }
+  ],
+  "delta": {
+    "snapshot_interval_ns": 9804853356,
+    "samples": {
+      "complete": 8218,
+      "incomplete": 0,
+      "dropped_events": 0
+    },
+    "directions": {
+      "read": {
+        "segments": {
+          "dispatch": {
+            "calls": 8197,
+            "total_ns": 81689915,
+            "lifetime_max_ns_before": 5840875,
+            "lifetime_max_ns_after": 5840875,
+            "different_endpoints": 8197,
+            "different_endpoint_ns": 81689915,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 2820,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 0,
+                "ends": 5301,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "6": {
+                "starts": 927,
+                "ends": 76,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "7": {
+                "starts": 4450,
+                "ends": 2820,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 9965.83079175308
+          },
+          "worker_service_before_done": {
+            "calls": 8197,
+            "total_ns": 9256161272,
+            "lifetime_max_ns_before": 8325875,
+            "lifetime_max_ns_after": 8325875,
+            "different_endpoints": 1,
+            "different_endpoint_ns": 735468,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 5301,
+                "ends": 5301,
+                "same_endpoints": 5301,
+                "same_endpoint_ns": 7183888196
+              },
+              "6": {
+                "starts": 76,
+                "ends": 75,
+                "same_endpoints": 75,
+                "same_endpoint_ns": 55083467
+              },
+              "7": {
+                "starts": 2820,
+                "ends": 2821,
+                "same_endpoints": 2820,
+                "same_endpoint_ns": 2016454141
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 1129213.2819324143
+          },
+          "dma_start": {
+            "calls": 8197,
+            "total_ns": 38492458,
+            "lifetime_max_ns_before": 36667,
+            "lifetime_max_ns_after": 36667,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 5301,
+                "ends": 5301,
+                "same_endpoints": 5301,
+                "same_endpoint_ns": 27082693
+              },
+              "6": {
+                "starts": 76,
+                "ends": 76,
+                "same_endpoints": 76,
+                "same_endpoint_ns": 299540
+              },
+              "7": {
+                "starts": 2820,
+                "ends": 2820,
+                "same_endpoints": 2820,
+                "same_endpoint_ns": 11110225
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 4695.9202147127
+          },
+          "pre_reset": {
+            "calls": 8197,
+            "total_ns": 15408330,
+            "lifetime_max_ns_before": 24958,
+            "lifetime_max_ns_after": 24958,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 5301,
+                "ends": 5301,
+                "same_endpoints": 5301,
+                "same_endpoint_ns": 10218183
+              },
+              "6": {
+                "starts": 76,
+                "ends": 76,
+                "same_endpoints": 76,
+                "same_endpoint_ns": 136043
+              },
+              "7": {
+                "starts": 2820,
+                "ends": 2820,
+                "same_endpoints": 2820,
+                "same_endpoint_ns": 5054104
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 1879.7523484201538
+          },
+          "write_copy": {
+            "calls": 0,
+            "total_ns": 0,
+            "lifetime_max_ns_before": 0,
+            "lifetime_max_ns_after": 0,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "6": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": null
+          },
+          "command_wait": {
+            "calls": 8197,
+            "total_ns": 4463116238,
+            "lifetime_max_ns_before": 8256583,
+            "lifetime_max_ns_after": 8256583,
+            "different_endpoints": 1,
+            "different_endpoint_ns": 542923,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 5301,
+                "ends": 5301,
+                "same_endpoints": 5301,
+                "same_endpoint_ns": 2939824847
+              },
+              "6": {
+                "starts": 76,
+                "ends": 75,
+                "same_endpoints": 75,
+                "same_endpoint_ns": 40777644
+              },
+              "7": {
+                "starts": 2820,
+                "ends": 2821,
+                "same_endpoints": 2820,
+                "same_endpoint_ns": 1481970824
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 544481.6686592656
+          },
+          "busy_wait": {
+            "calls": 0,
+            "total_ns": 0,
+            "lifetime_max_ns_before": 0,
+            "lifetime_max_ns_after": 0,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "6": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": null
+          },
+          "post_reset": {
+            "calls": 8197,
+            "total_ns": 15489770,
+            "lifetime_max_ns_before": 50875,
+            "lifetime_max_ns_after": 50875,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 5301,
+                "ends": 5301,
+                "same_endpoints": 5301,
+                "same_endpoint_ns": 10249573
+              },
+              "6": {
+                "starts": 75,
+                "ends": 75,
+                "same_endpoints": 75,
+                "same_endpoint_ns": 136042
+              },
+              "7": {
+                "starts": 2821,
+                "ends": 2821,
+                "same_endpoints": 2821,
+                "same_endpoint_ns": 5104155
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 1889.687690618519
+          },
+          "read_copy": {
+            "calls": 8197,
+            "total_ns": 4724849806,
+            "lifetime_max_ns_before": 2675041,
+            "lifetime_max_ns_after": 2675041,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 5301,
+                "ends": 5301,
+                "same_endpoints": 5301,
+                "same_endpoint_ns": 4195955967
+              },
+              "6": {
+                "starts": 75,
+                "ends": 75,
+                "same_endpoints": 75,
+                "same_endpoint_ns": 13784733
+              },
+              "7": {
+                "starts": 2821,
+                "ends": 2821,
+                "same_endpoints": 2821,
+                "same_endpoint_ns": 515109106
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 576412.0783213371
+          },
+          "completion_callback": {
+            "calls": 8197,
+            "total_ns": 31342671,
+            "lifetime_max_ns_before": 47250,
+            "lifetime_max_ns_after": 47250,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 5301,
+                "ends": 5301,
+                "same_endpoints": 5301,
+                "same_endpoint_ns": 26295531
+              },
+              "6": {
+                "starts": 75,
+                "ends": 75,
+                "same_endpoints": 75,
+                "same_endpoint_ns": 138377
+              },
+              "7": {
+                "starts": 2821,
+                "ends": 2821,
+                "same_endpoints": 2821,
+                "same_endpoint_ns": 4908763
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 3823.6758570208613
+          },
+          "worker_total_before_merge": {
+            "calls": 8197,
+            "total_ns": 9288705782,
+            "lifetime_max_ns_before": 8336042,
+            "lifetime_max_ns_after": 8336042,
+            "different_endpoints": 1,
+            "different_endpoint_ns": 739218,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 5301,
+                "ends": 5301,
+                "same_endpoints": 5301,
+                "same_endpoint_ns": 7211066336
+              },
+              "6": {
+                "starts": 76,
+                "ends": 75,
+                "same_endpoints": 75,
+                "same_endpoint_ns": 55230055
+              },
+              "7": {
+                "starts": 2820,
+                "ends": 2821,
+                "same_endpoints": 2820,
+                "same_endpoint_ns": 2021670173
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 1133183.5771623764
+          }
+        },
+        "requests": {
+          "attempted": 8197,
+          "success": 8197,
+          "failed": 0,
+          "requested_bytes": 537137152,
+          "completed_bytes": 537137152,
+          "poll_iterations": 49352,
+          "poll_sleep_attempts": 41155
+        },
+        "size_bins": {
+          "le4096": 0,
+          "le16384": 1,
+          "le65536": 8196,
+          "gt65536": 0
+        }
+      },
+      "write": {
+        "segments": {
+          "dispatch": {
+            "calls": 21,
+            "total_ns": 210213,
+            "lifetime_max_ns_before": 1165041,
+            "lifetime_max_ns_after": 1165041,
+            "different_endpoints": 21,
+            "different_endpoint_ns": 210213,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 1,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 0,
+                "ends": 20,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "6": {
+                "starts": 1,
+                "ends": 1,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "7": {
+                "starts": 19,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 10010.142857142857
+          },
+          "worker_service_before_done": {
+            "calls": 21,
+            "total_ns": 2767676,
+            "lifetime_max_ns_before": 7035958,
+            "lifetime_max_ns_after": 7035958,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 20,
+                "ends": 20,
+                "same_endpoints": 20,
+                "same_endpoint_ns": 2651966
+              },
+              "6": {
+                "starts": 1,
+                "ends": 1,
+                "same_endpoints": 1,
+                "same_endpoint_ns": 115710
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 131794.09523809524
+          },
+          "dma_start": {
+            "calls": 21,
+            "total_ns": 243754,
+            "lifetime_max_ns_before": 82375,
+            "lifetime_max_ns_after": 82375,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 20,
+                "ends": 20,
+                "same_endpoints": 20,
+                "same_endpoint_ns": 237296
+              },
+              "6": {
+                "starts": 1,
+                "ends": 1,
+                "same_endpoints": 1,
+                "same_endpoint_ns": 6458
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 11607.333333333334
+          },
+          "pre_reset": {
+            "calls": 21,
+            "total_ns": 40249,
+            "lifetime_max_ns_before": 30625,
+            "lifetime_max_ns_after": 30625,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 20,
+                "ends": 20,
+                "same_endpoints": 20,
+                "same_endpoint_ns": 38457
+              },
+              "6": {
+                "starts": 1,
+                "ends": 1,
+                "same_endpoints": 1,
+                "same_endpoint_ns": 1792
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 1916.6190476190477
+          },
+          "write_copy": {
+            "calls": 21,
+            "total_ns": 145379,
+            "lifetime_max_ns_before": 77208,
+            "lifetime_max_ns_after": 77208,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 20,
+                "ends": 20,
+                "same_endpoints": 20,
+                "same_endpoint_ns": 143213
+              },
+              "6": {
+                "starts": 1,
+                "ends": 1,
+                "same_endpoints": 1,
+                "same_endpoint_ns": 2166
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 6922.809523809524
+          },
+          "command_wait": {
+            "calls": 21,
+            "total_ns": 2450127,
+            "lifetime_max_ns_before": 6997250,
+            "lifetime_max_ns_after": 6997250,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 20,
+                "ends": 20,
+                "same_endpoints": 20,
+                "same_endpoint_ns": 2343834
+              },
+              "6": {
+                "starts": 1,
+                "ends": 1,
+                "same_endpoints": 1,
+                "same_endpoint_ns": 106293
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 116672.71428571429
+          },
+          "busy_wait": {
+            "calls": 0,
+            "total_ns": 0,
+            "lifetime_max_ns_before": 0,
+            "lifetime_max_ns_after": 0,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "6": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": null
+          },
+          "post_reset": {
+            "calls": 21,
+            "total_ns": 40292,
+            "lifetime_max_ns_before": 18166,
+            "lifetime_max_ns_after": 18166,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 20,
+                "ends": 20,
+                "same_endpoints": 20,
+                "same_endpoint_ns": 38500
+              },
+              "6": {
+                "starts": 1,
+                "ends": 1,
+                "same_endpoints": 1,
+                "same_endpoint_ns": 1792
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 1918.6666666666667
+          },
+          "read_copy": {
+            "calls": 0,
+            "total_ns": 0,
+            "lifetime_max_ns_before": 0,
+            "lifetime_max_ns_after": 0,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "6": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": null
+          },
+          "completion_callback": {
+            "calls": 21,
+            "total_ns": 76707,
+            "lifetime_max_ns_before": 21791,
+            "lifetime_max_ns_after": 21791,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 20,
+                "ends": 20,
+                "same_endpoints": 20,
+                "same_endpoint_ns": 75082
+              },
+              "6": {
+                "starts": 1,
+                "ends": 1,
+                "same_endpoints": 1,
+                "same_endpoint_ns": 1625
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 3652.714285714286
+          },
+          "worker_total_before_merge": {
+            "calls": 21,
+            "total_ns": 2847635,
+            "lifetime_max_ns_before": 7041292,
+            "lifetime_max_ns_after": 7041292,
+            "different_endpoints": 0,
+            "different_endpoint_ns": 0,
+            "cpu_endpoints": {
+              "0": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "1": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "2": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "3": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "4": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "5": {
+                "starts": 20,
+                "ends": 20,
+                "same_endpoints": 20,
+                "same_endpoint_ns": 2730217
+              },
+              "6": {
+                "starts": 1,
+                "ends": 1,
+                "same_endpoints": 1,
+                "same_endpoint_ns": 117418
+              },
+              "7": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              },
+              "8": {
+                "starts": 0,
+                "ends": 0,
+                "same_endpoints": 0,
+                "same_endpoint_ns": 0
+              }
+            },
+            "mean_wall_ns_per_call": 135601.66666666666
+          }
+        },
+        "requests": {
+          "attempted": 21,
+          "success": 21,
+          "failed": 0,
+          "requested_bytes": 180224,
+          "completed_bytes": 180224,
+          "poll_iterations": 43,
+          "poll_sleep_attempts": 22
+        },
+        "size_bins": {
+          "le4096": 17,
+          "le16384": 1,
+          "le65536": 3,
+          "gt65536": 0
+        }
+      }
+    }
+  },
+  "expected_probe_data_requests_at_64KiB": 8192,
+  "timing_read_count_and_byte_lower_bounds_satisfied": true,
+  "limits": [
+    "Snapshots contain only fully merged requests, including background ordinary I/O. Stability observations are not a hardware drain or proof that no request is outstanding.",
+    "Read-count/byte lower bounds reject obvious missing coverage; background reads can mask a smaller omission. Preflight inode is an outer observation, not a hash embedded by the frozen probe.",
+    "Snapshot, syscall, system CPU, worker CPU and diskstats windows have different endpoints. Compare counts and retain background I/O rather than forcing equality.",
+    "dma_start includes pre_reset/write_copy; worker_total includes service/callback. Do not add nested segment totals.",
+    "Wall durations include interrupts/scheduling. Same CPU endpoints do not prove residency; differing endpoints imply at least one migration.",
+    "max_ns is a lifetime maximum. Only before/after maxima are reported; their difference is not the interval maximum.",
+    "No probe content validation, unique-media streaming claim or physical desktop acceptance is implied."
+  ]
+}

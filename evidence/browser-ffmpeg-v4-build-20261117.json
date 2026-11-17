@@ -1,0 +1,229 @@
+{
+  "schema": 1,
+  "status": "COMPILED_ARM64_SOFTWARE_AUDIT_PASS_BROWSER_VALIDATION_PENDING",
+  "board_access": false,
+  "date": "2026-11-17",
+  "trigger": "Firefox supplies mTimecode decode timestamps ahead of B-frame presentation timestamps. Root captured PTS/DTS 0/0,50000/16666,33333/33333,16666/50000,100000/66666,83333/83333,66666/100000. GstBaseParse clamps PTS<DTS to DTS and produces duplicated/wrong presentation timestamps.",
+  "change": "Single behavioral change from v3: pass INT64_MIN as DTS to t736_client_push. Leave original packet timestamps, replay, offset calculation and frame timing metadata unchanged. The Annex-B stream already retains decode order. No broker or kernel change.",
+  "root_prebuild_hardware_validation": {
+    "scope": "Root agent independent A/B through same live broker before this library build",
+    "frames": 180,
+    "all_pixels_exact": true,
+    "pts_equal_each_i_floor_microseconds_over_60": true,
+    "unknown_or_duplicated_pts": false,
+    "new_dma_allocation": false,
+    "note": "This verifies the proposed wire behavior; actual Firefox v4 playback remains pending."
+  },
+  "build": {
+    "archive": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v4.tar.gz",
+    "bytes": 6981192,
+    "sha256": "7320540ee59a0c51fba825a82f40960ad1f16ef6069cc4e91703e0ece3fa6e0a",
+    "manifest_sha256": "647b7faa8e1ba7d0209c2ccca9819dc2ef32665a235132c953682e06a1d06d99",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084304,
+        "sha256": "3e290583db372386f44996de503c0e997fffc413851690f8705698447cd4b0dc",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    }
+  },
+  "manifest": {
+    "schema": 1,
+    "status": "COMPILED_TESTS_AND_BOARD_PENDING",
+    "upstream": "FFmpeg official n7.1.5 tag",
+    "source_archive_sha256": "e3963a50831c985933e1a625ed566ec4c7adb5c012c34fa9f84438e1d61bdacc",
+    "source_archive_url": "https://codeload.github.com/FFmpeg/FFmpeg/tar.gz/refs/tags/n7.1.5",
+    "configure": [
+      "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/src/configure",
+      "--prefix=/opt/t736-browser-ffmpeg",
+      "--arch=aarch64",
+      "--target-os=linux",
+      "--enable-cross-compile",
+      "--cross-prefix=aarch64-linux-gnu-",
+      "--enable-shared",
+      "--disable-static",
+      "--enable-pic",
+      "--disable-doc",
+      "--disable-programs",
+      "--disable-autodetect",
+      "--disable-network",
+      "--disable-encoders",
+      "--disable-muxers",
+      "--disable-devices",
+      "--disable-filters",
+      "--disable-avdevice",
+      "--disable-avfilter",
+      "--disable-postproc",
+      "--extra-ldflags=-ldl",
+      "--enable-decoder=h264_cedar,hevc_cedar,h264,hevc",
+      "--enable-bsf=h264_mp4toannexb,hevc_mp4toannexb"
+    ],
+    "source_sha256": "ef61bbc5e0749ec2540821b44294dd566ea4f860cae9c7eff75626b388552b8a",
+    "client_header_sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+    "codec_list_sha256": "c9ad395080a43e0298f16aca4ac1ceec48fe54b08ce032971603f6888a8ae0be",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084304,
+        "sha256": "3e290583db372386f44996de503c0e997fffc413851690f8705698447cd4b0dc",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    },
+    "selection": "Cedar wrappers lead av_codec_iterate and avcodec_find_decoder; native names h264/hevc remain available for fallback.",
+    "software_codecs": "All available in-tree decoders/parsers retained; external codec libraries not auto-detected or linked. Native h264/hevc and audio fallback retained.",
+    "sandbox": "No sandbox disabling. Hardware API resolved only from an already-preloaded, already-connected client.",
+    "limits": [
+      "Only even <=1920x1080 8-bit hardware frames accepted.",
+      "Bounded replay fallback only before a hardware frame is delivered; post-delivery hardware errors remain explicit.",
+      "No assertion of hardware use based on Firefox software-frame backend labels.",
+      "No system library installation or target execution by this builder."
+    ]
+  },
+  "test_source_sha256": "758e510b5588716e4afc52b0e614c01701fa688b22d3645a893d7ee3461a6caa",
+  "tests": {
+    "result": "PASS",
+    "checks": 5343,
+    "hardware": false,
+    "new_cases": [
+      "Actual seven-packet Firefox decode-order DTS sequence through H264 wrapper",
+      "Same sequence through HEVC wrapper",
+      "Empty pkt_timebase/time_base as Firefox leaves them; microsecond interpretation remains exact",
+      "Hardware wire DTS is unknown for every push, original packet and returned frame DTS preserved",
+      "B-frame PTS earlier than original DTS is preserved without clamping"
+    ],
+    "retained_cases": [
+      "Eight native-fallback MD5/PTS/duration comparisons for H264/HEVC45B-frame fixtures",
+      "Asynchronous backpressure, negativePTS, EOS, flush and fatal handling",
+      "Pooled frame direct ownership, overlap, flush reuse, post-close lifetime and nonaligned fallback"
+    ],
+    "log": "mainline/evidence/build/browser-ffmpeg-v4-arm64-qemu-20261117.log",
+    "log_sha256": "e57e6891e389fe011825efd67b1e03644bc5e20ee6e069bf44a525c083422ea3"
+  },
+  "limits": [
+    "Browser v4 runtime/performance and sandbox state are verified separately by root",
+    "Does not remove WC read or IPC copy costs",
+    "Software fallback still uses unmodified original AVPacket DTS",
+    "No frame timestamps synthesized from nominal frame rate"
+  ]
+}

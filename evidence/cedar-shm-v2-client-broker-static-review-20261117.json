@@ -1,0 +1,161 @@
+{
+  "schema": "t736-independent-client-broker-static-review-v1",
+  "created_utc": "2026-11-17T06:02:31.577319+00:00",
+  "status": "PASS_WITH_VALIDATION_SCOPE_LIMITS",
+  "source_sha256": {
+    "tools/browser/shm_v2/cedar_client.c": "84ec6f08321aa4ac76f449fbb05d82cfd97467d3774d200a11d85431bc06778a",
+    "tools/browser/shm_v2/cedar_broker.c": "8d81f7697a1b367689df34002ff4d9f8fc25ae4136c1aae734caa517e3b9d081",
+    "tools/browser/shm_v2/cedar_shm.h": "c99cefb5bad2318bec39e57fa6f7ef27a33013bb58dae15d3c237bef97e2590c",
+    "tools/browser/shm_v2/cedar_protocol.h": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646",
+    "tools/browser/shm_v2/cedar_backend.h": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b",
+    "tools/browser/cedar_broker.c": "0011409a112975f5ee010518c9ddb2a86a2dce22e0eb8a53c954f63b52997612",
+    "tools/browser/cedar_backend.c": "0186b91b99c39134ee394dc5fe009b9d09415eb86b4d15bb09401a0a0cce1177",
+    "tools/browser/t736-cedar-experiment.service": "bfee57118c313ce8ad7c4a2eb01c28d2a9acc6d321f30182775b0edd488005e2",
+    "tests/test_cedar_shm_transport.c": "b0689c6aa1593d94ecbb1748ce41b0744988cc758bc5bcba845598db881bcc9f",
+    "tests/test_cedar_shm_seals.c": "341fab86314c3a04d27dc31d10a311b5ef3f7eccab6d44b3e495262f6c8ab102",
+    "evidence/cedar-shm-seals-20261117.json": "c8e62b00450c9a3356549a7ad3832ffe254abc5a0f44fe467034fc1f8493eb76"
+  },
+  "findings": [],
+  "checks": [
+    {
+      "result": "PASS",
+      "property": "Fixed service identity",
+      "explanation": "getpwnam_r resolves literal t736-cedar with no environment-controlled uid; missing/root/current-client uid are rejected. The resolved uid controls both SO_PEERCRED and memfd-owner checks.",
+      "file": "tools/browser/shm_v2/cedar_client.c",
+      "line": 109
+    },
+    {
+      "result": "PASS",
+      "property": "Endpoint validation",
+      "explanation": "lstat rejects symlink/non-directory runtime root and symlink/non-socket endpoint; both must be service-owned, directory group/other write bits clear. Connected SO_PEERCRED requires exact size, expected uid and positive pid, preventing substitution of a different-uid peer.",
+      "file": "tools/browser/shm_v2/cedar_client.c",
+      "line": 111
+    },
+    {
+      "result": "PASS",
+      "property": "Constructor and available gates",
+      "explanation": "Only enabled RDD or explicitly enabled test-client constructor connects. No public API reconnects. available requires original process, live fd and completed mapping and reads state under API mutex.",
+      "file": "tools/browser/shm_v2/cedar_client.c",
+      "line": 94
+    },
+    {
+      "result": "PASS",
+      "property": "Fork and destruction",
+      "explanation": "Shared-state API paths call current_process before taking inherited mutex. Receiver map is DONTFORK. disconnect/destructor unmaps only in original pid, clears state and closes its local fd; child never munmaps a stale inherited pointer.",
+      "file": "tools/browser/shm_v2/cedar_client.c",
+      "line": 27
+    },
+    {
+      "result": "PASS",
+      "property": "Exact v2 setup",
+      "explanation": "Client validates magic/version/op/response shape/serial1/session0/status0/reserved0 before mapping and closes received fd on success or failure. Broker requires exact32-byte setup with no rights before backend lease creation.",
+      "file": "tools/browser/shm_v2/cedar_client.c",
+      "line": 62
+    },
+    {
+      "result": "PASS",
+      "property": "Strict serial and response shape",
+      "explanation": "Client refuses uint32 wrap and validates response version/op/serial/reserved/status lower bound/session. Server requires next serial exactly and disallows SETUP after handshake. Ordinary reply body cannot exceed picture metadata.",
+      "file": "tools/browser/shm_v2/cedar_client.c",
+      "line": 144
+    },
+    {
+      "result": "PASS",
+      "property": "Active session and dimensions",
+      "explanation": "Successful OPEN returns session in 1..INT_MAX and records dimensions under mutex. Matching successful CLOSE clears active state. Successful PULL must match both caller/stored session and stored dimensions.",
+      "file": "tools/browser/shm_v2/cedar_client.c",
+      "line": 168
+    },
+    {
+      "result": "PASS",
+      "property": "PULL bounds and colors",
+      "explanation": "Only status1 with exactly sizeof(picture) reaches copy. Checks enforce nonzero even <=1920x1080 dimensions, exact I420 bytes, caller and slot capacity, active session/dimensions, color_range<=2, colorspace in {0,1,6,9}, reserved0. AGAIN/EOF/error/invalid metadata preserve caller pixels; malformed reply disconnects.",
+      "file": "tools/browser/shm_v2/cedar_client.c",
+      "line": 213
+    },
+    {
+      "result": "PASS",
+      "property": "Mutex covers shared-slot copy",
+      "explanation": "API mutex spans sending PULL, receiving/validating metadata, acquire fence, memcpy and frame assignment. Next request cannot overwrite the slot before current caller owns copied pixels.",
+      "file": "tools/browser/shm_v2/cedar_client.c",
+      "line": 241
+    },
+    {
+      "result": "PASS",
+      "property": "Separate bounded peer RAM",
+      "explanation": "Each serve owns a distinct shm created after authenticated SETUP. Body allocation follows setup. Any finish path frees body/map/fd then canonical lease cleanup. Peer maximum remains8.",
+      "file": "tools/browser/shm_v2/cedar_broker.c",
+      "line": 221
+    },
+    {
+      "result": "PASS",
+      "property": "Copy then free then reply",
+      "explanation": "After bounded frame validation broker copies into peer memfd, executes release fence, releases ordinary RAM frame and sends header/picture only. Backend copy_sample unmaps GstVideoFrame and cedar_pull unrefs GstSample before returning; earlier RAM-frame release does not alter hardware ownership.",
+      "file": "tools/browser/shm_v2/cedar_broker.c",
+      "line": 256
+    },
+    {
+      "result": "PASS",
+      "property": "Lease unchanged",
+      "explanation": "lookup/open_context/time validation/retained globals/exit lease cleanup compare text-identical to canonical v1. execute matches after sole declared picture-only length substitution. Active lease and owner-fd checks are retained.",
+      "file": "tools/browser/shm_v2/cedar_broker.c",
+      "line": 59
+    },
+    {
+      "result": "PASS",
+      "property": "Receiver map and cleanup",
+      "explanation": "Helper requires unlinked regular exact-size file, owner/dev/inode, exact reported required seals plus F_SEAL_EXEC, no executable mode bits and CLOEXEC. Mapping is PROT_READ/MAP_SHARED, DONTFORK; madvise failure unmaps.",
+      "file": "tools/browser/shm_v2/cedar_shm.h",
+      "line": 150
+    }
+  ],
+  "canonical_v1_comparison": {
+    "retained_and_lease_globals": {
+      "text_identical": true,
+      "normalized_text_sha256": "fa21192075140f95c1594d15e2e872105bb7924ba6fd171f9ca79db9383e6cb9"
+    },
+    "backend_result": {
+      "text_identical": true,
+      "normalized_text_sha256": "44c83837f923b992ba351f8f3e0e668e60f17800b7b2a8dbd7834a79c7ec507b"
+    },
+    "io_all": {
+      "text_identical": true,
+      "normalized_text_sha256": "190acc23d88c17f7704dbb2c725bc0a924218674acc35c4181bceb1dcac2536a"
+    },
+    "lookup": {
+      "text_identical": true,
+      "normalized_text_sha256": "613c0d81ad1146f831d7277c9485353366793201e25322314831259bc498ce46"
+    },
+    "open_context": {
+      "text_identical": true,
+      "normalized_text_sha256": "ada103ac819b533cca629e70a01b425d8b982238fa2236f5884a7c96539561f4"
+    },
+    "us_to_ns": {
+      "text_identical": true,
+      "normalized_text_sha256": "a6bef28ee09a2f5448cbb1cb4e020b92c3de76b98efa9aa2f740b37b09cf3862"
+    },
+    "valid_time": {
+      "text_identical": true,
+      "normalized_text_sha256": "2a85ebee5daeea5b4bf615d332536e6395c461e0fbc4cbe9fa40008707744c43"
+    },
+    "execute_except_picture_only_length": {
+      "text_identical_after_declared_substitution": true,
+      "declared_substitution": "message->length = sizeof(*picture) + picture->bytes => message->length = sizeof(*picture)"
+    },
+    "serve_exit_lease_cleanup": {
+      "text_identical": true
+    }
+  },
+  "test_evidence": {
+    "independently_executed_helper": "evidence/cedar-shm-seals-20261117.json;58 cases with ASan/UBSan/LSan and native default-timeout runs, core source unchanged since those runs",
+    "transport_source_reviewed": "tests/test_cedar_shm_transport.c includes actual client/broker; probe pauses inside actual client memcpy and checks API mutex EBUSY;1000 concurrent pulls;both-direction v1 refusal;8 malformed reply cases and AGAIN preserve old dst",
+    "transport_execution_attribution": "Parent code_index reports native sanitizer PASS. This addendum reviews source/invariants and does not claim a separate duplicate run."
+  },
+  "limits": [
+    "No ARM64 build, board, service deployment, Firefox/RDD sandbox or performance acceptance performed by this reviewer.",
+    "Constructor requires isolated Firefox profile dom.ipc.forkserver.enable=false as documented in tools/browser/README.md; launcher itself does not set that pref.",
+    "Constructor identity/directory gates reviewed statically. Transport mock calls setup_connection directly and does not validate deployed account/profile configuration.",
+    "NOEXEC covers F_SEAL_EXEC and immutable nonexecutable file mode; no universal PROT_EXEC-mapping claim.",
+    "Core files, canonical v1, backend and frozen previous evidence were not modified by this review."
+  ]
+}

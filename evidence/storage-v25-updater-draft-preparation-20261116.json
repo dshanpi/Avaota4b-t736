@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "storage-v25-updater-draft-preparation",
+  "date": "2026-11-16",
+  "status": "PENDING_FINAL_BUILD_BINDINGS_CANNOT_APPLY",
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v25.py": "778682da3d7f913e780461dac13ac95220a22ed26c267995f2f790001ff38b2d",
+    "tools/validation/test_update_t736_storage_v25.py": "4fcbbbdc9ba268724e2e3b8be5fb6284f57bf525386e8e57b63360905f6c9307",
+    "evidence/storage-v25-updater-draft-offline-tests-20261116.log": "93daf17f1236b86999904167771179588b88bbbc2e88984338b88139c69727b1"
+  },
+  "running_releases": [
+    "6.18.63-t736-storage-v16",
+    "6.18.63-t736-storage-v24"
+  ],
+  "fallback": "6.18.63-t736-storage-v16",
+  "candidate": "6.18.63-t736-storage-v25",
+  "pending_bindings": [
+    "kernel_sha256",
+    "kernel_bytes",
+    "pvr_sha256",
+    "pvr_bytes",
+    "control_manifest_sha256",
+    "payload_manifest_sha256",
+    "raw_image_sha256",
+    "raw_image_bytes"
+  ],
+  "fixed_dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+  "fallback_dtb": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+  "validation": {
+    "reused_fault_injection_tests": 14,
+    "Linux_build_host_result": "PASS",
+    "Windows_local_attempt": "Not run: importing Linux fcntl fails on Windows; tests were then run on the Linux build host.",
+    "functions_and_classes_AST_equivalence_after_version_identity_renaming": 29,
+    "control_flow_changes": false
+  },
+  "board_operations": false,
+  "activation": "After final bindings and independent review, root alone may install then restore persistent v16 selection and perform an explicit-path one-shot v25 diagnostic boot. No bootcmd/SPL/GPT changes."
+}

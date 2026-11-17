@@ -1,0 +1,26 @@
+6.18.63-t736-storage-v24
+5e72df86-6d96-4e2b-9677-4018a2c2f862
+clock:		200000000 Hz
+actual clock:	200000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	10 (mmc HS400)
+signal voltage:	1 (1.80 V)
+driver type:	0 (driver type B)
+Startup finished in 7.720s (kernel) + 6.200s (userspace) = 13.921s 
+graphical.target reached after 6.181s in userspace.
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+  Extended CSD rev 1.8 (MMC 5.1)
+Card Type [CARD_TYPE: 0x57]
+High-speed interface timing [HS_TIMING: 0x03]
+[    2.965820] t736-smhc3-pio 4023000.mmc: HS200 tuning card=200000000 pass=ffffffc0ffffffff abort_err=0000003f00000000 window=0+32 tap=15 verified=16x128 THLD=00800001 SFC=00000006
+[    6.541954] t736-smhc3-pio 4023000.mmc: HS400 tuned card=200000000 cmd_pass=fffffff1ffffffff cmd_window=0+33 cmd=16 ds_pass=0000000003fffff0 ds_window=4+22 ds=14 abort_err=fffffffffc00000f verified=16xCMD13+16x512 EXT_CSD=03/06 R1=00000900 THLD=02000001 SFC=00000006
+[   80.088790] t736-emmc-clocks-ro-v4: begin samples=3 registers=25; raw reads only
+[   80.088816] t736-emmc-clocks-ro-v4: sample=0 PLL_REF_CTRL addr=0x02002000 value=0xf8675f00
+[   80.088826] t736-emmc-clocks-ro-v4: sample=0 PLL_PERI0_CTRL addr=0x020020a0 value=0xff126310
+[   80.088835] t736-emmc-clocks-ro-v4: sample=0 PLL_PERI0_PAT0 addr=0x020020a8 value=0x00000000

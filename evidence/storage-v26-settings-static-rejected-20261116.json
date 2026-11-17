@@ -1,0 +1,691 @@
+{
+  "schema": "t736-settings-process-v1",
+  "status": "ERROR",
+  "kernel": "6.18.63-t736-storage-v26",
+  "boot_id": "4b3ad302-5619-49f8-94e3-bab3f8bbc2cd",
+  "mode": "new_process_launch",
+  "panel": "multitasking",
+  "environment": {
+    "DISPLAY": ":0",
+    "GDK_BACKEND": "x11",
+    "GDK_DISABLE": "gl-api,glx,vulkan",
+    "GSK_RENDERER": "opengl",
+    "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+    "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri",
+    "MESA_LOADER_DRIVER_OVERRIDE": null,
+    "GTK_MEDIA": null,
+    "GST_GL_API": null,
+    "GST_GL_PLATFORM": null,
+    "GST_GL_WINDOW": null,
+    "XDG_CACHE_HOME": null
+  },
+  "script_sha256": "abe17848c49f5cf6d6a5f4eba7ca1c11dcb7f565a6f6518a1a529475d1e55064",
+  "mapped_helper_sha256": "0ce3d550eb4a728353234d3563509b99baa18ee04c14f7abcea291315cfe910d",
+  "first_paint_verified": false,
+  "panel_complete_verified": false,
+  "physical_display_verified": false,
+  "app_auto_terminated": false,
+  "poll_interval_seconds": 0.5,
+  "window_seconds": 10.0,
+  "samples": [
+    {
+      "elapsed_seconds": 0.009832439999996723,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "D",
+        "minor_faults": 16,
+        "major_faults": 1,
+        "user_ticks": 0,
+        "system_ticks": 0,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 2,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "folio_wait_bit_common",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "D",
+          "minor_faults": 16,
+          "major_faults": 1,
+          "user_ticks": 0,
+          "system_ticks": 0,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 2,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 0.5112209910000161,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "D",
+        "minor_faults": 1374,
+        "major_faults": 132,
+        "user_ticks": 22,
+        "system_ticks": 10,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "D",
+          "minor_faults": 1374,
+          "major_faults": 132,
+          "user_ticks": 22,
+          "system_ticks": 10,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 0,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 1.013040449000016,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 1.5143297980000057,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 2.015560695000005,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 2.516528472999994,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 3.0174374750000084,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 3.51818946100002,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 4.018897682000016,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 4.519661911000014,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 5.020298671000006,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 5.521191127999998,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 6.021961919000006,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 6.522818902000012,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 7.023694446999997,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 7.524532184000009,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 8.025502165000006,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 8.526332338999993,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 9.027069167999997,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 9.527906212000005,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    },
+    {
+      "elapsed_seconds": 10.000728164000009,
+      "process": {
+        "comm": "gnome-control-c",
+        "state": "Z",
+        "minor_faults": 2457,
+        "major_faults": 166,
+        "user_ticks": 55,
+        "system_ticks": 13,
+        "threads": 1,
+        "start_ticks": 21048,
+        "last_cpu": 6,
+        "blkio_delay_ticks": 0
+      },
+      "io": {},
+      "main_thread_wchan": "0",
+      "tasks": {
+        "4103": {
+          "comm": "gnome-control-c",
+          "state": "Z",
+          "minor_faults": 2457,
+          "major_faults": 166,
+          "user_ticks": 55,
+          "system_ticks": 13,
+          "threads": 1,
+          "start_ticks": 21048,
+          "last_cpu": 6,
+          "blkio_delay_ticks": 0
+        }
+      }
+    }
+  ],
+  "app_log": "/home/t736/storage-v26-settings-static-20261116.json.app.log",
+  "mapped_log": "/home/t736/storage-v26-settings-static-20261116.json.mapped.json",
+  "pid": 4103,
+  "request_pid": 4103,
+  "start_monotonic": 210.484609759,
+  "error": "FileNotFoundError(2, 'No such file or directory')",
+  "observer_process_cpu_seconds": 0.022042834999999983,
+  "observer_cpu_scope": "Wrapper only; excludes the separate X11 observer process"
+}

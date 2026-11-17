@@ -1,0 +1,284 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v24-desktop-before-mutter",
+  "status": "observed-baseline-not-responsiveness-acceptance",
+  "kernel_release": "6.18.63-t736-storage-v24",
+  "boot_id": "5e72df86-6d96-4e2b-9677-4018a2c2f862",
+  "storage": "HS400200,8bit,1.8V",
+  "display": "X11 1920x1080@60",
+  "gnome_pid": 3437,
+  "gdm_configuration_restored_exactly": true,
+  "settings_static": {
+    "window_mapping": {
+      "pid": 4602,
+      "display": ":0",
+      "metric": "First viewable X11 client window with matching _NET_WM_PID",
+      "complete_render_verified": false,
+      "input_sent": false,
+      "timeout_seconds": 10.0,
+      "start_monotonic": 302.234001075,
+      "observer_start_monotonic": 302.372763014,
+      "start_origin": "launcher",
+      "status": "mapped",
+      "window": "0x1e00004",
+      "elapsed_seconds": 1.811562,
+      "observer_seconds": 1.672801,
+      "width": 1920,
+      "height": 1048
+    },
+    "cpu_seconds": 4.07,
+    "counter_delta": {
+      "user_ticks": 369,
+      "system_ticks": 38,
+      "minor_faults": 13165,
+      "major_faults": 215,
+      "blkio_delay_ticks": 0
+    },
+    "largest_threads": [
+      {
+        "tid": 4602,
+        "comm": "gnome-control-c",
+        "cpu_seconds_lower_bound": 2.68,
+        "last_sampled_cpu": 7
+      },
+      {
+        "tid": 4630,
+        "comm": "Optimise p(dwt)",
+        "cpu_seconds_lower_bound": 1.16,
+        "last_sampled_cpu": 6
+      },
+      {
+        "tid": 4609,
+        "comm": "pool-0",
+        "cpu_seconds_lower_bound": 0.06,
+        "last_sampled_cpu": 5
+      }
+    ]
+  },
+  "settings_mouse": {
+    "mode": "panel_activation",
+    "cli_dispatch": {
+      "exit_code": 0,
+      "observed_exit_seconds": 1.5304660499999727,
+      "observation_resolution_seconds": 0.5,
+      "metric": "CLI request return, not first paint or completed panel"
+    },
+    "cpu_seconds": 4.15,
+    "counter_delta": {
+      "user_ticks": 384,
+      "system_ticks": 31,
+      "minor_faults": 13766,
+      "major_faults": 56,
+      "blkio_delay_ticks": 0
+    }
+  },
+  "gtk": {
+    "workload": "24 rounded libadwaita cards with labels, buttons and switches; 240px/s scroll",
+    "renderer_gtype": "GskGLRenderer",
+    "environment": {
+      "GDK_BACKEND": "x11",
+      "GDK_DISABLE": "gl-api,glx,vulkan",
+      "GSK_RENDERER": "opengl",
+      "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+      "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri"
+    },
+    "warmup_elapsed_seconds": 5.0155355200000145,
+    "sample_elapsed_seconds": 10.003061822999996,
+    "tick_count": 493,
+    "after_paint_count": 493,
+    "cpu_seconds_sample": 2.84751482,
+    "tick_intervals": {
+      "count": 492,
+      "median_ms": 16.743,
+      "p95_ms": 33.438,
+      "over_33_5ms": 3
+    },
+    "after_paint_intervals": {
+      "count": 492,
+      "median_ms": 16.811999999999998,
+      "p95_ms": 34.391,
+      "over_33_5ms": 59
+    },
+    "per_second": [
+      {
+        "window_index": 1,
+        "start_elapsed_seconds": 0.0,
+        "end_elapsed_seconds": 1.0002641239999548,
+        "actual_elapsed_seconds": 1.0002641239999548,
+        "tick_count": 53,
+        "after_paint_count": 53,
+        "process_cpu_seconds": 0.3047953259999998,
+        "final_window": false
+      },
+      {
+        "window_index": 2,
+        "start_elapsed_seconds": 1.0002641239999548,
+        "end_elapsed_seconds": 2.0023137519999636,
+        "actual_elapsed_seconds": 1.0020496280000089,
+        "tick_count": 51,
+        "after_paint_count": 51,
+        "process_cpu_seconds": 0.291985081,
+        "final_window": false
+      },
+      {
+        "window_index": 3,
+        "start_elapsed_seconds": 2.0023137519999636,
+        "end_elapsed_seconds": 3.000705633999985,
+        "actual_elapsed_seconds": 0.9983918820000213,
+        "tick_count": 47,
+        "after_paint_count": 47,
+        "process_cpu_seconds": 0.27363963300000016,
+        "final_window": false
+      },
+      {
+        "window_index": 4,
+        "start_elapsed_seconds": 3.000705633999985,
+        "end_elapsed_seconds": 4.001037998999948,
+        "actual_elapsed_seconds": 1.000332364999963,
+        "tick_count": 40,
+        "after_paint_count": 40,
+        "process_cpu_seconds": 0.23945360799999982,
+        "final_window": false
+      },
+      {
+        "window_index": 5,
+        "start_elapsed_seconds": 4.001037998999948,
+        "end_elapsed_seconds": 5.000368589999994,
+        "actual_elapsed_seconds": 0.9993305910000458,
+        "tick_count": 43,
+        "after_paint_count": 43,
+        "process_cpu_seconds": 0.253242996,
+        "final_window": false
+      },
+      {
+        "window_index": 6,
+        "start_elapsed_seconds": 5.000368589999994,
+        "end_elapsed_seconds": 6.0039695709999705,
+        "actual_elapsed_seconds": 1.0036009809999769,
+        "tick_count": 52,
+        "after_paint_count": 52,
+        "process_cpu_seconds": 0.29847379200000024,
+        "final_window": false
+      },
+      {
+        "window_index": 7,
+        "start_elapsed_seconds": 6.0039695709999705,
+        "end_elapsed_seconds": 7.000266296999996,
+        "actual_elapsed_seconds": 0.9962967260000255,
+        "tick_count": 51,
+        "after_paint_count": 51,
+        "process_cpu_seconds": 0.29006502500000053,
+        "final_window": false
+      },
+      {
+        "window_index": 8,
+        "start_elapsed_seconds": 7.000266296999996,
+        "end_elapsed_seconds": 8.000598619999948,
+        "actual_elapsed_seconds": 1.0003323229999523,
+        "tick_count": 52,
+        "after_paint_count": 52,
+        "process_cpu_seconds": 0.2958475509999996,
+        "final_window": false
+      },
+      {
+        "window_index": 9,
+        "start_elapsed_seconds": 8.000598619999948,
+        "end_elapsed_seconds": 9.000918155999955,
+        "actual_elapsed_seconds": 1.0003195360000063,
+        "tick_count": 52,
+        "after_paint_count": 52,
+        "process_cpu_seconds": 0.3002895160000003,
+        "final_window": false
+      },
+      {
+        "window_index": 10,
+        "start_elapsed_seconds": 9.000918155999955,
+        "end_elapsed_seconds": 10.003061822999996,
+        "actual_elapsed_seconds": 1.0021436670000412,
+        "tick_count": 52,
+        "after_paint_count": 52,
+        "process_cpu_seconds": 0.29972229199999934,
+        "final_window": true
+      }
+    ],
+    "libraries": [
+      "/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0",
+      "/opt/t736-img-ddk-24.2-x11/lib/libGL.so.1.2.0",
+      "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0",
+      "/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887",
+      "/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887",
+      "/usr/lib/aarch64-linux-gnu/libadwaita-1.so.0",
+      "/usr/lib/aarch64-linux-gnu/libcairo-gobject.so.2.11804.4",
+      "/usr/lib/aarch64-linux-gnu/libcairo-script-interpreter.so.2.11804.4",
+      "/usr/lib/aarch64-linux-gnu/libcairo.so.2.11804.4",
+      "/usr/lib/aarch64-linux-gnu/libgtk-4.so.1.1800.6",
+      "/usr/share/locale/zh_CN/LC_MESSAGES/libadwaita.mo"
+    ],
+    "physical_display_verified": false
+  },
+  "feedback": {
+    "sample_records": 493,
+    "identity_ok": 493,
+    "complete": 492,
+    "nonzero_presentation": 0,
+    "nonzero_refresh_interval": 0,
+    "paint_callback_span": {
+      "count": 493,
+      "median_us": 5587,
+      "p95_us": 6380
+    },
+    "between_paint_callbacks": {
+      "count": 492,
+      "median_us": 11294.0,
+      "p95_us": 28080
+    }
+  },
+  "post_workload_health": {
+    "x11_gpu_probe_frames": 60,
+    "x11_gpu_probe_pixels": "PASS",
+    "pvr_driver": "OK",
+    "pvr_firmware": "OK",
+    "pvr_error_counters": 0,
+    "fbdev_timeout_boot_seconds": [
+      206.30631,
+      206.514299
+    ],
+    "fbdev_context": "Observed after GDM restart used to create the temporary test session; no proof of precise cause. Storage-stage earlier health had no such entries. No later timeout shown in final log."
+  },
+  "limits": [
+    "Window mapped and command dispatch return are not first-paint or completed-panel latency.",
+    "No forced cache drop; this first Settings launch of the boot followed GPU/storage probes. Do not directly compare with historical warm launches.",
+    "GTK after-paint callback rate is not physical presentation rate. Paint spans include CPU work and waits.",
+    "All sample presentation and refresh fields unavailable; no timestamp invented.",
+    "X11/GNOME hardware path checks do not establish user-perceived fluency or physical HDMI acceptance.",
+    "Test-owned Settings and GTK processes exited; no process affinity was changed.",
+    "Mutter patch not installed; baseline uses system Mutter48.7."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/storage-v24-settings-static-20261116.json",
+      "sha256": "5ddb83692fff87139553cf603e3e03d3d14cfaca6af28cf7ca5fdd62880f640e",
+      "bytes": 90541
+    },
+    {
+      "path": "evidence/storage-v24-settings-mouse-20261116.json",
+      "sha256": "cd93199474bacb4f07288822cdfe1b302a1e37ce4413ff7825783aa5c7afba20",
+      "bytes": 645209
+    },
+    {
+      "path": "evidence/storage-v24-gtk-before-mutter-20261116.log",
+      "sha256": "dbf4f1c38cc8155ce95edb2fe9e16c623dee224996d5b3fcc760b5aa010bdd29",
+      "bytes": 396973
+    },
+    {
+      "path": "evidence/storage-v24-x11-gnome-health-20261116.log",
+      "sha256": "6956dd49e7af9b6b06b3f32626e0ee2b221f832568036286f42afde2e444e936",
+      "bytes": 1464
+    },
+    {
+      "path": "evidence/storage-v24-hs400-stage-record-20261116.json",
+      "sha256": "1b8d1b66c3915fde3626da8d73b62ed09b0eb38949b149b9399f115c2d410cbb",
+      "bytes": 24269
+    }
+  ]
+}

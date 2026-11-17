@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "kind": "storage-v24-guarded-updater-preparation",
+  "date": "2026-11-16",
+  "status": "ready-for-board-check-apply-and-one-shot-trial",
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v24.py": "0344a5364a9e7e126b5413870387ced4c9c1f83a9135dfd703ad55141546290e",
+    "tools/validation/test_update_t736_storage_v24.py": "f4317aa02f24247bf38bc15ab29729b749bb10f5ab2b2b6a2345a5736a7c6de4",
+    "evidence/storage-v24-updater-offline-tests-20261116.log": "1367246767b62de762e1a93ea028ee4a67ce6f4e7d9cf6938264d35836ea55a9",
+    "evidence/storage-v24-updater-exact-inputs-20261116.json": "b8452b8a247b98433fc2ce2d8990e4a7eb351cfab306b761f28b2da98ec30b61",
+    "evidence/storage-v24-updater-independent-review-20261116.json": "43313c3f9d7e2b2b5f41b6ed36aae8cd420cd620bcd5a1d4373b43fde38c3d9f",
+    "evidence/storage-v24-updater-bindings-20261116.json": "947df4826d5dd253d22dcee4856369ad178deecde94a7600baa3940cd16b6892",
+    "evidence/storage-v24-updater-control-manifest-20261116.json": "8020383f8de1e1f4852b19164306bcdc2e39659a95469a88bdacde145fc8beb6",
+    "evidence/storage-v24-updater-payload-manifest-20261116.json": "b8059d2a3eac3686e1e952d5c48998c00dcbead97eeb99c6c2b98465ff7e0cd6",
+    "evidence/storage-v24-build-20261116.json": "313b2472f667fe0800d9e76beadef0cb6a3c7df3dabd6e56138a2ae3f5b57e22",
+    "evidence/storage-v24-package-20261116.json": "2f696b6ef46bf6e5368da12b547f627fd9db5d51e6d3b6ecffd01bbde21b80ff",
+    "evidence/storage-v24-pvr-build-20261116.json": "0945bf9ae364361cf54b0fe15d391d3a59d5d0e3bfa54d9d61ffcc18466ad358",
+    "evidence/storage-hs400-implementation-review-20261116.json": "785699885c8fb1da35e5e3d77589493f295fb9fc64699eb14211366aa6fd55b1",
+    "evidence/emmc-clocks-readonly-v4-storage-v24-20261116.json": "95b920cd934ad0e3d38f634d6063c8c3afaea43a738135a24bc9b565e05bd8c2"
+  },
+  "bindings": {
+    "kernel_sha256": "c58e56fab073adf8f62c14148ab7d79d7feb7ee43e134744c834556079ac0578",
+    "kernel_bytes": 5603706,
+    "pvr_sha256": "badb7af910bd31bf60df0642db893111d77031f9f3560b3f2a23303d0ed700ea",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "2f6abfc2f19fd736cf9b30bf885afd6804686ccbf87d94023e7484e5b8387a5e",
+    "payload_manifest_sha256": "e2d952dcc99ee6e1637a81bff640286093fee15fe66cb9b9e122b641a0ce18ac",
+    "raw_image_sha256": "6f1ee43143befeefa495f982bfeac36ed95669370c4fe9e8e68cb1636c7560ac",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "candidate_dtb_bytes": 12028,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "offline_tests": {
+    "passed": 14,
+    "includes": [
+      "Validated running v23 identity and corruption rejection",
+      "Running v23 separated from fixed v16 fallback",
+      "Timeout-child quiescence before rollback",
+      "Backup corruption, final-verification faults and path-escape protection"
+    ]
+  },
+  "state_separation": {
+    "allowed_running": [
+      "6.18.63-t736-storage-v16",
+      "6.18.63-t736-storage-v23"
+    ],
+    "fixed_default_fallback": "6.18.63-t736-storage-v16",
+    "default_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate": "6.18.63-t736-storage-v24"
+  },
+  "planned_board_flow": [
+    "Root checks and applies the pinned transaction.",
+    "Root immediately restores default selection from the fresh BACKUP_FSYNC_VERIFIED directory.",
+    "v24 kernel/initrd/package DT/PVR remain installed for explicit-path one-shot U-Boot boot with HS200200 prerequisite and first HS400100 parameters listed below; no saveenv."
+  ],
+  "candidate_scope": "Opt-in HS400 on frozen v23 HS200 path: separate zero-retry CMD13 command eye and512B CMD8 EXT_CSD data-strobe eye;26RO fields and actualHS400mode comparison; ordinarydata gateduntilvalid; DDR8 protocoltransition supported. No sharedPLL/rail changes. DefaultsHS200/HS400off.",
+  "second_stage": "HS400100MHz and200MHz need distinct boot/mode/CMD-and-DS-window/integrity/health evidence; neither is accepted merely because v23 HS200200 passed.",
+  "board_operations_by_this_agent": false,
+  "candidate_board_accepted": false,
+  "private_home_archive_included": false,
+  "delivery": "SFTP only; no new HTTP service.",
+  "independent_review": "code_index PASS at final updater SHA0344a5364a9e7e126b5413870387ced4c9c1f83a9135dfd703ad55141546290e;28functions same AST controlflow asv23 after release-string normalization.",
+  "exact_inputs": "82payload entries and full control/payload manifests match actual v24package;fourmaintainer scripts equalv23 exceptreleaseidentity and were notexecuted in audit.11bindings come fromfinalv24 build/PVR; baselineDT is intentionally fixedv16.",
+  "boot_trial_parameters": [
+    "t736_mmc_pio.enable_hs200=1",
+    "t736_mmc_pio.hs200_max_hz=200000000",
+    "t736_mmc_pio.enable_hs400=1",
+    "t736_mmc_pio.hs400_max_hz=100000000"
+  ],
+  "readonly_module": {
+    "path": "build/emmc-clocks-readonly-v4-storage-v24/t736-emmc-clocks-readonly-v4.ko",
+    "bytes": 8176,
+    "sha256": "056412109119a377b7bf441bee8e6ab832288bcbe1f7112dc808797c3a650693",
+    "source_unchanged": true
+  }
+}

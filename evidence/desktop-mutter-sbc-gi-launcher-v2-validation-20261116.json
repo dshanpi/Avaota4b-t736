@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "kind": "gnome-shell-48.7-fixed-origin-introspection-path",
+  "hardware_validation": false,
+  "original_path_reproduction": {
+    "command": [
+      "python3",
+      "/work/gi-path-repro.py",
+      "bad"
+    ],
+    "exit_code": -5,
+    "stdout": "",
+    "stderr": "\n(process:32): GLib-GObject-CRITICAL **: 14:45:54.042: cannot register existing type 'ClutterActor'\nqemu: uncaught target signal 5 (Trace/breakpoint trap) - core dumped\n"
+  },
+  "corrected_path_reproduction": {
+    "command": [
+      "python3",
+      "/work/gi-path-repro.py",
+      "fixed"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"mode\": \"fixed\", \"first_gtype\": 13442928, \"gi_gtype\": 13442928, \"same_gtype\": true, \"maps\": [\"/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16/libmutter-clutter-16.so.0.0.0\", \"/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16/libmutter-cogl-16.so.0.0.0\", \"/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16/libmutter-mtk-16.so.0.0.0\"]}\n",
+    "stderr": ""
+  },
+  "actual_candidate_binary_list_modes": {
+    "command": [
+      "/opt/t736-mutter-sbc-48.7-ac42f10a/bin/gnome-shell",
+      "--list-modes"
+    ],
+    "exit_code": 0,
+    "stdout": "gdm\nuser\n",
+    "stderr": ""
+  },
+  "original_shell_sha256": "b1a5849e70adde55c74dfd1410236b5a2e67f864a59db7fe80826a0cd5d87175",
+  "candidate_shell_sha256": "c67136e035f803dc0d404536763707d20d76b7a0c3c59df18420dcf424173caf",
+  "runpath": {
+    "command": [
+      "readelf",
+      "-d",
+      "/opt/t736-mutter-sbc-48.7-ac42f10a/bin/gnome-shell"
+    ],
+    "exit_code": 0,
+    "stdout": "\nDynamic section at offset 0xfa40 contains 39 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [libshell-16.so]\n 0x0000000000000001 (NEEDED)             Shared library: [libgio-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libgobject-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libglib-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libatk-bridge-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libgjs.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libmutter-clutter-16.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libgirepository-1.0.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libmutter-16.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [ld-linux-aarch64.so.1]\n 0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN/../lib/aarch64-linux-gnu/mutter-16:/usr/lib/gnome-shell]\n 0x000000000000000c (INIT)               0x2178\n 0x000000000000000d (FINI)               0x3b38\n 0x0000000000000019 (INIT_ARRAY)         0x1fa10\n 0x000000000000001b (INIT_ARRAYSZ)       8 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0x1fa18\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x30068\n 0x0000000000000005 (STRTAB)             0x30a30\n 0x0000000000000006 (SYMTAB)             0x300d0\n 0x000000000000000a (STRSZ)              2148 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0x1fcf0\n 0x0000000000000002 (PLTRELSZ)           2064 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x1968\n 0x0000000000000007 (RELA)               0x1668\n 0x0000000000000008 (RELASZ)             768 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x0000000070000001 (AARCH64_BTI_PLT)    \n 0x000000000000001e (FLAGS)              BIND_NOW\n 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE\n 0x000000006ffffffe (VERNEED)            0x15f8\n 0x000000006fffffff (VERNEEDNUM)         2\n 0x000000006ffffff0 (VERSYM)             0x152c\n 0x000000006ffffff9 (RELACOUNT)          26\n 0x0000000000000000 (NULL)               0x0\n",
+    "stderr": ""
+  },
+  "gnome_shell_package": {
+    "command": [
+      "dpkg-query",
+      "-W",
+      "gnome-shell"
+    ],
+    "exit_code": 0,
+    "stdout": "gnome-shell\t48.7-0+deb13u2\n",
+    "stderr": ""
+  },
+  "pass": true
+}

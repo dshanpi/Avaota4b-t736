@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "SOURCE_MATCHES_ARM64_QEMU_AND_ASAN_UBSAN_BUILD_RECORD",
+  "board_access": false,
+  "change": "Keep the first backend or GStreamer error, include bounded GError debug details, and consume specific private action bus errors before generic idle/resume fallback.",
+  "build_record": "evidence/cedar-browser-backend-v4-build-20261117.json",
+  "source_hashes_match_build": true,
+  "library_sha256": "8c45bb1f752e66fda68aaee973a288778ca1af4a2b52946a71013e62fe2146dd",
+  "archive_sha256": "395068c98b28ae72e0a23baeb601a61fe0649a05c88b384483c3eb8f18109484",
+  "verified_tests": [
+    "ARM64 compiler Wall/Wextra/Werror",
+    "ARM64 QEMU actual GstVideoFrame copy and EOS/flush/mock idle/resume reuse tests",
+    "Native actual C ASan/UBSan tests, leak detection disabled for GStreamer globals",
+    "Rejected private action preserves primary state/started/last_error message and remains poisoned after subsequent fail/resume"
+  ],
+  "unchanged": [
+    "Frame ownership and bounded copy validation",
+    "Input/output queue and dimension caps",
+    "Retained single instance lifecycle",
+    "Private idle/resume action state policy",
+    "Kernel imported-buffer quarantine"
+  ],
+  "limitations": [
+    "Mock action tests verify backend ordering and error preservation, not vendor OMX hardware lifecycle",
+    "Gst seek TRUE does not prove each downstream flush succeeded",
+    "Kernel imports remain pinned until reboot; no recovery or reuse claim follows from state reset alone"
+  ],
+  "operator_reported_hardware": {
+    "source": "root message; author did not operate board",
+    "private_capture_packets": 64,
+    "frames_exact_md5": 64,
+    "ve_irqs": 64,
+    "close_result": 0,
+    "scope": "Fresh private replay only; full Firefox/Bilibili acceptance belongs to root runtime evidence"
+  }
+}

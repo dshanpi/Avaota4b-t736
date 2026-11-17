@@ -1,0 +1,36 @@
+
+(python3:10364): Gtk-WARNING **: 14:50:35.201: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.
+{"status": "COMPLETE", "renderer_gtype": "GskGLRenderer", "environment": {"GDK_BACKEND": "x11", "GDK_DISABLE": "gl-api,glx,vulkan", "GSK_RENDERER": "opengl", "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles", "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri"}, "sample_elapsed_seconds": 10.000872100999914, "after_paint_count": 544, "after_paint_intervals": {"count": 543, "median_ms": 18.487, "p95_ms": 33.517, "over_33_5ms": 29}, "cpu_seconds_sample": 3.1624093459999996, "session_before": {"locked": false, "overview_active": false}, "session_after": {"locked": false, "overview_active": false}}
+/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/libmutter-16.so.0.0.0
+/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16/libmutter-clutter-16.so.0.0.0
+/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16/libmutter-cogl-16.so.0.0.0
+/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16/libmutter-mtk-16.so.0.0.0
+11月 16 14:49:19 t736 gnome-shell[9374]: EGL_X11_SBC surface=2097156 reason=enabled disabled=0 submitted=0 submit_failures=0 confirmed=0 symbolic=0 max_wait_us=0 max_queue_depth=0
+11月 16 14:49:19 t736 gnome-shell[9374]: GNOME Shell started at Mon Nov 16 2026 14:49:14 GMT+0000 (协调世界时)
+11月 16 14:49:59 t736 gnome-shell[9374]: EGL_X11_SBC surface=2097156 reason=periodic disabled=0 submitted=120 submit_failures=0 confirmed=120 symbolic=0 max_wait_us=143435 max_queue_depth=2
+11月 16 14:50:02 t736 gnome-shell[9374]: EGL_X11_SBC surface=2097156 reason=periodic disabled=0 submitted=240 submit_failures=0 confirmed=240 symbolic=0 max_wait_us=143435 max_queue_depth=2
+11月 16 14:50:06 t736 gnome-shell[9374]: EGL_X11_SBC surface=2097156 reason=periodic disabled=0 submitted=360 submit_failures=0 confirmed=360 symbolic=0 max_wait_us=143435 max_queue_depth=2
+11月 16 14:50:10 t736 gnome-shell[9374]: EGL_X11_SBC surface=2097156 reason=periodic disabled=0 submitted=480 submit_failures=0 confirmed=480 symbolic=0 max_wait_us=143435 max_queue_depth=2
+11月 16 14:50:37 t736 gnome-shell[9374]: EGL_X11_SBC surface=2097156 reason=periodic disabled=0 submitted=601 submit_failures=0 confirmed=600 symbolic=0 max_wait_us=143435 max_queue_depth=2
+11月 16 14:50:39 t736 gnome-shell[9374]: EGL_X11_SBC surface=2097156 reason=periodic disabled=0 submitted=721 submit_failures=0 confirmed=720 symbolic=0 max_wait_us=143435 max_queue_depth=2
+11月 16 14:50:41 t736 gnome-shell[9374]: EGL_X11_SBC surface=2097156 reason=periodic disabled=0 submitted=841 submit_failures=0 confirmed=840 symbolic=0 max_wait_us=143435 max_queue_depth=2
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 3%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   3% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 

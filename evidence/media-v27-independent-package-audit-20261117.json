@@ -1,0 +1,777 @@
+{
+  "schema": 1,
+  "kind": "media-v27-independent-package-audit",
+  "recorded_utc": "2026-11-17T03:24:46.597500+00:00",
+  "status": "PASS_STATIC_PACKAGE_AUDIT_NOT_HARDWARE_ACCEPTANCE",
+  "kernel_release": "6.18.63-t736-media-v27",
+  "config_changes": {
+    "CONFIG_DMABUF_HEAPS": [
+      "n",
+      "y"
+    ],
+    "CONFIG_LOCALVERSION": [
+      "\"-t736-storage-v26\"",
+      "\"-t736-media-v27\""
+    ],
+    "CONFIG_VIDEO_T736_CEDAR_WC": [
+      "n",
+      "y"
+    ]
+  },
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-media-v27_6.18.63-27_arm64.deb",
+    "bytes": 5613816,
+    "sha256": "2370636db2b65aa371ab99aa587519e9b7a44ffbdd356426ee978c053b8b203f"
+  },
+  "pvr": {
+    "path": "build/pvr-bxm-media-v27/target_aarch64/kbuild/pvrsrvkm.ko",
+    "bytes": 1913808,
+    "sha256": "981d873348e061af66c030f21af1f050ccb7d4df156ac9abbfcfa7a885a6652d",
+    "vermagic": "6.18.63-t736-media-v27 SMP mod_unload aarch64"
+  },
+  "kernel_artifacts": [
+    {
+      "path": "build/linux-media-v27/arch/arm64/boot/Image",
+      "bytes": 11800584,
+      "sha256": "d45492d638dbe8684aea9006d2438b9a1838aec2425084cfc1efa11ff5261c4a"
+    },
+    {
+      "path": "build/linux-media-v27/arch/arm64/boot/Image.gz",
+      "bytes": 5053287,
+      "sha256": "ae1cdde51209b120c1800dd6c4bb5ae6000bd60d8ce808414fb4e732780e7a9e"
+    },
+    {
+      "path": "build/linux-media-v27/.config",
+      "bytes": 99178,
+      "sha256": "cb3eab53d6fb243b620eb34ebbd3b6284aa3fde869106c5a147a65c8e91ccfac"
+    },
+    {
+      "path": "build/linux-media-v27/System.map",
+      "bytes": 2645985,
+      "sha256": "a15c1a5c0b4e452231c6f59279ef23f9220c7def0cc589612e519ab3263625f3"
+    },
+    {
+      "path": "build/linux-media-v27/Module.symvers",
+      "bytes": 488215,
+      "sha256": "2c78cfcd32781c9121ff5b6effae05ca5e51e97f1bffa1556bd2f778c4fb0cc9"
+    },
+    {
+      "path": "build/linux-media-v27/vmlinux",
+      "bytes": 15781424,
+      "sha256": "8aa7af8be6f9a8f4b7abfa60ed4642db7a30d13e599a3d96f126fefe06b519c9"
+    }
+  ],
+  "source_and_objects": [
+    {
+      "path": "boards/clk-t736-ve.c",
+      "bytes": 8846,
+      "sha256": "a68e6cf5c2c0ea2c94c4c55722cf2e53c936f7de45b666a00d62cf93cbace7bd"
+    },
+    {
+      "path": "build/linux-media-v27/drivers/clk/clk-t736-ve.o",
+      "bytes": 9304,
+      "sha256": "7cc1f15437a5b3aae5e778c9ea49c35b0579983838a6bd161f982956eee883a3"
+    },
+    {
+      "path": "boards/t736-ve-power.c",
+      "bytes": 3994,
+      "sha256": "8902a8e487ed6109c0dd9aadb83b75bdeb4e3a7bf16406dc35a9243a4970bfc9"
+    },
+    {
+      "path": "build/linux-media-v27/drivers/soc/sunxi/t736-ve-power.o",
+      "bytes": 6952,
+      "sha256": "885a11d7a9c5ce738055a088e3f6cb50cb3646ed9b6bdba04fa3bf15ca8dadc5"
+    },
+    {
+      "path": "boards/t736-cedar-wc.c",
+      "bytes": 21452,
+      "sha256": "5c9a73ed2d701bfb5905aa59da73f7f07f60b1c0636c6746f1b7110a68265402"
+    },
+    {
+      "path": "build/linux-media-v27/drivers/misc/t736-cedar-wc.o",
+      "bytes": 20040,
+      "sha256": "c1882808855b8cd8b1360ab36229a0d52d339886a7202afe1fb0b90b0bdf52fe"
+    },
+    {
+      "path": "boards/t736-media-v27.dtsi",
+      "bytes": 1513,
+      "sha256": "01b24b44440094407429898fc81d8725ddfd0e3b5d6942057c5fd5cc785a9dd5"
+    }
+  ],
+  "linked_vmlinux_symbols": [
+    "ve_ccu_probe",
+    "ve_power_probe",
+    "ve_probe",
+    "ve_heap_allocate",
+    "ve_buffer_ops",
+    "ve_power_driver",
+    "ve_ccu_driver",
+    "ve_driver",
+    "dma_heap_add"
+  ],
+  "dtb": {
+    "path": "build/linux-media-v27/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb",
+    "bytes": 13012,
+    "sha256": "45012aeb86d657fca568417e831067170d12e224ebe71720c1956989af6f3626",
+    "added_nodes": [
+      "/clock-controller@2002a88",
+      "/power-controller@7062000",
+      "/video-codec@1c0e000"
+    ],
+    "existing_nodes": 76,
+    "existing_semantics_unchanged": true,
+    "phandle_only_changes": [],
+    "new_node_properties_hex": {
+      "/clock-controller@2002a88": {
+        "compatible": "616c6c77696e6e65722c743733362d76652d63637500",
+        "reg": "0000000002002a8800000000000000080000000002002000000000000000000400000000020020a0000000000000000400000000020025c0000000000000000400000000020025e0000000000000000400000000020025e4000000000000000400000000020025b40000000000000004",
+        "reg-names": "766500706c6c2d72656600706c6c2d7065726930006168622d6d6173746572006d6275732d6d6173746572006d6275732d6761746500696f6d6d75312d73797300",
+        "clocks": "000000030000000e00000010",
+        "clock-names": "6463786f00616862006d62757300",
+        "#clock-cells": "00000001",
+        "#reset-cells": "00000001",
+        "phandle": "0000002a"
+      },
+      "/power-controller@7062000": {
+        "compatible": "616c6c77696e6e65722c743733362d76652d706f77657200",
+        "reg": "000000000706200000000000000010000000000003910404000000000000000400000000039106040000000000000004",
+        "reg-names": "70707500646563302d62797061737300646563312d62797061737300",
+        "clocks": "000000160000000b0000002a000000020000002a000000030000002a000000040000002a000000010000002a000000060000002a000000050000002a00000000",
+        "clock-names": "70707500616862006d6275732d6d6173746572006d6275730062757300696f6d6d75312d6d62757300696f6d6d75312d73797300766500",
+        "resets": "0000002a00000000",
+        "reset-names": "766500",
+        "#power-domain-cells": "00000000",
+        "phandle": "0000002b"
+      },
+      "/video-codec@1c0e000": {
+        "compatible": "616c6c77696e6e65722c743733362d63656461722d776300",
+        "reg": "0000000001c0e0000000000000002000",
+        "interrupts": "000000000000003100000004",
+        "clocks": "0000002a00000000",
+        "clock-names": "766500",
+        "resets": "0000002a00000000",
+        "reset-names": "766500",
+        "power-domains": "0000002b",
+        "status": "6f6b617900"
+      }
+    }
+  },
+  "frozen_v26_hashes_rechecked": {
+    "build/linux-storage-v26/.config": "311a20a7841f0c47310cac1dd459bcb9ef121c33dad19eb43debdd62cf546ecc",
+    "build/linux-storage-v26/arch/arm64/boot/Image": "59010d0b1e6e41a769c4c1bc0063d63af2a42944e4ffcea1f520d32e13c6d8a1",
+    "build/linux-storage-v26/arch/arm64/boot/Image.gz": "d373d883df7baaaf450cf931db30c7972a860f7c7cb7653beb3dad7a7f227d0e",
+    "build/linux-storage-v26/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "build/linux-storage-v26/System.map": "3ee53f121b04704e5e7bd424a899f0482b424762183caf0af01527a5f4a3c27c",
+    "build/linux-storage-v26/Module.symvers": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "boards/t736_mmc_cached_bounce_draft.c": "2b1f48ba68789523b832d9226ad1e0031f17376d3f0abea816fd97de8f1f9ab6",
+    "boards/t736_mmc_clock_hs200_draft.h": "33f4c8eae7d5b7c73534e07c4c24652a01d0400fc00f286b9212116ee83cd5a2",
+    "boards/t736_mmc_tuning_draft.h": "2ba574aec0bf5fe06d4d0a90319891c0c3c7b2871cbdddaa6ae004e91d66eeb0",
+    "boards/t736_mmc_tuning_error_draft.h": "2cd7bc09f6200e47986f0a08e3755033964898b2e9ba10e1add250b2d95ac243",
+    "tests/test_mmc_hs200_error_recovery.py": "52c548de2ce0e6ac74456074aed3472ab053f70e4ad15389f696ce2a2ac69bf7",
+    "boards/t736_mmc_hs400_policy_draft.h": "ae7f25d6309e1f6b1489277b2edab2fd06bc3f7c64f5a05b7103ea8036922384",
+    "boards/t736_mmc_hs400_tuning_draft.h": "c202f8f5dc5fb625e568c5b8f9f87f2d3c3e2531e2b3a859d361a805fda1c2bf",
+    "tests/test_mmc_hs400_policy.py": "7d766d78f7a8179adf0ee89b84b6ec8f34bb054fdd2b05f7657ed1c27a9ce8cb",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tools/build_cached_bounce_storage_kernel.sh": "c71d8e08693701fde68aeecb5ceb1cec2303dce5b69bf6eeddbe31abfc14f084",
+    "boards/t736_mmc_timing_stats_draft.h": "dd507fc5ea4868c3d6b892e096fd56e7ee57833e820b0b4fffd05e78d7f30604",
+    "tests/test_mmc_timing_stats.py": "7a8a765362daa668b4ab735a536c132c62869602cd419953ccc518ce6824394d",
+    "tests/test_mmc_cached_bounce.py": "062ff9e38a7b46c7e9e5f778ba82ccf7f8da6a9ba2dc6aaac66beff445da4dc7",
+    "evidence/storage-v26-cached-bounce-design-20261116.json": "f5691b0f0fc5357705181af88b309cba034bf69b24e453ccf8e36fcafc4b372b",
+    "build/linux-image-6.18.63-t736-storage-v26_6.18.63-26_arm64.deb": "f270f50a59da295f2104512a8504531698eab2967d769e17c8ba322a2b075281"
+  },
+  "frozen_v26_unchanged": true,
+  "control": {
+    "Package": "linux-image-6.18.63-t736-media-v27",
+    "Version": "6.18.63-27",
+    "Architecture": "arm64"
+  },
+  "matched_build_members": {
+    "boot/System.map-6.18.63-t736-media-v27": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 2645985,
+      "sha256": "a15c1a5c0b4e452231c6f59279ef23f9220c7def0cc589612e519ab3263625f3"
+    },
+    "boot/config-6.18.63-t736-media-v27": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 99178,
+      "sha256": "cb3eab53d6fb243b620eb34ebbd3b6284aa3fde869106c5a147a65c8e91ccfac"
+    },
+    "boot/vmlinuz-6.18.63-t736-media-v27": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 5053287,
+      "sha256": "ae1cdde51209b120c1800dd6c4bb5ae6000bd60d8ce808414fb4e732780e7a9e"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/t736-gpu-candidate.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 13012,
+      "sha256": "45012aeb86d657fca568417e831067170d12e224ebe71720c1956989af6f3626"
+    }
+  },
+  "payload_manifest": {
+    ".": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "boot": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "boot/System.map-6.18.63-t736-media-v27": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 2645985,
+      "sha256": "a15c1a5c0b4e452231c6f59279ef23f9220c7def0cc589612e519ab3263625f3"
+    },
+    "boot/config-6.18.63-t736-media-v27": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 99178,
+      "sha256": "cb3eab53d6fb243b620eb34ebbd3b6284aa3fde869106c5a147a65c8e91ccfac"
+    },
+    "boot/vmlinuz-6.18.63-t736-media-v27": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 5053287,
+      "sha256": "ae1cdde51209b120c1800dd6c4bb5ae6000bd60d8ce808414fb4e732780e7a9e"
+    },
+    "lib": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "lib/modules": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "lib/modules/6.18.63-t736-media-v27": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.alias": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 45,
+      "sha256": "a29f59569ef743ade2eada4d545211be2c5ba409842cb442c0548ecb51ec33bb"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.alias.bin": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 12,
+      "sha256": "87b6e280f77dbc7f4d6708f6d83aa23dac73185bc345bd7c98e5f619fc78ec37"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.builtin": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 5460,
+      "sha256": "1bc8f017764a894834fd3bce12921f3a0d290678c6bcf0ef5875fa5607a9e21a"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.builtin.alias.bin": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 47124,
+      "sha256": "66f458497d12b1f2f636fd3a25006c08f05b5169e4d2005f7aa12a938dd188c5"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.builtin.bin": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 7697,
+      "sha256": "49af68e1589e54d7a054657cd8968dbe2c67cd14f45c5fb1a614728a7dd264ae"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.builtin.modinfo": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 79877,
+      "sha256": "279feac548a54304261599139d3a917a298de2422c4b17dcc7000b253edebc11"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.dep": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.dep.bin": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 12,
+      "sha256": "87b6e280f77dbc7f4d6708f6d83aa23dac73185bc345bd7c98e5f619fc78ec37"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.devname": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.order": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.softdep": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 55,
+      "sha256": "ac2de753255c506934be29e69261f1485f51ee9cf9c2bf467bcc0c4cf95f8713"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.symbols": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 49,
+      "sha256": "e1d07394350b0dc9be149c69080c47fb1faf4d88fabb900387b6016e6fff3976"
+    },
+    "lib/modules/6.18.63-t736-media-v27/modules.symbols.bin": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 12,
+      "sha256": "87b6e280f77dbc7f4d6708f6d83aa23dac73185bc345bd7c98e5f619fc78ec37"
+    },
+    "usr": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "usr/lib": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a100-allwinner-perf1.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 16152,
+      "sha256": "458b9b1bbd47169837908fbd7a1b089fb71c65932a49269976431298aa9bd3a3"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a133-liontron-h-a133l.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 16600,
+      "sha256": "cd55cf1d10dfcb4fe6593502c8f5af04c9a26e4d537fff091e9e2e04f621e5af"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-amarula-relic.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 29926,
+      "sha256": "c825782ef37b9b99ae2431f9775cf6154fe0a0d7d651d8aecbc62f42330191d3"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-bananapi-m64.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 30272,
+      "sha256": "d2d1bcf6c7576dc78aa854d70fbdbcc694abfb6786e11a14968ef8fbc36822bb"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-nanopi-a64.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 28987,
+      "sha256": "4899a090d7cee84b98bbf37182ecdbe9797dcc7274416718c9be8ccaeca46d56"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-oceanic-5205-5inmfd.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 28630,
+      "sha256": "d2e0823e84f6c5df0514847b0af4f1d71f6e7b63e59b196f9f41dfb1cf4b64d8"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-olinuxino-emmc.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 30170,
+      "sha256": "3d0a94d59ce01c40428dd55a56adbf84000ebe3be1ed445b0c68776dda5765d2"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-olinuxino.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 30025,
+      "sha256": "7fa0bacf7d54f82c09c0845a1344ad40365a31968bf00b373853bd6615da8480"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-orangepi-win.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 30832,
+      "sha256": "85822bb09b717cd9188a26f9378914847484925f1240538a8c421ac07c51ee0a"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-pine64-lts.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 29799,
+      "sha256": "0a5fb885e1b87abd3bf3911e593a4cd208b5b94b641f91e520958c3b5994fb5f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-pine64-plus.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 29209,
+      "sha256": "a2952c307907642621940a5bf9fb892958f73686df794dc8d1760973b90f55c8"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-pine64.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 29153,
+      "sha256": "fd85da99ac093a0f31a932bac4f56d5b972bd121bbf21173d673814a3e752413"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-pinebook.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 31534,
+      "sha256": "242671276289db0239ac2d72732eaa737dbca29650d2f51b51ca1ec92c1e026f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-pinephone-1.0.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 32983,
+      "sha256": "0f568ecb9d3efac37413730a121369e068e4a7c9c364e90af35b54e78d6fc2ad"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-pinephone-1.1.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 33153,
+      "sha256": "7e6a5ed0f3987b4caccaab50a8ccf23038ffa96abeaf5227e1369af6254be440"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-pinephone-1.2.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 33263,
+      "sha256": "e24caca4d85b3993f661c1713887b62376bd48af4208038acdcec658014d53d1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-pinetab-early-adopter.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 31942,
+      "sha256": "5a82ec1165427e5a2022f1ce5209ee0afd8bab1c57c19b4a4623cb92d531ac68"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-pinetab.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 31974,
+      "sha256": "85cc6603ad4b22a9fed235cbd34c825f13f7fcfffc5be1f491261059883310b1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-sopine-baseboard.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 29663,
+      "sha256": "e13a175a41296777ec329314c1083dd972849c46969928da72accfdad875145f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-a64-teres-i.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 30978,
+      "sha256": "8fbb25435b167a04f4740158680b3893307cc17555409ae7f2bf5a8523ceec36"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h313-tanix-tx1.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21818,
+      "sha256": "588729c4189ca7de71aad102931637b7b82dc3ce8ec35cb5170a227b0273f026"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h313-x96q.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21705,
+      "sha256": "e4ee8371e1e02505be60a9c7d91a326816185b43303f4fbd817b1d10638f520c"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 25196,
+      "sha256": "e3734e08a07f3a2ce1d74693528c40f554103bee43985a6ff18a77976ae94cc5"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-bananapi-m2-plus.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 23819,
+      "sha256": "0f9413aa33dca2106a3d7384daaaa923125534fbd18fbaad5d2bd8ad4008027d"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-emlid-neutis-n5-devboard.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 23566,
+      "sha256": "d68ae08945c68cbaa23722ac945a41e357f8adb11c96d608a5ed38cb2bcb28e5"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-libretech-all-h3-cc.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 23942,
+      "sha256": "93ab23e76eb1ecea3bbf65ef20a7a3f65af9f455566aa60eb8f8233bd87ab9f1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-libretech-all-h3-it.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 22585,
+      "sha256": "afe9e1c9b3fa341fb870f5d80158d6689362907a5a37083d49c70f2ae1332e08"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-libretech-all-h5-cc.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 24423,
+      "sha256": "84ea273f2d297787b64790df9b762659e4d90d59b7750e7e9f81a48ffcc25135"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-nanopi-neo-plus2.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 22970,
+      "sha256": "ada04d36dc9a8aa8a8149db00cc735faa21c49cf97f38ece1698568a3bedc84e"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-nanopi-neo2.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21849,
+      "sha256": "0ce9bacc5498aa43d33356c806dbb5235138d85b0acbc9f3786538b5b9c0fe8f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-nanopi-r1s-h5.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 23971,
+      "sha256": "c70c3b3808304d1615774d9d49f13dd0b46652912fc06395c38dd072c6ca8843"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-orangepi-pc2.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 23779,
+      "sha256": "dda8498626dfcc696736eeef4d8f0751438cb15f6de7bab55fe524455bb560e6"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-orangepi-prime.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 22541,
+      "sha256": "dbc9c01f2843581f66e4636005740b635081ab5dcdaa1d670bf45559c61e25c6"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-orangepi-zero-plus.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21922,
+      "sha256": "f24e1ce4bf9fff95e89b51a6ce191ca28f3e3dd9a4d1fb9d23f48653b69c1623"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h5-orangepi-zero-plus2.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21854,
+      "sha256": "9cd02eec4edd615b71be74922314d8c0558eebb9ea6a7aa1b065a69c61a61580"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h6-beelink-gs1.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 25957,
+      "sha256": "30095e2fda5b23460ad1b31ce686963fa3304c23c9a41048145df8308348df07"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h6-orangepi-3.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 25222,
+      "sha256": "3e122fd8c29130c26bffae7d8a9eaf33905148b9816b332014d37881764e79c2"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h6-orangepi-lite2.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 23322,
+      "sha256": "5b124bc9a0f585390664200842ab74c29b4cff7b3b6e7939d8419a0e3b01e222"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h6-orangepi-one-plus.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 23099,
+      "sha256": "94b0d767266d75e5bef1a00d7f67fe2887e6e2f2085045fe6b7b897d777a2c02"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h6-pine-h64-model-b.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 25556,
+      "sha256": "958351864abe58fa998335a7bf512f8d83c69aab048b6e56751b9d33dec54ce3"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h6-pine-h64.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 25202,
+      "sha256": "413569ad8e886e964545eb9126a550bd406297ac139a565e789c8b5e9f660eb1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h6-tanix-tx6-mini.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 23219,
+      "sha256": "b9cbcff966b1652883c965f8b9e42f0cad7326a447536decbf2b054c08535a04"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h6-tanix-tx6.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 23490,
+      "sha256": "170b3ca606496377d5df760f0d005ad502ed6e4b47843c11b75184c89f2618f4"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h616-bigtreetech-cb1-manta.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21601,
+      "sha256": "372d0af23e976ad60afa1cccbde6c1019502226e5b6452171674d3780286d6e5"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h616-bigtreetech-pi.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21553,
+      "sha256": "0c4ec9ff8afacff50029b144e55058c90e14b5e2b5c6727e1a715bbdd1d6554f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h616-orangepi-zero2.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 22809,
+      "sha256": "beb16ef0edeeffc037ec45b49bab3a050e9d814a99b3315c96bbe3e16c746690"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h616-x96-mate.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21780,
+      "sha256": "6b2a35e6fcf0162da7762c3f60ca75ebeded0b5bd99743df89874de8c78aa6c1"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h618-longanpi-3h.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21989,
+      "sha256": "c3ec0d0df09a6327fc4808d4154c2b2f1a24ba715b630609f25655f7cb3d581f"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h618-orangepi-zero2w.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21710,
+      "sha256": "c8c3adf58ea37829bf87cc77b2204e0bc0071dc1d5c85e304221d6a2095701b5"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h618-orangepi-zero3.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 22291,
+      "sha256": "0e14330535f7a8b9c985d33c3fd5cc4097cb90e9e0da10dd0ad3f8c2ac2071c0"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h618-transpeed-8k618-t.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 21948,
+      "sha256": "719c4a4941faf747d5160a086b393232569161d0947227764e8f7b0a6eb750bd"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h618-yuzukihd-chameleon.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 22028,
+      "sha256": "c42c3c246ec3fe696788adf20a2c2cbb68c92fdefea1917b5ba7802c6ff739d6"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h64-remix-mini-pc.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 30037,
+      "sha256": "329a2d54591b4e3744bb8213c11cd04c49e16f42f9273eef7af1613a05d9110e"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h700-anbernic-rg35xx-2024.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 24501,
+      "sha256": "772efdf550a332bc1b9a86dcfaffb0aad2d2ab690003e14829bb429aa9a26824"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h700-anbernic-rg35xx-h.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 27281,
+      "sha256": "0b06fb4682a62d93ff1427ede9c8d5fc60cd992ddad3d03293577bf242277046"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h700-anbernic-rg35xx-plus.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 25461,
+      "sha256": "a86ca6a0762ea206242e389ac90dd239aeb50a856c93a239152bfc7ff4a54206"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 25757,
+      "sha256": "da60137e6e6d254b0a0a6d545011f26ff17a773f98e37203b2e22de89cee61b2"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun55i-a527-cubie-a5e.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 16938,
+      "sha256": "623f0efb2e74daea4bc69413699e66e001e964afcf36412014760d60da5b9d20"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun55i-h728-x96qpro+.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 16004,
+      "sha256": "85bbe125435751f361316812f89569f1ce8727731f616bc42ee1e61ce0bf673b"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun55i-t527-avaota-a1.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 17112,
+      "sha256": "f24cc9a8529a8294c6cfbbd69900fc7fcb7aaaf06a0b75aa5fef95eb965cda19"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/sun55i-t527-orangepi-4a.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 18305,
+      "sha256": "ff7880d17be694ffc1640219a635b31c7d9f1838b21b837f795ac69dd7bf9bc6"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/t736-gpu-candidate.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 13012,
+      "sha256": "45012aeb86d657fca568417e831067170d12e224ebe71720c1956989af6f3626"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/t736-hdmi-candidate.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 10027,
+      "sha256": "d81986f7035f252583ae30f861dc3e55675d296547f12704ba81678fd7fe03ed"
+    },
+    "usr/lib/linux-image-6.18.63-t736-media-v27/allwinner/t736-mainline-bringup.dtb": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 6723,
+      "sha256": "eeaa34295e2b260511928a60dc01a55fad2b9024b1a8934ea2868a92030cd7f8"
+    },
+    "usr/share": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "usr/share/doc": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "usr/share/doc/linux-image-6.18.63-t736-media-v27": {
+      "type": "5",
+      "mode": 493,
+      "bytes": 0
+    },
+    "usr/share/doc/linux-image-6.18.63-t736-media-v27/changelog.Debian.gz": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 142,
+      "sha256": "ca453661cc3bc0509a59c9c5ec39334ac64fba7a3cdf4975eeacd08ed3f60425"
+    },
+    "usr/share/doc/linux-image-6.18.63-t736-media-v27/copyright": {
+      "type": "0",
+      "mode": 420,
+      "bytes": 691,
+      "sha256": "eb173b7d0714dfb8d4e6024ba85900caa2515882b6f23abf98a9a7c5bc1c1b5a"
+    }
+  },
+  "maintainer_scripts_executed": false,
+  "board_accessed": false,
+  "module_loaded": false,
+  "codec_accepted": false,
+  "limits": [
+    "Source/object timestamp, exact copied sources and linked symbols checked; no reproducible rebuild performed.",
+    "PVR vermagic and ELF architecture checked; CONFIG_MODVERSIONS is disabled as in v26.",
+    "No runtime decode, DMA lifetime, stability, encoding or browser acceptance."
+  ]
+}

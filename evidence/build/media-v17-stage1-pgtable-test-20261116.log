@@ -1,0 +1,4 @@
+L1 crossing includes both directories: PASS
+L1 exact end excludes next directory: PASS
+PTE 4GiB physical carry: FAIL
+PTE 8GiB physical carry: FAIL

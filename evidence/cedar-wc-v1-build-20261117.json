@@ -1,0 +1,17 @@
+{
+  "package": "/home/ubuntu/t736-mainline/build/cedar-wc-v1-r2-20261117/t736-cedar-wc-v1.tar.gz",
+  "bytes": 1147336,
+  "sha256": "a056b0612dc117577d2ac6d8665e7baf3092222a583a0e07fbad9be5c7eff147",
+  "manifest_sha256": "351878fa95940041f61495d30cf7914b298cb733f2a08b7d691a16e74f73fa81",
+  "wc_manifest_sha256": "5d09fe5b54a089a3aad997d02cbdf83872faedf4b9243ef8929c0e42d2959aee",
+  "abi": {
+    "libcdc_base.so": {
+      "missing_exported_symbols": [],
+      "sha256": "9077522122e67391c09bf44668b091f4e1ecb01c0b1d832dd54a71b37c4a2f03"
+    },
+    "libMemAdapter.so": {
+      "missing_exported_symbols": [],
+      "sha256": "f89ed54db02e7d1aa0dfa84ee89a24170c7a073c3338e571e4c718195b626c74"
+    }
+  }
+}

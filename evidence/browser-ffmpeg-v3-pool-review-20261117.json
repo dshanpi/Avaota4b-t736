@@ -1,0 +1,153 @@
+{
+  "schema": "t736-ffmpeg-v3-pool-validation-v1",
+  "date": "2026-11-17",
+  "result": "PASS_ARM64_QEMU_LIFETIME_AND_FALLBACK",
+  "implementation_owner": "backup_audit",
+  "build_and_execution_owner": "desktop_review",
+  "hardware_access": false,
+  "broker_changed": false,
+  "wire_protocol_changed": false,
+  "dma_pool_changed": false,
+  "baseline_source_sha256": "6ace85189b42dbd9d893971e15c07bc0acdb9d2d0ffea55887e942c804fabb82",
+  "source": {
+    "path": "tools/browser/ffmpeg_cedar.c",
+    "sha256": "65c784d213c4302d423a5b9f0481c5d9772767b9aac4f59b8b731a1a282774c6",
+    "bytes": 22527
+  },
+  "test": {
+    "path": "tests/test_ffmpeg_cedar.c",
+    "sha256": "c16876af8632581773fe91aabeabfc721006aa0cc14f69ccc00f99facdc09877",
+    "bytes": 12598
+  },
+  "build_evidence": {
+    "path": "evidence/browser-ffmpeg-v3-build-20261117.json",
+    "sha256": "f557f642f448a347eb132b6804643053a4b4ffeb6340c9fca422fc2f871900b2",
+    "bytes": 8129
+  },
+  "test_log": {
+    "path": "build/browser-ffmpeg-build-v1-20261117/qemu-audit-v3.log",
+    "sha256": "cbd8e1e853e8cd36184c8b85a8b02b3133a556f48b6fc1c8a12e086b56722458",
+    "bytes": 3056
+  },
+  "artifact": {
+    "archive": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v3.tar.gz",
+    "bytes": 6980340,
+    "sha256": "870618a2d0167ec9ebae50aa157eba7f815d2fcb0185436966c95269f5756cb4",
+    "manifest_sha256": "ca76a2fd858654bf829e1a10bc56be279df2b4cf20c083401b7f7679da0189bf",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084304,
+        "sha256": "1ba422fedfe0af2840be2ddf7653aea6ed3d4da2cd87e7e5e01e9b09580b4ac8",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    }
+  },
+  "change": "Receive ordinary I420 socket bytes into an AVBufferPool allocation; transfer its AVBufferRef into an AVFrame instead of copying into a second allocation.",
+  "layout_policy": {
+    "direct": "Even frame dimensions and width divisible by 64: packed Y/U/V strides and plane starts are all 32-byte aligned. Includes 1920 and 320.",
+    "other_widths": "Retain av_frame_get_buffer alignment and the original row copy path.",
+    "padding": "Each pooled buffer has AV_INPUT_BUFFER_PADDING_SIZE extra bytes; zero this trailing margin before direct ownership transfer."
+  },
+  "lifetime_policy": [
+    "A no-frame PULL retains the private receive reference for reuse.",
+    "A delivered direct frame takes the receive reference; the next receive obtains a distinct free buffer.",
+    "Consumer references prevent a buffer from returning to the pool.",
+    "Flush does not overwrite or release consumer-owned frames.",
+    "stop_hardware releases the pending receive reference and calls av_buffer_pool_uninit; the upstream pool API defers final freeing until outstanding frame references are released."
+  ],
+  "validation": {
+    "checks": 5061,
+    "direct_320": [
+      "AVFrame pixel pointer equals the stub receive destination.",
+      "Two concurrently held frames have distinct backing memory and retain distinct contents.",
+      "After releasing frame two and flushing, its buffer is reused for frame three.",
+      "Frames one and three remain readable after decoder/pool shutdown."
+    ],
+    "unaligned_318": [
+      "Original copy path is used.",
+      "All Y/U/V strides are at least width and remain 32-byte aligned.",
+      "Held-frame contents survive flush and decoder shutdown."
+    ],
+    "regression": "Previous backpressure/EOS/timestamp/fatal checks plus all eight 45-frame H264/HEVC fallback sequences still match native pixel MD5, PTS, best_effort_timestamp and duration."
+  },
+  "performance_review": {
+    "removed_for_1080p": "One 3,110,400-byte client-to-AVFrame CPU copy per delivered frame and repeated full-frame backing allocation once pooled buffers are reusable.",
+    "remaining": "WC-to-broker I420 copy; broker-to-kernel and kernel-to-client socket copies; any Firefox image/upload copy.",
+    "transport": "AF_UNIX SOCK_STREAM has no TCP Nagle or delayed-ACK timer. Separate headers add calls/wakeups; they do not imply a TCP-style fixed delay.",
+    "recommended_timing": [
+      "client mutex wait",
+      "PULL send-complete to response-header receipt",
+      "frame payload receive duration and syscall count",
+      "AVBufferPool get/frame construction",
+      "broker backend pull versus socket send",
+      "wall clock versus thread CPU time and minor-fault deltas"
+    ]
+  },
+  "limits": [
+    "This record proves software buffer ownership and fallback behavior, not live performance or real hardware decode.",
+    "No broker restart, kernel change or new private DMA allocation is required by this library change.",
+    "AVBufferPool ordinary-RAM high-water use follows the number of frames retained by the consumer; it is not the private DMA heap.",
+    "Remaining WC-copy and transport costs require actual timing before claiming steady 60 Hz."
+  ]
+}

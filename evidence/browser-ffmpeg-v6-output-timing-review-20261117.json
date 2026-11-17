@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "READ_ONLY_TIMESTAMP_SEMANTICS_REVIEW_NO_CURRENT_DROP_ROOT_CAUSE_PROVEN",
+  "reviewer": "backup_audit",
+  "hardware_access": false,
+  "implementation_modified": false,
+  "versions": {
+    "wrapper": "v6",
+    "FFmpeg": "7.1.5"
+  },
+  "findings": [
+    {
+      "source": "tools/browser/ffmpeg_cedar.c:458-518",
+      "finding": "pull_frame rescales broker microsecond PTS back to packet_timebase, sets frame.pts and best_effort_timestamp, initializes pkt_dts unknown, then searches256 timing slots by exact original packet PTS to copy duration/DTS/position/key flag."
+    },
+    {
+      "source": "build/browser-source-review-20261117/decode.c:660-705",
+      "finding": "The public receive path unconditionally assigns best_effort_timestamp=guess_correct_pts(frame.pts,frame.pkt_dts) after the codec callback succeeds. The wrapper preassignment does not bypass this."
+    },
+    {
+      "source": "build/browser-source-review-20261117/decode.c:293-318",
+      "finding": "guess_correct_pts counts non-increasing PTS and DTS separately and prefers a known PTS while faultyPTS<=faultyDTS or DTS is unknown. Strictly increasing output PTS therefore remain selected even when source-packet DTS becomes nonmonotonic after presentation reordering."
+    },
+    {
+      "source": "FFmpeg-n7.1.5/libavutil/frame.h:503-508 in retained source tarball",
+      "finding": "pkt_dts is documented as DTS copied from the packet that triggered returning a frame, also providing presentation time inferred from DTS alone. Copying the originating packet DTS by PTS match is not generally identical to this native output-time packet semantics for Bframes."
+    },
+    {
+      "source": "tools/browser/ffmpeg_cedar.c:803-806; decode.c:235,449,624,1572",
+      "finding": "SETS_FRAME_PROPS suppresses packet-property auto-copy, not best-effort timestamp guessing. SETS_PKT_DTS only guards the simple decode callback assignment in this source; adding that flag to this receive_frame codec would not change the observed final guessing path."
+    },
+    {
+      "source": "tools/browser/ffmpeg_cedar.c:393; decode.c:453",
+      "finding": "Only software fallback updates has_b_frames. Hardware leaves the caller/default value. The inspected core reference to has_b_frames is a pkt_pos convenience in the legacy simple decode callback; the receive_frame path does not use it to reorder frames or timestamps."
+    },
+    {
+      "source": "tools/browser/ffmpeg_cedar.c:246-263,510-513,718; decode.c:575-605",
+      "finding": "Frame duration is copied only on an exact timing-table PTS match; a miss leaves0(unknown) and fill_frame_props does not infer a video duration. Firefox microsecond packet timestamps use AV_TIME_BASE_Q fallback and should roundtrip exactly; duplicate/unknown PTS, over256 outstanding timings or sub-microsecond external time bases require separate handling."
+    }
+  ],
+  "existing_test_gap": {
+    "source": "tests/test_ffmpeg_cedar.c:337-362",
+    "finding": "The seven-packet Firefox DTS test uses an immediate-return stub, preserving decode-order nonmonotonic PTS rather than emitting presentation order. It verifies pts,pkt_dts,duration and unchanged input packets, but not best_effort_timestamp. It cannot establish the real reordered-frame best-effort behavior."
+  },
+  "algorithm_walkthrough": {
+    "scope": "Python arithmetic walkthrough of the inspected comparison logic; not an execution of the candidate library or a board trace.",
+    "immediate_decode_order_stub": [
+      {
+        "pts": 0,
+        "pkt_dts": 0,
+        "best_effort": 0,
+        "faulty_pts": 0,
+        "faulty_dts": 0
+      },
+      {
+        "pts": 50000,
+        "pkt_dts": 16666,
+        "best_effort": 50000,
+        "faulty_pts": 0,
+        "faulty_dts": 0
+      },
+      {
+        "pts": 33333,
+        "pkt_dts": 33333,
+        "best_effort": 33333,
+        "faulty_pts": 1,
+        "faulty_dts": 0
+      },
+      {
+        "pts": 16666,
+        "pkt_dts": 50000,
+        "best_effort": 50000,
+        "faulty_pts": 2,
+        "faulty_dts": 0
+      },
+      {
+        "pts": 100000,
+        "pkt_dts": 66666,
+        "best_effort": 66666,
+        "faulty_pts": 2,
+        "faulty_dts": 0
+      },
+      {
+        "pts": 83333,
+        "pkt_dts": 83333,
+        "best_effort": 83333,
+        "faulty_pts": 3,
+        "faulty_dts": 0
+      },
+      {
+        "pts": 66666,
+        "pkt_dts": 100000,
+        "best_effort": 100000,
+        "faulty_pts": 4,
+        "faulty_dts": 0
+      }
+    ],
+    "strict_presentation_order": [
+      {
+        "pts": 0,
+        "pkt_dts": 0,
+        "best_effort": 0,
+        "faulty_pts": 0,
+        "faulty_dts": 0
+      },
+      {
+        "pts": 16666,
+        "pkt_dts": 50000,
+        "best_effort": 16666,
+        "faulty_pts": 0,
+        "faulty_dts": 0
+      },
+      {
+        "pts": 33333,
+        "pkt_dts": 33333,
+        "best_effort": 33333,
+        "faulty_pts": 0,
+        "faulty_dts": 1
+      },
+      {
+        "pts": 50000,
+        "pkt_dts": 16666,
+        "best_effort": 50000,
+        "faulty_pts": 0,
+        "faulty_dts": 2
+      },
+      {
+        "pts": 66666,
+        "pkt_dts": 100000,
+        "best_effort": 66666,
+        "faulty_pts": 0,
+        "faulty_dts": 2
+      },
+      {
+        "pts": 83333,
+        "pkt_dts": 83333,
+        "best_effort": 83333,
+        "faulty_pts": 0,
+        "faulty_dts": 3
+      },
+      {
+        "pts": 100000,
+        "pkt_dts": 66666,
+        "best_effort": 100000,
+        "faulty_pts": 0,
+        "faulty_dts": 4
+      }
+    ]
+  },
+  "current_conclusion": "There is a real distinction between source-packet DTS and native output pkt_dts semantics, and the existing test does not cover final best_effort. Neither proves the current60fps drops. To identify a timestamp cause, correlate actual returned frame pts/best_effort/pkt_dts/duration with the Firefox-selected presentation time and deadline. Keep decode throughput, presentation counters and physical display output separate.",
+  "references": [
+    {
+      "path": "tools/browser/ffmpeg_cedar.c",
+      "bytes": 34222,
+      "sha256": "d796914045308833bff3be778abdab95e0a9a87fb9a122282ec4caac2e66c791"
+    },
+    {
+      "path": "tests/test_ffmpeg_cedar.c",
+      "bytes": 28525,
+      "sha256": "6e46f225f946cae083a8944c1c4af64ce529d4bd0d78af2817b136956384b244"
+    },
+    {
+      "path": "build/browser-source-review-20261117/decode.c",
+      "bytes": 75724,
+      "sha256": "968991e921dc801ecfbc2d5958d2bf245a0f00c116a1461ff6c64bc971cc8e4d"
+    },
+    {
+      "path": "build/browser-source-review-20261117/ffmpeg-n7.1.5.tar.gz",
+      "bytes": 15931570,
+      "sha256": "e3963a50831c985933e1a625ed566ec4c7adb5c012c34fa9f84438e1d61bdacc"
+    }
+  ]
+}

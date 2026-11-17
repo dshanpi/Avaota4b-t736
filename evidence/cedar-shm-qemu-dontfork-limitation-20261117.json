@@ -1,0 +1,96 @@
+{
+  "schema": "t736-qemu-madvise-dontfork-diagnostic-v1",
+  "created_utc": "2026-11-17T06:08:05.019434+00:00",
+  "status": "CONFIRMED_QEMU_USER_EMULATION_LIMITATION",
+  "conclusion": "The observed AArch64 QEMU seals-test fork/mincore failure is explained by qemu-aarch64-static 8.2.2 reporting successful MADV_DONTFORK without removing guest mappings in fork children. The minimal reproducer contains no Cedar production code and reproduces the behavior for anonymous and readonly memfd mappings. Native Linux obeys DONTFORK for both.",
+  "environment": {
+    "host": "192.168.1.228",
+    "host_user": "ubuntu",
+    "host_kernel": "7.0.0-28-generic",
+    "host_arch": "x86_64",
+    "qemu": "qemu-aarch64 version8.2.2 (Debian1:8.2.2+ds-0ubuntu1.18)",
+    "qemu_binary_sha256": "e4f8d99e9ff69c3cefffab71cee358ce2af1ecba1282d04c3eeb44ef76f5a71e",
+    "guest_sysroot": "/usr/aarch64-linux-gnu",
+    "build_directory": "/home/ubuntu/t736-mainline/build/madvise-dontfork-probe-20261117",
+    "ssh_host_key_verification": "Paramiko RejectPolicy with system known_hosts"
+  },
+  "source": {
+    "path": "tools/validation/madvise_dontfork_probe.c",
+    "sha256": "9a5eb6706be9215fe9abd91d4bf16c7957f31b97a7f192ff0d3c76faeb3bcaf6"
+  },
+  "binaries_sha256": {
+    "probe-native": "c20350a06e5e20ca5a18dacf66f97d62e81f3f651c8af4e5c0e4ea2bd2196811",
+    "probe-arm64": "6c0bc675b42432b1f1d2eebf951da0880fc355ef8b2a987c9676aeca819b8123"
+  },
+  "results": {
+    "control_without_dontfork": {
+      "native": "parent and child mincore=0, child reads90",
+      "aarch64_qemu": "parent and child mincore=0, child reads90"
+    },
+    "anonymous_with_dontfork": {
+      "native": {
+        "madvise_rc": 0,
+        "parent_mincore_rc": 0,
+        "child_mincore_rc": -1,
+        "child_mincore_errno": 12,
+        "child_read": "SIGSEGV caught, handler exit111"
+      },
+      "aarch64_qemu": {
+        "madvise_rc": 0,
+        "parent_mincore_rc": 0,
+        "child_mincore_rc": 0,
+        "child_mincore_errno": 0,
+        "child_read_value": 90
+      }
+    },
+    "readonly_memfd_with_dontfork": {
+      "native": {
+        "madvise_rc": 0,
+        "parent_mincore_rc": 0,
+        "child_mincore_rc": -1,
+        "child_mincore_errno": 12,
+        "child_read": "SIGSEGV caught, handler exit111"
+      },
+      "aarch64_qemu": {
+        "madvise_rc": 0,
+        "parent_mincore_rc": 0,
+        "child_mincore_rc": 0,
+        "child_mincore_errno": 0,
+        "child_read_value": 90
+      }
+    },
+    "syscall_correlation": {
+      "native_host_MADV_DONTFORK_calls": 2,
+      "qemu_guest_MADV_DONTFORK_calls_reported_success": 2,
+      "qemu_host_MADV_DONTFORK_calls": 0,
+      "observation": "QEMU forwards mincore and clone to host but does not issue corresponding MADV_DONTFORK. Child bytes remain genuinely readable, so this is not merely a wrong mincore return value."
+    }
+  },
+  "relation_to_failed_test": {
+    "test": "tests/test_cedar_shm_seals.c",
+    "original_parent_report": "ARM64 QEMU binary fails waitpid assertion after child requires mincore=-1/ENOMEM",
+    "explanation": "QEMU child receives mincore=0, so the unchanged test deliberately exits1. The probe reproduces the missing DONTFORK effect independently of seals/helper logic."
+  },
+  "acceptance_implications": [
+    "Do not weaken production MADV_DONTFORK or change readonly/seal behavior to accommodate this emulator.",
+    "Do not label the complete ARM64 seals run PASS; report its DONTFORK assertion as blocked by this demonstrated QEMU limitation.",
+    "Existing58-case native ASan/UBSan/LSan and native default-deadline results remain valid for their stated native-host scope.",
+    "Actual AArch64 kernel DONTFORK behavior and full board/browser acceptance remain separate validation; this diagnosis makes no board claim.",
+    "Client pid guard remains an independent defense, but does not make an ignored DONTFORK check equivalent to a passed mapping-inheritance test."
+  ],
+  "commands": [
+    "gcc -std=c11 -Wall -Wextra -Werror -O2 -g madvise_dontfork_probe.c -o probe-native",
+    "aarch64-linux-gnu-gcc -std=c11 -Wall -Wextra -Werror -O2 -g madvise_dontfork_probe.c -o probe-arm64",
+    "strace -f -o native-strace.log -e trace=madvise,mincore,clone,fork,vfork,wait4,munmap ./probe-native > native.log 2>&1",
+    "strace -f -o qemu-host-strace.log -e trace=madvise,mincore,clone,fork,vfork,wait4,munmap qemu-aarch64-static -strace -L /usr/aarch64-linux-gnu ./probe-arm64 > qemu.log 2> qemu-guest-strace.log"
+  ],
+  "log_sha256": {
+    "evidence/build/madvise-dontfork-probe-build-20261117.log": "c4d1b06416346134f16550f74b1cd1e7e5d94caff1a874fb8e15f3d81eb93686",
+    "evidence/build/madvise-dontfork-probe-native-20261117.log": "5612d87f2d2c8afda82976ac2246ab069ad33428b94d414cb33a659dcb90fe04",
+    "evidence/build/madvise-dontfork-probe-qemu-20261117.log": "a84a6f77abf4fc26e5d16e4d38d6c3739798a78e534ef55429a9fc5edf5dd9b9",
+    "evidence/build/madvise-dontfork-probe-native-strace-20261117.log": "76a603b853115c8a6e69391aff03285060807ec25c168e62eb659bb002560b4d",
+    "evidence/build/madvise-dontfork-probe-qemu-host-strace-20261117.log": "f79eda8dfd8ad779885f0f5bb9bd4aef67c5141957a96ace4ef16e2e222b6639",
+    "evidence/build/madvise-dontfork-probe-qemu-guest-strace-20261117.log": "506e894a84a928ae17bd87cefd58b61cf8e8fa70f5cba5ee85a3ab171ceb9e6e"
+  },
+  "scope": "No board/serial/FEL/service access. No production code or frozen seals test changed. Only standalone probe and diagnostic evidence created."
+}

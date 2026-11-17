@@ -1,0 +1,8 @@
+test_all_evidence_required (__main__.AcceptanceGate.test_all_evidence_required) ... ok
+test_timeout_exit_race_is_failure (__main__.AcceptanceGate.test_timeout_exit_race_is_failure) ... ok
+test_uninterruptible_process_is_reported (__main__.AcceptanceGate.test_uninterruptible_process_is_reported) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.171s
+
+OK

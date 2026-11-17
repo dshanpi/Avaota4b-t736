@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v24-hs400-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v24",
+  "baseline_release": "6.18.63-t736-storage-v23",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "source_tree": "sources/work/linux-storage-v24",
+  "output_tree": "build/linux-storage-v24",
+  "design": "evidence/storage-hs400-design-20261116.json",
+  "default_hs200_enabled": false,
+  "default_hs400_enabled": false,
+  "hs200_prerequisite_hz": 200000000,
+  "first_stage_hs400_hz": 100000000,
+  "later_stage_hs400_hz": 200000000,
+  "boot_parameters": [
+    "t736_mmc_pio.enable_hs200=1",
+    "t736_mmc_pio.hs200_max_hz=200000000",
+    "t736_mmc_pio.enable_hs400=1",
+    "t736_mmc_pio.hs400_max_hz=100000000"
+  ],
+  "tuning": "HS200 CMD21 prerequisite; HS400 independent64linear CMD13/512B EXT_CSD eyes,20trials/tap,min12,eachcenter16; no retries/golden reads",
+  "flow_control": "HS200/HS400 per-request128/512B THLD; preserves SFC/BCIG; restores legacy policy on exit",
+  "shared_pll_or_rail_writes": false,
+  "hs400_capability_opt_in": true,
+  "dt_delta": "None; exact v23 DTB hash",
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v24_6.18.63-24_arm64.deb",
+    "size": 5603706,
+    "sha256": "c58e56fab073adf8f62c14148ab7d79d7feb7ee43e134744c834556079ac0578"
+  },
+  "files": {
+    "build/linux-storage-v24/.config": "2ebe51f737ee4c679a00237136d051c0bce542560a4c2159aa55bebc5e63b3e3",
+    "build/linux-storage-v24/arch/arm64/boot/Image": "6f1ee43143befeefa495f982bfeac36ed95669370c4fe9e8e68cb1636c7560ac",
+    "build/linux-storage-v24/arch/arm64/boot/Image.gz": "bb44b15ef67cfb3718672e5ed864108f75f258d6fa1cc5a1f21287fadad08784",
+    "build/linux-storage-v24/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "build/linux-storage-v24/System.map": "16ca7e837136a23913ddb0fcd0ccf01067e84598e5eb62dac5fd19a84fbb4a10",
+    "build/linux-storage-v24/Module.symvers": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "boards/t736_mmc_hs400_draft.c": "515d7f75b871ee9da838ef71199706ddedb5425ae6cfac186c3089831d8598e5",
+    "boards/t736_mmc_clock_hs200_draft.h": "33f4c8eae7d5b7c73534e07c4c24652a01d0400fc00f286b9212116ee83cd5a2",
+    "boards/t736_mmc_tuning_draft.h": "2ba574aec0bf5fe06d4d0a90319891c0c3c7b2871cbdddaa6ae004e91d66eeb0",
+    "boards/t736_mmc_tuning_error_draft.h": "2cd7bc09f6200e47986f0a08e3755033964898b2e9ba10e1add250b2d95ac243",
+    "tests/test_mmc_hs200_error_recovery.py": "52c548de2ce0e6ac74456074aed3472ab053f70e4ad15389f696ce2a2ac69bf7",
+    "boards/t736_mmc_hs400_policy_draft.h": "ae7f25d6309e1f6b1489277b2edab2fd06bc3f7c64f5a05b7103ea8036922384",
+    "boards/t736_mmc_hs400_tuning_draft.h": "c202f8f5dc5fb625e568c5b8f9f87f2d3c3e2531e2b3a859d361a805fda1c2bf",
+    "tests/test_mmc_hs400_policy.py": "7d766d78f7a8179adf0ee89b84b6ec8f34bb054fdd2b05f7657ed1c27a9ce8cb",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tools/build_hs400_storage_kernel.sh": "b957dc470d07c44af348c953294336212de19a563ac0eb7ce653432b15b96f05"
+  },
+  "frozen_v23_files_unchanged": true,
+  "board_validation": "pendingHS400100MHz then200MHz actualmode+CMD/DS eyes+integrity/performance/GPU; defaults remain existing fallback"
+}

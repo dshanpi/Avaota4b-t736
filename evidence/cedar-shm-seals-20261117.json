@@ -1,0 +1,56 @@
+{
+  "schema": "t736-independent-helper-test-v1",
+  "created_utc": "2026-11-17T05:57:13.153401+00:00",
+  "status": "PASS",
+  "scope": "Independent tests of the actual ordinary-RAM shm_v2 cedar_shm.h helper; no board, hardware, vendor library or service access.",
+  "build_host": {
+    "address": "192.168.1.228",
+    "user": "ubuntu",
+    "kernel": "7.0.0-28-generic",
+    "architecture": "x86_64",
+    "build_directory": "/home/ubuntu/t736-mainline/build/cedar-shm-seals-20261117",
+    "ssh_host_key_verification": "Paramiko RejectPolicy, existing system known_hosts"
+  },
+  "source_sha256": {
+    "tests/test_cedar_shm_seals.c": "341fab86314c3a04d27dc31d10a311b5ef3f7eccab6d44b3e495262f6c8ab102",
+    "tools/browser/shm_v2/cedar_shm.h": "c99cefb5bad2318bec39e57fa6f7ef27a33013bb58dae15d3c237bef97e2590c",
+    "tools/browser/shm_v2/cedar_protocol.h": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646",
+    "tools/browser/shm_v2/cedar_client.h": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113"
+  },
+  "source_unchanged_at_completion": true,
+  "result": {
+    "exit_status": 0,
+    "cases_per_run": 58,
+    "runs": [
+      "ASan+UBSan+LSan, 200ms test-only setup deadline",
+      "Native O2, unchanged production 5000ms setup deadline"
+    ],
+    "fd_counts_return_to_baseline": true,
+    "warning_errors": true
+  },
+  "coverage": [
+    "Create failure injection: memfd_create, fchmod, ftruncate, mmap, F_ADD_SEALS, F_GET_SEALS, fstat, invalid final metadata; fd and map cleanup and untouched setup output",
+    "Actual MFD_NOEXEC_SEAL requested; F_SEAL_EXEC, no executable mode bits, chmod executable rejection",
+    "Actual write, pwrite, shrink, grow, hole punching, new shared RW mmap, receiver mprotect upgrade and further seal changes rejected",
+    "Preexisting producer RW mapping retained; private COW writes isolated; receiver MADV_DONTFORK verified by fork/mincore",
+    "SCM_RIGHTS single-byte fragments, descriptor later in setup stream, FD_CLOEXEC and same device/inode",
+    "Send failure with invalid source fd and closed peer; MSG_NOSIGNAL; source fd retained",
+    "Missing descriptor, 2 or 8 descriptors, 24-descriptor MSG_CTRUNC, second descriptor in later fragment, EOF after accepted fd, disallowed descriptor on server request",
+    "SCM_CREDENTIALS alone or with rights rejected; no-rights server request succeeds; no installed descriptor leaks before socket close",
+    "Silent and continuing drip-feed timeout use absolute deadline and release any received descriptor",
+    "Receiver rejects capacity, format, advertised seals, reserved, device, inode, owner, absent CLOEXEC, each missing required seal, missing F_SEAL_EXEC, executable mode, wrong size, socket and invalid fd",
+    "Receiver F_GET_SEALS/fstat/mmap/madvise failure injection preserves caller fd ownership and map output; failed madvise unmaps",
+    "Separate peer memfd inode and content; receiver mapping remains readable after producer closes fd and mapping; idempotent destroy"
+  ],
+  "limitations": [
+    "Native Linux helper verification only: does not establish board/browser sandbox compatibility, codec correctness or end-to-end performance.",
+    "NOEXEC assertion covers immutable nonexecutable file mode and F_SEAL_EXEC; no claim that MFD_NOEXEC_SEAL denies every PROT_EXEC mapping.",
+    "Ancillary tests use kernel-valid SCM_RIGHTS payloads including multiple/truncated descriptors; arbitrary kernel-generated malformed cmsghdr bytes are not fabricated.",
+    "Fault seams substitute selected libc call failures only inside the included production helper; normal success and enforcement cases use real syscalls."
+  ],
+  "log_sha256": {
+    "evidence/build/cedar-shm-seals-build-20261117.log": "eb06d321058ac26747ce34f108f2d988aa3259608c8e92c483cc5f83f69fdf61",
+    "evidence/build/cedar-shm-seals-sanitizer-20261117.log": "ba2e9f63a8dc9164992f2356c3de020ce81c1f6ef1914e5734452523271d326d",
+    "evidence/build/cedar-shm-seals-default-timeout-20261117.log": "2eb4f9f72d81c4cd766ced851f9e91c6862c7df00bf181e9298cca469b6ae7a2"
+  }
+}

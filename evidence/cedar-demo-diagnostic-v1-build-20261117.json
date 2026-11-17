@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "status": "COMPILED_HARDWARE_PENDING",
+  "original_sources": {
+    "vdecoderDemo.c": "3ffac6640087f5967c9cfd26f5e87ecef1f86c52cdb793e94e348bf40297cfbc",
+    "rawStreamParser.c": "f557f6d74fabf41943bf32dc2a75c48500e43ea528b61c6411ef16a2e8b59a3b",
+    "rawStreamParser.h": "2f30726818bdcefc6a935a3e07d876ac66cc1b59301643da30fcd3230dc2564a"
+  },
+  "modified_sources": {
+    "vdecoderDemo.c": "6de9e7555ebe62d0afd8ed5a30b54c64276cd27a9f45831ca5f5d563517e04ab",
+    "rawStreamParser.c": "f557f6d74fabf41943bf32dc2a75c48500e43ea528b61c6411ef16a2e8b59a3b",
+    "rawStreamParser.h": "2f30726818bdcefc6a935a3e07d876ac66cc1b59301643da30fcd3230dc2564a"
+  },
+  "executable": "/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v1-20261117/vdecoderdemo-diagnostic",
+  "executable_sha256": "c869c5295fbd77040917016784c560ee9275f0edceb2679eb854402714f9d3b1",
+  "executable_bytes": 154264,
+  "command": [
+    "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-gcc",
+    "-O2",
+    "-g",
+    "-I/home/ubuntu/t736-mainline/build/cedar-bridge-package-v2/cedar/usr/include",
+    "-I/home/ubuntu/t736-aiot/tina/platform/allwinner/multimedia/libcedarc_v2.0/base/include",
+    "-I/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v1-20261117",
+    "/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v1-20261117/vdecoderDemo.c",
+    "/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v1-20261117/rawStreamParser.c",
+    "-o",
+    "/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v1-20261117/vdecoderdemo-diagnostic",
+    "-L/home/ubuntu/t736-mainline/build/cedar-bridge-package-v2/cedar/usr/lib/aarch64-linux-gnu",
+    "-Wl,-rpath-link,/home/ubuntu/t736-mainline/build/cedar-bridge-package-v2/cedar/usr/lib/aarch64-linux-gnu",
+    "-lcdc_base",
+    "-lMemAdapter",
+    "-lvdecoder",
+    "-lfbm",
+    "-lsbm",
+    "-lpthread",
+    "-lm",
+    "-lrt",
+    "-ldl",
+    "-lVE",
+    "-lvideoengine"
+  ],
+  "changes": [
+    "Immediate ReturnPicture after saving, with return-code check.",
+    "Decode return transitions, periodic progress, SBM/FBM counts, EOF and saved frame diagnostics.",
+    "Use NULL for unused pthread_join return values. Original ChannelThread nRet was already void*, so no stack overwrite is claimed."
+  ],
+  "limits": [
+    "Raw parser EOF bug remains in this diagnostic version: last NAL is omitted.",
+    "No modification to original WC bundle or Tina source.",
+    "Run through the private WC wrapper; this executable is a separate private artifact."
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "t736-independent-code-review-v1",
+  "created_utc": "2026-11-17T05:58:16.981146+00:00",
+  "status": "PASS_WITH_VALIDATION_SCOPE_LIMITS",
+  "scope": "Static review of ordinary-RAM memfd v2 protocol/helper/client/broker, plus independent native helper tests; no core source changed by reviewer.",
+  "source_sha256": {
+    "tools/browser/shm_v2/cedar_protocol.h": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646",
+    "tools/browser/shm_v2/cedar_shm.h": "c99cefb5bad2318bec39e57fa6f7ef27a33013bb58dae15d3c237bef97e2590c",
+    "tools/browser/shm_v2/cedar_client.c": "84ec6f08321aa4ac76f449fbb05d82cfd97467d3774d200a11d85431bc06778a",
+    "tools/browser/shm_v2/cedar_broker.c": "8d81f7697a1b367689df34002ff4d9f8fc25ae4136c1aae734caa517e3b9d081",
+    "tests/test_cedar_shm_seals.c": "341fab86314c3a04d27dc31d10a311b5ef3f7eccab6d44b3e495262f6c8ab102",
+    "evidence/cedar-shm-seals-20261117.json": "c8e62b00450c9a3356549a7ad3832ffe254abc5a0f44fe467034fc1f8493eb76"
+  },
+  "findings": [],
+  "reviewed_properties": [
+    "SETUP precedes backend lease creation; broker rejects protocol/sequence/session/body mismatch before creating the ordinary memfd.",
+    "Broker checks allowed client SO_PEERCRED; client checks configured service uid, socket directory ownership/type/mode, socket ownership/type and SO_PEERCRED.",
+    "Per-peer ordinary memfd has exact bounded capacity; setup carries fixed-width device/inode/seals, no DMA/device fd or physical/IOVA pointer.",
+    "Producer establishes shared RW map before F_SEAL_FUTURE_WRITE; required size/write/seal/exec seals are checked. Receiver requires exact setup seals, owner, type, zero links, nonexecutable mode, capacity/size, identity and FD_CLOEXEC.",
+    "Every setup fragment uses recvmsg, including server requests that require no descriptor. Extra or truncated rights and other ancillary types are rejected; received descriptors close on failure.",
+    "Receiver uses a shared readonly map with MADV_DONTFORK. Client closes received fd after mapping, checks pid before inherited mutex, refuses child API use and does not reconnect in the sandbox.",
+    "Client serializes request, metadata validation and copying from shared pixels into existing caller storage under its mutex; broker sends picture-only replies after copying into that connection slot.",
+    "Broker creates a separate memfd per connection; all normal serve exits free body and destroy producer mapping/fd before peer close. Setup failures route to the same cleanup.",
+    "Client validates positive OPEN session, strict response sequence/version/op/status, active session and requested dimensions, I420 size/capacity and picture color fields before copying."
+  ],
+  "tests": {
+    "record": "evidence/cedar-shm-seals-20261117.json",
+    "cases_per_run": 58,
+    "sanitizers": "ASan+UBSan+LSan PASS; 200ms test-only deadline",
+    "production_default": "Native O2 PASS; silent 5005ms and drip-feed 5000ms with default 5000ms deadline",
+    "fd_leaks": "None at checked case boundaries"
+  },
+  "limits": [
+    "Parent-owned end-to-end client/broker mock tests, aarch64 build, board deployment and Firefox RDD sandbox verification are separate acceptance gates.",
+    "No browser or video performance claim follows from helper tests or this static review.",
+    "MFD_NOEXEC_SEAL establishes immutable nonexecutable mode with F_SEAL_EXEC; review does not claim all executable mappings are prohibited.",
+    "Malformed ancillary tests cover cases representable by real Linux socket syscalls; arbitrary corrupted kernel-generated cmsghdr memory was not injected."
+  ],
+  "reviewer_mutations": [
+    "tests/test_cedar_shm_seals.c",
+    "evidence/cedar-shm-seals-20261117.json",
+    "evidence/cedar-shm-v2-independent-review-20261117.json",
+    "evidence/build/cedar-shm-seals-build-20261117.log",
+    "evidence/build/cedar-shm-seals-sanitizer-20261117.log",
+    "evidence/build/cedar-shm-seals-default-timeout-20261117.log"
+  ]
+}

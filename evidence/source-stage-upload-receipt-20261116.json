@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "kind": "t736-source-stage-upload-receipt",
+  "verified_utc": "2026-11-16T13:38:41.287320+00:00",
+  "status": "PUSHED_REMOTE_HEAD_VERIFIED",
+  "repository": "https://github.com/dshanpi/Avaota4b-t736",
+  "branch": "main",
+  "commit": "72333d335c0256542ee9b60912d666c4dbd82649",
+  "remote_head": "72333d335c0256542ee9b60912d666c4dbd82649",
+  "commit_url": "https://github.com/dshanpi/Avaota4b-t736/commit/72333d335c0256542ee9b60912d666c4dbd82649",
+  "subject": "Back up HS200 storage stages and desktop diagnostics",
+  "published_by": "root",
+  "independent_remote_verification_by": "backup_audit",
+  "working_tree_clean": true,
+  "backup_manifest_sha256": "871ffc831f0061fcd436bd30c5a4ec9ea8587013705e5228e0fe370502acd759",
+  "manifest_files_excluding_itself": 1744,
+  "manifest_bytes_excluding_itself": 25413189,
+  "scope": "Accepted v21 HS25/HS50, v22 HS200100 and historical200failure, v23 HS200200 boundedPASS. Persistentdefaultv16. HS400/desktop/finalimage not accepted.",
+  "privacy": "Public source/config/patch/tests/build scripts and selected text evidence only. No vendor/compiled payloads, raw/rootfs images, auth/tunnel/credential evidence, private screenshots or home archive. One historical already-published source-v6 framebufferPNG retained.",
+  "verification": {
+    "full_prepare_and_verify_only": "PASS",
+    "json_and_python_validation": "PASS",
+    "manifest_coverage_and_hashes": "PASS",
+    "private_path_and_secret_scans": "PASS",
+    "prestage_git_diff_check": "PASS for tracked changes only; did not cover then-untracked files",
+    "full_staged_diff_check": "Root reports existing frozen spl/cpuclock/cpuclock_c.c line317 has extra blank line at EOF; exact historical bytes retained, not normalized or misreported clean."
+  },
+  "omitted_empty_json": [
+    {
+      "path": "evidence/storage-v20-settings-mouse-switch.json.mapped.json",
+      "reason": "empty diagnostic JSON placeholder; original retained locally"
+    },
+    {
+      "path": "evidence/storage-v20-settings-static-return.json.mapped.json",
+      "reason": "empty diagnostic JSON placeholder; original retained locally"
+    },
+    {
+      "path": "evidence/storage-v21-hs50-settings-mouse-first.json.mapped.json",
+      "reason": "empty diagnostic JSON placeholder; original retained locally"
+    },
+    {
+      "path": "evidence/storage-v21-hs50-settings-mouse-second.json.mapped.json",
+      "reason": "empty diagnostic JSON placeholder; original retained locally"
+    },
+    {
+      "path": "evidence/storage-v21-hs50-settings-static-return.json.mapped.json",
+      "reason": "empty diagnostic JSON placeholder; original retained locally"
+    }
+  ],
+  "after_publication": "New v24 candidate work continues only in mainline; publication checkout is not refreshed by this receipt."
+}

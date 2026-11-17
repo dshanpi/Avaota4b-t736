@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-17T06:49:10.662152+00:00",
+  "kernel": "6.18.63-t736-media-v29",
+  "persistent_default": "/boot/vmlinuz-6.18.63-t736-storage-v16",
+  "original_profile_restored": true,
+  "website": "bilibili.com",
+  "new_frame_rate_acceptance": false,
+  "service": {
+    "pid": 13004,
+    "state": "active",
+    "protocol": 1,
+    "backend": 5,
+    "omx_wc": 5,
+    "ffmpeg": 7
+  },
+  "browser": {
+    "rdd_pid": 13132,
+    "sandbox": [
+      "NoNewPrivs:\t1",
+      "Seccomp:\t2"
+    ],
+    "private_libraries": [
+      {
+        "path": "/opt/t736-browser-ffmpeg-v7/lib/libavcodec.so.61.19.101",
+        "sha256": "66c1d490d1c80ff962d97875900aa8c38098f7c47a2b3f6fc04a2ca1086ab731"
+      },
+      {
+        "path": "/opt/t736-browser-ffmpeg-v7/lib/libavutil.so.59.39.100",
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271"
+      },
+      {
+        "path": "/opt/t736-browser-ffmpeg-v7/lib/libswresample.so.5.3.100",
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360"
+      },
+      {
+        "path": "/opt/t736-browser-v1/lib/libt736_cedar_client.so",
+        "sha256": "8e7f835dd734230a3fcd568e5c456e616e1f21c94763356fb162691dfb87622b"
+      }
+    ],
+    "diagnostic_control_flags": false
+  },
+  "devices": {
+    "/dev/cedar_dev": {
+      "uid": 999,
+      "gid": 982,
+      "mode": "0o600"
+    },
+    "/dev/dma_heap/t736-ve": {
+      "uid": 999,
+      "gid": 982,
+      "mode": "0o600"
+    }
+  },
+  "dma": {
+    "buffers": 88,
+    "bytes": 128335872,
+    "budget_bytes": 134217728,
+    "reclaimed": false
+  },
+  "ve_clock_hz": 400000000,
+  "dcdc2_snapshot": "id=03 enable=ff dcdc2=28 phase=00 feedback=00 dvm=0 remote_feedback=1 setpoint_uv=900000 kind=programmed-setpoint",
+  "emmc_ios": "clock:\t\t200000000 Hz\nactual clock:\t200000000 Hz\nvdd:\t\t21 (3.3 ~ 3.4 V)\nbus mode:\t2 (push-pull)\nchip select:\t0 (don't care)\npower mode:\t2 (on)\nbus width:\t3 (8 bits)\ntiming spec:\t10 (mmc HS400)\nsignal voltage:\t1 (1.80 V)\ndriver type:\t0 (driver type B)\n",
+  "failed_units": "",
+  "gdm_original_restored": true,
+  "test_services_stopped": {
+    "t736-browser-fixture.service": "inactive",
+    "t736-media-inhibit.service": "inactive"
+  }
+}

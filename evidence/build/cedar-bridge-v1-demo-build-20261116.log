@@ -1,0 +1,4 @@
+/home/ubuntu/t736-aiot/tina/platform/allwinner/multimedia/libcedarc_v2.0/demo/vdecoderDemo/vdecoderDemo.c: In function ‘ChannelThread’:
+/home/ubuntu/t736-aiot/tina/platform/allwinner/multimedia/libcedarc_v2.0/demo/vdecoderDemo/vdecoderDemo.c:1105:14: warning: assignment to ‘void *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+ 1105 |         nRet = initDecoder(Decoder);
+      |              ^

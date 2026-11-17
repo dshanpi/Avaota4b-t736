@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "kind": "mutter-sbc-session-guard-independent-review",
+  "date": "2026-11-16",
+  "reviewer": "/root/backup_audit",
+  "status": "STATIC_CONTROL_FLOW_AND_SHELL_PARSE_PASS_NOT_EXECUTED_ON_BOARD",
+  "path": "tools/validation/mutter_sbc_session_guard.sh",
+  "sha256": "e9112dd9e2f4b59e37f7353eea1941fa0b158b69e6d9e9100bcb0278f222106a",
+  "validation": [
+    {
+      "name": "outer_guard",
+      "command": "bash -n via stdin",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "embedded_rollback",
+      "command": "bash -n via stdin",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "fixed_findings": [
+    "Arm publication and timer rollback now take the same private flock; a timer firing during arm waits and removes the final published override rather than allowing arm to recreate it after rollback.",
+    "Manual rollback executes the root-protected idempotent rollback synchronously while the timer is still armed; it only stops the timer after successful restoration. Failure does not remove the timer first."
+  ],
+  "checked_boundaries": [
+    "Root-only; UID1000 must resolve to t736; fresh state/dropin and absent same-name timer/service are required.",
+    "System-manager timer is created and confirmed active before the candidate environment and user-unit dropin are published.",
+    "Only the UID1000 optional environment file exists; user-manager %U expansion leaves GDM and other UID managers without candidate environment. Public config is readable0755/0644; rollback script and saved GDM configuration stay beneath root-private0700.",
+    "Arm does not restart or replace a GNOME session. System libraries and the vendor graphics directory are not modified. Candidate prefix must already have separately verified artifacts.",
+    "Rollback removes only the two known transient config files, restores saved daemon.conf, reloads the target user manager and restarts display-manager with bounded command waits. Successful hash check and restart precede completion marker.",
+    "The common lock plus completion marker serialize timer/manual rollback and avoid duplicate restarts after success. A timeout/error before completion does not claim restoration succeeded."
+  ],
+  "operational_boundary": "The separately authorized controller action that temporarily changes daemon.conf and starts a session must take the same /run/t736-sbc-ac42/private/lock, first reject rollback.complete and ensure the timer remains valid. Otherwise external activation after timer expiry could reintroduce temporary GDM configuration. This guard prepares only; it does not serialize unrelated later shell commands.",
+  "limits": [
+    "No systemd timer or GDM session was started by this reviewer; bash -n is syntax validation only.",
+    "The review does not verify candidate ELF/typelib loader identity or physically displayed frames.",
+    "After controller-triggered temporary autologin, restore daemon.conf immediately while retaining the timer during bounded evidence collection.",
+    "Do not publish saved GDM contents, credentials or authentication/session logs."
+  ]
+}

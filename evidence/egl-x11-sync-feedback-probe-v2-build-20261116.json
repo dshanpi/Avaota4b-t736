@@ -1,7 +1,7 @@
 {
   "schema": "t736-egl-sync-probe-build-v1",
   "date": "2026-11-16",
-  "status": "COMPILE_PREFLIGHT_AND_INDEPENDENT_REVIEW_PASS",
+  "status": "COMPILE_PREFLIGHT_REVIEW_PASS_AND_BOARD_OBSERVATIONS_RECORDED",
   "source_path": "tools/validation/egl_x11_sync_feedback_probe.c",
   "source_sha256": "7adbfd0c33fbcdec80a6f090eeb233bb7d79dc23522631924f13ee397a98becf",
   "binary_path": "build/desktop-validation/egl-sync-probe-v2",
@@ -61,7 +61,59 @@
     ],
     "forced_exit_limit": "SIGALRM does not guarantee JSON or user-space cleanup."
   },
-  "board_run": "NOT_RUN",
+  "board_run": {
+    "status": "TWO_OBSERVATION_COMPLETE_RUNS_RECORDED",
+    "runs": [
+      {
+        "swap_interval": 0,
+        "evidence": "evidence/egl-feedback-v23-probev2-i0-20261116.json",
+        "sha256": "de7fb4e7d0ee2c615c5b6c9e48b721b6a25758b40bd01e8796fed203c68d044b",
+        "status": "OBSERVATION_COMPLETE",
+        "failure": null,
+        "elapsed_us": 1066254,
+        "submitted_swaps": 60,
+        "completed_sbc_delta": 60,
+        "pixel_verified_frames": 2,
+        "queries": 122,
+        "failed_queries": 0,
+        "rate_numerator": 60,
+        "rate_denominator": 1,
+        "egl_error_at_end": 12288
+      },
+      {
+        "swap_interval": 1,
+        "evidence": "evidence/egl-feedback-v23-probev2-i1-20261116.json",
+        "sha256": "e8bf99d3b42d15e0777d87ed126f1971a1c3f293a43391ab441fb70c8d2078f4",
+        "status": "OBSERVATION_COMPLETE",
+        "failure": null,
+        "elapsed_us": 1083187,
+        "submitted_swaps": 60,
+        "completed_sbc_delta": 60,
+        "pixel_verified_frames": 2,
+        "queries": 122,
+        "failed_queries": 0,
+        "rate_numerator": 60,
+        "rate_denominator": 1,
+        "egl_error_at_end": 12288
+      }
+    ],
+    "summary_evidence": "evidence/egl-feedback-v23-probev2-summary-20261116.log",
+    "summary_sha256": "86dc387586a1339df912144cdf2e079a167d568edb1282a07911db8a33390c82",
+    "version_binding": {
+      "source_and_binary_current_local_hashes_verified": true,
+      "build_host_tmp_source_and_binary_hashes_verified": true,
+      "execution_version_provenance": "The root-agent continuation summary identifies these as the v2 source 7adbfd0c... / binary 8cdfdfdb... runs. Root retained that provenance; no new independent execution or upload hash attestation was made during this record update.",
+      "independent_runtime_executable_hash_binding": false,
+      "binding_limit": "Raw board JSON reports do not embed executable/source hashes, and no separate upload/run hash log is retained. Evidence filenames and continuation provenance identify v2, but do not cryptographically prove which executable produced the runs.",
+      "v1_kept_separate": "evidence/egl-x11-sync-feedback-probe-build-20261116.json retains v1 source 9750e0c2... and binary 6956ee8f...; these observations are not rebound to v1."
+    },
+    "review_scope": "Existing logs and exact local/build-host artifacts only. This reviewer did not operate the board or rerun the probe.",
+    "limits": [
+      "Successful EGL feedback and two pixel-verified test frames do not establish physical monitor output.",
+      "SBC completion is distinct from submitted swaps; UST/MSC is not asserted as the submitted frame presentation timestamp.",
+      "This probe observation does not deploy or validate the separate Mutter patch."
+    ]
+  },
   "limits": [
     "One temporary 320x240 window; all global desktop configuration unchanged.",
     "Parameter 0 or 1 selects swap interval only for the test surface.",

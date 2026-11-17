@@ -1,0 +1,359 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "PASS_ACTUAL_ARM64_LIBRARIES_DELAY_STUB_SOFTWARE_ONLY",
+  "implementation_owner": "desktop_review",
+  "independent_test_and_review_owner": "backup_audit",
+  "board_access": false,
+  "library_v7": {
+    "bytes": 11084312,
+    "sha256": "66c1d490d1c80ff962d97875900aa8c38098f7c47a2b3f6fc04a2ca1086ab731",
+    "needed": [
+      "libswresample.so.5",
+      "libavutil.so.59",
+      "libm.so.6",
+      "libc.so.6",
+      "ld-linux-aarch64.so.1"
+    ],
+    "soname": [
+      "libavcodec.so.61"
+    ]
+  },
+  "source_sha256": "909ab49e890aecdfaf955518cfddc132e0d84d0f41c6c3397071d61a36f06bda",
+  "test_runner": "qemu-aarch64-static -L /usr/aarch64-linux-gnu with candidate-specific LD_LIBRARY_PATH; executable exports client stub entry points. No broker socket, devices or vendor decode.",
+  "delay_per_frame_us": 10000,
+  "checks": {
+    "v6_control": 4373,
+    "v7_candidate": 4009
+  },
+  "trials": {
+    "v6": [
+      {
+        "case": "delayed-eight-frame-backlog",
+        "codec": 27,
+        "frames": 24,
+        "max_normal_batch": 8,
+        "max_first_frame_wait_us": 73689,
+        "max_batch_us": 86038,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 0
+      },
+      {
+        "case": "delayed-eight-frame-backlog",
+        "codec": 173,
+        "frames": 24,
+        "max_normal_batch": 8,
+        "max_first_frame_wait_us": 73726,
+        "max_batch_us": 84224,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 0
+      },
+      {
+        "case": "public-input-slot-backpressure",
+        "codec": 27,
+        "frames": 24,
+        "max_normal_batch": 2,
+        "max_first_frame_wait_us": 11355,
+        "max_batch_us": 11374,
+        "send_eagain": 11,
+        "backpressure": 0,
+        "eos_frames": 0
+      },
+      {
+        "case": "broker-backpressure-progress",
+        "codec": 173,
+        "frames": 24,
+        "max_normal_batch": 8,
+        "max_first_frame_wait_us": 72721,
+        "max_batch_us": 83169,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 0
+      },
+      {
+        "case": "replay64-pending65-startup",
+        "codec": 27,
+        "frames": 70,
+        "max_normal_batch": 65,
+        "max_first_frame_wait_us": 672117,
+        "max_batch_us": 682871,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 0
+      },
+      {
+        "case": "occupied-input-eos",
+        "codec": 173,
+        "frames": 2,
+        "eos_frames": 2
+      },
+      {
+        "case": "occupied-input-flush",
+        "codec": 173,
+        "frames": 1,
+        "eos_frames": 0
+      }
+    ],
+    "v7": [
+      {
+        "case": "delayed-eight-frame-backlog",
+        "codec": 27,
+        "frames": 24,
+        "max_normal_batch": 1,
+        "max_first_frame_wait_us": 430,
+        "max_batch_us": 13234,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 7
+      },
+      {
+        "case": "delayed-eight-frame-backlog",
+        "codec": 173,
+        "frames": 24,
+        "max_normal_batch": 1,
+        "max_first_frame_wait_us": 132,
+        "max_batch_us": 11408,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 7
+      },
+      {
+        "case": "public-input-slot-backpressure",
+        "codec": 27,
+        "frames": 24,
+        "max_normal_batch": 1,
+        "max_first_frame_wait_us": 81,
+        "max_batch_us": 143,
+        "send_eagain": 22,
+        "backpressure": 0,
+        "eos_frames": 1
+      },
+      {
+        "case": "broker-backpressure-progress",
+        "codec": 173,
+        "frames": 24,
+        "max_normal_batch": 6,
+        "max_first_frame_wait_us": 52041,
+        "max_batch_us": 62387,
+        "send_eagain": 0,
+        "backpressure": 5,
+        "eos_frames": 2
+      },
+      {
+        "case": "replay64-pending65-startup",
+        "codec": 27,
+        "frames": 70,
+        "max_normal_batch": 1,
+        "max_first_frame_wait_us": 54,
+        "max_batch_us": 10641,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 64
+      },
+      {
+        "case": "occupied-input-eos",
+        "codec": 173,
+        "frames": 2,
+        "eos_frames": 2
+      },
+      {
+        "case": "occupied-input-flush",
+        "codec": 173,
+        "frames": 1,
+        "eos_frames": 0
+      }
+    ]
+  },
+  "state_machine_review": [
+    "After a frame is returned, the normal loop prioritizes all owned filtered/input packets and the private BSF before considering the safe yield.",
+    "The safe point requires private BSF receive EAGAIN and ff_decode_get_packet EAGAIN with no input_pending. FFmpeg7.1.5 ff_decode_get_packet loops over its internal filterchain and transfers buffer_pkt before reporting EAGAIN, so the external input slot can accept a new packet.",
+    "Backpressure-required pull and the existing first-frame progress wait can return extra frames. They do not yield while an unsent AU or an internal external-input packet still requires progress.",
+    "Once EOS reaches the private BSF, broker draining ignores the batch limit and emits all remaining frames. Flush resets counters and timestamps; first-frame replay64 and retained packet65 ordering remain intact.",
+    "The wrapper does not change PTS/DTS/duration selection or Firefox frame dropping policy."
+  ],
+  "test_coverage": [
+    "H264 and HEVC8-frame accumulated ready backlog, each simulated output costs10ms, using the same receive-until-EAGAIN pattern as Firefox.",
+    "All returned frames validated for exact ordered PTS/best_effort/pkt_dts/duration and deterministic pixel identities. Every submitted packet retained its original timestamps.",
+    "Public send-until-EAGAIN fills FFmpeg buffered frame and input packet slots; every send EAGAIN is followed by at least one received frame before resubmission succeeds.",
+    "Broker capacity2 forces5 EAGAIN submissions and extra pulls; normal quota yields to progress, with all24 frames accounted for.",
+    "Asynchronous startup accepts64 packets and returns no frame until the third nonzero-timeout pull while packet65 is retained; all70 submissions and outputs remain ordered and unique.",
+    "Each case drains exactly to EOF then flushes and decodes3new frames, checking fresh counters and one open/one close.",
+    "Occupied-input EOS: send0 prefetches FFmpeg buffer_frame and send1 fills buffer_pkt without entering the stub; sendNULL at that exact state preserves both packets and drains2 exact frames to EOF.",
+    "Occupied-input flush: at the same state flush removes both prefetched output and unconsumed packet; receive immediately returns EAGAIN, then a new stream decodes exactly without old output."
+  ],
+  "limits": [
+    "This demonstrates software batching behavior with synthetic compressed AUs and deterministic stub pixels, not hardware60fps acceptance or actual WC copy performance.",
+    "One frame is the normal non-draining target, not an unconditional maximum: the forced backpressure case returns6 frames and EOS intentionally drains the remaining64 frames in the startup test.",
+    "Residual decoder output may wait for a subsequent submitted packet or explicit drain under this policy; these tests verify no loss and final complete drainage, not zero buffering latency in every caller strategy.",
+    "The full native-fallback/real5s timeout/bootstrap/pool regression suite is run separately by desktop_review; the4009 independent checks do not replace it."
+  ],
+  "files": [
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/ffmpeg_cedar-v7-independent.c",
+      "bytes": 35703,
+      "sha256": "909ab49e890aecdfaf955518cfddc132e0d84d0f41c6c3397071d61a36f06bda"
+    },
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/test_ffmpeg_cedar-v7-batch.c",
+      "bytes": 9072,
+      "sha256": "69a730693c35d8a1ae010f2cbb51a5038edb34e7b908e5b93252d9d98412abc1"
+    },
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/test-ffmpeg-v7-batch",
+      "bytes": 72128,
+      "sha256": "a59263c7b40046f4f60fa6e9993175799ceed29205893f35fd67c69a32da50de"
+    },
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/qemu-v7-batch-independent-v6.log",
+      "bytes": 5595,
+      "sha256": "4aee49b2c95eb684556148b71da457a318e1e97b2931ba4bc9de3bf29e2f76c5"
+    },
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/qemu-v7-batch-independent-v7.log",
+      "bytes": 12413,
+      "sha256": "b938f9f073d703b6e292b6e5c0278c85118567b455f41bd167c5618bc2a199b8"
+    },
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/qemu-v7-batch-independent-final-v6.log",
+      "bytes": 7248,
+      "sha256": "1d304077d52bd4d83fbdcb712792bb26663d662d0c1f9b9eee77731a51c27887"
+    },
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/qemu-v7-batch-independent-final-v7.log",
+      "bytes": 14164,
+      "sha256": "7a2b19fc9f25eebd901778b37730411684cc1fe285507e76931156351c7fd1a8"
+    },
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/test-ffmpeg-v7-batch-final",
+      "bytes": 72208,
+      "sha256": "1a17401318463ecdecb220381107fa8ffe7ef0ff891151d88b10790387bc01cd"
+    },
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/test_ffmpeg_cedar-v7-batch-final.c",
+      "bytes": 10529,
+      "sha256": "2ff64d5f49b6cf62dabc63a851df921c414ba9a7de658291d49de0d45fe51446"
+    }
+  ],
+  "initial_checks": {
+    "v6_control": 4259,
+    "v7_candidate": 3902
+  },
+  "initial_trials": {
+    "v6": [
+      {
+        "case": "delayed-eight-frame-backlog",
+        "codec": 27,
+        "frames": 24,
+        "max_normal_batch": 8,
+        "max_first_frame_wait_us": 73550,
+        "max_batch_us": 85462,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 0
+      },
+      {
+        "case": "delayed-eight-frame-backlog",
+        "codec": 173,
+        "frames": 24,
+        "max_normal_batch": 8,
+        "max_first_frame_wait_us": 72702,
+        "max_batch_us": 83059,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 0
+      },
+      {
+        "case": "public-input-slot-backpressure",
+        "codec": 27,
+        "frames": 24,
+        "max_normal_batch": 2,
+        "max_first_frame_wait_us": 11063,
+        "max_batch_us": 11067,
+        "send_eagain": 11,
+        "backpressure": 0,
+        "eos_frames": 0
+      },
+      {
+        "case": "broker-backpressure-progress",
+        "codec": 173,
+        "frames": 24,
+        "max_normal_batch": 8,
+        "max_first_frame_wait_us": 73135,
+        "max_batch_us": 83952,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 0
+      },
+      {
+        "case": "replay64-pending65-startup",
+        "codec": 27,
+        "frames": 70,
+        "max_normal_batch": 65,
+        "max_first_frame_wait_us": 666190,
+        "max_batch_us": 676714,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 0
+      }
+    ],
+    "v7": [
+      {
+        "case": "delayed-eight-frame-backlog",
+        "codec": 27,
+        "frames": 24,
+        "max_normal_batch": 1,
+        "max_first_frame_wait_us": 274,
+        "max_batch_us": 12442,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 7
+      },
+      {
+        "case": "delayed-eight-frame-backlog",
+        "codec": 173,
+        "frames": 24,
+        "max_normal_batch": 1,
+        "max_first_frame_wait_us": 88,
+        "max_batch_us": 11419,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 7
+      },
+      {
+        "case": "public-input-slot-backpressure",
+        "codec": 27,
+        "frames": 24,
+        "max_normal_batch": 1,
+        "max_first_frame_wait_us": 108,
+        "max_batch_us": 132,
+        "send_eagain": 22,
+        "backpressure": 0,
+        "eos_frames": 1
+      },
+      {
+        "case": "broker-backpressure-progress",
+        "codec": 173,
+        "frames": 24,
+        "max_normal_batch": 6,
+        "max_first_frame_wait_us": 52270,
+        "max_batch_us": 62667,
+        "send_eagain": 0,
+        "backpressure": 5,
+        "eos_frames": 2
+      },
+      {
+        "case": "replay64-pending65-startup",
+        "codec": 27,
+        "frames": 70,
+        "max_normal_batch": 1,
+        "max_first_frame_wait_us": 106,
+        "max_batch_us": 10585,
+        "send_eagain": 0,
+        "backpressure": 0,
+        "eos_frames": 64
+      }
+    ]
+  }
+}

@@ -1,0 +1,191 @@
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-media-v17'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-media-v17'
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+  GEN     Makefile
+  SYSHDR  arch/arm64/include/generated/uapi/asm/unistd_64.h
+  UPD     include/config/kernel.release
+  HOSTCC  scripts/dtc/dtc.o
+  HOSTCC  scripts/dtc/flattree.o
+  HOSTCC  scripts/dtc/fstree.o
+  UPD     include/generated/utsrelease.h
+  SYSTBL  arch/arm64/include/generated/asm/syscall_table_32.h
+  SYSTBL  arch/arm64/include/generated/asm/syscall_table_64.h
+  SYSHDR  arch/arm64/include/generated/asm/unistd_32.h
+  HOSTCC  scripts/dtc/data.o
+  SYSHDR  arch/arm64/include/generated/asm/unistd_compat_32.h
+  HOSTCC  scripts/dtc/livetree.o
+  HOSTCC  scripts/dtc/treesource.o
+  HOSTCC  scripts/dtc/srcpos.o
+  HOSTCC  scripts/dtc/checks.o
+  HOSTCC  scripts/dtc/util.o
+  LEX     scripts/dtc/dtc-lexer.lex.c
+  YACC    scripts/dtc/dtc-parser.tab.[ch]
+  HOSTCC  scripts/dtc/libfdt/fdt.o
+  HOSTCC  scripts/dtc/libfdt/fdt_ro.o
+  HOSTCC  scripts/dtc/libfdt/fdt_wip.o
+  HOSTCC  scripts/dtc/libfdt/fdt_sw.o
+  HOSTCC  scripts/dtc/libfdt/fdt_rw.o
+  HOSTCC  scripts/dtc/libfdt/fdt_strerror.o
+  HOSTCC  scripts/dtc/libfdt/fdt_empty_tree.o
+  HOSTCC  scripts/dtc/libfdt/fdt_addresses.o
+  HOSTCC  scripts/dtc/libfdt/fdt_overlay.o
+  HOSTCC  scripts/dtc/fdtoverlay.o
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  HOSTLD  scripts/dtc/fdtoverlay
+  HOSTLD  scripts/dtc/dtc
+  HOSTCC  scripts/kallsyms
+  HOSTCC  scripts/sorttable
+  GEN     arch/arm64/include/generated/asm/cpucap-defs.h
+  GEN     arch/arm64/include/generated/asm/sysreg-defs.h
+  CC      scripts/mod/empty.o
+  HOSTCC  scripts/mod/mk_elfconfig
+  CC      scripts/mod/devicetable-offsets.s
+  MKELF   scripts/mod/elfconfig.h
+  HOSTCC  scripts/mod/modpost.o
+  HOSTCC  scripts/mod/file2alias.o
+  HOSTCC  scripts/mod/sumversion.o
+  HOSTCC  scripts/mod/symsearch.o
+  HOSTLD  scripts/mod/modpost
+  CC      kernel/bounds.s
+  CHKSHA1 /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/atomic/atomic-arch-fallback.h
+  CHKSHA1 /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/atomic/atomic-instrumented.h
+  CHKSHA1 /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/atomic/atomic-long.h
+  CC      arch/arm64/kernel/asm-offsets.s
+  CC      kernel/sched/rq-offsets.s
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux-media-v17/scripts/checksyscalls.sh
+  LDS     arch/arm64/kernel/vdso/vdso.lds
+  CC      arch/arm64/kernel/vdso/vgettimeofday.o
+  AS      arch/arm64/kernel/vdso/note.o
+  AS      arch/arm64/kernel/vdso/sigreturn.o
+  CC      arch/arm64/kernel/vdso/vgetrandom.o
+  AS      arch/arm64/kernel/vdso/vgetrandom-chacha.o
+  LD      arch/arm64/kernel/vdso/vdso.so.dbg
+  VDSOSYM include/generated/vdso-offsets.h
+  OBJCOPY arch/arm64/kernel/vdso/vdso.so
+  CC      drivers/iommu/t736/sunxi-iommu-common.o
+  CC      drivers/iommu/t736/sunxi-iommu-pgtable.o
+  CC      drivers/iommu/t736/sunxi-iommu-v2.o
+  CC      drivers/dma-buf/heaps/system_heap.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:353:6: warning: no previous prototype for ‘sunxi_iommu_register_fault_cb’ [-Wmissing-prototypes]
+  353 | void sunxi_iommu_register_fault_cb(sunxi_iommu_fault_cb cb,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:449:6: warning: no previous prototype for ‘sunxi_iommu_dump_mastger_reg’ [-Wmissing-prototypes]
+  449 | void sunxi_iommu_dump_mastger_reg(int masterid)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:462:6: warning: no previous prototype for ‘sunxi_reset_device_iommu’ [-Wmissing-prototypes]
+  462 | void sunxi_reset_device_iommu(unsigned int master_id)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:501:6: warning: no previous prototype for ‘sunxi_enable_device_iommu’ [-Wmissing-prototypes]
+  501 | void sunxi_enable_device_iommu(unsigned int master_id, bool flag)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:571:6: warning: no previous prototype for ‘sunxi_iommu_enable_interrupt’ [-Wmissing-prototypes]
+  571 | void sunxi_iommu_enable_interrupt(int enable)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:586:6: warning: no previous prototype for ‘__sunxi_iommu_prevent_hang_enable_unlocked’ [-Wmissing-prototypes]
+  586 | void __sunxi_iommu_prevent_hang_enable_unlocked(int enable)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:619:6: warning: no previous prototype for ‘sunxi_iommu_prevent_hang_enable’ [-Wmissing-prototypes]
+  619 | void sunxi_iommu_prevent_hang_enable(int enable)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:786:6: warning: no previous prototype for ‘sunxi_zap_tlb’ [-Wmissing-prototypes]
+  786 | void sunxi_zap_tlb(unsigned long iova, size_t size)
+      |      ^~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:891:6: warning: no previous prototype for ‘sunxi_iommu_iotlb_sync_map’ [-Wmissing-prototypes]
+  891 | void sunxi_iommu_iotlb_sync_map(struct iommu_domain *domain, unsigned long iova,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:905:6: warning: no previous prototype for ‘sunxi_iommu_iotlb_sync’ [-Wmissing-prototypes]
+  905 | void sunxi_iommu_iotlb_sync(struct iommu_domain *domain,
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1075:5: warning: no previous prototype for ‘sunxi_iommu_set_dma_parms’ [-Wmissing-prototypes]
+ 1075 | int sunxi_iommu_set_dma_parms(struct notifier_block *nb, unsigned long action,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1093:21: warning: no previous prototype for ‘sunxi_iommu_device_group’ [-Wmissing-prototypes]
+ 1093 | struct iommu_group *sunxi_iommu_device_group(struct device *dev)
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1223:5: warning: no previous prototype for ‘sunxi_iommu_get_idx_by_name’ [-Wmissing-prototypes]
+ 1223 | int sunxi_iommu_get_idx_by_name(const char *name)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1739:23: error: initialization of ‘int (*)(struct iommu_domain *, struct device *, struct iommu_domain *)’ from incompatible pointer type ‘int (*)(struct iommu_domain *, struct device *)’ [-Werror=incompatible-pointer-types]
+ 1739 |         .attach_dev = sunxi_iommu_attach_dev,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1739:23: note: (near initialization for ‘sunxi_iommu_domain_ops.attach_dev’)
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1743:10: error: ‘const struct iommu_domain_ops’ has no member named ‘map’
+ 1743 |         .map = sunxi_iommu_map,
+      |          ^~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1743:16: error: initialization of ‘int (*)(struct iommu_domain *, struct device *, ioasid_t,  struct iommu_domain *)’ {aka ‘int (*)(struct iommu_domain *, struct device *, unsigned int,  struct iommu_domain *)’} from incompatible pointer type ‘int (*)(struct iommu_domain *, long unsigned int,  phys_addr_t,  size_t,  int,  gfp_t)’ {aka ‘int (*)(struct iommu_domain *, long unsigned int,  long long unsigned int,  long unsigned int,  int,  unsigned int)’} [-Werror=incompatible-pointer-types]
+ 1743 |         .map = sunxi_iommu_map,
+      |                ^~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1743:16: note: (near initialization for ‘sunxi_iommu_domain_ops.set_dev_pasid’)
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1744:10: error: ‘const struct iommu_domain_ops’ has no member named ‘unmap’
+ 1744 |         .unmap = sunxi_iommu_unmap,
+      |          ^~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1744:18: error: initialization of ‘int (*)(struct iommu_domain *, long unsigned int,  phys_addr_t,  size_t,  size_t,  int,  gfp_t,  size_t *)’ {aka ‘int (*)(struct iommu_domain *, long unsigned int,  long long unsigned int,  long unsigned int,  long unsigned int,  int,  unsigned int,  long unsigned int *)’} from incompatible pointer type ‘size_t (*)(struct iommu_domain *, long unsigned int,  size_t,  struct iommu_iotlb_gather *)’ {aka ‘long unsigned int (*)(struct iommu_domain *, long unsigned int,  long unsigned int,  struct iommu_iotlb_gather *)’} [-Werror=incompatible-pointer-types]
+ 1744 |         .unmap = sunxi_iommu_unmap,
+      |                  ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1744:18: note: (near initialization for ‘sunxi_iommu_domain_ops.map_pages’)
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1745:27: error: initialization of ‘int (*)(struct iommu_domain *, long unsigned int,  size_t)’ {aka ‘int (*)(struct iommu_domain *, long unsigned int,  long unsigned int)’} from incompatible pointer type ‘void (*)(struct iommu_domain *, long unsigned int,  size_t)’ {aka ‘void (*)(struct iommu_domain *, long unsigned int,  long unsigned int)’} [-Werror=incompatible-pointer-types]
+ 1745 |         .iotlb_sync_map = sunxi_iommu_iotlb_sync_map,
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1745:27: note: (near initialization for ‘sunxi_iommu_domain_ops.iotlb_sync_map’)
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1751:10: error: ‘const struct iommu_ops’ has no member named ‘pgsize_bitmap’
+ 1751 |         .pgsize_bitmap = SZ_4K | SZ_16K | SZ_64K | SZ_256K | SZ_1M | SZ_4M |
+      |          ^~~~~~~~~~~~~
+In file included from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/arch/arm64/include/asm/memory.h:14,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/arch/arm64/include/asm/thread_info.h:17,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/thread_info.h:60,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/arch/arm64/include/asm/preempt.h:5,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/preempt.h:79,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/alloc_tag.h:11,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/percpu.h:5,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/arch/arm64/include/asm/arch_timer.h:18,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/arch/arm64/include/asm/timex.h:8,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/timex.h:67,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/time32.h:13,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/time.h:60,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/stat.h:19,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/module.h:13,
+                 from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:15:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/sizes.h:23:41: warning: initialization of ‘bool (*)(struct device *, enum iommu_cap)’ {aka ‘_Bool (*)(struct device *, enum iommu_cap)’} from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+   23 | #define SZ_4K                           0x00001000
+      |                                         ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1751:26: note: in expansion of macro ‘SZ_4K’
+ 1751 |         .pgsize_bitmap = SZ_4K | SZ_16K | SZ_64K | SZ_256K | SZ_1M | SZ_4M |
+      |                          ^~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/include/linux/sizes.h:23:41: note: (near initialization for ‘sunxi_iommu_ops.capable’)
+   23 | #define SZ_4K                           0x00001000
+      |                                         ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1751:26: note: in expansion of macro ‘SZ_4K’
+ 1751 |         .pgsize_bitmap = SZ_4K | SZ_16K | SZ_64K | SZ_256K | SZ_1M | SZ_4M |
+      |                          ^~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1753:10: error: ‘const struct iommu_ops’ has no member named ‘domain_alloc’; did you mean ‘domain_alloc_sva’?
+ 1753 |         .domain_alloc = sunxi_iommu_domain_alloc,
+      |          ^~~~~~~~~~~~
+      |          domain_alloc_sva
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1753:25: error: initialization of ‘void * (*)(struct device *, u32 *, enum iommu_hw_info_type *)’ {aka ‘void * (*)(struct device *, unsigned int *, enum iommu_hw_info_type *)’} from incompatible pointer type ‘struct iommu_domain * (*)(unsigned int)’ [-Werror=incompatible-pointer-types]
+ 1753 |         .domain_alloc = sunxi_iommu_domain_alloc,
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1753:25: note: (near initialization for ‘sunxi_iommu_ops.hw_info’)
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1758:21: error: initialization of ‘int (*)(struct device *, const struct of_phandle_args *)’ from incompatible pointer type ‘int (*)(struct device *, struct of_phandle_args *)’ [-Werror=incompatible-pointer-types]
+ 1758 |         .of_xlate = sunxi_iommu_of_xlate,
+      |                     ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1758:21: note: (near initialization for ‘sunxi_iommu_ops.of_xlate’)
+  AR      drivers/dma-buf/heaps/built-in.a
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1815:6: warning: no previous prototype for ‘sunxi_iommu_master_ready’ [-Wmissing-prototypes]
+ 1815 | void sunxi_iommu_master_ready(struct device *dev)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:2235:42: error: initialization of ‘void (*)(struct platform_device *)’ from incompatible pointer type ‘int (*)(struct platform_device *)’ [-Werror=incompatible-pointer-types]
+ 2235 |                                .remove = sunxi_iommu_remove,
+      |                                          ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:2235:42: note: (near initialization for ‘sunxi_iommu_driver.remove’)
+cc1: some warnings being treated as errors
+make[6]: *** [/home/ubuntu/t736-mainline/sources/work/linux-media-v17/scripts/Makefile.build:287: drivers/iommu/t736/sunxi-iommu-v2.o] Error 1
+make[5]: *** [/home/ubuntu/t736-mainline/sources/work/linux-media-v17/scripts/Makefile.build:544: drivers/iommu/t736] Error 2
+make[4]: *** [/home/ubuntu/t736-mainline/sources/work/linux-media-v17/scripts/Makefile.build:544: drivers/iommu] Error 2
+make[3]: *** [/home/ubuntu/t736-mainline/sources/work/linux-media-v17/scripts/Makefile.build:544: drivers] Error 2
+make[2]: *** [/home/ubuntu/t736-mainline/sources/work/linux-media-v17/Makefile:2051: .] Error 2
+make[1]: *** [/home/ubuntu/t736-mainline/sources/work/linux-media-v17/Makefile:248: __sub-make] Error 2
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-media-v17'
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-media-v17'

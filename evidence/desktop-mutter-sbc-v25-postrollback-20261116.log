@@ -1,0 +1,49 @@
+=== session ===
+6930 /usr/bin/gnome-shell
+PID=6930
+/opt/t736-img-ddk-24.2-x11/lib/libEGL.so.1.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2_PVR_MESA.so.24.2.6603887
+/opt/t736-img-ddk-24.2-x11/lib/libGLESv2.so.2.0.0
+/opt/t736-img-ddk-24.2-x11/lib/libpvr_dri_support.so.24.2.6603887
+/usr/lib/aarch64-linux-gnu/libmutter-16.so.0.0.0
+/usr/lib/aarch64-linux-gnu/mutter-16/libmutter-clutter-16.so.0.0.0
+/usr/lib/aarch64-linux-gnu/mutter-16/libmutter-cogl-16.so.0.0.0
+/usr/lib/aarch64-linux-gnu/mutter-16/libmutter-mtk-16.so.0.0.0
+=== recent logs ===
+-- No entries --
+=== processes ===
+   6828 gdm3            /usr/sbin/gdm3
+   6835 gdm-session-wor gdm-session-worker [pam/gdm-launch-environment]
+   6892 gdm-x-session   /usr/libexec/gdm-x-session dbus-run-session -- gnome-session --autostart /usr/share/gdm/greeter/autostart
+   6894 Xorg            /usr/lib/xorg/Xorg vt1 -displayfd 3 -auth /run/user/101/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3
+   6913 dbus-run-sessio dbus-run-session -- gnome-session --autostart /usr/share/gdm/greeter/autostart
+   6915 gnome-session-b /usr/libexec/gnome-session-binary --autostart /usr/share/gdm/greeter/autostart
+=== profiles ===
+/home/t736/egl-feedback-v23-probev2-i0-20261116.json
+/home/t736/egl-feedback-v23-probev2-i1-20261116.json
+/home/t736/egl-sync-probe
+/home/t736/egl-sync-probe-v2
+/home/t736/firefox-probe-console.log
+/home/t736/firefox-probe-v2-console.log
+/home/t736/firefox-renderer-probe-20261116.json
+/home/t736/firefox-renderer-probe-v4.py
+/home/t736/firefox-renderer-probe-v5.py
+/home/t736/firefox-v16-probe-console.log
+/home/t736/gtk-frame-probe-v16.py
+/home/t736/gtk-ui-frame-probe.py
+/home/t736/gtk_ui_frame_probe_steady.py
+/home/t736/gtk_ui_frame_timings_probe.py
+/home/t736/mmc_dma_integrity_probe.py
+/home/t736/mmc_read_cost_probe.py
+/home/t736/mutter_sbc_session_guard.sh
+/home/t736/settings-final-probe.pid
+/home/t736/storage-cpu-probe.py
+/home/t736/t736-mutter-sbc-48.7-arm64-ac42f10a.tar.xz
+/usr/local/sbin/t736-gpu-profile
+/usr/local/sbin/t736-gpu-runtime-check
+/usr/local/sbin/t736-gpu-session-trial
+/usr/local/sbin/t736-mutter-1080p
+
+/home/t736/firefox-renderer-probe-20261116.files:
+baseline.log
+egl-gles.log

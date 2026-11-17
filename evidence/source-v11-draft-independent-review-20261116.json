@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "kind": "source-v11-draft-independent-integration-review",
+  "date": "2026-11-16",
+  "reviewer": "/root/backup_audit",
+  "status": "STATIC_DRAFT_REVIEW_PASS_NOT_BUILD_OR_HARDWARE_ACCEPTANCE",
+  "files_sha256": {
+    "tools/build_source_rootfs_v11.sh": "93f23b2a6403743abe5fe73431a72679b3cf5f0256d4a279f4b76b33672769b7",
+    "tools/build_source_uboot_source_v11.sh": "dc45d334995327a32442de4b8b44549bed2ac038af15b10039fee9b00bbcfd22",
+    "tools/pack_t736_source_v11.py": "4d65cfe5a9b9ac169c8f0facbe9d4206ea6ead5b8c5c3d21ad73db622d2d9004",
+    "tools/validation/source_v11_plan.py": "bd60581bf4b8be4bbe9ed315bd04386916c02e1f26c7590220e11ec0d2031505",
+    "config/source-v11-inputs.template.json": "21316a4faa5524d3279f3cb78ab45525ae441451ddb2759867abdfa9ae3647d9",
+    "tests/test_source_v11_draft.py": "9214a3121b4680e67bf61fce2f7035a2776ed2fa6af98f0c922ae4bd97d15787",
+    "evidence/source-v11-draft-preparation-20261116.json": "c86cd56fc09a75afb6813a8e954994e76595dbe3c2a3c657a532873cdc6aa27a",
+    "evidence/build/source-v11-draft-static-check-20261116.log": "afc58261539d24aa157dbc1b0940390e225c33d27565a34fcc32a2fde42f6ebb"
+  },
+  "scope": {
+    "board_access": false,
+    "image_mounted": false,
+    "rootfs_or_uboot_built": false,
+    "packer_executed": false,
+    "reviewed_code_modified": false,
+    "public_checkout_modified": false
+  },
+  "checks": [
+    "Default check path is read-only and rejects the pending template before artifacts are accepted. Build requires an explicit input manifest binding exact kernel/PVR, raw storage evidence, GPU acceptance and pinned GstGL package.",
+    "Frozen source-v10 size/SHA and finalize marker are checked before rootfs cloning. Rootfs state/output names are distinct v11 paths and creation rejects existing image/state and symbolic links. Mount changes occur in a private mount namespace; cleanup restores policy and unmounts bind/proc/sys/dev/run/rootfs.",
+    "Installed kernel package/PVR/archive contents are pinned by the reviewed v24 updater input validator. Only exact local kernel and GstGL debs are installed, with service starts inhibited; no apt upgrade or Mutter trial payload is imported.",
+    "Credential file hashes are compared privately in shell variables, never included in output manifests. GDM config/PAM hashes are preserved and AutomaticLoginEnable must be false. Existing GPU profile guard is reused with the exact new release and acceptance artifacts.",
+    "Explicit recovery copies retain v16 kernel/initrd/config/System.map plus the accepted topology DTB and v16 modules; no v16 payload is removed. Recovery selects boot files through the compiled command, and does not claim automatic recovery after a booted kernel hangs.",
+    "New U-Boot is built in an isolated path using frozen CPU-D source/patch inputs. The resulting config must differ from frozen CPU-D only in CONFIG_BOOTCOMMAND, including explicit HS200200 and HS400200 options. A mere Linux alias or armbianEnv change is not substituted for persistent U-Boot parameters.",
+    "Compiled boot command uses an explicit t736_recovery=1 branch selecting v16 paths and baseline arguments; default branch selects installed v24 aliases and exact opt-in arguments. Hush branch and ext4load failure guards are present; booti-return/failure is not presented as automatic fallback.",
+    "Packer preserves pinned SPL v4, stage64 and TF-A bytes, bounds U-Boot payload/package geometry, checks input hashes and embedded rootfs manifest, refuses existing output files and verifies packed region hashes/GPT. No board or raw-device operation exists."
+  ],
+  "verification": {
+    "existing_pure_python_guard_tests_rerun": 6,
+    "result": "PASS",
+    "test_scope": "Persistent boot selection, unsupported modes, exact accepted HS400 stage plus negative mutations, pending-template rejection and project path confinement.",
+    "shell_and_embedded_python_parse": "Author static log reviewed: two sh-n passes, six embedded Python AST parses, planner/packer compile. No chroot/build/mount performed during independent review.",
+    "compiled_uboot_execution": "NOT_RUN; final new U-Boot config/binary and Hush execution still need build/runtime checks."
+  },
+  "remaining": [
+    "Input template intentionally remains pending: exact GstGL archive and complete canonical v24 GPU acceptance are required before --build.",
+    "Static draft review does not attest generated initrd/rootfs, new U-Boot binary or cold boot.",
+    "The serial v16 recovery boot branch is explicit; recovery of newer GPU profile helper release guards is not automatically performed by bootcmd. Treat it as a recovery kernel entry, not a separately accepted v16 desktop profile.",
+    "Final image cold boot, HDMI and user login remain separate hardware acceptance."
+  ],
+  "record_update": "Preparation record clarified explicit serial recovery spelling and lack of automatic v16 GPU-profile restoration; code/test hashes unchanged."
+}

@@ -1,0 +1,326 @@
+{
+  "schema": 1,
+  "kind": "storage-v24-hs400-source-and-observed-performance-review",
+  "date": "2026-11-16",
+  "reviewer": "/root/backup_audit",
+  "status": "SOURCE_ANALYSIS_COMPLETE_ATTRIBUTION_REQUIRES_SEGMENT_TIMING",
+  "scope": {
+    "frozen_v24_modified": false,
+    "board_operations_by_reviewer": false,
+    "public_checkout_modified_or_pushed": false,
+    "work": "Read frozen source, final build configuration/DTB, and root-generated runtime evidence. No new workload or board probe performed by this reviewer."
+  },
+  "conclusion": [
+    "HS400 at actual 200 MHz is an established bus mode in the retained runtime evidence; 400 MB/s is its raw interface ceiling, not guaranteed media/system throughput.",
+    "The 8 MiB direct-read sample reached 83.92 MiB/s; two ad hoc 512 MiB repeated-file samples reached 45.01 and 48.95 MiB/s. A later frozen-probe 512 MiB sample reached 74.90 MiB/s with 2.45 worker CPU seconds. Do not publish any of these as a fixed sustained rate or attribute the difference to prefault or CPU class without controlled segment evidence.",
+    "The named t736-mmc-dma kworker accumulated 6.17 CPU seconds during the 10.459-second ad hoc window and 2.45 CPU seconds around the later 6.836-second frozen-probe transfer. This supports substantial variable worker CPU cost, but current records do not divide it among copy, MMIO, descriptor work, reset polling or other work.",
+    "Frozen source/DT/config imply a Normal Non-Cacheable coherent bounce mapping. Each ordinary read copies its full payload from that mapping to SG pages. This is the leading measurable CPU-cost candidate, not a measured allocation of all 6.17 seconds to memcpy.",
+    "Preserve v24; the next candidate should add aggregate segment observations only. Do not optimize poll/reset/request size/cache attributes before this decomposition."
+  ],
+  "files_sha256": {
+    "boards/t736_mmc_hs400_draft.c": "515d7f75b871ee9da838ef71199706ddedb5425ae6cfac186c3089831d8598e5",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tools/validation/mmc_dma_integrity_probe.py": "618759c16328d0ae9ec7d6c47cf2e998395744a1e6b3df214f68c7818bdcc16c",
+    "evidence/storage-v24-hs400-200-direct-read-only-20261116.log": "81469743d2e6fad91ae9bd98587411e029c3dbdbd7365db5d2ba5273883ab9ea",
+    "evidence/storage-v24-hs400-200-read-cost-20261116.log": "91163fc84ecfe67dbb76030ce797615f181897f04c64c722d0d992c69d9bcb67",
+    "evidence/storage-v24-hs400-200-worker-cost-20261116.log": "e67b172b41dc201ecc3a4e7076de820d7c09443862be878c3b3e0a1f5183cc2b",
+    "evidence/storage-v24-hs400-200-integrity-20261116.json": "26323d7709ab69450d2dd4a355325b4a0d1c0ea0419e4366ee1fa2475cf02d69",
+    "evidence/storage-v24-hs400-200-runtime-full-20261116.log": "d4fa21353fe30e8339dbb412ecf51c7cdc7da7d3c5cf7e3989cf3e63ea58ae16",
+    "evidence/storage-v24-hs400-200-coldboot-20261116.log": "fdb94964460bd99917ce751132cf22c2f3ceb3916ef8637445f96585f100b7b2",
+    "evidence/storage-v24-hs400-stage-record-20261116.json": "1b8d1b66c3915fde3626da8d73b62ed09b0eb38949b149b9399f115c2d410cbb",
+    "evidence/storage-v24-hs400-200-frozen-read-cost-20261116.log": "201efd269ca8ca2d9bf7e62ff097c490a4d1f4f8908e647836c333b278abf946",
+    "tools/validation/mmc_read_cost_probe.py": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946"
+  },
+  "kernel_source_sha256": {
+    "sources/linux/include/linux/iopoll.h": "9edf274f8555e266233ba151942af51e83ad175d885478556075258044dd3a0b",
+    "sources/linux/kernel/time/sleep_timeout.c": "444ae37a7ea7444361c084828d2f68a592aa1401873240d09b85aabb88c5026f",
+    "sources/linux/kernel/dma/direct.c": "6015f4c3e9523c5a1c312c63f7e953c23020b9230aa933b0173f847ecbdf8037",
+    "sources/linux/kernel/dma/mapping.c": "715f7fe354130e1f5de083f58d60725da0d82ff2d120dccb441fc01058b52f73",
+    "sources/linux/drivers/of/address.c": "1cfdf73abe6cf6c55768e48815b7932ffae967fd6576edfc4e3cee86f17278d7",
+    "sources/linux/drivers/of/device.c": "71ef202a21bf7ca797fa5427f367c8d0ad2a0447ea840767dfb30ce1e2ffb858",
+    "sources/linux/arch/arm64/include/asm/pgtable.h": "5086beea184fa5a67ff52e31690598387d466a93b99d1979875f8c26e6dabc8c",
+    "sources/linux/lib/scatterlist.c": "f3edcdb42381918defa8378b34553a3db14e83f77889839251bfc85318e84479",
+    "sources/linux/Documentation/admin-guide/iostats.rst": "166bdc8fd4ee9e53bcb86804e0d22d50c89314dcfc1a248814b0069300034124"
+  },
+  "final_build_binding": {
+    "build_host_config": "/home/ubuntu/t736-mainline/build/linux-storage-v24/.config",
+    "config_sha256": "2ebe51f737ee4c679a00237136d051c0bce542560a4c2159aa55bebc5e63b3e3",
+    "source_tree": "/home/ubuntu/t736-mainline/sources/work/linux-storage-v24",
+    "dtb": "build/linux-storage-v24/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb",
+    "dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "remote_source_hashes_compared": [
+      "include/linux/iopoll.h",
+      "kernel/time/sleep_timeout.c",
+      "kernel/dma/direct.c",
+      "kernel/dma/mapping.c",
+      "drivers/of/address.c",
+      "arch/arm64/include/asm/pgtable.h",
+      "lib/scatterlist.c"
+    ]
+  },
+  "raw_bus_ceiling": {
+    "formula": "200000000 cycles/s * 2 DDR edges * 8 data bits / 8 bits/byte",
+    "bytes_per_second": 400000000,
+    "decimal_MB_per_second": 400,
+    "MiB_per_second": 381.4697265625,
+    "ideal_payload_64KiB_us": 163.84,
+    "exclusions": "Command/response/stop/busy and CRC/protocol overhead, media/controller limitations, and all host-side software/copy/scheduling overhead."
+  },
+  "measurements": {
+    "short_direct_reads": [
+      {
+        "readonly_file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+        "chunk": 65536,
+        "bytes": 8388608,
+        "seconds": 0.10037954599999921,
+        "MiB_s": 79.69751128382333,
+        "compare_hash": false,
+        "equivalent_64KiB_us_min128_requests": 784.2152031249939,
+        "percent_raw_bus_ceiling": 20.892224397986585
+      },
+      {
+        "readonly_file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+        "chunk": 1048576,
+        "bytes": 8388608,
+        "seconds": 0.09533124699999007,
+        "MiB_s": 83.9179204275051,
+        "compare_hash": false,
+        "equivalent_64KiB_us_min128_requests": 744.7753671874225,
+        "percent_raw_bus_ceiling": 21.998579332547898
+      }
+    ],
+    "long_direct_read_with_diskstats": {
+      "evidence": "evidence/storage-v24-hs400-200-read-cost-20261116.log",
+      "bytes": 536870912,
+      "seconds": 11.37595236300001,
+      "MiB_per_second": 45.007220816541626,
+      "percent_raw_bus_ceiling": 11.798372893731488,
+      "process_cpu_seconds": 0.22151179799999998,
+      "whole_system_system_cpu_seconds": 7.09,
+      "completed_disk_reads": 8192,
+      "read_sectors_512B": 1048576,
+      "average_completed_request_bytes": 65536.0,
+      "wall_us_per_completed_64KiB_read": 1388.6660599365248,
+      "read_ms_accumulated": 96351,
+      "mean_block_request_residence_ms": 11.7615966796875,
+      "sum_read_residence_divided_by_wall": 8.469708462684771,
+      "diskstats_limit": "Read milliseconds accumulate request residence including block-layer queueing; 11.76 ms/request is not controller service time. The ~8.47 residence/wall ratio is consistent with multiple outstanding block requests while the host serializes requests, not 8 concurrent hardware DMAs. Whole-system CPU cannot by itself attribute cost to a thread.",
+      "background_io": "Diskstats also record two writes/32 sectors and two flushes; the requested benchmark itself was read-only."
+    },
+    "long_direct_read_with_worker_counters": {
+      "evidence": "evidence/storage-v24-hs400-200-worker-cost-20261116.log",
+      "bytes": 536870912,
+      "seconds": 10.458902227000067,
+      "MiB_per_second": 48.95351241340146,
+      "percent_raw_bus_ceiling": 12.832869558098714,
+      "named_worker": {
+        "pid": "559",
+        "comm": "kworker/u32:2-t736-mmc-dma",
+        "cpu_seconds": 6.17,
+        "last_cpu_before": 5,
+        "last_cpu_after": 4
+      },
+      "worker_cpu_fraction_of_wall": 0.5899280695130606,
+      "payload_MiB_per_worker_CPU_second": 82.98217179902755,
+      "interpretation": "82.98 MiB per worker CPU second is an end-to-end payload/worker-CPU ratio, not measured memcpy bandwidth. Endpoint CPU 5 to 4 proves neither CPU residency nor a LITTLE-core cause. No per-request segment timing or simultaneous workload attribution is retained in this log.",
+      "disk_request_count": "This second log has no diskstats. Its 64 KiB per-request arithmetic would be an equivalence based on the host limit, not independently counted 8192 requests."
+    },
+    "integrity_probe": {
+      "evidence": "evidence/storage-v24-hs400-200-integrity-20261116.json",
+      "status": "PASS",
+      "two_patterns_32MiB_each": true,
+      "phase1_4KiB_write_MiB_per_second": 10.31331385653051,
+      "phase2_64KiB_write_MiB_per_second": 102.49748576870697,
+      "phase2_write_equivalent_us_per_64KiB": 609.7710546874857,
+      "phase2_write_percent_raw_bus_ceiling": 26.869100909351918,
+      "verified_64KiB_read_MiB_per_second": [
+        28.028602554760113,
+        45.67932445600767
+      ],
+      "elapsed_seconds": 9.821456288000007,
+      "process_cpu_seconds": 3.8490716550000004,
+      "voluntary_context_switches": 26378,
+      "data_syscalls_from_loop_structure": 26368,
+      "measurement_limit": "Verified reads include poisoning, preadv, bytes copy, compare and two SHA256 updates. Writes include expected-buffer copy, pwritev and fsync. These phase rates are not directly comparable to no-hash direct reads or guaranteed media-only rates; cache/card conditions and short duration remain limits."
+    },
+    "sample_scope": "Ordinary-file O_DIRECT bypasses the page cache; it does not bypass card-internal caches. Repeating the same 8 MiB 64 times is not a unique 512 MiB streaming-media test. Samples are not controlled repeat statistics. The later frozen probe is the comparison protocol for a future diagnostic candidate; do not fold its different prefault/window handling into an unexplained improvement claim.",
+    "frozen_probe_baseline": {
+      "evidence": "evidence/storage-v24-hs400-200-frozen-read-cost-20261116.log",
+      "script": "tools/validation/mmc_read_cost_probe.py",
+      "script_sha256": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946",
+      "kernel": "6.18.63-t736-storage-v24",
+      "boot_id": "5e72df86-6d96-4e2b-9677-4018a2c2f862",
+      "file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+      "file_bytes": 11632703,
+      "file_inode": 3576,
+      "file_device_major_minor": "179:4",
+      "bytes": 536870912,
+      "seconds": 6.8360977589999266,
+      "MiB_per_second": 74.89652986982767,
+      "percent_raw_bus_ceiling": 19.633675926196105,
+      "process_cpu_seconds": 0.287198744,
+      "system_cpu_tick_delta": [
+        6,
+        0,
+        224,
+        5198,
+        43,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mmcblk0_diskstats_delta": [
+        8192,
+        0,
+        1048576,
+        57591,
+        2,
+        3,
+        40,
+        9,
+        0,
+        6768,
+        57603,
+        0,
+        0,
+        0,
+        0,
+        2,
+        3
+      ],
+      "workers": [
+        {
+          "pid": 559,
+          "comm": "kworker/u32:2-t736-mmc-dma",
+          "cpu_seconds": 2.45,
+          "last_cpu_before": 5,
+          "last_cpu_after": 7
+        },
+        {
+          "pid": 199,
+          "comm": "kworker/7:1H-mmc_complete",
+          "cpu_seconds": 0.02,
+          "last_cpu_before": 7,
+          "last_cpu_after": 7
+        },
+        {
+          "pid": 246,
+          "comm": "kworker/5:1H-kblockd",
+          "cpu_seconds": 0.01,
+          "last_cpu_before": 5,
+          "last_cpu_after": 5
+        }
+      ],
+      "worker_cpu_fraction_of_transfer_wall": 0.3583915980099176,
+      "wall_us_per_completed_64KiB_read": 834.4845897216708,
+      "protocol": "Existing regular file, O_RDONLY|O_DIRECT|O_NOFOLLOW, first 8 MiB repeated 64 times, 1 MiB userspace reads; destination buffer prefaulted outside measured transfer. No integrity/hash work in the measured loop.",
+      "boundary_review": "Static read-only review PASS: fixed bounds, regular-file/size checks, short-read failure, final fd/path identity, PID start-time guard, correct /proc/stat field indexes. No new implementation-mirroring tests.",
+      "comparison_limit": "Prefault differs from the earlier ad hoc protocol, but causal improvement from prefault is not established. Endpoint CPU 5 to 7 does not establish residency or a CPU-class speedup. Collect future candidate comparisons with this exact frozen script.",
+      "counter_window_limit": "Process/transfer, whole-system and worker snapshots have adjacent but different endpoints, including /proc collection overhead. Their CPU deltas need not sum exactly. storage_writes=false describes no write syscall by this probe, not absence of background filesystem writes."
+    }
+  },
+  "request_structure": {
+    "max_req_bytes": 65536,
+    "max_blk_size": 512,
+    "max_blk_count": 128,
+    "max_seg_size": 65536,
+    "max_segs": 128,
+    "descriptor_chunk_bytes": 1024,
+    "descriptor_count_full_request": 64,
+    "descriptor_bytes_each": 16,
+    "descriptor_metadata_bytes_full_request": 1024,
+    "payload_buffers": 1,
+    "per_request_allocation": false,
+    "copy": "One full payload CPU copy per data request: SG to bounce for writes, bounce to SG for reads. Tuning-only poison is not executed on normal I/O.",
+    "queue": "alloc_ordered_workqueue with WQ_MEM_RECLAIM creates an ordered unbound worker path. One work_struct and one coherent payload buffer serialize host requests; no CQE or double-buffer pipeline.",
+    "user_chunk_limit": "A 1 MiB read syscall is still at least 16 host data requests; increasing the userspace chunk does not create a 1 MiB controller transaction.",
+    "optional_commands": "SBC runs only when mrq->sbc exists. Do not assume CMD23 for every request. Auto-stop completion depends on data->stop.",
+    "lines": {
+      "pre_stop": 437,
+      "write_copy": 464,
+      "poll_wait": 607,
+      "post_stop": 629,
+      "read_copy": 634,
+      "queue_work": 697,
+      "allocations": [
+        1122,
+        1128
+      ],
+      "ordered_workqueue": 1139,
+      "limits": [
+        1202,
+        1203,
+        1204,
+        1205,
+        1206
+      ]
+    }
+  },
+  "reset_and_polling": {
+    "dma_stop_calls_per_successful_data_request": 2,
+    "reset_poll_sites_per_stop": 3,
+    "reset_poll_sites_per_data_request": 6,
+    "reset_poll_argument_us": 10,
+    "actual_sleep_range_after_failed_check_us": [
+      3,
+      10
+    ],
+    "first_reset_read_is_immediate": true,
+    "mandatory_six_sleeps_claim_is_false": true,
+    "completion_pending_sleep_range_us": [
+      50,
+      100
+    ],
+    "completion": "Worker reads RINT and IDST; descriptor OWN scan occurs only after required completion events. IDIE enables event latching; controller global interrupt remains disabled.",
+    "hrtimer": "CONFIG_HIGH_RES_TIMERS=y; usleep_range uses schedule_hrtimeout_range and an hrtimer sleeper. CONFIG_HZ=250 does not impose an unavoidable 4 ms sleep on this path. Actual scheduled run time may exceed the requested sleep upper bound.",
+    "preemption": "CONFIG_PREEMPT_NONE=y; no timing guarantee from the requested usleep upper bound.",
+    "fences": "Both stop/reset fences and quarantine-after-timeout protect DMA reuse. Their measured cost is unknown; do not remove them based on assumed six sleeps.",
+    "timeout": "Normal command timeout uses jiffies for a 2-second error deadline, not the normal completion polling granularity."
+  },
+  "bounce_mapping_source_chain": {
+    "classification": "Expected Normal Non-Cacheable CPU mapping, established from frozen source + final DTB/config; runtime PTE not dumped.",
+    "steps": [
+      "Final DTB 07824de9... was decompiled on the build host; no dma-coherent/dma-noncoherent/iommus/iommu-map properties exist.",
+      "CONFIG_ARCH_HAS_SYNC_DMA_FOR_CPU/DEVICE are enabled; CONFIG_ARCH_DMA_DEFAULT_COHERENT is absent in generated autoconf.h. kernel/dma/mapping.c initializes dma_default_coherent to false. No ARM64/OF assignment overriding it was found.",
+      "of_dma_is_coherent traverses DMA parents and returns the false default; of_dma_configure_id passes that to arch_setup_dma_ops.",
+      "For a noncoherent device, CONFIG_DMA_DIRECT_REMAP=y selects the dma_direct_alloc remap path. dma_pgprot returns pgprot_dmacoherent.",
+      "ARM64 pgprot_dmacoherent uses MT_NORMAL_NC. This is Normal Non-Cacheable memory, not Device-nGnRE/nGnRnE MMIO.",
+      "sg_copy_from_buffer -> sg_copy_buffer (SG_MITER_LOCAL) -> memcpy(miter.addr, bounce + offset, len) for each SG mapping."
+    ],
+    "cost_not_measured": [
+      "NC source-load throughput and individual memcpy duration",
+      "Descriptor setup/status scan CPU time",
+      "Reset-loop retry/sleep counts and latency",
+      "Time sleeping versus runnable but unscheduled in completion polling",
+      "Per-CPU residency of the worker during the measurement"
+    ],
+    "no_shortcut": "Do not add a fake dma-coherent DT property or cacheable alias to speed this up. DMA coherence and buffer ownership need a separate correctness design."
+  },
+  "next_minimal_candidate": {
+    "name": "v25 aggregate diagnostic only; v24 remains frozen",
+    "single_changed_variable": "Observability only; add bounded aggregate timing/counters gated by an explicit default-off boot option. No timing, reset, DMA, request-limit, affinity, rail or PLL behavior change.",
+    "segments": [
+      "request enqueue to worker start (dispatch wait)",
+      "worker start to mmc_request_done entry (host service wall)",
+      "pre-transfer t736_dma_stop separately from remaining dma_start",
+      "descriptor/setup and write-copy separately if attributing dma_start cost",
+      "command submission through polling completion (hardware plus sleep/scheduling wall, not hardware-only time)",
+      "post-transfer t736_dma_stop",
+      "sg_copy_from_buffer read-copy wall"
+    ],
+    "counts": [
+      "read/write requests and bytes, segregating normal I/O from tuning",
+      "poll-loop iterations/sleep attempts without per-poll timestamps or printk",
+      "CPU index sampled at selected segment endpoints, explicitly not a residency histogram",
+      "error counts and max/total wall time per segment"
+    ],
+    "measurement_surface": "Read-only debugfs aggregate snapshots before and after one existing approved read-only workload; subtract totals. Avoid per-I/O logs, payload retention, counter-reset requirements, or a broad benchmark expansion.",
+    "attribution_limits": "ktime wall segments can include interrupts/scheduling; task worker CPU endpoints independently bound CPU use. Do not label a command wait interval pure device time. CONFIG_SCHEDSTATS/FTRACE/KPROBES/PERF_EVENTS are disabled in v24.",
+    "why_not_poll_change_first": "Reducing 50-100 us waits increases wakeups and may add CPU cost while missing a dominant NC-copy cost. Current worker CPU evidence argues for decomposition first.",
+    "why_not_request_limit_change_first": "Larger requests need larger bounce/descriptor capacity, bounds review and ownership snapshot changes: current snapshot stores only 64 OWN bits. This is not a one-constant behavioral experiment.",
+    "state": "Proposed diagnostic, not implemented or tested by this reviewer."
+  },
+  "delivery": "Private project evidence over SFTP only. Existing public backup remains frozen at its earlier accepted HS200 checkpoint."
+}

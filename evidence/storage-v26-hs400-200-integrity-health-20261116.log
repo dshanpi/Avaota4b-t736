@@ -1,0 +1,40 @@
+=== new kernel messages during integrity ===
+=== persistent boot selection ===
+vmlinuz-6.18.63-t736-storage-v16
+initrd.img-6.18.63-t736-storage-v16
+6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b  /boot/dtb/allwinner/t736-mainline-bringup.dtb
+=== ordinary I/O counters ===
+schema=1 snapshot_ns=125647527430 enabled=1
+scope=ordinary_CMD17_18_24_25_including_associated_SBC_and_error_stop
+units=wall_ns calls=segment_invocations max=lifetime_not_subtractable
+nested=dma_start_includes_pre_reset_and_write_copy;worker_total_includes_service_and_callback
+limits=wall_includes_interrupts_and_scheduling;CPU_endpoints_are_not_residency;worker_total_excludes_final_merge;dma_start_includes_sync_device;post_reset_includes_sync_cpu
+snapshot=only_fully_merged_samples;completion_can_wake_user_before_merge;includes_background_block_IO
+samples complete=45855 incomplete=0 dropped_events=0
+requests direction=read attempted=35742 success=35742 failed=0 requested_bytes=1078831104 completed_bytes=1078831104 poll_iterations=147393 poll_sleep_attempts=111651
+size_bins direction=read le4096=19149 le16384=1237 le65536=15356 gt65536=0
+segment direction=read name=dispatch calls=35742 total_ns=589265252 max_ns=10656709 different_endpoints=35419 different_endpoint_ns=535915622
+=== graphics and services ===
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 0%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   0% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.

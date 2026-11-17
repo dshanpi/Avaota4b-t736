@@ -1,0 +1,6 @@
+Running timer as unit: t736-v26-gdm-config-restore.timer
+Will run service as unit: t736-v26-gdm-config-restore.service
+/etc/gdm3/daemon.conf: 成功
+3186 /usr/bin/gnome-shell
+ls: 无法访问 '/home/t736/*settings*py'/home/t736/x11-window-wait.py
+: 没有那个文件或目录

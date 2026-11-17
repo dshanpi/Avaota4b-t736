@@ -1,0 +1,194 @@
+--- a/omx/gstomxvideodec.c
++++ b/omx/gstomxvideodec.c
+@@ -171,36 +171,74 @@
+   }
+ }
+ 
+-static void add_meta_to_output(GstBuffer *buf, OmxPrivateBuffer *private)
+-{
+-  GstVideoCropMeta *meta = NULL;
+-  meta = gst_buffer_add_video_crop_meta(buf);
+-  meta->x = 0;
+-  meta->y = 0;
+-  meta->width = private->nWidth;
+-  meta->height = private->nHeight;
+-
+-  if (gst_omx_video_dec_debug_enabled) {
+-    GstVideoMeta *vmeta = gst_buffer_get_video_meta(buf);
+-    if(vmeta) {
+-        GST_INFO_OBJECT(NULL, "video meta info: w=%d h=%d, format=%d", vmeta->width, vmeta->height, vmeta->format);
+-      for(gint i = 0 ; i < vmeta->n_planes; i++) {
+-        GST_INFO_OBJECT(NULL, "plane %d: stride=%d, offset=%d", i, vmeta->stride[i], vmeta->offset[i]);
+-      }
+-    }
+-
+-    if (!gst_is_dmabuf_memory (gst_buffer_peek_memory (buf, 0))) {
+-      GST_INFO_OBJECT (NULL, "output frame not dmabuf");
+-    } else {
+-      gint fd = gst_dmabuf_memory_get_fd(gst_buffer_peek_memory (buf, 0));
+-      GST_INFO_OBJECT(NULL, "getDmaBuf fd %d", fd);
+-      gint offset = 0, max = 0;
+-      gint size = gst_memory_get_sizes(gst_buffer_peek_memory (buf, 0), &offset, &max);
+-      GST_INFO_OBJECT(NULL, "dma buffer size = %d", size);
+-    }
+-    GST_INFO_OBJECT(NULL, "private %p crop info [left %d top %d width %d height %d]",
+-                          private, private->nLeft, private->nTop, private->nWidth, private->nHeight);
+-  }
++static gboolean
++gst_omx_video_dec_crop_valid (const OMX_CONFIG_RECTTYPE * crop,
++    guint64 width, guint64 height)
++{
++  /* Subtraction after bounds checks avoids overflow in x + width/y + height.
++   * GstVideoCropMeta fields are guint, even if a vendor OMX uses wider types. */
++  if (!width || !height || width > G_MAXUINT || height > G_MAXUINT ||
++      crop->nLeft < 0 || crop->nTop < 0 ||
++      !crop->nWidth || !crop->nHeight ||
++      (guint64) crop->nLeft >= width || (guint64) crop->nTop >= height)
++    return FALSE;
++
++  return (guint64) crop->nWidth <= width - (guint64) crop->nLeft &&
++      (guint64) crop->nHeight <= height - (guint64) crop->nTop;
++}
++
++static gboolean
++gst_omx_video_dec_snapshot_crop (GstOMXVideoDec * self,
++    OMX_CONFIG_RECTTYPE * crop)
++{
++  OMX_PARAM_PORTDEFINITIONTYPE port_def;
++  OMX_ERRORTYPE err;
++
++  /* Query each nonempty output before any pool buffer can be copied/released.
++   * The vendor updates this rectangle before announcing port changes. */
++  GST_OMX_INIT_STRUCT (crop);
++  crop->nPortIndex = self->dec_out_port->index;
++  err = gst_omx_component_get_config (self->dec,
++      OMX_IndexConfigCommonOutputCrop, crop);
++  if (err != OMX_ErrorNone) {
++    GST_ERROR_OBJECT (self, "Cannot query output crop: %s (0x%08x)",
++        gst_omx_error_to_string (err), err);
++    return FALSE;
++  }
++
++  err = gst_omx_port_get_port_definition (self->dec_out_port, &port_def);
++  if (err != OMX_ErrorNone ||
++      !gst_omx_video_dec_crop_valid (crop,
++          port_def.format.video.nFrameWidth,
++          port_def.format.video.nFrameHeight)) {
++    GST_ERROR_OBJECT (self, "Output crop is outside the OMX frame storage");
++    return FALSE;
++  }
++  return TRUE;
++}
++
++static gboolean
++gst_omx_video_dec_apply_crop (GstOMXVideoDec * self, GstBuffer * buf,
++    const OMX_CONFIG_RECTTYPE * crop)
++{
++  GstVideoCropMeta *meta;
++
++  if (!gst_buffer_is_writable (buf)) {
++    GST_ERROR_OBJECT (self, "Output buffer is not writable for crop metadata");
++    return FALSE;
++  }
++  meta = gst_buffer_get_video_crop_meta (buf);
++  if (!meta)
++    meta = gst_buffer_add_video_crop_meta (buf);
++  if (!meta) {
++    GST_ERROR_OBJECT (self, "Cannot attach output crop metadata");
++    return FALSE;
++  }
++  meta->x = crop->nLeft;
++  meta->y = crop->nTop;
++  meta->width = crop->nWidth;
++  meta->height = crop->nHeight;
++  return TRUE;
+ }
+ 
+ // static GstBuffer * wrapper_omx_buffer(GstBuffer *buffer)
+@@ -2050,6 +2088,7 @@
+   GstFlowReturn flow_ret = GST_FLOW_OK;
+   GstOMXAcquireBufferReturn acq_return;
+   OMX_ERRORTYPE err;
++  OMX_CONFIG_RECTTYPE output_crop;
+ 
+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
+   port = self->eglimage ? self->egl_out_port : self->dec_out_port;
+@@ -2171,6 +2210,14 @@
+       gst_omx_buffer_flags_to_string (buf->omx_buf->nFlags),
+       (guint64) GST_OMX_GET_TICKS (buf->omx_buf->nTimeStamp));
+ 
++  /* Keep the crop snapshot independent of the OMX/pool buffer lifetime. */
++  if ((buf->omx_buf->nFilledLen > 0 || buf->eglimage) &&
++      !gst_omx_video_dec_snapshot_crop (self, &output_crop)) {
++    gst_omx_port_release_buffer (port, buf);
++    buf = NULL;
++    goto crop_error;
++  }
++
+   frame = gst_omx_video_find_nearest_frame (GST_ELEMENT_CAST (self), buf,
+       gst_video_decoder_get_frames (GST_VIDEO_DECODER (self)));
+ 
+@@ -2237,6 +2284,14 @@
+ #endif
+     }
+ 
++    /* Covers unmatched frames with either pool or copied output. */
++    if (!gst_omx_video_dec_apply_crop (self, outbuf, &output_crop)) {
++      gst_buffer_unref (outbuf);
++      if (buf)
++        gst_omx_port_release_buffer (port, buf);
++      buf = NULL;
++      goto crop_error;
++    }
+     flow_ret = gst_pad_push (GST_VIDEO_DECODER_SRC_PAD (self), outbuf);
+   } else if (buf->omx_buf->nFilledLen > 0 || buf->eglimage) {
+     if (self->out_port_pool) {
+@@ -2275,9 +2330,13 @@
+ 
+       frame->output_buffer = outbuf;
+ 
+-      OmxPrivateBuffer *sOmxOutPrivateBuffer = (OmxPrivateBuffer*)(buf->omx_buf->pBuffer);
+-
+-      add_meta_to_output(outbuf, sOmxOutPrivateBuffer);
++      if (!gst_omx_video_dec_apply_crop (self, outbuf, &output_crop)) {
++        /* The output GstBuffer owns the pool reference, including after copy. */
++        gst_video_decoder_drop_frame (GST_VIDEO_DECODER (self), frame);
++        frame = NULL;
++        buf = NULL;
++        goto crop_error;
++      }
+ 
+       flow_ret =
+           gst_video_decoder_finish_frame (GST_VIDEO_DECODER (self), frame);
+@@ -2304,6 +2363,15 @@
+         set_outbuffer_interlace_flags (buf, frame->output_buffer);
+ #endif
+ 
++        if (!gst_omx_video_dec_apply_crop (self, frame->output_buffer,
++                &output_crop)) {
++          gst_video_decoder_drop_frame (GST_VIDEO_DECODER (self), frame);
++          frame = NULL;
++          gst_omx_port_release_buffer (port, buf);
++          buf = NULL;
++          goto crop_error;
++        }
++
+         flow_ret =
+             gst_video_decoder_finish_frame (GST_VIDEO_DECODER (self), frame);
+         frame = NULL;
+@@ -2411,6 +2479,15 @@
+         ("Unable to reconfigure output port"));
+     gst_pad_push_event (GST_VIDEO_DECODER_SRC_PAD (self), gst_event_new_eos ());
+     gst_omx_video_dec_pause_loop (self, GST_FLOW_ERROR);
++    return;
++  }
++
++crop_error:
++  {
++    GST_ELEMENT_ERROR (self, LIBRARY, SETTINGS, (NULL),
++        ("Missing, invalid, or unpublishable OpenMAX output crop"));
++    gst_pad_push_event (GST_VIDEO_DECODER_SRC_PAD (self), gst_event_new_eos ());
++    gst_omx_video_dec_pause_loop (self, GST_FLOW_NOT_NEGOTIATED);
+     return;
+   }
+ 

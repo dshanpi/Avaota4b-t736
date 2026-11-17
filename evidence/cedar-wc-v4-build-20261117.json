@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "status": "COMPILED_HARDWARE_PENDING",
+  "package": "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/t736-cedar-wc-v4.tar.gz",
+  "bytes": 1156268,
+  "sha256": "61a660dfb9efef790fe9f3abcaf1a43307c2d0b4c3ca5291c8c355f994fc4d29",
+  "plugin_sha256": "e92446f586b9b7ed00e28d2cafc76b12c95bd42efdc1428b52b0203cf480df17",
+  "manifest_sha256": "eaf5fb8d56c1ee96b185ab8f0f7a88704ed8825347e58ad014278dfe2c6e466a",
+  "source_patch_sha256": "adb84875f8c4bcfa818a235ccee94f8aa9540e4f2dd3d145a416b48547595daf",
+  "source_sha256": "0c59ac64ef759bd856d309b15b39e64acfb91a6530c02b576f04f23f729e08fe",
+  "tests": {
+    "status": "PASS",
+    "command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/idle-action-test.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/idle-action-test"
+    ],
+    "output": "PASS: extracted idle action; initial/idempotent states, pause/resume/populate, active-input rejection, state/queue failures, balanced locks",
+    "source_sha256": "61a2e2fb0d761008934a9b75b4b0c7a2fe4ab18ee53b4d0d6919d733feca19cd"
+  }
+}

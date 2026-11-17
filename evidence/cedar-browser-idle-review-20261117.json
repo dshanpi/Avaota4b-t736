@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "COMPILED_DEVICE_FREE_TESTS_PASS_HARDWARE_PENDING",
+  "board_access": false,
+  "source_sha256": "da0d864210098939c117cb29793702b42f7fdd733ec9ca8e207c0cd130b8155e",
+  "observed_by_parent": "After first real HEVC decode exact, idle Executing decoder repeatedly logs LATENCY_SEM wait timeout; this agent performed source audit only",
+  "root_cause": {
+    "source": "libcedarc_v2.0/openmax/vdec/src/omx_vdec_aw_decoder_linux.c:2067-2071",
+    "behavior": "2ms semaphore wait; after more than50 consecutive failures logw on every failure, independent of bEnableLatencyStats",
+    "semaphore": "looper/omx_sem.c:69-101 uses milliseconds, CLOCK_REALTIME and normalized nanoseconds; no unit bug in audited source",
+    "gst_state": "Unmodified gst-omx PLAYING-to-PAUSED does not request OMX_StatePause"
+  },
+  "change": {
+    "backend": "cedar_idle: flush then Gst PAUSED then WC-v4 t736-set-idle(true); subsequent push resumes automatically",
+    "plugin": "WC-v4 explicit action maps OMX Executing/Pause with bounded5s waits and stream lock; resume repopulates output queue; never READY/NULL or destroys pool",
+    "why_private_action": "Vendor Pause-to-Executing returns both port queues, so this must only run after a flushing lease boundary, not normal lossless playback pause"
+  },
+  "tests": [
+    "ARM64 -Werror shared library build",
+    "ARM64 QEMU actual Gst copy/map and software EOS/flush/idle/resume with mock action",
+    "native ASan/UBSan same actual backend",
+    "WC-v4 extracted actual action state/timeout/failure/populate and lock-balance mock tests by media_ve_review"
+  ],
+  "review": "code_index reviewed WC-v4 action patch; no blocker to controlled hardware test found",
+  "pending": [
+    "Actual idle log/CPU reduction",
+    "Hardware same-stream restart exact frames",
+    "Unchanged pinned DMA budget across idle/resume",
+    "AXI drain is not established by state transition"
+  ]
+}

@@ -1,0 +1,12 @@
+#!/bin/sh
+# Private candidate only: no default-browser or system-library replacement.
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+export LD_LIBRARY_PATH="$root/lib:/opt/t736-cedar-wc-v5/lib:/opt/t736-gst-parser-v27/usr/lib/aarch64-linux-gnu"
+export GST_PLUGIN_SYSTEM_PATH_1_0=/opt/t736-gst-parser-v27/selected:/usr/lib/aarch64-linux-gnu/gstreamer-1.0
+export GST_PLUGIN_PATH_1_0=/opt/t736-cedar-wc-v5/lib/gstreamer-1.0
+export GST_OMX_CONFIG_DIR="$root/config"
+export GST_REGISTRY_1_0=/run/t736-cedar/registry.bin
+export GST_REGISTRY_FORK=no
+unset GST_AW_OMX_DEFAULT_ARM_AFBC AW_AFBC_MODE
+exec "$root/bin/cedar-broker" 1000

@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "status": "COMPILED_ARM64_SOFTWARE_AUDIT_PASS_BROWSER_PERFORMANCE_PENDING",
+  "board_access": false,
+  "date": "2026-11-17",
+  "change": "Receive pixels directly into ordinary RAM AVBufferPool storage and transfer the buffer reference into the returned AVFrame for width divisible by64, ensuring32-byte Y/U/V stride alignment; otherwise keep the prior row-copy path. Removes the last 3.11MB RAM-to-RAM copy per aligned1080p frame without changing broker or exposing hardware handles.",
+  "build": {
+    "archive": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v3.tar.gz",
+    "bytes": 6980340,
+    "sha256": "870618a2d0167ec9ebae50aa157eba7f815d2fcb0185436966c95269f5756cb4",
+    "manifest_sha256": "ca76a2fd858654bf829e1a10bc56be279df2b4cf20c083401b7f7679da0189bf",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084304,
+        "sha256": "1ba422fedfe0af2840be2ddf7653aea6ed3d4da2cd87e7e5e01e9b09580b4ac8",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    }
+  },
+  "manifest": {
+    "schema": 1,
+    "status": "COMPILED_TESTS_AND_BOARD_PENDING",
+    "upstream": "FFmpeg official n7.1.5 tag",
+    "source_archive_sha256": "e3963a50831c985933e1a625ed566ec4c7adb5c012c34fa9f84438e1d61bdacc",
+    "source_archive_url": "https://codeload.github.com/FFmpeg/FFmpeg/tar.gz/refs/tags/n7.1.5",
+    "configure": [
+      "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/src/configure",
+      "--prefix=/opt/t736-browser-ffmpeg",
+      "--arch=aarch64",
+      "--target-os=linux",
+      "--enable-cross-compile",
+      "--cross-prefix=aarch64-linux-gnu-",
+      "--enable-shared",
+      "--disable-static",
+      "--enable-pic",
+      "--disable-doc",
+      "--disable-programs",
+      "--disable-autodetect",
+      "--disable-network",
+      "--disable-encoders",
+      "--disable-muxers",
+      "--disable-devices",
+      "--disable-filters",
+      "--disable-avdevice",
+      "--disable-avfilter",
+      "--disable-postproc",
+      "--extra-ldflags=-ldl",
+      "--enable-decoder=h264_cedar,hevc_cedar,h264,hevc",
+      "--enable-bsf=h264_mp4toannexb,hevc_mp4toannexb"
+    ],
+    "source_sha256": "65c784d213c4302d423a5b9f0481c5d9772767b9aac4f59b8b731a1a282774c6",
+    "client_header_sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+    "codec_list_sha256": "c9ad395080a43e0298f16aca4ac1ceec48fe54b08ce032971603f6888a8ae0be",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084304,
+        "sha256": "1ba422fedfe0af2840be2ddf7653aea6ed3d4da2cd87e7e5e01e9b09580b4ac8",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    },
+    "selection": "Cedar wrappers lead av_codec_iterate and avcodec_find_decoder; native names h264/hevc remain available for fallback.",
+    "software_codecs": "All available in-tree decoders/parsers retained; external codec libraries not auto-detected or linked. Native h264/hevc and audio fallback retained.",
+    "sandbox": "No sandbox disabling. Hardware API resolved only from an already-preloaded, already-connected client.",
+    "limits": [
+      "Only even <=1920x1080 8-bit hardware frames accepted.",
+      "Bounded replay fallback only before a hardware frame is delivered; post-delivery hardware errors remain explicit.",
+      "No assertion of hardware use based on Firefox software-frame backend labels.",
+      "No system library installation or target execution by this builder."
+    ]
+  },
+  "test_source_sha256": "c16876af8632581773fe91aabeabfc721006aa0cc14f69ccc00f99facdc09877",
+  "tests": {
+    "result": "PASS",
+    "checks": 5061,
+    "hardware": false,
+    "new_cases": [
+      "width320 direct receive buffer is the returned frame buffer",
+      "two concurrently held frames do not overwrite each other",
+      "flush allows pool reuse",
+      "held frame remains valid after decoder context close",
+      "width318 retains aligned row-copy fallback"
+    ],
+    "retained_cases": "H264/HEVC45B-frame fixtures, four fallback modes exactMD5/PTS/duration, synthetic asynchronous backpressure/negativePTS/EOS/flush/fatal/Main10 guard",
+    "log": "mainline/evidence/build/browser-ffmpeg-v3-arm64-qemu-20261117.log",
+    "log_sha256": "25fe494487bf475c7a4d361742cf9473e9a49fd51924fc828b8fc025f6ec9f76"
+  },
+  "limitations": [
+    "Qemu validates actualARM64library correctness, not target performance",
+    "ActualFirefox comparison andNoNewPrivs/Seccomp preservation remain root-agent board verification",
+    "IPC kernel copies and WC reads remain; this is ordinaryRAMbuffer ownership optimization only",
+    "No broker restart or new DMA allocation is required to swap browser private library"
+  ]
+}

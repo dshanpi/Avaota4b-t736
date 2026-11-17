@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "kind": "mutter-sbc-gi2-session-guard-independent-review",
+  "date": "2026-11-16",
+  "reviewer": "backup_audit",
+  "status": "PASS-limited-guard-and-dispatch-review",
+  "inputs": {
+    "tools/validation/mutter_sbc_session_guard.sh": "e9112dd9e2f4b59e37f7353eea1941fa0b158b69e6d9e9100bcb0278f222106a",
+    "tools/validation/mutter_sbc_session_guard_v2.sh": "7c6e2af908a82739c4ff961aea31d4183e897e9fde632e5369289001720c65cd",
+    "build/mutter-egl-sbc-candidate/gnome-shell-sbc-dispatch": "15c03476484636e10300d230742279e349c705deaf76e739240df5e7d189ab8d",
+    "evidence/storage-v24-gnome-systemd-before-mutter-20261116.log": "6df10a86fbf8a1ee13f86d1ade61a3b2e8cbd4d3455ba51d49e29e5b271dd63c",
+    "evidence/desktop-mutter-sbc-session-guard-review-20261116.json": "a8426b6f7fd87a6136cf22822ee44f2ef915207d4d6cb87fd60117a44727307d"
+  },
+  "scope": "Only the new v2 session guard, UID dispatcher and existing unit argv. No new SBC algorithm review, candidate library execution or board operation.",
+  "changes": [
+    "New gi2 state/dropin/timer names retain the prior locked rollback ordering.",
+    "Require candidate copied gnome-shell and dispatcher executables, and absence of prior90 override before arm.",
+    "User-unit override clears prior ExecStart then uses the dispatcher. Original actual unit ExecStart and argv evidence show only /usr/bin/gnome-shell, without additional arguments, so no existing argv was dropped.",
+    "Only UID1000 and COGL_EGL_X11_SBC_FEEDBACK exactly1 exec the candidate copied shell. Every other UID or flag value execs /usr/bin/gnome-shell, forwarding all arguments."
+  ],
+  "dispatch_truth_table": [
+    {
+      "uid": 1000,
+      "flag": "1",
+      "shell": "candidate"
+    },
+    {
+      "uid": 1000,
+      "flag": "unset-or-not-1",
+      "shell": "system"
+    },
+    {
+      "uid": 101,
+      "flag": "any",
+      "shell": "system"
+    },
+    {
+      "uid": "other-than-1000",
+      "flag": "any",
+      "shell": "system"
+    }
+  ],
+  "greeter_scope": "The override unit is globally visible, but only the1000.env file is created. UID101 GDM greeter dispatch remains system shell even if the flag were inherited. This is static route selection, not a new runtime greeter acceptance.",
+  "rollback": [
+    "System-manager timer is created and verified before env/dropin publication. Arm and rollback share /run/t736-sbc-ac42-gi2/private/lock.",
+    "Manual rollback runs synchronously while timer remains active, and stops timer only after successful rollback.",
+    "Rollback removes exactgi2 dropin and1000 env, restores protected GDM config, reloads user manager with10s bound, restarts display manager with45s bound, verifies hash before completion marker.",
+    "Caller-controlled session activation must acquire the gi2 lock, reject rollback.complete, verify active gi2 timer, and restore saved GDM configuration immediately under the same boundary."
+  ],
+  "syntax_checks": {
+    "host": "192.168.1.228",
+    "outer_bash_n_exit": 0,
+    "embedded_rollback_bash_n_exit": 0,
+    "dispatcher_sh_n_exit": 0,
+    "execution": "Parse only from reviewed bytes; no shell body, systemctl action or candidate binary executed."
+  },
+  "limits": [
+    "Loader search-path fix and copied executable require their own exact archive/runtime validation.",
+    "A successful copied-shell loader check does not establish SBC performance or physical display behavior."
+  ],
+  "blocking_findings_remaining_within_review_scope": [],
+  "board_operated": false
+}

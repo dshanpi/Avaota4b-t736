@@ -1,0 +1,48 @@
+--- a/tools/browser/cedar_backend.c
++++ b/tools/browser/cedar_backend.c
+@@ -399,6 +399,18 @@
+         du[column] = source[2*column + uoff];
+         dv[column] = source[2*column + 1 - uoff];
+     }
++}
++
++/* Called only after copy_sample validated crop, strides and plane spans. */
++static void copy_planar_plane(uint8_t *destination, const uint8_t *source,
++                              unsigned row_bytes, unsigned rows, int stride)
++{
++    if ((unsigned)stride == row_bytes)
++        memcpy(destination, source, (size_t)row_bytes * rows);
++    else
++        for (unsigned row = 0; row < rows; row++)
++            memcpy(destination + (size_t)row * row_bytes,
++                   source + (size_t)row * (unsigned)stride, row_bytes);
+ }
+ 
+ static int copy_sample(cedar_decoder *d, GstSample *sample, cedar_frame *out)
+@@ -470,8 +482,11 @@
+     }
+     dy = out->data; du = dy + ysize; dv = du + csize;
+     sy = (const uint8_t *)GST_VIDEO_FRAME_PLANE_DATA(&frame, 0) + (size_t)y*ys + x;
+-    for (row = 0; row < h; row++)
+-        memcpy(dy + (size_t)row*w, sy + (size_t)row*ys, w);
++    if (format == GST_VIDEO_FORMAT_I420 || format == GST_VIDEO_FORMAT_YV12)
++        copy_planar_plane(dy, sy, w, h, ys);
++    else
++        for (row = 0; row < h; row++)
++            memcpy(dy + (size_t)row*w, sy + (size_t)row*ys, w);
+     su = GST_VIDEO_FRAME_PLANE_DATA(&frame, 1);
+     if (format == GST_VIDEO_FORMAT_NV12 || format == GST_VIDEO_FORMAT_NV21) {
+         unsigned uoff = format == GST_VIDEO_FORMAT_NV12 ? 0 : 1;
+@@ -489,10 +504,8 @@
+             const uint8_t *swap = su; su = sv; sv = swap;
+             int stride = us; us = vs; vs = stride;
+         }
+-        for (row = 0; row < ch; row++) {
+-            memcpy(du + (size_t)row*cw, su + (size_t)row*us, cw);
+-            memcpy(dv + (size_t)row*cw, sv + (size_t)row*vs, cw);
+-        }
++        copy_planar_plane(du, su, cw, ch, us);
++        copy_planar_plane(dv, sv, cw, ch, vs);
+     }
+     copy_end = monotonic_ns();
+     d->copied_frames++;

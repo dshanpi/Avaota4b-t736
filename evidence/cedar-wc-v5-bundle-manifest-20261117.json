@@ -1,0 +1,237 @@
+{
+  "schema": 1,
+  "kind": "t736-cedar-wc-v5",
+  "status": "COMPILED_DIAGNOSTIC_CANDIDATE_HARDWARE_PENDING",
+  "files": [
+    {
+      "path": "BASELINE-BRIDGE-MANIFEST.json",
+      "bytes": 21372,
+      "sha256": "0fc81c078c839248c3475a77d5898d568f0b6885a0cdb713bb9b2783a6140b64"
+    },
+    {
+      "path": "BASELINE-WC-V1-MANIFEST.json",
+      "bytes": 5366,
+      "sha256": "351878fa95940041f61495d30cf7914b298cb733f2a08b7d691a16e74f73fa81"
+    },
+    {
+      "path": "BASELINE-WC-V2-MANIFEST.json",
+      "bytes": 5852,
+      "sha256": "d70a37314ab0d4d47a6e5e40e1898ef7e57b334e9be0379d098bd1161e14a591"
+    },
+    {
+      "path": "BASELINE-WC-V3-MANIFEST.json",
+      "bytes": 6344,
+      "sha256": "253edaf6e5f91f3ee9d5940fffa28933fa1ca0ff9f90abdadce6866c10eb077d"
+    },
+    {
+      "path": "BASELINE-WC-V4-MANIFEST.json",
+      "bytes": 6826,
+      "sha256": "eaf5fb8d56c1ee96b185ab8f0f7a88704ed8825347e58ad014278dfe2c6e466a"
+    },
+    {
+      "path": "CROP-MANIFEST.json",
+      "bytes": 6271,
+      "sha256": "65ed3c5bc00cfbe886880bad5d7ece1ab1df44058a1df3975111dbf86b76d147"
+    },
+    {
+      "path": "FD-OWNERSHIP-MANIFEST.json",
+      "bytes": 5232,
+      "sha256": "2a8d367698a9e1e14dc33458e849f024d46d842ed457076dfdaac07b21280674"
+    },
+    {
+      "path": "IDLE-MANIFEST.json",
+      "bytes": 6191,
+      "sha256": "22b43c5ea1a9f9cb0b115e5d7877b53987a30b13ff1e94cbdc8c8f9858afd30e"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 371,
+      "sha256": "96dafc9ea7b1dc813fa91c2553767bfc2773c70bb3d517fc11abdd3a2935e8a3"
+    },
+    {
+      "path": "STATE-DIAGNOSTICS-MANIFEST.json",
+      "bytes": 6379,
+      "sha256": "4728a01d94e1a8da0129e8c226a74a27409a497edb5b5372a00fb57db2a2f2db"
+    },
+    {
+      "path": "WC-MANIFEST.json",
+      "bytes": 11357,
+      "sha256": "5d09fe5b54a089a3aad997d02cbdf83872faedf4b9243ef8929c0e42d2959aee"
+    },
+    {
+      "path": "bin/cedar-env",
+      "bytes": 1500,
+      "sha256": "0a1b9bad7fb92b3dd56cdd3c7cef93f5a3cb7ce49c9c24db2e86eb664b25e2e0"
+    },
+    {
+      "path": "bin/vdecoderdemo",
+      "bytes": 159208,
+      "sha256": "5201fe3d9dea9bfd4403331ebb5f5ee430b327f545090e48d572f1158e7ff9c3"
+    },
+    {
+      "path": "config/cedarc.conf.reference",
+      "bytes": 1219,
+      "sha256": "d7ce91860a20fba6b8b4a7dd07e622169d6cd87ac3050d605e19c354f340f620"
+    },
+    {
+      "path": "config/gstomx.conf",
+      "bytes": 262,
+      "sha256": "d2bf92265dd9e4015f74720c96b146c04224ab5ceda3bc8fdba6bc46077169a0"
+    },
+    {
+      "path": "lib/gstreamer-1.0/libgstomx.so",
+      "bytes": 371536,
+      "sha256": "08f27091eebc0bfd1f6f0e542025555d142e0ae79726739217b6b5443ed9db37"
+    },
+    {
+      "path": "lib/libMemAdapter.so",
+      "bytes": 68736,
+      "sha256": "f89ed54db02e7d1aa0dfa84ee89a24170c7a073c3338e571e4c718195b626c74"
+    },
+    {
+      "path": "lib/libOmxCore.so",
+      "bytes": 61752,
+      "sha256": "a29760452c43c9e9988742e0b20ad44a7558d35979f9796928272e731b04424f"
+    },
+    {
+      "path": "lib/libOmxVdec.so",
+      "bytes": 282392,
+      "sha256": "a524cdbda7b9c7becbf4a5d1bdc83afb859aa8297b18b1b092157b6d26c6e24e"
+    },
+    {
+      "path": "lib/libVE.so",
+      "bytes": 69736,
+      "sha256": "3af49a5eb24f6832518a858274fb206d60e490985bff02f5d5be36d053f65be4"
+    },
+    {
+      "path": "lib/libawavs.so",
+      "bytes": 61624,
+      "sha256": "3d46076a1a2cb039540e2e5a945a7320791958b827024b7a6586bd2d3cc6824a"
+    },
+    {
+      "path": "lib/libawavs2.so",
+      "bytes": 69624,
+      "sha256": "7b7ba32eafc0605755a5ee4a46a1ec03a94ff004a366314689a90b1d8d8ff2ae"
+    },
+    {
+      "path": "lib/libawh264.so",
+      "bytes": 145496,
+      "sha256": "c977fe936a0bf1418f0a452c9769158b3ad2c8ff32aa972c1db4e21630f7fcc3"
+    },
+    {
+      "path": "lib/libawh265.so",
+      "bytes": 183840,
+      "sha256": "6adc1bba9ca552e17f6bc8a5d4b28b6cba1a6268feebfded0fa99ed199457df1"
+    },
+    {
+      "path": "lib/libawmjpeg.so",
+      "bytes": 35040,
+      "sha256": "c6c0fff04dcddc633544831430727b445a3f1fe4873c881a16aeaed958513e65"
+    },
+    {
+      "path": "lib/libawmjpegplus.so",
+      "bytes": 44168,
+      "sha256": "99b4d3dcac4e5e5c38f9e1387bc803d8d9fd6f975eb7d83899928e79e8feda9d"
+    },
+    {
+      "path": "lib/libawmpeg2.so",
+      "bytes": 57472,
+      "sha256": "f93ffabbb28c314769fbaaa0b2432b1cca4f4f5f160a9767fba00a76a37863de"
+    },
+    {
+      "path": "lib/libawmpeg4base.so",
+      "bytes": 124600,
+      "sha256": "d3e89676527bbb61f424cf9b09be46db2c27db26032af9c0f3507c46843d8220"
+    },
+    {
+      "path": "lib/libawmpeg4dx.so",
+      "bytes": 91488,
+      "sha256": "01c72ccbd86be598867391a1e33c944c89e8beae2a1efa4044afe5e1819e08d0"
+    },
+    {
+      "path": "lib/libawmpeg4h263.so",
+      "bytes": 71640,
+      "sha256": "fa224002a349b36131212bee325173772fa1dbb0d8e3d80bbd91446f87cb9548"
+    },
+    {
+      "path": "lib/libawmpeg4normal.so",
+      "bytes": 74720,
+      "sha256": "286687b64fa5fc39ff1f3aad2c8931d3e3073707d578e36a1381eb1890553768"
+    },
+    {
+      "path": "lib/libawmpeg4vp6.so",
+      "bytes": 48760,
+      "sha256": "1e4476aa88bcca548978fae4a135c84f55ba2a7b1e096e7da0a72e0fc0d7191e"
+    },
+    {
+      "path": "lib/libawvp6soft.so",
+      "bytes": 59152,
+      "sha256": "bc86eb76c6f4a23e08af46b18ca8c04ce336539133722f8ac966ba1c30f585f7"
+    },
+    {
+      "path": "lib/libawvp8.so",
+      "bytes": 53896,
+      "sha256": "fd9bfce1d37fe33a91eebbf5006945174e8f7bbb5d354e88d922c5c584ee3e20"
+    },
+    {
+      "path": "lib/libawvp9HwAL.so",
+      "bytes": 136984,
+      "sha256": "59432ffc48ea834c292fadd16f7c0dee2fd632d5af909c9ce04e4b5f0e4178f0"
+    },
+    {
+      "path": "lib/libcdc_base.so",
+      "bytes": 197888,
+      "sha256": "9077522122e67391c09bf44668b091f4e1ecb01c0b1d832dd54a71b37c4a2f03"
+    },
+    {
+      "path": "lib/libfbm.so",
+      "bytes": 77600,
+      "sha256": "711db0ea30a1a04a43fb95cc6f91cc4a301bb074d03a5270c52b8669ed5e29a7"
+    },
+    {
+      "path": "lib/libsbm.so",
+      "bytes": 171224,
+      "sha256": "0bba9af82a6ed76a06ee5c5894ebf75bef6c42aeea0a9026035331aa6f808151"
+    },
+    {
+      "path": "lib/libscaledown.so",
+      "bytes": 23040,
+      "sha256": "65ff549bfc6541da9abddf87030c0763ae1197abf98fba7882fc38e967a699ef"
+    },
+    {
+      "path": "lib/libvdecVcs.so",
+      "bytes": 42608,
+      "sha256": "4e239fc13922fc450b4b70a88ddce131117208d261cf0dbbd16282380a8e6a1f"
+    },
+    {
+      "path": "lib/libvdecoder.so",
+      "bytes": 135400,
+      "sha256": "ec47b638c4f3880689d2b148579a32548edcd371d9ff8ff4dcbee82ca9473f9e"
+    },
+    {
+      "path": "lib/libvideoengine.so",
+      "bytes": 42480,
+      "sha256": "abfea1fa75f6a3ca5413d16eb69fcb87692f3e3b6552d83a222a998e909cef82"
+    },
+    {
+      "path": "source/gstomx-broker-idle.patch",
+      "bytes": 3010,
+      "sha256": "adb84875f8c4bcfa818a235ccee94f8aa9540e4f2dd3d145a416b48547595daf"
+    },
+    {
+      "path": "source/gstomx-broker-state-diagnostics.patch",
+      "bytes": 10972,
+      "sha256": "2bf4e20f253c6e6ec4fcf2b3016b76549655b337f6efb2987256a9b67f195609"
+    },
+    {
+      "path": "source/gstomx-dmabuf-fd-ownership.patch",
+      "bytes": 1522,
+      "sha256": "38fa5ec9b01040fc5f2e1c5b87391df31627ed5f98bb5375b824f6f34a830831"
+    },
+    {
+      "path": "source/gstomx-validated-output-crop.patch",
+      "bytes": 6942,
+      "sha256": "eea44de2701caac9a866849a16afeb95f376c0b3b5d67d9141291526379d1a31"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "status": "PRIVATE_SFTP_BACKUP_READBACK_VERIFIED",
+  "recorded_utc": "2026-11-17T06:20:40.465542+00:00",
+  "host": "192.168.1.228",
+  "remote_root": "/home/ubuntu/t736-mainline",
+  "files": [
+    {
+      "path": "tools/validation/update_t736_media_v29.py",
+      "bytes": 33109,
+      "sha256": "391393decbf298921871f7ead3d18281dd79c91103f96a95967b2e4976e9804e",
+      "mode": "0o644",
+      "readback_verified": true
+    },
+    {
+      "path": "tools/validation/audit_media_v29_package.py",
+      "bytes": 7497,
+      "sha256": "5949fd6dfe24bc3533b489d92260b5108d97bf41946524aa162f35bf7865c066",
+      "mode": "0o644",
+      "readback_verified": true
+    },
+    {
+      "path": "tests/test_media_v28_stage.py",
+      "bytes": 6101,
+      "sha256": "0457cd11e735b0e890904fa4b47dd9f1e24d4f11a0e89cc4125a8a1cceff1737",
+      "mode": "0o644",
+      "readback_verified": true
+    },
+    {
+      "path": "tests/test_media_v29_config.py",
+      "bytes": 3601,
+      "sha256": "e2a4f66516a1d5bf8469534ab2c4f5837234f807f94ed5f77a846099fdd98ab5",
+      "mode": "0o644",
+      "readback_verified": true
+    },
+    {
+      "path": "evidence/media-v29-package-stage-audit-20261117.json",
+      "bytes": 25818,
+      "sha256": "789247c48a94f6d2a452a89a2fd1ec4ae848123bc2d4e155fe987c9db2fa7825",
+      "mode": "0o600",
+      "readback_verified": true
+    },
+    {
+      "path": "evidence/media-v29-stage-updater-review-20261117.json",
+      "bytes": 6375,
+      "sha256": "75c5030decc674eac43dfb4631d70fa970cc255c4c7065ba10e8503e4bbeee9d",
+      "mode": "0o600",
+      "readback_verified": true
+    },
+    {
+      "path": "evidence/cedar-shm-v2-runtime-scripts-review-20261117.json",
+      "bytes": 3874,
+      "sha256": "ffa002c382b5c9e64eaf97b8347f688506fce6ba818c6d758dcae253255643e5",
+      "mode": "0o600",
+      "readback_verified": true
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/stage-host-tests.json",
+      "bytes": 882,
+      "sha256": "7430e3dee310f34bcbc24a2e558076df975e0c8af176c0661e17ec2f432eaec2",
+      "mode": "0o600",
+      "readback_verified": true
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/config-host-tests.json",
+      "bytes": 651,
+      "sha256": "8b6ea373c2889a84102828cb83b093b863dd472a82d3601decdc5381f531ca34",
+      "mode": "0o600",
+      "readback_verified": true
+    },
+    {
+      "path": "build/cedar-shm-runtime-script-review-20261117/cedar-service",
+      "bytes": 666,
+      "sha256": "96cc74d0092f2cfce51f2c28543f47a7b9480fd612b61251e059e0dc4cc7361e",
+      "mode": "0o600",
+      "readback_verified": true
+    },
+    {
+      "path": "build/cedar-shm-runtime-script-review-20261117/firefox-cedar",
+      "bytes": 636,
+      "sha256": "82a0a7b16d883af27b012d902ea5b07b2fb7faf4b1735d07c095949f90193304",
+      "mode": "0o600",
+      "readback_verified": true
+    },
+    {
+      "path": "build/cedar-shm-runtime-script-review-20261117/t736-cedar-experiment.service",
+      "bytes": 1018,
+      "sha256": "0b90b795d43153f54da1b97a73c566814759ad79b5600c018728a8af75d09cdf",
+      "mode": "0o600",
+      "readback_verified": true
+    },
+    {
+      "path": "build/cedar-shm-runtime-script-review-20261117/t736-cedar-syntax-review.service",
+      "bytes": 985,
+      "sha256": "045be256bfd45fb58e7aac5f8644d024d43477b2f33657f2ecb7e7522a684381",
+      "mode": "0o600",
+      "readback_verified": true
+    },
+    {
+      "path": "build/cedar-shm-runtime-script-review-20261117/host-checks.json",
+      "bytes": 6758,
+      "sha256": "05cc7c3ca6e2c4362e5a5bb064524ca78099bcd5afb1df6a1b925c2823382d9a",
+      "mode": "0o600",
+      "readback_verified": true
+    }
+  ],
+  "files_count": 14,
+  "total_bytes": 97971,
+  "public_upload": false,
+  "board_access": false,
+  "preserved": [
+    "README.md",
+    "status.json",
+    "tools/validation/update_t736_media_v28.py",
+    "backup/Avaota4b-t736 frozen public checkout"
+  ],
+  "notes": [
+    "Contains final v29 stage installer/auditor and all 23 host checks, plus read-only SHM runtime scripts review snapshots.",
+    "Runtime launchers are snapshots under the private review directory, not deployed or uploaded over the canonical root-owned source files.",
+    "Private raw snapshots/logs/evidence mode0600; review directory mode0700. Source files mode0644."
+  ]
+}

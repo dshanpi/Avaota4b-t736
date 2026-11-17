@@ -1,0 +1,18 @@
+CEDAR_COPY frames=1 format=NV21 storage=8x8 crop=2,2,4,4 strides=12,12,0 map_us=348 copy_us=214 total_map_us=348 total_copy_us=214 avg_copy_us=214 ram_allocations=1 ram_reuses=0
+CEDAR_COPY frames=1 format=NV21 storage=8x8 crop=2,2,5,3 strides=12,12,0 map_us=3 copy_us=3 total_map_us=3 total_copy_us=3 avg_copy_us=3 ram_allocations=1 ram_reuses=0
+CEDAR_COPY frames=1 format=NV12 storage=8x8 crop=2,2,4,4 strides=12,12,0 map_us=2 copy_us=8 total_map_us=2 total_copy_us=8 avg_copy_us=8 ram_allocations=1 ram_reuses=0
+CEDAR_COPY frames=1 format=NV12 storage=8x8 crop=2,2,5,3 strides=12,12,0 map_us=1 copy_us=2 total_map_us=1 total_copy_us=2 avg_copy_us=2 ram_allocations=1 ram_reuses=0
+CEDAR_COPY frames=1 format=I420 storage=8x8 crop=2,2,4,4 strides=12,6,6 map_us=2 copy_us=45 total_map_us=2 total_copy_us=45 avg_copy_us=45 ram_allocations=1 ram_reuses=0
+CEDAR_COPY frames=1 format=I420 storage=8x8 crop=2,2,5,3 strides=12,6,6 map_us=2 copy_us=2 total_map_us=2 total_copy_us=2 avg_copy_us=2 ram_allocations=1 ram_reuses=0
+CEDAR_COPY frames=1 format=YV12 storage=8x8 crop=2,2,4,4 strides=12,6,6 map_us=2 copy_us=30 total_map_us=2 total_copy_us=30 avg_copy_us=30 ram_allocations=1 ram_reuses=0
+CEDAR_COPY frames=1 format=YV12 storage=8x8 crop=2,2,5,3 strides=12,6,6 map_us=2 copy_us=1 total_map_us=2 total_copy_us=1 avg_copy_us=1 ram_allocations=1 ram_reuses=0
+CEDAR_BACKEND_ERROR: decoded sample lacks authoritative GstVideoCropMeta (use WC-v3)
+CEDAR_BACKEND_ERROR: invalid/out-of-range or odd-origin 4:2:0 crop
+CEDAR_BACKEND_ERROR: invalid/out-of-range or odd-origin 4:2:0 crop
+CEDAR_BACKEND_ERROR: stream resolution changed: expected 4x4, got 2x4
+CEDAR_BACKEND_ERROR: raw-video crop extends beyond a mapped plane
+CEDAR_BACKEND_ERROR: raw-video crop extends beyond a mapped plane
+CEDAR_BACKEND_ERROR: raw-video crop extends beyond a mapped plane
+CEDAR_BACKEND_ERROR: appsrc0: OMX state=Executing started=1 port=1 | raw_state=3 pending=0 last_error=0x123
+CEDAR_COPY frames=1 format=YV12 storage=8x8 crop=2,2,4,4 strides=12,6,6 map_us=335 copy_us=215 total_map_us=335 total_copy_us=215 avg_copy_us=215 ram_allocations=1 ram_reuses=0
+PASS: actual Gst copy path; 4 layouts, padded strides/heights, crop origin, odd sizes, timestamps, color, malformed/missing crop, resolution change, mapped-plane span rejection; software EOS-flush-idle-resume-reuse and first-error preservation with mock action; UV vector/tail/unaligned ranges; owned frames survive actual pull/flush/close, bounded RAM reuse, concurrent frame return/close

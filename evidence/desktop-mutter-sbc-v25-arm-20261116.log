@@ -1,0 +1,33 @@
+503.77 3846.63
+Driver Status:   OK
+
+Device ID: 0:128
+Firmware Status: OK
+Server Errors:   0
+HWR Event Count: 0
+CRR Event Count: 0
+SLR Event Count: 0
+WGP Error Count: 0
+TRP Error Count: 0
+FWF Event Count: 0
+APM Event Count: 0
+GPU Utilisation: 5%
+DM Utilisation:  VM0
+           2D:   0% 
+         GEOM:   0% 
+           3D:   5% 
+          CDM:   0% 
+          RAY:   0% 
+        GEOM2:   0% 
+[  331.428605] [drm] sunxi_de_atomic_flush de 0 not enable, skip
+[  410.895751] [drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+[  411.103741] [drm:sunxi_fbdev_plane_update] *ERROR* fbdev plane update timeout, hw_id=0 ch=0
+/usr/lib/aarch64-linux-gnu/libmutter-16.so.0.0.0
+/usr/lib/aarch64-linux-gnu/mutter-16/libmutter-clutter-16.so.0.0.0
+/usr/lib/aarch64-linux-gnu/mutter-16/libmutter-cogl-16.so.0.0.0
+/usr/lib/aarch64-linux-gnu/mutter-16/libmutter-mtk-16.so.0.0.0
+Running timer as unit: t736-mutter-sbc-ac42-rollback.timer
+Will run service as unit: t736-mutter-sbc-ac42-rollback.service
+Armed t736-mutter-sbc-ac42-rollback.timer for 300 seconds. Session has not been restarted.
+After the controlled GDM session start, restore daemon.conf.before immediately.
+Keep the timer until library maps, SBC trace, GTK pacing and error deltas are checked.

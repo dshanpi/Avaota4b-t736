@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "kind": "storage-v26-user-experience-feedback",
+  "local_date": "2026-11-17",
+  "timezone": "Asia/Shanghai",
+  "recorded_utc": "2026-11-17T03:04:31.059901+00:00",
+  "feedback_source": "User confirmation relayed by root in the current task",
+  "feedback_summary": "用户确认 v26 运行流畅，并要求继续对接编解码。",
+  "scope": "Qualitative user experience feedback, not a measured FPS/latency or codec acceptance.",
+  "kernel_context": "6.18.63-t736-storage-v26",
+  "persistent_default": "6.18.63-t736-storage-v16",
+  "persistent_default_DTB_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+  "new_final_integrated_image_flashed": false,
+  "final_mainline_armbian_firmware_complete": false,
+  "root_owned_next_work": "media-v27 based on v26; IOMMU, VE resources, Cedar libraries and bounded codec evidence remain separate work.",
+  "board_operated_by_recorder": false
+}

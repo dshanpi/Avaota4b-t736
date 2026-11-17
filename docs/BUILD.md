@@ -1,5 +1,18 @@
 # 构建与恢复源码
 
+## 2026-11-17 媒体接入构建
+
+本轮源码按内核、OMX/WC、backend、传输和 FFmpeg 分开冻结。实际版本见 [浏览器说明](../tools/browser/README.md) 与 `evidence/browser-code-sync-checkpoint-20261117.json`；后面的 v7/v6 镜像章节是历史流程。源码同步不会自动生成新固件或把实验内核设为默认。
+
+- `tools/build_media_v29_candidate.py`：在独立 O 目录构建 v29，复用受保护 v28 源码；只启用 `CONFIG_ADVISE_SYSCALLS` 并修改 release。绑定产物见 `evidence/media-v29-build-20261117.json`。
+- `tools/validation/update_t736_media_v29.py --kernel <deb> --pvr <ko>`：默认只检查；`--apply` 仅安装版本化内核/PVR/initrd，核对 v16/v27/v28 及原启动项保持不变。不是一键刷机或默认启动切换工具。
+- `tools/build_cedar_browser_backend.py --work <新的独立目录>`：构建 backend 与无设备检查；已有 v5 产物不可直接覆盖。
+- `tools/build_cedar_shm_transport.py --work <新的独立目录>`：构建 matching wire2 broker/client 和 native/QEMU 测试。纯 ARM64 的 DONTFORK 必须用真实内核验证；QEMU 用户模式结果不能替代该检查。
+- `tools/browser/build_browser_ffmpeg.py`：使用锁定 FFmpeg 7.1.5 输入；构建参数及精确产物以 `evidence/browser-ffmpeg-v7-bounded-batch-build-20261117.json` 为准。
+
+这些工具依赖私有构建机已锁定的 Tina 工具链、厂商 codec 库和 GStreamer 输入。公开仓库记录源码改动、输入路径及 hash，不分发厂商二进制，也不是从空目录一条命令即可重现全部依赖的系统。安装时必须 root 拥有候选库，启用精确设备权限规则；不把 `/dev/cedar_dev` 或 heap 开放给桌面用户。当前保留的 protocol1 浏览器路径和未推广的 wire2 候选应分别运行，不可混用 endpoint。
+
+
 这是开发过程的源码备份。内核与 U-Boot 可以从锁定官方源码和补丁重建。
 完整 FES 镜像仍依赖本板厂家固件、SDK 打包工具及官方 Armbian rootfs 输入。
 不能仅从本仓库生成无厂家依赖的完整固件。

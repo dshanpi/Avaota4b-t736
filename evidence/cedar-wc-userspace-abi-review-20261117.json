@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "OFFLINE_READY_FOR_CONTROLLED_SINGLE_DECODE_HARDWARE_PENDING",
+  "scope": "Actual Cedar2.0 libVE ABI review, private WC allocator build/mock validation, current kernel integration review, and 30-frame NV21 acceptance preparation. No board operation by this reviewer.",
+  "actual_libve": {
+    "sha256": "3af49a5eb24f6832518a858274fb206d60e490985bff02f5d5be36d053f65be4",
+    "method": "SDK AArch64 objdump disassembly plus same-package headers and Tina sun60iw2 driver/DTS comparison",
+    "get_env": "ioctl 0x101; 24-byte structure; mmap address from +8; zero-filled kernel response matches donor",
+    "register_mapping": "mmap length 0x1000, shared, read/write, offset 0",
+    "dma_ioctls": {
+      "get": "0x502 at VeGetIommuAddr 0x3490",
+      "free": "0x503 at VeFreeIommuAddr 0x34a0",
+      "cache": "0x506 at VeFlushCache 0x34b0"
+    },
+    "reset": "0x104; 0x103 is WAIT_VE_EN, not reset",
+    "other_required_calls": [
+      "0x102 WAIT_VE_DE",
+      "0x206 ENGINE_REQ",
+      "0x207 ENGINE_REL",
+      "0x310/0x311 locks",
+      "0x107 frequency",
+      "0x710 default MHz",
+      "0x711 load update",
+      "0x800 VE_MODE",
+      "0x804 top register offset"
+    ],
+    "decoder_top_offset": "ioctl 0x804 return value; decoder default 0, encoder ve2 has 0x800 and is a separate device",
+    "version_read": "top+0xf0, and where applicable top+0xe0/+0xe4",
+    "phy_offset_rule": "VeInitialize stores ctx+172: version==0x1639 => 0x20000000; version>0x1718 => 0; other low versions => 0x40000000. Not controlled by CdcIonGetMemType.",
+    "runtime_guard": "WC MemAdapter logs actual version/phy_offset and rejects any nonzero offset.",
+    "headers": "sc_interface.h, veInterface.h, vencoder.h, vdecoder.h and memoryAdapter.h compared byte-for-byte with matching SDK source headers",
+    "source_limit": "GetVeOpsS implementation was not found in available Tina multimedia source; original libVE is retained unchanged."
+  },
+  "candidate_build": {
+    "package": "/home/ubuntu/t736-mainline/build/cedar-wc-v1-r2-20261117/t736-cedar-wc-v1.tar.gz",
+    "bytes": 1147336,
+    "sha256": "a056b0612dc117577d2ac6d8665e7baf3092222a583a0e07fbad9be5c7eff147",
+    "manifest_sha256": "351878fa95940041f61495d30cf7914b298cb733f2a08b7d691a16e74f73fa81",
+    "wc_manifest_sha256": "5d09fe5b54a089a3aad997d02cbdf83872faedf4b9243ef8929c0e42d2959aee",
+    "abi": {
+      "libcdc_base.so": {
+        "missing_exported_symbols": [],
+        "sha256": "9077522122e67391c09bf44668b091f4e1ecb01c0b1d832dd54a71b37c4a2f03"
+      },
+      "libMemAdapter.so": {
+        "missing_exported_symbols": [],
+        "sha256": "f89ed54db02e7d1aa0dfa84ee89a24170c7a073c3338e571e4c718195b626c74"
+      }
+    }
+  },
+  "candidate_mock_validation": {
+    "scope": "Actual final ARM64 candidate libraries under QEMU; VE/heap mocked; no hardware visibility acceptance",
+    "mock_command": [
+      "/usr/bin/qemu-aarch64-static",
+      "-L",
+      "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot",
+      "-E",
+      "LD_LIBRARY_PATH=/home/ubuntu/t736-mainline/build/cedar-wc-v1-r2-20261117/t736-cedar-wc-v1/lib",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v1-20261117/memadapter-mock"
+    ],
+    "returncode": 0,
+    "test_source_sha256": "1d21db0f3880733bdda31da4cd0765131a7f9bd5168d0adee3d7846206970ae9",
+    "test_executable_sha256": "1cd32be259c10bf14ddda1cca4e53c6d5386ef528ee4afffedab0a60316e754d",
+    "run_log_sha256": "ecfe4d6dcc562c7ce76ed38bc8f69c4b1015ae51aa7eff0d71144e1c08b03ad7",
+    "loader_exit": 0,
+    "inventory_files_verified": 34,
+    "final_libraries": {
+      "libcdc_base.so": {
+        "missing_exported_symbols": [],
+        "sha256": "9077522122e67391c09bf44668b091f4e1ecb01c0b1d832dd54a71b37c4a2f03"
+      },
+      "libMemAdapter.so": {
+        "missing_exported_symbols": [],
+        "sha256": "f89ed54db02e7d1aa0dfa84ee89a24170c7a073c3338e571e4c718195b626c74"
+      }
+    }
+  },
+  "compile_warning_limit": "Base retained vendor CdcIonIsLegacy pointer-cast and iniparser sprintf warnings; MemAdapter compiled without warnings. No claim of complete vendor-source Werror cleanliness.",
+  "kernel_integration_review": {
+    "path": "boards/t736-cedar-wc.c",
+    "sha256": "5c9a73ed2d701bfb5905aa59da73f7f07f60b1c0636c6746f1b7110a68265402",
+    "checks": [
+      "Same TGID supports multiple VE opens and decoder/allocator worker threads; original libVE also shares its process-global fd.",
+      "24-byte GET_ENV, 4KiB MMIO mapping at offset 0, decoder top offset 0, H264/top lock bits, and 0x502/503 match actual libVE.",
+      "Heap allocations use the same VE device with dma_alloc_wc/dma_mmap_wc; only same-device private dma-buf imports are accepted. No system-heap or foreign-buffer bypass.",
+      "32-bit complete allocation range and contiguous identity scatterlist addresses are checked.",
+      "Every successfully imported or potentially disclosed DMA allocation retains backing until reboot, including normal release and partial copy_to_user failure; total budget 128MiB.",
+      "Userland flush checks complete range belongs to its active allocation and issues dmb osh ordering. Kernel heap CPU begin/end and cache ioctl provide barriers. This is not CPU cache invalidation.",
+      "Userland fd/mmap cleanup does not recycle kernel-pinned backing; failure/timeout poison prevents new decoder sessions."
+    ],
+    "limits": [
+      "No proven AXI drain; reset assertion or elapsed delay is not a reuse guarantee.",
+      "No actual VE version, DMA visibility, IRQ completion or frame correctness has been measured by this reviewer.",
+      "Root and other reviewers own provider/reset/PPU details and whole-kernel validation."
+    ]
+  },
+  "single_decode": {
+    "script": "tools/validation/cedar_nv21_compare.py",
+    "script_sha256": "5e380fb651b335a050cac0a749266294e2f814f87c53a627902b19138e2a8122",
+    "fixture": {
+      "path": "output/media-fixture-320x240-30frames.h264",
+      "bytes": 38003,
+      "sha256": "470c8bb5cfb3159fb1566f115e452bf29791975686db6662fbc6a71a2ba6d267"
+    },
+    "reference": {
+      "path": "build/cedar-offline-review-20261117/fixture-reference.nv21",
+      "bytes": 3456000,
+      "sha256": "cca7302cbb871683366faa34a4e0799493eb8fc63b095d66bdda54e7cd8f945b",
+      "format": "NV21",
+      "frames": 30,
+      "width": 320,
+      "height": 240
+    },
+    "demo_source_sha256": "3ffac6640087f5967c9cfd26f5e87ecef1f86c52cdb793e94e348bf40297cfbc",
+    "demo_args": [
+      "-codFmat",
+      "1",
+      "-n",
+      "31",
+      "-ss",
+      "1",
+      "-sn",
+      "30",
+      "-outFmat",
+      "5",
+      "-decNum",
+      "1"
+    ],
+    "frame_number_review": "Vendor increments nDispFrameCount before save interval check; -ss 0 would save only 29 frames. Start 1 saves 1..30; finish cap 31 permits EOS drain of the 30-frame B-frame fixture.",
+    "pass_conditions": [
+      "Exact approved bundle manifest and all 34 file hashes",
+      "Exact compressed and reference fixture hashes",
+      "Both character devices present",
+      "Exit status 0 with no timeout",
+      "Exactly 3456000 NV21 output bytes and all 30 frames byte-identical",
+      "Actual WC version/zero offset marker and validated WC ordering barrier marker",
+      "t736-cedar-wc IRQ counter increases"
+    ],
+    "gate_test": {
+      "source": "tests/cedar_nv21_compare_test.py",
+      "source_sha256": "759882b17ab48ca88b14b42c2175737f9e6b22c3c14e7f4d87b192fd937ef624",
+      "exit": 0,
+      "log": "evidence/build/cedar-nv21-acceptance-gate-test-20261117.log",
+      "log_sha256": "0446342167468b51ff36914148711fdd9f2185ee371ad6f39e698e4a13535898",
+      "scope": "Host-only mocked acceptance-gate tests: valid evidence, corrupted output, no IRQ, nonzero offset, missing barrier, failed child, timeout/exit race, and surviving child. Not a hardware decode."
+    }
+  },
+  "encoding": {
+    "status": "NOT_IMPLEMENTED_OR_VALIDATED",
+    "same_package_libraries": {
+      "libvencoder.so": "0a251db4871b4cacd03776ae760eea5722b46a8091a09f18f83e45a2d7355ccf",
+      "libvenc_base.so": "5282b1cd4f69014bb11b3dba9e13daa734de2407c39f4dec3566b7af534b599d",
+      "libvenc_codec.so": "9b22f6db1f55b64562ce1c00a33a52cf4e8829269abe61cc632a5d3e8d365a46",
+      "libOmxVenc.so": "77aa399a4d6d1bbd9d4bdf55a75dc9050902de727939165d8995be5cd4f5db7d"
+    },
+    "needs": "Separate ve2 encoder registers, IRQ48, VE_ENC power and validation; decoder success is insufficient."
+  },
+  "playback_and_browser": "Next useful route after direct decode is explicit GStreamer omxh264dec afbc=false linear output, then GstGL display. Current OpenMAX bridge does not automatically accelerate FFmpeg/Firefox; no browser backend or VAAPI implementation is claimed.",
+  "privacy": "Tina remains read-only. Full vendor source copies and proprietary binary bundles remain private build artifacts, outside public source backup."
+}

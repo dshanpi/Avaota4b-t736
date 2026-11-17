@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v26-cacheable-bounce-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v26",
+  "baseline_release": "6.18.63-t736-storage-v25",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "source_tree": "sources/work/linux-storage-v26",
+  "output_tree": "build/linux-storage-v26",
+  "design": "evidence/storage-v26-cached-bounce-design-20261116.json",
+  "default_collect_timing": false,
+  "default_hs200_enabled": false,
+  "default_hs400_enabled": false,
+  "boot_parameters": [
+    "t736_mmc_pio.enable_hs200=1",
+    "t736_mmc_pio.hs200_max_hz=200000000",
+    "t736_mmc_pio.enable_hs400=1",
+    "t736_mmc_pio.hs400_max_hz=200000000",
+    "t736_mmc_pio.collect_timing=1"
+  ],
+  "debugfs": "/sys/kernel/debug/t736_mmc_timing/stats",
+  "behavior_changes": "Payload dma_alloc_noncoherent with full64KiB BIDIRECTIONAL sync ownership; coherent descriptors unchanged",
+  "preserved": "v25 tuning/descriptor DMA/errors/quarantine/polling/64KiB limit/affinity/diagnostic call sites; same DTB/config except LOCALVERSION",
+  "shared_pll_or_rail_writes": false,
+  "dt_delta": "None; exact v25 DTB hash",
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v26_6.18.63-26_arm64.deb",
+    "size": 5604794,
+    "sha256": "f270f50a59da295f2104512a8504531698eab2967d769e17c8ba322a2b075281"
+  },
+  "files": {
+    "build/linux-storage-v26/.config": "311a20a7841f0c47310cac1dd459bcb9ef121c33dad19eb43debdd62cf546ecc",
+    "build/linux-storage-v26/arch/arm64/boot/Image": "59010d0b1e6e41a769c4c1bc0063d63af2a42944e4ffcea1f520d32e13c6d8a1",
+    "build/linux-storage-v26/arch/arm64/boot/Image.gz": "d373d883df7baaaf450cf931db30c7972a860f7c7cb7653beb3dad7a7f227d0e",
+    "build/linux-storage-v26/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "build/linux-storage-v26/System.map": "3ee53f121b04704e5e7bd424a899f0482b424762183caf0af01527a5f4a3c27c",
+    "build/linux-storage-v26/Module.symvers": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "boards/t736_mmc_cached_bounce_draft.c": "2b1f48ba68789523b832d9226ad1e0031f17376d3f0abea816fd97de8f1f9ab6",
+    "boards/t736_mmc_clock_hs200_draft.h": "33f4c8eae7d5b7c73534e07c4c24652a01d0400fc00f286b9212116ee83cd5a2",
+    "boards/t736_mmc_tuning_draft.h": "2ba574aec0bf5fe06d4d0a90319891c0c3c7b2871cbdddaa6ae004e91d66eeb0",
+    "boards/t736_mmc_tuning_error_draft.h": "2cd7bc09f6200e47986f0a08e3755033964898b2e9ba10e1add250b2d95ac243",
+    "tests/test_mmc_hs200_error_recovery.py": "52c548de2ce0e6ac74456074aed3472ab053f70e4ad15389f696ce2a2ac69bf7",
+    "boards/t736_mmc_hs400_policy_draft.h": "ae7f25d6309e1f6b1489277b2edab2fd06bc3f7c64f5a05b7103ea8036922384",
+    "boards/t736_mmc_hs400_tuning_draft.h": "c202f8f5dc5fb625e568c5b8f9f87f2d3c3e2531e2b3a859d361a805fda1c2bf",
+    "tests/test_mmc_hs400_policy.py": "7d766d78f7a8179adf0ee89b84b6ec8f34bb054fdd2b05f7657ed1c27a9ce8cb",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tools/build_cached_bounce_storage_kernel.sh": "c71d8e08693701fde68aeecb5ceb1cec2303dce5b69bf6eeddbe31abfc14f084",
+    "boards/t736_mmc_timing_stats_draft.h": "dd507fc5ea4868c3d6b892e096fd56e7ee57833e820b0b4fffd05e78d7f30604",
+    "tests/test_mmc_timing_stats.py": "7a8a765362daa668b4ab735a536c132c62869602cd419953ccc518ce6824394d",
+    "tests/test_mmc_cached_bounce.py": "062ff9e38a7b46c7e9e5f778ba82ccf7f8da6a9ba2dc6aaac66beff445da4dc7",
+    "evidence/storage-v26-cached-bounce-design-20261116.json": "f5691b0f0fc5357705181af88b309cba034bf69b24e453ccf8e36fcafc4b372b"
+  },
+  "frozen_v25_files_unchanged": true,
+  "board_validation": "pending; A/B against v25 with identical HS400200/diagnostic flags, integrity and fresh tuning checks required; no persistent promotion"
+}

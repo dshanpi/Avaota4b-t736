@@ -1,0 +1,9 @@
+make: Entering directory '/home/ubuntu/t736-mainline/build/linux-storage-v23'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/emmc-clocks-readonly-v4-storage-v23'
+  CC [M]  t736-emmc-clocks-readonly-v4.o
+  MODPOST Module.symvers
+  CC [M]  t736-emmc-clocks-readonly-v4.mod.o
+  CC [M]  .module-common.o
+  LD [M]  t736-emmc-clocks-readonly-v4.ko
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/emmc-clocks-readonly-v4-storage-v23'
+make: Leaving directory '/home/ubuntu/t736-mainline/build/linux-storage-v23'

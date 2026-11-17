@@ -1,0 +1,90 @@
+--- a/omx/gstomxvideodec.c
++++ b/omx/gstomxvideodec.c
+@@ -294,6 +294,75 @@
+     // }
+ //}
+ 
++/* Private broker action, only after a completed flushing seek and with no
++ * further input being fed. This is deliberately NOT a Gst state mapping:
++ * vendor Pause->Executing returns both port queues and is not a lossless
++ * ordinary playback pause. Keep initial Gst PAUSED/preroll unchanged. */
++static gboolean
++gst_omx_video_dec_t736_set_idle (GstOMXVideoDec * self, gboolean idle)
++{
++  OMX_STATETYPE state, target;
++  OMX_ERRORTYPE err;
++  gboolean success = TRUE;
++  const gchar *reason = NULL;
++
++  GST_VIDEO_DECODER_STREAM_LOCK (self);
++  if (!self->dec)
++    goto done;
++  state = gst_omx_component_get_state (self->dec, 5 * GST_SECOND);
++  if (state == OMX_StateLoaded || state == OMX_StateIdle)
++    goto done;                 /* First input still initializes the component. */
++
++  if (idle) {
++    if (state == OMX_StatePause)
++      goto done;
++    if (state != OMX_StateExecuting || self->started) {
++      reason = "idle requires a flushed, stopped Executing decoder";
++      goto failed;
++    }
++    target = OMX_StatePause;
++  } else {
++    if (state == OMX_StateExecuting)
++      goto done;
++    if (state != OMX_StatePause) {
++      reason = "resume requires a valid paused decoder";
++      goto failed;
++    }
++    target = OMX_StateExecuting;
++  }
++
++  err = gst_omx_component_set_state (self->dec, target);
++  if (err != OMX_ErrorNone) {
++    reason = "OpenMAX rejected broker idle/resume transition";
++    goto failed;
++  }
++  if (gst_omx_component_get_state (self->dec, 5 * GST_SECOND) != target) {
++    reason = "OpenMAX broker idle/resume transition failed or timed out";
++    goto failed;
++  }
++  if (!idle) {
++    /* Tina Pause->Executing calls doFlushPortBuffer on both ports. Populate
++     * drains the returned output queue and resets flags/nFilledLen before
++     * FillThisBuffer, without reallocating the existing pool. */
++    if (!self->dec_out_port ||
++        gst_omx_port_populate (self->dec_out_port) != OMX_ErrorNone) {
++      reason = "cannot repopulate the existing output pool after broker resume";
++      goto failed;
++    }
++  }
++  goto done;
++
++failed:
++  self->downstream_flow_ret = GST_FLOW_ERROR;
++  success = FALSE;
++done:
++  GST_VIDEO_DECODER_STREAM_UNLOCK (self);
++  if (!success)
++    GST_ELEMENT_ERROR (self, LIBRARY, FAILED,
++        ("T736 broker idle/resume failed"), ("%s", reason));
++  return success;
++}
++
+ static void
+ gst_omx_video_dec_class_init (GstOMXVideoDecClass * klass)
+ {
+@@ -302,6 +371,11 @@
+   GstVideoDecoderClass *video_decoder_class = GST_VIDEO_DECODER_CLASS (klass);
+ 
+   DEBUG_INIT
++
++  g_signal_new_class_handler ("t736-set-idle", G_TYPE_FROM_CLASS (klass),
++      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
++      G_CALLBACK (gst_omx_video_dec_t736_set_idle), NULL, NULL,
++      g_cclosure_marshal_generic, G_TYPE_BOOLEAN, 1, G_TYPE_BOOLEAN);
+ 
+   if (g_getenv ("GST_OMX_VIDEO_DEC_DEBUG")) {
+     gst_omx_video_dec_debug_enabled = TRUE;

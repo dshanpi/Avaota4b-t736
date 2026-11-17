@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "kind": "storage-v26-result-evidence-sftp-backup",
+  "updated_utc": "2026-11-16T14:59:14.624493+00:00",
+  "status": "PASS_ALL_REMOTE_BYTES_REHASHED",
+  "files": [
+    {
+      "path": "status.json",
+      "remote_path": "/home/ubuntu/t736-mainline/status.json",
+      "bytes": 68970,
+      "sha256": "6218f1ffe104fe1eed4a83703e33188a54cfb4979c067830790be62965043f5c"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-performance-comparison-20261116.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/storage-v26-hs400-performance-comparison-20261116.json",
+      "bytes": 12327,
+      "sha256": "e611c486eb84ed451638d592ec2dd103b3906fdf1d49daa1b275ed0b3bcbc320"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-200-timing-20261116.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/storage-v26-hs400-200-timing-20261116.json",
+      "bytes": 135790,
+      "sha256": "7a2115b710e7be07c809e4d7655ec62d39c793590a8732e983c723cbf4e24768"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-200-integrity-20261116.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/storage-v26-hs400-200-integrity-20261116.json",
+      "bytes": 17590,
+      "sha256": "3ba49d69e175ddc90a567a071612ccb80deba6dc81db9f1ef044cd8facf743db"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-200-runtime-20261116.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/storage-v26-hs400-200-runtime-20261116.log",
+      "bytes": 11407,
+      "sha256": "464f2bb1b6bcc54f4dfa86e104b225a50d439c7d067276a5055076e567eece74"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-200-integrity-health-20261116.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/storage-v26-hs400-200-integrity-health-20261116.log",
+      "bytes": 1786,
+      "sha256": "7efb9429fb38c56d368784165911a5df95c0ea9a55c32545f66d172de35a223b"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-200-coldboot-20261116.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/storage-v26-hs400-200-coldboot-20261116.log",
+      "bytes": 61819,
+      "sha256": "878ca2fa909b6a7a0853fc89c879b28a3b05e77d1b154b0cbff595914e511fab"
+    },
+    {
+      "path": "evidence/storage-v26-preflight-20261116.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/storage-v26-preflight-20261116.log",
+      "bytes": 600,
+      "sha256": "0c9f6862552ca8e106359427b6245eb0a19d4bde32baf556a2fd811509311eb2"
+    },
+    {
+      "path": "evidence/storage-v26-install-20261116.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/storage-v26-install-20261116.log",
+      "bytes": 950,
+      "sha256": "d1b5ad1d141cada61670410feaba3035396a15fc54f54b75fc5cc78d4b7ff548"
+    },
+    {
+      "path": "evidence/storage-v26-restore-default-poweroff-20261116.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/storage-v26-restore-default-poweroff-20261116.log",
+      "bytes": 509,
+      "sha256": "6e0ad620ebfe9daaee610a52f5a84ab5382d40de4ab34c65869b06279c7a3b65"
+    },
+    {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-independent-comparison-20261116.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/desktop-mutter-sbc-v25-gi2-independent-comparison-20261116.json",
+      "bytes": 10317,
+      "sha256": "d56aad1932e3082e54c6544ebd8db8baf29cb8b3c3c8070240f0f17c1ac49bf3"
+    },
+    {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-rollback-20261116.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/desktop-mutter-sbc-v25-gi2-rollback-20261116.log",
+      "bytes": 537,
+      "sha256": "0308179adeee357ba504226492eae1ebad0dc8efcce7570577dc9bdbd960d61f"
+    }
+  ],
+  "file_count": 12,
+  "public_git_commit_or_push": false,
+  "public_checkpoint_refreshed": false,
+  "credentials_auth_tunnel_logs_or_vendor_binaries_included": false,
+  "board_operated": false,
+  "new_tests_run": false
+}

@@ -1,0 +1,102 @@
+设置暂停管道 ...
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+T736_WC: version=0x3331000021320 phy_offset=0x0 heap=t736-ve cache=WC barriers=dmb-osh
+DEBUG  : cedarc <CdcIniParserInit:36>: cannot parse file: /etc/cedarc.conf
+
+DEBUG  : cedarc <AwOmxComponentInit:40>: OMXCORE: aw_omx_component_init bfe36f20
+
+DEBUG  : cedarc <CdcIniParserInit:36>: cannot parse file: /etc/cedarc.conf
+
+INFO   : cedarc <log_setlevel:73>: Set log level to 5 from /vendor/etc/cedarc.conf
+WARNING: cedarc <getSocIdString:1219>: cannot open /dev/sunxi_soc_info, it maybe ok!
+
+WARNING: cedarc <getSocIdString:1219>: cannot open /dev/sunxi_soc_info, it maybe ok!
+
+WARNING: omx_vdec <__AwOmxVdecSetParameter:1735>: Set Parameter called in valid state
+管道正在 PREROLLING ...
+重新分配延迟时间...
+/GstPipeline:pipeline0/GstH264Parse:h264parse0.GstPad:src: caps = video/x-h264, pixel-aspect-ratio=(fraction)1/1, width=(int)320, height=(int)240, framerate=(fraction)30/1, coded-picture-structure=(string)frame, chroma-format=(string)4:2:0, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)byte-stream, alignment=(string)au, profile=(string)high, level=(string)1.3, lcevc=(boolean)false
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps = video/x-h264, pixel-aspect-ratio=(fraction)1/1, width=(int)320, height=(int)240, framerate=(fraction)30/1, coded-picture-structure=(string)frame, chroma-format=(string)4:2:0, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)byte-stream, alignment=(string)au, profile=(string)high, level=(string)1.3, lcevc=(boolean)false
+/GstPipeline:pipeline0/GstOMXH264Dec-omxh264dec:omxh264dec-omxh264dec0.GstPad:sink: caps = video/x-h264, pixel-aspect-ratio=(fraction)1/1, width=(int)320, height=(int)240, framerate=(fraction)30/1, coded-picture-structure=(string)frame, chroma-format=(string)4:2:0, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)byte-stream, alignment=(string)au, profile=(string)high, level=(string)1.3, lcevc=(boolean)false
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps = video/x-h264, pixel-aspect-ratio=(fraction)1/1, width=(int)320, height=(int)240, framerate=(fraction)30/1, coded-picture-structure=(string)frame, chroma-format=(string)4:2:0, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)byte-stream, alignment=(string)au, profile=(string)high, level=(string)1.3, lcevc=(boolean)false
+ERROR  : omx_vdec <AwOmxVdecPortGetFormat:365>: erro: pParamData->nIndex > m_sPortFormatType.nIndex
+/GstPipeline:pipeline0/GstOMXH264Dec-omxh264dec:omxh264dec-omxh264dec0.GstPad:src: caps = video/x-raw, format=(string)YV12, width=(int)176, height=(int)144, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoCrop:videocrop0.GstPad:src: caps = video/x-raw, format=(string)YV12, width=(int)176, height=(int)128, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert0.GstPad:src: caps = video/x-raw, width=(int)176, height=(int)128, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter1.GstPad:src: caps = video/x-raw, width=(int)176, height=(int)128, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, width=(int)176, height=(int)128, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter1.GstPad:sink: caps = video/x-raw, width=(int)176, height=(int)128, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert0.GstPad:sink: caps = video/x-raw, format=(string)YV12, width=(int)176, height=(int)128, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoCrop:videocrop0.GstPad:sink: caps = video/x-raw, format=(string)YV12, width=(int)176, height=(int)144, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+T736_WC: first validated WC ordering barrier
+iniparser: cannot open /etc/cedarc.conf
+INFO   : cedarc <log_setlevel:93>: now cedarc log level:4
+ERROR  : cedarc <DebugCheckConfig:396>: now cedarc log level:4
+INFO   : cedarc <CreateVideoDecoder:427>: CreateVideoDecoder p:0xffff74009f00
+WARNING: cedarc <getSocIdString:1219>: cannot open /dev/sunxi_soc_info, it maybe ok!
+
+INFO   : cedarc <VeInitialize:1708>: *** ic_version = 0x3331000021320,
+WARNING: cedarc <InitializeVideoDecoder:718>: warning: the nDeInterlaceHoldingFrameBufferNum is 0
+INFO   : omx_vdec_aw <__liGetExtPara:1490>: OMX get ext para: 0x0
+/GstPipeline:pipeline0/GstOMXH264Dec-omxh264dec:omxh264dec-omxh264dec0.GstPad:src: caps = video/x-raw, format=(string)YV12, width=(int)320, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoCrop:videocrop0.GstPad:src: caps = video/x-raw, format=(string)YV12, width=(int)320, height=(int)240, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert0.GstPad:src: caps = video/x-raw, width=(int)320, height=(int)240, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter1.GstPad:src: caps = video/x-raw, width=(int)320, height=(int)240, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, width=(int)320, height=(int)240, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter1.GstPad:sink: caps = video/x-raw, width=(int)320, height=(int)240, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert0.GstPad:sink: caps = video/x-raw, format=(string)YV12, width=(int)320, height=(int)240, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoCrop:videocrop0.GstPad:sink: caps = video/x-raw, format=(string)YV12, width=(int)320, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+管道被 PREROLLED ...
+设置播放管道 ...
+重新分配延迟时间...
+New clock: GstSystemClock
+收到来自组件“pipeline0”的 EOS 信号。
+收到 EOS 信号 - 中止管道 ...
+Execution ended after 0:00:00.052378706
+设置 NULL 管道 ...
+WARNING: omx_vdec_aw <standbyOutBufferArr:879>: ** return pic when flush,i[2],pPic[0xffff700017d8]
+WARNING: omx_vdec_aw <standbyOutBufferArr:879>: ** return pic when flush,i[4],pPic[0xffff70001a98]
+INFO   : cedarc <DestroyVideoDecoder:441>: DestroyVideoDecoder, pDecoder=0xffff74009f00
+INFO   : cedarc <VeRelease:1865>: not malloc locks
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+INFO   : cedarc <VeRelease:1865>: not malloc locks
+
+释放管道资源 ...

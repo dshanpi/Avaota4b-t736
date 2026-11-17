@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "kind": "storage-v26-cacheable-bounce-independent-review",
+  "date": "2026-11-16",
+  "reviewer": "backup_audit",
+  "status": "PASS-static-API-ownership-and-actual-C-test-review-hardware-pending",
+  "inputs": [
+    {
+      "path": "evidence/storage-v26-cached-bounce-design-20261116.json",
+      "bytes": 6742,
+      "sha256": "f5691b0f0fc5357705181af88b309cba034bf69b24e453ccf8e36fcafc4b372b"
+    },
+    {
+      "path": "evidence/build/mmc-cached-bounce-draft-check-20261116.log",
+      "bytes": 950,
+      "sha256": "9ae156ab149c55af8860622ec3168ece8184538a9a3b524a230225200c38ba1b"
+    },
+    {
+      "path": "boards/t736_mmc_cached_bounce_draft.c",
+      "bytes": 52538,
+      "sha256": "2b1f48ba68789523b832d9226ad1e0031f17376d3f0abea816fd97de8f1f9ab6"
+    },
+    {
+      "path": "tests/test_mmc_cached_bounce.py",
+      "bytes": 13955,
+      "sha256": "062ff9e38a7b46c7e9e5f778ba82ccf7f8da6a9ba2dc6aaac66beff445da4dc7"
+    },
+    {
+      "path": "boards/t736_mmc_hs400_timing_draft.c",
+      "bytes": 50764,
+      "sha256": "e5874fee67a7a2b04f495b29c7711c9da446b06ab8954c0fa75d23ac97ac2cee"
+    },
+    {
+      "path": "boards/t736_mmc_timing_stats_draft.h",
+      "bytes": 3694,
+      "sha256": "dd507fc5ea4868c3d6b892e096fd56e7ee57833e820b0b4fffd05e78d7f30604"
+    },
+    {
+      "path": "sources/linux/Documentation/core-api/dma-api.rst",
+      "bytes": 32325,
+      "sha256": "c5d182327c69a70d75bdb46bafc0e4e026de6b91f4cc95803519f6e0eb9977ec"
+    },
+    {
+      "path": "sources/linux/include/linux/dma-mapping.h",
+      "bytes": 26443,
+      "sha256": "d8e6f160eff91019bdc96dbaa5a2bc0837dec915fea5731b958f6328366c54d3"
+    },
+    {
+      "path": "sources/linux/include/linux/mmc/host.h",
+      "bytes": 25532,
+      "sha256": "48ddebc041d079a90ba43628d106acbd2b0a09bbe459deca9d7a73ae561945cc"
+    },
+    {
+      "path": "sources/linux/kernel/dma/mapping.c",
+      "bytes": 30537,
+      "sha256": "715f7fe354130e1f5de083f58d60725da0d82ff2d120dccb441fc01058b52f73"
+    },
+    {
+      "path": "sources/linux/kernel/dma/direct.c",
+      "bytes": 18296,
+      "sha256": "6015f4c3e9523c5a1c312c63f7e953c23020b9230aa933b0173f847ecbdf8037"
+    },
+    {
+      "path": "sources/linux/arch/arm64/mm/dma-mapping.c",
+      "bytes": 1277,
+      "sha256": "7c6467723693083ff499f446c63ec8e3a030ba2c93e9bb8355df85159b2a7c5d"
+    }
+  ],
+  "source_diff": {
+    "baseline": "frozen v25",
+    "candidate_sha256": "2b1f48ba68789523b832d9226ad1e0031f17376d3f0abea816fd97de8f1f9ab6",
+    "preserved_calls": 128,
+    "call_counts": {
+      "readl": 48,
+      "writel": 49,
+      "readl_poll_timeout": 6,
+      "usleep_range": 2,
+      "udelay": 4,
+      "dma_wmb": 1,
+      "dma_rmb": 2,
+      "t736_diag_begin": 7,
+      "t736_diag_end": 7,
+      "t736_dma_describe": 1,
+      "t736_dma_poll_result": 1
+    },
+    "arguments_and_order_exactly_identical": true,
+    "candidate_delta": "One payload-owned flag/helper, noncoherent payload allocation/free, full-allocation bidirectional synchronization, ownership rejection guard and descriptive metadata. Coherent descriptor allocation/free unchanged."
+  },
+  "API_review": [
+    "dma-api.rst:582-585 requires sync_for_device even before first device use, and sync_for_cpu before CPU reads device data.",
+    "dma_alloc_noncoherent wraps dma_alloc_pages/page_address. In this direct ARM64 path dma_direct_alloc_pages returns CPU-owned zeroed page_address memory without a device ownership transfer or coherent remap.",
+    "Identical device/handle/65536-byte size/DMA_BIDIRECTIONAL are used for alloc, both sync directions and free. mmc_dev(host->mmc) is the original parent device.",
+    "ARM64 sync_device cleans to PoC; sync_cpu for BIDIRECTIONAL invalidates to PoC. Entire allocation maintenance covers CPU-written tuning poison and dirty cache-line tails of small transfers.",
+    "Existing32-bit coherent and streaming masks apply to allocation. No DT dma-coherent override, raw physical map, private PTE change or alias introduced."
+  ],
+  "ownership_review": [
+    "CPU-owned initially. command rejects dead or device-owned state before any tuning poison; original128/512 poison retained.",
+    "All pre-start threshold/descriptor/short-write-copy failures remain before handoff. Successful sync_for_device precedes unchanged dma_wmb and MMIO enable; no fallible early-return occurs between handoff and command mandatory stop.",
+    "Central stop reclaims only after all three hardware reset fences succeeded. Command-error payloads are reclaimed before the next operation, without copying failed data to SG.",
+    "Any reset failure sets dma_dead and ios_error, skips cache synchronization and SG readback, and leaves both allocations quarantined. Subsequent commands and remove cannot touch or free the payload.",
+    "Probe early allocation cleanup is CPU-owned; successful remove first stops/reclaims then frees exact allocations. Descriptor snapshots may inspect coherent descriptor state but never payload."
+  ],
+  "tests_review": {
+    "actual_extracted_functions": [
+      "t736_payload_for_device",
+      "t736_dma_stop",
+      "t736_dma_start",
+      "t736_command",
+      "t736_remove"
+    ],
+    "author_recorded_execution": "Separate CPU-cache/device-memory model, -Wall -Wextra -Werror, ASan/UBSan PASS; ARM64 external-module build against v25 PASS. Reviewer inspected exact test/source/log bindings and model assertions, without rerunning physical operations.",
+    "covered": "first and duplicate handoff;128/512 repeated poison defeating stale success;64KiB write/read;4B dirty-tail full synchronization;all3pre+3post reset failure positions;dead-state access/free rejection;short-write-copy failure;ordinary/tuning command errors then fresh poison;remove reclaim/free",
+    "not_covered": "Physical cache hardware behavior, actual DMA completion, real memory ordering, full system behavior or performance."
+  },
+  "measurement_review": [
+    "read_copy still measures SG copy only. dma_start adds sync_device; post_reset adds sync_cpu, so post_reset is no longer pure reset cost.",
+    "Pre-reset can include recovery sync if ownership remained outstanding; ordinary completed request flow has already reclaimed.",
+    "Nested service/start/pre-reset/callback totals cannot be summed. Wall times include scheduling/interrupts.",
+    "dispatch crosses submitter/worker contexts; only single-worker segments permit the different-CPU-endpoint migration inference. Same endpoints do not establish residency."
+  ],
+  "required_next": [
+    "Full v26 kernel/package/PVR/readonly-v4 final binding and guarded updater review.",
+    "Root-owned one-shot v26 HS400200 trial with persistent v16 fallback, fresh tuning and file integrity before throughput interpretation."
+  ],
+  "blocking_findings_remaining_within_review_scope": [],
+  "board_operated": false,
+  "public_backup_refreshed_or_pushed": false
+}

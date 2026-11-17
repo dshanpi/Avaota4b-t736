@@ -1,0 +1,658 @@
+{
+  "schema": 1,
+  "status": "compiled; not installed or executed on target",
+  "tina_input_read_only": true,
+  "gst_omx_version": "1.20.1",
+  "cedar_package_sha256": "229b69699184bbf7b0bade1540cc06cda50e20ccb5cd6da9f8c365d1bc1023d0",
+  "source_archive_sha256": "86b52e30ebd0f59fcb5cf81a163211975f73ef32e5a6782562804646316bcd7c",
+  "patches": [
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0001-adapter-aw-omx-for-branch-1.20.1.patch",
+      "sha256": "1dd49f9d50e6e446a37100ad4e6832dfb2deb4d8fe68b60779db6b000d87e921"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0002-support-avc-mjpeg-encoder-1.20.1.patch",
+      "sha256": "3f939968e47df3b6465a9a849d022e9f81e8d1d70c511ac87c8d597b425de7e2"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0003-support-zero-copy-encoder-1.20.1.patch",
+      "sha256": "0e12e5f885b7788e18a0272686cd0c316d16fd8f37e836b4e53c1e876fb6b872"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0004-support-output-DMABuf-1.20.1.patch",
+      "sha256": "bf28b4440b7d514332c3dad2e189cbc2cb4a11405e9d6cc4de466ffebec6481b"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0005-support-setting-output-size-1.20.1.patch",
+      "sha256": "9cfd1cb70e78b86c65887f9cc36d5cd18c7949b39063f9d9af182588d4a179a8"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0006-support-dma-features-1.20.1.patch",
+      "sha256": "bf9245d12e9dcf572c3a3177fe432c4eb0d1f7cdb526e9a6478d6dd42a872f2f"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0007-support-NV21-output-while-decoding-vp9.patch",
+      "sha256": "286f3c4bfb94f71f5e2a0225ce47664f21ec8b4913855d1bcad5d22b5075e127"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0008-update-config-for-mjpeg-encoder.patch",
+      "sha256": "bedbc06a994e73734e835a952e7aca113faad19be7adf83197bbbd34e96c870e"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0009-add-avc-encoder-for-t536.patch",
+      "sha256": "f28af56c870509479614b28d59b3cc24b54fac8a2df6a508f85afbe60b241af0"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0010-fix-problem-for-releasing-omx-component.patch",
+      "sha256": "1bdfa4c59f5a51a1a84a3bbfd022de5fbeece034e655f182b42ade6828834552"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0011-feat-support-to-set-csd-mode-for-h264-encoder.patch",
+      "sha256": "ccf7a39107b40ae21e38af596bce3e6a08918bcd04371e278968145f7a93f3b1"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0012-feat-gstomxvideoenc-support-nv21-and-zero-copy.patch",
+      "sha256": "412a7b843f9a7875ef942da033cf1cd093faa71418dfb8cf1087275e64ac6156"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0013-feat-support-afbc-feature-for-gstomx.patch",
+      "sha256": "5f122bd587eb523335d4b48fd3aaf5b4b922406ce996e1fec1ad3372ce1c8bf8"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0014-fix-fix-gstomx-crash-issue-in-some-cases.patch",
+      "sha256": "40531d095b26ffdde7a2605e6cc6dc7a8fc2f0fac47797208231795968b76ada"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0015-fix-gstomx-improve-decoder-encoder-robustness-and-ali.patch",
+      "sha256": "f201c0e62f857f058ddfd77be34570b335d0768c35f3fea6a1bbeeadbba51153"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0016-fix-fix-some-avi-videos-playback-freeze-by-improving.patch",
+      "sha256": "c6660260fd6355c326ab9fed227d1e51aeb9bd4fd3d259276d46e962820bc7a5"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0017-feat-add-hevc_encoder-declaration-to-gst-omx.patch",
+      "sha256": "3d790fd19a8b218aa62dc1cf9452fb048618124127307d820c422eb1c1601156"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0018-fixed-Optimize-AFBC-attribute-settings-for-gst-omx.patch",
+      "sha256": "e59ac70adc5a7ba028213d8184dd0277e3e7d4e6b9100bb2db8d8d3899bf8f42"
+    },
+    {
+      "path": "buildroot/buildroot-202205/package/gstreamer1/gst-omx/0019-feat-omx-supports-outputting-buf-of-AFBC+YUV-mixed-data.patch",
+      "sha256": "4c8d0b00b6783894887dbb3537870f899ef026bc8882cf50b200f7b3e135ffa3"
+    }
+  ],
+  "cross_file_sha256": "952e4fdb194eee89f84e4e21408b5c796b4c7642aceab262b0c5a3fbf70a526b",
+  "demo_sources": [
+    {
+      "path": "platform/allwinner/multimedia/libcedarc_v2.0/demo/vdecoderDemo/rawStreamParser.c",
+      "sha256": "f557f6d74fabf41943bf32dc2a75c48500e43ea528b61c6411ef16a2e8b59a3b"
+    },
+    {
+      "path": "platform/allwinner/multimedia/libcedarc_v2.0/demo/vdecoderDemo/rawStreamParser.h",
+      "sha256": "2f30726818bdcefc6a935a3e07d876ac66cc1b59301643da30fcd3230dc2564a"
+    },
+    {
+      "path": "platform/allwinner/multimedia/libcedarc_v2.0/demo/vdecoderDemo/vdecoderDemo.c",
+      "sha256": "3ffac6640087f5967c9cfd26f5e87ecef1f86c52cdb793e94e348bf40297cfbc"
+    }
+  ],
+  "builder_sha256": "02007a30ca8113aeb5aeb197b1cecc7aa11f1f57020afb3cfcba8993e7d4dab5",
+  "compiler": "aarch64-none-linux-gnu-gcc (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) 10.3.1 20210621",
+  "target_kernel_abi_verified": false,
+  "firefox_hardware_decode_verified": false,
+  "gst_stock_debian_runtime_verified": false,
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 796,
+      "sha256": "722189de400538b14ba1f467d83d81bc450b3f19e88a6dade087033ee584c284"
+    },
+    {
+      "path": "bin/cedar-env",
+      "bytes": 821,
+      "sha256": "b1b232c8e81ac8b61854f1700b4c9319f6ac36a2fba055a545046eb979d76511"
+    },
+    {
+      "path": "bin/vdecoderdemo",
+      "bytes": 159208,
+      "sha256": "57e939761b348a005a5b0bf0d1bf102d3db73df1f84d93e0c1ed13d6c2ab0861",
+      "needed": [
+        "libcdc_base.so",
+        "libMemAdapter.so",
+        "libvdecoder.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libpthread.so.0",
+        "libm.so.6",
+        "librt.so.1",
+        "libdl.so.2",
+        "libVE.so",
+        "libvideoengine.so",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "config/cedarc.conf.reference",
+      "bytes": 1219,
+      "sha256": "d7ce91860a20fba6b8b4a7dd07e622169d6cd87ac3050d605e19c354f340f620"
+    },
+    {
+      "path": "config/gstomx.conf",
+      "bytes": 262,
+      "sha256": "d2bf92265dd9e4015f74720c96b146c04224ab5ceda3bc8fdba6bc46077169a0"
+    },
+    {
+      "path": "lib/gstreamer-1.0/libgstomx.so",
+      "bytes": 366672,
+      "sha256": "a75980ba491cef8a86432775272b5e0157e144ae0e8510d3440ac210f450e540",
+      "needed": [
+        "libgstvideo-1.0.so.0",
+        "libgstbase-1.0.so.0",
+        "libgstreamer-1.0.so.0",
+        "libgobject-2.0.so.0",
+        "libglib-2.0.so.0",
+        "libgstaudio-1.0.so.0",
+        "libgmodule-2.0.so.0",
+        "libgstallocators-1.0.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libMemAdapter.so",
+      "bytes": 44592,
+      "sha256": "0c55a47b303f9d99115d589e6bb8d02a370d12c0dac7e691c067b26f648c10a0",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "librt.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": [
+        "/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/base/.libs:/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/target/usr/lib"
+      ]
+    },
+    {
+      "path": "lib/libOmxCore.so",
+      "bytes": 61752,
+      "sha256": "a29760452c43c9e9988742e0b20ad44a7558d35979f9796928272e731b04424f",
+      "needed": [
+        "libcdc_base.so",
+        "libvdecoder.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libdl.so.2",
+        "libvideoengine.so",
+        "libMemAdapter.so",
+        "libVE.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "librt.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": [
+        "/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/base/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/vdecoder/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/vdecoder/fbm/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/vdecoder/sbm/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/memory/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/target/usr/lib"
+      ]
+    },
+    {
+      "path": "lib/libOmxVdec.so",
+      "bytes": 282392,
+      "sha256": "a524cdbda7b9c7becbf4a5d1bdc83afb859aa8297b18b1b092157b6d26c6e24e",
+      "needed": [
+        "libcdc_base.so",
+        "libvdecoder.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libdl.so.2",
+        "libvideoengine.so",
+        "libMemAdapter.so",
+        "libVE.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "librt.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": [
+        "/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/base/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/vdecoder/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/vdecoder/fbm/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/vdecoder/sbm/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/memory/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/target/usr/lib"
+      ]
+    },
+    {
+      "path": "lib/libVE.so",
+      "bytes": 69736,
+      "sha256": "3af49a5eb24f6832518a858274fb206d60e490985bff02f5d5be36d053f65be4",
+      "needed": [
+        "libcdc_base.so",
+        "libdl.so.2",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawavs.so",
+      "bytes": 61624,
+      "sha256": "3d46076a1a2cb039540e2e5a945a7320791958b827024b7a6586bd2d3cc6824a",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawavs2.so",
+      "bytes": 69624,
+      "sha256": "7b7ba32eafc0605755a5ee4a46a1ec03a94ff004a366314689a90b1d8d8ff2ae",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawh264.so",
+      "bytes": 145496,
+      "sha256": "c977fe936a0bf1418f0a452c9769158b3ad2c8ff32aa972c1db4e21630f7fcc3",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libvdecVcs.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libm.so.6",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawh265.so",
+      "bytes": 183840,
+      "sha256": "6adc1bba9ca552e17f6bc8a5d4b28b6cba1a6268feebfded0fa99ed199457df1",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libvdecVcs.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libm.so.6",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawmjpeg.so",
+      "bytes": 35040,
+      "sha256": "c6c0fff04dcddc633544831430727b445a3f1fe4873c881a16aeaed958513e65",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawmjpegplus.so",
+      "bytes": 44168,
+      "sha256": "99b4d3dcac4e5e5c38f9e1387bc803d8d9fd6f975eb7d83899928e79e8feda9d",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawmpeg2.so",
+      "bytes": 57472,
+      "sha256": "f93ffabbb28c314769fbaaa0b2432b1cca4f4f5f160a9767fba00a76a37863de",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawmpeg4base.so",
+      "bytes": 124600,
+      "sha256": "d3e89676527bbb61f424cf9b09be46db2c27db26032af9c0f3507c46843d8220",
+      "needed": [
+        "libVE.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawmpeg4dx.so",
+      "bytes": 91488,
+      "sha256": "01c72ccbd86be598867391a1e33c944c89e8beae2a1efa4044afe5e1819e08d0",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libawmpeg4base.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawmpeg4h263.so",
+      "bytes": 71640,
+      "sha256": "fa224002a349b36131212bee325173772fa1dbb0d8e3d80bbd91446f87cb9548",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libawmpeg4base.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawmpeg4normal.so",
+      "bytes": 74720,
+      "sha256": "286687b64fa5fc39ff1f3aad2c8931d3e3073707d578e36a1381eb1890553768",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libawmpeg4base.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawmpeg4vp6.so",
+      "bytes": 48760,
+      "sha256": "1e4476aa88bcca548978fae4a135c84f55ba2a7b1e096e7da0a72e0fc0d7191e",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libawmpeg4base.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawvp6soft.so",
+      "bytes": 59152,
+      "sha256": "bc86eb76c6f4a23e08af46b18ca8c04ce336539133722f8ac966ba1c30f585f7",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawvp8.so",
+      "bytes": 53896,
+      "sha256": "fd9bfce1d37fe33a91eebbf5006945174e8f7bbb5d354e88d922c5c584ee3e20",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libawvp9HwAL.so",
+      "bytes": 136984,
+      "sha256": "59432ffc48ea834c292fadd16f7c0dee2fd632d5af909c9ce04e4b5f0e4178f0",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libvideoengine.so",
+        "libvdecVcs.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libm.so.6",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17",
+        "GLIBC_2.29"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libcdc_base.so",
+      "bytes": 127792,
+      "sha256": "2d1c8b9a0be3c75445290f749e877c9baeb54657d9d8acad92216baae51f507f",
+      "needed": [
+        "libm.so.6",
+        "libpthread.so.0",
+        "librt.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libfbm.so",
+      "bytes": 77600,
+      "sha256": "711db0ea30a1a04a43fb95cc6f91cc4a301bb074d03a5270c52b8669ed5e29a7",
+      "needed": [
+        "libdl.so.2",
+        "libvideoengine.so",
+        "libMemAdapter.so",
+        "libVE.so",
+        "libcdc_base.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "librt.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": [
+        "/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/memory/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/base/.libs:/home/huangwujie/code/AIOT-Linux/out/t736/demo_aiot/buildroot/buildroot/target/usr/lib"
+      ]
+    },
+    {
+      "path": "lib/libsbm.so",
+      "bytes": 171224,
+      "sha256": "0bba9af82a6ed76a06ee5c5894ebf75bef6c42aeea0a9026035331aa6f808151",
+      "needed": [
+        "libdl.so.2",
+        "libvideoengine.so",
+        "libcdc_base.so",
+        "libMemAdapter.so",
+        "libVE.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "librt.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": [
+        "/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/base/.libs:/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/memory/.libs:/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/target/usr/lib"
+      ]
+    },
+    {
+      "path": "lib/libscaledown.so",
+      "bytes": 23040,
+      "sha256": "65ff549bfc6541da9abddf87030c0763ae1197abf98fba7882fc38e967a699ef",
+      "needed": [
+        "libcdc_base.so",
+        "libMemAdapter.so",
+        "libVE.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libvdecVcs.so",
+      "bytes": 42608,
+      "sha256": "4e239fc13922fc450b4b70a88ddce131117208d261cf0dbbd16282380a8e6a1f",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libMemAdapter.so",
+        "libvideoengine.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": []
+    },
+    {
+      "path": "lib/libvdecoder.so",
+      "bytes": 135400,
+      "sha256": "ec47b638c4f3880689d2b148579a32548edcd371d9ff8ff4dcbee82ca9473f9e",
+      "needed": [
+        "libcdc_base.so",
+        "libMemAdapter.so",
+        "libfbm.so",
+        "libsbm.so",
+        "libdl.so.2",
+        "libvideoengine.so",
+        "libVE.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "librt.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "loader_paths": [
+        "/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/base/.libs:/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/memory/.libs:/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/vdecoder/fbm/.libs:/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/build/libcedarc/vdecoder/sbm/.libs:/home/luguofang/workspace/sdk-linux/aiot-linux/out/t736/demo_aiot/buildroot/buildroot/target/usr/lib"
+      ]
+    },
+    {
+      "path": "lib/libvideoengine.so",
+      "bytes": 42480,
+      "sha256": "abfea1fa75f6a3ca5413d16eb69fcb87692f3e3b6552d83a222a998e909cef82",
+      "needed": [
+        "libVE.so",
+        "libcdc_base.so",
+        "libMemAdapter.so",
+        "libc.so.6"
+      ],
+      "glibc_versions": [
+        "GLIBC_2.17",
+        "GLIBC_2.30"
+      ],
+      "loader_paths": []
+    }
+  ]
+}

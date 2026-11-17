@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "READ_ONLY_API_FEASIBILITY_NOT_IMPLEMENTED_OR_HARDWARE_VALIDATED",
+  "reviewer": "backup_audit",
+  "kernel_version": "6.18.63",
+  "board_access": false,
+  "kernel_modified": false,
+  "conclusion": "A separately implemented cached noncoherent dma-buf exporter is supported by standard kernel APIs on this configured arm64 direct-DMA platform, but the current WC exporter and WC-only userspace contract cannot be made correct by changing the mmap cache attribute alone. Cached access requires a matched allocation/mapping/free API, ownership transitions and real DMA synchronization for every CPU/device path.",
+  "current_contract": [
+    "ve_heap_allocate uses dma_alloc_wc; ve_buffer_mmap uses dma_mmap_wc; release uses dma_free_wc. All aliases must stay compatible with that allocation until a separate implementation exists.",
+    "Exporter begin/end_cpu_access and legacy cache ioctl only issue barriers. The matching MemAdapter explicitly assumes no WB alias and ion_alloc_flush_cache only executes dmb osh after range validation. These barriers cannot clean or invalidate cached CPU lines.",
+    "Only same-device private dma-bufs are accepted, the driver rejects an IOMMU-mapped device and uses a32-bit mask. Imported mappings stay quarantined until reboot."
+  ],
+  "standard_api_path": [
+    "dma_alloc_noncoherent(dev,size,&dma,dir,GFP_KERNEL) is an inline dma_alloc_pages/page_address wrapper; using dma_alloc_pages directly retains the struct page needed by dma_mmap_pages.",
+    "dma_mmap_pages(dev,vma,size,page) maps those allocated pages using normal VMA protection and bounds; this kernel has no dma_mmap_noncoherent API. Do not remap a live dma_alloc_wc allocation as WB.",
+    "The matching free API is dma_free_pages or dma_free_noncoherent with the same device,size,handle,direction. Keep the existing quarantine policy for any buffer whose DMA address was disclosed.",
+    "Keep the same-device attachment restriction and represent the already allocated/mapped pages and DMA handle in the scatterlist. Do not add a second streaming mapping or silently accept a bounce/IOMMU/foreign-buffer path. Retain all-pages contiguity,identity and32-bit-end checks.",
+    "Use dma_sync_single_for_cpu before CPU access after confirmed device completion and dma_sync_single_for_device after CPU writes and before the next device access. Allocation/map/free/sync directions must be consistent; a BIDIRECTIONAL allocation is a conservative candidate for buffers whose roles change, not permission to overlap CPU/device writes.",
+    "For arm64 arch_sync_dma_for_device cleans to PoC; arch_sync_dma_for_cpu invalidates to PoC except DMA_TO_DEVICE. The generic helpers dispatch the platform behavior; a hand-written barrier or arbitrary user-VA flush does not substitute."
+  ],
+  "configuration_readback_scope": "Build config only, not a fresh board runtime check. CONFIG_IOMMU_SUPPORT=n; DMA_NEED_SYNC, DMA_NONCOHERENT_MMAP, DMA_DIRECT_REMAP, DMA_CMA, CMA=y; CMA256MiB. DT has no dma-coherent or iommus property for VE. Runtime device/DT/mapping conditions would need independent confirmation for a new candidate.",
+  "ownership_and_userspace_gaps": [
+    "dma-buf START/END is a cache-access bracket, not a hardware stop primitive. This driver does not publish VE completion fences in dma_resv; callers must prove explicit completion and no overlapping device writes before beginning CPU access.",
+    "The GStreamer DmaBuf allocator source has DMA_BUF_IOCTL_SYNC START/END around GstMemory mapping. This is useful for the decoded frame read bracket but does not cover the permanently mapped vendor input/scratch/reference-buffer aliases. Confirm the installed GStreamer binary actually enables HAVE_LINUX_DMA_BUF_H.",
+    "The reviewed GstDmaBuf map/unmap implementation logs synchronization ioctl failures as warnings and continues; a cached path must propagate failures or otherwise fail closed before using possibly stale bytes.",
+    "MemAdapter CdcIonMmap permanently maps read/write memory; ion_alloc_flush_cache is currently WC-only and carries no explicit read/write ownership state. All vendor input writes, parameter/scratch initialization, decoded output reads and buffer returns must be audited and paired with the appropriate sync transitions.",
+    "A generic FlushCache callback cannot blindly clean/invalidate while VE owns the buffer. A directionless combined flush can overwrite device output or expose stale data if called at the wrong ownership point.",
+    "Page-size allocations isolate boundary cache lines from unrelated objects, but simultaneous alias users/threads and multiple START/END brackets still need a defined ownership/nesting policy. Whole-buffer synchronization is safer to reason about first; any range optimization needs cache-line boundary proof."
+  ],
+  "not_solved": [
+    "No IOMMU isolation or proof of AXI/DMA drain is added.",
+    "No safe imported-buffer reuse or quarantine release is added.",
+    "No60fps or performance gain follows from API feasibility; compare end-to-end counters, copy costs and exact pixels/PTS after any independently reviewed implementation.",
+    "Current v27/v28 kernels and WC library packages remain unchanged by this review."
+  ],
+  "references": [
+    {
+      "path": "boards/t736-cedar-wc.c",
+      "lines": [
+        104,
+        158,
+        165,
+        172,
+        204,
+        335,
+        627,
+        742
+      ],
+      "bytes": 21452,
+      "sha256": "5c9a73ed2d701bfb5905aa59da73f7f07f60b1c0636c6746f1b7110a68265402"
+    },
+    {
+      "path": "boards/t736-media-v27.dtsi",
+      "lines": [
+        2,
+        33
+      ],
+      "bytes": 1513,
+      "sha256": "01b24b44440094407429898fc81d8725ddfd0e3b5d6942057c5fd5cc785a9dd5"
+    },
+    {
+      "path": "sources/linux/include/linux/dma-mapping.h",
+      "lines": [
+        481,
+        489
+      ],
+      "bytes": 26443,
+      "sha256": "d8e6f160eff91019bdc96dbaa5a2bc0837dec915fea5731b958f6328366c54d3"
+    },
+    {
+      "path": "sources/linux/kernel/dma/mapping.c",
+      "lines": [
+        708,
+        733,
+        769
+      ],
+      "bytes": 30537,
+      "sha256": "715f7fe354130e1f5de083f58d60725da0d82ff2d120dccb441fc01058b52f73"
+    },
+    {
+      "path": "sources/linux/kernel/dma/direct.c",
+      "lines": [
+        119,
+        355
+      ],
+      "bytes": 18296,
+      "sha256": "6015f4c3e9523c5a1c312c63f7e953c23020b9230aa933b0173f847ecbdf8037"
+    },
+    {
+      "path": "sources/linux/arch/arm64/mm/dma-mapping.c",
+      "lines": [
+        16,
+        24,
+        42
+      ],
+      "bytes": 1277,
+      "sha256": "7c6467723693083ff499f446c63ec8e3a030ba2c93e9bb8355df85159b2a7c5d"
+    },
+    {
+      "path": "sources/linux/Documentation/core-api/dma-api.rst",
+      "lines": [
+        563,
+        582,
+        600,
+        610
+      ],
+      "bytes": 32325,
+      "sha256": "c5d182327c69a70d75bdb46bafc0e4e026de6b91f4cc95803519f6e0eb9977ec"
+    },
+    {
+      "path": "sources/linux/drivers/dma-buf/dma-buf.c",
+      "lines": [
+        533,
+        1383,
+        1401
+      ],
+      "bytes": 48292,
+      "sha256": "81f088989a8fc875c738be7a0c751164220830dde05ba39b58b25c72ed4ac044"
+    },
+    {
+      "path": "build/media-v28-candidate-build-20261117/kernel.config",
+      "lines": [
+        2784,
+        3479,
+        3481,
+        3484,
+        3489
+      ],
+      "bytes": 99178,
+      "sha256": "01b9b37c952ae8264226acb076540b700fcbfd7eae6bf0c7d16a363a01900e9d"
+    },
+    {
+      "path": "build/cedar-wc-candidate-20261117/ionAlloc.c",
+      "lines": [
+        544
+      ],
+      "bytes": 19920,
+      "sha256": "8dbd4743336abd9e6c8e5e8e4881bacb324f42df0db0998d9f74cce9a40df796"
+    },
+    {
+      "path": "build/cedar-wc-candidate-20261117/CdcIonUtil.c",
+      "lines": [
+        293,
+        311
+      ],
+      "bytes": 12081,
+      "sha256": "7db8a1b81d3b2334d60881028d7d4d380a3bf8428ba231d6918a245bdc205643"
+    },
+    {
+      "path": "build/cedar-offline-review-20261117/gstdmabuf.c",
+      "lines": [
+        53,
+        80
+      ],
+      "bytes": 6038,
+      "sha256": "2ff8a52e7fb6f14e85980c199f07d03446a69c14d24f3585ff6c508a48216cc7"
+    }
+  ]
+}

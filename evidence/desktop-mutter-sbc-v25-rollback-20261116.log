@@ -1,0 +1,8 @@
+Restoring the baseline GNOME session configuration.
+/etc/gdm3/daemon.conf: 成功
+=== rollback verified ===
+2026-11-16T14:40:50Z
+vmlinuz-6.18.63-t736-storage-v16
+initrd.img-6.18.63-t736-storage-v16
+6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b  /boot/dtb/allwinner/t736-mainline-bringup.dtb
+active

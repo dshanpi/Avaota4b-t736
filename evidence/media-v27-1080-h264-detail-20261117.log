@@ -1,0 +1,298 @@
+设置暂停管道 ...
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+T736_WC: version=0x3331000021320 phy_offset=0x0 heap=t736-ve cache=WC barriers=dmb-osh
+DEBUG  : cedarc <CdcIniParserInit:36>: cannot parse file: /etc/cedarc.conf
+
+DEBUG  : cedarc <AwOmxComponentInit:40>: OMXCORE: aw_omx_component_init f453aa00
+
+DEBUG  : cedarc <CdcIniParserInit:36>: cannot parse file: /etc/cedarc.conf
+
+INFO   : cedarc <log_setlevel:73>: Set log level to 5 from /vendor/etc/cedarc.conf
+WARNING: cedarc <getSocIdString:1219>: cannot open /dev/sunxi_soc_info, it maybe ok!
+
+WARNING: cedarc <getSocIdString:1219>: cannot open /dev/sunxi_soc_info, it maybe ok!
+
+WARNING: omx_vdec <__AwOmxVdecSetParameter:1735>: Set Parameter called in valid state
+管道正在 PREROLLING ...
+重新分配延迟时间...
+/GstPipeline:pipeline0/GstH264Parse:h264parse0.GstPad:src: caps = video/x-h264, pixel-aspect-ratio=(fraction)1/1, width=(int)1920, height=(int)1080, framerate=(fraction)30/1, coded-picture-structure=(string)frame, chroma-format=(string)4:2:0, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)byte-stream, alignment=(string)au, profile=(string)high, level=(string)4, lcevc=(boolean)false
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps = video/x-h264, pixel-aspect-ratio=(fraction)1/1, width=(int)1920, height=(int)1080, framerate=(fraction)30/1, coded-picture-structure=(string)frame, chroma-format=(string)4:2:0, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)byte-stream, alignment=(string)au, profile=(string)high, level=(string)4, lcevc=(boolean)false
+/GstPipeline:pipeline0/GstOMXH264Dec-omxh264dec:omxh264dec-omxh264dec0.GstPad:sink: caps = video/x-h264, pixel-aspect-ratio=(fraction)1/1, width=(int)1920, height=(int)1080, framerate=(fraction)30/1, coded-picture-structure=(string)frame, chroma-format=(string)4:2:0, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)byte-stream, alignment=(string)au, profile=(string)high, level=(string)4, lcevc=(boolean)false
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps = video/x-h264, pixel-aspect-ratio=(fraction)1/1, width=(int)1920, height=(int)1080, framerate=(fraction)30/1, coded-picture-structure=(string)frame, chroma-format=(string)4:2:0, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)byte-stream, alignment=(string)au, profile=(string)high, level=(string)4, lcevc=(boolean)false
+ERROR  : omx_vdec <AwOmxVdecPortGetFormat:365>: erro: pParamData->nIndex > m_sPortFormatType.nIndex
+/GstPipeline:pipeline0/GstOMXH264Dec-omxh264dec:omxh264dec-omxh264dec0.GstPad:src: caps = video/x-raw, format=(string)YV12, width=(int)176, height=(int)144, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoCrop:videocrop0.GstPad:src: caps = video/x-raw, format=(string)YV12, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert0.GstPad:src: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter1.GstPad:src: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstTee:t.GstTeePad:src_0: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue0.GstPad:sink: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue0.GstPad:src: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue0.GstPad:src: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue1.GstPad:sink: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue1.GstPad:sink: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstTee:t.GstPad:sink: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter1.GstPad:sink: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert0.GstPad:sink: caps = video/x-raw, format=(string)YV12, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoCrop:videocrop0.GstPad:sink: caps = video/x-raw, format=(string)YV12, width=(int)176, height=(int)144, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+INFO   : cedarc <log_setlevel:93>: now cedarc log level:4
+ERROR  : cedarc <DebugCheckConfig:396>: now cedarc log level:4
+INFO   : cedarc <CreateVideoDecoder:427>: CreateVideoDecoder p:0xffff7c009f00
+WARNING: cedarc <getSocIdString:1219>: cannot open /dev/sunxi_soc_info, it maybe ok!
+
+INFO   : cedarc <VeInitialize:1708>: *** ic_version = 0x3331000021320,
+WARNING: cedarc <InitializeVideoDecoder:718>: warning: the nDeInterlaceHoldingFrameBufferNum is 0
+/GstPipeline:pipeline0/GstVideoScale:videoscale0.GstPad:src: caps = video/x-raw, width=(int)960, height=(int)540, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter2.GstPad:src: caps = video/x-raw, width=(int)960, height=(int)540, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert1.GstPad:src: caps = video/x-raw, width=(int)960, height=(int)540, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)BGRx
+/GstPipeline:pipeline0/GstXImageSink:ximagesink0.GstPad:sink: caps = video/x-raw, width=(int)960, height=(int)540, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)BGRx
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert1.GstPad:sink: caps = video/x-raw, width=(int)960, height=(int)540, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter2.GstPad:sink: caps = video/x-raw, width=(int)960, height=(int)540, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstVideoScale:videoscale0.GstPad:sink: caps = video/x-raw, width=(int)176, height=(int)136, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+T736_WC: first validated WC ordering barrier
+iniparser: cannot open /etc/cedarc.conf
+INFO   : omx_vdec_aw <__liGetExtPara:1490>: OMX get ext para: 0x0
+/GstPipeline:pipeline0/GstOMXH264Dec-omxh264dec:omxh264dec-omxh264dec0.GstPad:src: caps = video/x-raw, format=(string)YV12, width=(int)1920, height=(int)1088, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoCrop:videocrop0.GstPad:src: caps = video/x-raw, format=(string)YV12, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert0.GstPad:src: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter1.GstPad:src: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstTee:t.GstTeePad:src_0: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue0.GstPad:sink: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue0.GstPad:src: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue0.GstPad:src: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue1.GstPad:sink: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstQueue:queue1.GstPad:sink: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstTee:t.GstPad:sink: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter1.GstPad:sink: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+/GstPipeline:pipeline0/GstVideoConvert:videoconvert0.GstPad:sink: caps = video/x-raw, format=(string)YV12, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoCrop:videocrop0.GstPad:sink: caps = video/x-raw, format=(string)YV12, width=(int)1920, height=(int)1088, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+/GstPipeline:pipeline0/GstVideoScale:videoscale0.GstPad:sink: caps = video/x-raw, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1, format=(string)NV21
+重新分配延迟时间...
+管道被 PREROLLED ...
+设置播放管道 ...
+重新分配延迟时间...
+New clock: GstSystemClock
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 51! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 52! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 53! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 54! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 55! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 56! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 57! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 58! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 59! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 60! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 61! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 62! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 63! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 64! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 65! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 66! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 67! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 68! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 69! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 70! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 71! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 72! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 73! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 74! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 75! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 76! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 77! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 78! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 79! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 80! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 81! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 82! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 83! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 84! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 85! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 86! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 87! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 88! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 89! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 90! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 91! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 92! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 93! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 94! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 95! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 96! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 97! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 98! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 99! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 100! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 101! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 102! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 103! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 104! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 105! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 106! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 107! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 108! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 109! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 110! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 111! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 112! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 113! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 114! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 115! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 116! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 117! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 118! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 119! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 120! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 121! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 122! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 123! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 124! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 125! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 126! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 127! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 128! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 129! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 130! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 131! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 132! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 133! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 134! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 135! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 136! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 137! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 138! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 139! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 140! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 141! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 142! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 143! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 144! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 145! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 146! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 147! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 148! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 149! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 150! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 151! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 152! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 153! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 154! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 155! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 156! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 157! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 158! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 159! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 160! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 161! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 162! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 163! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 164! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 165! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 166! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 167! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 168! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 169! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 170! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 171! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 172! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 173! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 174! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 175! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 176! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 177! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 178! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 179! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 180! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 181! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 182! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 183! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 184! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 185! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 186! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 187! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 188! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 189! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 190! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 191! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 192! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 193! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 194! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 195! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 196! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 197! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 198! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 199! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 200! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 201! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 202! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 203! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 204! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 205! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 206! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 207! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 208! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 209! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 210! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 211! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 212! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 213! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 214! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 215! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 216! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 217! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 218! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 219! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 220! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 221! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 222! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 223! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 224! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 225! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 226! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 227! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 228! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 229! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 230! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 231! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 232! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 233! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 234! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 235! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 236! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 237! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 238! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 239! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 240! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 241! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 242! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 243! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 244! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 245! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 246! Possible input starvation
+收到来自组件“pipeline0”的 EOS 信号。
+收到 EOS 信号 - 中止管道 ...
+Execution ended after 0:00:01.974714521
+设置 NULL 管道 ...
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 247! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 248! Possible input starvation
+WARNING: omx_vdec_aw <__liDecode:2071>: [LATENCY_SEM] Wait bitstream timeout 249! Possible input starvation
+INFO   : cedarc <DestroyVideoDecoder:441>: DestroyVideoDecoder, pDecoder=0xffff7c009f00
+INFO   : cedarc <VeRelease:1865>: not malloc locks
+
+INFO   : cedarc <VeRelease:1865>: not malloc locks
+
+释放管道资源 ...

@@ -1,0 +1,1 @@
+PASS: extracted snapshot/action; raw vs queried state, ports/queues, unlocked APIs/printing, unchanged idle gates/failures, detailed primary error

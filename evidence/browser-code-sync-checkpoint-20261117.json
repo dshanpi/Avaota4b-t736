@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "timezone": "Asia/Shanghai",
+  "updated_utc": "2026-11-17T06:49:54.923068+00:00",
+  "status": "CODE_AND_EVIDENCE_CHECKPOINT_NOT_FINAL_FIRMWARE",
+  "request": "User requested freeze, organize all code, upload and synchronize after confirming visible improvement.",
+  "runtime": {
+    "schema": 1,
+    "observed_utc": "2026-11-17T06:49:10.662152+00:00",
+    "kernel": "6.18.63-t736-media-v29",
+    "persistent_default": "/boot/vmlinuz-6.18.63-t736-storage-v16",
+    "original_profile_restored": true,
+    "website": "bilibili.com",
+    "new_frame_rate_acceptance": false,
+    "service": {
+      "pid": 13004,
+      "state": "active",
+      "protocol": 1,
+      "backend": 5,
+      "omx_wc": 5,
+      "ffmpeg": 7
+    },
+    "browser": {
+      "rdd_pid": 13132,
+      "sandbox": [
+        "NoNewPrivs:\t1",
+        "Seccomp:\t2"
+      ],
+      "private_libraries": [
+        {
+          "path": "/opt/t736-browser-ffmpeg-v7/lib/libavcodec.so.61.19.101",
+          "sha256": "66c1d490d1c80ff962d97875900aa8c38098f7c47a2b3f6fc04a2ca1086ab731"
+        },
+        {
+          "path": "/opt/t736-browser-ffmpeg-v7/lib/libavutil.so.59.39.100",
+          "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271"
+        },
+        {
+          "path": "/opt/t736-browser-ffmpeg-v7/lib/libswresample.so.5.3.100",
+          "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360"
+        },
+        {
+          "path": "/opt/t736-browser-v1/lib/libt736_cedar_client.so",
+          "sha256": "8e7f835dd734230a3fcd568e5c456e616e1f21c94763356fb162691dfb87622b"
+        }
+      ],
+      "diagnostic_control_flags": false
+    },
+    "devices": {
+      "/dev/cedar_dev": {
+        "uid": 999,
+        "gid": 982,
+        "mode": "0o600"
+      },
+      "/dev/dma_heap/t736-ve": {
+        "uid": 999,
+        "gid": 982,
+        "mode": "0o600"
+      }
+    },
+    "dma": {
+      "buffers": 88,
+      "bytes": 128335872,
+      "budget_bytes": 134217728,
+      "reclaimed": false
+    },
+    "ve_clock_hz": 400000000,
+    "dcdc2_snapshot": "id=03 enable=ff dcdc2=28 phase=00 feedback=00 dvm=0 remote_feedback=1 setpoint_uv=900000 kind=programmed-setpoint",
+    "emmc_ios": "clock:\t\t200000000 Hz\nactual clock:\t200000000 Hz\nvdd:\t\t21 (3.3 ~ 3.4 V)\nbus mode:\t2 (push-pull)\nchip select:\t0 (don't care)\npower mode:\t2 (on)\nbus width:\t3 (8 bits)\ntiming spec:\t10 (mmc HS400)\nsignal voltage:\t1 (1.80 V)\ndriver type:\t0 (driver type B)\n",
+    "failed_units": "",
+    "gdm_original_restored": true,
+    "test_services_stopped": {
+      "t736-browser-fixture.service": "inactive",
+      "t736-media-inhibit.service": "inactive"
+    }
+  },
+  "accepted_bounded_results": {
+    "bilibili_1080p30": {
+      "sample_seconds": 30.863,
+      "total_frames": 926,
+      "dropped_frames": 0,
+      "ve_irq_delta": 929,
+      "record": "evidence/browser-hevc-v6-live-candidate-pending-20261117.json"
+    },
+    "user_feedback": {
+      "text": "明显流畅了",
+      "qualitative": true,
+      "not_measured_fps": true
+    },
+    "wire2_native": {
+      "seals_cases": 58,
+      "fork_pass": true,
+      "exact_pixel_pts_frames": 180,
+      "transport_frames": 540,
+      "transport_fps": 81.78185574284656,
+      "not_browser_presentation": true,
+      "record": "evidence/browser-v29-shm2-hardware-phase-20261117.json"
+    }
+  },
+  "not_accepted": [
+    "Browser hardware1080p60; v7 improved earlier hardware delivery but still had late sink drops",
+    "wire2 inside Firefox RDD: namespace UID projection rejection, v3 not implemented",
+    "Unlimited video switching or long-run DMA lifetime; current128335872/134217728 bytes pinned until reboot",
+    "Video encoding and end-to-end zero-copy",
+    "New final integrated firmware image or flash acceptance",
+    "Current physical gigabit link: still100Mbps with PHY downshift"
+  ],
+  "source_entry_points": {
+    "kernel": "tools/build_media_v29_candidate.py",
+    "browser": "tools/browser/README.md",
+    "code_map": "docs/CODE_MAP.md",
+    "build": "docs/BUILD.md",
+    "public_snapshot": "tools/prepare_source_backup.py"
+  },
+  "frozen_components": {
+    "ffmpeg": "v7",
+    "backend": "v5",
+    "omx_wc": "v5",
+    "protocol1": "restored live service",
+    "protocol2": "native accepted candidate only; frozen archive unchanged",
+    "diagnostic_client": "separate diagnostic source; not default",
+    "plane_copy_candidate": "isolated source/tests only; not deployed",
+    "namespace_client_v3": "design only, no implementation"
+  },
+  "sync_policy": {
+    "public": "Source, configuration, tests, sanitized evidence and manifests",
+    "private": "Vendor binaries, build artifacts, raw media/trace and personal browser observations",
+    "excluded": "Credentials, private SSH keys, session tokens and control-service sessions",
+    "public_repository": "https://github.com/dshanpi/Avaota4b-t736",
+    "build_host_project": "/home/ubuntu/t736-mainline"
+  },
+  "new_board_experiments_after_freeze": false,
+  "original_browser_restored": true,
+  "new_firmware_flashed": false
+}

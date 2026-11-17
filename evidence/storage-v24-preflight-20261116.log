@@ -1,0 +1,12 @@
+/home/t736/update_t736_storage_v24.py: 成功
+{
+  "status": "CHECK_PASS",
+  "running_release": "6.18.63-t736-storage-v23",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "candidate_release": "6.18.63-t736-storage-v24",
+  "write_attempted": false,
+  "hardware_accepted": false,
+  "baseline_files": 94,
+  "kernel_sha256": "c58e56fab073adf8f62c14148ab7d79d7feb7ee43e134744c834556079ac0578",
+  "pvr_sha256": "badb7af910bd31bf60df0642db893111d77031f9f3560b3f2a23303d0ed700ea"
+}

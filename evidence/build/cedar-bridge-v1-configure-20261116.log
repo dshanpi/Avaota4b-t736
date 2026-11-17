@@ -1,0 +1,97 @@
+DEPRECATION: "pkgconfig" entry is deprecated and should be replaced by "pkg-config"
+The Meson build system
+Version: 1.4.1
+Source dir: /home/ubuntu/t736-mainline/build/cedar-bridge-package-v1/src
+Build dir: /home/ubuntu/t736-mainline/build/cedar-bridge-package-v1/build
+Build type: cross build
+Project name: gst-omx
+Project version: 1.20.1
+C compiler for the host machine: /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-gcc (gcc 10.3.1 "aarch64-none-linux-gnu-gcc (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) 10.3.1 20210621")
+C linker for the host machine: /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-gcc ld.bfd 10.3-2021
+C compiler for the build machine: ccache cc (gcc 13.3.0 "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+C linker for the build machine: cc ld.bfd 2.42
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: aarch64
+Host machine cpu: cortex-a76
+Target machine cpu family: aarch64
+Target machine cpu: cortex-a76
+Found pkg-config: YES (/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/pkgconf) 1.6.3
+Run-time dependency gstreamer-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-base-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-controller-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-allocators-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-pbutils-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-audio-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-fft-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-tag-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-video-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-gl-1.0 found: YES 1.20.1
+Run-time dependency x11 found: YES 1.8
+Dependency gstreamer-check-1.0 skipped: feature tests disabled
+Library m found: YES
+Run-time dependency glib-2.0 found: YES 2.70.4
+Run-time dependency gio-2.0 found: YES 2.70.4
+Run-time dependency gmodule-2.0 found: YES 2.70.4
+Message: OMX target: buildroot
+Has header "OMX_VideoExt.h" : YES 
+Has header "OMX_IndexExt.h" : YES 
+Has header "OMX_ComponentExt.h" : YES 
+Has header "OMX_CoreExt.h" : NO 
+Has header "OMX_AudioExt.h" : NO 
+Has header "OMX_IVCommonExt.h" : NO 
+Has header "OMX_ImageExt.h" : NO 
+Has header "OMX_OtherExt.h" : NO 
+Header "OMX_Video.h" has symbol "OMX_VIDEO_CodingVP8" : YES 
+Header "OMX_Video.h" has symbol "OMX_VIDEO_CodingVP9" : YES 
+Header "OMX_Video.h" has symbol "OMX_VIDEO_CodingTheora" : NO 
+Header "OMX_Video.h" has symbol "OMX_VIDEO_CodingHEVC" : YES 
+t736-mainline/build/cedar-bridge-package-v1/src/meson.build:404: WARNING: add_languages is missing native:, assuming languages are wanted for both host and build.
+C++ compiler for the build machine: ccache c++ (gcc 13.3.0 "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+C++ linker for the build machine: c++ ld.bfd 2.42
+C++ compiler for the host machine: /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-g++ (gcc 10.3.1 "aarch64-none-linux-gnu-g++ (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) 10.3.1 20210621")
+C++ linker for the host machine: /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-g++ ld.bfd 10.3-2021
+Compiler for C supports arguments -Wmissing-declarations: YES 
+Compiler for C++ supports arguments -Wmissing-declarations: YES 
+Compiler for C supports arguments -Wredundant-decls: YES 
+Compiler for C++ supports arguments -Wredundant-decls: YES 
+Compiler for C supports arguments -Wwrite-strings: YES 
+Compiler for C++ supports arguments -Wwrite-strings: YES 
+Compiler for C supports arguments -Winit-self: YES 
+Compiler for C++ supports arguments -Winit-self: YES 
+Compiler for C supports arguments -Wmissing-include-dirs: YES 
+Compiler for C++ supports arguments -Wmissing-include-dirs: YES 
+Compiler for C supports arguments -Wno-multichar: YES 
+Compiler for C++ supports arguments -Wno-multichar: YES 
+Compiler for C supports arguments -Wvla: YES 
+Compiler for C++ supports arguments -Wvla: YES 
+Compiler for C supports arguments -Wpointer-arith: YES 
+Compiler for C++ supports arguments -Wpointer-arith: YES 
+Compiler for C supports arguments -Wundef: YES 
+Compiler for C++ supports arguments -Wundef: YES 
+Compiler for C supports arguments -Wmissing-prototypes: YES 
+Compiler for C supports arguments -Wdeclaration-after-statement: YES 
+Compiler for C supports arguments -Wold-style-definition: YES 
+Compiler for C supports arguments -Waggregate-return: YES 
+Header "gst/gstconfig.h" has symbol "GST_DISABLE_GST_DEBUG" with dependency gstreamer-1.0: NO 
+Message: GStreamer debug system is enabled
+Message: Documentation not built as building the docmentation while cross building is not supported yet.
+Program scripts/extract-release-date-from-doap-file.py found: YES (/home/ubuntu/t736-mainline/build/cedar-bridge-package-v1/src/scripts/extract-release-date-from-doap-file.py)
+Message: Package release date: 2022-03-14
+Configuring config.h using configuration
+Build targets in project: 1
+
+gst-omx 1.20.1
+
+  User defined options
+    Cross files   : /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/etc/meson/cross-compilation.conf
+    libdir        : lib
+    prefix        : /usr
+    doc           : disabled
+    examples      : disabled
+    struct_packing: 8
+    target        : buildroot
+    tests         : disabled
+    tools         : disabled
+
+Found ninja-1.11.1.git.kitware.jobserver-1 at /home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/ninja

@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "status": "COMPILED_HARDWARE_PENDING",
+  "package": "/home/ubuntu/t736-mainline/build/cedar-wc-v3-20261117/t736-cedar-wc-v3.tar.gz",
+  "bytes": 1153375,
+  "sha256": "fd42ecb99ba1a2b46f32d7d3c10c79aa99c6c418be95f7bc5633b1ea20401035",
+  "manifest_sha256": "253edaf6e5f91f3ee9d5940fffa28933fa1ca0ff9f90abdadce6866c10eb077d",
+  "plugin_sha256": "2bfbb5c798ffb9e859221866665037362ba836c3911e560d362cc848e760b2ad",
+  "source_patch_sha256": "eea44de2701caac9a866849a16afeb95f376c0b3b5d67d9141291526379d1a31",
+  "source_sha256": "b084e2e7c6ce2e2972ce3d4270a4084e775750930cfba26d03fc794148af2682",
+  "tests": {
+    "status": "PASS",
+    "command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-I/home/ubuntu/t736-mainline/build/cedar-wc-v3-20261117/src/omx/openmax",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v3-20261117/crop-validator-test.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v3-20261117/crop-validator-test"
+    ],
+    "output": "PASS: extracted crop validator, 14 boundary/offset cases",
+    "test_source_sha256": "a095f4fa4a0de63c0a65884aa61cfa2a288a51775d57525c67adb64f9f2207a6"
+  }
+}

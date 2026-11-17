@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "kind": "storage-v26-final-updater-and-observation-preparation",
+  "date": "2026-11-16",
+  "status": "READY_FOR_ROOT_OWNED_CHECK_APPLY_AND_ONE_SHOT_TRIAL_NOT_HARDWARE_ACCEPTED",
+  "files": [
+    {
+      "path": "tools/validation/update_t736_storage_v26.py",
+      "bytes": 28752,
+      "sha256": "5669a811d816b7e2742a11ac210b947f6995611b48482bfb81ee03b4dcaf89c5"
+    },
+    {
+      "path": "tools/validation/test_update_t736_storage_v26.py",
+      "bytes": 14516,
+      "sha256": "3c26ca4f289aef6577b06bd793ea78cfb741b129ff5f600620aafbee9059c6a2"
+    },
+    {
+      "path": "evidence/storage-v26-updater-final-offline-tests-20261116.log",
+      "bytes": 3772,
+      "sha256": "7f29060323099ad16e90d7f7d5f6787a4a1976504afd088dd7e5afb761947cd4"
+    },
+    {
+      "path": "evidence/storage-v26-updater-exact-inputs-20261116.json",
+      "bytes": 1309,
+      "sha256": "57015ad54a42b547c95f75a9aac1075f2ba35cead0c4817ae0e643f3e4fff424"
+    },
+    {
+      "path": "evidence/storage-v26-updater-independent-review-20261116.json",
+      "bytes": 1872,
+      "sha256": "d075572f58f5afc1c57a81cb102980a2ee17bdca8dff1ecd5c23ec681a9d289d"
+    },
+    {
+      "path": "evidence/storage-v26-build-20261116.json",
+      "bytes": 3889,
+      "sha256": "7fcd748956a8832ba5cf82de243dfb3836e81cfa5ad74b08f2c15d8337e143ae"
+    },
+    {
+      "path": "evidence/storage-v26-package-20261116.json",
+      "bytes": 41966,
+      "sha256": "2f0e0b33da4779259352212e739dc13c43d4f4bb8e6843f198b550363042adf4"
+    },
+    {
+      "path": "evidence/storage-v26-pvr-build-20261116.json",
+      "bytes": 1088,
+      "sha256": "f65ce5a298f79a36ad6b9b5267000cb1bd228346ec7f6a40bf8acb7e114d3388"
+    },
+    {
+      "path": "evidence/emmc-clocks-readonly-v4-storage-v26-20261116.json",
+      "bytes": 1210,
+      "sha256": "922d521a7a9658a41d44d03929cffeebdb7947ef7ff25cfebce4525c0cacf2a7"
+    },
+    {
+      "path": "evidence/storage-v26-cached-bounce-independent-review-20261116.json",
+      "bytes": 6874,
+      "sha256": "3d7e0f480ff8bf0b97bcc2d1374e13352c0bc4af486340cb60e4347e584d991e"
+    },
+    {
+      "path": "tools/validation/mmc_timing_collect_v26.py",
+      "bytes": 13617,
+      "sha256": "a99dc35116a763cae60b760fb710483c911f2a84cff7ddc3c1a322d55caf0bbe"
+    },
+    {
+      "path": "evidence/storage-v26-timing-collector-preparation-20261116.json",
+      "bytes": 1337,
+      "sha256": "9bcaf3e9145762d960b4a60c3d83505b0742924174bf93800beeb13150a37662"
+    },
+    {
+      "path": "evidence/storage-v26-timing-collector-independent-review-20261116.json",
+      "bytes": 1388,
+      "sha256": "6ed85b5524d85b2265103404dff0e32a974299f5e8ccd083d2805b7524eb29f8"
+    },
+    {
+      "path": "evidence/storage-v26-board-command-plan-20261116.json",
+      "bytes": 5336,
+      "sha256": "143dcc471a45f7e1da42c94ae130e7426f14e165e397472a1488935e1342ff9a"
+    }
+  ],
+  "bindings": {
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate_dtb_bytes": 12028,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "control_manifest_sha256": "1ecf2b92707bc7ea859258b82a86fe1ae69ab706c78b01432896b638f42e964a",
+    "kernel_bytes": 5604794,
+    "kernel_sha256": "f270f50a59da295f2104512a8504531698eab2967d769e17c8ba322a2b075281",
+    "payload_manifest_sha256": "bf32b05ca819fba0f8016700e0823e037f7dd206b8c9a973c6f3e200e80ab920",
+    "pvr_bytes": 1913816,
+    "pvr_sha256": "57e217ef2aa31c02b6f2a41e7a21d6361e2532f628ed34966ac1febc1dac255b",
+    "raw_image_bytes": 11800584,
+    "raw_image_sha256": "59010d0b1e6e41a769c4c1bc0063d63af2a42944e4ffcea1f520d32e13c6d8a1"
+  },
+  "verification": {
+    "offline_fault_injection": {
+      "cases": 14,
+      "status": "PASS",
+      "log": "evidence/storage-v26-updater-final-offline-tests-20261116.log"
+    },
+    "real_package_PVR_inputs": "PASS-inputs-only-no-install-or-board",
+    "control_manifest_entries": 6,
+    "payload_manifest_entries": 82,
+    "maintainer_scripts": {
+      "count": 4,
+      "identical_to_v25_after_release_rename": true,
+      "executed_by_reviewer": false
+    },
+    "full_build_file_hashes": "independently rehashed on build host",
+    "configuration_delta": [
+      "CONFIG_LOCALVERSION only"
+    ],
+    "sync_configuration": [
+      "CONFIG_DMA_NEED_SYNC=y",
+      "CONFIG_ARCH_HAS_SYNC_DMA_FOR_CPU=y",
+      "CONFIG_ARCH_HAS_SYNC_DMA_FOR_DEVICE=y"
+    ],
+    "PVR_and_readonly_module_vermagic": "6.18.63-t736-storage-v26 SMP mod_unload aarch64",
+    "source_ownership_review": "PASS",
+    "independent_updater_AST_and_bindings_review": "PASS-29functions_classes-and11bindings"
+  },
+  "activation": {
+    "allowed_running": [
+      "6.18.63-t736-storage-v16",
+      "6.18.63-t736-storage-v25"
+    ],
+    "persistent_fallback": "6.18.63-t736-storage-v16",
+    "fallback_DTB_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate": "6.18.63-t736-storage-v26",
+    "after_install": "Restore persistent aliases and baseline DT using the newly emitted exact backup directory before any one-shot candidate boot.",
+    "no_saveenv_or_raw_media_writes": true,
+    "historical_GPU_helpers": "Remain v15 and are not executed or edited; actual loaded PVR module/DSOs/runtime must be checked separately."
+  },
+  "readonly_module": {
+    "remote_path": "build/emmc-clocks-readonly-v4-storage-v26/t736-emmc-clocks-readonly-v4.ko",
+    "bytes": 8176,
+    "sha256": "bd72801246d99b89406be5533c1d55e8afa2724e12862a2bd0c1c664ffe67ab9",
+    "name": "t736_emmc_clocks_readonly_v4",
+    "vermagic": "6.18.63-t736-storage-v26 SMP mod_unload aarch64"
+  },
+  "collector": {
+    "path": "tools/validation/mmc_timing_collect_v26.py",
+    "sha256": "a99dc35116a763cae60b760fb710483c911f2a84cff7ddc3c1a322d55caf0bbe",
+    "fixed_probe_sha256": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946",
+    "limits": [
+      "dma_start includes sync_device; post_reset includes sync_cpu; nested totals cannot be added.",
+      "Wall durations include scheduling/interrupts; CPU endpoints are not residency. dispatch crosses submitter/worker contexts.",
+      "Aggregate includes background I/O; bounded stability is not hardware draining.",
+      "Repeated8MiB prefix is not unique-media streaming or content validation."
+    ]
+  },
+  "delivery": "SFTP only; all files retained locally and on build host",
+  "board_operations_by_this_agent": false,
+  "candidate_board_accepted": false,
+  "public_backup": "Second checkpoint remains frozen; no public refresh, commit or push by this preparation."
+}

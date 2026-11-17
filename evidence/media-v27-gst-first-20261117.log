@@ -1,0 +1,51 @@
+GST_EXIT=1
+414:         22          0          0          0          0          0          0          0    GICv3  81 Level     t736-cedar-wc
+-rw-r--r-- 1 root root 0 11月17日 03:32 /run/t736-cedar-gst-first/output.nv21
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /run/t736-cedar-gst-first/output.nv21
+WARNING: cedarc <InitializeVideoDecoder:718>: warning: the nDeInterlaceHoldingFrameBufferNum is 0
+INFO   : omx_vdec_aw <__liGetExtPara:1490>: OMX get ext para: 0x0
+/GstPipeline:pipeline0/GstOMXH264Dec-omxh264dec:omxh264dec-omxh264dec0.GstPad:src: caps = video/x-raw, format=(string)YV12, width=(int)320, height=(int)256, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)30/1
+错误：来自组件 /GstPipeline:pipeline0/GstOMXH264Dec-omxh264dec:omxh264dec-omxh264dec0：Internal data stream error.
+额外的调试信息：
+../src/omx/gstomxvideodec.c(2395): gst_omx_video_dec_loop (): /GstPipeline:pipeline0/GstOMXH264Dec-omxh264dec:omxh264dec-omxh264dec0:
+stream stopped, reason not-negotiated
+错误: 管道不需要 preroll.
+设置 NULL 管道 ...
+错误：来自组件 /GstPipeline:pipeline0/GstH264Parse:h264parse0：Internal data stream error.
+额外的调试信息：
+../libs/gst/base/gstbaseparse.c(3703): gst_base_parse_loop (): /GstPipeline:pipeline0/GstH264Parse:h264parse0:
+streaming stopped, reason not-negotiated (-4)
+错误: 管道不需要 preroll.
+WARNING: omx_vdec_aw <standbyOutBufferArr:879>: ** return pic when flush,i[0],pPic[0xffff74001518]
+INFO   : cedarc <DestroyVideoDecoder:441>: DestroyVideoDecoder, pDecoder=0xffff84009f00
+INFO   : cedarc <VeRelease:1865>: not malloc locks
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+INFO   : cedarc <VeRelease:1865>: not malloc locks
+
+释放管道资源 ...
+[    0.511774] t736-ve-power 7062000.power-controller: VE_DEC PPU=ON, 200MHz, DEC0/1 bypass verified; reset held
+[    0.795411] t736-cedar-wc 1c0e000.video-codec: Cedar decoder + private 32-bit WC heap; root-only, fixed-frequency bring-up

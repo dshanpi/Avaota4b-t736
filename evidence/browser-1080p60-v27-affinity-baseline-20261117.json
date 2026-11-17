@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "V27_1080P60_BASELINE_NOT_ACCEPTED_PARENT_AFFINITY_DID_NOT_RESTORE_RATE",
+  "hardware_operator": "root",
+  "recorder": "backup_audit",
+  "recorder_board_access": false,
+  "versions_operator_reported": {
+    "kernel": "6.18.63-t736-media-v27",
+    "ve_hz": 200000000,
+    "ffmpeg": "v6",
+    "backend": "v4 with copy timing instrumentation",
+    "omx_wc": "v5",
+    "vendor_log_level": 6,
+    "broker_affinity": "6-7"
+  },
+  "source": "Local 1920x1080 HEVC60fps fixture; first180-frame exact replay and separate long-fixture browser windows. Not a private website test.",
+  "trials": [
+    {
+      "label": "parent_affinity_0_7",
+      "raw": {
+        "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-v6-unpinned.json",
+        "bytes": 17014,
+        "sha256": "d91a7527890bfde19812a26661c7c20a3314199f30fc6d7ddfc0e021ae2b12e8"
+      },
+      "irq_window_seconds": 20.53973283000002,
+      "irq_delta": 1145,
+      "irq_per_second": 55.74561312343997,
+      "video_counter_window_seconds": 20.429143555999985,
+      "total_video_frames_delta": 1134,
+      "dropped_video_frames_delta": 1110,
+      "drop_fraction_of_counter_delta": 0.9788359788359788,
+      "media_seconds_delta": 19.033334,
+      "rdd_cpu_percent": 40.896344998855525,
+      "broker_cpu_percent": 89.19298099750395,
+      "main_thread_callback_fps": 1.6188204060406284,
+      "rvfc_metadata_counter_rate": 55.74812773302414
+    },
+    {
+      "label": "parent_threads_affinity_6_7",
+      "raw": {
+        "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-v6-parent-big.json",
+        "bytes": 17079,
+        "sha256": "d59f892740d7124c690539fb4dd29f3fea49ad7b93d03fc996da3f82615c088a"
+      },
+      "irq_window_seconds": 20.441703925000013,
+      "irq_delta": 1132,
+      "irq_per_second": 55.376988344673876,
+      "video_counter_window_seconds": 20.323672575000018,
+      "total_video_frames_delta": 1120,
+      "dropped_video_frames_delta": 1075,
+      "drop_fraction_of_counter_delta": 0.9598214285714286,
+      "media_seconds_delta": 18.7,
+      "rdd_cpu_percent": 40.89678644535986,
+      "broker_cpu_percent": 88.74015623430955,
+      "main_thread_callback_fps": 2.2688227870008064,
+      "rvfc_metadata_counter_rate": 55.45424997994994
+    }
+  ],
+  "cpu_percent_unit": "100 percent equals one fully used CPU core",
+  "exact_replay": {
+    "raw": {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/hevc-60fps-v27-log6-exact.json",
+      "bytes": 10022,
+      "sha256": "e5cd5957f675673f1e02fc29695112641d3e820d5131978a4f1940ddc35b1463"
+    },
+    "input_packets": 180,
+    "frames": 180,
+    "records_sha256": "5bcfe27c02e9b9bb7b27ff441769058f21547a7926374e2d1972e20000e5dc07",
+    "raw_reports_all_md5_exact": true,
+    "recorder_pts_formula_check": true,
+    "first_frame_seconds": 1.942583545000005,
+    "elapsed_seconds_including_hashes": 7.004658657000007,
+    "close_result": 0,
+    "independent_reference_limit": "The supplied archive contains the hardware MD5 array and passed flag; matching 180-frame software reference/input records were not included, so the recorder did not independently repeat that pixel comparison."
+  },
+  "conclusions": [
+    "The parent-affinity change did not recover60fps throughput: IRQ rate approximately55.75/s before and55.38/s after; both windows retained very high browser dropped counts.",
+    "Do not read the rVFC metadata counter rate as unique physically displayed frames; it remains near55/s while browser dropped counters are high.",
+    "The short exact-output replay establishes recorded pixel/timestamp correctness only, not real-time browser throughput.",
+    "This is a v27 baseline for comparison against separately changed v28; no v28 result is inferred here."
+  ],
+  "files": [
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private.tar.gz",
+      "bytes": 17638,
+      "sha256": "654fc9daea74ebe9512333d8ff532de8a8426f0a2a0b99267979e369348af431"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-dmabufs.log",
+      "bytes": 6197,
+      "sha256": "da3f91690630f83094d409821cdcbdff5595feeeb89e85bb82c7cb812f39322d"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-parent-affinity.log",
+      "bytes": 6480,
+      "sha256": "4f02caf1bef1d7940f038cbbf8083f39b2e95f3ce5641a5c86e6d4707abbcd94"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-service.log",
+      "bytes": 53848,
+      "sha256": "866609744388160ac7d583298b376ba8da7323a296a377ecb0aed0f245ba2528"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-v6-parent-big.json",
+      "bytes": 17079,
+      "sha256": "d59f892740d7124c690539fb4dd29f3fea49ad7b93d03fc996da3f82615c088a"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-v6-unpinned.json",
+      "bytes": 17014,
+      "sha256": "d91a7527890bfde19812a26661c7c20a3314199f30fc6d7ddfc0e021ae2b12e8"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/firefox-60fps-v27-v6.log",
+      "bytes": 2855,
+      "sha256": "f6e35730d7cbcb1519e9ae9c6089f221840fcbc5b2f2324bb95bdf9c3eaa5feb"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/firefox-v6-v27-support.json",
+      "bytes": 18552,
+      "sha256": "a9e67c8669bc5a21f3fb457bb7850e2bb640b7384ed03ed6a36bec4367be5bae"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/hevc-60fps-v27-log6-exact.json",
+      "bytes": 10022,
+      "sha256": "e5cd5957f675673f1e02fc29695112641d3e820d5131978a4f1940ddc35b1463"
+    }
+  ],
+  "privacy": "Raw logs/about:support and any page information remain only in the private build directory. This summary embeds no URL, page title, media payload or user profile information.",
+  "acceptance": {
+    "1080p60": false,
+    "physical_present_fps": false,
+    "production": false,
+    "public_upload": false
+  }
+}

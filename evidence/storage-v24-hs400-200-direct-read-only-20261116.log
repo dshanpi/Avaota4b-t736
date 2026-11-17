@@ -1,0 +1,18 @@
+[
+  {
+    "readonly_file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+    "chunk": 65536,
+    "bytes": 8388608,
+    "seconds": 0.10037954599999921,
+    "MiB_s": 79.69751128382333,
+    "compare_hash": false
+  },
+  {
+    "readonly_file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+    "chunk": 1048576,
+    "bytes": 8388608,
+    "seconds": 0.09533124699999007,
+    "MiB_s": 83.9179204275051,
+    "compare_hash": false
+  }
+]

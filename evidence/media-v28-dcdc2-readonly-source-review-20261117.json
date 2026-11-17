@@ -1,0 +1,60 @@
+{
+  "schema": "t736-dcdc2-readonly-peer-review-v1",
+  "date": "2026-11-17",
+  "reviewer": "code_index/media_ve_review",
+  "result": "SOURCE_REVIEW_PASS_BUILD_AND_HARDWARE_NOT_PERFORMED_BY_REVIEWER",
+  "board_access": false,
+  "driver_modified_by_reviewer": false,
+  "baseline_sha256": "697544d5d9a46d6eadf0896bc7a71f634f5ec5124e5b9c4b8b2070c4c37dafda",
+  "candidate_path": "boards/candidates/media-v28-400mhz/t736-gpu-supply.c",
+  "candidate_sha256": "f8bcc3006951b12cca545c6dc75f0c297d7596ce19193d6a6a9380eb1a4be9d5",
+  "patch_path": "boards/candidates/media-v28-400mhz/dcdc2-readonly-snapshot.patch",
+  "patch_sha256": "381a9782af313ceabb94df1fa801581d210a72e6712d454d56a2b3098844a24d",
+  "checks": [
+    "All three source/patch hashes match the candidate manifest.",
+    "Removing only the five declared additions (sysfs include, device pointer field, show/attribute block, pointer assignment, dev_groups registration) restores the exact baseline text.",
+    "CPU snapshot API and header ABI are unchanged. Existing PMIC write functions, call sites, bus initialization and GPU rail preparation are unchanged.",
+    "Read callback acquires cpu_supply_owner_lock before the existing p->lock; checks p and p->dev; all five PMIC reads occur under both locks. No private owner access or second TWI engine is introduced.",
+    "Callback uses only local raw-byte values after releasing locks; it does not dereference p after releasing the owner lock.",
+    "The only new PMIC transactions are fixed reads of 0x0e,0x10,0x13,0x1b,0x1d when the attribute is explicitly read. The patch adds no probe-time PMIC read or rail write.",
+    "DEVICE_ATTR_RO defines mode 0444 and no store callback.",
+    "Owner absence/wrong device and ID mismatch return errors. Failed transactions stop subsequent reads. Disabled DCDC2, reserved selector and DCDC2/3 polyphase return ERANGE with rate-limited raw-register diagnostics.",
+    "Voltage calculation, DVM bit and remote-feedback polarity match the reviewed AXP8191 sources. Output explicitly labels programmed-setpoint, not ADC voltage."
+  ],
+  "lifecycle_source": {
+    "path": "sources/linux/drivers/base/dd.c",
+    "probe_then_attributes": "719-738: call_driver_probe must succeed before device_add_groups(drv->dev_groups).",
+    "removal": "623-631 removes dev_groups before the remove callback; 608-610 releases devres during unbind cleanup.",
+    "probe_failure_cleanup": "775-785 removes device/groups and releases devres on group-creation failure.",
+    "owner_lifetime": "Existing devm cpu_supply_unpublish action was registered after owner resources and runs before their release; owner lock serializes this action with reads.",
+    "readonly_mode": "sources/linux/include/linux/sysfs.h:241-244 (__ATTR_RO)."
+  },
+  "pmic_decoding": {
+    "address": "0x36",
+    "id": "0x0e must equal 3",
+    "enable": "0x10 bit1",
+    "selector": "0x13 & 0x7f",
+    "dvm": "0x13 bit7",
+    "range_0_0x46_uv": "500000 + selector * 10000",
+    "range_0x47_0x57_uv": "1220000 + (selector - 0x47) * 20000",
+    "reserved": "0x58..0x7f",
+    "polyphase": "0x1b bit6 joins DCDC2/3; reject independent DCDC2 interpretation",
+    "remote_feedback": "0x1d bit0 clear means enabled",
+    "datasheet": "evidence/vendor-reference/reference-2.txt, LF lines 1330-1341,1369-1379,1473-1504",
+    "datasheet_sha256": "074fb32e0a831807732ed5e51791e85d56de53820245307756a0f28d06283941",
+    "vendor_regulator": "Tina bsp/drivers/power/regulator/axp2101-regulator.c:1287-1289,1336-1339",
+    "vendor_regulator_sha256": "531edf18fe85ae9ccfd09e0693f01e162d579ae1aa6d4071a23485013a61ac2c",
+    "vendor_id": "Tina brandy/brandy-2.0/u-boot-2018/drivers/sunxi_power/include/pmu_axp8191.h:28 and pmu/pmu_axp8191.c:193-199"
+  },
+  "limits": [
+    "No build, test-module loading, board reading, reboot or rail operation performed by this reviewer.",
+    "This records current programmed setpoint only; it does not independently measure physical rail voltage or establish VE frequency stability.",
+    "Reads are sequential under a software lock, not simultaneous analog samples."
+  ],
+  "author_validation_reference": {
+    "path": "boards/candidates/media-v28-400mhz/dcdc2-snapshot-test.log",
+    "reported_by": "code_index, implementation author",
+    "reported_result": "267 extracted-callback cases passed with ASan/UBSan, including all 256 selector/DVM raw values, locking, owner and failure paths",
+    "independently_executed_by_this_reviewer": false
+  }
+}

@@ -1,0 +1,71 @@
+  UNIT                                       LOAD   ACTIVE   SUB     DESCRIPTION
+  org.gnome.Shell-disable-extensions.service loaded inactive dead    Disable GNOME Shell extensions after failure
+  org.gnome.Shell@wayland.service            loaded inactive dead    GNOME Shell on Wayland
+  org.gnome.Shell@x11.service                loaded active   running GNOME Shell on X11
+  org.gnome.Shell.target                     loaded active   active  GNOME Shell
+
+Legend: LOAD   → Reflects whether the unit definition was properly loaded.
+        ACTIVE → The high-level unit activation state, i.e. generalization of SUB.
+        SUB    → The low-level unit activation state, values depend on unit type.
+
+4 loaded units listed.
+To show all installed unit files use 'systemctl list-unit-files'.
+# /usr/lib/systemd/user/org.gnome.Shell@x11.service
+[Unit]
+Description=GNOME Shell on X11
+# On X11, try to show the GNOME Session Failed screen
+OnFailure=org.gnome.Shell-disable-extensions.service gnome-session-failed.target
+OnFailureJobMode=replace
+CollectMode=inactive-or-failed
+RefuseManualStart=on
+RefuseManualStop=on
+
+After=gnome-session-manager.target
+
+Requisite=gnome-session-initialized.target
+PartOf=gnome-session-initialized.target
+Before=gnome-session-initialized.target
+
+ConditionEnvironment=XDG_SESSION_TYPE=%I
+
+# Limit startup frequency more than the default
+StartLimitIntervalSec=15s
+StartLimitBurst=3
+
+[Service]
+Slice=session.slice
+Type=notify
+ExecStart=/usr/bin/gnome-shell
+# Exit code 1 means we are probably *not* dealing with an extension failure
+SuccessExitStatus=1
+
+# On X11 we do not need to unset any variables
+
+# On X11 we want to restart on-success (Alt+F2 + r) and on-failure.
+Restart=always
+# Do not wait before restarting the shell
+RestartSec=0ms
+# Kill any stubborn child processes after this long
+TimeoutStopSec=5
+
+# Lower down gnome-shell's OOM score to avoid being killed by OOM-killer too early
+OOMScoreAdjust=-1000
+Restart=always
+MainPID=3437
+ExecStart={ path=/usr/bin/gnome-shell ; argv[]=/usr/bin/gnome-shell ; ignore_errors=no ; start_time=[Mon 2026-11-16 13:50:41 UTC] ; stop_time=[n/a] ; pid=3437 ; code=(null) ; status=0/0 }
+FragmentPath=/usr/lib/systemd/user/org.gnome.Shell@x11.service
+DropInPaths=
+{
+  "DISPLAY": ":0",
+  "XAUTHORITY": "/run/user/1000/gdm/Xauthority",
+  "XDG_RUNTIME_DIR": "/run/user/1000",
+  "XDG_SESSION_TYPE": "x11",
+  "XDG_CURRENT_DESKTOP": "GNOME",
+  "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+  "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri",
+  "COGL_DRIVER": "gles2",
+  "GDK_BACKEND": "x11",
+  "GDK_DISABLE": "gl-api,glx,vulkan",
+  "GSK_RENDERER": "opengl",
+  "GI_TYPELIB_PATH": null
+}

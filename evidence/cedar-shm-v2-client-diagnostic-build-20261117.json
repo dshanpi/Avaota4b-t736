@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-17T06:38:42.136178+00:00",
+  "status": "ARM64_DIAGNOSTIC_CLIENT_BUILT_NATIVE_SANITIZERS_AND_STATIC_REVIEW_PASS_BOARD_DIAG_PENDING",
+  "board_access": false,
+  "frozen_package_modified": false,
+  "implementation": "Separate diagnostic copy of protocol2 client/helper;wireprotocol/publicABI and all authentication/seal/mapping/cleanup guards retained.",
+  "artifact": {
+    "path": "build/cedar-shm-client-diag-v1-20261117/libt736_cedar_client_diag.so",
+    "bytes": 24448,
+    "sha256": "ec2de17d17a229f631eb45b9d827467479d801f4452256e0e0773dd635b0b5ee"
+  },
+  "source_files": [
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/cedar_backend.h",
+      "bytes": 2505,
+      "sha256": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b"
+    },
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/cedar_client.h",
+      "bytes": 1181,
+      "sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113"
+    },
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/cedar_diagnostic.h",
+      "bytes": 2604,
+      "sha256": "353a01fff1dd55737a3c21fe357afa417a52b0bcd2dff67ac06f73d458d1282b"
+    },
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/cedar_protocol.h",
+      "bytes": 1459,
+      "sha256": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646"
+    },
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/cedar_shm.h",
+      "bytes": 8234,
+      "sha256": "131eefbfceaa017249b06658bfa4446f6096c6912b1d4a96d4397afddb94908e"
+    },
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/cedar_client.c",
+      "bytes": 12709,
+      "sha256": "0c83e60160be1f9171b08c08432e55888c0558b2008e634ec583b49f186c5b91"
+    },
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/test_cedar_shm_client_fork.c",
+      "bytes": 6148,
+      "sha256": "0af413ec7f7876678f6b8787d272bb039febbe9c20096eaac0400f461baadf54"
+    },
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/test_cedar_shm_seals.c",
+      "bytes": 22643,
+      "sha256": "3bd88c3d91baa3ec56c6ce6e21718b1559f7f0bf7f96a8a868f4f47b399bc3a4"
+    }
+  ],
+  "frozen_input_hashes": {
+    "cedar_client.c": "84ec6f08321aa4ac76f449fbb05d82cfd97467d3774d200a11d85431bc06778a",
+    "cedar_shm.h": "c99cefb5bad2318bec39e57fa6f7ef27a33013bb58dae15d3c237bef97e2590c",
+    "cedar_client.h": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+    "cedar_protocol.h": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646"
+  },
+  "build": "SDK aarch64-none-linux-gnu-gcc -std=c11 -Wall -Wextra -Werror -pthread -O2 -fPIC -shared -Wl,-z,relro,-z,now,-soname,libt736_cedar_client.so",
+  "tests": [
+    "Native actualclient fork/exec ASan/UBSan/LSan PASS",
+    "Native helper58cases ASan/UBSan/LSan PASS with200ms testdeadline",
+    "Independent code diff reviewPASS bymedia_ve_review:original gates,13metadata comparisons,readonlymapping,DONTFORK,fdcleanup retained"
+  ],
+  "logs": [
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/test-client_fork.log",
+      "bytes": 1552,
+      "sha256": "debdb273fdc5929e70c4724c363639727b33f0a1b1b32f34348c13adf79e0f49"
+    },
+    {
+      "path": "build/cedar-shm-client-diag-v1-20261117/test-seals.log",
+      "bytes": 11050,
+      "sha256": "3f929f09b2f8da2c61c603b19b9400843305c58ac325d7b1861ca03d2abe26ad"
+    }
+  ],
+  "diagnostic_fields": [
+    "constructor argc,enable/rdd/test booleans;not argv orenvvalues",
+    "pid/uid/euid and fixedstage labels,rc/capturederrno",
+    "accountuid,resolution,dir/socketuid+mode",
+    "SO_PEERCRED length,uid,pid,expecteduid",
+    "setup send/receive/header result",
+    "receiverseals,fdflags,owner/size,13bitmismatchmask,mmap/madvise status",
+    "procselfuid_map parsednumericranges(max16),procselfstatusNSpid parsednumericvalues(max16)"
+  ],
+  "diagnostic_limits": "256byte stackline andsinglebest-effort stderrwrite preservingerrno;proc reads capped4096bytes. Readonly diagnostics may themselves be denied bysandbox andare not performance samples. Never accepts overflowUID orpid0.",
+  "receiver_mismatch_bits": {
+    "0": "requiredseals",
+    "1": "exactseals",
+    "2": "regularfile",
+    "3": "nlinkzero",
+    "4": "owneruid",
+    "5": "nonexecmode",
+    "6": "filesize",
+    "7": "capacity",
+    "8": "format",
+    "9": "reservedzero",
+    "10": "deviceidentity",
+    "11": "inodeidentity",
+    "12": "CLOEXEC"
+  },
+  "pending": "Parent will run oneRDD constructortrace while retaining samebroker hardwarecontext;namespace adaptation is separatecandidate andnotimplementedhere."
+}

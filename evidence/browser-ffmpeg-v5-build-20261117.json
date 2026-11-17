@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "status": "COMPILED_ARM64_AUDIT_PASS_REAL_WEB_CAPTURE_PENDING",
+  "board_access": false,
+  "date": "2026-11-17",
+  "trigger": "Root reported Bili HEVC hardware session submitted64 packets and delivered0 before native fallback. Missing parameter-set bootstrap for AnnexB extradata is a hypothesis, not yet proven for that stream.",
+  "source_review": {
+    "FFmpeg7.1.5": "hevc_mp4toannexb passes packets unchanged when input extradata is already AnnexB; only hvcC branch automatically prepends extradata at IRAP.",
+    "MozillaLinux": "Pinned upstream Linux FFmpeg backend requests HVCC and copies supplied extradata; Android-specific conversion is not evidence that Linux Bili uses AnnexB. Actual input versus BSF output must be distinguished by diagnostic logs."
+  },
+  "change": [
+    "Per hardware generation, inspect fresh BSF packets; a complete in-band parameter set marks configuration seeded and is unchanged.",
+    "At first IRAP/key AU missing any necessary type, seed a complete dependency-ordered parameter configuration from BSF output extradata, filtering exclusively VPS/SPS/PPS for HEVC or SPS/PPS for H264. Preserve leading AUD first and all original in-band updates afterward.",
+    "Avoid prefixing only missing types before an in-band SPS/VPS: a complete cached prefix keeps PPS after SPS, while later in-band NALs override it.",
+    "No VCL, AUD, SEI or second access unit is copied from extradata. Never rewrite original replay packets.",
+    "Reset the seeded marker on flush so the next random-access AU bootstraps again.",
+    "Bounded stderr diagnostics record input and BSF-output extradata size/first8hex/AnnexBparameter mask before hardware open, plus first input/filtered AU type/count/mask per generation. Software fallback still logs its first original packet."
+  ],
+  "build": {
+    "archive": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v5.tar.gz",
+    "bytes": 6984832,
+    "sha256": "84db81f3b8be006bf5d1cb7f8118716e78dbe59e606b344ca608324993865f6c",
+    "manifest_sha256": "32de5f536147ac4f02f4d8f5b19ee5eb781984b1a70866d620793b57cecb00fa",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084312,
+        "sha256": "d2f2a97dad3d2ef1a65a0c18cd8660b86838f578e31e2bc6b48bd3c8b0852d81",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    }
+  },
+  "manifest": {
+    "schema": 1,
+    "status": "COMPILED_TESTS_AND_BOARD_PENDING",
+    "upstream": "FFmpeg official n7.1.5 tag",
+    "source_archive_sha256": "e3963a50831c985933e1a625ed566ec4c7adb5c012c34fa9f84438e1d61bdacc",
+    "source_archive_url": "https://codeload.github.com/FFmpeg/FFmpeg/tar.gz/refs/tags/n7.1.5",
+    "configure": [
+      "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/src/configure",
+      "--prefix=/opt/t736-browser-ffmpeg",
+      "--arch=aarch64",
+      "--target-os=linux",
+      "--enable-cross-compile",
+      "--cross-prefix=aarch64-linux-gnu-",
+      "--enable-shared",
+      "--disable-static",
+      "--enable-pic",
+      "--disable-doc",
+      "--disable-programs",
+      "--disable-autodetect",
+      "--disable-network",
+      "--disable-encoders",
+      "--disable-muxers",
+      "--disable-devices",
+      "--disable-filters",
+      "--disable-avdevice",
+      "--disable-avfilter",
+      "--disable-postproc",
+      "--extra-ldflags=-ldl",
+      "--enable-decoder=h264_cedar,hevc_cedar,h264,hevc",
+      "--enable-bsf=h264_mp4toannexb,hevc_mp4toannexb"
+    ],
+    "source_sha256": "d402b82afae7effedafc1fa9f25b119e61742de820d473604777a792c00a4c20",
+    "client_header_sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+    "codec_list_sha256": "c9ad395080a43e0298f16aca4ac1ceec48fe54b08ce032971603f6888a8ae0be",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084312,
+        "sha256": "d2f2a97dad3d2ef1a65a0c18cd8660b86838f578e31e2bc6b48bd3c8b0852d81",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    },
+    "selection": "Cedar wrappers lead av_codec_iterate and avcodec_find_decoder; native names h264/hevc remain available for fallback.",
+    "software_codecs": "All available in-tree decoders/parsers retained; external codec libraries not auto-detected or linked. Native h264/hevc and audio fallback retained.",
+    "sandbox": "No sandbox disabling. Hardware API resolved only from an already-preloaded, already-connected client.",
+    "limits": [
+      "Only even <=1920x1080 8-bit hardware frames accepted.",
+      "Bounded replay fallback only before a hardware frame is delivered; post-delivery hardware errors remain explicit.",
+      "No assertion of hardware use based on Firefox software-frame backend labels.",
+      "No system library installation or target execution by this builder."
+    ]
+  },
+  "test_source_sha256": "b72ae26ce88923af9aca5ef6be34dae2a281f4804feeda53b0b187a98bb0214e",
+  "tests": {
+    "result": "PASS",
+    "checks": 5827,
+    "hardware": false,
+    "new_cases": [
+      "RealH264/HEVC fixture converted to AnnexBextradata and key AU with in-band parameters removed",
+      "Leading AUD preserved before parameter prefix",
+      "Only first random-access AU per generation receives prefix",
+      "Flush causes bootstrap again",
+      "Complete in-band AU remains byte-for-byte unchanged",
+      "OriginalHVCC/avcC output remains byte-for-byte equal to upstream BSF output",
+      "Partial in-band HEVCVPS-only/SPS-only and H264SPS-only retain dependency order and original in-band updates"
+    ],
+    "retained_cases": "Nativefallback exactMD5/PTS/duration, realFirefoxDTSsequence, pooled-frame ownership/lifetime, backpressure/EOS/flush/errors",
+    "log": "mainline/evidence/build/browser-ffmpeg-v5-arm64-qemu-20261117.log",
+    "log_sha256": "5b0391444d3ac1cd78a6eb5168afce4a205a5a9844762ca729e5fbb87c84a25a"
+  },
+  "runtime_scope": [
+    "Root will first use a capture-only fake-client shim without hardware to capture actual filtered web-stream access units in private0600files.",
+    "No claim of real web hardware success from this build or software audit.",
+    "Broker was poisoned after a prior failed OMX idle transition; v5 does not change the broker or kernel and cannot clear that condition."
+  ]
+}

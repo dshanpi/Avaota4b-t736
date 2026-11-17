@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "FROZEN_NOT_DEPLOYED_LOCAL_CORRECTNESS_PASS_HARDWARE_PERFORMANCE_PENDING",
+  "freeze_reason": "User requested code\u6574\u7406 and private synchronization; no new experiment after this freeze.",
+  "owner": "desktop_review",
+  "board_access": false,
+  "production_modified": false,
+  "kernel_or_cache_attributes_changed": false,
+  "production_baseline": {
+    "path": "tools/browser/cedar_backend.c",
+    "bytes": 25203,
+    "sha256": "0186b91b99c39134ee394dc5fe009b9d09415eb86b4d15bb09401a0a0cce1177"
+  },
+  "candidate": {
+    "planar_patch": {
+      "path": "tools/browser/copy_candidate/backend5-planar-contiguous.patch",
+      "bytes": 2004,
+      "sha256": "49441531950dd56e6d7ceb11f12bfa83fc84c063d750389af1906296a5a8544b"
+    },
+    "standalone_copy_helpers": {
+      "path": "tools/browser/copy_candidate/cedar_plane_copy.h",
+      "bytes": 3815,
+      "sha256": "7b6c4bbae45f323dfc6172811f844fb96487513e7500836885a8a24bfa55549f"
+    },
+    "isolated_backend_source": {
+      "path": "build/cedar-plane-copy-candidate-20261117/source/tools/browser/cedar_backend.c",
+      "bytes": 25777,
+      "sha256": "70375bb7f0c42d9062dce25c73a8b2a22bbb4d11f29db5c696e3b0e3c135f62d"
+    },
+    "isolated_backend_header": {
+      "path": "build/cedar-plane-copy-candidate-20261117/source/tools/browser/cedar_backend.h",
+      "bytes": 2505,
+      "sha256": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b"
+    },
+    "summary": "I420/YV12 only: after existing crop/stride/plane-span validation, copy each plane in one memcpy if stride equals visible row width. Otherwise preserve per-row memcpy. Keep YV12 U/V source and stride swap before independent plane copies; NV12/NV21 interleaved handling unchanged. No production file overwritten."
+  },
+  "previous_actual_board_evidence": {
+    "collection": "Previously collected by root; this agent only read archived logs",
+    "cpu6_raw": {
+      "path": "build/browser-fixture-20261117/private-pre-reboot/cedar-copy-cpu6.log",
+      "bytes": 893,
+      "sha256": "fba0124c2a690ba0120efd07eb63404ba764d214cb237c982c5b42c78487e221"
+    },
+    "cpu0_raw": {
+      "path": "build/browser-fixture-20261117/private-pre-reboot/cedar-copy-cpu0.log",
+      "bytes": 910,
+      "sha256": "d279e76a5acff22a60c2f368fb931d9987558c012a42530a692e4cbba8b59109"
+    },
+    "cpu6_results": [
+      {
+        "name": "libc-row",
+        "avg_us": 8342.734,
+        "min_us": 8320.417,
+        "max_us": 8398.25,
+        "MB_s": 372.827,
+        "exact": true
+      },
+      {
+        "name": "libc-plane",
+        "avg_us": 8009.604,
+        "min_us": 7996.291,
+        "max_us": 8021.209,
+        "MB_s": 388.334,
+        "exact": true
+      },
+      {
+        "name": "neon-ld1-64-plane",
+        "avg_us": 8633.052,
+        "min_us": 8619.25,
+        "max_us": 8652.792,
+        "MB_s": 360.29,
+        "exact": true
+      },
+      {
+        "name": "neon-ldp-64-plane",
+        "avg_us": 8686.146,
+        "min_us": 8670.834,
+        "max_us": 8704.042,
+        "MB_s": 358.087,
+        "exact": true
+      },
+      {
+        "name": "neon-ldp-128-plane",
+        "avg_us": 8620.781,
+        "min_us": 8611.666,
+        "max_us": 8631.75,
+        "MB_s": 360.803,
+        "exact": true
+      },
+      {
+        "name": "neon-ldp-256-plane",
+        "avg_us": 8640.156,
+        "min_us": 8629.708,
+        "max_us": 8657.458,
+        "MB_s": 359.994,
+        "exact": true
+      }
+    ],
+    "conclusion": "A76 libc-plane8.010ms outperformed libc-row8.343ms and all tested explicit NEON64/128/256 variants8.62-8.69ms. Existing data do not justify a NEON production replacement. Plane coalescing measured about0.333ms/4.0percent isolated improvement, not a claim to fix end-to-end60fps."
+  },
+  "local_validation": {
+    "isolated_header_test": {
+      "path": "tests/test_cedar_plane_copy_candidate.c",
+      "bytes": 7789,
+      "sha256": "531d01a9d111e368387a172e4394c995d9c51141027066b29d26ff4c12344e14"
+    },
+    "isolated_actual_backend_test": {
+      "path": "build/cedar-plane-copy-candidate-20261117/source/tests/test_cedar_backend.c",
+      "bytes": 17539,
+      "sha256": "0de516909458d685ff04c2ee0913e1e8b543741b8353c1ca7a0d62785e0afd07"
+    },
+    "runners": [
+      "Native ASan+UBSan+LSan for standalone geometry/byte-copy helper",
+      "Actual AArch64 LDP128/256 instructions under qemu-aarch64-static with guard pages",
+      "Actual modified Gst backend snapshot: native ASan+UBSan (LSan disabled for Gst process globals)",
+      "Actual modified Gst backend snapshot: AArch64 QEMU with SDK GStreamer, no device/OMX/vendor decode access"
+    ],
+    "coverage": [
+      "Source/destination alignments and every tail length0..512",
+      "PROT_NONE guard pages before/after objects, read-only source, row lengths959/960/961 and1919/1920/1921 plus page boundaries",
+      "Zero-length no-touch and size/stride/span overflow rejection before any copy",
+      "Packed and padded I420/YV12, horizontal/vertical crop, vertical-only packed crop, unequal U/V strides, odd dimensions with ceil chroma, single-row and1920x1080 exact pixels",
+      "Contiguous plane calls copy once; padded plane calls once per row",
+      "Existing actual Gst malformed crop/span, metadata, EOS/flush/reuse, output RAM lifetime and concurrent return/close regressions"
+    ],
+    "assertion_counter_note": "Standalone reports6013887 checks per runner, mostly per-byte sentinel checks; this is not millions of independent test cases.",
+    "logs": [
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/test-sanitized.log",
+        "bytes": 83,
+        "sha256": "395c89925da881de94b022fe42a65cf6f6e1d269fa906c139f67a46fa2ce958c"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/test-arm64.log",
+        "bytes": 83,
+        "sha256": "395c89925da881de94b022fe42a65cf6f6e1d269fa906c139f67a46fa2ce958c"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/backend-host-test.log",
+        "bytes": 2492,
+        "sha256": "f4c698577a5f96b632c906ac0a02a457ad6158d836495f4eff67e8ae1148adda"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/backend-arm64-test.log",
+        "bytes": 2518,
+        "sha256": "a821dbaf6a2d9595aa4080ccb3f91dc744176806c38bd9638290c52937a03f64"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/backend-test-commands.json",
+        "bytes": 3017,
+        "sha256": "861f4010b5faec7dd56d8a529a1c079354f2e5765af7852ca09f224095dd2939"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/arm64-disassembly.log",
+        "bytes": 104855,
+        "sha256": "5c0e41901335482e9598f7bc15ab33d501a4437b55e20fff732d2f75b9f1d58a"
+      }
+    ],
+    "independent_source_review": "media_ve_review checked span equivalence, size overflow, YV12 order, complete asm clobbers avoiding v8-v15, exact vector tails and absence of cache-management instructions; no blocking finding."
+  },
+  "limits": [
+    "No new WC-buffer or board measurement was performed for this candidate.",
+    "Ordinary-RAM/QEMU timings cannot predict WC performance.",
+    "NEON helpers are isolated comparison variants and are not recommended for A76 based on existing target evidence.",
+    "The existing production backend5 hash remains0186b91b99c39134ee394dc5fe009b9d09415eb86b4d15bb09401a0a0cce1177.",
+    "No deployment library/package or default selection was produced."
+  ]
+}

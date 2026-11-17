@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "kind": "mutter-egl-x11-sbc-candidate-independent-review",
+  "date": "2026-11-16",
+  "reviewer": "backup_audit",
+  "status": "PASS-limited-static-design-and-mocked-boundary-review",
+  "patch": {
+    "path": "patches/mutter/0001-egl-xlib-observe-sbc-completion.patch",
+    "sha256": "ac42f10a36c509715f3a4c3454adc55718975df49ef6ebbe45b2fe319b6a6148",
+    "bytes": 20241
+  },
+  "source_version": "Mutter 48.7",
+  "inputs": [
+    {
+      "path": "tools/validation/prepare_mutter_sbc_candidate_tests.py",
+      "sha256": "9f11200e3b979fa2f558e864341df066fa6d47698eae6b2f676cc3acf4af7c06",
+      "bytes": 2689
+    },
+    {
+      "path": "tests/mutter_sbc_tracker_harness.c",
+      "sha256": "271fb57b73545fb877dca5bae0868fcc41c83fe45919b03e7f8624e57438306d",
+      "bytes": 11331
+    },
+    {
+      "path": "build/mutter-egl-sbc-candidate/tests/final-run.json",
+      "sha256": "20ce8b25ef2ac6650ae460f2b7af1cbbc3e498263229f8b03e0fdc685cdd73d7",
+      "bytes": 3936
+    }
+  ],
+  "reviewed_tree_sha256": {
+    "cogl/cogl/cogl-onscreen-private.h": "d4521c0f161c8d099e67b08a593a56201f6bc59d9d2350b67fd8c096d60acd1c",
+    "cogl/cogl/cogl-onscreen.c": "bd31bcb5ca020fcbd2224c61ca5629ce8725ea0f5dfe0c3d0214902782915f5b",
+    "cogl/cogl/winsys/cogl-onscreen-egl.c": "391f48d93b41a42a770a4946c39903384a2ad4bc3639384922983ce7d0d8e579",
+    "cogl/cogl/winsys/cogl-onscreen-egl.h": "132abd3438750567125779e8d84eeac99a2220ea9102fbeee7abfd151388457c",
+    "cogl/cogl/winsys/cogl-onscreen-xlib.c": "5ea74d1f59daf381a484a038c6f384f3c627e1cf592259d50f4409b5c66eeb27",
+    "cogl/cogl/winsys/cogl-winsys-egl-feature-functions.h": "5dacede0df404468a2f6864419548892f34ea2535a9a28f9c4f5fdab79370bbe",
+    "cogl/cogl/winsys/cogl-winsys-egl-private.h": "0ca6d94ca994c60e661b06c506c6b91eadaef2e3ba160435e441118638bc5108",
+    "cogl/cogl/winsys/cogl-winsys-egl-x11.c": "c5521091986ce06e6a225087a4b912e728c28d442a43d11c9e0eb1c720be8869"
+  },
+  "resolved_findings": [
+    {
+      "finding": "The feature table originally included vendor suffixes even though the Cogl loader appends them.",
+      "resolution": "Unsuffixed eglGetSyncValues and eglGetMscRate declarations now resolve to the exact CHROMIUM and ANGLE symbols. Independently checked against the 48.7 resolver.",
+      "resolver_sha256": "9f3932d5aa30e8e2e1081dc4a665b63229111b683c6dd652fc042a8e8e11ded9"
+    },
+    {
+      "finding": "The void parent swap interface hid EGL_FALSE, allowing a later swap to incorrectly confirm a failed frame.",
+      "resolution": "A private checked helper returns the actual EGLBoolean from both swap paths. Xlib submission failure disables tracking and drains symbolically without increasing target SBC."
+    },
+    {
+      "finding": "Explicit swap_region calls could bypass counting while automatic notifications were suppressed.",
+      "resolution": "Normal swap-region features are disabled. Explicit calls disable tracking and queue ordered symbolic notifications without assuming an SBC increment."
+    },
+    {
+      "finding": "An identity mismatch could allow later frames in the same poll batch to be confirmed.",
+      "resolution": "The finishing function returns the identity result; polling stops confirmation and drains symbolically on mismatch."
+    },
+    {
+      "finding": "A refresh rate queried only at initialization can become stale.",
+      "resolution": "Completed batches query the rate again. Query failure sets rate to zero instead of reusing an old value."
+    }
+  ],
+  "positive_checks": [
+    "Disabled by default; explicit COGL_EGL_X11_SBC_FEEDBACK=1 and both extension features are required.",
+    "Per-surface submitted/completed SBC is tracked. UST is not attributed to submitted frames; presentation_time_us stays zero, with HW_CLOCK, VSYNC and zero-copy flags cleared.",
+    "Notifications retain references and use existing Cogl dispatch, without direct user callbacks from the timer.",
+    "Pending metadata is bounded. Overflow, counter reset, query failure and deadline expiry fall back to symbolic notifications. Dispose removes timer/metadata before the base frame queue is cleaned.",
+    "Optional trace is disabled by default and limits periodic summaries; it does not print each frame.",
+    "Independent extraction reproduced all three tested fragments/harness byte for byte; replayed patch hashes match all eight final tree files.",
+    "Observed 17 cases using actual candidate functions with mocked boundaries: -Wall -Wextra -Werror and ASan/UBSan passed, including the checked EGL swap helper."
+  ],
+  "limits": [
+    "This is not a full Mutter build, linked ABI validation or live compositor test.",
+    "Mocked EGL/Cogl boundaries cannot establish actual GPU-driver, event-loop or physical-display behavior.",
+    "The 250 ms deadline is a soft polling deadline and cannot interrupt a blocking EGL/driver call.",
+    "SBC confirms swap completion, not a physical presentation timestamp, vsync or zero-copy.",
+    "The reviewer did not build Mutter, install system files, restart the compositor or operate the board."
+  ],
+  "full_mutter_build": false,
+  "deployed": false,
+  "board_accepted": false,
+  "blocking_findings_remaining_within_review_scope": []
+}

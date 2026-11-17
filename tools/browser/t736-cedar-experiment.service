@@ -1,0 +1,41 @@
+[Unit]
+Description=T736 isolated browser Cedar decoding experiment
+After=local-fs.target
+ConditionKernelVersion=|6.18.63-t736-media-v27
+ConditionKernelVersion=|6.18.63-t736-media-v28
+ConditionPathExists=/dev/cedar_dev
+
+[Service]
+Type=simple
+User=t736-cedar
+Group=t736
+RuntimeDirectory=t736-cedar
+RuntimeDirectoryMode=0750
+UMask=0007
+ExecStart=/opt/t736-browser-v1/bin/cedar-service
+Restart=no
+TimeoutStopSec=15
+KillMode=control-group
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateNetwork=yes
+BindReadOnlyPaths=/opt/t736-browser-v1/config/cedarc.conf:/etc/cedarc.conf
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+RestrictAddressFamilies=AF_UNIX
+DevicePolicy=closed
+DeviceAllow=/dev/cedar_dev rw
+DeviceAllow=/dev/dma_heap/t736-ve rw
+MemoryMax=512M
+TasksMax=64
+CPUAffinity=6 7
+
+# Deliberately no Install section: start explicitly for a bounded trial.

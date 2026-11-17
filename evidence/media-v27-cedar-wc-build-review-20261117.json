@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "isolated source/object accepted for controlled hardware validation; not hardware acceptance",
+  "board_access": false,
+  "baseline": "6.18.63-t736-storage-v26; baseline source/output not modified",
+  "source": {
+    "path": "boards/t736-cedar-wc.c",
+    "sha256": "5c9a73ed2d701bfb5905aa59da73f7f07f60b1c0636c6746f1b7110a68265402"
+  },
+  "test": {
+    "path": "tests/test_cedar_wc_core.py",
+    "sha256": "250449c43379e15d457732c36e0b920b54c2b9597dd7469a8ecee09927f37895",
+    "result": "PASS: actual C DMA extent, cache VMA ownership, and decoder IRQ tests",
+    "sanitizers": [
+      "address",
+      "undefined"
+    ],
+    "coverage": [
+      "complete contiguous identity SG extent",
+      "foreign device and DMA_NONE rejected",
+      "zero/gapped/short/oversized SG extent rejected",
+      "VMA file ownership and allocation bounds",
+      "poison rejection",
+      "H264/HEVC enable masking with status preserved",
+      "VCU requires real IRQ status",
+      "mmap lock released before device lock"
+    ]
+  },
+  "build": {
+    "compiler": "aarch64-linux-gnu-gcc Ubuntu 13.3.0-6ubuntu2~24.04.1",
+    "warnings": "W=1; no warnings on final source",
+    "source_tree": "/home/ubuntu/t736-mainline/sources/work/linux-media-v27",
+    "output_tree": "/home/ubuntu/t736-mainline/build/linux-media-v27",
+    "object": "/home/ubuntu/t736-mainline/build/cedar-wc-compile-v27/t736-cedar-wc.o",
+    "object_sha256": "1cc4e037148bba158d070e3c1db7d9ea0913ab3951341fe43b485653596cedc8"
+  },
+  "independent_review": {
+    "reviewer": "code_index/media_ve_review",
+    "status": "no remaining finding preventing controlled hardware validation",
+    "resolved": [
+      "same-file different-thread lock contention",
+      "disable and synchronize IRQ before reset",
+      "cache mmap/device lock order",
+      "poison race, wait wakeup and mmap rejection"
+    ]
+  },
+  "contracts": {
+    "compatible": "allwinner,t736-cedar-wc",
+    "clock": "ve",
+    "reset": "ve; explicit assert/deassert/status",
+    "power": "root-owned CCU/PPU provider enables only decoder bypass master6/7; ALWAYS_ON",
+    "heap": "/dev/dma_heap/t736-ve; dma_alloc_wc on actual decoder device; same-device private dma-buf only",
+    "dma": "32-bit entire allocation; every SG physical extent must equal actual DMA handle plus full offset; no second mapping or bounce",
+    "mmap": "heap uses dma_mmap_wc; Cedar only offset0/at most4096 bytes",
+    "cache": "WC explicit barriers; private ABI validates whole VA against file-owned imported buffer VMA; no arbitrary VA cache instructions",
+    "abi": "actual Cedar2.0 libVE.so SHA3af49a5eb24f6832518a858274fb206d60e490985bff02f5d5be36d053f65be4; 24-byte zero env, 0x804 offset0, GET502/FREE503/FLUSH506",
+    "frequency": "fixed provider rate; SET_FREQ returns actual Hz; DEFAULT_FREQ returns MHz",
+    "access": "root-only misc device; one owning TGID, multiple files/threads; independent file+task locks",
+    "lifetime": "all imported DMA buffers pinned until reboot, even normal close and possible partial address copy-out; total heap128MiB, individual buffer64MiB",
+    "failure": "positive WAIT timeout or reset failure poisons new operations/sessions; retain power and imported allocations"
+  },
+  "limitations": [
+    "decoder only; encoder device/provider absent",
+    "no claim that reset status or fixed delay proves AXI DMA drain",
+    "permanent imported-buffer retention is bring-up-only and not production reuse",
+    "no V4L2/VAAPI/browser integration",
+    "no hardware DMA, codec or recovery acceptance in this record"
+  ],
+  "integration": {
+    "config": "bool CONFIG_VIDEO_T736_CEDAR_WC; depends ARM64 && OF && DMA_CMA; select DMABUF_HEAPS",
+    "makefile": "obj-$(CONFIG_VIDEO_T736_CEDAR_WC) += t736-cedar-wc.o",
+    "lifetime": "built-in/static DT only, suppress_bind_attrs because dma_heap has no removal API"
+  }
+}

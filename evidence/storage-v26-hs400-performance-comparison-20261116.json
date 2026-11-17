@@ -1,0 +1,354 @@
+{
+  "schema": 1,
+  "kind": "storage-v25-v26-independent-raw-timing-comparison",
+  "date": "2026-11-16",
+  "reviewer": "backup_audit",
+  "status": "PASS-bounded-numeric-and-integrity-reconciliation",
+  "method": "Separate local parser without importing collector; all six preserved raw snapshots parsed, hashes/counts/CPU endpoint conservation checked; complete per-run delta and lifetime-max pairs recomputed and exactly matched. No new tests or board operations.",
+  "inputs": [
+    {
+      "path": "evidence/storage-v25-hs400-200-timing-20261116.json",
+      "bytes": 134728,
+      "sha256": "b785fa91b60b34367d4db978a44f6203d92e04663a72c3aede66a3b02c0fb709"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-200-timing-20261116.json",
+      "bytes": 135790,
+      "sha256": "7a2115b710e7be07c809e4d7655ec62d39c793590a8732e983c723cbf4e24768"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-200-runtime-20261116.log",
+      "bytes": 11407,
+      "sha256": "464f2bb1b6bcc54f4dfa86e104b225a50d439c7d067276a5055076e567eece74"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-200-integrity-health-20261116.log",
+      "bytes": 1786,
+      "sha256": "7efb9429fb38c56d368784165911a5df95c0ea9a55c32545f66d172de35a223b"
+    },
+    {
+      "path": "evidence/storage-v26-updater-preparation-20261116.json",
+      "bytes": 6573,
+      "sha256": "4f5160ecfccf25eb78c4a2098a808427af228e30834fc0e2fecb3d45b75f9ac5"
+    },
+    {
+      "path": "evidence/storage-v26-cached-bounce-independent-review-20261116.json",
+      "bytes": 6874,
+      "sha256": "3d7e0f480ff8bf0b97bcc2d1374e13352c0bc4af486340cb60e4347e584d991e"
+    },
+    {
+      "path": "tools/validation/mmc_read_cost_probe.py",
+      "bytes": 5692,
+      "sha256": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946"
+    },
+    {
+      "path": "tools/validation/mmc_timing_collect_v26.py",
+      "bytes": 13617,
+      "sha256": "a99dc35116a763cae60b760fb710483c911f2a84cff7ddc3c1a322d55caf0bbe"
+    },
+    {
+      "path": "evidence/storage-v26-hs400-200-integrity-20261116.json",
+      "bytes": 17590,
+      "sha256": "3ba49d69e175ddc90a567a071612ccb80deba6dc81db9f1ef044cd8facf743db"
+    }
+  ],
+  "observations": {
+    "v25": {
+      "kernel": "6.18.63-t736-storage-v25",
+      "boot_id": "c6c1f145-777f-49ad-8924-5951d59f0de3",
+      "probe": {
+        "file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+        "file_bytes": 11632703,
+        "bytes": 536870912,
+        "repetitions": 64,
+        "bytes_per_repetition": 8388608,
+        "syscall_chunk_bytes": 1048576,
+        "seconds": 9.533278629999998,
+        "MiB_s": 53.70660188078444,
+        "process_cpu_seconds": 0.20282282399999998,
+        "clock_ticks": 100
+      },
+      "preflight_inode": 3576,
+      "DMA_worker_CPU_seconds": 5.2,
+      "samples": {
+        "complete": 8218,
+        "incomplete": 0,
+        "dropped_events": 0
+      },
+      "read_requests": {
+        "attempted": 8197,
+        "success": 8197,
+        "failed": 0,
+        "requested_bytes": 537137152,
+        "completed_bytes": 537137152,
+        "poll_iterations": 49352,
+        "poll_sleep_attempts": 41155
+      },
+      "write_requests": {
+        "attempted": 21,
+        "success": 21,
+        "failed": 0,
+        "requested_bytes": 180224,
+        "completed_bytes": 180224,
+        "poll_iterations": 43,
+        "poll_sleep_attempts": 22
+      },
+      "read_size_bins": {
+        "le4096": 0,
+        "le16384": 1,
+        "le65536": 8196,
+        "gt65536": 0
+      },
+      "read_phases": {
+        "dispatch": {
+          "calls": 8197,
+          "wall_ns": 81689915,
+          "mean_wall_ns": 9965.83079175308
+        },
+        "worker_service_before_done": {
+          "calls": 8197,
+          "wall_ns": 9256161272,
+          "mean_wall_ns": 1129213.2819324143
+        },
+        "dma_start": {
+          "calls": 8197,
+          "wall_ns": 38492458,
+          "mean_wall_ns": 4695.9202147127
+        },
+        "pre_reset": {
+          "calls": 8197,
+          "wall_ns": 15408330,
+          "mean_wall_ns": 1879.7523484201538
+        },
+        "write_copy": {
+          "calls": 0,
+          "wall_ns": 0,
+          "mean_wall_ns": null
+        },
+        "command_wait": {
+          "calls": 8197,
+          "wall_ns": 4463116238,
+          "mean_wall_ns": 544481.6686592656
+        },
+        "busy_wait": {
+          "calls": 0,
+          "wall_ns": 0,
+          "mean_wall_ns": null
+        },
+        "post_reset": {
+          "calls": 8197,
+          "wall_ns": 15489770,
+          "mean_wall_ns": 1889.687690618519
+        },
+        "read_copy": {
+          "calls": 8197,
+          "wall_ns": 4724849806,
+          "mean_wall_ns": 576412.0783213371
+        },
+        "completion_callback": {
+          "calls": 8197,
+          "wall_ns": 31342671,
+          "mean_wall_ns": 3823.6758570208613
+        },
+        "worker_total_before_merge": {
+          "calls": 8197,
+          "wall_ns": 9288705782,
+          "mean_wall_ns": 1133183.5771623764
+        }
+      },
+      "copy_fraction_of_service": 0.5104545682768868,
+      "command_wait_fraction_of_service": 0.4821778820450094,
+      "read_copy_CPU_same_endpoint_groups": {
+        "5": {
+          "starts": 5301,
+          "ends": 5301,
+          "same_endpoints": 5301,
+          "same_endpoint_ns": 4195955967
+        },
+        "6": {
+          "starts": 75,
+          "ends": 75,
+          "same_endpoints": 75,
+          "same_endpoint_ns": 13784733
+        },
+        "7": {
+          "starts": 2821,
+          "ends": 2821,
+          "same_endpoints": 2821,
+          "same_endpoint_ns": 515109106
+        }
+      },
+      "copy_different_endpoints": 0,
+      "copy_different_endpoint_ns": 0,
+      "snapshot_interval_ns": 9804853356,
+      "first_after_to_after_ns": 18893756,
+      "first_after_to_after_all_counters_identical": true,
+      "raw_sha256": {
+        "before": "113df4d5f43334b40448fa642fbb8b4e0e890b113fba88868128774dba144f45",
+        "first_after": "e234c0c68d39408c6f71dea5c08d007438e85d5813959f04bde1cdbede0ab9b1",
+        "after": "7ecc6d2fdd57c863a31512fc5b81fc1665769a9a62862175fdde135f7d636d5e"
+      },
+      "probe_request_surplus": 5,
+      "probe_read_byte_surplus": 266240
+    },
+    "v26": {
+      "kernel": "6.18.63-t736-storage-v26",
+      "boot_id": "4b3ad302-5619-49f8-94e3-bab3f8bbc2cd",
+      "probe": {
+        "file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+        "file_bytes": 11632703,
+        "bytes": 536870912,
+        "repetitions": 64,
+        "bytes_per_repetition": 8388608,
+        "syscall_chunk_bytes": 1048576,
+        "seconds": 5.274369123,
+        "MiB_s": 97.07322109241765,
+        "process_cpu_seconds": 0.13701394,
+        "clock_ticks": 100
+      },
+      "preflight_inode": 3576,
+      "DMA_worker_CPU_seconds": 0.99,
+      "samples": {
+        "complete": 8193,
+        "incomplete": 0,
+        "dropped_events": 0
+      },
+      "read_requests": {
+        "attempted": 8192,
+        "success": 8192,
+        "failed": 0,
+        "requested_bytes": 536870912,
+        "completed_bytes": 536870912,
+        "poll_iterations": 49327,
+        "poll_sleep_attempts": 41135
+      },
+      "write_requests": {
+        "attempted": 1,
+        "success": 1,
+        "failed": 0,
+        "requested_bytes": 8192,
+        "completed_bytes": 8192,
+        "poll_iterations": 2,
+        "poll_sleep_attempts": 1
+      },
+      "read_size_bins": {
+        "le4096": 0,
+        "le16384": 0,
+        "le65536": 8192,
+        "gt65536": 0
+      },
+      "read_phases": {
+        "dispatch": {
+          "calls": 8192,
+          "wall_ns": 92676090,
+          "mean_wall_ns": 11312.999267578125
+        },
+        "worker_service_before_done": {
+          "calls": 8192,
+          "wall_ns": 5021273804,
+          "mean_wall_ns": 612948.4624023438
+        },
+        "dma_start": {
+          "calls": 8192,
+          "wall_ns": 110984356,
+          "mean_wall_ns": 13547.89501953125
+        },
+        "pre_reset": {
+          "calls": 8192,
+          "wall_ns": 15991444,
+          "mean_wall_ns": 1952.08056640625
+        },
+        "write_copy": {
+          "calls": 0,
+          "wall_ns": 0,
+          "mean_wall_ns": null
+        },
+        "command_wait": {
+          "calls": 8192,
+          "wall_ns": 4543320751,
+          "mean_wall_ns": 554604.5838623047
+        },
+        "busy_wait": {
+          "calls": 0,
+          "wall_ns": 0,
+          "mean_wall_ns": null
+        },
+        "post_reset": {
+          "calls": 8192,
+          "wall_ns": 85294565,
+          "mean_wall_ns": 10411.934204101562
+        },
+        "read_copy": {
+          "calls": 8192,
+          "wall_ns": 264983771,
+          "mean_wall_ns": 32346.651733398438
+        },
+        "completion_callback": {
+          "calls": 8192,
+          "wall_ns": 41615709,
+          "mean_wall_ns": 5080.0426025390625
+        },
+        "worker_total_before_merge": {
+          "calls": 8192,
+          "wall_ns": 5064247478,
+          "mean_wall_ns": 618194.2722167969
+        }
+      },
+      "copy_fraction_of_service": 0.05277222102266384,
+      "command_wait_fraction_of_service": 0.9048143814385788,
+      "read_copy_CPU_same_endpoint_groups": {
+        "3": {
+          "starts": 8192,
+          "ends": 8192,
+          "same_endpoints": 8192,
+          "same_endpoint_ns": 264983771
+        }
+      },
+      "copy_different_endpoints": 0,
+      "copy_different_endpoint_ns": 0,
+      "snapshot_interval_ns": 5485268443,
+      "first_after_to_after_ns": 18663737,
+      "first_after_to_after_all_counters_identical": true,
+      "raw_sha256": {
+        "before": "a7683b5e80e242b90173b4095e764e91adc925dc48aaa357b852eb93193a1726",
+        "first_after": "30e1586b24ca7ee12816a76395959a007af56e509f5ac6361577df66fcdf75d8",
+        "after": "bafea39a5c1708a6c382e489f4adca752b4a29954bd10990ed7ba625e3f3755a"
+      },
+      "probe_request_surplus": 0,
+      "probe_read_byte_surplus": 0
+    }
+  },
+  "comparison": {
+    "throughput_ratio": 1.80747278161252,
+    "throughput_change_percent": 80.747278161252,
+    "probe_wall_reduction_percent": 44.674132292722035,
+    "DMA_worker_CPU_reduction_percent": 80.96153846153847,
+    "read_service_wall_reduction_percent": 45.752092509565344,
+    "read_copy_wall_reduction_percent": 94.3916995908843,
+    "read_copy_mean_reduction_percent": 94.38827655596663
+  },
+  "integrity": {
+    "status": "PASS",
+    "file_bytes": 33554432,
+    "patterns": 2,
+    "read_passes": 8,
+    "total_write_bytes": 67108864,
+    "total_verified_read_bytes": 143130624,
+    "scratch_retained": false,
+    "raw_device_access": false,
+    "buffered_fallback": false
+  },
+  "interpretation": [
+    "The matched frozen read protocol observed higher throughput and much lower read-copy wall cost/worker CPU in v26; bounded file integrity passed. This supports the cacheable payload implementation for further integration, not full stress or final firmware acceptance.",
+    "v26 dma_start includes sync_device and post_reset includes sync_cpu; these are composite windows, not isolated cache-maintenance or reset cost. pre_reset nests inside dma_start; worker_total nests service/callback.",
+    "The two runs differ in CPU endpoint distribution and background I/O. CPU frequencies/load/residency are not controlled; a single pair cannot establish a universal speedup or isolate each hardware cause.",
+    "v26 aggregate read count/bytes equal the probe minimum, with background write activity. Equality is consistent coverage, not per-request identity proof. v25 has five surplus reads.",
+    "Wall durations include interrupts/scheduling and are not directly measured phase CPU time. Worker CPU is tick-quantized, and dispatch crosses submission/worker execution contexts.",
+    "Repeated8MiB prefix may hit device-internal cache; no unique-media sustained-throughput claim. Outer file path/inode/size match across runs, but the frozen probe embeds no target content hash.",
+    "All lifetime maxima remain before/after values; no maxima were subtracted. Stable first-after counters are not a hardware drain."
+  ],
+  "persistent_default": "v16 aliases and DT6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b reverified in v26 integrity-health log",
+  "final_image_complete": false,
+  "board_operated": false,
+  "new_tests_run": false
+}

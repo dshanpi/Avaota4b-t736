@@ -1,0 +1,249 @@
+
+
+Broadcast message from root@t736 (Mon 2026-11-16 13:44:05 UTC):
+
+The system will power off now!
+
+         Stopping session-c15.scope - Session c15 of User t736...
+
+         Stopping session-c3.scope - Session c3 of User root...
+
+         Stopping session-c37.scope - Session c37 of User t736...
+
+[  OK  ] Removed slice system-getty.slice - Slice /system/getty.
+
+[  OK  ] Removed slice system-modprobe.slice - Slice /system/modprobe.
+
+[  OK  ] Stopped target graphical.target - Graphical Interface.
+
+[  OK  ] Stopped target multi-user.target - Multi-User System.
+
+[  OK  ] Stopped target getty.target - Login Prompts.
+
+[  OK  ] Stopped target nss-lookup.target - Host and Network Name Lookups.
+
+[  OK  ] Stopped target timers.target - Timer Units.
+
+[  OK  ] Stopped apt-daily-upgrade.timer - …y apt upgrade and clean activities.
+
+[  OK  ] Stopped apt-daily.timer - Daily apt download activities.
+
+[  OK  ] Stopped dpkg-db-backup.timer - Daily dpkg database backup timer.
+
+[  OK  ] Stopped e2scrub_all.timer - Period…Metadata Check for All Filesystems.
+
+[  OK  ] Stopped fake-hwclock-save.timer - Periodically save current clock.
+
+[  OK  ] Stopped fstrim.timer - Discard unused filesystem blocks once a week.
+
+[  OK  ] Stopped logrotate.timer - Daily rotation of log files.
+
+[  OK  ] Stopped man-db.timer - Daily man-db regeneration.
+
+[  OK  ] Stopped systemd-tmpfiles-clean.tim…y Cleanup of Temporary Directories.
+
+[  OK  ] Stopped target time-set.target - System Time Set.
+
+         Stopping accounts-daemon.service - Accounts Service...
+
+         Stopping armbian-led-state.service - Armbian leds state...
+
+         Stopping armbian-zram-config.service - Armbian ZRAM config...
+
+         Stopping colord.service - Manage, …tall and Generate Color Profiles...
+
+         Stopping cron.service - Regular ba…ground program processing daemon...
+
+         Starting fake-hwclock-save.service - Save the current clock...
+
+         Stopping gdm.service - GNOME Display Manager...
+
+         Stopping polkit.service - Authorization Manager...
+
+         Stopping rsyslog.service - System Logging Service...
+
+         Stopping serial-getty@ttyS0.service - Serial Getty on ttyS0...
+
+         Stopping ssh.service - OpenBSD Secure Shell server...
+
+         Stopping systemd-networkd-persiste…tent Storage in systemd-networkd...
+
+         Stopping systemd-random-seed.service - Load/Save OS Random Seed...
+
+[  OK  ] Stopped systemd-udev-load-credenti…- Load udev Rules from Credentials.
+
+         Stopping udisks2.service - Disk Manager...
+
+         Stopping upower.service - Daemon for power management...
+
+[  OK  ] Stopped accounts-daemon.service - Accounts Service.
+
+[  OK  ] Stopped cron.service - Regular background program processing daemon.
+
+[  OK  ] Stopped ssh.service - OpenBSD Secure Shell server.
+
+[  OK  ] Stopped colord.service - Manage, Install and Generate Color Profiles.
+
+[  OK  ] Unmounted run-user-1000-doc.mount - /run/user/1000/doc.
+
+[  OK  ] Stopped rsyslog.service - System Logging Service.
+
+[  OK  ] Stopped upower.service - Daemon for power management.
+
+[  OK  ] Stopped polkit.service - Authorization Manager.
+
+[  OK  ] Finished fake-hwclock-save.service - Save the current clock.
+
+[  OK  ] Stopped session-c37.scope - Session c37 of User t736.
+
+[  OK  ] Stopped udisks2.service - Disk Manager.
+
+[  OK  ] Stopped gdm.service - GNOME Display Manager.
+
+[  OK  ] Stopped systemd-random-seed.service - Load/Save OS Random Seed.
+
+[  OK  ] Stopped armbian-led-state.service - Armbian leds state.
+
+[  OK  ] Stopped armbian-zram-config.service - Armbian ZRAM config.
+
+[  OK  ] Stopped systemd-networkd-persisten…istent Storage in systemd-networkd.
+
+[  OK  ] Stopped serial-getty@ttyS0.service - Serial Getty on ttyS0.
+
+[  OK  ] Stopped session-c3.scope - Session c3 of User root.
+
+[  OK  ] Removed slice system-serial\x2dget…slice - Slice /system/serial-getty.
+
+         Stopping user@0.service - User Manager for UID 0...
+
+[  OK  ] Stopped user@0.service - User Manager for UID 0.
+
+         Stopping user-runtime-dir@0.servic…er Runtime Directory /run/user/0...
+
+[  OK  ] Unmounted run-user-0.mount - /run/user/0.
+
+[  OK  ] Stopped user-runtime-dir@0.service…User Runtime Directory /run/user/0.
+
+[  OK  ] Removed slice user-0.slice - User Slice of UID 0.
+
+[  OK  ] Stopped session-c15.scope - Session c15 of User t736.
+
+         Stopping user@1000.service - User Manager for UID 1000...
+
+[  OK  ] Stopped user@1000.service - User Manager for UID 1000.
+
+         Stopping systemd-user-sessions.service - Permit User Sessions...
+
+         Stopping user-runtime-dir@1000.ser…Runtime Directory /run/user/1000...
+
+[  OK  ] Unmounted run-user-1000.mount - /run/user/1000.
+
+[  OK  ] Stopped systemd-user-sessions.service - Permit User Sessions.
+
+[  OK  ] Stopped user-runtime-dir@1000.serv…r Runtime Directory /run/user/1000.
+
+[  OK  ] Removed slice user-1000.slice - User Slice of UID 1000.
+
+[  OK  ] Stopped target network.target - Network.
+
+[  OK  ] Stopped target remote-fs.target - Remote File Systems.
+
+         Stopping systemd-logind.service - User Login Management...
+
+         Stopping systemd-networkd.service - Network Configuration...
+
+         Stopping wpa_supplicant.service - WPA supplicant...
+
+[  OK  ] Stopped systemd-networkd.service - Network Configuration.
+
+[  OK  ] Stopped systemd-logind.service - User Login Management.
+
+[  OK  ] Stopped wpa_supplicant.service - WPA supplicant.
+
+[  OK  ] Stopped target network-pre.target - Preparation for Network.
+
+[  OK  ] Stopped target nss-user-lookup.target - User and Group Name Lookups.
+
+         Stopping dbus.service - D-Bus System Message Bus...
+
+[  OK  ] Stopped systemd-network-generator.…ork Units from Kernel Command Line.
+
+[  OK  ] Stopped dbus.service - D-Bus System Message Bus.
+
+[  OK  ] Stopped target basic.target - Basic System.
+
+[  OK  ] Stopped target paths.target - Path Units.
+
+[  OK  ] Stopped systemd-ask-password-conso…equests to Console Directory Watch.
+
+[  OK  ] Stopped systemd-ask-password-wall.…d Requests to Wall Directory Watch.
+
+[  OK  ] Stopped target slices.target - Slice Units.
+
+[  OK  ] Removed slice user.slice - User and Session Slice.
+
+[  OK  ] Stopped target sockets.target - Socket Units.
+
+[  OK  ] Closed dbus.socket - D-Bus System Message Bus Socket.
+
+[  OK  ] Closed sshd-unix-local.socket - Op…temd-ssh-generator, AF_UNIX Local).
+
+[  OK  ] Closed syslog.socket - Syslog Socket.
+
+[  OK  ] Closed systemd-hostnamed.socket - Hostname Service Socket.
+
+[  OK  ] Stopped target sysinit.target - System Initialization.
+
+[  OK  ] Closed systemd-networkd.socket - Network Service Netlink Socket.
+
+         Stopping systemd-binfmt.service - Set Up Additional Binary Formats...
+
+         Stopping systemd-resolved.service - Network Name Resolution...
+
+         Stopping systemd-timesyncd.service - Network Time Synchronization...
+
+[  OK  ] Stopped systemd-tmpfiles-setup.ser…reate System Files and Directories.
+
+[  OK  ] Stopped systemd-resolved.service - Network Name Resolution.
+
+[  OK  ] Stopped systemd-timesyncd.service - Network Time Synchronization.
+
+[  OK  ] Stopped systemd-binfmt.service - Set Up Additional Binary Formats.
+
+[  OK  ] Unset automount proc-sys-fs-binfmt…ormats File System Automount Point.
+
+[  OK  ] Stopped target local-fs.target - Local File Systems.
+
+         Unmounting run-lock.mount - Legacy Locks Directory /run/lock...
+
+         Unmounting tmp.mount - /tmp...
+
+[  OK  ] Stopped systemd-sysctl.service - Apply Kernel Variables.
+
+[  OK  ] Stopped systemd-modules-load.service - Load Kernel Modules.
+
+[  OK  ] Unmounted run-lock.mount - Legacy Locks Directory /run/lock.
+
+[  OK  ] Unmounted tmp.mount - /tmp.
+
+[  OK  ] Stopped target local-fs-pre.target…Preparation for Local File Systems.
+
+[  OK  ] Stopped target swap.target - Swaps.
+
+[  OK  ] Reached target umount.target - Unmount All Filesystems.
+
+[  OK  ] Stopped systemd-remount-fs.service…mount Root and Kernel File Systems.
+
+[  OK  ] Stopped systemd-tmpfiles-setup-dev…Create Static Device Nodes in /dev.
+
+[  OK  ] Stopped systemd-tmpfiles-setup-dev…ic Device Nodes in /dev gracefully.
+
+[  OK  ] Reached target shutdown.target - System Shutdown.
+
+[  OK  ] Reached target final.target - Late Shutdown Services.
+
+[  OK  ] Finished systemd-poweroff.service - System Power Off.
+
+[  OK  ] Reached target poweroff.target - System Power Off.
+
+reboot: Power down

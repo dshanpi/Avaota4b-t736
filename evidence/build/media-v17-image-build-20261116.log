@@ -1,0 +1,2479 @@
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-media-v17'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-media-v17'
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux-media-v17/scripts/checksyscalls.sh
+  LDS     scripts/module.lds
+  HOSTCC  usr/gen_init_cpio
+  CC      init/main.o
+  CC      arch/arm64/mm/dma-mapping.o
+  CC      arch/arm64/kernel/debug-monitors.o
+  GEN     usr/initramfs_data.cpio
+  COPY    usr/initramfs_inc_data
+  AS      usr/initramfs_data.o
+  AR      usr/built-in.a
+  AS      arch/arm64/kernel/entry.o
+  CC      arch/arm64/kernel/irq.o
+  CC      arch/arm64/mm/extable.o
+  CC      arch/arm64/mm/fault.o
+  CC      arch/arm64/kernel/fpsimd.o
+  CC      arch/arm64/mm/init.o
+  UPD     init/utsversion-tmp.h
+  CC      init/do_mounts.o
+  CC      init/do_mounts_rd.o
+  CC      arch/arm64/kernel/entry-common.o
+  AS      arch/arm64/mm/cache.o
+  CC      arch/arm64/mm/copypage.o
+  CC      arch/arm64/mm/flush.o
+  CC      init/do_mounts_initrd.o
+  CC      init/initramfs.o
+  AS      arch/arm64/kernel/entry-fpsimd.o
+  CC      arch/arm64/kernel/process.o
+  CC      arch/arm64/mm/ioremap.o
+  CC      arch/arm64/mm/mmap.o
+  CC      init/calibrate.o
+  CC      init/init_task.o
+  CC      arch/arm64/kernel/ptrace.o
+  CC      kernel/fork.o
+  CC      arch/arm64/mm/pgd.o
+  CC      init/version.o
+  CC      arch/arm64/kernel/setup.o
+  CC      arch/arm64/mm/mem_encrypt.o
+  AR      init/built-in.a
+  CC      arch/arm64/kernel/signal.o
+  CC      arch/arm64/kernel/sys.o
+  CC      kernel/exec_domain.o
+  CC      arch/arm64/mm/mmu.o
+  CC      arch/arm64/kernel/stacktrace.o
+  CC      arch/arm64/mm/context.o
+  CC      kernel/panic.o
+  CC      kernel/cpu.o
+  AS      arch/arm64/mm/proc.o
+  CC      arch/arm64/mm/pageattr.o
+  CC      kernel/exit.o
+  CC      arch/arm64/kernel/time.o
+  CC      arch/arm64/mm/fixmap.o
+  CC      arch/arm64/kernel/traps.o
+  CC      kernel/softirq.o
+  AR      arch/arm64/mm/built-in.a
+  CC      kernel/resource.o
+  CC      arch/arm64/kernel/io.o
+  CC      arch/arm64/kernel/vdso.o
+  AS      arch/arm64/kernel/hyp-stub.o
+  CC      kernel/sysctl.o
+  CC      arch/arm64/kernel/psci.o
+  CC      arch/arm64/kernel/cpu_ops.o
+  CC      kernel/capability.o
+  CC      arch/arm64/kernel/return_address.o
+  CC      arch/arm64/kernel/cpuinfo.o
+  CC      kernel/ptrace.o
+  CC      kernel/user.o
+  CC      arch/arm64/kernel/cpu_errata.o
+  CC      arch/arm64/kernel/cpufeature.o
+  CC      kernel/signal.o
+  CC      arch/arm64/kernel/alternative.o
+  CC      arch/arm64/kernel/cacheinfo.o
+  CC      arch/arm64/kernel/smp.o
+  CC      arch/arm64/kernel/smp_spin_table.o
+  CC      arch/arm64/kernel/topology.o
+  AS      arch/arm64/kernel/smccc-call.o
+  CC      arch/arm64/kernel/syscall.o
+  CC      kernel/sys.o
+  CC      arch/arm64/kernel/proton-pack.o
+  CC      kernel/umh.o
+  CC      arch/arm64/kernel/idle.o
+  CC      arch/arm64/kernel/patching.o
+  CC      kernel/workqueue.o
+  CC      kernel/pid.o
+  CC      arch/arm64/kernel/pi/idreg-override.o
+  HOSTCC  arch/arm64/kernel/pi/relacheck
+  CC      arch/arm64/kernel/pi/map_kernel.o
+  CC      arch/arm64/kernel/pi/map_range.o
+  CC      arch/arm64/kernel/pi/lib-fdt.o
+  CC      arch/arm64/kernel/pi/lib-fdt_ro.o
+  CC      mm/filemap.o
+  OBJCOPY arch/arm64/kernel/pi/idreg-override.pi.o
+  OBJCOPY arch/arm64/kernel/pi/map_kernel.pi.o
+  OBJCOPY arch/arm64/kernel/pi/map_range.pi.o
+  OBJCOPY arch/arm64/kernel/pi/lib-fdt.pi.o
+  OBJCOPY arch/arm64/kernel/pi/lib-fdt_ro.pi.o
+  AR      arch/arm64/kernel/pi/built-in.a
+  CC      arch/arm64/kernel/rsi.o
+  CC      fs/open.o
+  CC      kernel/task_work.o
+  CC      arch/arm64/kernel/jump_label.o
+  CC      arch/arm64/kernel/module.o
+  CC      fs/read_write.o
+  CC      kernel/extable.o
+  CC      mm/mempool.o
+  CC      arch/arm64/kernel/module-plts.o
+  AS      arch/arm64/kernel/vdso-wrap.o
+  AS      arch/arm64/kernel/head.o
+  CC      fs/file_table.o
+  LDS     arch/arm64/kernel/vmlinux.lds
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/built-in.a
+  CC      mm/oom_kill.o
+  CC      ipc/util.o
+  CC      kernel/params.o
+  CC      fs/super.o
+  CC      ipc/msgutil.o
+  CC      kernel/kthread.o
+  CC      mm/fadvise.o
+  CC      ipc/msg.o
+  CC      mm/maccess.o
+  CC      kernel/sys_ni.o
+  CC      fs/char_dev.o
+  CC      kernel/nsproxy.o
+  CC      mm/page-writeback.o
+  CC      ipc/sem.o
+  CC      fs/stat.o
+  CC      kernel/nstree.o
+  CC      fs/exec.o
+  CC      kernel/nscommon.o
+  CC      ipc/shm.o
+  CC      mm/folio-compat.o
+  CC      kernel/notifier.o
+  CC      mm/readahead.o
+  CC      fs/pipe.o
+  CC      kernel/ksysfs.o
+  CC      ipc/syscall.o
+  CC      kernel/cred.o
+  CC      mm/swap.o
+  CC      ipc/ipc_sysctl.o
+  CC      fs/namei.o
+  CC      ipc/mqueue.o
+  CC      kernel/reboot.o
+  CC      mm/truncate.o
+  CC      kernel/async.o
+  CC      ipc/namespace.o
+  CC      kernel/range.o
+  CC      mm/vmscan.o
+  CC      kernel/smpboot.o
+  CC      ipc/mq_sysctl.o
+  CC      kernel/ucount.o
+  CC      fs/fcntl.o
+  AR      ipc/built-in.a
+  CC      fs/ioctl.o
+  CC      kernel/regset.o
+  CC      fs/readdir.o
+  CC      kernel/ksyms_common.o
+  CC      fs/select.o
+  CC      mm/shrinker.o
+  CC      kernel/groups.o
+  CC      kernel/sched/core.o
+  CC      mm/shmem.o
+  CC      kernel/sched/fair.o
+  CC      fs/dcache.o
+  CC      fs/inode.o
+  CC      fs/attr.o
+  CC      mm/util.o
+  CC      mm/mmzone.o
+  CC      fs/bad_inode.o
+  CC      mm/vmstat.o
+  CC      kernel/sched/build_policy.o
+  CC      kernel/sched/build_utility.o
+  CC      fs/file.o
+  CC      mm/backing-dev.o
+  CC      fs/filesystems.o
+  CC      mm/mm_init.o
+  CC      fs/namespace.o
+  CC      fs/seq_file.o
+  AR      kernel/sched/built-in.a
+  CC      kernel/locking/mutex.o
+  CC      kernel/locking/semaphore.o
+  CC      mm/percpu.o
+  CC      mm/slab_common.o
+  CC      kernel/locking/rwsem.o
+  CC      kernel/locking/percpu-rwsem.o
+  CC      mm/compaction.o
+  CC      fs/xattr.o
+  CC      fs/libfs.o
+  CC      kernel/locking/spinlock.o
+  CC      mm/show_mem.o
+  CC      kernel/locking/osq_lock.o
+  CC      mm/interval_tree.o
+  CC      kernel/locking/qspinlock.o
+  CC      fs/fs-writeback.o
+  CC      fs/pnode.o
+  CC      mm/list_lru.o
+  CC      kernel/locking/rtmutex_api.o
+  CC      security/keys/gc.o
+  CC      fs/splice.o
+  CC      kernel/locking/qrwlock.o
+  CC      mm/workingset.o
+  CC      security/keys/key.o
+  AR      kernel/locking/built-in.a
+  CC      kernel/power/qos.o
+  CC      mm/debug.o
+  CC      security/keys/keyring.o
+  CC      kernel/power/main.o
+  CC      fs/sync.o
+  CC      mm/gup.o
+  CC      kernel/power/process.o
+  CC      fs/utimes.o
+  CC      security/keys/keyctl.o
+  CC      fs/d_path.o
+  AR      kernel/power/built-in.a
+  CC      kernel/printk/printk.o
+  CC      mm/mmap_lock.o
+  CC      security/keys/permission.o
+  CC      fs/stack.o
+  CC      fs/fs_struct.o
+  CC      mm/vma_init.o
+  CC      security/keys/process_keys.o
+  CC      kernel/printk/printk_safe.o
+  CC      fs/statfs.o
+  CC      mm/highmem.o
+  CC      security/keys/request_key.o
+  CC      kernel/printk/nbcon.o
+  CC      fs/fs_pin.o
+  CC      mm/memory.o
+  CC      fs/nsfs.o
+  CC      security/keys/request_key_auth.o
+  CC      kernel/printk/printk_ringbuffer.o
+  CC      security/keys/user_defined.o
+  CC      kernel/printk/sysctl.o
+  CC      fs/fs_types.o
+  AR      kernel/printk/built-in.a
+  CC      fs/fs_context.o
+  CC      kernel/irq/irqdesc.o
+  CC      security/keys/proc.o
+  CC      security/keys/sysctl.o
+  CC      fs/fs_parser.o
+  CC      kernel/irq/handle.o
+  AR      security/keys/built-in.a
+  CC      security/commoncap.o
+  CC      mm/mincore.o
+  CC      kernel/irq/manage.o
+  CC      fs/fsopen.o
+  CC      security/lsm_syscalls.o
+  CC      mm/mlock.o
+  CC      fs/init.o
+  CC      kernel/irq/spurious.o
+  CC      security/min_addr.o
+  CC      fs/kernel_read_file.o
+  CC      mm/mmap.o
+  CC      kernel/irq/resend.o
+  CC      security/security.o
+  CC      fs/mnt_idmapping.o
+  CC      kernel/irq/chip.o
+  CC      mm/mmu_gather.o
+  CC      fs/remap_range.o
+  CC      mm/mprotect.o
+  CC      kernel/irq/dummychip.o
+  CC      fs/pidfs.o
+  CC      kernel/irq/devres.o
+  CC      security/inode.o
+  CC      fs/file_attr.o
+  CC      kernel/irq/kexec.o
+  CC      mm/mremap.o
+  CC      security/device_cgroup.o
+  CC      kernel/irq/generic-chip.o
+  CC      fs/buffer.o
+  CC      mm/msync.o
+  CC      kernel/irq/autoprobe.o
+  CC      security/integrity/iint.o
+  CC      mm/page_vma_mapped.o
+  CC      kernel/irq/irqdomain.o
+  AR      security/integrity/built-in.a
+  AR      security/built-in.a
+  CC      crypto/api.o
+  CC      mm/pagewalk.o
+  CC      fs/mpage.o
+  CC      kernel/irq/proc.o
+  CC      crypto/cipher.o
+  CC      mm/pgtable-generic.o
+  CC      fs/proc_namespace.o
+  CC      kernel/irq/cpuhotplug.o
+  CC      crypto/algapi.o
+  CC      mm/rmap.o
+  CC      kernel/irq/msi.o
+  CC      fs/direct-io.o
+  CC      crypto/scatterwalk.o
+  CC      mm/vmalloc.o
+  CC      fs/notify/fsnotify.o
+  CC      kernel/irq/ipi.o
+  CC      crypto/proc.o
+  CC      crypto/aead.o
+  CC      kernel/irq/affinity.o
+  CC      fs/notify/notification.o
+  AR      kernel/irq/built-in.a
+  CC      kernel/rcu/update.o
+  CC      crypto/lskcipher.o
+  CC      fs/notify/group.o
+  CC      mm/vma.o
+  CC      fs/notify/mark.o
+  CC      crypto/skcipher.o
+  CC      kernel/rcu/sync.o
+  CC      kernel/rcu/srcutree.o
+  CC      fs/notify/fdinfo.o
+  CC      crypto/bpf_crypto_skcipher.o
+  CC      mm/vma_exec.o
+  CC      kernel/rcu/tree.o
+  CC      crypto/ahash.o
+  CC      fs/notify/inotify/inotify_fsnotify.o
+  CC      fs/notify/inotify/inotify_user.o
+  CC      mm/mseal.o
+  CC      crypto/shash.o
+  CC      mm/page_alloc.o
+  AR      fs/notify/inotify/built-in.a
+  CC      fs/notify/fanotify/fanotify.o
+  CC      kernel/rcu/rcu_segcblist.o
+  CC      crypto/akcipher.o
+  CC      fs/notify/fanotify/fanotify_user.o
+  AR      kernel/rcu/built-in.a
+  CC      kernel/dma/mapping.o
+  CC      crypto/sig.o
+  AR      fs/notify/fanotify/built-in.a
+  AR      fs/notify/built-in.a
+  CC      fs/eventpoll.o
+  CC      crypto/kpp.o
+  CC      mm/page_frag_cache.o
+  CC      kernel/dma/direct.o
+  CC      crypto/acompress.o
+  CC      mm/init-mm.o
+  CC      kernel/dma/contiguous.o
+  CC      fs/anon_inodes.o
+  CC      mm/memblock.o
+  CC      crypto/scompress.o
+  CC      kernel/dma/coherent.o
+  CC      fs/signalfd.o
+  CC      mm/slub.o
+  CC      kernel/dma/swiotlb.o
+  CC      fs/timerfd.o
+  CC      crypto/algboss.o
+  CC      fs/eventfd.o
+  CC      crypto/testmgr.o
+  CC      kernel/dma/pool.o
+  CC      crypto/sha256.o
+  CC      fs/aio.o
+  CC      kernel/dma/remap.o
+  CC      mm/page_io.o
+  CC      crypto/ecb.o
+  CC      kernel/dma/ops_helpers.o
+  CC      crypto/aes_generic.o
+  CC      fs/locks.o
+  CC      mm/swap_state.o
+  AR      kernel/dma/built-in.a
+  CC      kernel/entry/common.o
+  CC      crypto/rng.o
+  AR      kernel/entry/built-in.a
+  CC      kernel/module/main.o
+  CC      mm/swapfile.o
+  CC      crypto/af_alg.o
+  CC      fs/binfmt_misc.o
+  CC      fs/binfmt_script.o
+  CC      fs/binfmt_elf.o
+  CC      crypto/algif_hash.o
+  CC      kernel/module/strict_rwx.o
+  CC      mm/dmapool.o
+  CC      kernel/module/kmod.o
+  CC      mm/sparse.o
+  CC      fs/backing-file.o
+  CC      crypto/algif_skcipher.o
+  CC      mm/sparse-vmemmap.o
+  CC      kernel/module/kallsyms.o
+  AR      crypto/built-in.a
+  CC      fs/mbcache.o
+  CC      fs/posix_acl.o
+  CC      mm/migrate.o
+  CC      mm/page_counter.o
+  CC      kernel/module/procfs.o
+  CC      kernel/module/sysfs.o
+  CC      fs/drop_caches.o
+  CC      fs/sysctls.o
+  AR      kernel/module/built-in.a
+  CC      kernel/kcmp.o
+  CC      kernel/freezer.o
+  CC      mm/memcontrol.o
+  CC      fs/fhandle.o
+  CC      fs/iomap/trace.o
+  CC      kernel/time/time.o
+  CC      kernel/time/timer.o
+  CC      fs/iomap/iter.o
+  CC      fs/iomap/buffered-io.o
+  CC      kernel/time/hrtimer.o
+  CC      mm/vmpressure.o
+  CC      mm/swap_cgroup.o
+  CC      kernel/time/sleep_timeout.o
+  CC      fs/iomap/direct-io.o
+  CC      mm/page_isolation.o
+  CC      mm/early_ioremap.o
+  CC      kernel/time/timekeeping.o
+  CC      kernel/time/ntp.o
+  CC      fs/iomap/ioend.o
+  CC      mm/cma.o
+  CC      block/bdev.o
+  CC      kernel/time/clocksource.o
+  CC      fs/iomap/fiemap.o
+  CC      kernel/time/jiffies.o
+  CC      mm/memfd.o
+  CC      block/fops.o
+  CC      fs/iomap/seek.o
+  CC      kernel/time/timer_list.o
+  CC      fs/iomap/swapfile.o
+  CC      mm/ioremap.o
+  CC      kernel/time/timeconv.o
+  CC      block/bio.o
+  CC      kernel/time/timecounter.o
+  CC      mm/execmem.o
+  AR      fs/iomap/built-in.a
+  CC      kernel/time/alarmtimer.o
+  CC      fs/proc/task_mmu.o
+  AR      mm/built-in.a
+  CC      kernel/time/posix-timers.o
+  CC      block/elevator.o
+  CC      kernel/time/posix-cpu-timers.o
+  CC      block/blk-core.o
+  CC      fs/proc/inode.o
+  CC      io_uring/io_uring.o
+  CC      kernel/time/posix-clock.o
+  CC      fs/proc/root.o
+  CC      block/blk-sysfs.o
+  CC      kernel/time/itimer.o
+  CC      fs/proc/base.o
+  CC      kernel/time/clockevents.o
+  CC      block/blk-flush.o
+  CC      io_uring/opdef.o
+  CC      kernel/time/tick-common.o
+  CC      block/blk-settings.o
+  CC      fs/proc/generic.o
+  CC      kernel/time/tick-broadcast.o
+  CC      io_uring/kbuf.o
+  CC      fs/proc/array.o
+  CC      block/blk-ioc.o
+  CC      kernel/time/sched_clock.o
+  CC      io_uring/rsrc.o
+  CC      kernel/time/vsyscall.o
+  CC      block/blk-map.o
+  CC      fs/proc/fd.o
+  CC      kernel/time/timekeeping_debug.o
+  CC      fs/proc/proc_tty.o
+  CC      io_uring/notif.o
+  CC      block/blk-merge.o
+  CC      kernel/time/namespace.o
+  CC      fs/proc/cmdline.o
+  CC      kernel/time/namespace_vdso.o
+  CC      io_uring/tctx.o
+  CC      block/blk-timeout.o
+  CC      fs/proc/consoles.o
+  AR      kernel/time/built-in.a
+  CC      kernel/futex/core.o
+  CC      fs/proc/cpuinfo.o
+  CC      block/blk-lib.o
+  CC      io_uring/filetable.o
+  CC      fs/proc/devices.o
+  CC      block/blk-mq.o
+  CC      io_uring/rw.o
+  CC      kernel/futex/syscalls.o
+  CC      fs/proc/interrupts.o
+  CC      kernel/futex/pi.o
+  CC      fs/proc/loadavg.o
+  CC      io_uring/poll.o
+  CC      fs/proc/meminfo.o
+  CC      kernel/futex/requeue.o
+  CC      kernel/futex/waitwake.o
+  CC      block/blk-mq-tag.o
+  CC      fs/proc/stat.o
+  CC      io_uring/eventfd.o
+  AR      kernel/futex/built-in.a
+  CC      kernel/smp.o
+  CC      fs/proc/uptime.o
+  CC      block/blk-mq-dma.o
+  CC      io_uring/uring_cmd.o
+  CC      fs/proc/util.o
+  CC      kernel/kallsyms.o
+  CC      block/blk-stat.o
+  CC      io_uring/openclose.o
+  CC      fs/proc/version.o
+  CC      block/blk-mq-sysfs.o
+  CC      fs/proc/softirqs.o
+  CC      kernel/cgroup/cgroup.o
+  CC      io_uring/sqpoll.o
+  CC      fs/proc/namespaces.o
+  CC      block/blk-mq-cpumap.o
+  CC      fs/proc/self.o
+  CC      block/blk-mq-sched.o
+  CC      io_uring/xattr.o
+  CC      fs/proc/thread_self.o
+  CC      block/ioctl.o
+  CC      fs/proc/proc_sysctl.o
+  CC      io_uring/nop.o
+  CC      kernel/cgroup/rstat.o
+  CC      io_uring/fs.o
+  CC      block/genhd.o
+  CC      fs/proc/proc_net.o
+  CC      kernel/cgroup/namespace.o
+  CC      io_uring/splice.o
+  CC      fs/proc/kmsg.o
+  CC      block/ioprio.o
+  CC      kernel/cgroup/cgroup-v1.o
+  CC      io_uring/sync.o
+  CC      fs/proc/page.o
+  CC      io_uring/msg_ring.o
+  CC      block/badblocks.o
+  AR      fs/proc/built-in.a
+  CC      kernel/cgroup/freezer.o
+  CC      fs/kernfs/mount.o
+  CC      io_uring/advise.o
+  CC      block/partitions/core.o
+  CC      kernel/cgroup/legacy_freezer.o
+  CC      fs/kernfs/inode.o
+  CC      io_uring/statx.o
+  CC      block/partitions/msdos.o
+  CC      kernel/cgroup/pids.o
+  CC      fs/kernfs/dir.o
+  CC      io_uring/timeout.o
+  CC      block/partitions/efi.o
+  CC      kernel/cgroup/cpuset.o
+  CC      io_uring/cancel.o
+  CC      fs/kernfs/file.o
+  AR      block/partitions/built-in.a
+  CC      block/blk-rq-qos.o
+  CC      io_uring/waitid.o
+  CC      fs/kernfs/symlink.o
+  AR      kernel/cgroup/built-in.a
+  CC      kernel/utsname.o
+  CC      block/disk-events.o
+  CC      io_uring/register.o
+  AR      fs/kernfs/built-in.a
+  CC      fs/sysfs/file.o
+  CC      kernel/user_namespace.o
+  CC      block/blk-ia-ranges.o
+  CC      io_uring/truncate.o
+  CC      fs/sysfs/dir.o
+  CC      block/early-lookup.o
+  CC      fs/sysfs/symlink.o
+  CC      kernel/pid_namespace.o
+  CC      io_uring/memmap.o
+  CC      block/bsg.o
+  CC      fs/sysfs/mount.o
+  UPD     kernel/config_data
+  CC      kernel/stop_machine.o
+  CC      io_uring/alloc_cache.o
+  CC      block/mq-deadline.o
+  CC      kernel/seccomp.o
+  CC      fs/sysfs/group.o
+  CC      io_uring/query.o
+  AR      fs/sysfs/built-in.a
+  CC      fs/configfs/inode.o
+  CC      block/kyber-iosched.o
+  CC      io_uring/zcrx.o
+  CC      kernel/utsname_sysctl.o
+  CC      fs/configfs/file.o
+  CC      kernel/irq_work.o
+  CC      block/bfq-iosched.o
+  CC      fs/configfs/dir.o
+  CC      kernel/bpf/core.o
+  CC      io_uring/io-wq.o
+  CC      fs/configfs/symlink.o
+  CC      fs/configfs/mount.o
+  CC      io_uring/futex.o
+  CC      block/bfq-wf2q.o
+  CC      kernel/bpf/syscall.o
+  CC      fs/configfs/item.o
+  CC      io_uring/epoll.o
+  AR      fs/configfs/built-in.a
+  CC      fs/devpts/inode.o
+  CC      block/bfq-cgroup.o
+  CC      io_uring/napi.o
+  AR      fs/devpts/built-in.a
+  CC      block/blk-mq-debugfs.o
+  CC      fs/ext4/balloc.o
+  CC      io_uring/net.o
+  CC      block/blk-pm.o
+  CC      kernel/bpf/verifier.o
+  CC      fs/ext4/bitmap.o
+  AR      block/built-in.a
+  CC      fs/ext4/block_validity.o
+  AS      arch/arm64/lib/clear_page.o
+  AS      arch/arm64/lib/clear_user.o
+  AS      arch/arm64/lib/copy_from_user.o
+  AS      arch/arm64/lib/copy_page.o
+  AS      arch/arm64/lib/copy_to_user.o
+  CC      arch/arm64/lib/csum.o
+  CC      io_uring/cmd_net.o
+  CC      fs/ext4/dir.o
+  CC      arch/arm64/lib/delay.o
+  CC      arch/arm64/lib/insn.o
+  CC      io_uring/fdinfo.o
+  CC      fs/ext4/ext4_jbd2.o
+  AS      arch/arm64/lib/memchr.o
+  AS      arch/arm64/lib/memcmp.o
+  AS      arch/arm64/lib/memcpy.o
+  AS      arch/arm64/lib/memset.o
+  AS      arch/arm64/lib/strchr.o
+  AS      arch/arm64/lib/strcmp.o
+  AS      arch/arm64/lib/strlen.o
+  AS      arch/arm64/lib/strncmp.o
+  AS      arch/arm64/lib/strnlen.o
+  AS      arch/arm64/lib/strrchr.o
+  AS      arch/arm64/lib/tishift.o
+  AR      arch/arm64/lib/lib.a
+  AR      io_uring/built-in.a
+  CC      kernel/jump_label.o
+  CC      lib/argv_split.o
+  CC      fs/ext4/extents.o
+  CC      lib/bug.o
+  CC      lib/buildid.o
+  CC      kernel/context_tracking.o
+  CC      lib/cmdline.o
+  CC      lib/cpumask.o
+  CC      lib/ctype.o
+  CC      lib/dec_and_lock.o
+  CC      kernel/iomem.o
+  CC      lib/decompress.o
+  CC      lib/decompress_bunzip2.o
+  CC      fs/ext4/extents_status.o
+  CC      lib/decompress_inflate.o
+  CC      drivers/irqchip/irqchip.o
+  CC      lib/decompress_unlz4.o
+  CC      drivers/irqchip/irq-sun6i-r.o
+  CC      lib/decompress_unlzma.o
+  CC      fs/ext4/file.o
+  CC      drivers/irqchip/irq-sunxi-nmi.o
+  CC      lib/decompress_unlzo.o
+  CC      fs/ext4/fsmap.o
+  CC      drivers/irqchip/irq-gic.o
+  CC      lib/decompress_unxz.o
+  CC      lib/decompress_unzstd.o
+  CC      fs/ext4/fsync.o
+  CC      drivers/irqchip/irq-gic-common.o
+  CC      kernel/bpf/inode.o
+  CC      lib/dump_stack.o
+  CC      drivers/irqchip/irq-msi-lib.o
+  CC      fs/ext4/hash.o
+  CC      lib/earlycpio.o
+  CC      drivers/irqchip/irq-gic-v3.o
+  CC      lib/extable.o
+  CC      kernel/bpf/helpers.o
+  CC      lib/fdt.o
+  CC      fs/ext4/ialloc.o
+  CC      lib/fdt_addresses.o
+  CC      lib/fdt_empty_tree.o
+  CC      lib/fdt_ro.o
+  CC      lib/fdt_rw.o
+  CC      lib/fdt_strerror.o
+  CC      lib/fdt_sw.o
+  CC      drivers/irqchip/irq-gic-v3-mbi.o
+  CC      lib/fdt_wip.o
+  CC      lib/flex_proportions.o
+  CC      fs/ext4/indirect.o
+  CC      lib/idr.o
+  CC      kernel/bpf/tnum.o
+  CC      drivers/irqchip/irq-gic-its-msi-parent.o
+  CC      kernel/bpf/log.o
+  CC      lib/iomem_copy.o
+  CC      drivers/irqchip/irq-gic-v3-its.o
+  CC      fs/ext4/inline.o
+  CC      lib/irq_regs.o
+  CC      lib/is_single_threaded.o
+  CC      lib/klist.o
+  CC      kernel/bpf/token.o
+  CC      lib/kobject.o
+  CC      fs/ext4/inode.o
+  CC      kernel/bpf/liveness.o
+  CC      lib/kobject_uevent.o
+  CC      drivers/irqchip/irq-gic-v4.o
+  CC      kernel/bpf/bpf_iter.o
+  CC      lib/logic_pio.o
+  CC      drivers/irqchip/irq-partition-percpu.o
+  CC      lib/maple_tree.o
+  CC      drivers/irqchip/irq-gic-v5.o
+  CC      kernel/bpf/map_iter.o
+  CC      fs/ext4/ioctl.o
+  CC      drivers/irqchip/irq-gic-v5-irs.o
+  CC      kernel/bpf/task_iter.o
+  CC      lib/memcat_p.o
+  CC      fs/ext4/mballoc.o
+  CC      drivers/irqchip/irq-gic-v5-its.o
+  CC      lib/nmi_backtrace.o
+  CC      kernel/bpf/prog_iter.o
+  CC      lib/objpool.o
+  CC      drivers/irqchip/irq-gic-v5-iwb.o
+  CC      kernel/bpf/link_iter.o
+  CC      lib/plist.o
+  CC      lib/radix-tree.o
+  AR      drivers/irqchip/built-in.a
+  CC      drivers/bus/sun50i-de2.o
+  CC      kernel/bpf/hashtab.o
+  CC      lib/ratelimit.o
+  CC      fs/ext4/migrate.o
+  CC      drivers/bus/sunxi-rsb.o
+  CC      lib/rbtree.o
+  CC      lib/seq_buf.o
+  CC      drivers/bus/simple-pm-bus.o
+  CC      fs/ext4/mmp.o
+  CC      lib/siphash.o
+  AR      drivers/bus/built-in.a
+  CC      drivers/phy/phy-core.o
+  CC      lib/string.o
+  CC      kernel/bpf/arraymap.o
+  CC      fs/ext4/move_extent.o
+  CC      lib/sys_info.o
+  CC      drivers/phy/allwinner/phy-t736-usb2.o
+  CC      fs/ext4/namei.o
+  CC      lib/timerqueue.o
+  CC      lib/union_find.o
+  CC      lib/vsprintf.o
+  CC      kernel/bpf/percpu_freelist.o
+  AR      drivers/phy/allwinner/built-in.a
+  AR      drivers/phy/built-in.a
+  CC      kernel/bpf/bpf_lru_list.o
+  CC      drivers/pinctrl/core.o
+  CC      kernel/bpf/lpm_trie.o
+  CC      drivers/pinctrl/pinctrl-utils.o
+  CC      fs/ext4/page-io.o
+  CC      drivers/pinctrl/pinmux.o
+  CC      kernel/bpf/map_in_map.o
+  CC      lib/win_minmax.o
+  CC      lib/xarray.o
+  CC      drivers/pinctrl/pinconf.o
+  CC      fs/ext4/readpage.o
+  CC      kernel/bpf/bloom_filter.o
+  CC      drivers/pinctrl/pinconf-generic.o
+  CC      lib/lockref.o
+  CC      fs/ext4/resize.o
+  CC      kernel/bpf/local_storage.o
+  CC      lib/bcd.o
+  CC      lib/sort.o
+  CC      drivers/pinctrl/devicetree.o
+  CC      lib/parser.o
+  CC      lib/debug_locks.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sunxi.o
+  CC      lib/random32.o
+  CC      kernel/bpf/queue_stack_maps.o
+  CC      fs/ext4/super.o
+  CC      lib/bust_spinlocks.o
+  CC      kernel/bpf/ringbuf.o
+  CC      lib/kasprintf.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sunxi-dt.o
+  CC      lib/bitmap.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun50i-a64.o
+  CC      kernel/bpf/bpf_local_storage.o
+  CC      lib/scatterlist.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun50i-a64-r.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun50i-a100.o
+  CC      lib/list_sort.o
+  CC      fs/ext4/symlink.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun50i-a100-r.o
+  CC      lib/uuid.o
+  CC      lib/iov_iter.o
+  CC      kernel/bpf/bpf_task_storage.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun8i-h3-r.o
+  CC      fs/ext4/sysfs.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun50i-h5.o
+  CC      kernel/bpf/disasm.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun50i-h6.o
+  CC      fs/ext4/xattr.o
+  CC      lib/clz_ctz.o
+  CC      lib/bsearch.o
+  CC      kernel/bpf/mprog.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun50i-h6-r.o
+  CC      lib/find_bit.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun50i-h616.o
+  CC      lib/llist.o
+  CC      kernel/bpf/btf.o
+  CC      lib/lwq.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun50i-h616-r.o
+  CC      lib/memweight.o
+  CC      lib/kfifo.o
+  CC      fs/ext4/xattr_hurd.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun55i-a523.o
+  CC      drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.o
+  CC      fs/ext4/xattr_trusted.o
+  CC      lib/percpu-refcount.o
+  CC      drivers/pinctrl/sunxi/pinctrl-t736-r.o
+  CC      lib/rhashtable.o
+  CC      fs/ext4/xattr_user.o
+  CC      drivers/pinctrl/sunxi/pinctrl-t736.o
+  AR      drivers/pinctrl/sunxi/built-in.a
+  AR      drivers/pinctrl/built-in.a
+  CC      drivers/gpio/gpiolib.o
+  CC      fs/ext4/fast_commit.o
+  CC      lib/base64.o
+  CC      lib/once.o
+  CC      kernel/bpf/memalloc.o
+  CC      lib/refcount.o
+  CC      lib/rcuref.o
+  CC      lib/usercopy.o
+  CC      fs/ext4/orphan.o
+  CC      drivers/gpio/gpiolib-devres.o
+  CC      lib/errseq.o
+  CC      lib/bucket_locks.o
+  CC      kernel/bpf/rqspinlock.o
+  CC      drivers/gpio/gpiolib-legacy.o
+  CC      fs/ext4/acl.o
+  CC      lib/generic-radix-tree.o
+  CC      kernel/bpf/stream.o
+  CC      drivers/gpio/gpiolib-of.o
+  CC      lib/bitmap-str.o
+  CC      fs/ext4/xattr_security.o
+  CC      drivers/gpio/gpiolib-cdev.o
+  CC      lib/string_helpers.o
+  CC      kernel/bpf/arena.o
+  AR      fs/ext4/built-in.a
+  CC      fs/jbd2/transaction.o
+  CC      lib/hexdump.o
+  CC      lib/kstrtox.o
+  CC      kernel/bpf/range_tree.o
+  CC      lib/math/div64.o
+  CC      drivers/gpio/gpiolib-swnode.o
+  CC      lib/math/gcd.o
+  CC      lib/math/lcm.o
+  CC      lib/math/int_log.o
+  CC      lib/math/int_pow.o
+  CC      lib/math/int_sqrt.o
+  CC      fs/jbd2/commit.o
+  CC      lib/math/reciprocal_div.o
+  CC      lib/math/rational.o
+  AR      drivers/gpio/built-in.a
+  CC      kernel/bpf/devmap.o
+  CC      drivers/pci/of.o
+  AR      lib/math/built-in.a
+  CC      lib/crc/crc16.o
+  AR      drivers/pci/built-in.a
+  CC      drivers/video/cmdline.o
+  HOSTCC  lib/crc/gen_crc32table
+  CC      fs/jbd2/recovery.o
+  GEN     lib/crc/crc32table.h
+  CC      lib/crc/crc32-main.o
+  CC      kernel/bpf/cpumap.o
+  CC      drivers/video/nomodeset.o
+  AR      lib/crc/built-in.a
+  CC      lib/crypto/memneq.o
+  CC      fs/jbd2/checkpoint.o
+  CC      drivers/video/hdmi.o
+  CC      lib/crypto/utils.o
+  CC      lib/crypto/aes.o
+  CC      fs/jbd2/revoke.o
+  CC      drivers/video/console/dummycon.o
+  CC      kernel/bpf/offload.o
+  CC      lib/crypto/blake2s.o
+  CC      fs/jbd2/journal.o
+  AR      drivers/video/console/built-in.a
+  CC      drivers/video/fbdev/core/fb_notify.o
+  CC      lib/crypto/chacha-block-generic.o
+  CC      lib/crypto/sha1.o
+  AS      lib/crypto/arm64/sha1-ce-core.o
+  CC      lib/crypto/sha256.o
+  CC      kernel/bpf/net_namespace.o
+  CC      drivers/video/fbdev/core/fb_info.o
+  AS      lib/crypto/arm64/sha256-core.o
+  AS      lib/crypto/arm64/sha256-ce.o
+  AR      lib/crypto/built-in.a
+  CC      lib/vdso/datastore.o
+  AR      fs/jbd2/built-in.a
+  CC      fs/ramfs/inode.o
+  CC      drivers/video/fbdev/core/fbmem.o
+  CC      kernel/bpf/tcx.o
+  AR      lib/vdso/built-in.a
+  CC      lib/iomap_copy.o
+  CC      fs/ramfs/file-mmu.o
+  CC      lib/devres.o
+  CC      drivers/video/fbdev/core/fbcmap.o
+  CC      kernel/bpf/cgroup_iter.o
+  AR      fs/ramfs/built-in.a
+  CC      fs/fat/cache.o
+  CC      lib/hweight.o
+  CC      lib/assoc_array.o
+  CC      drivers/video/fbdev/core/modedb.o
+  CC      kernel/bpf/bpf_cgrp_storage.o
+  CC      fs/fat/dir.o
+  CC      lib/bitrev.o
+  CC      lib/linear_ranges.o
+  CC      lib/xxhash.o
+  CC      drivers/video/fbdev/core/fbcvt.o
+  CC      kernel/bpf/cgroup.o
+  CC      lib/genalloc.o
+  CC      fs/fat/fatent.o
+  CC      drivers/video/fbdev/core/fb_cmdline.o
+  CC      lib/zlib_inflate/inffast.o
+  CC      drivers/video/fbdev/core/fb_backlight.o
+  CC      fs/fat/file.o
+  CC      lib/zlib_inflate/inflate.o
+  CC      kernel/bpf/reuseport_array.o
+  CC      lib/zlib_inflate/infutil.o
+  CC      drivers/video/fbdev/core/fbmon.o
+  CC      lib/zlib_inflate/inftrees.o
+  CC      fs/fat/inode.o
+  CC      lib/zlib_inflate/inflate_syms.o
+  CC      kernel/bpf/crypto.o
+  AR      lib/zlib_inflate/built-in.a
+  CC      lib/lzo/lzo1x_decompress_safe.o
+  CC      drivers/video/fbdev/core/fb_chrdev.o
+  AR      lib/lzo/built-in.a
+  CC      lib/lz4/lz4_decompress.o
+  CC      kernel/bpf/relo_core.o
+  CC      fs/fat/misc.o
+  CC      drivers/video/fbdev/core/fb_procfs.o
+  AR      lib/lz4/built-in.a
+  CC      lib/zstd/zstd_decompress_module.o
+  CC      fs/fat/nfs.o
+  CC      drivers/video/fbdev/core/fbsysfs.o
+  CC      kernel/bpf/btf_iter.o
+  CC      lib/zstd/decompress/huf_decompress.o
+  CC      fs/fat/namei_vfat.o
+  CC      drivers/video/fbdev/core/fbcon.o
+  CC      kernel/bpf/btf_relocate.o
+  CC      lib/zstd/decompress/zstd_ddict.o
+  CC      lib/zstd/decompress/zstd_decompress.o
+  AR      fs/fat/built-in.a
+  CC      fs/exportfs/expfs.o
+  CC      kernel/bpf/kmem_cache_iter.o
+  CC      lib/zstd/decompress/zstd_decompress_block.o
+  CC      drivers/video/fbdev/core/bitblit.o
+  AR      fs/exportfs/built-in.a
+  CC      fs/nls/nls_base.o
+  CC      kernel/bpf/dmabuf_iter.o
+  CC      fs/nls/nls_cp437.o
+  CC      lib/zstd/zstd_common_module.o
+  CC      drivers/video/fbdev/core/softcursor.o
+  CC      lib/zstd/common/debug.o
+  CC      fs/nls/nls_iso8859-1.o
+  CC      lib/zstd/common/entropy_common.o
+  CC      lib/zstd/common/error_private.o
+  AR      kernel/bpf/built-in.a
+  GZIP    kernel/config_data.gz
+  CC      lib/zstd/common/fse_decompress.o
+  CC      kernel/configs.o
+  CC      lib/zstd/common/zstd_common.o
+  CC      fs/nls/nls_utf8.o
+  AR      lib/zstd/built-in.a
+  CC      lib/xz/xz_dec_syms.o
+  CC      drivers/video/fbdev/core/sysfillrect.o
+  AR      kernel/built-in.a
+  CC      drivers/video/fbdev/core/syscopyarea.o
+  CC      lib/xz/xz_dec_stream.o
+  AR      fs/nls/built-in.a
+  CC      fs/autofs/init.o
+  CC      lib/xz/xz_dec_lzma2.o
+  CC      lib/xz/xz_dec_bcj.o
+  CC      drivers/video/fbdev/core/sysimgblt.o
+  CC      fs/autofs/inode.o
+  CC      drivers/video/fbdev/core/fb_sys_fops.o
+  AR      lib/xz/built-in.a
+  CC      lib/percpu_counter.o
+  CC      lib/syscall.o
+  CC      fs/autofs/root.o
+  CC      fs/autofs/symlink.o
+  AR      drivers/video/fbdev/core/built-in.a
+  AR      drivers/video/fbdev/built-in.a
+  CC      drivers/video/display_timing.o
+  CC      lib/nlattr.o
+  CC      drivers/video/videomode.o
+  CC      drivers/video/of_display_timing.o
+  CC      drivers/video/of_videomode.o
+  CC      fs/autofs/waitq.o
+  CC      fs/autofs/expire.o
+  AR      drivers/video/built-in.a
+  CC      drivers/amba/bus.o
+  CC      lib/checksum.o
+  CC      lib/cpu_rmap.o
+  CC      lib/dynamic_queue_limits.o
+  CC      fs/autofs/dev-ioctl.o
+  AR      drivers/amba/built-in.a
+  CC      drivers/clk/clk-devres.o
+  CC      lib/dim/dim.o
+  CC      lib/dim/net_dim.o
+  CC      drivers/clk/clk-bulk.o
+  CC      fs/fuse/trace.o
+  AR      fs/autofs/built-in.a
+  CC      fs/fuse/dev.o
+  CC      drivers/clk/clkdev.o
+  CC      drivers/clk/clk.o
+  CC      lib/dim/rdma_dim.o
+  CC      drivers/clk/clk-divider.o
+  AR      lib/dim/built-in.a
+  CC      lib/strncpy_from_user.o
+  CC      fs/fuse/dir.o
+  CC      lib/strnlen_user.o
+  CC      lib/net_utils.o
+  CC      drivers/clk/clk-fixed-factor.o
+  CC      drivers/clk/clk-fixed-rate.o
+  CC      lib/sg_pool.o
+  CC      lib/fonts/fonts.o
+  CC      drivers/clk/clk-gate.o
+  CC      fs/fuse/file.o
+  CC      fs/fuse/inode.o
+  CC      lib/fonts/font_8x8.o
+  CC      lib/fonts/font_8x16.o
+  AR      lib/fonts/built-in.a
+  CC      lib/sbitmap.o
+  CC      drivers/clk/clk-multiplier.o
+  CC      drivers/clk/clk-mux.o
+  CC      lib/group_cpus.o
+  CC      lib/devmem_is_allowed.o
+  CC      fs/fuse/control.o
+  CC      drivers/clk/clk-composite.o
+  CC      drivers/clk/clk-fractional-divider.o
+  AR      lib/lib.a
+  AR      lib/built-in.a
+  CC      drivers/clk/clk-gpio.o
+  CC      fs/fuse/xattr.o
+  CC      fs/fuse/acl.o
+  CC      fs/fuse/readdir.o
+  CC      drivers/clk/clk-conf.o
+  CC      fs/fuse/ioctl.o
+  CC      fs/overlayfs/super.o
+  CC      drivers/clk/sunxi-ng/ccu_common.o
+  CC      fs/overlayfs/namei.o
+  CC      fs/fuse/iomode.o
+  CC      drivers/clk/sunxi-ng/ccu_mmc_timing.o
+  CC      drivers/clk/sunxi-ng/ccu_reset.o
+  CC      fs/overlayfs/util.o
+  CC      fs/fuse/passthrough.o
+  CC      drivers/soc/sunxi/sunxi_mbus.o
+  CC      drivers/clk/sunxi-ng/ccu_div.o
+  CC      fs/fuse/backing.o
+  CC      drivers/clk/sunxi-ng/ccu_frac.o
+  CC      drivers/soc/sunxi/sunxi_sram.o
+  CC      fs/overlayfs/inode.o
+  CC      drivers/clk/sunxi-ng/ccu_gate.o
+  CC      fs/fuse/sysctl.o
+  AR      drivers/soc/sunxi/built-in.a
+  AR      drivers/soc/built-in.a
+  CC      drivers/clk/sunxi-ng/ccu_mux.o
+  CC      drivers/pmdomain/sunxi/sun20i-ppu.o
+  CC      fs/overlayfs/file.o
+  CC      fs/fuse/dev_uring.o
+  CC      drivers/clk/sunxi-ng/ccu_mult.o
+  CC      drivers/pmdomain/sunxi/sun55i-pck600.o
+  CC      drivers/clk/sunxi-ng/ccu_phase.o
+  CC      fs/overlayfs/dir.o
+  CC      drivers/pmdomain/sunxi/t736-display-power.o
+  CC      drivers/clk/sunxi-ng/ccu_sdm.o
+  AR      fs/fuse/built-in.a
+  CC      drivers/clk/sunxi-ng/ccu_nk.o
+  CC      drivers/pmdomain/sunxi/t736-gpu-power.o
+  CC      drivers/clk/sunxi-ng/ccu_nkm.o
+  CC      fs/debugfs/inode.o
+  CC      fs/overlayfs/readdir.o
+  CC      drivers/clk/sunxi-ng/ccu_nkmp.o
+  AR      drivers/pmdomain/sunxi/built-in.a
+  CC      drivers/pmdomain/core.o
+  CC      fs/debugfs/file.o
+  CC      drivers/clk/sunxi-ng/ccu_nm.o
+  CC      fs/overlayfs/copy_up.o
+  CC      drivers/clk/sunxi-ng/ccu_mp.o
+  AR      fs/debugfs/built-in.a
+  CC      drivers/clk/sunxi-ng/ccu-sun50i-a64.o
+  CC      drivers/pmdomain/governor.o
+  CC      fs/overlayfs/export.o
+  CC      fs/overlayfs/params.o
+  AR      drivers/pmdomain/built-in.a
+  CC      drivers/clk/sunxi-ng/ccu-sun50i-a100.o
+  CC      net/devres.o
+  CC      net/socket.o
+  CC      drivers/clk/sunxi-ng/ccu-sun50i-a100-r.o
+  CC      fs/overlayfs/xattrs.o
+  CC      drivers/clk/sunxi-ng/ccu-sun50i-h6.o
+  CC      net/core/sock.o
+  AR      fs/overlayfs/built-in.a
+  AR      fs/built-in.a
+  CC      drivers/regulator/core.o
+  CC      drivers/clk/sunxi-ng/ccu-sun50i-h6-r.o
+  CC      drivers/clk/clk-t736-usb.o
+  CC      drivers/clk/sunxi-ng/ccu-sun50i-h616.o
+  CC      drivers/clk/sunxi-ng/ccu-sun55i-a523.o
+  CC      drivers/reset/core.o
+  CC      drivers/clk/sunxi-ng/ccu-sun55i-a523-mcu.o
+  CC      net/core/request_sock.o
+  CC      drivers/regulator/dummy.o
+  CC      drivers/reset/reset-simple.o
+  CC      drivers/clk/sunxi-ng/ccu-sun55i-a523-r.o
+  CC      drivers/regulator/fixed-helper.o
+  CC      net/core/skbuff.o
+  CC      drivers/reset/reset-sunxi.o
+  CC      drivers/clk/sunxi-ng/ccu-sun6i-rtc.o
+  CC      drivers/regulator/helpers.o
+  AR      drivers/reset/built-in.a
+  CC      drivers/regulator/devres.o
+  CC      drivers/clk/sunxi-ng/ccu-sun8i-h3.o
+  CC      drivers/clk/sunxi-ng/ccu-sun8i-de2.o
+  CC      net/ethernet/eth.o
+  CC      drivers/regulator/irq_helpers.o
+  CC      drivers/clk/sunxi-ng/ccu-sun8i-r.o
+  CC      drivers/regulator/of_regulator.o
+  AR      drivers/clk/sunxi-ng/built-in.a
+  CC      drivers/clk/clk-t736-gmac.o
+  AR      net/ethernet/built-in.a
+  CC      drivers/tty/tty_io.o
+  CC      drivers/clk/clk-t736-display.o
+  CC      drivers/regulator/fixed.o
+  CC      net/core/datagram.o
+  CC      drivers/clk/clk-t736-gpu.o
+  CC      drivers/regulator/sun20i-regulator.o
+  CC      drivers/tty/n_tty.o
+  AR      drivers/clk/built-in.a
+  CC      drivers/tty/tty_ioctl.o
+  CC      drivers/regulator/t736-gpu-supply.o
+  CC      net/core/stream.o
+  CC      net/core/scm.o
+  AR      drivers/regulator/built-in.a
+  CC      net/core/gen_stats.o
+  CC      drivers/tty/tty_ldisc.o
+  CC      drivers/tty/tty_buffer.o
+  CC      drivers/tty/tty_port.o
+  CC      net/core/gen_estimator.o
+  CC      drivers/tty/tty_mutex.o
+  CC      drivers/tty/tty_ldsem.o
+  CC      net/core/net_namespace.o
+  CC      drivers/tty/tty_baudrate.o
+  CC      drivers/tty/tty_jobctrl.o
+  CC      drivers/tty/n_null.o
+  CC      drivers/tty/pty.o
+  CC      drivers/char/mem.o
+  CC      drivers/iommu/iommu.o
+  CC      net/core/secure_seq.o
+  CC      drivers/tty/vt/vt_ioctl.o
+  CC      drivers/char/random.o
+  CC      drivers/iommu/iommu-pages.o
+  CC      net/core/flow_dissector.o
+  CC      drivers/tty/vt/vc_screen.o
+  CC      drivers/char/misc.o
+  CC      drivers/iommu/iommu-traces.o
+  AR      drivers/char/built-in.a
+  CC      drivers/iommu/iommu-sysfs.o
+  CC      drivers/tty/vt/selection.o
+  CC      drivers/tty/vt/keyboard.o
+  CC      drivers/iommu/dma-iommu.o
+  CC      net/core/sysctl_net_core.o
+  CC      net/core/dev.o
+  CC      drivers/tty/vt/vt.o
+  CC      drivers/iommu/iova.o
+  CC      net/core/dev_api.o
+  CC      drivers/iommu/of_iommu.o
+  CC      net/core/dev_addr_lists.o
+  AR      drivers/iommu/built-in.a
+  CC      net/core/dst.o
+  CC      drivers/tty/vt/defkeymap.o
+  CC      drivers/tty/vt/consolemap.o
+  HOSTCC  drivers/tty/vt/conmakehash
+  CC      net/core/netevent.o
+  CC      drivers/tty/vt/ucs.o
+  CONMK   drivers/tty/vt/consolemap_deftbl.c
+  CC      drivers/tty/vt/consolemap_deftbl.o
+  AR      drivers/tty/vt/built-in.a
+  CC      drivers/tty/serial/serial_core.o
+  CC      drivers/tty/serial/serial_base_bus.o
+  CC      drivers/tty/serial/serial_ctrl.o
+  CC      net/core/neighbour.o
+  CC      net/core/rtnetlink.o
+  CC      drivers/tty/serial/serial_port.o
+  CC      net/core/utils.o
+  CC      drivers/tty/serial/earlycon.o
+  CC      drivers/tty/serial/8250/8250_core.o
+  CC      drivers/tty/serial/8250/8250_platform.o
+  CC      drivers/tty/serial/8250/8250_port.o
+  CC      drivers/base/component.o
+  CC      net/core/link_watch.o
+  CC      drivers/gpu/drm/drm_atomic.o
+  CC      drivers/base/core.o
+  CC      drivers/tty/serial/8250/8250_dwlib.o
+  CC      net/core/filter.o
+  CC      drivers/gpu/drm/drm_atomic_uapi.o
+  CC      drivers/tty/serial/8250/8250_early.o
+  CC      drivers/tty/serial/8250/8250_dw.o
+  CC      drivers/gpu/drm/drm_auth.o
+  CC      drivers/base/bus.o
+  CC      drivers/tty/serial/8250/8250_fsl.o
+  CC      drivers/gpu/drm/drm_blend.o
+  CC      drivers/base/dd.o
+  CC      drivers/gpu/drm/drm_bridge.o
+  CC      drivers/tty/serial/8250/8250_of.o
+  CC      drivers/base/syscore.o
+  AR      drivers/tty/serial/8250/built-in.a
+  CC      drivers/tty/serial/serial_mctrl_gpio.o
+  CC      drivers/gpu/drm/drm_cache.o
+  CC      drivers/base/driver.o
+  CC      drivers/gpu/drm/drm_color_mgmt.o
+  AR      drivers/tty/serial/built-in.a
+  AR      drivers/tty/built-in.a
+  CC      drivers/base/class.o
+  CC      net/sched/sch_generic.o
+  CC      net/core/sock_diag.o
+  CC      drivers/gpu/drm/drm_connector.o
+  CC      drivers/base/platform.o
+  CC      net/core/dev_ioctl.o
+  CC      drivers/base/cpu.o
+  CC      net/sched/sch_mq.o
+  CC      drivers/gpu/drm/drm_crtc.o
+  CC      drivers/base/firmware.o
+  CC      drivers/gpu/drm/drm_displayid.o
+  CC      net/core/tso.o
+  CC      net/sched/sch_frag.o
+  CC      drivers/base/init.o
+  CC      drivers/gpu/drm/drm_drv.o
+  CC      drivers/base/map.o
+  CC      net/core/sock_reuseport.o
+  AR      net/sched/built-in.a
+  CC      net/core/fib_notifier.o
+  CC      drivers/base/devres.o
+  CC      drivers/gpu/drm/drm_dumb_buffers.o
+  CC      drivers/gpu/drm/drm_edid.o
+  CC      drivers/base/attribute_container.o
+  CC      net/core/xdp.o
+  CC      drivers/base/transport_class.o
+  CC      drivers/gpu/drm/drm_eld.o
+  CC      drivers/base/topology.o
+  CC      net/netlink/af_netlink.o
+  CC      drivers/base/container.o
+  CC      net/core/flow_offload.o
+  CC      drivers/base/property.o
+  CC      drivers/gpu/drm/drm_encoder.o
+  CC      net/netlink/genetlink.o
+  CC      net/core/gro.o
+  CC      drivers/gpu/drm/drm_file.o
+  CC      drivers/base/cacheinfo.o
+  CC      drivers/base/swnode.o
+  CC      net/netlink/policy.o
+  CC      drivers/gpu/drm/drm_fourcc.o
+  CC      net/core/netdev-genl.o
+  CC      drivers/gpu/drm/drm_framebuffer.o
+  CC      drivers/base/faux.o
+  CC      drivers/base/devtmpfs.o
+  AR      net/netlink/built-in.a
+  CC      drivers/base/power/sysfs.o
+  CC      drivers/gpu/drm/drm_gem.o
+  CC      drivers/base/power/generic_ops.o
+  CC      net/core/netdev-genl-gen.o
+  CC      net/core/gso.o
+  CC      drivers/base/power/common.o
+  CC      drivers/gpu/drm/drm_ioctl.o
+  CC      drivers/gpu/drm/drm_lease.o
+  CC      drivers/base/power/qos.o
+  CC      net/core/net-sysfs.o
+  CC      drivers/base/power/runtime.o
+  CC      net/core/hotdata.o
+  CC      drivers/gpu/drm/drm_managed.o
+  CC      drivers/gpu/drm/drm_mm.o
+  CC      drivers/base/power/wakeirq.o
+  CC      drivers/gpu/drm/drm_mode_config.o
+  CC      net/core/netdev_rx_queue.o
+  CC      net/core/netdev_queues.o
+  CC      drivers/base/power/clock_ops.o
+  CC      drivers/gpu/drm/drm_mode_object.o
+  CC      drivers/gpu/drm/drm_modes.o
+  AR      drivers/base/power/built-in.a
+  CC      drivers/base/firmware_loader/main.o
+  CC      net/core/page_pool.o
+  CC      drivers/base/firmware_loader/builtin/main.o
+  AR      drivers/base/firmware_loader/builtin/built-in.a
+  CC      drivers/block/brd.o
+  CC      drivers/gpu/drm/drm_modeset_lock.o
+  AR      drivers/base/firmware_loader/built-in.a
+  CC      drivers/base/module.o
+  CC      net/core/page_pool_user.o
+  CC      drivers/base/regmap/regmap.o
+  CC      drivers/gpu/drm/drm_plane.o
+  CC      drivers/block/loop.o
+  CC      net/core/net-procfs.o
+  CC      drivers/gpu/drm/drm_prime.o
+  CC      drivers/base/regmap/regcache.o
+  AR      drivers/block/built-in.a
+  CC      drivers/gpu/drm/drm_print.o
+  CC      drivers/base/regmap/regcache-rbtree.o
+  CC      net/bpf/test_run.o
+  CC      net/core/selftests.o
+  CC      drivers/gpu/drm/drm_property.o
+  CC      drivers/base/regmap/regcache-flat.o
+  CC      drivers/gpu/drm/drm_rect.o
+  CC      drivers/base/regmap/regcache-maple.o
+  CC      net/core/dst_cache.o
+  CC      drivers/gpu/drm/drm_syncobj.o
+  AR      net/bpf/built-in.a
+  CC      drivers/gpu/drm/drm_sysfs.o
+  CC      net/core/gro_cells.o
+  CC      net/core/skmsg.o
+  CC      drivers/gpu/drm/drm_trace_points.o
+  CC      drivers/gpu/drm/drm_vblank.o
+  CC      net/ethtool/ioctl.o
+  CC      drivers/base/regmap/regmap-debugfs.o
+  CC      net/core/sock_map.o
+  CC      drivers/gpu/drm/drm_vblank_work.o
+  CC      drivers/base/regmap/regmap-mmio.o
+  CC      drivers/gpu/drm/drm_vma_manager.o
+  CC      net/ethtool/common.o
+  AR      drivers/base/regmap/built-in.a
+  CC      drivers/base/pinctrl.o
+  CC      net/core/bpf_sk_storage.o
+  CC      drivers/gpu/drm/drm_writeback.o
+  CC      drivers/base/platform-msi.o
+  CC      net/ethtool/netlink.o
+  CC      drivers/base/arch_topology.o
+  CC      drivers/gpu/drm/drm_client.o
+  CC      net/core/of_net.o
+  CC      drivers/gpu/drm/drm_client_event.o
+  AR      drivers/base/built-in.a
+  CC      net/core/devmem.o
+  CC      net/ethtool/bitset.o
+  CC      net/ethtool/strset.o
+  CC      drivers/gpu/drm/drm_client_modeset.o
+  AR      net/core/built-in.a
+  CC      drivers/gpu/drm/drm_panel.o
+  CC      drivers/gpu/drm/drm_of.o
+  CC      net/ethtool/linkinfo.o
+  CC      net/ethtool/linkmodes.o
+  CC      net/ethtool/rss.o
+  CC      drivers/gpu/drm/drm_debugfs.o
+  CC      drivers/gpu/drm/drm_debugfs_crc.o
+  CC      drivers/gpu/drm/drm_panel_orientation_quirks.o
+  CC      net/ethtool/linkstate.o
+  CC      drivers/gpu/drm/drm_gem_dma_helper.o
+  CC      net/ethtool/debug.o
+  CC      net/ethtool/wol.o
+  CC      drivers/gpu/drm/drm_fb_dma_helper.o
+  CC      net/netfilter/core.o
+  CC      drivers/gpu/drm/drm_atomic_helper.o
+  CC      net/ethtool/features.o
+  CC      net/ethtool/privflags.o
+  CC      drivers/gpu/drm/drm_atomic_state_helper.o
+  CC      net/netfilter/nf_log.o
+  CC      net/ethtool/rings.o
+  CC      net/ethtool/channels.o
+  CC      drivers/gpu/drm/drm_bridge_helper.o
+  CC      net/netfilter/nf_queue.o
+  CC      net/netfilter/nf_sockopt.o
+  CC      drivers/gpu/drm/drm_crtc_helper.o
+  CC      net/ethtool/coalesce.o
+  CC      drivers/gpu/drm/drm_damage_helper.o
+  CC      net/netfilter/utils.o
+  CC      net/netfilter/nf_bpf_link.o
+  CC      drivers/gpu/drm/drm_flip_work.o
+  CC      net/ethtool/pause.o
+  CC      drivers/gpu/drm/drm_format_helper.o
+  AR      net/netfilter/built-in.a
+  CC      drivers/gpu/drm/drm_gem_atomic_helper.o
+  CC      net/ethtool/eee.o
+  CC      net/ipv4/route.o
+  CC      net/ipv4/inetpeer.o
+  CC      drivers/gpu/drm/drm_gem_framebuffer_helper.o
+  CC      net/ethtool/tsinfo.o
+  CC      drivers/gpu/drm/drm_kms_helper_common.o
+  CC      drivers/gpu/drm/drm_modeset_helper.o
+  CC      net/ethtool/cabletest.o
+  CC      drivers/gpu/drm/drm_plane_helper.o
+  CC      net/ipv4/protocol.o
+  CC      net/ipv4/ip_input.o
+  CC      drivers/gpu/drm/drm_probe_helper.o
+  CC      net/ethtool/tunnels.o
+  CC      drivers/gpu/drm/drm_self_refresh_helper.o
+  CC      net/ipv4/ip_fragment.o
+  CC      net/ipv4/ip_forward.o
+  CC      drivers/gpu/drm/drm_simple_kms_helper.o
+  CC      net/ethtool/fec.o
+  CC      drivers/gpu/drm/drm_vblank_helper.o
+  CC      drivers/gpu/drm/bridge/panel.o
+  CC      net/ipv4/ip_options.o
+  CC      net/ethtool/eeprom.o
+  CC      net/ipv4/ip_output.o
+  CC      drivers/gpu/drm/display/drm_display_helper_mod.o
+  CC      drivers/gpu/drm/display/drm_hdcp_helper.o
+  CC      net/ethtool/stats.o
+  CC      drivers/gpu/drm/display/drm_hdmi_cec_notifier_helper.o
+  CC      net/ethtool/phc_vclocks.o
+  CC      drivers/gpu/drm/display/drm_hdmi_helper.o
+  CC      drivers/mfd/syscon.o
+  CC      net/ipv4/ip_sockglue.o
+  CC      drivers/gpu/drm/display/drm_scdc_helper.o
+  CC      net/ethtool/mm.o
+  AR      drivers/mfd/built-in.a
+  CC      net/ethtool/module.o
+  AR      drivers/gpu/drm/display/built-in.a
+  CC      net/ipv4/inet_hashtables.o
+  CC      net/ipv4/inet_timewait_sock.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_drv.o
+  CC      net/ethtool/cmis_fw_update.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:118:1: warning: no previous prototype for ‘sunxi_drm_gem_fb_create’ [-Wmissing-prototypes]
+  118 | sunxi_drm_gem_fb_create(struct drm_device *dev, struct drm_file *file,
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: In function ‘sunxi_drm_atomic_helper_commit’:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:133:51: warning: variable ‘new_plane_state’ set but not used [-Wunused-but-set-variable]
+  133 |         struct drm_plane_state *old_plane_state, *new_plane_state;
+      |                                                   ^~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:131:54: warning: variable ‘new_conn_state’ set but not used [-Wunused-but-set-variable]
+  131 |         struct drm_connector_state *old_conn_state, *new_conn_state;
+      |                                                      ^~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:229:6: warning: no previous prototype for ‘sunxi_drm_unload’ [-Wmissing-prototypes]
+  229 | void sunxi_drm_unload(struct drm_device *dev)
+      |      ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:234:23: warning: no previous prototype for ‘drm_get_disp_connector’ [-Wmissing-prototypes]
+  234 | struct drm_connector *drm_get_disp_connector(struct drm_device *dev, int index)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c: In function ‘sunxi_drm_mode_monitor_work_handler’:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c:806:13: warning: variable ‘modes_count’ set but not used [-Wunused-but-set-variable]
+  806 |         int modes_count;
+      |             ^~~~~~~~~~~
+  CC      net/ethtool/cmis_cdb.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.o
+  CC      net/ipv4/inet_connection_sock.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_intf.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1167:5: warning: no previous prototype for ‘sunxi_drm_plane_property_create’ [-Wmissing-prototypes]
+ 1167 | int sunxi_drm_plane_property_create(struct sunxi_drm_private *private)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1568:22: warning: no previous prototype for ‘sunxi_drm_wb_init_one’ [-Wmissing-prototypes]
+ 1568 | struct sunxi_drm_wb *sunxi_drm_wb_init_one(struct sunxi_de_wb_info *wb_info)
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1603:6: warning: no previous prototype for ‘sunxi_drm_wb_destory’ [-Wmissing-prototypes]
+ 1603 | void sunxi_drm_wb_destory(struct sunxi_drm_wb *wb)
+      |      ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1853:5: warning: no previous prototype for ‘sunxi_get_fpsraw_and_vblankcnt’ [-Wmissing-prototypes]
+ 1853 | u64 sunxi_get_fpsraw_and_vblankcnt(struct drm_crtc *crtc)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:1871:6: warning: no previous prototype for ‘sunxi_crtc_atomic_print_state’ [-Wmissing-prototypes]
+ 1871 | void sunxi_crtc_atomic_print_state(struct drm_printer *p,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:2212:5: warning: no previous prototype for ‘commit_task_thread’ [-Wmissing-prototypes]
+ 2212 | s32 commit_task_thread(void *parg)
+      |     ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:2517:24: warning: no previous prototype for ‘sunxi_drm_crtc_init_one’ [-Wmissing-prototypes]
+ 2517 | struct sunxi_drm_crtc *sunxi_drm_crtc_init_one(struct sunxi_de_info *info)
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c:2619:6: warning: no previous prototype for ‘sunxi_drm_crtc_destory’ [-Wmissing-prototypes]
+ 2619 | void sunxi_drm_crtc_destory(struct sunxi_drm_crtc *scrtc)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_intf.c:196:5: warning: no previous prototype for ‘sunxi_drm_atomic_helper_disable_all’ [-Wmissing-prototypes]
+  196 | int sunxi_drm_atomic_helper_disable_all(struct drm_device *dev,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      net/ethtool/pse-pd.o
+  CC      net/ethtool/plca.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_notify.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_notify.c:46:5: warning: no previous prototype for ‘__sunxi_disp_notify_call_chain’ [-Wmissing-prototypes]
+   46 | int __sunxi_disp_notify_call_chain(unsigned long val, void *v)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_notify.c:81:6: warning: no previous prototype for ‘sunxi_disp_notify_init’ [-Wmissing-prototypes]
+   81 | void sunxi_disp_notify_init(void)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_gem.o
+  CC      net/ipv4/tcp.o
+  CC      net/ipv4/tcp_input.o
+  CC      net/ethtool/phy.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_gem.c:31:6: warning: no previous prototype for ‘sunxi_drm_prime_gem_destroy’ [-Wmissing-prototypes]
+   31 | void sunxi_drm_prime_gem_destroy(struct drm_gem_object *obj,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_gem.c:130:6: warning: no previous prototype for ‘sunxi_gem_dma_free’ [-Wmissing-prototypes]
+  130 | void sunxi_gem_dma_free(struct sunxi_gem_object *sgem_obj)
+      |      ^~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_debug.o
+  CC      drivers/gpu/drm/t736-bsp/kernel_panic_printf.o
+  CC      net/ethtool/tsconfig.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:37:6: warning: no previous prototype for ‘draw_color’ [-Wmissing-prototypes]
+   37 | void draw_color(struct graphic_buffer *img, u32 color)
+      |      ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:49:6: warning: no previous prototype for ‘draw_pixel’ [-Wmissing-prototypes]
+   49 | void draw_pixel(struct graphic_buffer *img, int x, int y, u32 color)
+      |      ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:56:6: warning: no previous prototype for ‘draw_img’ [-Wmissing-prototypes]
+   56 | void draw_img(struct graphic_buffer *img, int px, int py,
+      |      ^~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:74:20: warning: no previous prototype for ‘glyph_find’ [-Wmissing-prototypes]
+   74 | struct glyph_info *glyph_find(unsigned char t)
+      |                    ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:87:6: warning: no previous prototype for ‘draw_glyph’ [-Wmissing-prototypes]
+   87 | void draw_glyph(struct graphic_buffer *img, int px, int py,
+      |      ^~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:102:6: warning: no previous prototype for ‘glyph_reander_string’ [-Wmissing-prototypes]
+  102 | void glyph_reander_string(char *str, int px, int *py, struct graphic_buffer *img)
+      |      ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:246:6: warning: no previous prototype for ‘sunxi_kernel_panic_printf’ [-Wmissing-prototypes]
+  246 | void sunxi_kernel_panic_printf(const char *str, ...)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c: In function ‘sunxi_kernel_panic_printf’:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/kernel_panic_printf.c:261:9: warning: function ‘sunxi_kernel_panic_printf’ might be a candidate for ‘gnu_printf’ format attribute [-Wsuggest-attribute=format]
+  261 |         i = vsnprintf(string, 512, str, args);
+      |         ^
+  AR      net/ethtool/built-in.a
+  CC      drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.o
+  CC      net/unix/af_unix.o
+  CC      net/unix/garbage.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:68:5: warning: no previous prototype for ‘sunxi_fbdev_init’ [-Wmissing-prototypes]
+   68 | int sunxi_fbdev_init(struct drm_device *drm, struct display_channel_state *out_state, int de_id)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:80:5: warning: no previous prototype for ‘sunxi_fbdev_exit’ [-Wmissing-prototypes]
+   80 | int sunxi_fbdev_exit(void)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:96:5: warning: no previous prototype for ‘sunxi_fb_pan_display’ [-Wmissing-prototypes]
+   96 | int sunxi_fb_pan_display(struct fb_var_screeninfo *var,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:111:5: warning: no previous prototype for ‘sunxi_fb_wait_for_vsync’ [-Wmissing-prototypes]
+  111 | int sunxi_fb_wait_for_vsync(struct fb_info *info)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c:289:17: warning: no previous prototype for ‘sunxi_get_fb_info’ [-Wmissing-prototypes]
+  289 | struct fb_info *sunxi_get_fb_info(int fb_id)
+      |                 ^~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.o
+  CC      net/ipv4/tcp_output.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_backend.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:145:7: warning: no previous prototype for ‘fb_map_kernel’ [-Wmissing-prototypes]
+  145 | void *fb_map_kernel(unsigned long phys_addr, unsigned long size)
+      |       ^~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:168:7: warning: no previous prototype for ‘fb_map_kernel_cache’ [-Wmissing-prototypes]
+  168 | void *fb_map_kernel_cache(unsigned long phys_addr, unsigned long size)
+      |       ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:193:6: warning: no previous prototype for ‘Fb_unmap_kernel’ [-Wmissing-prototypes]
+  193 | void Fb_unmap_kernel(void *vaddr)
+      |      ^~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c:198:5: warning: no previous prototype for ‘logo_display_file’ [-Wmissing-prototypes]
+  198 | int logo_display_file(struct fb_hw_info *info, unsigned long phy_addr)
+      |     ^~~~~~~~~~~~~~~~~
+  CC      net/unix/sysctl_net_unix.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.o
+  CC      net/unix/unix_bpf.o
+  CC      net/unix/diag.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c:413:16: warning: no previous prototype for ‘de_rtmx_exit_rcq’ [-Wmissing-prototypes]
+  413 | /*static*/ int de_rtmx_exit_rcq(struct sunxi_display_engine *de)
+      |                ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c:531:6: warning: no previous prototype for ‘sunxi_de_reg_buffer_free’ [-Wmissing-prototypes]
+  531 | void sunxi_de_reg_buffer_free(struct sunxi_display_engine *de,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c:549:6: warning: no previous prototype for ‘sunxi_de_reg_mem_deinit’ [-Wmissing-prototypes]
+  549 | void sunxi_de_reg_mem_deinit(struct sunxi_display_engine *de)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+  AR      net/unix/built-in.a
+  CC      net/ipv4/tcp_timer.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_frontend.o
+In file included from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.c:17:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:188:36: warning: no previous prototype for ‘sunxi_get_soc_ver’ [-Wmissing-prototypes]
+  188 | unsigned int __attribute__((weak)) sunxi_get_soc_ver(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:189:27: warning: no previous prototype for ‘sunxi_get_sid_ver’ [-Wmissing-prototypes]
+  189 | int __attribute__((weak)) sunxi_get_sid_ver(u32 *ver) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:190:36: warning: no previous prototype for ‘sunxi_get_soc_ver_from_reg’ [-Wmissing-prototypes]
+  190 | unsigned int __attribute__((weak)) sunxi_get_soc_ver_from_reg(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:191:36: warning: no previous prototype for ‘sunxi_get_platform_id’ [-Wmissing-prototypes]
+  191 | unsigned int __attribute__((weak)) sunxi_get_platform_id(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:192:27: warning: no previous prototype for ‘sunxi_get_soc_chipid’ [-Wmissing-prototypes]
+  192 | int __attribute__((weak)) sunxi_get_soc_chipid(unsigned char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:193:27: warning: no previous prototype for ‘sunxi_get_soc_chipid_str’ [-Wmissing-prototypes]
+  193 | int __attribute__((weak)) sunxi_get_soc_chipid_str(char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:194:27: warning: no previous prototype for ‘sunxi_get_soc_chipid_origin’ [-Wmissing-prototypes]
+  194 | int __attribute__((weak)) sunxi_get_soc_chipid_origin(char *chipid_origin) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:195:27: warning: no previous prototype for ‘sunxi_get_soc_ft_zone_str’ [-Wmissing-prototypes]
+  195 | int __attribute__((weak)) sunxi_get_soc_ft_zone_str(char *serial) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:196:27: warning: no previous prototype for ‘sunxi_get_soc_rotpk_status_str’ [-Wmissing-prototypes]
+  196 | int __attribute__((weak)) sunxi_get_soc_rotpk_status_str(char *status) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:197:27: warning: no previous prototype for ‘sunxi_get_pmu_chipid’ [-Wmissing-prototypes]
+  197 | int __attribute__((weak)) sunxi_get_pmu_chipid(unsigned char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:198:27: warning: no previous prototype for ‘sunxi_get_serial’ [-Wmissing-prototypes]
+  198 | int __attribute__((weak)) sunxi_get_serial(unsigned char *serial) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:199:36: warning: no previous prototype for ‘sunxi_get_soc_bin’ [-Wmissing-prototypes]
+  199 | unsigned int __attribute__((weak)) sunxi_get_soc_bin(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:200:27: warning: no previous prototype for ‘sunxi_soc_is_secure’ [-Wmissing-prototypes]
+  200 | int __attribute__((weak)) sunxi_soc_is_secure(void) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:201:27: warning: no previous prototype for ‘sunxi_get_platform’ [-Wmissing-prototypes]
+  201 | s32 __attribute__((weak)) sunxi_get_platform(s8 *buf, s32 size) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:202:27: warning: no previous prototype for ‘sunxi_efuse_readn’ [-Wmissing-prototypes]
+  202 | s32 __attribute__((weak)) sunxi_efuse_readn(s8 *key_name, void *buf, u32 n) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:203:27: warning: no previous prototype for ‘sunxi_get_module_param_from_sid’ [-Wmissing-prototypes]
+  203 | int __attribute__((weak)) sunxi_get_module_param_from_sid(u32 *dst, u32 offset, u32 len) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:204:36: warning: no previous prototype for ‘sunxi_get_soc_markid’ [-Wmissing-prototypes]
+  204 | unsigned int __attribute__((weak)) sunxi_get_soc_markid(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:205:26: warning: no previous prototype for ‘sunxi_sid_sram_read32’ [-Wmissing-prototypes]
+  205 | int __attribute__((weak))sunxi_sid_sram_read32(const char *key, u32 *data) { return -ENOSYS; }
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:206:27: warning: no previous prototype for ‘sunxi_sid_get_ecc_status’ [-Wmissing-prototypes]
+  206 | int __attribute__((weak)) sunxi_sid_get_ecc_status(void) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:207:27: warning: no previous prototype for ‘sunxi_get_soc_dvfs’ [-Wmissing-prototypes]
+  207 | int __attribute__((weak)) sunxi_get_soc_dvfs(u32 *dvfs) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.c:342:27: warning: no previous prototype for ‘get_de_top_desc’ [-Wmissing-prototypes]
+  342 | const struct de_top_desc *get_de_top_desc(const struct module_create_info *info)
+      |                           ^~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.c:747:5: warning: no previous prototype for ‘de_top_get_out_size’ [-Wmissing-prototypes]
+  747 | int de_top_get_out_size(struct de_top_handle *hdl, u32 disp, u32 *width, u32 *height)
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.c:1007:5: warning: no previous prototype for ‘de_top_enable_irq’ [-Wmissing-prototypes]
+ 1007 | int de_top_enable_irq(struct de_top_handle *hdl, u32 disp, u32 irq_flag, u32 en)
+      |     ^~~~~~~~~~~~~~~~~
+  CC      net/ipv4/tcp_ipv4.o
+  CC      net/ipv6/af_inet6.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/wb/de_wb.o
+  CC      net/ipv6/anycast.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/wb/de_wb.c:420:6: warning: no previous prototype for ‘force_update’ [-Wmissing-prototypes]
+  420 | void force_update(struct de_wb_handle *handle)
+      |      ^~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/afbd/de_fbd_atw.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/tfbd/de_tfbd.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/afbd/de_fbd_atw.c:178:1: warning: ‘static’ is not at beginning of declaration [-Wold-style-declaration]
+  178 | const static struct afbc_stream_info afbc_stream_infos[] = {
+      | ^~~~~
+  CC      net/ipv4/tcp_minisocks.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc.o
+  CC      net/ipv6/ip6_output.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/tfbd/de_tfbd.c:113:1: warning: ‘static’ is not at beginning of declaration [-Wold-style-declaration]
+  113 | const static struct de_tfbd_drmformat_mapping format2tfbc_mapping[] = {
+      | ^~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc.c:97:6: warning: no previous prototype for ‘de_csc_update_regs’ [-Wmissing-prototypes]
+   97 | void de_csc_update_regs(struct de_csc_handle *hdl)
+      |      ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc.c:107:5: warning: no previous prototype for ‘de35x_csc_enable’ [-Wmissing-prototypes]
+  107 | s32 de35x_csc_enable(struct de_csc_handle *hdl, u32 en)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc.c:218:6: warning: no previous prototype for ‘de35x_csc_dump_state’ [-Wmissing-prototypes]
+  218 | void de35x_csc_dump_state(struct drm_printer *p, struct de_csc_handle *hdl)
+      |      ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc.c:260:5: warning: no previous prototype for ‘de35x_csc_apply’ [-Wmissing-prototypes]
+  260 | s32 de35x_csc_apply(struct de_csc_handle *hdl,
+      |     ^~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc_table.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc_platform.o
+  CC      net/ipv4/tcp_cong.o
+  CC      net/ipv4/tcp_metrics.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_table.o
+  CC      net/ipv6/ip6_input.o
+  CC      net/ipv6/addrconf.o
+  CC      net/ipv4/tcp_fastopen.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_platform.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/snr/de_snr.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/snr/de_snr.c:149:5: warning: no previous prototype for ‘de35x_snr_enable’ [-Wmissing-prototypes]
+  149 | s32 de35x_snr_enable(struct de_snr_handle *hdl, u32 snr_enable)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/snr/de_snr.c:274:5: warning: no previous prototype for ‘de35x_snr_set_para’ [-Wmissing-prototypes]
+  274 | s32 de35x_snr_set_para(struct de_snr_handle *hdl, struct display_channel_state *state, struct de_snr_para *snr_para)
+      |     ^~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/snr/de_snr_platform.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp.o
+  CC      net/ipv4/tcp_rate.o
+  CC      net/ipv4/tcp_recovery.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp.c:144:5: warning: no previous prototype for ‘de35x_sharp_set_size’ [-Wmissing-prototypes]
+  144 | s32 de35x_sharp_set_size(struct de_sharp_handle *hdl, u32 width,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp.c:180:5: warning: no previous prototype for ‘de35x_sharp_set_window’ [-Wmissing-prototypes]
+  180 | s32 de35x_sharp_set_window(struct de_sharp_handle *hdl,
+      |     ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp.c:230:5: warning: no previous prototype for ‘de35x_sharp_enable’ [-Wmissing-prototypes]
+  230 | s32 de35x_sharp_enable(struct de_sharp_handle *hdl, u32 en)
+      |     ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp.c:250:5: warning: no previous prototype for ‘de_sharp_info2para’ [-Wmissing-prototypes]
+  250 | s32 de_sharp_info2para(struct de_sharp_handle *hdl,
+      |     ^~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp_platform.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci.o
+  CC      net/ipv4/tcp_ulp.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci_platform.o
+  CC      net/ipv6/addrlabel.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci.c:110:5: warning: no previous prototype for ‘de35x_dci_set_color_range’ [-Wmissing-prototypes]
+  110 | s32 de35x_dci_set_color_range(struct de_dci_handle *hdl, enum de_color_range cr)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci.c:175:5: warning: no previous prototype for ‘de35x_dci_set_size’ [-Wmissing-prototypes]
+  175 | s32 de35x_dci_set_size(struct de_dci_handle *hdl, u32 width, u32 height)
+      |     ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci.c:213:5: warning: no previous prototype for ‘de35x_dci_set_window’ [-Wmissing-prototypes]
+  213 | s32 de35x_dci_set_window(struct de_dci_handle *hdl,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci.c:236:5: warning: no previous prototype for ‘de35x_dci_enable’ [-Wmissing-prototypes]
+  236 | s32 de35x_dci_enable(struct de_dci_handle *hdl, u32 en)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci.c:262:5: warning: no previous prototype for ‘de35x_dci_init’ [-Wmissing-prototypes]
+  262 | s32 de35x_dci_init(struct de_dci_handle *hdl)
+      |     ^~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci.c:306:5: warning: no previous prototype for ‘de35x_dci_update_local_param’ [-Wmissing-prototypes]
+  306 | s32 de35x_dci_update_local_param(struct de_dci_handle *hdl)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      net/ipv6/route.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dlc/de_dlc.o
+  CC      net/ipv4/tcp_offload.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dlc/de_dlc_platform.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.c:183:5: warning: no previous prototype for ‘de35x_fcm_set_size’ [-Wmissing-prototypes]
+  183 | s32 de35x_fcm_set_size(struct de_fcm_handle *hdl, u32 width, u32 height)
+      |     ^~~~~~~~~~~~~~~~~~
+  CC      net/ipv6/ip6_fib.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.c:219:5: warning: no previous prototype for ‘de35x_fcm_set_window’ [-Wmissing-prototypes]
+  219 | s32 de35x_fcm_set_window(struct de_fcm_handle *hdl,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.c:233:5: warning: no previous prototype for ‘de35x_fcm_enable’ [-Wmissing-prototypes]
+  233 | s32 de35x_fcm_enable(struct de_fcm_handle *hdl, u32 en)
+      |     ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.c:266:5: warning: no previous prototype for ‘de35x_fcm_init’ [-Wmissing-prototypes]
+  266 | s32 de35x_fcm_init(struct de_fcm_handle *hdl)
+      |     ^~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.c:342:5: warning: no previous prototype for ‘de35x_fcm_set_csc’ [-Wmissing-prototypes]
+  342 | int de35x_fcm_set_csc(struct de_fcm_handle *hdl, struct de_csc_info *in_info, struct de_csc_info *out_info)
+      |     ^~~~~~~~~~~~~~~~~
+  CC      net/ipv4/tcp_plb.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm_platform.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/bld/de_bld.o
+  CC      net/ipv4/datagram.o
+  CC      net/ipv4/raw.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/bld/de_bld_platform.o
+  CC      net/ipv6/ipv6_sockglue.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/ovl/de_ovl.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/ovl/de_ovl_platform.o
+  CC      net/ipv4/udp.o
+  CC      net/ipv4/udplite.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler.o
+  CC      net/ipv6/ndisc.o
+  CC      net/ipv6/udp.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_table.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_platform.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/gamma/de_gamma.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/gamma/de_gamma_platform.o
+  CC      net/ipv6/udplite.o
+  CC      net/ipv4/udp_offload.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dither/de_dither.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dither/de_dither_platform.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dither/de_dither.c:41:5: warning: no previous prototype for ‘de_dither_set_size’ [-Wmissing-prototypes]
+   41 | s32 de_dither_set_size(struct de_dither_handle *hdl, u32 width, u32 height)
+      |     ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dither/de_dither.c:67:5: warning: no previous prototype for ‘de_dither_enable’ [-Wmissing-prototypes]
+   67 | s32 de_dither_enable(struct de_dither_handle *hdl, u32 en)
+      |     ^~~~~~~~~~~~~~~~
+  CC      net/ipv4/arp.o
+  CC      net/ipv6/raw.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/crc/de_crc.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/crc/de_crc_platform.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/crc/de_crc.c:162:5: warning: no previous prototype for ‘de_crc_set_polarity’ [-Wmissing-prototypes]
+  162 | s32 de_crc_set_polarity(struct de_crc_handle *hdl, u32 region, u32 polarity)
+      |     ^~~~~~~~~~~~~~~~~~~
+  CC      net/ipv4/icmp.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl.o
+  CC      net/ipv6/icmp.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl_platform.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl.c: In function ‘pwrsave_core’:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl.c:130:13: warning: variable ‘min_adj_index_pre_pre’ set but not used [-Wunused-but-set-variable]
+  130 |         u32 min_adj_index_pre_pre = 255;
+      |             ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl.c:119:40: warning: variable ‘p95’ set but not used [-Wunused-but-set-variable]
+  119 |         u32 hist[IEP_LH_INTERVAL_NUM], p95;
+      |                                        ^~~
+  CC      net/ipv6/mcast.o
+  CC      net/ipv4/devinet.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/deband/de_deband.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/deband/de_deband_platform.o
+  CC      net/ipv6/reassembly.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fmt/de_fmt.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fmt/de_fmt_platform.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_tv_reg.o
+  CC      net/ipv4/af_inet.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_tv_reg.c:51:5: warning: no previous prototype for ‘tcon_tv_irq_enable’ [-Wmissing-prototypes]
+   51 | s32 tcon_tv_irq_enable(struct sunxi_tcon_tv *tcon, enum __lcd_irq_id_t id)
+      |     ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_tv_reg.c:58:5: warning: no previous prototype for ‘tcon_tv_irq_disable’ [-Wmissing-prototypes]
+   58 | s32 tcon_tv_irq_disable(struct sunxi_tcon_tv *tcon, enum __lcd_irq_id_t id)
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_tv_reg.c:439:5: warning: no previous prototype for ‘tcon_tv_ceu’ [-Wmissing-prototypes]
+  439 | s32 tcon_tv_ceu(struct sunxi_tcon_tv *tcon, u32 mode, s32 b, s32 c, s32 s, s32 h)
+      |     ^~~~~~~~~~~
+  CC      net/ipv4/igmp.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_top.o
+  CC      net/ipv6/tcp_ipv6.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon.c:643:5: warning: no previous prototype for ‘sunxi_tcon_hdmi_mode_init’ [-Wmissing-prototypes]
+  643 | int sunxi_tcon_hdmi_mode_init(struct device *dev)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon.c:687:5: warning: no previous prototype for ‘sunxi_tcon_hdmi_mode_exit’ [-Wmissing-prototypes]
+  687 | int sunxi_tcon_hdmi_mode_exit(struct device *tcon_dev)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon_top.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c:41:6: warning: no previous prototype for ‘lvds_1903_open’ [-Wmissing-prototypes]
+   41 | void lvds_1903_open(struct sunxi_tcon_lcd *tcon, struct disp_lvds_para *para)
+      |      ^~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c:125:6: warning: no previous prototype for ‘lvds_1919_open’ [-Wmissing-prototypes]
+  125 | void lvds_1919_open(struct sunxi_tcon_lcd *tcon, struct disp_lvds_para *para)
+      |      ^~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c:209:6: warning: no previous prototype for ‘lvds_default_open’ [-Wmissing-prototypes]
+  209 | void lvds_default_open(struct sunxi_tcon_lcd *tcon, struct disp_lvds_para *para)
+      |      ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c: In function ‘tcon_lcd_get_timing’:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c:327:25: warning: variable ‘lcd_hv_if’ set but not used [-Wunused-but-set-variable]
+  327 |         u32 lcd_if = 0, lcd_hv_if = 0;
+      |                         ^~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c:327:13: warning: variable ‘lcd_if’ set but not used [-Wunused-but-set-variable]
+  327 |         u32 lcd_if = 0, lcd_hv_if = 0;
+      |             ^~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c: At top level:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c:973:5: warning: no previous prototype for ‘tcon0_get_cpu_tri2_start_delay’ [-Wmissing-prototypes]
+  973 | u32 tcon0_get_cpu_tri2_start_delay(struct sunxi_tcon_lcd *tcon)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      net/ipv4/fib_frontend.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.o
+  CC      net/ipv6/ping.o
+  CC      net/ipv6/exthdrs.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_reg_read_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1827:1: note: in expansion of macro ‘sysfs_store_func’
+ 1827 | sysfs_store_func(reg_read)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_reg_write_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1891:1: note: in expansion of macro ‘sysfs_store_func’
+ 1891 | sysfs_store_func(reg_write)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_reg_bank_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1959:1: note: in expansion of macro ‘sysfs_store_func’
+ 1959 | sysfs_store_func(reg_bank)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_pattern_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1989:1: note: in expansion of macro ‘sysfs_store_func’
+ 1989 | sysfs_store_func(pattern)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_debug_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2038:1: note: in expansion of macro ‘sysfs_store_func’
+ 2038 | sysfs_store_func(debug)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdmi_source_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2115:1: note: in expansion of macro ‘sysfs_store_func’
+ 2115 | sysfs_store_func(hdmi_source)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdmi_sink_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2167:1: note: in expansion of macro ‘sysfs_store_func’
+ 2167 | sysfs_store_func(hdmi_sink)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hpd_mask_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2188:1: note: in expansion of macro ‘sysfs_store_func’
+ 2188 | sysfs_store_func(hpd_mask)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_set_ddc_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2223:1: note: in expansion of macro ‘sysfs_store_func’
+ 2223 | sysfs_store_func(set_ddc)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_edid_debug_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2274:1: note: in expansion of macro ‘sysfs_store_func’
+ 2274 | sysfs_store_func(edid_debug)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_edid_data_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2299:1: note: in expansion of macro ‘sysfs_store_func’
+ 2299 | sysfs_store_func(edid_data)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_edid_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2362:1: note: in expansion of macro ‘sysfs_store_func’
+ 2362 | sysfs_store_func(edid)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdcp_enable_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2376:1: note: in expansion of macro ‘sysfs_store_func’
+ 2376 | sysfs_store_func(hdcp_enable)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdcp_type_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2402:1: note: in expansion of macro ‘sysfs_store_func’
+ 2402 | sysfs_store_func(hdcp_type)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdcp_status_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2418:1: note: in expansion of macro ‘sysfs_store_func’
+ 2418 | sysfs_store_func(hdcp_status)
+      | ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1812:31: warning: no previous prototype for ‘_sunxi_hdmi_sysfs_hdcp_loader_store’ [-Wmissing-prototypes]
+ 1812 | #define sysfs_store_name(cmd) _sunxi_hdmi_sysfs_##cmd##_store
+      |                               ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:1814:17: note: in expansion of macro ‘sysfs_store_name’
+ 1814 |         ssize_t sysfs_store_name(cmd)(struct device *dev,  \
+      |                 ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c:2440:1: note: in expansion of macro ‘sysfs_store_func’
+ 2440 | sysfs_store_func(hdcp_loader)
+      | ^~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.o
+  CC      net/ipv6/datagram.o
+  CC      net/ipv4/fib_semantics.o
+  CC      net/ipv4/fib_trie.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_dev.o
+  CC      net/ipv6/ip6_flowlabel.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_avp.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.o
+  CC      net/ipv4/fib_notifier.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_avp.c:243:6: warning: no previous prototype for ‘_dw_audio_acr_config’ [-Wmissing-prototypes]
+  243 | void _dw_audio_acr_config(u32 freq, u32 clock)
+      |      ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_avp.c:1204:9: warning: no previous prototype for ‘dw_audio_dump’ [-Wmissing-prototypes]
+ 1204 | ssize_t dw_audio_dump(char *buf)
+      |         ^~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_avp.c:1226:9: warning: no previous prototype for ‘dw_video_dump’ [-Wmissing-prototypes]
+ 1226 | ssize_t dw_video_dump(char *buf)
+      |         ^~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c:175:5: warning: no previous prototype for ‘_parse_data_block_detailed_timing’ [-Wmissing-prototypes]
+  175 | int _parse_data_block_detailed_timing(dw_dtd_t *dtd, u8 data[18])
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c:225:5: warning: no previous prototype for ‘_parse_data_block_short_audio’ [-Wmissing-prototypes]
+  225 | int _parse_data_block_short_audio(dw_edid_block_sad_t *sad, u8 *data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c:247:5: warning: no previous prototype for ‘_parse_data_block_short_video’ [-Wmissing-prototypes]
+  247 | int _parse_data_block_short_video(dw_edid_block_svd_t *svd, u8 data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c:278:5: warning: no previous prototype for ‘_parse_data_block_hdmi14’ [-Wmissing-prototypes]
+  278 | int _parse_data_block_hdmi14(dw_edid_hdmi_vs_data_t *vsdb, u8 *data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c:422:5: warning: no previous prototype for ‘_parse_data_block_hdmi_forum’ [-Wmissing-prototypes]
+  422 | int _parse_data_block_hdmi_forum(dw_edid_hdmi_forum_vs_data_t *hf, u8 *data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c:449:5: warning: no previous prototype for ‘_parse_data_block_speaker_allocation’ [-Wmissing-prototypes]
+  449 | int _parse_data_block_speaker_allocation(dw_edid_speaker_allocation_data_t *sadb, u8 *data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c:478:5: warning: no previous prototype for ‘_parse_data_block_video_capability’ [-Wmissing-prototypes]
+  478 | int _parse_data_block_video_capability(dw_edid_video_capabilit_data_t *vcdb, u8 *data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c:509:5: warning: no previous prototype for ‘_parse_data_block_colorimetry’ [-Wmissing-prototypes]
+  509 | int _parse_data_block_colorimetry(dw_edid_colorimetry_data_t *cdb, u8 *data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c:537:5: warning: no previous prototype for ‘_parse_data_block_hdr_static_metadata’ [-Wmissing-prototypes]
+  537 | int _parse_data_block_hdr_static_metadata(dw_edid_hdr_static_metadata_data_t *hsmd, u8 *data)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      net/ipv4/inet_fragment.o
+  CC      net/ipv6/inet6_connection_sock.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.o
+  CC      net/ipv4/ping.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:421:6: warning: no previous prototype for ‘_dw_fc_video_set_preamble_filter’ [-Wmissing-prototypes]
+  421 | void _dw_fc_video_set_preamble_filter(u8 value, u8 channel)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:479:6: warning: no previous prototype for ‘dw_fc_set_tmds_mode’ [-Wmissing-prototypes]
+  479 | void dw_fc_set_tmds_mode(dw_tmds_mode_t mode)
+      |      ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:567:6: warning: no previous prototype for ‘_dw_avi_set_color_metry’ [-Wmissing-prototypes]
+  567 | void _dw_avi_set_color_metry(u8 value)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:572:6: warning: no previous prototype for ‘_dw_avi_set_extend_color_metry’ [-Wmissing-prototypes]
+  572 | void _dw_avi_set_extend_color_metry(u8 extColor)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:592:6: warning: no previous prototype for ‘_dw_packet_gmd_config’ [-Wmissing-prototypes]
+  592 | void _dw_packet_gmd_config(struct dw_video_s *video)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:649:5: warning: no previous prototype for ‘_dw_packet_vsi_config’ [-Wmissing-prototypes]
+  649 | int _dw_packet_vsi_config(void)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:682:6: warning: no previous prototype for ‘_dw_packet_avi_config’ [-Wmissing-prototypes]
+  682 | void _dw_packet_avi_config(struct dw_video_s *video)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c:821:6: warning: no previous prototype for ‘dw_drm_packet_config’ [-Wmissing-prototypes]
+  821 | void dw_drm_packet_config(dw_fc_drm_pb_t *pb)
+      |      ^~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_mc.o
+  CC      net/ipv6/udp_offload.o
+  CC      net/ipv4/ip_tunnel_core.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_mc.c:83:6: warning: no previous prototype for ‘_dw_mc_set_csc_bypass’ [-Wmissing-prototypes]
+   83 | void _dw_mc_set_csc_bypass(u8 bit)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.c:33:19: warning: no previous prototype for ‘dw_get_i2cm’ [-Wmissing-prototypes]
+   33 | struct dw_i2cm_s *dw_get_i2cm(void)
+      |                   ^~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.c:79:5: warning: no previous prototype for ‘_dw_i2cm_read’ [-Wmissing-prototypes]
+   79 | int _dw_i2cm_read(unsigned char *buf, unsigned int length)
+      |     ^~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.c:148:5: warning: no previous prototype for ‘_dw_i2cm_write’ [-Wmissing-prototypes]
+  148 | int _dw_i2cm_write(unsigned char *buf, unsigned int length)
+      |     ^~~~~~~~~~~~~~
+  CC      net/ipv4/gre_offload.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_phy.o
+  CC      net/ipv6/seg6.o
+  CC      net/ipv6/fib6_notifier.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_top.o
+  CC      net/ipv4/metrics.o
+  CC      net/ipv4/netlink.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_top.c:173:6: warning: no previous prototype for ‘top_phy_pll_set_output’ [-Wmissing-prototypes]
+  173 | void top_phy_pll_set_output(u8 state)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_aw.o
+  CC      net/ipv6/rpl.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_snps.o
+  CC      net/ipv4/nexthop.o
+  CC      net/ipv6/ioam6.o
+  CC      net/packet/af_packet.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.o
+In file included from /home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:15:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:188:36: warning: no previous prototype for ‘sunxi_get_soc_ver’ [-Wmissing-prototypes]
+  188 | unsigned int __attribute__((weak)) sunxi_get_soc_ver(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:189:27: warning: no previous prototype for ‘sunxi_get_sid_ver’ [-Wmissing-prototypes]
+  189 | int __attribute__((weak)) sunxi_get_sid_ver(u32 *ver) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:190:36: warning: no previous prototype for ‘sunxi_get_soc_ver_from_reg’ [-Wmissing-prototypes]
+  190 | unsigned int __attribute__((weak)) sunxi_get_soc_ver_from_reg(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:191:36: warning: no previous prototype for ‘sunxi_get_platform_id’ [-Wmissing-prototypes]
+  191 | unsigned int __attribute__((weak)) sunxi_get_platform_id(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:192:27: warning: no previous prototype for ‘sunxi_get_soc_chipid’ [-Wmissing-prototypes]
+  192 | int __attribute__((weak)) sunxi_get_soc_chipid(unsigned char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:193:27: warning: no previous prototype for ‘sunxi_get_soc_chipid_str’ [-Wmissing-prototypes]
+  193 | int __attribute__((weak)) sunxi_get_soc_chipid_str(char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:194:27: warning: no previous prototype for ‘sunxi_get_soc_chipid_origin’ [-Wmissing-prototypes]
+  194 | int __attribute__((weak)) sunxi_get_soc_chipid_origin(char *chipid_origin) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:195:27: warning: no previous prototype for ‘sunxi_get_soc_ft_zone_str’ [-Wmissing-prototypes]
+  195 | int __attribute__((weak)) sunxi_get_soc_ft_zone_str(char *serial) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:196:27: warning: no previous prototype for ‘sunxi_get_soc_rotpk_status_str’ [-Wmissing-prototypes]
+  196 | int __attribute__((weak)) sunxi_get_soc_rotpk_status_str(char *status) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:197:27: warning: no previous prototype for ‘sunxi_get_pmu_chipid’ [-Wmissing-prototypes]
+  197 | int __attribute__((weak)) sunxi_get_pmu_chipid(unsigned char *chipid) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:198:27: warning: no previous prototype for ‘sunxi_get_serial’ [-Wmissing-prototypes]
+  198 | int __attribute__((weak)) sunxi_get_serial(unsigned char *serial) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:199:36: warning: no previous prototype for ‘sunxi_get_soc_bin’ [-Wmissing-prototypes]
+  199 | unsigned int __attribute__((weak)) sunxi_get_soc_bin(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:200:27: warning: no previous prototype for ‘sunxi_soc_is_secure’ [-Wmissing-prototypes]
+  200 | int __attribute__((weak)) sunxi_soc_is_secure(void) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:201:27: warning: no previous prototype for ‘sunxi_get_platform’ [-Wmissing-prototypes]
+  201 | s32 __attribute__((weak)) sunxi_get_platform(s8 *buf, s32 size) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:202:27: warning: no previous prototype for ‘sunxi_efuse_readn’ [-Wmissing-prototypes]
+  202 | s32 __attribute__((weak)) sunxi_efuse_readn(s8 *key_name, void *buf, u32 n) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:203:27: warning: no previous prototype for ‘sunxi_get_module_param_from_sid’ [-Wmissing-prototypes]
+  203 | int __attribute__((weak)) sunxi_get_module_param_from_sid(u32 *dst, u32 offset, u32 len) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:204:36: warning: no previous prototype for ‘sunxi_get_soc_markid’ [-Wmissing-prototypes]
+  204 | unsigned int __attribute__((weak)) sunxi_get_soc_markid(void) { return -ENOSYS; }
+      |                                    ^~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:205:26: warning: no previous prototype for ‘sunxi_sid_sram_read32’ [-Wmissing-prototypes]
+  205 | int __attribute__((weak))sunxi_sid_sram_read32(const char *key, u32 *data) { return -ENOSYS; }
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:206:27: warning: no previous prototype for ‘sunxi_sid_get_ecc_status’ [-Wmissing-prototypes]
+  206 | int __attribute__((weak)) sunxi_sid_get_ecc_status(void) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/include/sunxi-sid.h:207:27: warning: no previous prototype for ‘sunxi_get_soc_dvfs’ [-Wmissing-prototypes]
+  207 | int __attribute__((weak)) sunxi_get_soc_dvfs(u32 *dvfs) { return -ENOSYS; }
+      |                           ^~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:245:6: warning: no previous prototype for ‘_inno_phy_config_4k60’ [-Wmissing-prototypes]
+  245 | void _inno_phy_config_4k60(void)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:274:6: warning: no previous prototype for ‘_inno_phy_config_4k30’ [-Wmissing-prototypes]
+  274 | void _inno_phy_config_4k30(void)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:587:6: warning: no previous prototype for ‘inno_phy_set_reg_base’ [-Wmissing-prototypes]
+  587 | void inno_phy_set_reg_base(uintptr_t base)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c:592:11: warning: no previous prototype for ‘inno_phy_get_reg_base’ [-Wmissing-prototypes]
+  592 | uintptr_t inno_phy_get_reg_base(void)
+      |           ^~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_cec.o
+  CC      net/ipv6/sysctl_net_ipv6.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_cec.c:63:14: warning: no previous prototype for ‘dw_cec_get_logic_addr’ [-Wmissing-prototypes]
+   63 | unsigned int dw_cec_get_logic_addr(void)
+      |              ^~~~~~~~~~~~~~~~~~~~~
+  CC      net/ipv4/udp_tunnel_stub.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp.o
+  AR      net/packet/built-in.a
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp22.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp.c:410:4: warning: no previous prototype for ‘_dw_hdcp1x_status_handler’ [-Wmissing-prototypes]
+  410 | u8 _dw_hdcp1x_status_handler(int *param, u32 irq_stat)
+      |    ^~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      net/ipv6/netfilter.o
+  CC      net/ipv4/ip_tunnel.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp22.c:65:6: warning: no previous prototype for ‘_dw_hdcp2x_data_enable’ [-Wmissing-prototypes]
+   65 | void _dw_hdcp2x_data_enable(u8 enable)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+  CC      net/ipv4/sysctl_net_ipv4.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c:308:6: warning: no previous prototype for ‘esm_image_read_base_config’ [-Wmissing-prototypes]
+  308 | void esm_image_read_base_config(uint8_t *ptr, esm_hdmi_hdcp_controls *i_hdcp_c)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c:518:12: warning: no previous prototype for ‘esm_get_configuration’ [-Wmissing-prototypes]
+  518 | ESM_STATUS esm_get_configuration(esm_instance_t *esm, esm_config_t *returned_config)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c: In function ‘esm_get_configuration’:
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c:529:17: warning: variable ‘ctrl’ set but not used [-Wunused-but-set-variable]
+  529 |         uint8_t ctrl = 0;
+      |                 ^~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_log.o
+  CC      net/ipv6/proc.o
+  CC      net/ipv4/proc.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_auth.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_code.o
+  CC      net/ipv6/sit.o
+  CC      net/ipv6/addrconf_core.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_exceptions.o
+  CC      net/ipv4/tunnel4.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_exceptions.c:14:6: warning: no previous prototype for ‘esm_hostlib_put_exception’ [-Wmissing-prototypes]
+   14 | void esm_hostlib_put_exception(esm_instance_t *esm, uint32_t c)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_mailbox.o
+  CC      net/ipv6/exthdrs_core.o
+  CC      net/ipv4/netfilter.o
+  CC      net/ipv6/ip6_checksum.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_status.o
+  CC      drivers/gpu/drm/t736-bsp/sunxi_drm_trace.o
+  CC      net/ipv4/inet_diag.o
+  CC      net/ipv6/ip6_icmp.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_status.c:13:6: warning: no previous prototype for ‘boot_fail_check’ [-Wmissing-prototypes]
+   13 | void boot_fail_check(esm_instance_t *esm)
+      |      ^~~~~~~~~~~~~~~
+  AR      drivers/gpu/drm/t736-bsp/built-in.a
+  AR      drivers/gpu/drm/built-in.a
+  AR      drivers/gpu/built-in.a
+  CC      drivers/dma-buf/dma-buf.o
+  CC      drivers/dma-buf/dma-fence.o
+  CC      net/ipv6/output_core.o
+  CC      drivers/dma-buf/dma-fence-array.o
+  CC      net/ipv4/tcp_diag.o
+  CC      drivers/dma-buf/dma-fence-chain.o
+  CC      drivers/dma-buf/dma-fence-unwrap.o
+  CC      net/sysctl_net.o
+  CC      drivers/dma-buf/dma-resv.o
+  CC      net/ipv6/protocol.o
+  CC      net/ipv4/tcp_cubic.o
+  CC      drivers/dma-buf/sync_file.o
+  CC      drivers/dma-buf/dma-heap.o
+  CC      net/ipv6/ip6_offload.o
+  CC      net/ipv6/tcpv6_offload.o
+  CC      net/ipv4/tcp_bpf.o
+  AR      drivers/dma-buf/built-in.a
+  CC      drivers/scsi/scsi.o
+  CC      drivers/scsi/hosts.o
+  CC      net/ipv6/exthdrs_offload.o
+  CC      net/ipv6/inet6_hashtables.o
+  CC      net/ipv4/udp_bpf.o
+  CC      drivers/scsi/scsi_ioctl.o
+  CC      drivers/scsi/scsicam.o
+  CC      net/ipv6/mcast_snoop.o
+  CC      drivers/net/mii.o
+  CC      drivers/scsi/scsi_error.o
+  AR      net/ipv4/built-in.a
+  CC      drivers/net/loopback.o
+  AR      net/ipv6/built-in.a
+  AR      net/built-in.a
+  CC      drivers/net/phy/stubs.o
+  CC      drivers/net/phy/mdio_bus.o
+  CC      drivers/net/phy/mdio_device.o
+  CC      drivers/scsi/scsi_lib.o
+  CC      drivers/net/phy/phylink.o
+  CC      drivers/scsi/scsi_lib_dma.o
+  CC      drivers/scsi/scsi_scan.o
+  CC      drivers/net/mdio/fwnode_mdio.o
+  CC      drivers/net/mdio/of_mdio.o
+  CC      drivers/net/phy/phy.o
+  GEN     drivers/scsi/scsi_devinfo_tbl.c
+  CC      drivers/scsi/scsi_devinfo.o
+  CC      drivers/net/mdio/mdio-mux.o
+  CC      drivers/usb/common/common.o
+  CC      drivers/scsi/scsi_sysctl.o
+  AR      drivers/net/mdio/built-in.a
+  CC      drivers/scsi/scsi_proc.o
+  AR      drivers/usb/common/built-in.a
+  CC      drivers/net/phy/phy-c45.o
+  CC      drivers/usb/core/usb.o
+  CC      drivers/usb/phy/of.o
+  CC      drivers/scsi/scsi_debugfs.o
+  AR      drivers/usb/phy/built-in.a
+  CC      drivers/scsi/scsi_trace.o
+  CC      drivers/usb/core/hub.o
+  CC      drivers/net/phy/phy-core.o
+  CC      drivers/input/serio/serio.o
+  CC      drivers/scsi/scsi_logging.o
+  CC      drivers/net/phy/phy_device.o
+  CC      drivers/input/serio/serport.o
+  CC      drivers/scsi/scsi_pm.o
+  CC      drivers/input/serio/libps2.o
+  CC      drivers/usb/core/hcd.o
+  CC      drivers/scsi/scsi_bsg.o
+  AR      drivers/input/serio/built-in.a
+  CC      drivers/scsi/scsi_common.o
+  CC      drivers/net/phy/linkmode.o
+  CC      drivers/net/phy/phy_link_topology.o
+  CC      drivers/scsi/sd.o
+  CC      drivers/usb/core/urb.o
+  CC      drivers/usb/core/message.o
+  CC      drivers/net/phy/phy_caps.o
+  CC      drivers/net/phy/mdio_bus_provider.o
+  CC      drivers/input/input.o
+  CC      drivers/usb/core/driver.o
+  CC      drivers/scsi/scsi_sysfs.o
+  CC      drivers/net/phy/swphy.o
+  CC      drivers/net/phy/mdio_devres.o
+  CC      drivers/usb/core/config.o
+  CC      drivers/input/input-compat.o
+  AR      drivers/scsi/built-in.a
+  CC      drivers/i2c/i2c-boardinfo.o
+  CC      drivers/input/input-mt.o
+  CC      drivers/net/phy/fixed_phy.o
+  CC      drivers/i2c/i2c-core-base.o
+  CC      drivers/usb/core/file.o
+  CC      drivers/input/input-poller.o
+  CC      drivers/usb/core/buffer.o
+  CC      drivers/input/ff-core.o
+  CC      drivers/net/phy/realtek/realtek_main.o
+  CC      drivers/input/touchscreen.o
+  CC      drivers/i2c/i2c-core-smbus.o
+  CC      drivers/usb/core/sysfs.o
+  CC      drivers/input/touch-overlay.o
+  CC      drivers/i2c/i2c-core-of.o
+  AR      drivers/net/phy/realtek/built-in.a
+  AR      drivers/net/phy/built-in.a
+  CC      drivers/net/pcs/pcs-xpcs.o
+  CC      drivers/input/vivaldi-fmap.o
+  CC      drivers/usb/core/endpoint.o
+  CC      drivers/input/evdev.o
+  AR      drivers/i2c/built-in.a
+  CC      drivers/usb/core/devio.o
+  CC      drivers/usb/host/ehci-hcd.o
+  CC      drivers/net/pcs/pcs-xpcs-plat.o
+  CC      drivers/input/keyboard/atkbd.o
+  CC      drivers/net/pcs/pcs-xpcs-nxp.o
+  CC      drivers/usb/core/notify.o
+  AR      drivers/input/keyboard/built-in.a
+  CC      drivers/input/mouse/psmouse-base.o
+  CC      drivers/net/pcs/pcs-xpcs-wx.o
+  CC      drivers/usb/core/generic.o
+  CC      drivers/usb/host/ehci-platform.o
+  CC      drivers/input/mouse/synaptics.o
+  CC      drivers/usb/core/quirks.o
+  AR      drivers/net/pcs/built-in.a
+  CC      drivers/usb/host/ohci-hcd.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_main.o
+  CC      drivers/usb/core/devices.o
+  CC      drivers/input/mouse/focaltech.o
+  CC      drivers/usb/core/phy.o
+  CC      drivers/input/mouse/alps.o
+  CC      drivers/usb/host/ohci-platform.o
+  CC      drivers/usb/core/port.o
+  AR      drivers/usb/host/built-in.a
+  CC      drivers/usb/core/of.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_ethtool.o
+  CC      drivers/input/mouse/byd.o
+  AR      drivers/usb/core/built-in.a
+  CC      drivers/usb/storage/scsiglue.o
+  CC      drivers/input/mouse/logips2pp.o
+  CC      drivers/usb/storage/protocol.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.o
+  CC      drivers/net/ethernet/stmicro/stmmac/ring_mode.o
+  CC      drivers/input/mouse/trackpoint.o
+  CC      drivers/usb/storage/transport.o
+  CC      drivers/input/mouse/cypress_ps2.o
+  CC      drivers/input/mouse/psmouse-smbus.o
+  CC      drivers/net/ethernet/stmicro/stmmac/chain_mode.o
+  CC      drivers/usb/storage/usb.o
+  CC      drivers/usb/storage/initializers.o
+  AR      drivers/input/mouse/built-in.a
+  AR      drivers/input/built-in.a
+  CC      drivers/usb/storage/sierra_ms.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac_lib.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac1000_core.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac1000_dma.o
+  CC      drivers/usb/storage/option_ms.o
+  CC      drivers/usb/storage/usual-tables.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac100_core.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac100_dma.o
+  CC      drivers/net/ethernet/stmicro/stmmac/enh_desc.o
+  AR      drivers/usb/storage/built-in.a
+  AR      drivers/usb/built-in.a
+  CC      drivers/net/ethernet/stmicro/stmmac/norm_desc.o
+  CC      drivers/net/ethernet/stmicro/stmmac/mmc_core.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_hwtstamp.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac4_descs.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac4_lib.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac4_core.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac5.o
+  CC      drivers/net/ethernet/stmicro/stmmac/hwif.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_tc.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.o
+  CC      drivers/media/cec/core/cec-core.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_xdp.o
+  CC      drivers/media/cec/core/cec-adap.o
+  CC      drivers/media/cec/core/cec-api.o
+  CC      drivers/media/cec/core/cec-notifier.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_est.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_fpe.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_vlan.o
+  AR      drivers/media/cec/core/built-in.a
+  AR      drivers/media/cec/built-in.a
+  AR      drivers/media/built-in.a
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_selftests.o
+  CC      drivers/net/ethernet/stmicro/stmmac/stmmac_platform.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac-sunxi.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac-sun55i.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac-generic.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac-t736.o
+  CC      drivers/power/supply/power_supply_core.o
+  CC      drivers/power/supply/power_supply_sysfs.o
+  CC      drivers/mmc/core/core.o
+  AR      drivers/net/ethernet/stmicro/stmmac/built-in.a
+  AR      drivers/net/ethernet/stmicro/built-in.a
+  AR      drivers/net/ethernet/built-in.a
+  AR      drivers/net/built-in.a
+  CC      drivers/firmware/psci/psci.o
+  AR      drivers/power/supply/built-in.a
+  AR      drivers/power/built-in.a
+  CC      drivers/clocksource/timer-of.o
+  CC      drivers/hid/hid-core.o
+  CC      drivers/clocksource/timer-probe.o
+  AR      drivers/firmware/psci/built-in.a
+  CC      drivers/mmc/core/bus.o
+  CC      drivers/firmware/smccc/smccc.o
+  CC      drivers/clocksource/mmio.o
+  CC      drivers/firmware/smccc/kvm_guest.o
+  CC      drivers/mmc/core/host.o
+  CC      drivers/hid/hid-input.o
+  CC      drivers/clocksource/timer-sun4i.o
+  AR      drivers/firmware/smccc/built-in.a
+  AR      drivers/firmware/built-in.a
+  CC      drivers/of/base.o
+  CC      drivers/clocksource/arm_arch_timer.o
+  CC      drivers/mmc/core/mmc.o
+  CC      drivers/of/cpu.o
+  CC      drivers/clocksource/arm_arch_timer_mmio.o
+  CC      drivers/hid/hid-quirks.o
+  CC      drivers/of/device.o
+  CC      drivers/clocksource/dummy_timer.o
+  CC      drivers/mmc/core/mmc_ops.o
+  CC      drivers/hid/hid-debug.o
+  CC      drivers/of/module.o
+  AR      drivers/clocksource/built-in.a
+  CC      drivers/of/platform.o
+  CC      drivers/hid/hid-generic.o
+  CC      drivers/hid/usbhid/hid-core.o
+  CC      drivers/mmc/core/sd.o
+  CC      drivers/of/property.o
+  CC      drivers/of/kobj.o
+  CC      drivers/of/fdt.o
+  CC      drivers/mmc/core/sd_ops.o
+  AR      drivers/hid/usbhid/built-in.a
+  AR      drivers/hid/built-in.a
+  CC      drivers/mmc/core/sdio.o
+  CC      drivers/mmc/core/sdio_ops.o
+  DTC     drivers/of/empty_root.dtb
+  CC      drivers/of/fdt_address.o
+  CC      drivers/of/address.o
+  CC      drivers/mmc/core/sdio_bus.o
+  CC      drivers/of/irq.o
+  CC      drivers/of/of_reserved_mem.o
+  CC      drivers/mmc/core/sdio_cis.o
+  CC      drivers/mmc/core/sdio_io.o
+  CC      drivers/mmc/host/t736_mmc_pio.o
+  WRAP    drivers/of/empty_root.dtb.S
+  AS      drivers/of/empty_root.dtb.o
+  AR      drivers/of/built-in.a
+  CC      drivers/mmc/core/sdio_irq.o
+  CC      drivers/mmc/core/sd_uhs2.o
+  AR      drivers/mmc/host/built-in.a
+  CC      drivers/mmc/core/slot-gpio.o
+  CC      drivers/mmc/core/regulator.o
+  CC      drivers/mmc/core/pwrseq.o
+  CC      drivers/mmc/core/debugfs.o
+  CC      drivers/mmc/core/pwrseq_simple.o
+  CC      drivers/mmc/core/pwrseq_emmc.o
+  CC      drivers/mmc/core/block.o
+  CC      drivers/mmc/core/queue.o
+  AR      drivers/mmc/core/built-in.a
+  AR      drivers/mmc/built-in.a
+  AR      drivers/built-in.a
+  AR      built-in.a
+  AR      vmlinux.a
+  LD      vmlinux.o
+  MODPOST Module.symvers
+  CC      .vmlinux.export.o
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-media-v17'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-media-v17'

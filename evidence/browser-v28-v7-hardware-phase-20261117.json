@@ -1,0 +1,377 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "V28_INSTALLED_AND_RUNNING_V7_PARTIAL_IMPROVEMENT_1080P60_NOT_ACCEPTED",
+  "hardware_operator": "root",
+  "recorder": "backup_audit",
+  "recorder_board_access": false,
+  "scope": "This is a sealed phase record for v28/backend4/backend5/FFmpegv6-v7 before the subsequent shared-memory transport experiment. It does not update status.json or README.",
+  "installation": {
+    "stage_result": "build/browser-fixture-20261117/v28-before-v7-private/v28-stage-result.json",
+    "status": "STAGED_NOT_SELECTED_NOT_BOOT_TESTED",
+    "backup_directory": "/var/backups/t736-media-v28/20261117T053330Z-pen_2022",
+    "staged_from_running_release": "6.18.63-t736-media-v27",
+    "candidate_release": "6.18.63-t736-media-v28",
+    "stage_did_not_select_or_reboot": true,
+    "v16_persistent_default_unchanged_at_stage": true,
+    "v27_files_unchanged_at_stage": true,
+    "kernel_config_dtb_pvr_hashes_match_independent_package_audit": true,
+    "final_hashes": {
+      "config": "01b9b37c952ae8264226acb076540b700fcbfd7eae6bf0c7d16a363a01900e9d",
+      "dtb": "45012aeb86d657fca568417e831067170d12e224ebe71720c1956989af6f3626",
+      "initrd": "15469e6bd5879546742447abd2feda7c2b8867e4e5e9a277774b9c8fb189d056",
+      "kernel": "3f172bb815163b6a92332f5819efdbd0b6379d191e6809d4cdb5796a18918d09",
+      "modules_dep": "a04354f94edd7ebf9b94fe65b273460c00e8a0d4b60956054937f43544b0230b",
+      "pvr": "497898feb827a3f933c2c783d881d54e095654e0e42598ddb222ba19ab95f847"
+    },
+    "initrd_and_modules_dep_hash_scope": "Board-generated values recorded by staging; these two have no independent build-host byte comparison."
+  },
+  "runtime": {
+    "uname_from_serial": "6.18.63-t736-media-v28",
+    "source": "build/browser-fixture-20261117/60fps-v28-rail-clock.log",
+    "ve_clock_framework_rate_hz": 400000000,
+    "dcdc2_programmed_setpoint_uv": 900000,
+    "dcdc2_raw_hex": "28",
+    "enable_raw_hex": "ff",
+    "phase_raw_hex": "00",
+    "feedback_raw_hex": "00",
+    "dvm": 0,
+    "remote_feedback": 1,
+    "voltage_scope": "PMIC programmed setpoint readback, not a measured rail voltage. clk_rate is the kernel clock-framework readback, not external frequency measurement.",
+    "persistent_boot_selection_scope": "The raw stage record proves no persistent selection change during installation; later running-v28 identity is separately confirmed by serial uname. Do not infer a new persistent default solely from uname."
+  },
+  "measurements": [
+    {
+      "name": "60fps-v28-backend4-rdd-big",
+      "video_window_seconds": 20.334090773000014,
+      "irq_window_seconds": 20.457136741,
+      "irq_delta": 1231,
+      "irq_per_second": 60.17459899619488,
+      "total_frames": 1220,
+      "dropped_frames": 1011,
+      "moz_presented_frames": null,
+      "moz_painted_frames": null,
+      "last_moz_frame_delay_ms": null,
+      "non_dropped_browser_counter_per_second": 10.278305646078561,
+      "rvfc_frame_id_rate_not_physical_present": 59.99903844549998,
+      "raw": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend4-rdd-big.json"
+    },
+    {
+      "name": "60fps-v28-backend4-unpinned",
+      "video_window_seconds": 20.386357041999986,
+      "irq_window_seconds": 20.511833574999997,
+      "irq_delta": 1221,
+      "irq_per_second": 59.526614017001656,
+      "total_frames": 1201,
+      "dropped_frames": 1113,
+      "moz_presented_frames": null,
+      "moz_painted_frames": null,
+      "last_moz_frame_delay_ms": null,
+      "non_dropped_browser_counter_per_second": 4.3166123215983285,
+      "rvfc_frame_id_rate_not_physical_present": 59.41626196834115,
+      "raw": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend4-unpinned.json"
+    },
+    {
+      "name": "60fps-v28-backend5-paused-prime",
+      "video_window_seconds": 20.31749928399995,
+      "irq_window_seconds": 20.404277288999992,
+      "irq_delta": 1217,
+      "irq_per_second": 59.6443570513565,
+      "total_frames": 1210,
+      "dropped_frames": 1036,
+      "moz_presented_frames": 174,
+      "moz_painted_frames": 171,
+      "last_moz_frame_delay_ms": 113.24606800000001,
+      "non_dropped_browser_counter_per_second": 8.564046075149866,
+      "rvfc_frame_id_rate_not_physical_present": 59.58899379445743,
+      "raw": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-paused-prime.json"
+    },
+    {
+      "name": "60fps-v28-backend5-queue20",
+      "video_window_seconds": 20.381749362999926,
+      "irq_window_seconds": 20.499652970000056,
+      "irq_delta": 1214,
+      "irq_per_second": 59.22051469732742,
+      "total_frames": 1212,
+      "dropped_frames": 965,
+      "moz_presented_frames": 247,
+      "moz_painted_frames": 234,
+      "last_moz_frame_delay_ms": 171.385603,
+      "non_dropped_browser_counter_per_second": 12.118684986304082,
+      "rvfc_frame_id_rate_not_physical_present": 59.41689086901616,
+      "raw": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-queue20.json"
+    },
+    {
+      "name": "60fps-v28-backend5-rdd-big",
+      "video_window_seconds": 20.46326500400005,
+      "irq_window_seconds": 20.57062211599998,
+      "irq_delta": 1234,
+      "irq_per_second": 59.98846282048931,
+      "total_frames": 1231,
+      "dropped_frames": 1028,
+      "moz_presented_frames": null,
+      "moz_painted_frames": null,
+      "last_moz_frame_delay_ms": null,
+      "non_dropped_browser_counter_per_second": 9.920215564833796,
+      "rvfc_frame_id_rate_not_physical_present": 59.96164017547081,
+      "raw": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-rdd-big.json"
+    },
+    {
+      "name": "60fps-v28-native-control",
+      "video_window_seconds": 20.514514539999936,
+      "irq_window_seconds": 20.631402206000075,
+      "irq_delta": 0,
+      "irq_per_second": 0.0,
+      "total_frames": 1230,
+      "dropped_frames": 24,
+      "moz_presented_frames": 1206,
+      "moz_painted_frames": 1222,
+      "last_moz_frame_delay_ms": 3.572048,
+      "non_dropped_browser_counter_per_second": 58.78764509140579,
+      "rvfc_frame_id_rate_not_physical_present": 59.96317671148177,
+      "raw": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-native-control.json"
+    },
+    {
+      "name": "60fps-v28-ffmpeg7-queue20-prime",
+      "video_window_seconds": 20.361203976999832,
+      "irq_window_seconds": 20.48604315500006,
+      "irq_delta": 1215,
+      "irq_per_second": 59.30867131378921,
+      "total_frames": 1219,
+      "dropped_frames": 809,
+      "moz_presented_frames": 410,
+      "moz_painted_frames": 411,
+      "last_moz_frame_delay_ms": 49.058738999999996,
+      "non_dropped_browser_counter_per_second": 20.136333807329816,
+      "rvfc_frame_id_rate_not_physical_present": 59.81025173165851,
+      "raw": "build/browser-fixture-20261117/ffmpeg7-private/60fps-v28-ffmpeg7-queue20-prime.json"
+    },
+    {
+      "name": "60fps-v28-ffmpeg7",
+      "video_window_seconds": 20.489318393000076,
+      "irq_window_seconds": 20.60511522999991,
+      "irq_delta": 1242,
+      "irq_per_second": 60.276294800415215,
+      "total_frames": 1235,
+      "dropped_frames": 867,
+      "moz_presented_frames": 368,
+      "moz_painted_frames": 368,
+      "last_moz_frame_delay_ms": 41.87337,
+      "non_dropped_browser_counter_per_second": 17.96057794317466,
+      "rvfc_frame_id_rate_not_physical_present": 60.19016009902471,
+      "raw": "build/browser-fixture-20261117/ffmpeg7-private/60fps-v28-ffmpeg7.json"
+    }
+  ],
+  "active_debug_before_v7": {
+    "samples": 21,
+    "raw": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-active-debug.json",
+    "sink_queue_sizes_observed": [
+      1
+    ],
+    "has_decode_promise_samples": 21,
+    "decoded_end_minus_clock_ms_min": -111.028,
+    "decoded_end_minus_clock_ms_max": -22.633,
+    "sink_dropped_first": 2,
+    "sink_dropped_last": 1005,
+    "sink_dropped_delta": 1003,
+    "compositor_dropped_first": 2,
+    "compositor_dropped_last": 2,
+    "interpretation": "This window localizes most counted losses to late video-sink delivery, with outstanding decode promises and a shallow sink queue. It does not demonstrate GPU saturation as the main loss source."
+  },
+  "bounded_replays": [
+    {
+      "name": "hevc-60fps-v28-backend4-exact.json",
+      "frames": 180,
+      "raw_reports_all_frames_exact": true,
+      "recorder_md5_and_pts_equal_prior_v27_run": true,
+      "first_frame_seconds": 1.9264990939999933,
+      "wall_seconds_including_hashing": 7.002231543999997,
+      "close_result": 0
+    },
+    {
+      "name": "hevc-60fps-v28-backend5-exact-r2.json",
+      "frames": 180,
+      "raw_reports_all_frames_exact": true,
+      "recorder_md5_and_pts_equal_prior_v27_run": true,
+      "first_frame_seconds": 1.5040916450000168,
+      "wall_seconds_including_hashing": 6.470806396,
+      "close_result": 0
+    }
+  ],
+  "preserved_failed_attempt": {
+    "path": "build/browser-fixture-20261117/v28-before-v7-private/hevc-60fps-v28-backend5-exact.json",
+    "error": "AssertionError('Preconnected client unavailable')",
+    "frames": 0,
+    "interpretation": "Client preconnection failure before decoding; retained separately from the successful r2 retry."
+  },
+  "conclusions": [
+    "v28 was staged with the protected v16 default and v27 files preserved, then is independently observed running with VE400MHz clock-framework rate and a900000uV DCDC2 programmed setpoint.",
+    "FFmpegv7 bounded batches improve the recorded browser delivery counters relative to several prior candidate windows, but1235total/867dropped and1219total/809dropped with queue20 remain far from1080p60 acceptance.",
+    "The v7 ordinary and queue20+prime video windows are20.489s and20.361s; their IRQ windows are different20.605s and20.486s. Last mozFrameDelay values are41.873ms and49.059ms, not window averages.",
+    "Average IRQ near60/s and rVFC metadata frame-ID rates near60/s must not be reported as actual60fps presentation. mozPresentedFrames and mozPaintedFrames are browser counters, also not a physical scanout measurement.",
+    "The separate native control has IRQ delta0 and24dropped/1230total, useful for comparison but not acceptance of the Cedar hardware path.",
+    "All successful180-frame hardware replay MD5/PTS arrays match one another across v27/v28/backend4/backend5. The supplied phase packages omit the original software framemd5 reference, so this recorder verifies cross-run equality rather than independently repeating software-reference pixel comparison."
+  ],
+  "acceptance": {
+    "v28_installed": true,
+    "v28_running_observed": true,
+    "v7_final_solution": false,
+    "1080p60": false,
+    "physical_scanout_fps": false,
+    "production": false,
+    "subsequent_shm_result_inferred": false,
+    "status_json_or_readme_modified": false,
+    "public_upload": false
+  },
+  "archives": [
+    {
+      "path": "build/browser-fixture-20261117/browser-v28-before-v7-private.tar.gz",
+      "bytes": 30940,
+      "sha256": "f79aa58b83122cac26709d97e89870791f80000b49a387530469ed2c9deedb28",
+      "extracted_files_compared": 21
+    },
+    {
+      "path": "build/browser-fixture-20261117/browser-ffmpeg7-private.tar.gz",
+      "bytes": 5589,
+      "sha256": "1c030e16a79be4416b1a2eb27d103ceee8424e8e28652bbc22c949b6569c7639",
+      "extracted_files_compared": 4
+    }
+  ],
+  "files": [
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-active-debug.json",
+      "bytes": 111025,
+      "sha256": "dc6fd9eab4ebd0961e9ff4d8c5c55da0035e0943588478671a0bd1b131c3106a"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend4-rdd-big.json",
+      "bytes": 17181,
+      "sha256": "75244d7c8e9ac99c1e4f1e3ad8778fadec8de84da1c6df771a7b9b67fe9f85ef"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend4-service.log",
+      "bytes": 53854,
+      "sha256": "9e15fa40574686ea84327c591b72d4074c61b577695dff8738e23cf41ff53523"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend4-unpinned.json",
+      "bytes": 17198,
+      "sha256": "cd34e6b44c92dfab9bb0c717abd8ff6a25bc5e54aa32c9a356ada7059e638b3c"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-paused-prime.json",
+      "bytes": 20180,
+      "sha256": "49e518daa493ac34f0404126abe6e329e44e4559093e6558448e3d6b980810ef"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-queue20.json",
+      "bytes": 20189,
+      "sha256": "5051934cc087be13961929ab776262460f00298324ddd3eb92ebb8635ef817e6"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-rdd-affinity.log",
+      "bytes": 360,
+      "sha256": "e4af4961b2237dc622cb4243c77a65f885010ddcfb6e76b53e0c66cb1b9e4428"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-rdd-big.json",
+      "bytes": 17124,
+      "sha256": "3241c98f27db129e84f72a6ef08fe2460e360d4539119a13c67668bb70c3e4f5"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-service.log",
+      "bytes": 151192,
+      "sha256": "08512431e35c104dca5a506196fec55527926ce8cd5359b938a6122ac325bc17"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-thread-cpu.json",
+      "bytes": 2075,
+      "sha256": "ac21550018367f6a832f73e58f694ad282efbc720524a71c206144edf07e5d09"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-debug-queue20.json",
+      "bytes": 4881,
+      "sha256": "1e012e08628588d47d9efa57d7dff679f958cbb3b069f4735f643545d5a065f1"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-dmabufs.log",
+      "bytes": 12357,
+      "sha256": "3f8e85c2fe0ee52adf56f7db527950b92e525a3696ecab0ce2acaa8b62f958a4"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-native-control.json",
+      "bytes": 20161,
+      "sha256": "d0cc0c87f0ae9229cc003d59fce42fa7cd580cf61dc8c4bc376a300de32c065d"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-rdd-affinity.log",
+      "bytes": 360,
+      "sha256": "56c787656e6ab62ba09a4cc38c9665945b89c701eef777bb230d039818551bc5"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/firefox-60fps-v28-backend4.log",
+      "bytes": 2503,
+      "sha256": "56600c2745fe5058596832cd92ac94a8c266c2869bf3902ed8821641759bc6ec"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/firefox-60fps-v28-backend5.log",
+      "bytes": 4042,
+      "sha256": "0894e1911dacb32c68f3daca9bb897463532eb2afc39ac0685aefad1422d9f82"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/firefox-60fps-v28-native-control.log",
+      "bytes": 1486,
+      "sha256": "97dd36e3c1550c831cad938f80859998f8b030be48210151e4016658b9592719"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/hevc-60fps-v28-backend4-exact.json",
+      "bytes": 10023,
+      "sha256": "68a1a68ad067bd3b4afb78c1e9a2d9376266a600294af4bca82c6d6885b13127"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/hevc-60fps-v28-backend5-exact-r2.json",
+      "bytes": 10017,
+      "sha256": "73f186b20c241e026119864ff3147fd0058575dd65c066749b5136dbe252fff3"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/hevc-60fps-v28-backend5-exact.json",
+      "bytes": 437,
+      "sha256": "f399b15a342b7947402c11d1865839cb189321f26145ccbf8b9433dc48e0c16b"
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/v28-stage-result.json",
+      "bytes": 1251,
+      "sha256": "61634fdbb9126879bc43db47d0330fc1c2349b00ba187126c7341bba31111868"
+    },
+    {
+      "path": "build/browser-fixture-20261117/ffmpeg7-private/60fps-v28-ffmpeg7-queue20-prime.json",
+      "bytes": 20179,
+      "sha256": "1690d4dfda43bcd29c9d3a779c5eb5e7a9627d9e0dd6758d325416e3da798cda"
+    },
+    {
+      "path": "build/browser-fixture-20261117/ffmpeg7-private/60fps-v28-ffmpeg7-rdd-affinity.log",
+      "bytes": 360,
+      "sha256": "6b18ade10c04298a999a23090f3fe5fde749fe67a25a09263298698b999b64e2"
+    },
+    {
+      "path": "build/browser-fixture-20261117/ffmpeg7-private/60fps-v28-ffmpeg7.json",
+      "bytes": 20263,
+      "sha256": "03f585d8f1ffed0ca5a9bd12eaf11704c6922a853efe2489f6303cafe3e13d9f"
+    },
+    {
+      "path": "build/browser-fixture-20261117/ffmpeg7-private/firefox-60fps-v28-ffmpeg7.log",
+      "bytes": 5231,
+      "sha256": "b4eef6890ba02b33ae7a0212e59f71013e72b20e88845055817193fd0cc90038"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v28-rail-clock.log",
+      "bytes": 302,
+      "sha256": "24367b42f74777a4865c0f3ad2f8d1fc663f09994cf6f78ea47824e9a0f743df"
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v28-boot.log",
+      "bytes": 6721,
+      "sha256": "bdba29b4d5620ad5c34cb9f670a2fb3996c988b7e5ede34f8260e8a3de5dd4b3"
+    }
+  ]
+}

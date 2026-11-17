@@ -1,0 +1,38 @@
+{
+  "control": {
+    "mode": 420,
+    "type": "file",
+    "sha256": "525816bc0a3fc373b4b36f234eaf7d66dd355a830acad2e8a02f38f02bf0bf6a",
+    "bytes": 414
+  },
+  "md5sums": {
+    "mode": 420,
+    "type": "file",
+    "sha256": "3a07c3dce912fef72c6a3ee2d7d9b91bbbc027e7bcd5d1ee211b4c871529d868",
+    "bytes": 9149
+  },
+  "postinst": {
+    "mode": 493,
+    "type": "file",
+    "sha256": "7177dc2bfa7f30a7f2c1dc536e5039bce2730a94873ff150392c84ac88dca802",
+    "bytes": 586
+  },
+  "postrm": {
+    "mode": 493,
+    "type": "file",
+    "sha256": "80fd77e5ffb01398dfa703e85e5c572e31db750a914c7e2c11833067b40ab73c",
+    "bytes": 582
+  },
+  "preinst": {
+    "mode": 493,
+    "type": "file",
+    "sha256": "7eb0f245b05660197c51d863c121111058639651e82ca9d42160e711251560f5",
+    "bytes": 584
+  },
+  "prerm": {
+    "mode": 493,
+    "type": "file",
+    "sha256": "962ed435f7bc757b2c230aa3ffa07102f2f7feeb7e5155894e85362fd73a0d5c",
+    "bytes": 580
+  }
+}

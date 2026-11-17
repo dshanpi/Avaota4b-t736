@@ -1,0 +1,29 @@
+6.18.63-t736-media-v27
+crw------- 1 root root  10, 256 11月17日 03:25 /dev/cedar_dev
+crw------- 1 root root 253,   0 11月17日 03:25 /dev/dma_heap/t736-ve
+[    0.020675] pid_max: default: 32768 minimum: 301
+[    0.511774] t736-ve-power 7062000.power-controller: VE_DEC PPU=ON, 200MHz, DEC0/1 bypass verified; reset held
+[    0.747787] [drm:commit_init_connecting.isra.0] *ERROR* offline mode: init connecting not found sunxi_drm_offline_mode_pre_init
+[    0.795411] t736-cedar-wc 1c0e000.video-codec: Cedar decoder + private 32-bit WC heap; root-only, fixed-frequency bring-up
+[    1.405703] [drm] sunxi-hdmi: [error] dw edid parse dtd timing pixel clock[0KHz] invalid!
+[    6.451826] GPT: Use GNU Parted to correct GPT errors.
+[    8.572583] systemd[1]: Queued start job for default target graphical.target.
+    t736-ve-iommu1-mbus              1       1        0        600000000   0          0     50000      Y      7062000.power-controller        iommu1-mbus              
+    t736-ve-mbus                     1       1        0        600000000   0          0     50000      Y      7062000.power-controller        mbus                     
+    t736-ve-mbus-master              1       1        0        600000000   0          0     50000      Y      7062000.power-controller        mbus-master              
+    t736-ve-iommu1-sys               1       1        0        200000000   0          0     50000      Y      7062000.power-controller        iommu1-sys               
+    t736-ve-ahb                      1       1        0        200000000   0          0     50000      Y      7062000.power-controller        ahb                      
+    t736-ve-bus                      1       1        0        200000000   0          0     50000      Y      7062000.power-controller        bus                      
+    t736-ve-peri800                  1       1        0        800000000   0          0     50000      Y      deviceless                      no_connection_id         
+       t736-ve-dec                   1       1        0        200000000   0          0     50000      Y         1c0e000.video-codec             ve                       
+clock:		200000000 Hz
+actual clock:	200000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	10 (mmc HS400)
+signal voltage:	1 (1.80 V)
+driver type:	0 (driver type B)
+active

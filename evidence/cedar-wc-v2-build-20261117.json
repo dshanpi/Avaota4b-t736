@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "package": "/home/ubuntu/t736-mainline/build/cedar-wc-v2-20261117/t736-cedar-wc-v2.tar.gz",
+  "bytes": 1149520,
+  "sha256": "daae95f7620f09fa02bb8a46f3d2231bb8b2fdca09a12a46791034f94ba960e0",
+  "manifest_sha256": "d70a37314ab0d4d47a6e5e40e1898ef7e57b334e9be0379d098bd1161e14a591",
+  "plugin_sha256": "7af9a4bfc5ecf0f617d5979a162c956630e598d34b2595d4659344c35986695b",
+  "source_patch_sha256": "38fa5ec9b01040fc5f2e1c5b87391df31627ed5f98bb5375b824f6f34a830831"
+}

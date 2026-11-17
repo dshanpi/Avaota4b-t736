@@ -1,0 +1,184 @@
+{
+  "schema": "t736-browser-hevc-v6-live-candidate-v1",
+  "date": "2026-11-17",
+  "status": "RAW_BOUND_BOUNDED_CAPTURE_AND_WEBPAGE_OBSERVATION_NOT_PRODUCTION",
+  "record_owner": "backup_audit",
+  "hardware_operator": "root",
+  "source": "Root-operated board results downloaded by root, independently parsed and cross-checked by backup_audit. Runtime library identity and capture IRQ delta remain operator reports, not proven by these four raw files.",
+  "board_access_by_record_owner": false,
+  "versions_reported": {
+    "kernel": "6.18.63-t736-media-v27",
+    "ffmpeg_wrapper": "v6",
+    "ffmpeg_libavcodec_sha256": "abaf5db087ab97398f87dd6439d084b51b6ce6e715d4f80ed89defe6df4b9a35",
+    "backend": "v4",
+    "backend_sha256": "8c45bb1f752e66fda68aaee973a288778ca1af4a2b52946a71013e62fe2146dd",
+    "omx_wc": "v5",
+    "omx_plugin_sha256": "08f27091eebc0bfd1f6f0e542025555d142e0ae79726739217b6b5443ed9db37"
+  },
+  "raw_bindings": {
+    "capture_replay": {
+      "path": "build/browser-fixture-20261117/v6-current-private/bilibili-hardware-first64-v6.json",
+      "bytes": 4071,
+      "sha256": "86252c4d916c62ca8e44f1d590a0ea76b1383221a723fded250761d59eba60d7"
+    },
+    "first_webpage_measurement": {
+      "path": "build/browser-fixture-20261117/v6-current-private/bilibili-live-v6-30s.json",
+      "bytes": 24414,
+      "sha256": "0bd98c425aecfbdb8057355996a92bc90f174af6a56ec2f2a09eeff9cac70325"
+    },
+    "corrected_webpage_measurement": {
+      "path": "build/browser-fixture-20261117/v6-current-private/bilibili-live-v6-30s-second.json",
+      "bytes": 27677,
+      "sha256": "5d5447752d437a6f06a594963d1833435ab36fdb32d15afb44ebd02538847926"
+    },
+    "runtime_library_identity": null,
+    "heap_snapshot": null,
+    "firefox_log": {
+      "path": "build/browser-fixture-20261117/v6-current-private/firefox-cedar-bilibili-v6.log",
+      "bytes": 4065,
+      "sha256": "ad6b3e7936d17a34a555cf24cf133e50ecef07d28c97df3d7bb80eaa75dcd14e"
+    },
+    "private_download_archive": {
+      "path": "build/browser-fixture-20261117/bili-v6-current-private.tar.gz",
+      "bytes": 7651,
+      "sha256": "3d560e43fcaaec2cab5926f013f4de5a0468f5695f4eccfb6a7ba7954a921017"
+    },
+    "software_frame_reference": {
+      "path": "build/browser-fixture-20261117/private-pre-reboot/software-reference/reference-i420.framemd5",
+      "bytes": 5336,
+      "sha256": "38a8b42d87998067b554ca341d22712e35d7a7b06a88ecb8adb52285312ca608"
+    },
+    "capture_packet_metadata": {
+      "path": "build/browser-fixture-20261117/private-pre-reboot/software-reference/capture-record.json",
+      "bytes": 7069,
+      "sha256": "e82239b008548b4040c39896312379bb3fec146737be15e8598deafe8ad994f6"
+    }
+  },
+  "operator_reported_capture_replay": {
+    "status": "RAW_VERIFIED_64_FRAME_MD5_AND_SORTED_INPUT_PTS_MATCH",
+    "captured_wrapper_version": "v4; the private capture filename contains v5 and is not the runtime version authority",
+    "access_units": 64,
+    "frames": 64,
+    "all_frame_md5_and_pts_exact": true,
+    "ve_irq_delta": 64,
+    "first_frame_seconds": 1.9139642319999837,
+    "close_result": 0,
+    "inference": "The private captured stream decoded successfully with fresh WC v5/backend v4. This does not uniquely identify the cause of earlier failures.",
+    "elapsed_seconds_including_hashes": 3.7244496149999975,
+    "ve_irq_delta_scope": "Operator report only; raw replay JSON has no IRQ fields"
+  },
+  "operator_reported_first_webpage_measurement": {
+    "status": "RAW_COUNTERS_AND_BOUNDED_SAMPLES_VERIFIED",
+    "site": "Bilibili",
+    "browser": "Firefox with private FFmpeg v6",
+    "source_fps_approximately": 30,
+    "video_size": [
+      1920,
+      1080
+    ],
+    "playback_rate": 1,
+    "wall_seconds": 30.797945975999994,
+    "ve_irq_delta": 923,
+    "total_video_frames_delta": 920,
+    "dropped_video_frames_delta": 6,
+    "media_seconds_delta": 30.688,
+    "rdd_cpu_percent": 19.5,
+    "broker_cpu_percent": 60.5,
+    "cpu_percent_unit": "100 percent equals one fully used CPU core",
+    "main_thread_rvfc_callback_fps": 23.72,
+    "rvfc_callback_fps_is_display_scanout_fps": false,
+    "corrected_instrumentation_result": "Bound below as corrected_webpage_measurement"
+  },
+  "historical_results_retained": {
+    "local_1080p30_180_frames": {
+      "ve_irq_delta": 180,
+      "dropped_video_frames": 5,
+      "rdd_cpu_percent_approximately": 17,
+      "broker_cpu_percent_approximately": 45
+    },
+    "local_1080p60_180_frames": {
+      "dropped_video_frames": 123,
+      "accepted": false
+    },
+    "earlier_website_v4": {
+      "submitted_packets": 64,
+      "hardware_frames": 0,
+      "native_fallback": true,
+      "first_captured_au_nal_types": [
+        32,
+        33,
+        34,
+        39,
+        32,
+        33,
+        34,
+        39,
+        20
+      ],
+      "missing_parameters_demonstrated_as_root_cause": false
+    }
+  },
+  "software_regression_reference": {
+    "path": "evidence/browser-ffmpeg-v6-first-frame-review-20261117.json",
+    "checks": 8311,
+    "kind": "Actual candidate ARM64 libraries under QEMU with a stub client; no hardware access"
+  },
+  "interpretation_limits": [
+    "Raw result files are bound and internally checked. Runtime lib maps/hashes, capture IRQ64 and heap state are still operator reports unless separately bound.",
+    "The current source is approximately 30 fps. These observations do not establish 60 fps playback.",
+    "The first rVFC measurement counts main-thread callback deliveries, not physical display presentation.",
+    "The corrected rVFC metadata presentedFrames counter describes browser/compositor submission; it still does not prove physical display scanout.",
+    "totalVideoFrames minus droppedVideoFrames is a browser counter difference, not a display presentation measurement.",
+    "IRQ, CPU and video sampling windows are not perfectly synchronized; IRQ and frame increments must not be interpreted as exact one-to-one correspondence.",
+    "Short bounded observations do not establish long-term MSE, repeated seek, codec/configuration change, memory-budget or production stability.",
+    "The 128 MiB private heap quarantine and lack of proven DMA drain or IOMMU isolation remain unchanged.",
+    "Historical approximately 120 MiB usage is not a fresh-boot current-usage measurement.",
+    "No raw user media, authentication data or private vendor libraries are embedded in this record.",
+    "Process CPU selection matches all Firefox processes by command line, not solely a verified candidate process tree.",
+    "First raw measurement retains the legacy effective_delivered_fps field. Its name is misleading; it is not used as physical presentation evidence.",
+    "Corrected rVFC metadata reports about31.07fps for an approximately30fps source; browser API counters and callback timing do not by themselves measure unique displayed source frames."
+  ],
+  "acceptance": {
+    "physical_present_fps_verified": false,
+    "1080p60_accepted": false,
+    "long_term_stability_accepted": false,
+    "production_accepted": false,
+    "status_json_modified_by_record_owner": false,
+    "public_publication": false,
+    "bounded_capture_pixels_and_pts_verified": true,
+    "bounded_webpage_counters_verified": true
+  },
+  "corrected_webpage_measurement": {
+    "status": "RAW_COUNTERS_AND_BOUNDED_SAMPLES_VERIFIED",
+    "wall_seconds": 30.957578203000025,
+    "ve_irq_delta": 929,
+    "summary": {
+      "total_frames_delta": 926,
+      "dropped_frames_delta": 0,
+      "media_seconds_delta": 30.87163099999998,
+      "sample_seconds": 30.862629122000044,
+      "browser_non_dropped_frames_per_second": 30.003924692854905,
+      "video_size": [
+        1920,
+        1080
+      ],
+      "rate": 1,
+      "main_thread_callback_fps": 23.675624485136275,
+      "rvfc_reported_presented_frames_per_second": 31.07020309145281
+    },
+    "rdd_cpu_percent": 18.283083912072627,
+    "broker_cpu_percent": 48.614913935811494,
+    "cpu_percent_unit": "100 percent equals one fully used CPU core",
+    "samples": 31,
+    "all_sampled_video_states": "1920x1080, rate1, playing, no video error; monotonic sampled media time and total frame counter",
+    "presented_frames_note": "rVFC metadata increased958 while totalVideoFrames increased926 over nearby windows. 31.0702fps is retained as an API observation, not accepted physical presentation or unique source-frame rate."
+  },
+  "independent_checks": [
+    "All64 hardware frame MD5 values exactly equal software reference in order.",
+    "Hardware output PTS list exactly equals sorted original input packet PTS; raw elementary-stream framemd5 PTS are synthetic and were not used as actual timestamps.",
+    "Replay records SHA-256 matches the retained private input records.",
+    "Both webpage IRQ/counter/media deltas recomputed from raw endpoints.",
+    "Second sample denominator and browser non-dropped/rVFC metadata rates recomputed from their recorded windows.",
+    "No paused/error/dimension/rate change or backwards media time/counter observed in sampled snapshots; the instrumentation lacks a permanent video-element identity token."
+  ]
+}

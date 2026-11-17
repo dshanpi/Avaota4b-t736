@@ -1,0 +1,35 @@
+11月 17 04:23:43 t736 systemd[1]: Started t736-cedar-experiment.service - T736 isolated browser Cedar decoding experiment.
+11月 17 04:23:43 t736 cedar-service[14866]: CEDAR_BROKER: ready uid=1000 protocol=1 max=1080p8bit retained_contexts=1
+11月 17 04:25:30 t736 systemd[1]: Stopping t736-cedar-experiment.service - T736 isolated browser Cedar decoding experiment...
+11月 17 04:25:30 t736 cedar-service[14849]: Terminated
+11月 17 04:25:30 t736 systemd[1]: t736-cedar-experiment.service: Main process exited, code=exited, status=143/n/a
+11月 17 04:25:30 t736 systemd[1]: t736-cedar-experiment.service: Failed with result 'exit-code'.
+11月 17 04:25:30 t736 systemd[1]: Stopped t736-cedar-experiment.service - T736 isolated browser Cedar decoding experiment.
+11月 17 04:25:31 t736 systemd[1]: Started t736-cedar-experiment.service - T736 isolated browser Cedar decoding experiment.
+11月 17 04:25:31 t736 cedar-service[15966]: CEDAR_BROKER: ready uid=1000 protocol=1 max=1080p8bit retained_contexts=1
+11月 17 04:26:54 t736 systemd[1]: Stopping t736-cedar-experiment.service - T736 isolated browser Cedar decoding experiment...
+11月 17 04:26:54 t736 systemd[1]: t736-cedar-experiment.service: Deactivated successfully.
+11月 17 04:26:54 t736 systemd[1]: Stopped t736-cedar-experiment.service - T736 isolated browser Cedar decoding experiment.
+11月 17 04:26:54 t736 systemd[1]: Started t736-cedar-experiment.service - T736 isolated browser Cedar decoding experiment.
+11月 17 04:26:54 t736 cedar-service[16712]: CEDAR_BROKER: ready uid=1000 protocol=1 max=1080p8bit retained_contexts=1
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: T736_WC: version=0x3331000021320 phy_offset=0x0 heap=t736-ve cache=WC barriers=dmb-osh
+11月 17 04:27:22 t736 cedar-service[16712]: CEDAR_BROKER: open session=1 codec=2 1920x1080
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:22 t736 cedar-service[16712]: T736_WC: first validated WC ordering barrier
+11月 17 04:27:22 t736 cedar-service[16712]: iniparser: cannot open /etc/cedarc.conf
+11月 17 04:27:23 t736 cedar-service[16712]: CEDAR_BROKER: failed session=1 op=3 rc=-5 detail=cedar: Could not configure supporting library.
+11月 17 04:27:23 t736 cedar-service[16712]: CEDAR_BROKER: close session=1 submitted=180 delivered=0

@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "OFFLINE_VALIDATED_TARGET_TEARDOWN_PENDING",
+  "board_access": false,
+  "root_cause": {
+    "source": "build/cedar-bridge-package-v2/src/omx/gstomxallocator.c:497-501",
+    "finding": "Borrowed OmxPrivateBuffer.nShareBufFd was transferred directly to gst_dmabuf_allocator_alloc, whose GstFdMemory closes its fd; later MemAdapter FREE ioctl sees EBADF.",
+    "actual_libVE": "VeFreeIommuAddr reads context+56 Cedar fd and forwards the 8-byte {s32 dmafd,u32 address} without conversion; ABI change not required.",
+    "memadapter": "ion_alloc_pfree in WC r2 fills both fields and calls FREE before munmap/close; its local order is correct.",
+    "runtime_evidence": "media-v27-gst-free-trace-20261117.log; root captured12FREE/EBADF while otherGET/FREE succeed on sameCedarfd6"
+  },
+  "change": "F_DUPFD_CLOEXEC at borrowed-to-owned GstMemory boundary; kernel/MemAdapter/vendor codecs unchanged",
+  "patch": {
+    "path": "patches/cedar/gstomx-dmabuf-fd-ownership-20261117.patch",
+    "sha256": "38fa5ec9b01040fc5f2e1c5b87391df31627ed5f98bb5375b824f6f34a830831"
+  },
+  "builder": {
+    "path": "tools/build_cedar_wc_v2.py",
+    "sha256": "e6f36314e88d51f82df1952ec9c694d38b60e22a273b7f48ffd07497bd26535a"
+  },
+  "test": {
+    "path": "tests/test_cedar_gst_fd_ownership.py",
+    "sha256": "05aa5b4603f2d77e012f9314afb8fc9a063332fd276501f68eb7a1845ce1fca4",
+    "result": "PASS",
+    "method": "actual full gst_omx_allocator_allocate C function extracted; mock Gst object ownership and real Linux descriptors; ASan/UBSan",
+    "coverage": [
+      "success closes owned duplicate only",
+      "FD_CLOEXEC set",
+      "EINTR retries",
+      "EMFILE dup failure frees unpublished wrapper",
+      "invalid source fd rejected without close of borrowed fd",
+      "GstMemory allocation failure closes duplicate exactly once"
+    ]
+  },
+  "abi": {
+    "missing_exported_symbols": [],
+    "glibc_versions": [
+      "GLIBC_2.17",
+      "GLIBC_2.28"
+    ]
+  },
+  "independent_review": {
+    "reviewer": "desktop_review",
+    "status": "PASS; candidate control flow and SDK gst_fd_allocator_alloc failure ownership checked"
+  },
+  "package": {
+    "schema": 1,
+    "package": "/home/ubuntu/t736-mainline/build/cedar-wc-v2-20261117/t736-cedar-wc-v2.tar.gz",
+    "bytes": 1149520,
+    "sha256": "daae95f7620f09fa02bb8a46f3d2231bb8b2fdca09a12a46791034f94ba960e0",
+    "manifest_sha256": "d70a37314ab0d4d47a6e5e40e1898ef7e57b334e9be0379d098bd1161e14a591",
+    "plugin_sha256": "7af9a4bfc5ecf0f617d5979a162c956630e598d34b2595d4659344c35986695b",
+    "source_patch_sha256": "38fa5ec9b01040fc5f2e1c5b87391df31627ed5f98bb5375b824f6f34a830831"
+  },
+  "limits": [
+    "package contains proprietary libraries; keep private",
+    "target must still repeat exact-output and teardown ioctl verification",
+    "128MiB imported DMA pin budget unchanged from v27"
+  ]
+}

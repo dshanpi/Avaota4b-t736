@@ -1,0 +1,9 @@
+/home/t736/t736-mutter-sbc-48.7-gi-launcher-v2.tar.xz: 成功
+/home/t736/mutter_sbc_session_guard_v2.sh: 成功
+/usr/bin/gnome-shell: 成功
+GI_LAUNCHER_OVERLAY_INSTALLED
+Running timer as unit: t736-mutter-sbc-ac42-gi2-rollback.timer
+Will run service as unit: t736-mutter-sbc-ac42-gi2-rollback.service
+Armed t736-mutter-sbc-ac42-gi2-rollback.timer for 300 seconds. Session has not been restarted.
+After the controlled GDM session start, restore daemon.conf.before immediately.
+Keep the timer until library maps, SBC trace, GTK pacing and error deltas are checked.

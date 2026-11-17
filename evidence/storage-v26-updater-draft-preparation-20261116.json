@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "kind": "storage-v26-updater-draft-preparation",
+  "date": "2026-11-16",
+  "status": "PREPARED_FAIL_CLOSED_PENDING_FINAL_BUILD_BINDINGS",
+  "files": {
+    "tools/validation/update_t736_storage_v26.py": "cd1e7a8e51b46e1a5daa41c97867efc542da74d409849eb7ea116025caa5f4d9",
+    "tools/validation/test_update_t736_storage_v26.py": "3c26ca4f289aef6577b06bd793ea78cfb741b129ff5f600620aafbee9059c6a2",
+    "evidence/storage-v26-updater-offline-tests-20261116.log": "766a4a61406a383f42ca6d27cecd2507b98a27f929cedc5bf748b793a8854971",
+    "tools/validation/mmc_timing_collect_v26.py": "a99dc35116a763cae60b760fb710483c911f2a84cff7ddc3c1a322d55caf0bbe",
+    "evidence/storage-v26-timing-collector-preparation-20261116.json": "9bcaf3e9145762d960b4a60c3d83505b0742924174bf93800beeb13150a37662"
+  },
+  "allowed_running": [
+    "6.18.63-t736-storage-v16",
+    "6.18.63-t736-storage-v25"
+  ],
+  "persistent_fallback": "6.18.63-t736-storage-v16",
+  "candidate": "6.18.63-t736-storage-v26",
+  "candidate_bindings_pending": [
+    "candidate_dtb_bytes",
+    "candidate_dtb_sha256",
+    "control_manifest_sha256",
+    "kernel_bytes",
+    "kernel_sha256",
+    "payload_manifest_sha256",
+    "pvr_bytes",
+    "pvr_sha256",
+    "raw_image_bytes",
+    "raw_image_sha256"
+  ],
+  "known_previous_v25_boot": {
+    "vmlinuz": "debd6b6edbd88db3291c3353267e041df527d424f4f6794cdf90c338b9e596db",
+    "config": "e00c797cf8e3eead58d5954e81bf9f95a087ba0acf92d4191cc4dbec3418b960",
+    "System.map": "82f0da9f46797b9dae27f8f928e689f49e75b29b12f186d24854a896ed4b8b57"
+  },
+  "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+  "offline_tests": {
+    "host": "192.168.1.228",
+    "cases": 14,
+    "result": "PASS",
+    "scope": "Fault injection using temporary files and mocked transaction I/O. No package installs, mount, board or boot writes."
+  },
+  "preserved": "Fixed v16 topology and aliases; validated current-release check; rollback; private mount namespace; hooks suppression; bounded child process termination before rollback. Separate v26 lock, backup directory and caller-mount environment name.",
+  "next": [
+    "Bind final package/control/payload/rawImage/DTB/PVR and rerun exact inputs audit.",
+    "Independent final review and source-unchanged readonly-v4 module rebuild.",
+    "Root owns all actual board activation and measurements."
+  ],
+  "board_operated": false,
+  "public_backup_refreshed_or_pushed": false
+}

@@ -1,0 +1,1 @@
+PASS: complete staged diff checked through an isolated temporary index; real index unchanged.

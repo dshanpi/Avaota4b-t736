@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "kind": "t736-source-v11-draft-preparation",
+  "status": "DRAFT-STATIC-CHECKS-PASS-NOT-BUILT-NOT-MOUNTED-NOT-FLASHED",
+  "selected_candidate": "6.18.63-t736-storage-v24",
+  "selected_storage_mode": "HS400200",
+  "storage_acceptance": {
+    "path": "evidence/storage-v24-hs400-stage-record-20261116.json",
+    "sha256": "1b8d1b66c3915fde3626da8d73b62ed09b0eb38949b149b9399f115c2d410cbb"
+  },
+  "frozen_base": {
+    "path": "output/rootfs-armbian-source-v10.ext4",
+    "bytes": 7802716160,
+    "sha256": "935a58e933ec831c470a5ef20c89dd5f0f675f417d4fa43bbe0a831e91414469"
+  },
+  "persistent_entry": "New isolated CPU-D-derived U-Boot CONFIG_BOOTCOMMAND embeds exact HS200+HS400200 opt-in parameters; armbianEnv and alias-only selection cannot substitute",
+  "recovery": "Explicit serial setenv t736_recovery 1; run bootcmd branch selects retained v16 kernel + topology (not automatic restoration of the v16 desktop/GPU profile); booti kernelhang doesnot auto-fallback. Existing SPLv4/softwareFEL implementation unchanged.",
+  "image_scope": [
+    "copy frozenv10 only into newv11 output",
+    "exact acceptedkernel/PVR/topology",
+    "local pinnedGstGL package only, no aptupgrade",
+    "preserve credentials and disabledGDMauto-login",
+    "CPU-D code/SPL/stage64/TF-A unchanged; newU-Boot configonly",
+    "no unacceptedMutter trial binary/config imported"
+  ],
+  "validation": [
+    "six purePython guard tests passed including realHS400stage and negative mode/window/integrity/GPU/package cases",
+    "two shellscripts sh-n passed",
+    "six embeddedPython blocks ASTparse passed",
+    "planner/packer Pythoncompile passed",
+    "Hush parser and builtin test available in frozen U-Boot config/source; newcompiledbootcommand1227bytes fits ENV_SIZE0x1f000; explicitrunbootcmd doesnot paste thislongcommand into1024-byte console"
+  ],
+  "remaining_before_build": [
+    "final selected kernel/mode and fully bound ready manifest review (v24 remains draft placeholder while v25 diagnostics run)",
+    "canonical GPU profile acceptance matching selected release and existing profileguard checks"
+  ],
+  "hardware_acceptance_boundary": [
+    "existingv24 finiteHS400stage is accepted",
+    "newU-Boot payload notbuilt orcoldbootvalidated",
+    "v11rootfs/rawimagenotbuilt",
+    "newimage coldboot/HDMI/userlogin required later"
+  ],
+  "files": {
+    "tools/build_source_rootfs_v11.sh": {
+      "sha256": "93f23b2a6403743abe5fe73431a72679b3cf5f0256d4a279f4b76b33672769b7",
+      "bytes": 10589
+    },
+    "tools/build_source_uboot_source_v11.sh": {
+      "sha256": "dc45d334995327a32442de4b8b44549bed2ac038af15b10039fee9b00bbcfd22",
+      "bytes": 7314
+    },
+    "tools/pack_t736_source_v11.py": {
+      "sha256": "4d65cfe5a9b9ac169c8f0facbe9d4206ea6ead5b8c5c3d21ad73db622d2d9004",
+      "bytes": 9239
+    },
+    "tools/validation/source_v11_plan.py": {
+      "sha256": "bd60581bf4b8be4bbe9ed315bd04386916c02e1f26c7590220e11ec0d2031505",
+      "bytes": 11596
+    },
+    "config/source-v11-inputs.template.json": {
+      "sha256": "28108825bef7e5c2552709d2d8dd97902364900d616750d595903412fca1eb36",
+      "bytes": 1082
+    },
+    "tests/test_source_v11_draft.py": {
+      "sha256": "9214a3121b4680e67bf61fce2f7035a2776ed2fa6af98f0c922ae4bd97d15787",
+      "bytes": 3672
+    },
+    "evidence/build/source-v11-draft-static-check-20261116.log": {
+      "sha256": "afc58261539d24aa157dbc1b0940390e225c33d27565a34fcc32a2fde42f6ebb",
+      "bytes": 438
+    }
+  },
+  "independent_review": "evidence/source-v11-draft-independent-review-20261116.json (script review PASS; subsequent input template-only GstGL binding retained pending status)",
+  "gstreamer_gl_input": {
+    "path": "build/gstgl-v11-artifacts/gstreamer1.0-gl_1.26.2-1+deb13u2_arm64.deb",
+    "sha256": "d11878da40f521674727914e53c15ae4ea16129190f606bd3aa9dd0069199b08",
+    "package": "gstreamer1.0-gl",
+    "version": "1.26.2-1+deb13u2",
+    "architecture": "arm64",
+    "inspection": "Author independently verified build-host sha256sum and dpkg-deb fields; downloaded by desktop_review from Debian13 clone APT, not installed by this step."
+  }
+}

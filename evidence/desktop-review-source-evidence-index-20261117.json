@@ -1,0 +1,277 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "scope": "desktop_review agent contributions and review handoffs in current20261117 work; parent integrates other agents separately",
+  "status": "FROZEN_FOR_PRIVATE_SYNC_NO_NEW_EXPERIMENTS",
+  "board_access_by_agent": false,
+  "public_push": false,
+  "groups": {
+    "build_tools": [
+      {
+        "path": "tools/build_media_v28_candidate.py",
+        "bytes": 7575,
+        "sha256": "77165abf60d0102c8ca1436ff5dade28dbe022293216d832f26a536fcd4aff3b"
+      },
+      {
+        "path": "tools/apply_media_v28_readback.py",
+        "bytes": 8725,
+        "sha256": "54685fd62b83345f94a3ae6cb6ee3a05eef0bca64b634de2532b545229960c39"
+      },
+      {
+        "path": "tools/build_media_v29_candidate.py",
+        "bytes": 12026,
+        "sha256": "01986b33044dba4f6b42e7fd3ab92a13161e8e70789e6a9ff252bb9c9ce493b0"
+      }
+    ],
+    "source_and_diagnostic_tools": [
+      {
+        "path": "tools/browser/ffmpeg_cedar.c",
+        "bytes": 35703,
+        "sha256": "909ab49e890aecdfaf955518cfddc132e0d84d0f41c6c3397071d61a36f06bda"
+      },
+      {
+        "path": "tools/validation/firefox_media_debug_snapshot.js",
+        "bytes": 1729,
+        "sha256": "51c752dc9f574c7c2191c1200f2373ddfd7dc6a3ca1ae460ad684777fea45fad"
+      },
+      {
+        "path": "tools/validation/cedar_fault_trace.c",
+        "bytes": 6441,
+        "sha256": "37afc3029fbbd9f82693cb698e5b8bb59f3783e45227b2f7ddf6087684d4e3af"
+      }
+    ],
+    "isolated_unapplied_copy_candidate": [
+      {
+        "path": "tools/browser/copy_candidate/cedar_plane_copy.h",
+        "bytes": 3815,
+        "sha256": "7b6c4bbae45f323dfc6172811f844fb96487513e7500836885a8a24bfa55549f"
+      },
+      {
+        "path": "tools/browser/copy_candidate/backend5-planar-contiguous.patch",
+        "bytes": 2004,
+        "sha256": "49441531950dd56e6d7ceb11f12bfa83fc84c063d750389af1906296a5a8544b"
+      }
+    ],
+    "tests": [
+      {
+        "path": "tests/test_ffmpeg_cedar.c",
+        "bytes": 28982,
+        "sha256": "419e56621a2b367db07f6d835bf096c26461e25fb5a4cd5b80f47d2103f57c15"
+      },
+      {
+        "path": "tests/test_cedar_ram_pool_failure.c",
+        "bytes": 5569,
+        "sha256": "e15403a943cc1a2805ebca6b2088a2d9001d09c80bf5789836f8ccdbdf667aac"
+      },
+      {
+        "path": "tests/test_cedar_shm_client_fork.c",
+        "bytes": 6172,
+        "sha256": "f1d2710f5555ac5065330b71d15898c5424e3f30792285335fc2fb6f370765a4"
+      },
+      {
+        "path": "tests/test_cedar_fault_trace.c",
+        "bytes": 674,
+        "sha256": "d80d391ae172b38afe772264fd81409baa7bf58b5b925f538fbb2d396e4e568f"
+      },
+      {
+        "path": "tests/test_cedar_plane_copy_candidate.c",
+        "bytes": 7789,
+        "sha256": "531d01a9d111e368387a172e4394c995d9c51141027066b29d26ff4c12344e14"
+      }
+    ],
+    "evidence": [
+      {
+        "path": "evidence/browser-firefox-esr153-timing-presentation-review-20261117.json",
+        "bytes": 8103,
+        "sha256": "80a5372ffef287b6ace2ca06bf49bf9e4c12095d0dd55339444d263f3a312af9"
+      },
+      {
+        "path": "evidence/browser-firefox-esr153-debug-method-20261117.json",
+        "bytes": 2363,
+        "sha256": "20adce4c8c6071a654cb366bf7fca8321d63b2622bc842bade3b8ee623a29f00"
+      },
+      {
+        "path": "evidence/browser-ffmpeg-v7-bounded-batch-build-20261117.json",
+        "bytes": 8848,
+        "sha256": "4b0638ff9d520ed7c7a96308258eda7f02cee7567b490b53643a0438f8392c2e"
+      },
+      {
+        "path": "evidence/browser-ffmpeg7-backend5-timing-diagnostic-design-20261117.json",
+        "bytes": 11355,
+        "sha256": "c93ddcd00d1389664f3ea71611cd871933e84ab766148a2aae2ca0b7796118dd"
+      },
+      {
+        "path": "evidence/cedar-browser-backend-v5-independent-review-20261117.json",
+        "bytes": 8911,
+        "sha256": "77f7d11b94ce5c7c1a75bfed793a4cc7ff051202c909067e8a11b6d5c85e59cc"
+      },
+      {
+        "path": "evidence/cedar-shm-v2-desktop-independent-review-20261117.json",
+        "bytes": 7349,
+        "sha256": "28e75dddfca4d3b69e70a5c135dd860935deddd71b870008f8713559b43e116c"
+      },
+      {
+        "path": "evidence/cedar-fault-trace-build-20261117.json",
+        "bytes": 4398,
+        "sha256": "d523bfcef27f10e8428edc0b140ca15e8fd18fc1b3c5797239b183a271653ccb"
+      },
+      {
+        "path": "evidence/cedar-plane-copy-candidate-freeze-20261117.json",
+        "bytes": 7661,
+        "sha256": "bc5f62ab891a9a993a2525ab62e43654c3f0b92b40bfd4c53068fbb69997f7f0"
+      },
+      {
+        "path": "evidence/media-v28-combined-build-20261117.json",
+        "bytes": 5647,
+        "sha256": "a8feab9b60bb7d3b88a3b26e29cf19adc613bfa12c7afa1553d9241ab22551cf"
+      },
+      {
+        "path": "evidence/media-v29-build-20261117.json",
+        "bytes": 142257,
+        "sha256": "a60b5a27bce9c90c07aed374a56bf0f84cf1be0f2c7bb5f130b396d11d58adfb"
+      },
+      {
+        "path": "evidence/desktop-review-freeze-protection-check-20261117.json",
+        "bytes": 1097,
+        "sha256": "39941b31b79bfc33b98bacd9578494dff4fb23cca1160c85c02c00ec2646e45b"
+      }
+    ],
+    "frozen_candidate_snapshot_and_logs": [
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/source/tools/browser/cedar_backend.c",
+        "bytes": 25777,
+        "sha256": "70375bb7f0c42d9062dce25c73a8b2a22bbb4d11f29db5c696e3b0e3c135f62d"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/source/tools/browser/cedar_backend.h",
+        "bytes": 2505,
+        "sha256": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/source/tests/test_cedar_backend.c",
+        "bytes": 17539,
+        "sha256": "0de516909458d685ff04c2ee0913e1e8b543741b8353c1ca7a0d62785e0afd07"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/test-sanitized.log",
+        "bytes": 83,
+        "sha256": "395c89925da881de94b022fe42a65cf6f6e1d269fa906c139f67a46fa2ce958c"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/test-arm64.log",
+        "bytes": 83,
+        "sha256": "395c89925da881de94b022fe42a65cf6f6e1d269fa906c139f67a46fa2ce958c"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/backend-host-test.log",
+        "bytes": 2492,
+        "sha256": "f4c698577a5f96b632c906ac0a02a457ad6158d836495f4eff67e8ae1148adda"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/backend-arm64-test.log",
+        "bytes": 2518,
+        "sha256": "a821dbaf6a2d9595aa4080ccb3f91dc744176806c38bd9638290c52937a03f64"
+      },
+      {
+        "path": "build/cedar-plane-copy-candidate-20261117/backend-test-commands.json",
+        "bytes": 3017,
+        "sha256": "861f4010b5faec7dd56d8a529a1c079354f2e5765af7852ca09f224095dd2939"
+      },
+      {
+        "path": "build/cedar-fault-trace-20261117/test-native-main.log",
+        "bytes": 4229,
+        "sha256": "738e26b0b743febbb8dfb5df1ccaf1c72fb8d99f94f5614c485b7a3d81702a7e"
+      },
+      {
+        "path": "build/cedar-fault-trace-20261117/test-native-thread.log",
+        "bytes": 4302,
+        "sha256": "793297437ffcc495c252001e6f20ef0c971c5238b8235b65b96dce84ea139171"
+      }
+    ]
+  },
+  "private_artifacts_reference_only": [
+    {
+      "path": "build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v7.tar.gz",
+      "bytes": 6984940,
+      "sha256": "5672174f8995b34b781a40f8ffc601dc4c310bdcb179fbffc298f2911ccfe3da",
+      "archive_inclusion": false
+    },
+    {
+      "path": "build/cedar-fault-trace-20261117/libt736_fault_trace.so",
+      "bytes": 14616,
+      "sha256": "692f80cebdffd6d73e9ee9d1072293c4e8195d19ebef2d7c43e44cf5553fedbb",
+      "archive_inclusion": false
+    },
+    {
+      "path": "build/cedar-browser-backend-v5-20261117/t736-cedar-browser-backend-v5.tar.gz",
+      "bytes": 22103,
+      "sha256": "e60685777a4700631fbe1df472cb98c037ed5fba276b372d2845d4a786f2a8c0",
+      "archive_inclusion": false
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/t736-cedar-transport-v2.tar.gz",
+      "bytes": 49037,
+      "sha256": "b1524d0072ad96995c7104ca92c5b9ee46d27bc2990195dbaad629f9796bc92c",
+      "archive_inclusion": false
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/linux-image-6.18.63-t736-media-v29_6.18.63-29_arm64.deb",
+      "bytes": 5621190,
+      "sha256": "46db7ff8b4fef74fde86aed04ea9ed3d5b3bf1c372cd41c49d9338652d6b9e6b",
+      "archive_inclusion": false
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/Image",
+      "bytes": 11800584,
+      "sha256": "5710f4c424210ed1ddb9459c3519697de515e2ec41be07da1e3d972514022d1c",
+      "archive_inclusion": false
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/t736-gpu-candidate.dtb",
+      "bytes": 13012,
+      "sha256": "45012aeb86d657fca568417e831067170d12e224ebe71720c1956989af6f3626",
+      "archive_inclusion": false
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/pvrsrvkm.ko",
+      "bytes": 1913808,
+      "sha256": "86e6b1489edc9f0dca0b76ff18f078270e21a66a8d23a9828caa3d5d9fb3ed76",
+      "archive_inclusion": false
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/kernel.config",
+      "bytes": 99201,
+      "sha256": "c512803871f59e9556a33c902eb6b424dab81fe32f45882c6f9f202deb752948",
+      "archive_inclusion": false
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/Module.symvers",
+      "bytes": 488215,
+      "sha256": "2c78cfcd32781c9121ff5b6effae05ca5e51e97f1bffa1556bd2f778c4fb0cc9",
+      "archive_inclusion": false
+    }
+  ],
+  "state_summary": {
+    "plane_copy": "Frozen isolated candidate only; production backend5 unchanged; guard/crop/pixel/lifetime tests passed native and ARM64QEMU; no new WC/board performance acceptance. Old A76 results favor libc-plane over explicit NEON.",
+    "fault_probe": "Independent AArch64 diagnostic preload built and native main/worker tested, not deployed. Root found device-node EACCES cause with strace before use.",
+    "timing_design": "Read-only bounded tracing design retained; not implemented.",
+    "ffmpeg_v7": "Built and host-tested; root board trial improved but remained far below60fps. Refer to hardware phase record, do not label success.",
+    "shm_v2": "Source/package/fork review passed; actual board/runtime state belongs to parent hardware evidence.",
+    "v29": "Build verified, including real madvise/fadvise symbols; semantic config changes only ADVISE_SYSCALLS and LOCALVERSION. Added disabled ANON_VMA_NAME comment is not an enabled feature. Parent owns staging/runtime results."
+  },
+  "protection_audit": {
+    "path": "evidence/desktop-review-freeze-protection-check-20261117.json",
+    "bytes": 1097,
+    "sha256": "39941b31b79bfc33b98bacd9578494dff4fb23cca1160c85c02c00ec2646e45b"
+  },
+  "parent_cross_references": [
+    "evidence/browser-v28-v7-hardware-phase-20261117.json",
+    "evidence/browser-v29-shm2-hardware-phase-20261117.json",
+    "evidence/media-v29-package-stage-audit-20261117.json",
+    "evidence/media-v29-stage-updater-review-20261117.json",
+    "evidence/cedar-shm-v2-build-review-20261117.json",
+    "evidence/browser-ffmpeg-v7-batch-independent-review-20261117.json"
+  ],
+  "private_sync_policy": "Bundle contains owned source/tools/tests/evidence and small candidate snapshots/logs. Large compiled artifacts, vendor/DDK/kernel caches remain in existing private build directories and are referenced by hash; no public remote or release is touched.",
+  "bundle_expected_path": "build/private-sync/desktop-review-20261117/desktop-review-source-evidence-20261117.tar.gz"
+}

@@ -1,0 +1,13 @@
+{
+  "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+  "candidate_dtb_bytes": 12028,
+  "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+  "control_manifest_sha256": "1ecf2b92707bc7ea859258b82a86fe1ae69ab706c78b01432896b638f42e964a",
+  "kernel_bytes": 5604794,
+  "kernel_sha256": "f270f50a59da295f2104512a8504531698eab2967d769e17c8ba322a2b075281",
+  "payload_manifest_sha256": "bf32b05ca819fba0f8016700e0823e037f7dd206b8c9a973c6f3e200e80ab920",
+  "pvr_bytes": 1913816,
+  "pvr_sha256": "57e217ef2aa31c02b6f2a41e7a21d6361e2532f628ed34966ac1febc1dac255b",
+  "raw_image_bytes": 11800584,
+  "raw_image_sha256": "59010d0b1e6e41a769c4c1bc0063d63af2a42944e4ffcea1f520d32e13c6d8a1"
+}

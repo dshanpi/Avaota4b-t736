@@ -1,0 +1,3 @@
+# Only the isolated decoder service owns these two private bring-up devices.
+SUBSYSTEM=="misc", KERNEL=="cedar_dev", OWNER="t736-cedar", GROUP="t736-cedar", MODE="0600"
+SUBSYSTEM=="dma_heap", KERNEL=="t736-ve", OWNER="t736-cedar", GROUP="t736-cedar", MODE="0600"

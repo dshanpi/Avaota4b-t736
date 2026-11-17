@@ -1,0 +1,1 @@
+RAM_BENCH mode=malloc frames=300 bytes=3110400 elapsed_us=25331 minor_faults=1519 major_faults=0 allocations=300 reuses=0 checksum=27000 scope=ordinary-host-RAM-not-WC

@@ -1,0 +1,20 @@
+POST_TEST_STATE
+6.18.63-t736-media-v27
+active
+[    0.511774] t736-ve-power 7062000.power-controller: VE_DEC PPU=ON, 200MHz, DEC0/1 bypass verified; reset held
+[    0.795411] t736-cedar-wc 1c0e000.video-codec: Cedar decoder + private 32-bit WC heap; root-only, fixed-frequency bring-up
+clock:		200000000 Hz
+actual clock:	200000000 Hz
+vdd:		21 (3.3 ~ 3.4 V)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	2 (on)
+bus width:	3 (8 bits)
+timing spec:	10 (mmc HS400)
+signal voltage:	1 (1.80 V)
+driver type:	0 (driver type B)
+vmlinuz-6.18.63-t736-storage-v16
+initrd.img-6.18.63-t736-storage-v16
+收到来自组件“pipeline0”的 EOS 信号。
+收到 EOS 信号 - 中止管道 ...
+Execution ended after 0:00:01.974714521

@@ -1,0 +1,241 @@
+{
+  "schema": 1,
+  "kind": "media-v27-bounded-hardware-integration-summary",
+  "recorded_utc": "2026-11-17T03:46:21.373717+00:00",
+  "status": "PASS_BOUNDED_H264_EXACT_OUTPUT_AND_X11_PIPELINE_NOT_PRODUCTION",
+  "scope": "Reconciled root-owned board evidence; recorder performed no board operation. Private build-host backup only, no public checkpoint.",
+  "runtime": {
+    "kernel": "6.18.63-t736-media-v27",
+    "boot_mode": "explicit-path one-shot",
+    "gnome_service": "active",
+    "storage": {
+      "timing": "HS400",
+      "actual_clock_hz": 200000000,
+      "bus_width_bits": 8,
+      "signal_voltage_v": 1.8
+    },
+    "persistent_default_kernel": "6.18.63-t736-storage-v16",
+    "persistent_default_DTB_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "default_aliases_reverified": true,
+    "default_DTB_hash_scope": "Frozen default hash from v26 evidence; v27 install log records default DT checksum success. Post1080 log directly rechecks aliases, not a new numeric DT hash.",
+    "v26_rollback_retained": "Root confirms; frozen v26 artifacts also passed independent package audit."
+  },
+  "hardware_path": {
+    "VE_DEC_hz": 200000000,
+    "PPU_ON": true,
+    "DEC0_DEC1_targeted_bypass": true,
+    "private_root_only_devnodes_observed": true,
+    "full_IOMMU_translation_driver_enabled": false,
+    "contiguous_WC_32bit_heap": true,
+    "production_safe_DMA_reclamation": false
+  },
+  "decode_trials": [
+    {
+      "label": "initial320x240",
+      "userspace": "WC-v1",
+      "codec": "H264 High with Bframes",
+      "width": 320,
+      "height": 240,
+      "frames": 30,
+      "exact_matching_frames": 30,
+      "decoded_bytes": 3456000,
+      "decoded_sha256": "cca7302cbb871683366faa34a4e0799493eb8fc63b095d66bdda54e7cd8f945b",
+      "IRQ_delta": 30,
+      "pipeline_exit": 0,
+      "EOS": true,
+      "manual_bottom_crop": 16,
+      "teardown": "Historical FREE EBADF observed and retained; content/EOS passed, cleanup not accepted in v1.",
+      "evidence": "evidence/media-v27-gst-h264-accepted-20261117.json"
+    },
+    {
+      "label": "1080p30_60frames",
+      "userspace": "WC-v2",
+      "codec": "H264 High with Bframes",
+      "width": 1920,
+      "height": 1080,
+      "source_fps": 30,
+      "frames": 60,
+      "exact_matching_frames": 60,
+      "decoded_bytes": 186624000,
+      "decoded_sha256": "1fc404375e99e4f8aa1d39096c3988f19a2aabad931e240b28d74de9ece095bd",
+      "reference_sha256": "1fc404375e99e4f8aa1d39096c3988f19a2aabad931e240b28d74de9ece095bd",
+      "IRQ_delta": 60,
+      "pipeline_exit": 0,
+      "EOS": true,
+      "timed_out": false,
+      "manual_bottom_crop": 8,
+      "X11_sink_window": [
+        960,
+        540
+      ],
+      "pipeline_duration_seconds": 1.974714521,
+      "process_wall_seconds": 2.9812279779999926,
+      "child_CPU_seconds": 4.552779,
+      "pinned_bytes_before": 30605312,
+      "pinned_bytes_after": 79564800,
+      "teardown": "No known error markers including prior FREE/EBADF in the captured v2 pipeline; not proof of DMA buffer reclamation.",
+      "evidence": "evidence/media-v27-1080-h264-accepted-20261117.json"
+    }
+  ],
+  "fd_ownership_fix": {
+    "cause": "GstMemory adopted a borrowed MemAdapter fd and closed it before MemAdapter FREE.",
+    "change": "Duplicate with F_DUPFD_CLOEXEC and transfer only the owned duplicate; preserve MemAdapter original ownership.",
+    "private_v2_manifest_sha256": "d70a37314ab0d4d47a6e5e40e1898ef7e57b334e9be0379d098bd1161e14a591",
+    "private_v2_package_sha256": "daae95f7620f09fa02bb8a46f3d2231bb8b2fdca09a12a46791034f94ba960e0",
+    "plugin_sha256": "7af9a4bfc5ecf0f617d5979a162c956630e598d34b2595d4659344c35986695b",
+    "patch_sha256": "38fa5ec9b01040fc5f2e1c5b87391df31627ed5f98bb5375b824f6f34a830831",
+    "offline_validation": "Actual extracted allocator function under ASan/UBSan with real descriptors plus independent ownership review.",
+    "target_result": "1080p60frame v2 trial completed exact output and EOS with no captured known error markers.",
+    "kernel_changed_for_fd_fix": false
+  },
+  "historical_failures_preserved": {
+    "demo": "Initial demo timed out after7matchingframes; no retroactive acceptance.",
+    "demo_parser": "Offline final-NAL/parser fix recorded; separate from successful GStreamer path.",
+    "gst_crop": "Uncropped padded caps and manual fixture-specific crop history retained.",
+    "fd_teardown": "Initial FREE EBADF diagnosis retained; v2 result supersedes cleanup status only."
+  },
+  "evidence": [
+    {
+      "path": "evidence/media-v27-gst-h264-accepted-20261117.json",
+      "bytes": 1416,
+      "sha256": "b840b21be2167cb5a65ccc2ec399f3e349eef395b9c02a656e547413f7a071ae"
+    },
+    {
+      "path": "evidence/media-v27-gst-crop-20261117.log",
+      "bytes": 2146,
+      "sha256": "768baab81992580c8db6e7f7a510e5a037e1f9764fa3a550432aa92f8e368369"
+    },
+    {
+      "path": "evidence/media-v27-gst-h264-detail-20261117.log",
+      "bytes": 12001,
+      "sha256": "e1526e9d8ed19d897a22616f9b90656d36286621cd934e4f42c4880ae22f961a"
+    },
+    {
+      "path": "evidence/media-v27-1080-h264-accepted-20261117.json",
+      "bytes": 2473,
+      "sha256": "0448727ad2ee776d8cb01bb843b28020460357cb04eabe312bbbe2cf91495c18"
+    },
+    {
+      "path": "evidence/media-v27-1080-h264-detail-20261117.log",
+      "bytes": 41255,
+      "sha256": "612f4049471a9baf3574af6a4bdb6c09a25ebe10478b1d03a10ce276e3b37f72"
+    },
+    {
+      "path": "evidence/media-v27-1080-first-20261117.log",
+      "bytes": 1988,
+      "sha256": "98398c75b0cdab285946b3925ac1b254ec2e9394c8931e6768bf873a5fe75e6b"
+    },
+    {
+      "path": "evidence/media-v27-board-install-20261117.log",
+      "bytes": 2093,
+      "sha256": "277a3e8ff3020eef976e18717456121941eb8bedce31266449a7ec505b528de2"
+    },
+    {
+      "path": "evidence/media-v27-one-shot-boot-20261117.log",
+      "bytes": 6721,
+      "sha256": "cf515471b8afd051c0f72dddd37be176aa4fa980b090598f46e44273c21b067e"
+    },
+    {
+      "path": "evidence/media-v27-initial-hardware-20261117.log",
+      "bytes": 2445,
+      "sha256": "9fd5575e33893ce676ae3a3315839692c43e917673b03552244083361cd659f4"
+    },
+    {
+      "path": "evidence/media-v27-post-1080-state-20261117.log",
+      "bytes": 752,
+      "sha256": "e982131fbca2a7d655189f84ff300018a811dbea057efaff513c9ae08021cb0b"
+    },
+    {
+      "path": "evidence/media-v27-independent-package-audit-20261117.json",
+      "bytes": 30041,
+      "sha256": "238af1eb7cba4a0e41dc6eea7b4dbfa3ef0bed46409eaa39f0323c3cf9a2a704"
+    },
+    {
+      "path": "evidence/media-v27-cma-hardware-prerequisites-review-20261117.json",
+      "bytes": 11417,
+      "sha256": "f9ce8aec3792a907597be41e0aff53844bea64d0cd5514223e7ca5f10bab6b64"
+    },
+    {
+      "path": "evidence/media-v27-cedar-wc-build-review-20261117.json",
+      "bytes": 3905,
+      "sha256": "d6dc04cf3723a48c8def6e46c9783604cc48b59b12200d7cb0c1d5552eea2c14"
+    },
+    {
+      "path": "evidence/cedar-wc-v2-build-20261117.json",
+      "bytes": 481,
+      "sha256": "b7bbc5880030183118fe01115a54e8f3b99071589a1414b388c52b31f91e73c0"
+    },
+    {
+      "path": "evidence/cedar-wc-v2-fd-ownership-independent-review-20261117.json",
+      "bytes": 2530,
+      "sha256": "6679a5a17eb76a90d02c3814637491ed655019d2afe79eb73f0ce3a2ce9da296"
+    },
+    {
+      "path": "evidence/cedar-wc-v2-fd-ownership-validation-20261117.json",
+      "bytes": 2890,
+      "sha256": "5d6e2ef0d705c74e27c97cf179756226366a7f260a4724623c30362a89916571"
+    },
+    {
+      "path": "evidence/media-v27-gst-free-trace-20261117.log",
+      "bytes": 3692,
+      "sha256": "d244b9e847f898f70117c7271b020d2e7983c0b6a90e92889348b9c0e2d488c2"
+    },
+    {
+      "path": "evidence/media-v27-first-decode-result-full-20261117.json",
+      "bytes": 2026,
+      "sha256": "9f338e792012cf577992d7ed7ab01d61e6c4a11a0a475cd109f59519b9a55225"
+    },
+    {
+      "path": "evidence/media-v27-parser-eof-offline-20261117.json",
+      "bytes": 2335,
+      "sha256": "9acc29bddfb60dbdf5207bb9cc878a99fd361ea464eac7befeeecd9de3118856"
+    },
+    {
+      "path": "evidence/cedar-encoder-readiness-20261117.json",
+      "bytes": 5222,
+      "sha256": "453be8d1d8adb6165ba8ec02638c5185b45ba18032936ff3b6d4c62b2dcfbc68"
+    }
+  ],
+  "limitations": [
+    "Root-only, bounded decoder experiment; imported DMA buffers remain pinned until reboot with a128MiB total budget. No proven external DMA drain or safe general buffer reclamation.",
+    "Current pinned allocation is79564800bytes; repeated sessions consume the remaining lifetime budget. Not production playback.",
+    "The1920x1080 fixture is30fps and contains60frames; this is not1080p60fps acceptance.",
+    "Manual bottom16 crop for320x240 and bottom8 crop for1920x1080 are fixture-specific. General visible-caps/crop handling remains unimplemented.",
+    "Timing includes parser, decode, CPU copies/conversion, scaling, file output and synchronized960x540 X11 output; it is not a pure decoder benchmark.",
+    "No encoding, browser hardware decode, zero-copy or broad codec/long-duration stability acceptance.",
+    "Persistent default remains storage-v16; media-v27 was explicitly one-shot booted. v26 rollback retained per root; no new integrated raw image was flashed.",
+    "No new physical HDMI eyesight acceptance is inferred from an X11 sink completing successfully."
+  ],
+  "acceptance": {
+    "decode_bounded_exact_output": true,
+    "X11_sink_pipeline": true,
+    "encoder": false,
+    "browser_hardware_decode": false,
+    "zero_copy": false,
+    "production_playback": false,
+    "pure_decode_performance": false,
+    "new_final_integrated_image_flashed": false,
+    "public_git_refreshed_or_pushed": false,
+    "board_operated_by_recorder": false
+  },
+  "private_backup_receipt": "evidence/media-v27-result-backup-receipt-20261117.json",
+  "updated_utc": "2026-11-17T03:48:53.324689+00:00",
+  "temporary_output_cleanup": {
+    "path": "/run/t736-cedar-1080-v2/output.nv21",
+    "bytes_removed": 186624000,
+    "removed": true,
+    "source": "Root completion message; recorder did not operate board.",
+    "preserved": "Compressed fixture, per-frame reference, full-stream hash, board result and pipeline logs retained.",
+    "board_rebooted": false,
+    "runtime_after_cleanup": "v27 one-shot remains running with GNOME active.",
+    "scope": "Temporary rawNV21 file removed to release RAM; permanent imported-DMA pinning is unchanged."
+  },
+  "encoder_readiness": {
+    "path": "evidence/cedar-encoder-readiness-20261117.json",
+    "bytes": 5222,
+    "sha256": "453be8d1d8adb6165ba8ec02638c5185b45ba18032936ff3b6d4c62b2dcfbc68",
+    "status": "SOURCE_AND_BINARY_INPUTS_AVAILABLE_ENCODER_HARDWARE_NOT_VALIDATED",
+    "scope": "Read-only library/source/ABI/resource feasibility only; no encoder execution or board acceptance.",
+    "conclusion": "Separate VE_ENC device, clocks/reset/PPU/bypass/IRQ and DMA ownership remain to implement; do not use the library fallback on decoder-only v27."
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "kind": "gnome-shell-mutter-sbc-gi-launcher-v2",
+  "status": "BOARD_STARTUP_AND_SBC_FEEDBACK_PASS_PERFORMANCE_MIXED_ROLLED_BACK_NOT_PRODUCTION",
+  "first_trial": {
+    "kernel": "v25",
+    "install": {
+      "path": "evidence/desktop-mutter-sbc-v25-install-20261116.log",
+      "sha256": "2e9d0e87482771a2080f8a3640c2d0e7f95940f12267c725894d3c7c3712e786",
+      "bytes": 258
+    },
+    "early_maps": {
+      "path": "evidence/desktop-mutter-sbc-v25-active-maps-20261116.log",
+      "sha256": "7a0e594133035d077e397cc29da26a4e81d840290ce76ffd0623331206dd2e65",
+      "bytes": 1014
+    },
+    "failure": {
+      "path": "evidence/desktop-mutter-sbc-v25-initial-journal-20261116.log",
+      "sha256": "b98a1d8400a7cf3f6061fb6690be0214641cf772cf87d2d60c78de7281652751",
+      "bytes": 1662
+    },
+    "observed_failure": "GNOME Shell JS initialization cannot register existing type ClutterActor; no valid SBC/frame-pacing A/B resulted.",
+    "rollback": {
+      "path": "evidence/desktop-mutter-sbc-v25-rollback-20261116.log",
+      "sha256": "2c132824ec6501ffa6921dbd8c7afb094ca5c0177868ff985d6966bebcec9e8d",
+      "bytes": 325
+    },
+    "postrollback": {
+      "path": "evidence/desktop-mutter-sbc-v25-postrollback-20261116.log",
+      "sha256": "681936b170121271b72ff519abdfa990abd2f73ec67e1aa33a4c99293447f0e9",
+      "bytes": 2268
+    },
+    "rollback_observation": "daemon.conf hash restored; PID6930 was GDM greeter with original four /usr Mutter libraries and PVR libraries. This is a restored login screen, not accepted t736 user desktop performance."
+  },
+  "root_cause": {
+    "official_source": "https://raw.githubusercontent.com/GNOME/gnome-shell/48.7/src/main.c",
+    "source_sha256": "2deee27ba76f5a138c00d70f2659d5c2c6fb63d0b1273ace50445546b0e0548e",
+    "compiled_path_behavior": "shell_introspection_init prepends the compiled MUTTER_TYPELIB_DIR to GI library search at line231. An absolute system directory can load a second library object despite earlier LD_LIBRARY_PATH selection.",
+    "missed_by_initial_validation": "--version exits while parsing options before shell_introspection_init. Generic Python GI import does not reproduce Shell private library prepending; early maps can precede second-library loading.",
+    "built_in_fix_path": "maybe_add_rpath_introspection_paths is called last and prepends only $ORIGIN-relative executable RPATH/RUNPATH entries to both GI search and library paths. The shipped executable contains this implementation."
+  },
+  "change": {
+    "mutter_algorithm_and_four_libraries": "UNCHANGED; patch remains ac42f10a36c509715f3a4c3454adc55718975df49ef6ebbe45b2fe319b6a6148",
+    "new_executable": "Existing gnome-shell48.7-0+deb13u2 copied into candidate /opt prefix; only ELF RUNPATH metadata adjusted, no GNOME source or SBC algorithm edits.",
+    "runpath": "$ORIGIN/../lib/aarch64-linux-gnu/mutter-16:/usr/lib/gnome-shell",
+    "dispatch": "Only UID1000 with feedback flag exactly1 executes copied candidate; all other users exec original /usr/bin/gnome-shell.",
+    "global_dropin": "ExecStart uses UID dispatcher; optional %U.env still exists only for1000. Actual original unit argv contained only /usr/bin/gnome-shell.",
+    "guard": {
+      "path": "tools/validation/mutter_sbc_session_guard_v2.sh",
+      "sha256": "7c6e2af908a82739c4ff961aea31d4183e897e9fde632e5369289001720c65cd",
+      "bytes": 4560
+    },
+    "guard_review": {
+      "path": "evidence/desktop-mutter-sbc-session-guard-v2-review-20261116.json",
+      "sha256": "2cb330aea583f22700b31db2e5502fe890e2d95f731d2f408fdb6535ef928407",
+      "bytes": 3503
+    },
+    "new_state": "/run/t736-sbc-ac42-gi2",
+    "new_timer": "t736-mutter-sbc-ac42-gi2-rollback.timer",
+    "activation_lock": "/run/t736-sbc-ac42-gi2/private/lock"
+  },
+  "validation": {
+    "details": {
+      "path": "evidence/desktop-mutter-sbc-gi-launcher-v2-validation-20261116.json",
+      "sha256": "ef9cad31ee98fb8158cf80fce451b3c01f151c4dffa3c8e6683b0dd23b413479",
+      "bytes": 4304
+    },
+    "original_path_order": "Reproduced exact ClutterActor duplicate under fatal-warnings; expected exit -5.",
+    "corrected_path_order": "Native ARM64/QEMU test retains identical GType value and only candidate library mappings.",
+    "real_candidate_executable": "--list-modes succeeded with gdm/user output, invoking the Shell introspection initializer.",
+    "limits": "This exercises the corrected loader order and actual Shell option path, not a hardware graphical session or responsiveness."
+  },
+  "overlay": {
+    "path": "build/mutter-egl-sbc-candidate/artifacts/t736-mutter-sbc-48.7-gi-launcher-v2.tar.xz",
+    "sha256": "1844d509e3cc41d5002cb438321ed657fd5fb42ef43ea9e839ca8888848a9a55",
+    "bytes": 8388
+  },
+  "overlay_files": [
+    "opt/t736-mutter-sbc-48.7-ac42f10a/bin/gnome-shell",
+    "opt/t736-mutter-sbc-48.7-ac42f10a/bin/gnome-shell-sbc-dispatch",
+    "opt/t736-mutter-sbc-48.7-ac42f10a/GI-LAUNCHER-MANIFEST.json"
+  ],
+  "original_system_shell_sha256": "b1a5849e70adde55c74dfd1410236b5a2e67f864a59db7fe80826a0cd5d87175",
+  "candidate_shell_sha256": "c67136e035f803dc0d404536763707d20d76b7a0c3c59df18420dcf424173caf",
+  "board_run": {
+    "previous_status": "PENDING_ROOT_OWNED_GI_V2_TRIAL",
+    "gi_v2_trial": "BOARD_STARTUP_AND_SBC_FEEDBACK_PASS_PERFORMANCE_MIXED",
+    "comparison": {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-independent-comparison-20261116.json",
+      "bytes": 10317,
+      "sha256": "d56aad1932e3082e54c6544ebd8db8baf29cb8b3c3c8070240f0f17c1ac49bf3"
+    },
+    "rollback": "Original baseline session configuration restored by controlling agent after matched v25 A/B.",
+    "production_promoted": false,
+    "corrective_launcher": "GI v2 overlay passed real GNOME JS startup; no Mutter algorithm/four-library change in GI fix.",
+    "performance_result": "Mixed: callback throughput +6.9%, test-process CPU +14.8%; latency metrics disagree; presentation timestamps unavailable."
+  },
+  "updated_at_utc": "2026-11-16T14:55:47.627738+00:00"
+}

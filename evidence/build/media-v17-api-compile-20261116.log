@@ -1,0 +1,48 @@
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-media-v17'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-media-v17'
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux-media-v17/scripts/checksyscalls.sh
+  CC      drivers/iommu/t736/sunxi-iommu-pgtable.o
+  CC      drivers/iommu/t736/sunxi-iommu-v2.o
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:354:6: warning: no previous prototype for ‘sunxi_iommu_register_fault_cb’ [-Wmissing-prototypes]
+  354 | void sunxi_iommu_register_fault_cb(sunxi_iommu_fault_cb cb,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:450:6: warning: no previous prototype for ‘sunxi_iommu_dump_mastger_reg’ [-Wmissing-prototypes]
+  450 | void sunxi_iommu_dump_mastger_reg(int masterid)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:463:6: warning: no previous prototype for ‘sunxi_reset_device_iommu’ [-Wmissing-prototypes]
+  463 | void sunxi_reset_device_iommu(unsigned int master_id)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:502:6: warning: no previous prototype for ‘sunxi_enable_device_iommu’ [-Wmissing-prototypes]
+  502 | void sunxi_enable_device_iommu(unsigned int master_id, bool flag)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:572:6: warning: no previous prototype for ‘sunxi_iommu_enable_interrupt’ [-Wmissing-prototypes]
+  572 | void sunxi_iommu_enable_interrupt(int enable)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:587:6: warning: no previous prototype for ‘__sunxi_iommu_prevent_hang_enable_unlocked’ [-Wmissing-prototypes]
+  587 | void __sunxi_iommu_prevent_hang_enable_unlocked(int enable)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:620:6: warning: no previous prototype for ‘sunxi_iommu_prevent_hang_enable’ [-Wmissing-prototypes]
+  620 | void sunxi_iommu_prevent_hang_enable(int enable)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:787:6: warning: no previous prototype for ‘sunxi_zap_tlb’ [-Wmissing-prototypes]
+  787 | void sunxi_zap_tlb(unsigned long iova, size_t size)
+      |      ^~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:927:6: warning: no previous prototype for ‘sunxi_iommu_iotlb_sync’ [-Wmissing-prototypes]
+  927 | void sunxi_iommu_iotlb_sync(struct iommu_domain *domain,
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1102:5: warning: no previous prototype for ‘sunxi_iommu_set_dma_parms’ [-Wmissing-prototypes]
+ 1102 | int sunxi_iommu_set_dma_parms(struct notifier_block *nb, unsigned long action,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1120:21: warning: no previous prototype for ‘sunxi_iommu_device_group’ [-Wmissing-prototypes]
+ 1120 | struct iommu_group *sunxi_iommu_device_group(struct device *dev)
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1250:5: warning: no previous prototype for ‘sunxi_iommu_get_idx_by_name’ [-Wmissing-prototypes]
+ 1250 | int sunxi_iommu_get_idx_by_name(const char *name)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/t736-mainline/sources/work/linux-media-v17/drivers/iommu/t736/sunxi-iommu-v2.c:1811:6: warning: no previous prototype for ‘sunxi_iommu_master_ready’ [-Wmissing-prototypes]
+ 1811 | void sunxi_iommu_master_ready(struct device *dev)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+  AR      drivers/iommu/t736/built-in.a
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-media-v17'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-media-v17'

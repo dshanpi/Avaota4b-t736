@@ -1,0 +1,50 @@
+{
+  "schema": "t736-browser-protocol-software-audit-v1",
+  "timestamp": "20261117-122314",
+  "result": "PASS",
+  "hardware_access": false,
+  "vendor_backend_linked": false,
+  "remote_directory": "/home/ubuntu/t736-mainline/build/browser-protocol-audit-20261117-122314",
+  "command": "cd /home/ubuntu/t736-mainline/build/browser-protocol-audit-20261117-122314 && gcc -std=c11 -Wall -Wextra -Werror -pthread browser_protocol_audit.c -o protocol-audit && timeout 20 ./protocol-audit",
+  "sources": {
+    "cedar_broker.c": {
+      "sha256": "4f1ae22badf4b3fd6f5c615daf42ba79c25fc55802858b1311c762a25765e4cd",
+      "bytes": 11627
+    },
+    "cedar_client.c": {
+      "sha256": "dfbddf13a3883fbc3112723643808e2f730ea91a11b6a9097151eff85e278623",
+      "bytes": 6980
+    },
+    "cedar_protocol.h": {
+      "sha256": "7819144ee5c4b180d81d6aef579d89b68b8b34e674d3b071624abf2b528f30ba",
+      "bytes": 1106
+    },
+    "cedar_client.h": {
+      "sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+      "bytes": 1181
+    },
+    "cedar_backend.h": {
+      "sha256": "4361cc019aef2b1acffe63bdf7b8e44552f00c6551b1cc8bb9776edb5d826423",
+      "bytes": 2047
+    },
+    "browser_protocol_audit.c": {
+      "sha256": "4071db686e70fd4e218586dcdab74caa8158c2a8f2e3c8fe2b4fa9b852560d62",
+      "bytes": 6364
+    }
+  },
+  "exit_code": 0,
+  "stdout": "{\"result\":\"PASS\",\"checks\":55,\"hardware_access\":false}\n",
+  "stderr": "CEDAR_BROKER: open session=1 codec=2 16x16\nCEDAR_BROKER: hardware frames=1 session=1 visible=16x16\nCEDAR_BROKER: close session=1 submitted=0 delivered=1\nCEDAR_BROKER: open session=2 codec=2 16x16\nCEDAR_BROKER: failed session=2 op=2 rc=-5 detail=software stub error\nCEDAR_BROKER: open session=1 codec=2 16x16\nCEDAR_BROKER: hardware frames=1 session=1 visible=16x16\nCEDAR_BROKER: close session=1 submitted=1 delivered=1\nCEDAR_BROKER: open session=2 codec=2 16x16\nCEDAR_BROKER: peer left; context retained\n",
+  "sources_changed_during_run": [],
+  "scope": [
+    "single context lease ownership and generation",
+    "backend error and backpressure translation",
+    "short output capacity rejected before consuming frame",
+    "stream socket client/broker round trip",
+    "flush, EOS, close and disconnect lifecycle"
+  ],
+  "limitations": [
+    "stub backend cannot validate real codec, DMA or sandbox",
+    "does not validate systemd peer credentials or service permissions"
+  ]
+}

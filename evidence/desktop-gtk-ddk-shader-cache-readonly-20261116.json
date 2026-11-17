@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "kind": "gtk4186-and-ddk-shader-cache-readonly-review",
+  "scope": "Read-only source and existing/staged vendor-library evidence; no board/session/environment changes.",
+  "gtk": {
+    "version": "4.18.6",
+    "source_url": "https://raw.githubusercontent.com/GNOME/gtk/4.18.6/gsk/gpu/gskgldevice.c",
+    "files": [
+      {
+        "sha256": "661949af92df7ce2797019e2872806af2dfeba90ddfb9ce25f3ea023149d9cc6",
+        "cache_filename": "gtk-cache-gskgldevice.c",
+        "source_url": "https://raw.githubusercontent.com/GNOME/gtk/4.18.6/gsk/gpu/gskgldevice.c"
+      },
+      {
+        "sha256": "f3642601cc5130cb71d557bafbcf7fd6369acd62aaf4ce2397d13902990b488b",
+        "cache_filename": "gtk-cache-gskgpucache.c",
+        "source_url": "https://raw.githubusercontent.com/GNOME/gtk/4.18.6/gsk/gpu/gskgpucache.c"
+      },
+      {
+        "sha256": "adcfbb9cc19327955dea4814218921bc547519a1f7eccca36d50d5f6fa856ff4",
+        "cache_filename": "gtk-cache-gdkglcontext.c",
+        "source_url": "https://raw.githubusercontent.com/GNOME/gtk/4.18.6/gdk/gdkglcontext.c"
+      }
+    ],
+    "observations": [
+      "GskGLDevice owns an in-memory GHashTable gl_programs keyed by shader operation, flags, color states and variation.",
+      "gsk_gl_device_use_program looks up that hash, and on miss compiles vertex/fragment shaders and links a new GL program.",
+      "The table is released at GskGLDevice finalization. The reviewed GL path contains no file cache or program-binary read/write.",
+      "GskGpuCache timeout primarily manages images, glyphs, texture atlases and tiles; it is not evidence of cross-process shader persistence."
+    ],
+    "implication": "Warm shader reuse within the same device/process is implemented. A new Settings process can still trigger PVR compiler work; GTK GL disk reuse was not established."
+  },
+  "vendor": {
+    "version": "24.2.6603887",
+    "existing_evidence": "evidence/storage-v20-settings-driver-cache-readonly-20261116.json",
+    "additional_strings": "build/mutter-egl-sbc-candidate/ddk-cache-strings.log",
+    "observations": [
+      "libpvr_mesa_wsi contains MESA_SHADER_CACHE_DIR, MESA_SHADER_CACHE_DISABLE, MESA_SHADER_CACHE_SHOW_STATS and mesa_shader_cache/mesa_shader_cache_sf/mesa_shader_cache_db strings.",
+      "libGLESv2_PVR_MESA contains EnableBlobCache and cached-binary support symbols.",
+      "The strings establish available code paths only, not the live PVR cache activation, successful callbacks or hits."
+    ],
+    "live_user_cache_directory": "NOT_OBSERVED",
+    "live_cache_hit_rate": "NOT_OBSERVED"
+  },
+  "recommendation": "Keep cache changes outside the current Mutter SBC A/B. Read live user cache directory/env and measure repeated process launches separately before changing flags; do not invent undocumented apphint settings."
+}

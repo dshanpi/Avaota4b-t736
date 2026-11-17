@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "BUILT_NATIVE_MAIN_AND_WORKER_FAULT_TEST_PASS_NOT_DEPLOYED_SUPERSEDED_BY_STRACE_CAUSE",
+  "author": "desktop_review",
+  "board_access": false,
+  "preload": {
+    "path": "build/cedar-fault-trace-20261117/libt736_fault_trace.so",
+    "bytes": 14616,
+    "sha256": "692f80cebdffd6d73e9ee9d1072293c4e8195d19ebef2d7c43e44cf5553fedbb"
+  },
+  "source": {
+    "path": "tools/validation/cedar_fault_trace.c",
+    "bytes": 6441,
+    "sha256": "37afc3029fbbd9f82693cb698e5b8bb59f3783e45227b2f7ddf6087684d4e3af"
+  },
+  "fixture": {
+    "path": "tests/test_cedar_fault_trace.c",
+    "bytes": 674,
+    "sha256": "d80d391ae172b38afe772264fd81409baa7bf58b5b925f538fbb2d396e4e568f"
+  },
+  "compiler": "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-gcc",
+  "flags": [
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fPIC",
+    "-shared",
+    "-fno-builtin",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-stack-protector",
+    "-mno-outline-atomics",
+    "-Wl,-z,relro,-z,now",
+    "-Wl,-soname,libt736_fault_trace.so"
+  ],
+  "behavior": {
+    "signal": "SIGSEGV only, SA_SIGINFO|SA_ONSTACK|SA_RESETHAND",
+    "output": [
+      "signal number,si_code,si_addr,PC/LR/FP/SP/PSTATE",
+      "AArch64 general registers x0..x28",
+      "up to16 frame records read with pread on preopened/proc/self/mem, never direct untrusted-frame-pointer dereference",
+      "up to65536 bytes of current/proc/self/maps through preopened descriptor, including post-constructor dlopen libraries"
+    ],
+    "handler_operations": "Custom bounded formatting, lock-free atomic guard, write, pread, lseek, read, errno access and _exit. No backtrace, dladdr, stdio, malloc, pthread locks or vendor calls.",
+    "exit": "_exit(128+signal), no signal recovery or process retry",
+    "altstack": "64KiB static alternate stack installed for constructor thread only. Worker threads use ordinary stacks; no pthread interposition.",
+    "loader": "BIND_NOW resolves imports before handler can run; only libc DT_NEEDED."
+  },
+  "validation": {
+    "native_main": "Intentional invalid0x1234 write: correct addr, PC, FP chain/maps, exit139",
+    "native_worker": "Same fault from pthread: correct addr, PC, FP chain/maps, exit139",
+    "logs": [
+      {
+        "path": "build/cedar-fault-trace-20261117/test-native-main.log",
+        "bytes": 4229,
+        "sha256": "738e26b0b743febbb8dfb5df1ccaf1c72fb8d99f94f5614c485b7a3d81702a7e"
+      },
+      {
+        "path": "build/cedar-fault-trace-20261117/test-native-thread.log",
+        "bytes": 4302,
+        "sha256": "793297437ffcc495c252001e6f20ef0c971c5238b8235b65b96dce84ea139171"
+      }
+    ],
+    "arm64_elf": {
+      "path": "build/cedar-fault-trace-20261117/elf.log",
+      "bytes": 2451,
+      "sha256": "addead9b9b847be33f37f87106ad4d88310422069498476e63cfee36b46c51e0"
+    },
+    "arm64_disassembly": {
+      "path": "build/cedar-fault-trace-20261117/disassembly.log",
+      "bytes": 27501,
+      "sha256": "7ce729d2a44386266fc06997ba365981f133ae27c286cd29e7d7029e6652879f"
+    },
+    "handler_call_audit": "fatal_fault calls only local format/emit helpers and _exit/pread/lseek/read/__errno_location. Guard compiled as direct swp, no libatomic/outline helper. memset appears only in setup, not fatal handler.",
+    "arm64_runtime_test": "Not run; root identified real cause with strace and cancelled board use of this probe."
+  },
+  "root_reported_cause": {
+    "collection": "Reported by root; this agent did not access board or independently collect its strace",
+    "summary": "After coldboot, /dev/cedar_dev and /dev/dma_heap/t736-ve were root0600. Vendor openat failed EACCES and initialization crashed at0x58. Root is implementing persistent exact device permissions and startup preflight."
+  },
+  "limits": [
+    "Diagnostic preload is for the isolated test service only, not global/system/default preload.",
+    "Frame-pointer omission/PAC/corrupt stack can limit unwind; raw PC/LR/maps remain useful.",
+    "Output and frame count are bounded; a blocked stderr sink can still block write.",
+    "Worker alternate stacks are not installed.",
+    "Maps output can truncate at64KiB.",
+    "No board validation or production deployment is asserted."
+  ]
+}

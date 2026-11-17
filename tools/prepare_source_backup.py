@@ -12,15 +12,20 @@ from pathlib import Path
 SOURCE_DIRS = ('boards', 'config', 'docs', 'handoff', 'initramfs', 'patches',
                'spl', 'tests', 'tools', 'userpatches')
 TEXT_SUFFIXES = {'', '.c', '.h', '.S', '.ld', '.py', '.sh', '.json', '.md',
-                 '.patch', '.config', '.fex', '.wip', '.conf', '.dtsi', '.dts', '.xml', '.txt'}
+                 '.patch', '.config', '.fex', '.wip', '.conf', '.dtsi', '.dts', '.xml', '.txt',
+                 '.service', '.rules', '.inc', '.js', '.desktop'}
+EXPLICIT_SOURCE_FILES = {'config/gpu-userspace-x11.env'}
 EVIDENCE_SUFFIXES = {'.json', '.log', '.md', '.txt'}
 EVIDENCE_PREFIXES = ('source-', 'vendor-ddr-', 't736-', 'display-', 'board-power-',
                      'lpddr4-', 'independent-', 'u-boot-source-', 'tfa-', 'open-pmu-',
                      'storage-', 'phy-snapshot-', 'ethernet-', 'emmc-', 'gpu-',
                      'firefox-', 'desktop-', 'settings-', 'gtk-ui-', 'egl-feedback-', 'egl-x11-sync-',
-                     'link-advertising-', 'cpu-topology-', 'pvr-')
+                     'link-advertising-', 'cpu-topology-', 'pvr-', 'browser-', 'cedar-', 'media-')
 OMIT_EVIDENCE = ('board-capture-', 'lynx-tools-', 'armbian-password-', 'source-ssh-identity-')
 OMIT_PATH_PREFIXES = ('evidence/vendor-reference/', 'evidence/independent-reference/')
+PRIVATE_CAPTURE_NAMES = {'media-v27-first-serial-20261117.log',
+                         'browser-cedar-clean-shutdown-20261117.log',
+                         'browser-cedar-reboot-console-20261117.log'}
 ANSI = re.compile(r'\x1b(?:\[[0-?]*[ -/]*[@-~]|\][^\x07]*(?:\x07)|[@-_])')
 SECRET = re.compile(rb'-----BEGIN (?:OPENSSH|RSA|EC|DSA) PRIVATE KEY|'
                     rb'gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|'
@@ -39,8 +44,8 @@ def private_evidence_path(name):
     """Keep raw login/connection records out even when tracked or referenced."""
     path = Path(name)
     return (name.startswith('evidence/') and
-            (path.name.startswith(OMIT_EVIDENCE) or
-             re.search(r'(?:^|[-_.])(?:auth|tunnel|credentials?|passwords?)(?:[-_.]|$)',
+            (path.name.startswith(OMIT_EVIDENCE) or path.name in PRIVATE_CAPTURE_NAMES or
+             re.search(r'(?:^|[-_.])(?:auth|login|tunnel|credentials?|passwords?)(?:[-_.]|$)',
                        path.name, re.I) is not None))
 
 
@@ -116,7 +121,7 @@ def main():
         verify(target)
         return
     tracked = set(git(target, 'ls-files').splitlines())
-    names = {'README.md', 'status.json'}
+    names = {'README.md', 'status.json'} | EXPLICIT_SOURCE_FILES
     artifact_records = [artifact_record_name(source, name) for name in args.artifact_record]
     names.update(artifact_records)
     omitted = []
@@ -166,7 +171,10 @@ def main():
         raw = p.read_bytes()
         original_sha = digest(raw)
         if p.suffix != '.png':
-            text = raw.decode('utf-8-sig').replace('\r\n', '\n').replace('\r', '\n')
+            try:
+                text = raw.decode('utf-8-sig').replace('\r\n', '\n').replace('\r', '\n')
+            except UnicodeDecodeError as error:
+                raise ValueError('Non-UTF8 input needs explicit review: ' + name) from error
             if name == 'status.json':
                 data = json.loads(text)
                 data.pop('ssh', None)

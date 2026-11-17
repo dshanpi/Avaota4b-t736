@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "kind": "storage-v25-updater-exact-inputs",
+  "status": "PASS_INPUTS_ONLY_NO_DEVICE_OR_INSTALL",
+  "payload_entries": 82,
+  "updater_sha256": "dbbfa8b9ea82f10c1b7a0399856c69290de7354aaeb84a441291c6f0c8f726e3",
+  "bindings": {
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate_dtb_bytes": 12028,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "control_manifest_sha256": "13ac83cd9707cc2241a6987131a4f48803f3228b9ebacc1d0393dcb67f67929e",
+    "kernel_bytes": 5604584,
+    "kernel_sha256": "801450446396cbf6b5504315ae07d4f4e13881dfdeca7ca31956273db1e23456",
+    "payload_manifest_sha256": "bba064dae378b56432405a22cefca6df5790e4ca6647a4f2e3b16db3cd48cf69",
+    "pvr_bytes": 1913816,
+    "pvr_sha256": "abfc1c65daf09bcca178ce9f4cbff12f261263525b2d1edc346b286d07e92ddd",
+    "raw_image_bytes": 11800584,
+    "raw_image_sha256": "1d23722f7589d040896c4ddf4f2b0a8ed0a3b0a671bd1ce781f2c8ad60de6805"
+  },
+  "maintainer_scripts_executed": false,
+  "board_access": false,
+  "note": "Actual pinned final package/PVR processed by inputs(); full control and payload canonical manifests matched;14 fault-injection tests passed."
+}

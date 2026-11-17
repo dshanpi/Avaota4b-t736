@@ -1,0 +1,535 @@
+--- a/cogl/cogl/cogl-onscreen-private.h
++++ b/cogl/cogl/cogl-onscreen-private.h
+@@ -80,3 +80,9 @@
+ 
+ COGL_EXPORT CoglFrameInfo *
+ cogl_onscreen_pop_head_frame_info (CoglOnscreen *onscreen);
++
++/* Queue notifications through the existing Cogl dispatch source. */
++void
++_cogl_onscreen_queue_event (CoglOnscreen *onscreen,
++                            CoglFrameEvent type,
++                            CoglFrameInfo *info);
+--- a/cogl/cogl/cogl-onscreen.c
++++ b/cogl/cogl/cogl-onscreen.c
+@@ -234,7 +234,7 @@
+   _cogl_onscreen_queue_dirty (onscreen, &info);
+ }
+ 
+-static void
++void
+ _cogl_onscreen_queue_event (CoglOnscreen *onscreen,
+                             CoglFrameEvent type,
+                             CoglFrameInfo *info)
+--- a/cogl/cogl/winsys/cogl-onscreen-egl.c
++++ b/cogl/cogl/winsys/cogl-onscreen-egl.c
+@@ -296,8 +296,8 @@
+   info->has_valid_gpu_rendering_duration = TRUE;
+ }
+ 
+-static void
+-cogl_onscreen_egl_swap_buffers_with_damage (CoglOnscreen    *onscreen,
++gboolean
++cogl_onscreen_egl_swap_buffers_with_damage_checked (CoglOnscreen    *onscreen,
+                                             const MtkRegion *region,
+                                             CoglFrameInfo   *info,
+                                             gpointer         user_data)
+@@ -309,6 +309,10 @@
+   CoglContext *context = cogl_framebuffer_get_context (framebuffer);
+   CoglRenderer *renderer = context->display->renderer;
+   CoglRendererEGL *egl_renderer = renderer->winsys;
++  EGLBoolean swapped;
++
++  (void) info;
++  (void) user_data;
+ 
+   COGL_TRACE_BEGIN_SCOPED (CoglOnscreenEGLSwapBuffersWithDamage,
+                            "Cogl::Onscreen::egl_swap_buffers_with_damage()");
+@@ -334,17 +338,30 @@
+                                     cogl_framebuffer_get_height (framebuffer),
+                                     egl_rectangles);
+ 
+-      if (priv->pf_eglSwapBuffersWithDamage (egl_renderer->edpy,
+-                                             priv->egl_surface,
+-                                             egl_rectangles,
+-                                             n_rectangles) == EGL_FALSE)
+-        g_warning ("Error reported by eglSwapBuffersWithDamage");
++      swapped = priv->pf_eglSwapBuffersWithDamage (egl_renderer->edpy,
++                                                    priv->egl_surface,
++                                                    egl_rectangles,
++                                                    n_rectangles);
+     }
+   else
+-    eglSwapBuffers (egl_renderer->edpy, priv->egl_surface);
++    swapped = eglSwapBuffers (egl_renderer->edpy, priv->egl_surface);
++
++  if (!swapped)
++    g_warning ("Error reported by EGL buffer swap");
+ 
+   /* Update latest sync object after buffer swap */
+   cogl_framebuffer_flush (framebuffer);
++  return swapped == EGL_TRUE;
++}
++
++static void
++cogl_onscreen_egl_swap_buffers_with_damage (CoglOnscreen    *onscreen,
++                                            const MtkRegion *region,
++                                            CoglFrameInfo   *info,
++                                            gpointer         user_data)
++{
++  cogl_onscreen_egl_swap_buffers_with_damage_checked (onscreen, region,
++                                                       info, user_data);
+ }
+ 
+ void
+--- a/cogl/cogl/winsys/cogl-onscreen-egl.h
++++ b/cogl/cogl/winsys/cogl-onscreen-egl.h
+@@ -57,3 +57,9 @@
+ cogl_onscreen_egl_choose_config (CoglOnscreenEgl  *onscreen_egl,
+                                  EGLConfig        *out_egl_config,
+                                  GError          **error);
++
++/* Internal submission result for backends that count successful swaps. */
++gboolean cogl_onscreen_egl_swap_buffers_with_damage_checked (CoglOnscreen    *onscreen,
++                                                           const MtkRegion *region,
++                                                           CoglFrameInfo   *info,
++                                                           gpointer         user_data);
+--- a/cogl/cogl/winsys/cogl-onscreen-xlib.c
++++ b/cogl/cogl/winsys/cogl-onscreen-xlib.c
+@@ -29,6 +29,8 @@
+ #include "cogl/winsys/cogl-onscreen-xlib.h"
+ 
+ #include "cogl/cogl-context-private.h"
++#include "cogl/cogl-frame-info-private.h"
++#include "cogl/cogl-onscreen-private.h"
+ #include "cogl/cogl-renderer-private.h"
+ #include "cogl/cogl-x11-onscreen.h"
+ #include "cogl/cogl-xlib-renderer-private.h"
+@@ -36,11 +38,34 @@
+ #include "cogl/winsys/cogl-winsys-egl-x11-private.h"
+ #include "mtk/mtk-x11.h"
+ 
++typedef struct
++{
++  int64_t target_sbc;
++  int64_t frame_counter;
++  int64_t deadline_us;
++  int64_t submitted_at_us;
++  gboolean buffer_swap;
++} SbcPendingFrame;
++
+ struct _CoglOnscreenXlib
+ {
+   CoglOnscreenEgl parent;
+ 
+   Window xwin;
++  GQueue sbc_pending;
++  guint sbc_poll_source;
++  gboolean sbc_attempted;
++  gboolean sbc_failed;
++  int64_t submitted_sbc;
++  int64_t completed_sbc;
++  float sbc_refresh_rate;
++  uint64_t sbc_submissions;
++  uint64_t sbc_submit_failures;
++  uint64_t sbc_confirmed;
++  uint64_t sbc_symbolic;
++  int64_t sbc_max_wait_us;
++  guint sbc_max_queue_depth;
++  guint sbc_trace_count;
+ };
+ 
+ static void
+@@ -170,6 +195,296 @@
+   return parent_class->allocate (framebuffer, error);
+ }
+ 
++
++/* SBC confirms completion of a buffer swap, including a copy. It does not
++ * identify a scanout timestamp. In particular, never copy the latest UST
++ * into the current frame's presentation_time_us. */
++static void
++trace_sbc_summary (CoglOnscreenXlib *onscreen_xlib,
++                   const char       *reason,
++                   gboolean          final)
++{
++  if (g_strcmp0 (g_getenv ("COGL_EGL_X11_SBC_TRACE"), "1") != 0 ||
++      !onscreen_xlib->sbc_attempted ||
++      (!final && onscreen_xlib->sbc_trace_count >= 8))
++    return;
++  onscreen_xlib->sbc_trace_count++;
++  g_message ("EGL_X11_SBC surface=%lu reason=%s disabled=%d "
++             "submitted=%" G_GUINT64_FORMAT " submit_failures=%" G_GUINT64_FORMAT
++             " confirmed=%" G_GUINT64_FORMAT " symbolic=%" G_GUINT64_FORMAT
++             " max_wait_us=%" G_GINT64_FORMAT " max_queue_depth=%u",
++             onscreen_xlib->xwin, reason, onscreen_xlib->sbc_failed,
++             onscreen_xlib->sbc_submissions, onscreen_xlib->sbc_submit_failures,
++             onscreen_xlib->sbc_confirmed, onscreen_xlib->sbc_symbolic,
++             onscreen_xlib->sbc_max_wait_us, onscreen_xlib->sbc_max_queue_depth);
++}
++
++static gboolean
++query_sbc (CoglOnscreenXlib *onscreen_xlib,
++           int64_t          *sbc)
++{
++  CoglFramebuffer *framebuffer = COGL_FRAMEBUFFER (onscreen_xlib);
++  CoglContext *context = cogl_framebuffer_get_context (framebuffer);
++  CoglRendererEGL *egl_renderer = context->display->renderer->winsys;
++  EGLSurface surface =
++    cogl_onscreen_egl_get_egl_surface (COGL_ONSCREEN_EGL (onscreen_xlib));
++  int64_t ust, msc;
++
++  /* The extension requires a current EGL context. Keep Cogl's bind cache
++   * coherent rather than making an untracked eglMakeCurrent call. */
++  cogl_context_flush_framebuffer_state (context, framebuffer, framebuffer,
++                                        COGL_FRAMEBUFFER_STATE_BIND);
++  return egl_renderer->pf_eglGetSyncValues (egl_renderer->edpy,
++                                                   surface, &ust, &msc, sbc);
++}
++
++static gboolean
++finish_sbc_head (CoglOnscreenXlib *onscreen_xlib,
++                 gboolean          confirmed)
++{
++  CoglOnscreen *onscreen = COGL_ONSCREEN (onscreen_xlib);
++  g_autofree SbcPendingFrame *pending =
++    g_queue_pop_head (&onscreen_xlib->sbc_pending);
++  g_autoptr (CoglFrameInfo) info = cogl_onscreen_pop_head_frame_info (onscreen);
++
++  gboolean identity_ok;
++
++  g_return_val_if_fail (pending != NULL, FALSE);
++  g_return_val_if_fail (info != NULL, FALSE);
++  identity_ok = info->frame_counter == pending->frame_counter;
++  confirmed = confirmed && pending->buffer_swap;
++  if (!identity_ok)
++    {
++      g_warning ("EGL X11 SBC frame queue identity mismatch");
++      confirmed = FALSE;
++      onscreen_xlib->sbc_failed = TRUE;
++    }
++
++  info->presentation_time_us = 0;
++  info->refresh_rate = confirmed ? onscreen_xlib->sbc_refresh_rate : 0;
++  info->flags &= ~(COGL_FRAME_INFO_FLAG_HW_CLOCK |
++                   COGL_FRAME_INFO_FLAG_VSYNC |
++                   COGL_FRAME_INFO_FLAG_ZERO_COPY);
++  if (!confirmed)
++    info->flags |= COGL_FRAME_INFO_FLAG_SYMBOLIC;
++
++  if (confirmed)
++    onscreen_xlib->sbc_confirmed++;
++  else
++    onscreen_xlib->sbc_symbolic++;
++  onscreen_xlib->sbc_max_wait_us =
++    MAX (onscreen_xlib->sbc_max_wait_us,
++         g_get_monotonic_time () - pending->submitted_at_us);
++  if ((onscreen_xlib->sbc_confirmed + onscreen_xlib->sbc_symbolic) % 120 == 0)
++    trace_sbc_summary (onscreen_xlib, "periodic", FALSE);
++
++  _cogl_onscreen_queue_event (onscreen, COGL_FRAME_EVENT_SYNC, info);
++  _cogl_onscreen_queue_event (onscreen, COGL_FRAME_EVENT_COMPLETE, info);
++  return identity_ok;
++}
++
++static void
++fail_sbc_tracking (CoglOnscreenXlib *onscreen_xlib,
++                   const char       *reason)
++{
++  if (!onscreen_xlib->sbc_failed)
++    g_warning ("EGL X11 SBC feedback disabled for this surface: %s", reason);
++  onscreen_xlib->sbc_failed = TRUE;
++  while (!g_queue_is_empty (&onscreen_xlib->sbc_pending))
++    finish_sbc_head (onscreen_xlib, FALSE);
++  trace_sbc_summary (onscreen_xlib, reason, FALSE);
++}
++
++static gboolean
++query_sbc_rate (CoglOnscreenXlib *onscreen_xlib)
++{
++  CoglContext *context =
++    cogl_framebuffer_get_context (COGL_FRAMEBUFFER (onscreen_xlib));
++  CoglRendererEGL *egl_renderer = context->display->renderer->winsys;
++  EGLSurface surface =
++    cogl_onscreen_egl_get_egl_surface (COGL_ONSCREEN_EGL (onscreen_xlib));
++  gint32 numerator = 0, denominator = 0;
++
++  onscreen_xlib->sbc_refresh_rate = 0;
++  if (!egl_renderer->pf_eglGetMscRate (egl_renderer->edpy, surface,
++                                           &numerator, &denominator) ||
++      numerator <= 0 || denominator <= 0 ||
++      (double) numerator / denominator > 1000)
++    return FALSE;
++  onscreen_xlib->sbc_refresh_rate = (float) numerator / denominator;
++  return TRUE;
++}
++
++static gboolean
++poll_sbc (gpointer user_data)
++{
++  CoglOnscreenXlib *onscreen_xlib = user_data;
++  SbcPendingFrame *pending;
++  int64_t sbc;
++
++  if (g_queue_is_empty (&onscreen_xlib->sbc_pending))
++    {
++      onscreen_xlib->sbc_poll_source = 0;
++      return G_SOURCE_REMOVE;
++    }
++  if (!query_sbc (onscreen_xlib, &sbc))
++    fail_sbc_tracking (onscreen_xlib, "sync query failed");
++  else if (sbc < onscreen_xlib->completed_sbc ||
++           sbc > onscreen_xlib->submitted_sbc)
++    fail_sbc_tracking (onscreen_xlib, "counter reset or out-of-range completion");
++  else
++    {
++      onscreen_xlib->completed_sbc = sbc;
++      pending = g_queue_peek_head (&onscreen_xlib->sbc_pending);
++      if (pending && pending->target_sbc <= sbc)
++        query_sbc_rate (onscreen_xlib);
++      while ((pending = g_queue_peek_head (&onscreen_xlib->sbc_pending)) &&
++             pending->target_sbc <= sbc)
++        {
++          if (!finish_sbc_head (onscreen_xlib, TRUE))
++            {
++              fail_sbc_tracking (onscreen_xlib, "frame queue identity mismatch");
++              break;
++            }
++        }
++      pending = g_queue_peek_head (&onscreen_xlib->sbc_pending);
++      if (pending && g_get_monotonic_time () >= pending->deadline_us)
++        fail_sbc_tracking (onscreen_xlib, "250ms completion deadline exceeded");
++    }
++
++  if (g_queue_is_empty (&onscreen_xlib->sbc_pending))
++    {
++      onscreen_xlib->sbc_poll_source = 0;
++      return G_SOURCE_REMOVE;
++    }
++  return G_SOURCE_CONTINUE;
++}
++
++static void
++start_sbc_tracking (CoglOnscreenXlib *onscreen_xlib)
++{
++  int64_t baseline;
++
++  if (onscreen_xlib->sbc_attempted)
++    return;
++  onscreen_xlib->sbc_attempted = TRUE;
++  if (!query_sbc (onscreen_xlib, &baseline) || baseline < 0 ||
++      !query_sbc_rate (onscreen_xlib))
++    {
++      fail_sbc_tracking (onscreen_xlib, "initial counter/rate query failed");
++      return;
++    }
++  onscreen_xlib->submitted_sbc = baseline;
++  onscreen_xlib->completed_sbc = baseline;
++  trace_sbc_summary (onscreen_xlib, "enabled", FALSE);
++}
++
++static void
++queue_sbc_frame (CoglOnscreenXlib *onscreen_xlib,
++                 CoglFrameInfo    *info,
++                 gboolean          buffer_swap)
++{
++  SbcPendingFrame *pending = g_new0 (SbcPendingFrame, 1);
++
++  pending->frame_counter = info->frame_counter;
++  pending->submitted_at_us = g_get_monotonic_time ();
++  pending->deadline_us = pending->submitted_at_us + 250000;
++  pending->buffer_swap = buffer_swap;
++  if (!onscreen_xlib->sbc_failed)
++    {
++      if (buffer_swap)
++        {
++          if (onscreen_xlib->submitted_sbc == G_MAXINT64)
++            {
++              /* Include this newly queued Cogl frame in the symbolic drain. */
++              g_queue_push_tail (&onscreen_xlib->sbc_pending, pending);
++              fail_sbc_tracking (onscreen_xlib, "counter overflow");
++              return;
++            }
++          onscreen_xlib->submitted_sbc++;
++        }
++      pending->target_sbc = onscreen_xlib->submitted_sbc;
++    }
++  g_queue_push_tail (&onscreen_xlib->sbc_pending, pending);
++  onscreen_xlib->sbc_max_queue_depth =
++    MAX (onscreen_xlib->sbc_max_queue_depth,
++         g_queue_get_length (&onscreen_xlib->sbc_pending));
++
++  if (onscreen_xlib->sbc_failed ||
++      g_queue_get_length (&onscreen_xlib->sbc_pending) > 16)
++    {
++      fail_sbc_tracking (onscreen_xlib, "pending queue limit or disabled tracker");
++      return;
++    }
++
++  if (!onscreen_xlib->sbc_poll_source)
++    {
++      onscreen_xlib->sbc_poll_source =
++        g_timeout_add (2, poll_sbc, onscreen_xlib);
++      g_source_set_name_by_id (onscreen_xlib->sbc_poll_source,
++                              "[cogl] EGL X11 SBC completion");
++    }
++}
++
++static void
++cogl_onscreen_xlib_swap_buffers_with_damage (CoglOnscreen    *onscreen,
++                                             const MtkRegion *region,
++                                             CoglFrameInfo   *info,
++                                             gpointer         user_data)
++{
++  CoglOnscreenXlib *onscreen_xlib = COGL_ONSCREEN_XLIB (onscreen);
++  CoglContext *context =
++    cogl_framebuffer_get_context (COGL_FRAMEBUFFER (onscreen));
++  CoglOnscreenClass *parent_class =
++    COGL_ONSCREEN_CLASS (cogl_onscreen_xlib_parent_class);
++  gboolean use_sbc = cogl_context_has_winsys_feature (
++    context, COGL_WINSYS_FEATURE_SYNC_AND_COMPLETE_EVENT);
++
++  if (!use_sbc)
++    {
++      parent_class->swap_buffers_with_damage (onscreen, region, info, user_data);
++      return;
++    }
++
++  start_sbc_tracking (onscreen_xlib);
++  if (cogl_onscreen_egl_swap_buffers_with_damage_checked (onscreen, region,
++                                                           info, user_data))
++    onscreen_xlib->sbc_submissions++;
++  else
++    {
++      onscreen_xlib->sbc_submit_failures++;
++      fail_sbc_tracking (onscreen_xlib, "EGL swap submission failed");
++    }
++  queue_sbc_frame (onscreen_xlib, info, TRUE);
++}
++
++static void
++cogl_onscreen_xlib_swap_region (CoglOnscreen    *onscreen,
++                                const MtkRegion *region,
++                                CoglFrameInfo   *info,
++                                gpointer         user_data)
++{
++  CoglOnscreenXlib *onscreen_xlib = COGL_ONSCREEN_XLIB (onscreen);
++  CoglContext *context =
++    cogl_framebuffer_get_context (COGL_FRAMEBUFFER (onscreen));
++  CoglOnscreenClass *parent_class =
++    COGL_ONSCREEN_CLASS (cogl_onscreen_xlib_parent_class);
++  gboolean use_sbc = cogl_context_has_winsys_feature (
++    context, COGL_WINSYS_FEATURE_SYNC_AND_COMPLETE_EVENT);
++
++  if (use_sbc)
++    {
++      start_sbc_tracking (onscreen_xlib);
++      fail_sbc_tracking (onscreen_xlib, "explicit swap_region bypasses SBC accounting");
++    }
++  parent_class->swap_region (onscreen, region, info, user_data);
++  /* Normally unreachable because SWAP_REGION is disabled in this mode.
++   * Explicit callers still get symbolic notifications, in queue order,
++   * without inventing an SBC increment for a PostSubBuffer operation. */
++  if (use_sbc)
++    queue_sbc_frame (onscreen_xlib, info, FALSE);
++}
++
+ static gboolean
+ cogl_onscreen_xlib_get_window_handles (CoglOnscreen *onscreen,
+                                        gpointer     *device_out,
+@@ -191,6 +506,9 @@
+ {
+   CoglOnscreenXlib *onscreen_xlib = COGL_ONSCREEN_XLIB (object);
+ 
++  trace_sbc_summary (onscreen_xlib, "dispose", TRUE);
++  g_clear_handle_id (&onscreen_xlib->sbc_poll_source, g_source_remove);
++  g_queue_clear_full (&onscreen_xlib->sbc_pending, g_free);
+   G_OBJECT_CLASS (cogl_onscreen_xlib_parent_class)->dispose (object);
+ 
+   if (onscreen_xlib->xwin != None)
+@@ -262,6 +580,7 @@
+ static void
+ cogl_onscreen_xlib_init (CoglOnscreenXlib *onscreen_xlib)
+ {
++  g_queue_init (&onscreen_xlib->sbc_pending);
+ }
+ 
+ static void
+@@ -281,4 +600,7 @@
+ 
+   framebuffer_class->allocate = cogl_onscreen_xlib_allocate;
+   onscreen_class->get_window_handles = cogl_onscreen_xlib_get_window_handles;
+-}
++  onscreen_class->swap_buffers_with_damage =
++    cogl_onscreen_xlib_swap_buffers_with_damage;
++  onscreen_class->swap_region = cogl_onscreen_xlib_swap_region;
++}
+--- a/cogl/cogl/winsys/cogl-winsys-egl-feature-functions.h
++++ b/cogl/cogl/winsys/cogl-winsys-egl-feature-functions.h
+@@ -184,3 +184,26 @@
+                            "context_priority\0",
+                            COGL_EGL_WINSYS_FEATURE_CONTEXT_PRIORITY)
+ COGL_WINSYS_FEATURE_END ()
++
++COGL_WINSYS_FEATURE_BEGIN (CHROMIUM_sync_control,
++                           "CHROMIUM\0",
++                           "sync_control\0",
++                           COGL_EGL_WINSYS_FEATURE_SYNC_CONTROL)
++COGL_WINSYS_FEATURE_FUNCTION (EGLBoolean, eglGetSyncValues,
++                              (EGLDisplay dpy,
++                               EGLSurface surface,
++                               gint64 *ust,
++                               gint64 *msc,
++                               gint64 *sbc))
++COGL_WINSYS_FEATURE_END ()
++
++COGL_WINSYS_FEATURE_BEGIN (ANGLE_sync_control_rate,
++                           "ANGLE\0",
++                           "sync_control_rate\0",
++                           COGL_EGL_WINSYS_FEATURE_SYNC_CONTROL_RATE)
++COGL_WINSYS_FEATURE_FUNCTION (EGLBoolean, eglGetMscRate,
++                              (EGLDisplay dpy,
++                               EGLSurface surface,
++                               gint32 *numerator,
++                               gint32 *denominator))
++COGL_WINSYS_FEATURE_END ()
+--- a/cogl/cogl/winsys/cogl-winsys-egl-private.h
++++ b/cogl/cogl/winsys/cogl-winsys-egl-private.h
+@@ -103,6 +103,8 @@
+   COGL_EGL_WINSYS_FEATURE_CONTEXT_PRIORITY              = 1L << 7,
+   COGL_EGL_WINSYS_FEATURE_NO_CONFIG_CONTEXT             = 1L << 8,
+   COGL_EGL_WINSYS_FEATURE_NATIVE_FENCE_SYNC             = 1L << 9,
++  COGL_EGL_WINSYS_FEATURE_SYNC_CONTROL                  = 1L << 10,
++  COGL_EGL_WINSYS_FEATURE_SYNC_CONTROL_RATE             = 1L << 11,
+ } CoglEGLWinsysFeature;
+ 
+ typedef struct _CoglRendererEGL
+--- a/cogl/cogl/winsys/cogl-winsys-egl-x11.c
++++ b/cogl/cogl/winsys/cogl-winsys-egl-x11.c
+@@ -333,6 +333,26 @@
+                   COGL_PRIVATE_FEATURE_DIRTY_EVENTS,
+                   TRUE);
+ 
++  /* Candidate is opt-in until desktop acceptance has been completed. */
++  if (g_strcmp0 (g_getenv ("COGL_EGL_X11_SBC_FEEDBACK"), "1") == 0)
++    {
++      CoglRendererEGL *egl_renderer = context->display->renderer->winsys;
++      CoglEGLWinsysFeature required =
++        COGL_EGL_WINSYS_FEATURE_SYNC_CONTROL |
++        COGL_EGL_WINSYS_FEATURE_SYNC_CONTROL_RATE;
++
++      if ((egl_renderer->private_features & required) == required)
++        {
++          COGL_FLAGS_SET (context->winsys_features,
++                          COGL_WINSYS_FEATURE_SYNC_AND_COMPLETE_EVENT, TRUE);
++          /* PostSubBuffer/copy-region operations need not increment SBC. */
++          COGL_FLAGS_SET (context->winsys_features,
++                          COGL_WINSYS_FEATURE_SWAP_REGION, FALSE);
++          COGL_FLAGS_SET (context->winsys_features,
++                          COGL_WINSYS_FEATURE_SWAP_REGION_THROTTLE, FALSE);
++        }
++    }
++
+   return TRUE;
+ }
+ 

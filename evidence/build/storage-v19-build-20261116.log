@@ -1,0 +1,314 @@
+PASS: actual SMHC3 C descriptor ABI, reserved flag bits zero, low4G ends, alignment/overflow rejection, command/data/directional completion, ownership and error precedence
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v19'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-storage-v19'
+  GEN     Makefile
+#
+# No change to .config
+#
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-storage-v19'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v19'
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v19'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-storage-v19'
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+  GEN     Makefile
+  DTC     arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:135.3-29: Warning (clocks_property): /pinctrl@7025000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:135.3-29: Warning (clocks_property): /pinctrl@7025000:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:135.3-29: Warning (clocks_property): /pinctrl@7025000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:159.3-19: Warning (clocks_property): /clock-controller@2003300:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:168.3-54: Warning (clocks_property): /phy@4200800:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:168.3-54: Warning (clocks_property): /phy@4200800:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:168.3-54: Warning (clocks_property): /phy@4200800:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:168.3-54: Warning (clocks_property): /phy@4200800:clocks: cell 6 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:181.3-24: Warning (clocks_property): /usb@4200000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:192.3-34: Warning (clocks_property): /usb@4200400:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:192.3-34: Warning (clocks_property): /usb@4200400:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:219.3-29: Warning (clocks_property): /pinctrl@2000000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:219.3-29: Warning (clocks_property): /pinctrl@2000000:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:219.3-29: Warning (clocks_property): /pinctrl@2000000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:262.3-19: Warning (clocks_property): /serial@2500000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:300.3-29: Warning (clocks_property): /clock-controller@2003410:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:300.3-29: Warning (clocks_property): /clock-controller@2003410:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:300.3-29: Warning (clocks_property): /clock-controller@2003410:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:311.3-44: Warning (clocks_property): /ethernet@4500000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:311.3-44: Warning (clocks_property): /ethernet@4500000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:311.3-44: Warning (clocks_property): /ethernet@4500000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 3 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:352.3-44: Warning (clocks_property): /clock-controller@2002a00:clocks: cell 5 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:361.3-24: Warning (clocks_property): /power-controller@7061000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:394.3-54: Warning (clocks_property): /display-engine@5000000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:394.3-54: Warning (clocks_property): /display-engine@5000000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:394.3-54: Warning (clocks_property): /display-engine@5000000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:394.3-54: Warning (clocks_property): /display-engine@5000000:clocks: cell 6 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:421.3-34: Warning (clocks_property): /tcon-top@5510000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:421.3-34: Warning (clocks_property): /tcon-top@5510000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:433.3-24: Warning (clocks_property): /tcon@5730000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 6 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:471.3-59: Warning (clocks_property): /hdmi@5520000:clocks: cell 8 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:520.3-29: Warning (clocks_property): /clock-controller@2002b20:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:520.3-29: Warning (clocks_property): /clock-controller@2002b20:clocks: cell 1 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:520.3-29: Warning (clocks_property): /clock-controller@2002b20:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 6 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 8 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:531.3-74: Warning (clocks_property): /power-controller@7065000:clocks: cell 10 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:545.3-44: Warning (clocks_property): /gpu@1800000:clocks: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:545.3-44: Warning (clocks_property): /gpu@1800000:clocks: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:545.3-44: Warning (clocks_property): /gpu@1800000:clocks: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:183.3-17: Warning (phys_property): /usb@4200000:phys: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:194.3-17: Warning (phys_property): /usb@4200400:phys: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:393.3-31: Warning (power_domains_property): /display-engine@5000000:power-domains: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:425.3-31: Warning (power_domains_property): /tcon-top@5510000:power-domains: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:470.3-31: Warning (power_domains_property): /hdmi@5520000:power-domains: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:549.3-31: Warning (power_domains_property): /gpu@1800000:power-domains: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:170.3-24: Warning (resets_property): /phy@4200800:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:182.3-24: Warning (resets_property): /usb@4200000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:193.3-24: Warning (resets_property): /usb@4200400:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:313.3-34: Warning (resets_property): /ethernet@4500000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:313.3-34: Warning (resets_property): /ethernet@4500000:resets: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:396.3-34: Warning (resets_property): /display-engine@5000000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:396.3-34: Warning (resets_property): /display-engine@5000000:resets: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:423.3-34: Warning (resets_property): /tcon-top@5510000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:423.3-34: Warning (resets_property): /tcon-top@5510000:resets: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:435.3-24: Warning (resets_property): /tcon@5730000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:473.3-44: Warning (resets_property): /hdmi@5520000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:473.3-44: Warning (resets_property): /hdmi@5520000:resets: cell 2 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:473.3-44: Warning (resets_property): /hdmi@5520000:resets: cell 4 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:533.3-24: Warning (resets_property): /power-controller@7065000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:547.3-24: Warning (resets_property): /gpu@1800000:resets: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:150.3-32: Warning (gpios_property): /regulator-usb1-vbus:gpio: cell 0 is not a phandle reference
+/home/ubuntu/t736-mainline/sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts:330.4-40: Warning (gpios_property): /ethernet@4500000/mdio:reset-gpios: cell 0 is not a phandle reference
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux-storage-v19/scripts/checksyscalls.sh
+  CC      drivers/mmc/host/t736_mmc_pio.o
+  AR      drivers/mmc/host/built-in.a
+  AR      drivers/mmc/built-in.a
+  AR      drivers/built-in.a
+  AR      built-in.a
+  AR      vmlinux.a
+  LD      vmlinux.o
+  MODPOST Module.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-storage-v19'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v19'
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v19'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-storage-v19'
+  INSTALL /home/ubuntu/t736-mainline/build/linux-storage-v19/module-staging/lib/modules/6.18.63-t736-storage-v19/modules.order
+  INSTALL /home/ubuntu/t736-mainline/build/linux-storage-v19/module-staging/lib/modules/6.18.63-t736-storage-v19/modules.builtin
+  INSTALL /home/ubuntu/t736-mainline/build/linux-storage-v19/module-staging/lib/modules/6.18.63-t736-storage-v19/modules.builtin.modinfo
+  SYMLINK /home/ubuntu/t736-mainline/build/linux-storage-v19/module-staging/lib/modules/6.18.63-t736-storage-v19/build
+  DEPMOD  /home/ubuntu/t736-mainline/build/linux-storage-v19/module-staging/lib/modules/6.18.63-t736-storage-v19
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-storage-v19'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v19'
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v19'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-storage-v19'
+  GEN     debian
+dpkg-buildpackage --build=binary --no-pre-clean --unsigned-changes -R'make -f debian/rules' -j1 -a$(cat debian/arch)
+dpkg-buildpackage: info: source package linux-upstream
+dpkg-buildpackage: info: source version 6.18.63-19
+dpkg-buildpackage: info: source distribution noble
+dpkg-buildpackage: info: source changed by ubuntu <ubuntu@ubuntu2404>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture arm64
+ make -f debian/rules binary
+  GEN     Makefile
+#
+# No change to .config
+#
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux-storage-v19/scripts/checksyscalls.sh
+  GZIP    arch/arm64/boot/Image.gz
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-amarula-relic.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-bananapi-m64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-nanopi-a64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-oceanic-5205-5inmfd.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-olinuxino.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-olinuxino-emmc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-orangepi-win.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-pine64-lts.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-pine64-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-pine64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-pinebook.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-pinephone-1.0.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-pinephone-1.1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-pinephone-1.2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-pinetab.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-pinetab-early-adopter.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-sopine-baseboard.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a64-teres-i.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h64-remix-mini-pc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a100-allwinner-perf1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-a133-liontron-h-a133l.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-bananapi-m2-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-emlid-neutis-n5-devboard.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-libretech-all-h3-cc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-libretech-all-h3-it.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-libretech-all-h5-cc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-nanopi-neo2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-nanopi-neo-plus2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-nanopi-r1s-h5.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-orangepi-pc2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-orangepi-prime.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-orangepi-zero-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h5-orangepi-zero-plus2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h6-beelink-gs1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h6-orangepi-3.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h6-orangepi-lite2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h6-orangepi-one-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h6-pine-h64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h6-pine-h64-model-b.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h6-tanix-tx6.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h6-tanix-tx6-mini.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h313-tanix-tx1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h313-x96q.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h616-bigtreetech-cb1-manta.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h616-bigtreetech-pi.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h616-orangepi-zero2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h616-x96-mate.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h618-longanpi-3h.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h618-orangepi-zero2w.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h618-orangepi-zero3.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h618-transpeed-8k618-t.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h618-yuzukihd-chameleon.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h700-anbernic-rg35xx-2024.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h700-anbernic-rg35xx-h.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h700-anbernic-rg35xx-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun55i-h728-x96qpro+.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun55i-a527-cubie-a5e.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun55i-t527-avaota-a1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/sun55i-t527-orangepi-4a.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/t736-mainline-bringup.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/t736-hdmi-candidate.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/t736-gpu-candidate.dtb
+  SYMLINK debian/linux-image-6.18.63-t736-storage-v19/lib/modules/6.18.63-t736-storage-v19/build
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/lib/modules/6.18.63-t736-storage-v19/modules.order
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/lib/modules/6.18.63-t736-storage-v19/modules.builtin
+  INSTALL debian/linux-image-6.18.63-t736-storage-v19/lib/modules/6.18.63-t736-storage-v19/modules.builtin.modinfo
+  DEPMOD  debian/linux-image-6.18.63-t736-storage-v19/lib/modules/6.18.63-t736-storage-v19
+  INSTALL debian/linux-libc-dev/usr/include
+dpkg-deb: building package 'linux-image-6.18.63-t736-storage-v19' in '../linux-image-6.18.63-t736-storage-v19_6.18.63-19_arm64.deb'.
+dpkg-deb: building package 'linux-libc-dev' in '../linux-libc-dev_6.18.63-19_arm64.deb'.
+ dpkg-genbuildinfo --build=binary -O../linux-upstream_6.18.63-19_arm64.buildinfo
+ dpkg-genchanges --build=binary -O../linux-upstream_6.18.63-19_arm64.changes
+dpkg-genchanges: info: binary-only upload (no source code included)
+ dpkg-source --after-build .
+dpkg-buildpackage: info: binary-only upload (no source included)
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-storage-v19'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v19'
+{
+  "schema": 1,
+  "kind": "t736-dma-v19-kernel-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v19",
+  "baseline_release": "6.18.63-t736-storage-v18",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "dt_changes": [],
+  "delta_from_v18": [
+    "IDIE enables directional completion plus valid SMHC3 error events; CTRL IRQ remains off",
+    "Before-reset failure snapshot includes descriptor OWN and full 11-bit FIFO count"
+  ],
+  "storage_clock_hz": 12000000,
+  "max_request_bytes": 65536,
+  "dma_enabled": true,
+  "dma_address_bits": 32,
+  "descriptor_address_shift": 2,
+  "descriptor_segment_bytes": 1024,
+  "voltage_or_timing_change": false,
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v19_6.18.63-19_arm64.deb",
+    "size": 5592228,
+    "sha256": "31e82d9ff94ba0a0a26915410a914aa74878ab4ace21434485a8fddb2b40a7b9"
+  },
+  "baseline_files": {
+    "build/linux-storage-v18/.config": "7f257a234e1e3e7dc8af46d090ccd9b6c789c2fdb7eec6bf01c3a2395b4db4e7",
+    "build/linux-storage-v18/arch/arm64/boot/Image": "6c671b870e204d3c3b9e8f202932d2dabd90887d8df6009f0d7d06a0d02f3b43",
+    "boards/t736_mmc_dma_v18.c": "3656bef4cc9d5db40f4d95c3f0f5ea5c69d5d160c2264e40e743606084ecd1eb"
+  },
+  "files": {
+    "boards/t736_mmc_dma_v19.c": "f29554e12658287abbd4af5068d1c8fa567946af7b281e6d032441f8a295e639",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "sources/work/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts": "2d4f935044ae65104f75f3773c4416939c2401e8cbfc90b7d4c3de48545bddd2",
+    "build/linux-storage-v19/.config": "6aab4229067aee5bea1c432d441cd4083b532766d400507e45bb4396c0672778",
+    "build/linux-storage-v19/arch/arm64/boot/Image": "34522f80371d20ca9e76cfebcb1c025061d569997defe9b23aa47214bb89c12b",
+    "build/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c",
+    "build/linux-storage-v19/Module.symvers": "9813e3b9b67d85cb230cf921dd984154868d53e8df9b33d1d88325c460d5106c"
+  },
+  "board_validation": "pending; verify cold boot, rootfs reads, bounded scratch-file write/read hashes, throughput and dmesg before promotion"
+}
+{
+  "evidence": "/home/ubuntu/t736-mainline/evidence/storage-v19-package-20261116.json",
+  "package": {
+    "path": "/home/ubuntu/t736-mainline/build/linux-image-6.18.63-t736-storage-v19_6.18.63-19_arm64.deb",
+    "size": 5592228,
+    "sha256": "31e82d9ff94ba0a0a26915410a914aa74878ab4ace21434485a8fddb2b40a7b9",
+    "control": {
+      "Package": "linux-image-6.18.63-t736-storage-v19",
+      "Source": "linux-upstream",
+      "Version": "6.18.63-19",
+      "Architecture": "arm64",
+      "Maintainer": "ubuntu <ubuntu@ubuntu2404>",
+      "Installed-Size": "9305",
+      "Section": "kernel",
+      "Priority": "optional",
+      "Homepage": "https://www.kernel.org/",
+      "Description": "Linux kernel, version 6.18.63-t736-storage-v19"
+    }
+  },
+  "matched_build_artifacts": {
+    "boot/vmlinuz-6.18.63-t736-storage-v19": {
+      "build_file": "build/linux-storage-v19/arch/arm64/boot/Image.gz",
+      "size": 5032635,
+      "sha256": "b9c5dade09a6b8a3f43551fbe97b040f423b37b4c52e37fab7a1e90fb70e8218",
+      "compression": "gzip",
+      "uncompressed_size": 11800584,
+      "uncompressed_sha256": "34522f80371d20ca9e76cfebcb1c025061d569997defe9b23aa47214bb89c12b"
+    },
+    "boot/config-6.18.63-t736-storage-v19": {
+      "build_file": "build/linux-storage-v19/.config",
+      "size": 99051,
+      "sha256": "6aab4229067aee5bea1c432d441cd4083b532766d400507e45bb4396c0672778"
+    },
+    "boot/System.map-6.18.63-t736-storage-v19": {
+      "build_file": "build/linux-storage-v19/System.map",
+      "size": 2637945,
+      "sha256": "8b628485d026da2b34719ac1b4321774a69e0a4c6537310023b44f1cf3730464"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v19/allwinner/t736-gpu-candidate.dtb": {
+      "build_file": "build/linux-storage-v19/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb",
+      "size": 11960,
+      "sha256": "b9ca0c0716e7759988aff3ce87a20200d1d8ac98de559569d34d8aaf83402b9c"
+    }
+  },
+  "regular_file_count": 82
+}

@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-11-17T06:30:30.159779+00:00",
+  "status": "PRIVATE_SFTP_RUNTIME_BACKUP_READBACK_VERIFIED",
+  "host": "192.168.1.228",
+  "remote_root": "/home/ubuntu/t736-mainline",
+  "ssh_known_hosts": "RejectPolicy",
+  "board_access": false,
+  "source_code_changed_by_reviewer": false,
+  "public_upload": false,
+  "frozen_transport_package_unchanged": true,
+  "files": [
+    {
+      "path": "tools/browser/shm_v2/cedar-service",
+      "bytes": 993,
+      "sha256": "e5559b8c79c36c5e5d8e99794e2602bccfed39ba5bbad4c987dc800155ac76a5",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/firefox-cedar",
+      "bytes": 636,
+      "sha256": "82a0a7b16d883af27b012d902ea5b07b2fb7faf4b1735d07c095949f90193304",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/t736-cedar-experiment.service",
+      "bytes": 1018,
+      "sha256": "0b90b795d43153f54da1b97a73c566814759ad79b5600c018728a8af75d09cdf",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/70-t736-cedar.rules",
+      "bytes": 263,
+      "sha256": "fc09eb8652f1351a995b353eba854ad38d3146c945459180f3f4dd73025a8299",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-shm-v2-runtime-review-20261117.json",
+      "bytes": 14247,
+      "sha256": "0806334c462ddd70c73ad80393dbe03d27d6b237decfc69be02d8fab7a8476f3",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    }
+  ],
+  "limits": [
+    "BoardownerreportsnativeRAM+180framepostDACfixPASS;browser60fpsandcoldbootpersistenceverificationremainparent-owned."
+  ]
+}

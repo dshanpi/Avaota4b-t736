@@ -1,6 +1,27 @@
 # T736 源码导航
 
-2026-11-16 阶段补充：HS200 200 MHz 的 v23 有界阶段已通过，默认回退仍为 v16；HS400、GNOME响应与最终镜像验收未完成。最新代码/证据入口见 [阶段备份记录](BACKUP_STAGE_20261116.md) 和 [README阶段快照](../README.md)。以下v6/v7内容保留为早期版本导航，其“当前”措辞仅对应当时快照。
+## 2026-11-17 入口
+
+最新实板状态以 [README](../README.md) 和 [浏览器接入说明](../tools/browser/README.md) 为准。下方 v6/v7/v24 章节是历史导航，不代表本轮运行版本。
+
+| 模块 | 当前源码、工具与记录 |
+|---|---|
+| 内核 v29 | `tools/build_media_v29_candidate.py`、`tools/validation/update_t736_media_v29.py`、`evidence/media-v29-build-20261117.json`；安装工具只放置版本化候选，默认检查，不切换启动。 |
+| VE 400 MHz 与电压只读回读 | `boards/candidates/media-v28-400mhz/`、`tools/build_media_v28_candidate.py`、`tools/apply_media_v28_readback.py`；v29 复用 v28 硬件源码。 |
+| HEVC/H264 浏览器代理 | `tools/browser/ffmpeg_cedar.c`、`build_browser_ffmpeg.py`、`tests/test_ffmpeg_cedar.c`；当前冻结 FFmpeg7，保留有界首帧回退与 batch1 输出。 |
+| 独立解码服务 | `tools/browser/cedar_broker.c`、`cedar_backend.c`、`cedar_client.c`；backend5 普通 RAM 池，配合私有 OMX/WC5。 |
+| 普通共享内存传输 | `tools/browser/shm_v2/`、`tools/build_cedar_shm_transport.py`、`tests/test_cedar_shm_*.c`；wire2 仅原生通过，Firefox namespace 兼容未实现。 |
+| 冷启动设备权限 | `tools/browser/shm_v2/70-t736-cedar.rules`、`cedar-service`；仅专用服务用户访问两设备，启动前拒绝不满足权限的环境。 |
+| 尚未部署的优化 | `tools/browser/copy_candidate/`、`tests/test_cedar_plane_copy_candidate.c`；边界检查通过，无新实板性能结论。 |
+| 诊断 | `tools/validation/firefox_media_debug_snapshot.js`、`cedar_fault_trace.c`，以及明确标记为诊断的客户端源码；不是默认浏览器路径。 |
+| 重现与同步 | `tools/prepare_source_backup.py` 只准备并核验公开快照；`backup-manifest.json` 记录完整文件 hash。厂商库、私有流和镜像不在公开快照。 |
+
+本次没有修改或删除历史失败记录。namespace 适配 v3 只有设计讨论，尚无实现或产物。各库版本号独立，`/opt/t736-browser-v1` 是安装前缀，不能据此前缀推断 FFmpeg 或 backend 的版本。
+
+## 历史导航（2026-11-16）
+
+
+2026-11-16 第二检查点准备：v24 的 HS400 100/200 MHz 有界阶段已通过，默认回退仍为 v16。v25 分段计时源码与静态/ARM64 编译检查已通过，完整构建在本快照时仍进行中，未上板；Mutter 反馈候选未上板，GNOME响应与最终镜像未验收。最新代码/证据入口见 [阶段备份记录](BACKUP_STAGE_20261116.md) 和 [README阶段快照](../README.md)。以下v6/v7内容保留为早期版本导航，其“当前”措辞仅对应当时快照。
 
 整理日期：2026-11-16（Asia/Shanghai）。当前已验收实板基线为 **source-v6 raw + v4 SPL + Linux hdmi-v13**；**source-v7 + hdmi-v14 GNOME 桌面候选正在构建，未上板验证**。这些版本号对应不同组件；历史 `raw-v6` 也不等于当前 `source-v6`。
 

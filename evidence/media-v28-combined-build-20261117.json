@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "COMPILED_AND_HASH_VERIFIED_NOT_DEPLOYED_HARDWARE_PENDING",
+  "release": "6.18.63-t736-media-v28",
+  "board_access": false,
+  "scope": "Isolated VE_DEC 400 MHz divider candidate plus explicit read-only DCDC2 programmed-setpoint sysfs observation.",
+  "source_changes": [
+    "drivers/clk/clk-t736-ve.c",
+    "drivers/regulator/t736-gpu-supply.c",
+    "drivers/soc/sunxi/t736-ve-power.c"
+  ],
+  "build_record": {
+    "local_path": "mainline/build/media-v28-candidate-build-20261117/build-result-combined.json",
+    "remote_path": "/home/ubuntu/t736-mainline/build/media-v28-candidate-build-20261117/build-result-combined.json",
+    "sha256": "81448dbf4e4f244ee09acc8aa6b19c982ab546bc22efa0f566bd037886fedb0f"
+  },
+  "source_reviews": [
+    "evidence/media-v28-ve400-source-review-20261117.json",
+    "evidence/media-v28-dcdc2-readonly-source-review-20261117.json"
+  ],
+  "build_scripts": [
+    {
+      "path": "tools/build_media_v28_candidate.py",
+      "sha256": "77165abf60d0102c8ca1436ff5dade28dbe022293216d832f26a536fcd4aff3b"
+    },
+    {
+      "path": "tools/apply_media_v28_readback.py",
+      "sha256": "54685fd62b83345f94a3ae6cb6ee3a05eef0bca64b634de2532b545229960c39"
+    }
+  ],
+  "validation": {
+    "kernel_Image_DTB_modules": "PASS",
+    "debian_package": "PASS",
+    "PVR_module": "PASS",
+    "DTB_byte_equal_to_accepted_v27": true,
+    "PVR_vermagic": "6.18.63-t736-media-v28 SMP mod_unload aarch64",
+    "DCDC2_readonly_string_linked_into_vmlinux": true,
+    "config_difference_only": "CONFIG_LOCALVERSION=-t736-media-v28",
+    "v27_protected_sources_and_config_unchanged": true,
+    "package_architecture": "arm64",
+    "package_version": "6.18.63-28",
+    "package_boot_image_and_module_paths_checked": true,
+    "all_downloaded_artifacts_exact_hash_match": true,
+    "incremental_review_fix": "copyfile plus os.utime forces addon source newer than first-build object; final linked strings verified",
+    "DCDC2_callback_sanitizer_cases_from_separate_source_review": 267
+  },
+  "artifacts": [
+    {
+      "path": "/home/ubuntu/t736-mainline/build/linux-image-6.18.63-t736-media-v28_6.18.63-28_arm64.deb",
+      "bytes": 5614712,
+      "sha256": "cd8d775be309264f617e4023408e6a4fa5a9610d5e3e397663ecc997fa410964",
+      "local_path": "mainline/build/media-v28-candidate-build-20261117/linux-image-6.18.63-t736-media-v28_6.18.63-28_arm64.deb",
+      "download_sha256": "cd8d775be309264f617e4023408e6a4fa5a9610d5e3e397663ecc997fa410964"
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/linux-media-v28/arch/arm64/boot/Image",
+      "bytes": 11800584,
+      "sha256": "df86defafd80a38163fee2b086d084a06a8eaab32f02dee94e3ec391088b019f",
+      "local_path": "mainline/build/media-v28-candidate-build-20261117/Image",
+      "download_sha256": "df86defafd80a38163fee2b086d084a06a8eaab32f02dee94e3ec391088b019f"
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/linux-media-v28/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb",
+      "bytes": 13012,
+      "sha256": "45012aeb86d657fca568417e831067170d12e224ebe71720c1956989af6f3626",
+      "local_path": "mainline/build/media-v28-candidate-build-20261117/t736-gpu-candidate.dtb",
+      "download_sha256": "45012aeb86d657fca568417e831067170d12e224ebe71720c1956989af6f3626"
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/pvr-bxm-media-v28/target_aarch64/kbuild/pvrsrvkm.ko",
+      "bytes": 1913808,
+      "sha256": "497898feb827a3f933c2c783d881d54e095654e0e42598ddb222ba19ab95f847",
+      "local_path": "mainline/build/media-v28-candidate-build-20261117/pvrsrvkm.ko",
+      "download_sha256": "497898feb827a3f933c2c783d881d54e095654e0e42598ddb222ba19ab95f847"
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/linux-media-v28/.config",
+      "bytes": 99178,
+      "sha256": "01b9b37c952ae8264226acb076540b700fcbfd7eae6bf0c7d16a363a01900e9d",
+      "local_path": "mainline/build/media-v28-candidate-build-20261117/kernel.config",
+      "download_sha256": "01b9b37c952ae8264226acb076540b700fcbfd7eae6bf0c7d16a363a01900e9d"
+    },
+    {
+      "path": "/home/ubuntu/t736-mainline/build/linux-media-v28/Module.symvers",
+      "bytes": 488215,
+      "sha256": "2c78cfcd32781c9121ff5b6effae05ca5e51e97f1bffa1556bd2f778c4fb0cc9",
+      "local_path": "mainline/build/media-v28-candidate-build-20261117/Module.symvers",
+      "download_sha256": "2c78cfcd32781c9121ff5b6effae05ca5e51e97f1bffa1556bd2f778c4fb0cc9"
+    }
+  ],
+  "deployment": "Not performed by this agent; root owns board. Stage-only installer being bound by backup_audit, default storage-v16 and accepted v27 must remain available.",
+  "hardware_prerequisites": [
+    "Boot fresh candidate without live old-frequency VE owner; never force-retime an enabled mismatched gate.",
+    "Read valid bound t736-gpu-supply/dcdc2_snapshot and review programmed setpoint before decoding.",
+    "Snapshot is PMIC programmed setpoint, not physical rail ADC measurement.",
+    "Record CCF and CCU divider/parent, decoder IRQ/pixel checks, stable throughput and retirement-budget behavior."
+  ],
+  "limitations": [
+    "Not deployed; DCDC2 setpoint must be read before decoder testing.",
+    "Readback is a programmed setpoint, not an ADC measurement.",
+    "400 MHz throughput and stability remain unverified.",
+    "DMA lifetime and 128 MiB quarantine remain unchanged."
+  ],
+  "initial_divider_only_artifacts_saved_remotely": "/home/ubuntu/t736-mainline/build/media-v28-candidate-build-20261117/dcdc2-readback-addon/initial-artifacts"
+}

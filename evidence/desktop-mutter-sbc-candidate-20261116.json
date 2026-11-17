@@ -1,0 +1,221 @@
+{
+  "schema": 1,
+  "kind": "mutter-egl-x11-asynchronous-sbc-candidate",
+  "date": "2026-11-16",
+  "status": "BOARD_STARTUP_AND_SBC_FEEDBACK_PASS_PERFORMANCE_MIXED_ROLLED_BACK_NOT_PRODUCTION",
+  "source_version": "Mutter 48.7; Debian source 48.7-0+deb13u1",
+  "patch": {
+    "path": "patches/mutter/0001-egl-xlib-observe-sbc-completion.patch",
+    "bytes": 20241,
+    "sha256": "ac42f10a36c509715f3a4c3454adc55718975df49ef6ebbe45b2fe319b6a6148"
+  },
+  "review": {
+    "path": "evidence/desktop-mutter-sbc-independent-review-20261116.json",
+    "bytes": 5196,
+    "sha256": "0809fe101c6df90c92aebd478492aa0e401e2ce1e0564c055dad0194845cdeed"
+  },
+  "mock_validation": {
+    "cases": 17,
+    "actual_candidate_functions_extracted": true,
+    "compiler_checks": [
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "AddressSanitizer",
+      "UndefinedBehaviorSanitizer"
+    ],
+    "result": {
+      "path": "build/mutter-egl-sbc-candidate/tests/final-run.json",
+      "bytes": 3936,
+      "sha256": "20ce8b25ef2ac6650ae460f2b7af1cbbc3e498263229f8b03e0fdc685cdd73d7"
+    },
+    "harness": {
+      "path": "tests/mutter_sbc_tracker_harness.c",
+      "bytes": 11331,
+      "sha256": "271fb57b73545fb877dca5bae0868fcc41c83fe45919b03e7f8624e57438306d"
+    },
+    "extractor": {
+      "path": "tools/validation/prepare_mutter_sbc_candidate_tests.py",
+      "bytes": 2689,
+      "sha256": "9f11200e3b979fa2f558e864341df066fa6d47698eae6b2f676cc3acf4af7c06"
+    }
+  },
+  "patched_file_sha256": {
+    "cogl/cogl/cogl-onscreen-private.h": "d4521c0f161c8d099e67b08a593a56201f6bc59d9d2350b67fd8c096d60acd1c",
+    "cogl/cogl/cogl-onscreen.c": "bd31bcb5ca020fcbd2224c61ca5629ce8725ea0f5dfe0c3d0214902782915f5b",
+    "cogl/cogl/winsys/cogl-onscreen-egl.c": "391f48d93b41a42a770a4946c39903384a2ad4bc3639384922983ce7d0d8e579",
+    "cogl/cogl/winsys/cogl-onscreen-egl.h": "132abd3438750567125779e8d84eeac99a2220ea9102fbeee7abfd151388457c",
+    "cogl/cogl/winsys/cogl-onscreen-xlib.c": "5ea74d1f59daf381a484a038c6f384f3c627e1cf592259d50f4409b5c66eeb27",
+    "cogl/cogl/winsys/cogl-winsys-egl-feature-functions.h": "5dacede0df404468a2f6864419548892f34ea2535a9a28f9c4f5fdab79370bbe",
+    "cogl/cogl/winsys/cogl-winsys-egl-private.h": "0ca6d94ca994c60e661b06c506c6b91eadaef2e3ba160435e441118638bc5108",
+    "cogl/cogl/winsys/cogl-winsys-egl-x11.c": "c5521091986ce06e6a225087a4b912e728c28d442a43d11c9e0eb1c720be8869"
+  },
+  "behavior": {
+    "enable": "COGL_EGL_X11_SBC_FEEDBACK=1 plus both required EGL extensions",
+    "trace": "COGL_EGL_X11_SBC_TRACE=1; per-surface bounded submission/confirmed/symbolic counters",
+    "required_extensions": [
+      "EGL_CHROMIUM_sync_control",
+      "EGL_ANGLE_sync_control_rate"
+    ],
+    "dispatch": "2ms GLib asynchronous SBC polling; notifications queued through existing Cogl dispatch source",
+    "completion_identity": "Successful EGL submissions only; completed SBC must reach per-frame target in order",
+    "presentation_time_us": 0,
+    "refresh_rate": "Query ANGLE rate for every completed batch, set to zero if query fails",
+    "not_claimed": [
+      "SBC completion is not scanout presentation",
+      "UST is not assigned as this frame presentation timestamp",
+      "No HW_CLOCK, VSYNC or zero-copy claim"
+    ],
+    "fallback": [
+      "EGL submission or query failure",
+      "counter reset, overflow or out-of-range completion",
+      "frame queue identity mismatch",
+      "explicit region-copy swap",
+      "pending queue over 16",
+      "250ms soft completion deadline"
+    ]
+  },
+  "limits": [
+    "SBC confirms completed swaps, not scanout timestamps; presentation_time_us remains zero.",
+    "250ms deadline is checked after EGL calls return and cannot preempt a call blocked inside the driver.",
+    "The 2ms periodic query may add scheduling latency. The v25 GI2 trial observes feedback and mixed performance, but does not isolate query/notification overhead.",
+    "Full compilation, symbol checks, isolated loader/GI checks and mock tests do not establish physical GPU/display or desktop-performance acceptance.",
+    "No board, user session, HDMI mode, PageFlip setting, frozen v10 input or reserved v11 path was modified by this build task."
+  ],
+  "full_build": {
+    "status": "PASS",
+    "host": "192.168.1.228",
+    "environment": "private mount and PID namespace; Debian13 arm64 clone with QEMU user emulation",
+    "base_image": "output/rootfs-armbian-source-v10.ext4",
+    "base_image_sha256": "935a58e933ec831c470a5ef20c89dd5f0f675f417d4fa43bbe0a831e91414469",
+    "clone": "build/mutter-sbc-native-20261116/rootfs-build.ext4",
+    "clone_virtual_size_bytes": 15032385536,
+    "apt_runtime_upgrades": 0,
+    "preserved": [
+      "Original frozen v10 image",
+      "Reserved v11 paths",
+      "Running board user space"
+    ],
+    "targets_completed": 835,
+    "prefix": "/opt/t736-mutter-sbc-48.7-ac42f10a",
+    "compiler": "Debian GCC 14.2.0-19 arm64 under QEMU user emulation",
+    "meson": "1.7.0",
+    "buildtype": "plain, Debian dpkg-buildflags hardening=+all, DEB_LDFLAGS_MAINT_APPEND=-Wl,-O1",
+    "runtime_features": "Debian enabled defaults retained, including X11/GLES/EGL/GLX/Wayland/native/EGLDevice/EGLStream/remote desktop/profiler/introspection",
+    "mutter_test_suites": "Disabled; no physical display suite run. The bundled gvdb subproject compiled one small self-test target but it was not executed.",
+    "dependencies": {
+      "path": "evidence/build/mutter-sbc-ac42-dependencies-20261116.log",
+      "bytes": 100097,
+      "sha256": "5867b26a76c2037d4c48b1114bedd9b6ba9cf4d74956a54a34a271a711aed30a"
+    },
+    "build_log": {
+      "path": "evidence/build/mutter-sbc-ac42-build-20261116.log",
+      "bytes": 132736,
+      "sha256": "ece26499fc8e94927573b54d0f1e33c49b75b469f73afe52f1f30d8f2aeaade8"
+    },
+    "build_options": {
+      "path": "build/mutter-egl-sbc-candidate/intro-buildoptions.json",
+      "bytes": 24951,
+      "sha256": "e60f00e4b2539a8ff434cf5058c06e98f4c0233191567c47e54d694c3d979f21"
+    },
+    "config": {
+      "path": "build/mutter-egl-sbc-candidate/config.h",
+      "bytes": 3763,
+      "sha256": "65cb8ad6c87ecd4a8bf5ebd344dbb45820cfaec5136cc89a870952e1212c7510"
+    },
+    "installed_package_manifest": {
+      "path": "build/mutter-egl-sbc-candidate/build-packages.tsv",
+      "bytes": 34674,
+      "sha256": "c391ab8371bcb460c8a5b4ea86be0841798835a96cd339ae4dfe712449b2dcb3"
+    },
+    "loader_validation": {
+      "path": "evidence/desktop-mutter-sbc-loader-validation-20261116.json",
+      "bytes": 63483,
+      "sha256": "c3ba6723861d60cce3fe2e4c95d5e0ffffe48df41e8309ac0ece076919aea0d7"
+    },
+    "loader_summary": {
+      "path": "evidence/build/mutter-sbc-ac42-loader-20261116.log",
+      "bytes": 654,
+      "sha256": "5e4c895ba22233aaea6fc80e1f949327919ac26d01cb8b35cc9887098c812c41"
+    },
+    "build_recipe": {
+      "path": "build/mutter-egl-sbc-candidate/03-build.sh",
+      "bytes": 3409,
+      "sha256": "9d0429ae5e52b0e5884039ac37b774f7f1c1ff6836287a2fea7b78307645a24c"
+    },
+    "verification_script": {
+      "path": "build/mutter-egl-sbc-candidate/verify-prefix.py",
+      "bytes": 5882,
+      "sha256": "72fc83ca0d7c2f82963da3183969470b798412ed824e6d57d8374e2768d7f08f"
+    },
+    "original_input_final_sha256": "935a58e933ec831c470a5ef20c89dd5f0f675f417d4fa43bbe0a831e91414469",
+    "source_archives": {
+      "mutter_48.7.orig.tar.xz": "ec102aa3cbb0e39001206627aca3055314555f70609de5e6c2b7efcd1fa90f20",
+      "mutter_48.7-0+deb13u1.debian.tar.xz": "0d39be3958b81b0832dc3eea40f5b3c3d8575cc17ecb8fb98e46bcbaf7b68952",
+      "mutter_48.7-0+deb13u1.dsc": "65ccc1a12e1ebe34f17b1d8338ee7692a0b3fce58cce45a62c96e4dacb9223e2"
+    },
+    "bootstrap_note": "Dependency install and source extraction completed. The initial metadata-display step used the old meson_options.txt filename; the build stage uses actual meson.options and audited dpkg before configure. No candidate source change resulted."
+  },
+  "board_run": {
+    "first_trial": "FAILED_DURING_GNOME_JS_INIT_NO_PERFORMANCE_RESULT",
+    "review": "evidence/desktop-mutter-sbc-gi-launcher-v2-20261116.json",
+    "rollback": "Original baseline session configuration restored by controlling agent after matched v25 A/B.",
+    "corrective_launcher": "GI v2 overlay passed real GNOME JS startup; no Mutter algorithm/four-library change in GI fix.",
+    "gi_v2_trial": "BOARD_STARTUP_AND_SBC_FEEDBACK_PASS_PERFORMANCE_MIXED",
+    "comparison": {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-independent-comparison-20261116.json",
+      "bytes": 10317,
+      "sha256": "d56aad1932e3082e54c6544ebd8db8baf29cb8b3c3c8070240f0f17c1ac49bf3"
+    },
+    "production_promoted": false,
+    "performance_result": "Mixed: callback throughput +6.9%, test-process CPU +14.8%; latency metrics disagree; presentation timestamps unavailable."
+  },
+  "updated_at_utc": "2026-11-16T14:55:47.627738+00:00",
+  "loader_summary": {
+    "libraries": 4,
+    "typelibs": 4,
+    "missing_baseline_exported_symbols": 0,
+    "gnome_shell_mutter_dso_resolution": "all four candidate-prefix libraries",
+    "gi_import": "all four candidate typelibs; access to GTypes forces all four candidate libraries to load",
+    "version_checks": "Mutter 48.7 and GNOME Shell 48.7 completed with candidate+vendor environment",
+    "plugin_check": "Default plugin resolves with candidate libmutter loaded RTLD_GLOBAL, as in its host; standalone ldd lacks host-provided Meta symbols by design.",
+    "additional_direct_needed": "Mtk additionally lists libm.so.6 directly. This belongs to the already installed libc6 runtime and is present in the baseline Shell dependency closure; no new target runtime package.",
+    "hardware_validation": false,
+    "scope": "Offline loader checks only; subsequent physical trial is recorded separately in board_run."
+  },
+  "artifacts": {
+    "binary": {
+      "path": "build/mutter-egl-sbc-candidate/artifacts/t736-mutter-sbc-48.7-arm64-ac42f10a.tar.xz",
+      "bytes": 2646988,
+      "sha256": "b58c7b7d6b997e4a8fc6dfe7a37504b354f736b993fb0e86a62960529c5c6af0"
+    },
+    "source": {
+      "path": "build/mutter-egl-sbc-candidate/artifacts/t736-mutter-sbc-48.7-source-ac42f10a.tar.xz",
+      "bytes": 9715888,
+      "sha256": "b781fea4186231a1545329696f2aca2d1f06c8462773f5486ebfaaaee65506d7"
+    },
+    "remote_directory": "/home/ubuntu/t736-mainline/build/mutter-sbc-native-20261116/artifacts",
+    "boundary_check": {
+      "status": "PASS",
+      "members": 566,
+      "regular_files": 325,
+      "allowed_prefix": "opt/t736-mutter-sbc-48.7-ac42f10a",
+      "symlinks_confined_to_prefix": true
+    }
+  },
+  "session_guard": {
+    "script": {
+      "path": "tools/validation/mutter_sbc_session_guard.sh",
+      "bytes": 4281,
+      "sha256": "e9112dd9e2f4b59e37f7353eea1941fa0b158b69e6d9e9100bcb0278f222106a"
+    },
+    "review": {
+      "path": "evidence/desktop-mutter-sbc-session-guard-review-20261116.json",
+      "bytes": 3155,
+      "sha256": "a8426b6f7fd87a6136cf22822ee44f2ef915207d4d6cb87fd60117a44727307d"
+    },
+    "scope": "Root system-manager rollback timer; UID1000-only environment through optional %U.env file; no changes to system libraries.",
+    "activation_boundary": "External GDM activation and immediate daemon.conf restoration must hold the same private/lock, verify no rollback.complete and active timer, and use bounded commands.",
+    "board_execution_by_build_agent": false
+  }
+}

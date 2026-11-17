@@ -1,0 +1,50 @@
+{
+  "scope": "Repeated read-only O_DIRECT ordinary file; kernel thread endpoint counters, not CPU residency or full attribution",
+  "bytes": 536870912,
+  "seconds": 10.458902227000067,
+  "MiB_s": 48.95351241340146,
+  "workers": [
+    {
+      "pid": "559",
+      "comm": "kworker/u32:2-t736-mmc-dma",
+      "cpu_seconds": 6.17,
+      "last_cpu_before": 5,
+      "last_cpu_after": 4
+    },
+    {
+      "pid": "201",
+      "comm": "kworker/0:1H-mmc_complete",
+      "cpu_seconds": 0.03,
+      "last_cpu_before": 0,
+      "last_cpu_after": 0
+    },
+    {
+      "pid": "246",
+      "comm": "kworker/5:1H-mmc_complete",
+      "cpu_seconds": 0.02,
+      "last_cpu_before": 5,
+      "last_cpu_after": 5
+    },
+    {
+      "pid": "38",
+      "comm": "kworker/4:0H-mmc_complete",
+      "cpu_seconds": 0.01,
+      "last_cpu_before": 4,
+      "last_cpu_after": 4
+    },
+    {
+      "pid": "94",
+      "comm": "kworker/u34:1-events_unbound",
+      "cpu_seconds": 0.01,
+      "last_cpu_before": 1,
+      "last_cpu_after": 1
+    },
+    {
+      "pid": "200",
+      "comm": "kworker/6:1H-kblockd",
+      "cpu_seconds": 0.01,
+      "last_cpu_before": 6,
+      "last_cpu_after": 6
+    }
+  ]
+}

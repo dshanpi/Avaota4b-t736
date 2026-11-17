@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-16",
-  "updated_utc": "2026-11-16T13:32:16.958786+00:00",
-  "state": "storage_v23_hs200_200_bounded_stage_passed_v16_default_desktop_diagnostics_ongoing",
+  "date": "2026-11-17",
+  "updated_utc": "2026-11-17T06:49:54.923068+00:00",
+  "state": "media_v29_one_shot_browser_30fps_bounded_hardware_pass_code_sync_checkpoint",
   "versions": {
     "u_boot": "2026.10-t736-bringup",
-    "linux": "6.18.63-t736-hdmi-v13",
+    "linux": "6.18.63-t736-media-v29 (one-shot); persistent default 6.18.63-t736-storage-v16",
     "armbian": "26.11.0-trunk / Debian 13 trixie minimal"
   },
   "board_level_code_implemented": true,
@@ -33,11 +33,7 @@
     "Linux 6.18.63",
     "Armbian 26.11"
   ],
-  "next": [
-    "Complete isolated HS400 implementation review and separate staged trials",
-    "Resolve GNOME frame-feedback and responsiveness diagnostics",
-    "Build and accept a final integrated image only after its component stages pass"
-  ],
+  "next": "Resume namespace-compatible client only when continuing media work; retain v16 default and clear near-full pinned DMA through controlled reboot before any new hardware context. Final firmware integration remains separate.",
   "workspace": {
     "local": "G:\\codex\\t736\\mainline",
     "linux": "/home/ubuntu/t736-mainline",
@@ -150,7 +146,44 @@
     "evidence/source-v3-emmc-acceptance-20261114.json",
     "evidence/display-kernel-build-20261114.json",
     "evidence/board-power-check-20261114.log",
-    "evidence/source-v6-emmc-acceptance-20261114.json"
+    "evidence/source-v6-emmc-acceptance-20261114.json",
+    "evidence/storage-v24-hs400-stage-record-20261116.json",
+    "evidence/storage-v24-hs400-performance-review-20261116.json",
+    "evidence/storage-v24-hs400-200-frozen-read-cost-20261116.log",
+    "evidence/storage-v24-x11-gnome-health-20261116.log",
+    "evidence/storage-v25-timing-independent-review-20261116.json",
+    "evidence/storage-v25-timing-collector-contract-20261116.json",
+    "evidence/storage-v25-timing-collector-independent-review-20261116.json",
+    "evidence/storage-v25-updater-draft-preparation-20261116.json",
+    "evidence/source-v11-draft-independent-review-20261116.json",
+    "evidence/source-v11-draft-review-metadata-addendum-20261116.json",
+    "evidence/desktop-mutter-sbc-independent-review-20261116.json",
+    "evidence/desktop-mutter-sbc-session-guard-review-20261116.json",
+    "evidence/storage-v25-hs400-200-integrity-20261116.json",
+    "evidence/storage-v25-hs400-200-integrity-health-20261116.log",
+    "evidence/storage-v25-hs400-200-runtime-20261116.log",
+    "evidence/storage-v25-hs400-200-timing-20261116.json",
+    "evidence/storage-v25-timing-numeric-review-20261116.json",
+    "evidence/desktop-mutter-sbc-v25-initial-journal-20261116.log",
+    "evidence/desktop-mutter-sbc-v25-rollback-20261116.log",
+    "evidence/desktop-mutter-sbc-v25-postrollback-20261116.log",
+    "evidence/desktop-mutter-sbc-full-build-independent-review-20261116.json",
+    "evidence/storage-v26-cached-bounce-design-20261116.json",
+    "evidence/storage-v26-cached-bounce-independent-review-20261116.json",
+    "evidence/storage-v26-timing-collector-preparation-20261116.json",
+    "evidence/storage-v26-updater-draft-preparation-20261116.json",
+    "evidence/storage-v26-updater-preparation-20261116.json",
+    "evidence/storage-v26-updater-independent-review-20261116.json",
+    "evidence/desktop-mutter-sbc-session-guard-v2-review-20261116.json",
+    "evidence/storage-v26-hs400-performance-comparison-20261116.json",
+    "evidence/storage-v26-hs400-200-timing-20261116.json",
+    "evidence/storage-v26-hs400-200-integrity-20261116.json",
+    "evidence/storage-v26-hs400-200-runtime-20261116.log",
+    "evidence/storage-v26-hs400-200-integrity-health-20261116.log",
+    "evidence/desktop-mutter-sbc-v25-gi2-independent-comparison-20261116.json",
+    "evidence/desktop-mutter-sbc-v25-gi2-rollback-20261116.log",
+    "evidence/storage-v26-user-feedback-20261117.json",
+    "evidence/media-v27-inherited-iommu-gates-20261117.json"
   ],
   "handoff_candidate": {
     "path": "output/t736-handoff-ram-v1.bin",
@@ -458,16 +491,74 @@
     "phy_calibration_hardware_tested": false
   },
   "board_current_diagnostic_state": {
-    "rootfs": "/dev/mmcblk0p4 ext4 rw,noatime",
-    "linux_memory_mib": 7747,
-    "online_cpus": "0-7",
-    "kernel_taint": 0,
-    "failed_services": 0,
-    "final_state": "Armbian running; tty1 login available",
-    "firmware": "source-v6",
-    "mode": "Linux",
-    "independent_coldboot_tested": true,
-    "postcheck": "evidence/source-v6-runtime-3-20261114.log"
+    "schema": 1,
+    "observed_utc": "2026-11-17T06:49:10.662152+00:00",
+    "kernel": "6.18.63-t736-media-v29",
+    "persistent_default": "/boot/vmlinuz-6.18.63-t736-storage-v16",
+    "original_profile_restored": true,
+    "website": "bilibili.com",
+    "new_frame_rate_acceptance": false,
+    "service": {
+      "pid": 13004,
+      "state": "active",
+      "protocol": 1,
+      "backend": 5,
+      "omx_wc": 5,
+      "ffmpeg": 7
+    },
+    "browser": {
+      "rdd_pid": 13132,
+      "sandbox": [
+        "NoNewPrivs:\t1",
+        "Seccomp:\t2"
+      ],
+      "private_libraries": [
+        {
+          "path": "/opt/t736-browser-ffmpeg-v7/lib/libavcodec.so.61.19.101",
+          "sha256": "66c1d490d1c80ff962d97875900aa8c38098f7c47a2b3f6fc04a2ca1086ab731"
+        },
+        {
+          "path": "/opt/t736-browser-ffmpeg-v7/lib/libavutil.so.59.39.100",
+          "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271"
+        },
+        {
+          "path": "/opt/t736-browser-ffmpeg-v7/lib/libswresample.so.5.3.100",
+          "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360"
+        },
+        {
+          "path": "/opt/t736-browser-v1/lib/libt736_cedar_client.so",
+          "sha256": "8e7f835dd734230a3fcd568e5c456e616e1f21c94763356fb162691dfb87622b"
+        }
+      ],
+      "diagnostic_control_flags": false
+    },
+    "devices": {
+      "/dev/cedar_dev": {
+        "uid": 999,
+        "gid": 982,
+        "mode": "0o600"
+      },
+      "/dev/dma_heap/t736-ve": {
+        "uid": 999,
+        "gid": 982,
+        "mode": "0o600"
+      }
+    },
+    "dma": {
+      "buffers": 88,
+      "bytes": 128335872,
+      "budget_bytes": 134217728,
+      "reclaimed": false
+    },
+    "ve_clock_hz": 400000000,
+    "dcdc2_snapshot": "id=03 enable=ff dcdc2=28 phase=00 feedback=00 dvm=0 remote_feedback=1 setpoint_uv=900000 kind=programmed-setpoint",
+    "emmc_ios": "clock:\t\t200000000 Hz\nactual clock:\t200000000 Hz\nvdd:\t\t21 (3.3 ~ 3.4 V)\nbus mode:\t2 (push-pull)\nchip select:\t0 (don't care)\npower mode:\t2 (on)\nbus width:\t3 (8 bits)\ntiming spec:\t10 (mmc HS400)\nsignal voltage:\t1 (1.80 V)\ndriver type:\t0 (driver type B)\n",
+    "failed_units": "",
+    "gdm_original_restored": true,
+    "test_services_stopped": {
+      "t736-browser-fixture.service": "inactive",
+      "t736-media-inhibit.service": "inactive"
+    }
   },
   "independent_boot_plan": "config/independent-boot-plan.json",
   "source_sram_probe": {
@@ -508,7 +599,7 @@
     "hardware_tested": false,
     "board_prerequisites_integrated": false
   },
-  "current_focus": "LPDDR4 only: validate controller static init configuration, then cold MR command path and real PHY stimulus/capture; PIE is DDR initialization engine, unrelated to PCIe",
+  "current_focus": "Frozen for requested code organization/sync. Original Bilibili profile restored with protocol1. Hardware30fps bounded pass and qualitative user improvement confirmed; browser hardware60fps and wire2 namespace adaptation not accepted.",
   "source_ddr_ccu": {
     "hardware_tested": true,
     "evidence": "evidence/t736-ccu-cold-sram-hardware-20261114.json",
@@ -1192,7 +1283,7 @@
       "evidence/source-v5-late-fbcon-oops-20261114.log"
     ]
   },
-  "current_acceptance": "evidence/source-v6-emmc-acceptance-20261114.json",
+  "current_acceptance": "evidence/browser-code-sync-checkpoint-20261117.json",
   "historical_hardware_passed_before_source_v6": [
     "U-Boot ARM64 console and relocation",
     "8 GiB memory description and >4 GiB RAM spot check",
@@ -1393,17 +1484,536 @@
   "historical_snapshot_state": "source_v6_emmc_three_boots_hdmi_fbcon_and_runtime_passed",
   "stage_snapshot": {
     "as_of": "2026-11-16",
-    "purpose": "Source/evidence backup checkpoint before HS400, desktop and final-image acceptance.",
-    "tested_kernel": "6.18.63-t736-storage-v23",
+    "frozen_preparation_utc": "2026-11-16T14:23:39.363207+00:00",
+    "purpose": "Second public checkpoint preparation only; no commit/push by this preparation. Old published72333d3 retained.",
+    "previous_public_commit": "72333d335c0256542ee9b60912d666c4dbd82649",
+    "tested_kernel": "6.18.63-t736-storage-v24",
     "persistent_default_kernel": "6.18.63-t736-storage-v16",
     "persistent_default_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
-    "stage_record": "evidence/storage-v23-hs200-stage-record-20261116.json",
-    "stage_record_sha256": "683f10fdccb694f71a241d6f2b0769b2d5fc59e80596ba9f14c2a5260f284f74",
-    "hs200_200_bounded_stage": "PASS",
-    "hs400_accepted": false,
+    "stage_record": "evidence/storage-v24-hs400-stage-record-20261116.json",
+    "stage_record_sha256": "1b8d1b66c3915fde3626da8d73b62ed09b0eb38949b149b9399f115c2d410cbb",
+    "hs200_200_bounded_stage": "PASS in v23",
+    "hs400_100_bounded_stage": "PASS",
+    "hs400_200_bounded_stage": "PASS",
+    "hs400_lifetime_or_full_stress_accepted": false,
     "gnome_responsiveness_accepted": false,
     "new_final_image_accepted": false,
-    "physical_display_observation": "No new physical-monitor acceptance is claimed.",
-    "historical_fields": "versions, hardware_passed and validation_image fields below retain the source-v6 full-image acceptance snapshot; stage_snapshot describes newer incremental trials."
-  }
+    "read_performance_samples_MiB_per_second": {
+      "short_8MiB_no_hash": 83.9179204275051,
+      "ad_hoc_512MiB_window1": 45.007220816541626,
+      "ad_hoc_512MiB_window2": 48.95351241340146,
+      "frozen_prefault_probe_512MiB": 74.89652986982767
+    },
+    "performance_limit": "Different protocols and windows, repeated8MiB prefix, not a fixed sustained rate or causal prefault/CPU-residency conclusion. See performance review.",
+    "performance_review": "evidence/storage-v24-hs400-performance-review-20261116.json",
+    "v25_diagnostic": {
+      "default_enabled": false,
+      "source_review": "PASS",
+      "C_ASan_UBSan_aggregation": "PASS",
+      "ARM64_compile_check": "PASS",
+      "actual_C_emitter_to_Python_contract": "PASS",
+      "full_kernel_build": "IN_PROGRESS_AT_THIS_CHECKPOINT",
+      "final_PVR_package_bindings": "PENDING",
+      "updater_can_apply": false,
+      "board_tested": false
+    },
+    "mutter_feedback_candidate": {
+      "source_mock_review": "PASS",
+      "board_tested": false,
+      "desktop_smoothness_accepted": false
+    },
+    "source_v11": {
+      "script_review": "PASS",
+      "manifest_status": "pending-hardware-acceptance-and-input-review",
+      "rootfs_built": false,
+      "new_uboot_built": false,
+      "flashed": false
+    },
+    "display_error_scope": "Early v24 bounded storage/GPU health had no new display errors. Later GDM restart introduced2fbdev timeouts at206.306/206.514s; later bounded GTK/X11 checks reported no more. Not a whole-lifetime zero-error claim.",
+    "physical_display_observation": "No new physical-monitor acceptance claimed.",
+    "historical_fields": "versions/hardware_passed/validation_image/board_current_diagnostic_state retain source-v6 full-image history; this stage_snapshot describes newer incremental experiments."
+  },
+  "historical_lpddr4_focus": "LPDDR4 only: validate controller static init configuration, then cold MR command path and real PHY stimulus/capture; PIE is DDR initialization engine, unrelated to PCIe",
+  "latest_stage_snapshot": {
+    "schema": 1,
+    "date": "2026-11-17",
+    "timezone": "Asia/Shanghai",
+    "updated_utc": "2026-11-17T06:49:54.923068+00:00",
+    "status": "CODE_AND_EVIDENCE_CHECKPOINT_NOT_FINAL_FIRMWARE",
+    "request": "User requested freeze, organize all code, upload and synchronize after confirming visible improvement.",
+    "runtime": {
+      "schema": 1,
+      "observed_utc": "2026-11-17T06:49:10.662152+00:00",
+      "kernel": "6.18.63-t736-media-v29",
+      "persistent_default": "/boot/vmlinuz-6.18.63-t736-storage-v16",
+      "original_profile_restored": true,
+      "website": "bilibili.com",
+      "new_frame_rate_acceptance": false,
+      "service": {
+        "pid": 13004,
+        "state": "active",
+        "protocol": 1,
+        "backend": 5,
+        "omx_wc": 5,
+        "ffmpeg": 7
+      },
+      "browser": {
+        "rdd_pid": 13132,
+        "sandbox": [
+          "NoNewPrivs:\t1",
+          "Seccomp:\t2"
+        ],
+        "private_libraries": [
+          {
+            "path": "/opt/t736-browser-ffmpeg-v7/lib/libavcodec.so.61.19.101",
+            "sha256": "66c1d490d1c80ff962d97875900aa8c38098f7c47a2b3f6fc04a2ca1086ab731"
+          },
+          {
+            "path": "/opt/t736-browser-ffmpeg-v7/lib/libavutil.so.59.39.100",
+            "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271"
+          },
+          {
+            "path": "/opt/t736-browser-ffmpeg-v7/lib/libswresample.so.5.3.100",
+            "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360"
+          },
+          {
+            "path": "/opt/t736-browser-v1/lib/libt736_cedar_client.so",
+            "sha256": "8e7f835dd734230a3fcd568e5c456e616e1f21c94763356fb162691dfb87622b"
+          }
+        ],
+        "diagnostic_control_flags": false
+      },
+      "devices": {
+        "/dev/cedar_dev": {
+          "uid": 999,
+          "gid": 982,
+          "mode": "0o600"
+        },
+        "/dev/dma_heap/t736-ve": {
+          "uid": 999,
+          "gid": 982,
+          "mode": "0o600"
+        }
+      },
+      "dma": {
+        "buffers": 88,
+        "bytes": 128335872,
+        "budget_bytes": 134217728,
+        "reclaimed": false
+      },
+      "ve_clock_hz": 400000000,
+      "dcdc2_snapshot": "id=03 enable=ff dcdc2=28 phase=00 feedback=00 dvm=0 remote_feedback=1 setpoint_uv=900000 kind=programmed-setpoint",
+      "emmc_ios": "clock:\t\t200000000 Hz\nactual clock:\t200000000 Hz\nvdd:\t\t21 (3.3 ~ 3.4 V)\nbus mode:\t2 (push-pull)\nchip select:\t0 (don't care)\npower mode:\t2 (on)\nbus width:\t3 (8 bits)\ntiming spec:\t10 (mmc HS400)\nsignal voltage:\t1 (1.80 V)\ndriver type:\t0 (driver type B)\n",
+      "failed_units": "",
+      "gdm_original_restored": true,
+      "test_services_stopped": {
+        "t736-browser-fixture.service": "inactive",
+        "t736-media-inhibit.service": "inactive"
+      }
+    },
+    "accepted_bounded_results": {
+      "bilibili_1080p30": {
+        "sample_seconds": 30.863,
+        "total_frames": 926,
+        "dropped_frames": 0,
+        "ve_irq_delta": 929,
+        "record": "evidence/browser-hevc-v6-live-candidate-pending-20261117.json"
+      },
+      "user_feedback": {
+        "text": "明显流畅了",
+        "qualitative": true,
+        "not_measured_fps": true
+      },
+      "wire2_native": {
+        "seals_cases": 58,
+        "fork_pass": true,
+        "exact_pixel_pts_frames": 180,
+        "transport_frames": 540,
+        "transport_fps": 81.78185574284656,
+        "not_browser_presentation": true,
+        "record": "evidence/browser-v29-shm2-hardware-phase-20261117.json"
+      }
+    },
+    "not_accepted": [
+      "Browser hardware1080p60; v7 improved earlier hardware delivery but still had late sink drops",
+      "wire2 inside Firefox RDD: namespace UID projection rejection, v3 not implemented",
+      "Unlimited video switching or long-run DMA lifetime; current128335872/134217728 bytes pinned until reboot",
+      "Video encoding and end-to-end zero-copy",
+      "New final integrated firmware image or flash acceptance",
+      "Current physical gigabit link: still100Mbps with PHY downshift"
+    ],
+    "source_entry_points": {
+      "kernel": "tools/build_media_v29_candidate.py",
+      "browser": "tools/browser/README.md",
+      "code_map": "docs/CODE_MAP.md",
+      "build": "docs/BUILD.md",
+      "public_snapshot": "tools/prepare_source_backup.py"
+    },
+    "frozen_components": {
+      "ffmpeg": "v7",
+      "backend": "v5",
+      "omx_wc": "v5",
+      "protocol1": "restored live service",
+      "protocol2": "native accepted candidate only; frozen archive unchanged",
+      "diagnostic_client": "separate diagnostic source; not default",
+      "plane_copy_candidate": "isolated source/tests only; not deployed",
+      "namespace_client_v3": "design only, no implementation"
+    },
+    "sync_policy": {
+      "public": "Source, configuration, tests, sanitized evidence and manifests",
+      "private": "Vendor binaries, build artifacts, raw media/trace and personal browser observations",
+      "excluded": "Credentials, private SSH keys, session tokens and control-service sessions",
+      "public_repository": "https://github.com/dshanpi/Avaota4b-t736",
+      "build_host_project": "/home/ubuntu/t736-mainline"
+    },
+    "new_board_experiments_after_freeze": false,
+    "original_browser_restored": true,
+    "new_firmware_flashed": false
+  },
+  "incremental_stage_history": [
+    {
+      "updated_utc": "2026-11-16T14:53:13.994486+00:00",
+      "scope": "Latest incremental hardware and offline state; preserves earlier frozen stage_snapshot and all source-v6 historical fields. This update does not refresh or publish the public backup.",
+      "running_kernel": "6.18.63-t736-storage-v25",
+      "boot_id": "c6c1f145-777f-49ad-8924-5951d59f0de3",
+      "boot_mode": "explicit-path one-shot HS400200 with diagnostic collection",
+      "actual_clock_hz": 200000000,
+      "bus_width_bits": 8,
+      "signal_voltage_v": 1.8,
+      "storage_integrity": {
+        "status": "PASS-bounded",
+        "new_regular_file_bytes": 33554432,
+        "patterns": 2,
+        "evidence": "evidence/storage-v25-hs400-200-integrity-20261116.json",
+        "raw_device_access": false,
+        "buffered_fallback": false,
+        "full_lifetime_or_stress_accepted": false
+      },
+      "timing": {
+        "probe_bytes": 536870912,
+        "seconds": 9.533278629999998,
+        "MiB_per_s": 53.70660188078444,
+        "read_service_wall_ns": 9256161272,
+        "read_copy_wall_ns": 4724849806,
+        "read_copy_fraction_of_service": 0.5104545682768868,
+        "evidence": "evidence/storage-v25-hs400-200-timing-20261116.json",
+        "independent_review": "evidence/storage-v25-timing-numeric-review-20261116.json",
+        "limits": "Repeated8MiB prefix via frozen probe; aggregate includes background I/O. Phase wall time includes interrupts/scheduling and is not independent CPU time. Dispatch spans submitter/worker contexts."
+      },
+      "persistent_default": {
+        "kernel": "6.18.63-t736-storage-v16",
+        "vmlinuz_alias_target": "vmlinuz-6.18.63-t736-storage-v16",
+        "initrd_alias_target": "initrd.img-6.18.63-t736-storage-v16",
+        "dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+        "reverified_after_desktop_rollback": true,
+        "evidence": "evidence/desktop-mutter-sbc-v25-rollback-20261116.log"
+      },
+      "mutter_sbc_trial": {
+        "first_runtime_trial": "FAILED-ClutterActor-duplicate-registration",
+        "observed_error": "cannot register existing type 'ClutterActor'",
+        "root_cause_fully_resolved": false,
+        "rollback": "completed-by-root",
+        "system_mutter_and_vendor_PVR_maps_verified": true,
+        "verified_shell_pid": 6930,
+        "verified_session": "GDM greeter; not proof of a logged-in user desktop",
+        "evidence": [
+          "evidence/desktop-mutter-sbc-v25-initial-journal-20261116.log",
+          "evidence/desktop-mutter-sbc-v25-rollback-20261116.log",
+          "evidence/desktop-mutter-sbc-v25-postrollback-20261116.log"
+        ],
+        "SBC_or_desktop_smoothness_accepted": false,
+        "followup": "gi2 dispatcher/session guard independently reviewed; subsequent root-owned loader-correction trial is separate and has no accepted result recorded here."
+      },
+      "v26": {
+        "state": "FINAL_BUILD_INPUTS_AND_INDEPENDENT_REVIEW_PASS_ROOT_TRIAL_PENDING",
+        "source_review": "PASS-static-API-ownership-actual-C-test-review",
+        "actual_C_ASan_UBSan_model": "PASS",
+        "ARM64_external_module_compile": "PASS-against-v25-compile-only",
+        "final_package_PVR_readonly_bindings": "PASS",
+        "updater_apply_allowed": true,
+        "board_tested": false,
+        "preparation": "evidence/storage-v26-updater-preparation-20261116.json"
+      },
+      "GPU_helpers": {
+        "installed_release_guard": "6.18.63-t736-gpu-v15",
+        "executed_in_this_round": false,
+        "policy": "Keep historical helpers unchanged; root checks actual loaded PVR module and DSO/runtime state separately."
+      },
+      "final_integrated_image_complete": false,
+      "new_physical_display_acceptance": false
+    },
+    {
+      "updated_utc": "2026-11-17T03:04:31.059901+00:00",
+      "scope": "Latest incremental result. Earlier v25 snapshot retained in incremental_stage_history; frozen public-preparation stage_snapshot and source-v6 full-image history preserved. No public backup refresh or push in this update.",
+      "running_kernel": "6.18.63-t736-storage-v26",
+      "boot_id": "4b3ad302-5619-49f8-94e3-bab3f8bbc2cd",
+      "boot_mode": "explicit-path one-shot HS400200 with collect_timing enabled",
+      "actual_clock_hz": 200000000,
+      "bus_width_bits": 8,
+      "signal_voltage_v": 1.8,
+      "storage_integrity": {
+        "status": "PASS",
+        "file_bytes": 33554432,
+        "patterns": 2,
+        "read_passes": 8,
+        "total_write_bytes": 67108864,
+        "total_verified_read_bytes": 143130624,
+        "scratch_retained": false,
+        "raw_device_access": false,
+        "buffered_fallback": false,
+        "scope": "Bounded32MiB regular file,2patterns,8verified read passes; not full lifetime/stress acceptance.",
+        "evidence": "evidence/storage-v26-hs400-200-integrity-20261116.json"
+      },
+      "timing": {
+        "probe_bytes": 536870912,
+        "seconds": 5.274369123,
+        "MiB_per_s": 97.07322109241765,
+        "DMA_worker_CPU_seconds": 0.99,
+        "read_service_wall_ns": 5021273804,
+        "read_copy_wall_ns": 264983771,
+        "read_copy_fraction_of_service": 0.05277222102266384,
+        "command_wait_wall_ns": 4543320751,
+        "command_wait_fraction_of_service": 0.9048143814385788,
+        "ordinary_read_requests": {
+          "attempted": 8192,
+          "success": 8192,
+          "failed": 0,
+          "requested_bytes": 536870912,
+          "completed_bytes": 536870912,
+          "poll_iterations": 49327,
+          "poll_sleep_attempts": 41135
+        },
+        "background_write_requests": {
+          "attempted": 1,
+          "success": 1,
+          "failed": 0,
+          "requested_bytes": 8192,
+          "completed_bytes": 8192,
+          "poll_iterations": 2,
+          "poll_sleep_attempts": 1
+        },
+        "samples": {
+          "complete": 8193,
+          "incomplete": 0,
+          "dropped_events": 0
+        },
+        "comparison_to_v25": {
+          "throughput_ratio": 1.80747278161252,
+          "throughput_change_percent": 80.747278161252,
+          "probe_wall_reduction_percent": 44.674132292722035,
+          "DMA_worker_CPU_reduction_percent": 80.96153846153847,
+          "read_service_wall_reduction_percent": 45.752092509565344,
+          "read_copy_wall_reduction_percent": 94.3916995908843,
+          "read_copy_mean_reduction_percent": 94.38827655596663
+        },
+        "evidence": "evidence/storage-v26-hs400-200-timing-20261116.json",
+        "independent_comparison": "evidence/storage-v26-hs400-performance-comparison-20261116.json",
+        "limits": "Same frozen repeated8MiB-prefix probe. Different CPU endpoints/background load; endpoint observations are not residency. Timing is wall time, worker CPU is tick-quantized. v26 start/postreset include device/CPU cache synchronization; nested phases must not be added. command_wait includes issue/MMIO/sleep/scheduling."
+      },
+      "persistent_default": {
+        "kernel": "6.18.63-t736-storage-v16",
+        "vmlinuz_alias_target": "vmlinuz-6.18.63-t736-storage-v16",
+        "initrd_alias_target": "initrd.img-6.18.63-t736-storage-v16",
+        "dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+        "reverified_after_v26_integrity": true,
+        "evidence": "evidence/storage-v26-hs400-200-integrity-health-20261116.log"
+      },
+      "mutter_sbc": {
+        "first_trial": "Failed duplicateClutterActor registration; history retained.",
+        "gi2_trial": "BOARD_STARTUP_AND_SBC_FEEDBACK_PASS_PERFORMANCE_MIXED_ROLLED_BACK_NOT_PRODUCTION",
+        "feedback_observed": true,
+        "accepted_comparison": "Matched GskGLRenderer baseline/candidate; earlier Cairo sample rejected.",
+        "callback_rate_change_percent": 6.87512363139231,
+        "test_process_CPU_change_percent": 14.774148778729224,
+        "interpretation": "Mixed small callback-rate improvement with increasedCPU and worse values on some latency measures; no displayFPS or stable60Hz presentation claim.",
+        "original_mutter_restored": true,
+        "production_promoted": false,
+        "comparison": "evidence/desktop-mutter-sbc-v25-gi2-independent-comparison-20261116.json",
+        "rollback": "evidence/desktop-mutter-sbc-v25-gi2-rollback-20261116.log",
+        "restore_scope": "Post-v26 user session PID3186 loaded only system Mutter libraries plus PVR; exact maps and1080p60 recorded in evidence/storage-v26-final-runtime-state-20261116.log"
+      },
+      "v26": {
+        "state": "ONE_SHOT_HS400200_BOUNDED_INTEGRITY_TIMING_PASS",
+        "final_package_PVR_readonly_bindings": "PASS",
+        "board_tested": true,
+        "persistent_default_promoted": false,
+        "full_stress_or_final_image_accepted": false,
+        "preparation": "evidence/storage-v26-updater-preparation-20261116.json"
+      },
+      "GPU_helpers": {
+        "installed_release_guard": "6.18.63-t736-gpu-v15",
+        "executed_in_this_round": false,
+        "policy": "Keep historical helpers unchanged; root checks actual loaded PVR module and DSO/runtime state separately."
+      },
+      "runtime_health": {
+        "scope": "Recorded runtime and bounded integrity window only",
+        "driver_status": "OK",
+        "firmware_status": "OK",
+        "reported_GPU_error_counters": 0,
+        "failed_systemd_units": 0,
+        "new_kernel_messages_in_integrity_health_window": "none printed",
+        "evidence": [
+          "evidence/storage-v26-hs400-200-runtime-20261116.log",
+          "evidence/storage-v26-hs400-200-integrity-health-20261116.log",
+          "evidence/storage-v26-final-runtime-state-20261116.log"
+        ]
+      },
+      "final_integrated_image_complete": false,
+      "new_physical_display_acceptance": false,
+      "desktop_settings_observation": {
+        "path": "evidence/storage-v26-settings-observation-20261116.json",
+        "sha256": "74ce5db2df88b0533405070e524867191d0e17eb37cfd091a7ef1d205ed3bfc0"
+      },
+      "user_feedback": {
+        "local_date": "2026-11-17",
+        "summary": "用户确认 v26 运行流畅",
+        "source": "User feedback relayed by root",
+        "qualitative_experience_confirmed": true,
+        "measured_FPS_or_latency_acceptance": false,
+        "evidence": "evidence/storage-v26-user-feedback-20261117.json"
+      },
+      "codec_integration": {
+        "candidate": "media-v27 based on storage-v26",
+        "status": "IN_PREPARATION_INHERITED_IOMMU_DEPLOYMENT_GATES_RECORDED",
+        "decode_accepted": false,
+        "encode_accepted": false,
+        "browser_hardware_decode_accepted": false,
+        "inherited_review": "evidence/media-v27-inherited-iommu-gates-20261117.json",
+        "inherited_review_scope": "Historical v17 blockers only; v27 implementation and actual decode/encode are not yet accepted."
+      },
+      "new_final_integrated_image_flashed": false
+    },
+    {
+      "updated_utc": "2026-11-17T03:48:53.324689+00:00",
+      "scope": "Latest root-owned v27 bounded result; previous v26 snapshot retained in incremental_stage_history. Historical source-v6 full-image fields and frozen public stage_snapshot are unchanged. No public refresh or push.",
+      "running_kernel": "6.18.63-t736-media-v27",
+      "boot_mode": "explicit-path one-shot",
+      "actual_clock_hz": 200000000,
+      "bus_width_bits": 8,
+      "signal_voltage_v": 1.8,
+      "persistent_default": {
+        "kernel": "6.18.63-t736-storage-v16",
+        "vmlinuz_alias_target": "vmlinuz-6.18.63-t736-storage-v16",
+        "initrd_alias_target": "initrd.img-6.18.63-t736-storage-v16",
+        "dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+        "aliases_reverified_after1080trial": true,
+        "evidence": "evidence/media-v27-post-1080-state-20261117.log",
+        "dtb_hash_scope": "Frozen default hash from v26 evidence; v27 install log records default DT checksum success. Post1080 log directly rechecks aliases, not a new numeric DT hash."
+      },
+      "v26_rollback_retained": true,
+      "v26_storage_integrity_and_timing": "Preserved in preceding incremental_stage_history; no new v27 storage integrity/performance claim.",
+      "runtime_health": {
+        "gnome_service": "active",
+        "VE_DEC_PPU_ON_and_bypass": "observed",
+        "VE_clock_hz": 200000000,
+        "evidence": "evidence/media-v27-post-1080-state-20261117.log",
+        "scope": "Recorded service/clock/alias post-state only; no whole-system clean-health claim."
+      },
+      "codec_integration": {
+        "candidate": "media-v27 based on frozen storage-v26",
+        "status": "PASS_BOUNDED_H264_EXACT_OUTPUT_AND_X11_PIPELINE_NOT_PRODUCTION",
+        "route": "Full IOMMU disabled; DEC0/DEC1 targeted bypass and private32bit contiguous WC DMA heap.",
+        "decode_accepted": true,
+        "decode_acceptance_scope": "Two named H264 fixtures only:320x24030frames and1920x1080at30fps60frames exactNV21; no1080p60fps or broad codec claim.",
+        "trials": [
+          {
+            "label": "initial320x240",
+            "userspace": "WC-v1",
+            "codec": "H264 High with Bframes",
+            "width": 320,
+            "height": 240,
+            "frames": 30,
+            "exact_matching_frames": 30,
+            "decoded_bytes": 3456000,
+            "decoded_sha256": "cca7302cbb871683366faa34a4e0799493eb8fc63b095d66bdda54e7cd8f945b",
+            "IRQ_delta": 30,
+            "pipeline_exit": 0,
+            "EOS": true,
+            "manual_bottom_crop": 16,
+            "teardown": "Historical FREE EBADF observed and retained; content/EOS passed, cleanup not accepted in v1.",
+            "evidence": "evidence/media-v27-gst-h264-accepted-20261117.json"
+          },
+          {
+            "label": "1080p30_60frames",
+            "userspace": "WC-v2",
+            "codec": "H264 High with Bframes",
+            "width": 1920,
+            "height": 1080,
+            "source_fps": 30,
+            "frames": 60,
+            "exact_matching_frames": 60,
+            "decoded_bytes": 186624000,
+            "decoded_sha256": "1fc404375e99e4f8aa1d39096c3988f19a2aabad931e240b28d74de9ece095bd",
+            "reference_sha256": "1fc404375e99e4f8aa1d39096c3988f19a2aabad931e240b28d74de9ece095bd",
+            "IRQ_delta": 60,
+            "pipeline_exit": 0,
+            "EOS": true,
+            "timed_out": false,
+            "manual_bottom_crop": 8,
+            "X11_sink_window": [
+              960,
+              540
+            ],
+            "pipeline_duration_seconds": 1.974714521,
+            "process_wall_seconds": 2.9812279779999926,
+            "child_CPU_seconds": 4.552779,
+            "pinned_bytes_before": 30605312,
+            "pinned_bytes_after": 79564800,
+            "teardown": "No known error markers including prior FREE/EBADF in the captured v2 pipeline; not proof of DMA buffer reclamation.",
+            "evidence": "evidence/media-v27-1080-h264-accepted-20261117.json"
+          }
+        ],
+        "fd_ownership_fix": {
+          "cause": "GstMemory adopted a borrowed MemAdapter fd and closed it before MemAdapter FREE.",
+          "change": "Duplicate with F_DUPFD_CLOEXEC and transfer only the owned duplicate; preserve MemAdapter original ownership.",
+          "private_v2_manifest_sha256": "d70a37314ab0d4d47a6e5e40e1898ef7e57b334e9be0379d098bd1161e14a591",
+          "private_v2_package_sha256": "daae95f7620f09fa02bb8a46f3d2231bb8b2fdca09a12a46791034f94ba960e0",
+          "plugin_sha256": "7af9a4bfc5ecf0f617d5979a162c956630e598d34b2595d4659344c35986695b",
+          "patch_sha256": "38fa5ec9b01040fc5f2e1c5b87391df31627ed5f98bb5375b824f6f34a830831",
+          "offline_validation": "Actual extracted allocator function under ASan/UBSan with real descriptors plus independent ownership review.",
+          "target_result": "1080p60frame v2 trial completed exact output and EOS with no captured known error markers.",
+          "kernel_changed_for_fd_fix": false
+        },
+        "imported_buffer_lifetime": "Permanently pinned until reboot; no verified DMA drain/reclamation.",
+        "imported_buffer_budget_bytes": 134217728,
+        "pinned_bytes_last_observed": 79564800,
+        "crop": "Manual bottom16 and bottom8 for these fixtures; general crop integration not implemented.",
+        "encode_accepted": false,
+        "browser_hardware_decode_accepted": false,
+        "zero_copy_accepted": false,
+        "production_playback_accepted": false,
+        "summary": {
+          "path": "evidence/media-v27-hardware-summary-20261117.json",
+          "bytes": 10957,
+          "sha256": "ddd2b09ec864d09b7a1ad7c9951efadf66100f419107cc6f983cd44698449690"
+        },
+        "package_audit": "evidence/media-v27-independent-package-audit-20261117.json",
+        "historical_full_iommu_review": "evidence/media-v27-inherited-iommu-gates-20261117.json",
+        "historical_review_scope": "Full-IOMMU blockers remain historical; bypass route does not claim they are fixed.",
+        "temporary_output_cleanup": {
+          "path": "/run/t736-cedar-1080-v2/output.nv21",
+          "bytes_removed": 186624000,
+          "removed": true,
+          "source": "Root completion message; recorder did not operate board.",
+          "preserved": "Compressed fixture, per-frame reference, full-stream hash, board result and pipeline logs retained.",
+          "board_rebooted": false,
+          "runtime_after_cleanup": "v27 one-shot remains running with GNOME active.",
+          "scope": "Temporary rawNV21 file removed to release RAM; permanent imported-DMA pinning is unchanged."
+        },
+        "encoder_readiness": {
+          "path": "evidence/cedar-encoder-readiness-20261117.json",
+          "bytes": 5222,
+          "sha256": "453be8d1d8adb6165ba8ec02638c5185b45ba18032936ff3b6d4c62b2dcfbc68",
+          "status": "SOURCE_AND_BINARY_INPUTS_AVAILABLE_ENCODER_HARDWARE_NOT_VALIDATED",
+          "scope": "Read-only library/source/ABI/resource feasibility only; no encoder execution or board acceptance.",
+          "conclusion": "Separate VE_ENC device, clocks/reset/PPU/bypass/IRQ and DMA ownership remain to implement; do not use the library fallback on decoder-only v27."
+        }
+      },
+      "original_mutter_retained": true,
+      "new_physical_display_acceptance": false,
+      "final_integrated_image_complete": false,
+      "new_final_integrated_image_flashed": false,
+      "public_git_refresh_or_push": false
+    }
+  ]
 }

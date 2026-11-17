@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "scope": "offline raw H264 parser only; no board access or frozen bundle edits",
+  "fixture": {
+    "path": "output/media-fixture-320x240-30frames.h264",
+    "bytes": 38003,
+    "sha256": "470c8bb5cfb3159fb1566f115e452bf29791975686db6662fbc6a71a2ba6d267"
+  },
+  "original": {
+    "source_sha256": "f557f6d74fabf41943bf32dc2a75c48500e43ea528b61c6411ef16a2e8b59a3b",
+    "packets": 32,
+    "vcl_nals": 29,
+    "emitted_bytes": 37080,
+    "remaining_bytes": 923,
+    "eof_return": -1
+  },
+  "fixed": {
+    "source": "build/cedar-offline-review-20261117/rawStreamParser_fixed.c",
+    "source_sha256": "f135cb09580339d3b90ba82e8572fba295fd3544e2e5571b8ad7537cba9a3717",
+    "packets": 33,
+    "vcl_nals": 30,
+    "emitted_bytes": 38003,
+    "remaining_bytes": 0,
+    "eof_return": -1
+  },
+  "patch": {
+    "path": "patches/cedar/raw-parser-annexb-eof-20261117.patch",
+    "sha256": "e819f1cca09a10b4b9ed913fe0f3183aa9937d2b56b6570e2b380d49605d424b"
+  },
+  "harness": {
+    "source": "build/cedar-offline-review-20261117/parser_harness.c",
+    "sha256": "b07dbfea5971cabea164b50095e28491d01cb643084133e7f0b57fedaf8b6026",
+    "method": "compiled actual original/fixed rawStreamParser.c with only logging macros stubbed; streamType forced H264 exactly as demo",
+    "sanitizers": [
+      "address",
+      "undefined"
+    ],
+    "result": "both completed without sanitizer errors on this fixture; fixed parser emits all 30 VCL NALs"
+  },
+  "fixes": [
+    "reset nCurIndex after retained tail relocation, even when fread reaches EOF",
+    "return final NAL at actual EOF rather than discarding it for absent successor startcode",
+    "bounded 3/4-byte Annex-B scanning removes negative lookbehind and retains split prefix across refill"
+  ],
+  "limits": [
+    "fixing one dropped last NAL does not by itself explain only7 displayed frames or9IRQs",
+    "desktop_review owns diagnostic demo integration, FBM/EOS thread diagnosis ; ChannelThread nRet was confirmed void*: no pthread_join overwrite exists",
+    "kernel lock/WAIT static review found no deterministic stall; root strace observed lock1/8 immediately succeeding and no stuck WAIT"
+  ],
+  "correction": "Earlier desktop suspicion of pthread_join stack overwrite was withdrawn after reading complete declaration; parser results unchanged."
+}

@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "reviewer": "desktop_review",
+  "status": "PASS_SOURCE_ABI_ARM64_OOM_AND_HOST_SANITIZER_HARDWARE_PENDING",
+  "board_access": false,
+  "kernel_changed": false,
+  "candidate_library_changed_by_reviewer": false,
+  "candidate": {
+    "archive": "build/cedar-browser-backend-v5-20261117/t736-cedar-browser-backend-v5.tar.gz",
+    "archive_sha256": "e60685777a4700631fbe1df472cb98c037ed5fba276b372d2845d4a786f2a8c0",
+    "library_sha256": "52bf715c24ac9c072c1550f04fe47ab4df195ffdf1b51c4ac7f84414556f8f08",
+    "source_sha256": "0186b91b99c39134ee394dc5fe009b9d09415eb86b4d15bb09401a0a0cce1177"
+  },
+  "source_review": [
+    "Each outstanding frame owns one block and one pool reference; decoder owner holds a distinct reference.",
+    "Only returned blocks enter the mutex-protected idle list; at most two idle blocks per decoder, exact-size reuse, 64-byte output alignment.",
+    "Cached blocks own no references, avoiding an ownership cycle. Close marks the pool closed, detaches and frees idle blocks, then drops only the decoder reference.",
+    "Concurrent frame return versus close is safe: the returning frame keeps the pool alive and never touches a cached block after unlock; only the last atomic reference clears the mutex and frees the pool.",
+    "Decoder calls remain externally serialized. The broker hardware mutex provides that serialization while frame_free may happen after unlock and network send.",
+    "The broker releases every delivered frame through cedar_frame_free including send failures; no caller free(data) was found.",
+    "Output pixels, dimensions, timestamps, crop checks, memcpy path, DMA allocator and hardware lifecycle are unchanged."
+  ],
+  "ABI": {
+    "header_after_comment_removal_equal_to_v4": true,
+    "exported_symbols_unchanged": [
+      "cedar_close",
+      "cedar_eos",
+      "cedar_error",
+      "cedar_flush",
+      "cedar_frame_free",
+      "cedar_idle",
+      "cedar_open",
+      "cedar_pull",
+      "cedar_push",
+      "cedar_resume"
+    ],
+    "needed_libraries_unchanged": [
+      "libgstapp-1.0.so.0",
+      "libgstvideo-1.0.so.0",
+      "libgstbase-1.0.so.0",
+      "libgstreamer-1.0.so.0",
+      "libgobject-2.0.so.0",
+      "libglib-2.0.so.0",
+      "libpthread.so.0",
+      "libc.so.6",
+      "ld-linux-aarch64.so.1"
+    ],
+    "private_decoder_struct_is_opaque": true
+  },
+  "independent_failure_test": {
+    "path": "tests/test_cedar_ram_pool_failure.c",
+    "sha256": "e15403a943cc1a2805ebca6b2088a2d9001d09c80bf5789836f8ccdbdf667aac",
+    "backend_source_sha256": "0186b91b99c39134ee394dc5fe009b9d09415eb86b4d15bb09401a0a0cce1177",
+    "targets": [
+      "ARM64 actual code under QEMU using SDK GStreamer",
+      "native actual code with ASan and UBSan"
+    ],
+    "cases": [
+      "zero/MAX+1/SIZE_MAX rejected before allocating pool",
+      "pool calloc failure leaves decoder pointer null",
+      "aligned block allocation failure retains only decoder owner ref",
+      "allocation failure with held frame preserves bytes and reference count",
+      "wrong-size cached block survives a different-size OOM then exact-size reuse",
+      "maximum accepted block and 64-byte alignment",
+      "close drains cached block while two held frames remain intact",
+      "empty/null/repeated empty frame_free",
+      "copy_sample propagates both real allocation failures and unmaps sample"
+    ],
+    "allocation_balance": "all directly tracked pool/block allocations released; zero outstanding",
+    "logs": [
+      {
+        "path": "evidence/build/cedar-ram-pool-independent-host-test-build-20261117.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "evidence/build/cedar-ram-pool-independent-host-test-build-run-20261117.log",
+        "sha256": "7a6fde084e9069263f39538f5997c30e69dee351f8b1142877e55cccd41e6de0"
+      },
+      {
+        "path": "evidence/build/cedar-ram-pool-independent-arm64-test-build-20261117.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "evidence/build/cedar-ram-pool-independent-arm64-test-build-run-20261117.log",
+        "sha256": "7a6fde084e9069263f39538f5997c30e69dee351f8b1142877e55cccd41e6de0"
+      }
+    ],
+    "commands": [
+      {
+        "stage": "host-test-build",
+        "argv": [
+          "gcc",
+          "-std=c11",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-O1",
+          "-g",
+          "-fsanitize=address,undefined",
+          "/home/ubuntu/t736-mainline/tests/test_cedar_ram_pool_failure.c",
+          "-idirafter",
+          "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0",
+          "-idirafter",
+          "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/glib-2.0",
+          "-idirafter",
+          "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/lib/glib-2.0/include",
+          "-idirafter",
+          "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include",
+          "-pthread",
+          "-l:libgstapp-1.0.so.0",
+          "-l:libgstvideo-1.0.so.0",
+          "-l:libgstreamer-1.0.so.0",
+          "-l:libgobject-2.0.so.0",
+          "-l:libglib-2.0.so.0",
+          "-o",
+          "/home/ubuntu/t736-mainline/build/cedar-ram-pool-independent-review-20261117/pool-failure-sanitized",
+          "-Wl,--wrap=calloc,--wrap=posix_memalign,--wrap=free"
+        ]
+      },
+      {
+        "stage": "host-test-build-run",
+        "argv": [
+          "/home/ubuntu/t736-mainline/build/cedar-ram-pool-independent-review-20261117/pool-failure-sanitized"
+        ]
+      },
+      {
+        "stage": "arm64-test-build",
+        "argv": [
+          "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-gcc",
+          "-std=c11",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-O2",
+          "/home/ubuntu/t736-mainline/tests/test_cedar_ram_pool_failure.c",
+          "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0",
+          "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/glib-2.0",
+          "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/lib/glib-2.0/include",
+          "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include",
+          "-pthread",
+          "-L/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/lib",
+          "-lgstapp-1.0",
+          "-lgstvideo-1.0",
+          "-lgstbase-1.0",
+          "-lgstreamer-1.0",
+          "-lgobject-2.0",
+          "-lglib-2.0",
+          "-o",
+          "/home/ubuntu/t736-mainline/build/cedar-ram-pool-independent-review-20261117/pool-failure-arm64",
+          "-Wl,--wrap=calloc,--wrap=posix_memalign,--wrap=free"
+        ]
+      },
+      {
+        "stage": "arm64-test-build-run",
+        "argv": [
+          "/usr/bin/qemu-aarch64-static",
+          "-L",
+          "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot",
+          "/home/ubuntu/t736-mainline/build/cedar-ram-pool-independent-review-20261117/pool-failure-arm64"
+        ]
+      }
+    ],
+    "limitation": "no hardware; GStreamer global leak detector disabled but candidate pool allocations tracked independently"
+  },
+  "other_validation": "Author build evidence cedar-browser-backend-v5-build-20261117.json contains ARM64/host copy/layout/flush/lifetime/reuse tests; code_index reports separate barrier/LSan race review and owns its evidence.",
+  "deployment_condition": "Use an isolated v5 library after the old broker process has fully exited; do not exchange library versions while frames from the old version remain owned.",
+  "limitations": [
+    "No board or playback performance test by this reviewer.",
+    "This reduces ordinary-RAM output allocation churn; it does not change the WC device-frame read cost or remove the socket copy.",
+    "Pool cache holds at most two idle blocks per decoder; caller-owned outstanding frames are not reclaimed early.",
+    "A cedar_frame remains a unique owning value; duplicating it or freeing data directly is invalid."
+  ],
+  "blocking_findings": []
+}

@@ -1,0 +1,1 @@
+RAM_BENCH mode=pool frames=300 bytes=3110400 elapsed_us=23558 minor_faults=760 major_faults=0 allocations=1 reuses=299 checksum=27000 scope=ordinary-host-RAM-not-WC

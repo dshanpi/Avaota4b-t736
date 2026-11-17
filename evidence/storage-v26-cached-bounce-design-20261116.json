@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v26-cacheable-bounce-design",
+  "date": "2026-11-16",
+  "status": "IMPLEMENTED_C_FAULT_MODEL_AND_ARM64_COMPILE_PASS_FINAL_REVIEW_PENDING",
+  "v25_observation": {
+    "path": "evidence/storage-v25-hs400-200-timing-20261116.json",
+    "sha256": "b785fa91b60b34367d4db978a44f6203d92e04663a72c3aede66a3b02c0fb709",
+    "probe_MiB_s": 53.70660188078444,
+    "ordinary_reads": {
+      "attempted": 8197,
+      "success": 8197,
+      "failed": 0,
+      "requested_bytes": 537137152,
+      "completed_bytes": 537137152,
+      "poll_iterations": 49352,
+      "poll_sleep_attempts": 41155
+    },
+    "segment_total_ns": {
+      "dispatch": 81689915,
+      "worker_service_before_done": 9256161272,
+      "dma_start": 38492458,
+      "pre_reset": 15408330,
+      "write_copy": 0,
+      "command_wait": 4463116238,
+      "busy_wait": 0,
+      "post_reset": 15489770,
+      "read_copy": 4724849806,
+      "completion_callback": 31342671,
+      "worker_total_before_merge": 9288705782
+    },
+    "interpretation": "Read-copy wall is about half host service in this observation. CPU endpoint association is not residency or a universal rate. Dispatch compares submitter/worker contexts, not necessarily one thread migration."
+  },
+  "single_variable": "Only the shared payload allocation/coherency ownership changes: standard dma_alloc_noncoherent (dma_alloc_pages wrapper) plus explicit full-allocation synchronization. Descriptor memory remains dma_alloc_coherent.",
+  "allocation": {
+    "bytes": 65536,
+    "direction": "DMA_BIDIRECTIONAL",
+    "gfp": "GFP_KERNEL",
+    "mask": "existing dma_set_mask_and_coherent32bit unchanged",
+    "initial_owner": "CPU: dma_direct_alloc_pages returns page_address and zeroes it without handing it to device",
+    "mapping": "Expected cacheable normal linear mapping on this fixed ARM64 direct-DMA noncoherent device, from Linux API/source; no fake dma-coherent DT flag, PTE changes, cache alias or raw physical handle",
+    "identity": "mmc_dev(mmc) expands to mmc->parent, identical to &pdev->dev passed to mmc_alloc_host and allocation"
+  },
+  "ownership": [
+    "Initial payload_device_owned=false; command entry rejects dma_dead or device-owned payload before tuning poison or any CPU payload access.",
+    "Original command validation/128-or512 fresh poison remain before dma_start. Pre-start stop retains all three physical reset fences; any failure sets dma_dead and quarantines both allocations.",
+    "While CPU-owned, fill write payload; a short SG copy fails before any device handoff. All threshold/descriptor errors remain before handoff.",
+    "dma_sync_single_for_device with identical device, DMA handle, full65536 size and DMA_BIDIRECTIONAL; set device-owned flag; preserve existing dma_wmb and all hardware activation writes. No fallible return remains after successful handoff before command wait/mandatory stop.",
+    "After successful controller DMA reset, DMAC reset and FIFO reset, clear old DMA status then sync_single_for_cpu(BIDIRECTIONAL,full65536) when device-owned; only then clear ownership. Same central stop covers normal success, command errors, tuning, cleanup and remove.",
+    "Any reset timeout bypasses sync_cpu, payload access, copying and freeing. Existing dma_dead and ios_error, both-buffer quarantine, and future command/clock guards remain.",
+    "Free payload with dma_free_noncoherent and exact allocation device/address/size/direction, only probe early failure before hardware exposure or remove after successful stop; descriptors use original coherent free."
+  ],
+  "full_allocation_reason": "Shared bidirectional payload also receives CPU-written read-side poison. Full64KiB maintenance handles dirty allocation tails and short128/512/4B ranges without partial-cacheline assumptions. No separate mapping/unmapping or DMA direction changes per request.",
+  "preserved": [
+    "64KiB request and1KiB descriptor limits",
+    "all original hardware MMIO, sleep/poll/reset ordering and arguments",
+    "both mandatory reset fences and quarantine",
+    "128/512 tuning validation, fresh poison and ordinary payload compare flow",
+    "coherent descriptor buffer and OWN/barriers",
+    "clock/timing/voltage/DTB/affinity/workqueue",
+    "default-off v25 diagnostic instrumentation call sites and counter schema"
+  ],
+  "measurement_semantics": [
+    "read_copy remains SG copy only",
+    "dma_start now includes sync_for_device; pre_reset includes sync_cpu only if ownership outstanding",
+    "post_reset includes added sync_for_cpu after successful physical fences; do not call its entire duration pure reset cost",
+    "worker_service includes all changes, max and CPU endpoint limits unchanged",
+    "dispatch endpoint differences compare submission and worker contexts, not proof of same-thread migration"
+  ],
+  "validation": {
+    "real_C_functions": [
+      "t736_payload_for_device",
+      "t736_dma_start",
+      "t736_command",
+      "t736_dma_stop",
+      "t736_remove"
+    ],
+    "fault_cases": "First/duplicate ownership,128/512 repeated poison,full64KiB write/read,4B dirty tail,all3pre+3post reset failures,postdead no CPU/free,short write SGcopy,normal/tuning failed command reclaim and retry poison,remove reclaim/free",
+    "host_model": "Separate CPU cache and device memory; real driver functions compiled ASan/UBSan with cache/IO mocks. This verifies sequencing, not physical cache hardware performance.",
+    "ARM64_external_module": "PASS against frozen v25; compile-only module not for board",
+    "board": "not tested"
+  },
+  "files": {
+    "boards/t736_mmc_cached_bounce_draft.c": "2b1f48ba68789523b832d9226ad1e0031f17376d3f0abea816fd97de8f1f9ab6",
+    "tests/test_mmc_cached_bounce.py": "062ff9e38a7b46c7e9e5f778ba82ccf7f8da6a9ba2dc6aaac66beff445da4dc7",
+    "boards/t736_mmc_hs400_timing_draft.c": "e5874fee67a7a2b04f495b29c7711c9da446b06ab8954c0fa75d23ac97ac2cee",
+    "boards/t736_mmc_timing_stats_draft.h": "dd507fc5ea4868c3d6b892e096fd56e7ee57833e820b0b4fffd05e78d7f30604"
+  },
+  "kernel_api_sources": {
+    "sources/linux/Documentation/core-api/dma-api.rst": "c5d182327c69a70d75bdb46bafc0e4e026de6b91f4cc95803519f6e0eb9977ec",
+    "sources/linux/include/linux/dma-mapping.h": "d8e6f160eff91019bdc96dbaa5a2bc0837dec915fea5731b958f6328366c54d3",
+    "sources/linux/include/linux/mmc/host.h": "48ddebc041d079a90ba43628d106acbd2b0a09bbe459deca9d7a73ae561945cc",
+    "sources/linux/kernel/dma/mapping.c": "715f7fe354130e1f5de083f58d60725da0d82ff2d120dccb441fc01058b52f73",
+    "sources/linux/kernel/dma/direct.c": "6015f4c3e9523c5a1c312c63f7e953c23020b9230aa933b0173f847ecbdf8037",
+    "sources/linux/arch/arm64/mm/dma-mapping.c": "7c6467723693083ff499f446c63ec8e3a030ba2c93e9bb8355df85159b2a7c5d"
+  }
+}

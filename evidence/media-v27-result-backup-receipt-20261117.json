@@ -1,0 +1,372 @@
+{
+  "schema": 1,
+  "kind": "media-v27-private-source-result-backup-receipt",
+  "recorded_utc": "2026-11-17T03:48:54.112894+00:00",
+  "status": "PASS_ALL_REMOTE_BYTES_REHASHED",
+  "host": "192.168.1.228",
+  "destination": "/home/ubuntu/t736-mainline",
+  "transport": "SFTP with known-host verification; per-file temporary upload, byte comparison, atomic rename, final byte comparison.",
+  "file_count": 43,
+  "total_bytes": 589710,
+  "files": [
+    {
+      "path": "analysis/media_v27_1080_trial.py",
+      "local_path": "G:\\codex\\t736\\analysis\\media_v27_1080_trial.py",
+      "remote_path": "/home/ubuntu/t736-mainline/analysis/media_v27_1080_trial.py",
+      "bytes": 5785,
+      "sha256": "9ba7b6dfb7d84375d10abbed0c0b3fee749c5007e5711d4218bd0adeca87fb55",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "analysis/media_v27_trial_boot.py",
+      "local_path": "G:\\codex\\t736\\analysis\\media_v27_trial_boot.py",
+      "remote_path": "/home/ubuntu/t736-mainline/analysis/media_v27_trial_boot.py",
+      "bytes": 3525,
+      "sha256": "b77caf9e5239581d0a24ef0fc7936c4ffa161ffe1db6b1f132f9fc4d96e34c1a",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "boards/clk-t736-ve.c",
+      "local_path": "G:\\codex\\t736\\mainline\\boards\\clk-t736-ve.c",
+      "remote_path": "/home/ubuntu/t736-mainline/boards/clk-t736-ve.c",
+      "bytes": 8846,
+      "sha256": "a68e6cf5c2c0ea2c94c4c55722cf2e53c936f7de45b666a00d62cf93cbace7bd",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "boards/t736-cedar-wc.c",
+      "local_path": "G:\\codex\\t736\\mainline\\boards\\t736-cedar-wc.c",
+      "remote_path": "/home/ubuntu/t736-mainline/boards/t736-cedar-wc.c",
+      "bytes": 21452,
+      "sha256": "5c9a73ed2d701bfb5905aa59da73f7f07f60b1c0636c6746f1b7110a68265402",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "boards/t736-media-v27.dtsi",
+      "local_path": "G:\\codex\\t736\\mainline\\boards\\t736-media-v27.dtsi",
+      "remote_path": "/home/ubuntu/t736-mainline/boards/t736-media-v27.dtsi",
+      "bytes": 1513,
+      "sha256": "01b24b44440094407429898fc81d8725ddfd0e3b5d6942057c5fd5cc785a9dd5",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "boards/t736-ve-power.c",
+      "local_path": "G:\\codex\\t736\\mainline\\boards\\t736-ve-power.c",
+      "remote_path": "/home/ubuntu/t736-mainline/boards/t736-ve-power.c",
+      "bytes": 3994,
+      "sha256": "8902a8e487ed6109c0dd9aadb83b75bdeb4e3a7bf16406dc35a9243a4970bfc9",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-encoder-readiness-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\cedar-encoder-readiness-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/cedar-encoder-readiness-20261117.json",
+      "bytes": 5222,
+      "sha256": "453be8d1d8adb6165ba8ec02638c5185b45ba18032936ff3b6d4c62b2dcfbc68",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-wc-v2-build-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\cedar-wc-v2-build-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/cedar-wc-v2-build-20261117.json",
+      "bytes": 481,
+      "sha256": "b7bbc5880030183118fe01115a54e8f3b99071589a1414b388c52b31f91e73c0",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-wc-v2-fd-ownership-independent-review-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\cedar-wc-v2-fd-ownership-independent-review-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/cedar-wc-v2-fd-ownership-independent-review-20261117.json",
+      "bytes": 2530,
+      "sha256": "6679a5a17eb76a90d02c3814637491ed655019d2afe79eb73f0ce3a2ce9da296",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-wc-v2-fd-ownership-validation-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\cedar-wc-v2-fd-ownership-validation-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/cedar-wc-v2-fd-ownership-validation-20261117.json",
+      "bytes": 2890,
+      "sha256": "5d6e2ef0d705c74e27c97cf179756226366a7f260a4724623c30362a89916571",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-1080-first-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-1080-first-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-1080-first-20261117.log",
+      "bytes": 1988,
+      "sha256": "98398c75b0cdab285946b3925ac1b254ec2e9394c8931e6768bf873a5fe75e6b",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-1080-h264-accepted-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-1080-h264-accepted-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-1080-h264-accepted-20261117.json",
+      "bytes": 2473,
+      "sha256": "0448727ad2ee776d8cb01bb843b28020460357cb04eabe312bbbe2cf91495c18",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-1080-h264-detail-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-1080-h264-detail-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-1080-h264-detail-20261117.log",
+      "bytes": 41255,
+      "sha256": "612f4049471a9baf3574af6a4bdb6c09a25ebe10478b1d03a10ce276e3b37f72",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-board-install-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-board-install-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-board-install-20261117.log",
+      "bytes": 2093,
+      "sha256": "277a3e8ff3020eef976e18717456121941eb8bedce31266449a7ec505b528de2",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-build-final-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-build-final-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-build-final-20261117.log",
+      "bytes": 29427,
+      "sha256": "8e036df6610e7faec5e005ccb195997947c84b7b67821d75cf02fb6b42c4a49c",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-cedar-wc-build-review-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-cedar-wc-build-review-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-cedar-wc-build-review-20261117.json",
+      "bytes": 3905,
+      "sha256": "d6dc04cf3723a48c8def6e46c9783604cc48b59b12200d7cb0c1d5552eea2c14",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-clean-shutdown-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-clean-shutdown-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-clean-shutdown-20261117.log",
+      "bytes": 11330,
+      "sha256": "a830766a6fb81b9deb1b916d85a77c45a9b36d7a4e4bd8d818946e66cd8303bd",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-cma-hardware-prerequisites-review-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-cma-hardware-prerequisites-review-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-cma-hardware-prerequisites-review-20261117.json",
+      "bytes": 11417,
+      "sha256": "f9ce8aec3792a907597be41e0aff53844bea64d0cd5514223e7ca5f10bab6b64",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-console-login-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-console-login-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-console-login-20261117.log",
+      "bytes": 1332,
+      "sha256": "863be260ce84e403d827c6389cf734f593b8dacd2d5c62cf14a334e81ee025cb",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-first-decode-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-first-decode-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-first-decode-20261117.log",
+      "bytes": 1759,
+      "sha256": "0f11ee0678127bf40ceb0ac5ced4438bb4bba1cf6566cce30c1e5d40234b5179",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-first-decode-detail-full-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-first-decode-detail-full-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-first-decode-detail-full-20261117.log",
+      "bytes": 160567,
+      "sha256": "53c00eb08721f98519ff30603a160254a3aedb9b00f25997056bd6e3e6aadcf2",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-first-decode-result-full-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-first-decode-result-full-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-first-decode-result-full-20261117.json",
+      "bytes": 2026,
+      "sha256": "9f338e792012cf577992d7ed7ab01d61e6c4a11a0a475cd109f59519b9a55225",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-first-serial-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-first-serial-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-first-serial-20261117.log",
+      "bytes": 56137,
+      "sha256": "f22ccbfe75d94779d1e63fe537f1e0232dbe90867debe1694fa15aac3f279775",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-gst-crop-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-gst-crop-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-gst-crop-20261117.log",
+      "bytes": 2146,
+      "sha256": "768baab81992580c8db6e7f7a510e5a037e1f9764fa3a550432aa92f8e368369",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-gst-first-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-gst-first-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-gst-first-20261117.log",
+      "bytes": 3126,
+      "sha256": "9e20ed18c595d8b41d6cecc62d04baeef5683509a5177c2535817a37cbbe18a8",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-gst-free-trace-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-gst-free-trace-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-gst-free-trace-20261117.log",
+      "bytes": 3692,
+      "sha256": "d244b9e847f898f70117c7271b020d2e7983c0b6a90e92889348b9c0e2d488c2",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-gst-h264-accepted-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-gst-h264-accepted-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-gst-h264-accepted-20261117.json",
+      "bytes": 1416,
+      "sha256": "b840b21be2167cb5a65ccc2ec399f3e349eef395b9c02a656e547413f7a071ae",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-gst-h264-detail-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-gst-h264-detail-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-gst-h264-detail-20261117.log",
+      "bytes": 12001,
+      "sha256": "e1526e9d8ed19d897a22616f9b90656d36286621cd934e4f42c4880ae22f961a",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-hardware-summary-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-hardware-summary-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-hardware-summary-20261117.json",
+      "bytes": 10957,
+      "sha256": "ddd2b09ec864d09b7a1ad7c9951efadf66100f419107cc6f983cd44698449690",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-independent-package-audit-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-independent-package-audit-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-independent-package-audit-20261117.json",
+      "bytes": 30041,
+      "sha256": "238af1eb7cba4a0e41dc6eea7b4dbfa3ef0bed46409eaa39f0323c3cf9a2a704",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-inherited-iommu-gates-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-inherited-iommu-gates-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-inherited-iommu-gates-20261117.json",
+      "bytes": 7250,
+      "sha256": "e4f17aeb53f1538895544d5fef9c94af1f97a8dfbb61d6e889b36193adb5a2e3",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-initial-hardware-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-initial-hardware-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-initial-hardware-20261117.log",
+      "bytes": 2445,
+      "sha256": "9fd5575e33893ce676ae3a3315839692c43e917673b03552244083361cd659f4",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-one-shot-boot-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-one-shot-boot-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-one-shot-boot-20261117.log",
+      "bytes": 6721,
+      "sha256": "cf515471b8afd051c0f72dddd37be176aa4fa980b090598f46e44273c21b067e",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-parser-eof-offline-20261117.json",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-parser-eof-offline-20261117.json",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-parser-eof-offline-20261117.json",
+      "bytes": 2335,
+      "sha256": "9acc29bddfb60dbdf5207bb9cc878a99fd361ea464eac7befeeecd9de3118856",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-post-1080-state-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-post-1080-state-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-post-1080-state-20261117.log",
+      "bytes": 752,
+      "sha256": "e982131fbca2a7d655189f84ff300018a811dbea057efaff513c9ae08021cb0b",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/media-v27-trace-summary-20261117.log",
+      "local_path": "G:\\codex\\t736\\mainline\\evidence\\media-v27-trace-summary-20261117.log",
+      "remote_path": "/home/ubuntu/t736-mainline/evidence/media-v27-trace-summary-20261117.log",
+      "bytes": 12254,
+      "sha256": "17897f1d40cce155e2e25115d6e5a38a32d1dc307860a74d7716111fdeedb09b",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "patches/cedar/gstomx-dmabuf-fd-ownership-20261117.patch",
+      "local_path": "G:\\codex\\t736\\mainline\\patches\\cedar\\gstomx-dmabuf-fd-ownership-20261117.patch",
+      "remote_path": "/home/ubuntu/t736-mainline/patches/cedar/gstomx-dmabuf-fd-ownership-20261117.patch",
+      "bytes": 1522,
+      "sha256": "38fa5ec9b01040fc5f2e1c5b87391df31627ed5f98bb5375b824f6f34a830831",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "patches/cedar/raw-parser-annexb-eof-20261117.patch",
+      "local_path": "G:\\codex\\t736\\mainline\\patches\\cedar\\raw-parser-annexb-eof-20261117.patch",
+      "remote_path": "/home/ubuntu/t736-mainline/patches/cedar/raw-parser-annexb-eof-20261117.patch",
+      "bytes": 4971,
+      "sha256": "e819f1cca09a10b4b9ed913fe0f3183aa9937d2b56b6570e2b380d49605d424b",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "status.json",
+      "local_path": "G:\\codex\\t736\\mainline\\status.json",
+      "remote_path": "/home/ubuntu/t736-mainline/status.json",
+      "bytes": 77847,
+      "sha256": "5aa248fbd60e42f5bf446034fcfe17ebfd454d0edcb23aea267b032079c9b287",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tests/test_cedar_gst_fd_ownership.py",
+      "local_path": "G:\\codex\\t736\\mainline\\tests\\test_cedar_gst_fd_ownership.py",
+      "remote_path": "/home/ubuntu/t736-mainline/tests/test_cedar_gst_fd_ownership.py",
+      "bytes": 4577,
+      "sha256": "05aa5b4603f2d77e012f9314afb8fc9a063332fd276501f68eb7a1845ce1fca4",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/build_cedar_wc_kernel.sh",
+      "local_path": "G:\\codex\\t736\\mainline\\tools\\build_cedar_wc_kernel.sh",
+      "remote_path": "/home/ubuntu/t736-mainline/tools/build_cedar_wc_kernel.sh",
+      "bytes": 2583,
+      "sha256": "dabc86a5edf900372d178c1df798b618d3e8d0bfb9b5692a1f9b19cbd010cbd7",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/build_cedar_wc_v2.py",
+      "local_path": "G:\\codex\\t736\\mainline\\tools\\build_cedar_wc_v2.py",
+      "remote_path": "/home/ubuntu/t736-mainline/tools/build_cedar_wc_v2.py",
+      "bytes": 6697,
+      "sha256": "e6f36314e88d51f82df1952ec9c694d38b60e22a273b7f48ffd07497bd26535a",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/validation/audit_media_v27_package.py",
+      "local_path": "G:\\codex\\t736\\mainline\\tools\\validation\\audit_media_v27_package.py",
+      "remote_path": "/home/ubuntu/t736-mainline/tools/validation/audit_media_v27_package.py",
+      "bytes": 14430,
+      "sha256": "9d632d0a67eb569d0c3bc24f1e52f72e532f8dd12f6edf03e22d26c009c6a5f0",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    }
+  ],
+  "receipt_excludes_itself_from_file_manifest": true,
+  "analysis_mapping": "Local G:/codex/t736/analysis/media_v27*.py -> /home/ubuntu/t736-mainline/analysis/",
+  "scope": "Private build-host backup only. Original diagnostic/login text may remain private; this set is not approved for public publication. No compiled/vendor payloads or complete images selected.",
+  "public_git": {
+    "mutated": false,
+    "commit_or_push": false,
+    "HEAD_before": "72333d335c0256542ee9b60912d666c4dbd82649",
+    "HEAD_after": "72333d335c0256542ee9b60912d666c4dbd82649",
+    "porcelain_sha256_before": "65e2c74ecbd0e2105036f4260c2490510c0c3de8cb26f3996c3b150f82450f53",
+    "porcelain_sha256_after": "65e2c74ecbd0e2105036f4260c2490510c0c3de8cb26f3996c3b150f82450f53"
+  },
+  "board_operated": false,
+  "new_hardware_tests_by_recorder": false,
+  "previous_receipt_sha256": "2cf01bbc777f32c16103d344340807cc01cb099b51669e377f4fcb66e6a4a6b7",
+  "final_addendum": "Includes rawNV21 temporary-file cleanup in summary/status and read-only encoder readiness. No encoder execution or board operation by recorder."
+}

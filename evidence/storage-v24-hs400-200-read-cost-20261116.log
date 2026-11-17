@@ -1,0 +1,42 @@
+{
+  "scope": "read-only repeated ordinary-file O_DIRECT throughput; no integrity comparison; warm device internal caches possible",
+  "file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+  "bytes": 536870912,
+  "repeat_8MiB": 64,
+  "request_syscall_bytes": 1048576,
+  "seconds": 11.37595236300001,
+  "MiB_s": 45.007220816541626,
+  "process_cpu_seconds": 0.22151179799999998,
+  "system_cpu_tick_delta": [
+    3,
+    0,
+    709,
+    8315,
+    77,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "mmcblk0_diskstats_delta": [
+    8192,
+    0,
+    1048576,
+    96351,
+    2,
+    2,
+    32,
+    50,
+    0,
+    11296,
+    96427,
+    0,
+    0,
+    0,
+    0,
+    2,
+    26
+  ],
+  "clock_ticks": 100
+}

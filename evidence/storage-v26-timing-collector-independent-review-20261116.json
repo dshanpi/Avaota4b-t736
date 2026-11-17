@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v26-timing-collector-independent-review",
+  "date": "2026-11-16",
+  "reviewer": "/root/code_index",
+  "status": "PASS_STATIC_AST_NO_BOARD_RUN",
+  "files": {
+    "tools/validation/mmc_timing_collect_v26.py": "a99dc35116a763cae60b760fb710483c911f2a84cff7ddc3c1a322d55caf0bbe",
+    "tools/validation/mmc_timing_collect.py": "2a98c83e8154a850d1cd9a55e92cee3fffbec8eb27cecfef030cb39f7744c54b",
+    "tools/validation/mmc_read_cost_probe.py": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946",
+    "boards/t736_mmc_cached_bounce_draft.c": "2b1f48ba68789523b832d9226ad1e0031f17376d3f0abea816fd97de8f1f9ab6"
+  },
+  "functions_AST_equivalent_after_approved_text_substitutions": 8,
+  "approved_changes": [
+    "release v25 to v26",
+    "measurement limit explicitly assigns sync_device to dma_start and sync_cpu to post_reset",
+    "dispatch CPU endpoints are submitter/worker context handoff; migration interpretation only worker-local segments"
+  ],
+  "checks": [
+    "Frozen c5b7ae probe unchanged",
+    "No read/write/timeout/identity/count/partial-coverage control flow change",
+    "V26 output schema/metadata keys and all counter fields unchanged; collector remains compatible with corrected descriptive values",
+    "No cache/affinity/tuning or device/counter write added"
+  ],
+  "board_validation": "pending parent-owned v26 run"
+}

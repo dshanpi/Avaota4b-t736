@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v26-updater-independent-review",
+  "reviewer": "/root/code_index",
+  "date": "2026-11-16",
+  "status": "PASS_STATIC_AST_EXACT_BINDINGS_AND_PACKAGE",
+  "files": {
+    "tools/validation/update_t736_storage_v26.py": "5669a811d816b7e2742a11ac210b947f6995611b48482bfb81ee03b4dcaf89c5",
+    "tools/validation/update_t736_storage_v25.py": "dbbfa8b9ea82f10c1b7a0399856c69290de7354aaeb84a441291c6f0c8f726e3",
+    "evidence/storage-v26-build-20261116.json": "7fcd748956a8832ba5cf82de243dfb3836e81cfa5ad74b08f2c15d8337e143ae",
+    "evidence/storage-v26-package-20261116.json": "2f0e0b33da4779259352212e739dc13c43d4f4bb8e6843f198b550363042adf4",
+    "evidence/storage-v26-pvr-build-20261116.json": "f65ce5a298f79a36ad6b9b5267000cb1bd228346ec7f6a40bf8acb7e114d3388"
+  },
+  "functions_classes_equivalent_after_identity_only_renaming": 29,
+  "top_level_changes": [
+    "BACKUPS",
+    "BINDINGS",
+    "NEW",
+    "PREVIOUS",
+    "PREVIOUS_BOOT_SHA256",
+    "VERSION"
+  ],
+  "bindings_verified": 11,
+  "complete_control_and_payload_hashes_recomputed": true,
+  "maintainer_scripts": "same as v25 after release replacement",
+  "regular_file_count": 82,
+  "regular_payload_changed": [
+    "boot/System.map-6.18.63-t736-storage-v25",
+    "boot/config-6.18.63-t736-storage-v25",
+    "boot/vmlinuz-6.18.63-t736-storage-v25",
+    "lib/modules/6.18.63-t736-storage-v25/modules.builtin.modinfo",
+    "usr/share/doc/linux-image-6.18.63-t736-storage-v25/changelog.Debian.gz"
+  ],
+  "previous_running_release": "6.18.63-t736-storage-v25",
+  "fallback_release": "6.18.63-t736-storage-v16",
+  "boundaries": [
+    "No transaction control-flow change, defaults to check, no reboot/bootcmd/SPL/GPT/raw-media change",
+    "Final actual-input and14 fault tests owned by backup_audit",
+    "Board check/apply/boot owned by root; no board access by this reviewer"
+  ]
+}

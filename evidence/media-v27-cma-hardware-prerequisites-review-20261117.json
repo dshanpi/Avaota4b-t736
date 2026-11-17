@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "kind": "media-v27-cma-decoder-hardware-prerequisites-independent-review",
+  "recorded_utc": "2026-11-17T03:20:13.955251+00:00",
+  "status": "SOURCE_HARDWARE_BOUNDARIES_REVIEWED_TARGETED_CORRECTIONS_VERIFIED_NO_HARDWARE_ACCEPTANCE",
+  "scope": "Read-only source/manual review for decoder-only fixed 200MHz, private contiguous WC DMA buffer and targeted IOMMU bypass route; full IOMMU translation stays disabled. No board access, register writes, builds or public Git mutation by reviewer.",
+  "local_inputs": [
+    {
+      "path": "boards/clk-t736-ve.c",
+      "bytes": 8846,
+      "sha256": "a68e6cf5c2c0ea2c94c4c55722cf2e53c936f7de45b666a00d62cf93cbace7bd"
+    },
+    {
+      "path": "boards/t736-ve-power.c",
+      "bytes": 3994,
+      "sha256": "8902a8e487ed6109c0dd9aadb83b75bdeb4e3a7bf16406dc35a9243a4970bfc9"
+    },
+    {
+      "path": "boards/t736-media-v27.dtsi",
+      "bytes": 1513,
+      "sha256": "01b24b44440094407429898fc81d8725ddfd0e3b5d6942057c5fd5cc785a9dd5"
+    },
+    {
+      "path": "build/media-v27-reference/bsp/drivers/ve/cedar-ve/cedar_ve.c",
+      "bytes": 63818,
+      "sha256": "774558140b78e743925f6e26ffcfe3e86751963ace27b208530b471d8c303f7b"
+    },
+    {
+      "path": "build/media-v27-reference/bsp/drivers/clk/sunxi-ng/ccu-sun60iw2.c",
+      "bytes": 87533,
+      "sha256": "1d32bb8555f8ff205d35210f638f9d42cc28aa9295c46963aa1c810d47b06d77"
+    },
+    {
+      "path": "evidence/vendor-reference/reference-1.txt",
+      "bytes": 6171991,
+      "sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483"
+    }
+  ],
+  "donor_root": "/home/ubuntu/t736-aiot/tina",
+  "donor_sha256": {
+    "bsp/drivers/iommu/sunxi-iommu-v2.c": "2cfa66d29a1223d259486c29ef6722fc6eb3679990f39592c8c4d4b11442e31d",
+    "bsp/drivers/pm_domain/pck600_domains.c": "2d9c2b60b3b264d1732538815d12570e45386d30b280a1d0b4f5b9780bdc49ee",
+    "bsp/drivers/bus/sunxi-nsi.c": "322ef7a142521760c081d092c8f5193f688144cd6ec842f93bbf457e27814c71",
+    "bsp/drivers/bus/sunxi-nsi.h": "42db94da3e3ac2d072363550f637d41027988ac58154c753c1090c8fadcfc64c",
+    "bsp/drivers/clk/sunxi-ng/ccu_gate.c": "3d8c88d8b00d83b64819a88e6cacaa80eef941dd4d1c164d00238ba29054cd51",
+    "bsp/drivers/clk/sunxi-ng/ccu-sun60iw2-r.c": "9285e1b35bfae975e2c1257d477d843ad277916b9c555c12c5f88e1c7ea02554",
+    "bsp/configs/linux-6.6/sun60iw2p1.dtsi": "d68616db1d2755fbf13730d34e1edadb474cf7e5deb93ca982295b6e2a5edba4",
+    "bsp/configs/linux-6.6/sun60iw2p1-cpu-vf.dtsi": "d5535630db3d0acdeace832d1dfad684fab9ab0c31c482b493e36a7f3387e5ad",
+    "device/config/chips/t736/configs/demo_aiot/linux-6.6/board.dts": "f7e3f2cf21f62061198affbc7a99b8fc1ad597314542394bc73bc8365efc8a56"
+  },
+  "bypass": {
+    "formula": "base 0x03900000 + (global_master / 6) * 0x10000 + 0x400 + (global_master % 6) * 0x200 + 4",
+    "masters": [
+      {
+        "id": 6,
+        "name": "VE_DEC0",
+        "instance": 1,
+        "local_master": 0,
+        "register": "0x03910404"
+      },
+      {
+        "id": 7,
+        "name": "VE_DEC1",
+        "instance": 1,
+        "local_master": 1,
+        "register": "0x03910604"
+      }
+    ],
+    "bit0": "1 bypass, 0 translation; preserve all other bits using RMW and verify readback",
+    "source": "sunxi-iommu-v2.c:97-105,154-155,482-500; sun60iw2p1.dtsi:446,482-491",
+    "preserve": "No IOMMU global ENABLE, RESET, TTB, TLB or other MIC writes; do not copy software DEFAULT_BYPASS_VALUE=0x3ff to a hardware global register.",
+    "ccu_reset_boundary": "Root explicitly permits CCU IOMMU1_SYS at 0x020025b4 bit16 0->1 only to deassert initial reset, never assert or pulse. Existing bit16=1 is unchanged; bits2:0 may be enabled. This is distinct from an IOMMU core RESET register write.",
+    "lifetime": "DEC PPU must be powered while accessing these MICs; keep necessary shared IOMMU1 clock references pinned, do not turn off shared gates on consumer close."
+  },
+  "power": {
+    "domain_id": 2,
+    "ppu_base": "0x07062000",
+    "R_PPU_gate": "R_CCU 0x07010000 + 0x01ac bit0",
+    "control": "PPU+0 low nibble requested 8; PPU+8 low nibble must reach 8 within bounded timeout; preserve other control bits.",
+    "delays": {
+      "0x170": "0x001f1f1f",
+      "0x174": "0x00001f1f",
+      "0xc00": "0x08080808",
+      "0xc04": "0x00000808",
+      "0xc10": "0x00000008"
+    },
+    "source": "pck600_domains.c:86-155,547-579; sun60iw2-power.h:7; ccu-sun60iw2-r.c:144-146",
+    "donor_bug": "sunxi_do_pmu_set_power_domain logs timeout and returns void, while sunxi_pd_power always returns 0. New provider must propagate timeout; reviewed provider does.",
+    "rail": "T736 demo_aiot board.dts:2905-2912 assigns VE and VE2 to AXP8191 DCDC2. All eleven VE VF entries in sun60iw2p1-cpu-vf.dtsi:2142-2190 are 624MHz at 800000uV.",
+    "voltage_conclusion": "No source evidence requires raising an already verified 900mV system/DCDC2 rail for fixed 200MHz. This review did not read the live PMIC; actual supply must be established through the existing bus owner, not inferred from DTS alone.",
+    "DCDC2_decode": "AXP8191 DCDC2 enable is DCDC_CTL1 bit1, voltage selector bits6:0; ranges 500000+selector*10000uV for 0..0x46 and 1220000+(selector-0x47)*20000uV for 0x47..0x57. Preserve DVM/phase/feedback and shared consumers."
+  },
+  "clock": {
+    "core": "0x02002a88: bit31 gate, mux bits26:24=2 for PERI0_800M, divider bits4:0=3 gives /4; bits30:27 reserved, no UPD handshake.",
+    "parent": "Use existing locked PLL_REF=24MHz and PLL_PERI0_800M=800MHz. PERI0 output1 gate bit26, P1 bits18:16 plus1, N bits15:8 plus1, input M1 bit1 plus1. No PLL_VE0 programming or enabling is required by this selected source.",
+    "ready_recommendation": "Implemented and independently rechecked: PLL_REF and PERI0 require EN, LDO_EN, LOCK and selected output gate. No PLL writes.",
+    "gates": {
+      "0x020025c0": "DEC AHB bit0",
+      "0x020025e0": "DEC master bit14 and IOMMU1 master bit1",
+      "0x020025e4": "DEC MBUS bit18",
+      "0x02002a8c": "DEC bus bit2, DEC reset bit18; preserve encoder reset16/bus0"
+    },
+    "shared_gate_finding": {
+      "status": "FIXED_IN_ROOT_IMPLEMENTATION_AND_INDEPENDENTLY_RECHECKED",
+      "problem": "Donor SUNXI_CCU_GATE_WITH_KEY constants overlap real manual-documented R/W gate bits; blindly ORing them changes other masters, despite the helper comment that key-field bits read zero.",
+      "examples": {
+        "0x010000ff": "AHB bit24 STORE and bits0..7 many masters",
+        "0x41055800": "MBUS STORE30, VI24, NPU18, GPU16, DEC14, ENC12, DE11",
+        "0x00040302": "MBUS gate DEC18, ISP9, CSI8, ENC1"
+      },
+      "manual": "reference-1.txt lines6499-6748: R/W gates, no dedicated key field documented.",
+      "recommendation": "New decoder provider should update only its target bits with RMW and readback. Do not wholesale change historical display/USB drivers in this review.",
+      "verified_correction": "clk-t736-ve.c removed key field and all key ORs. enable RMWs only selected masks; disable preserves others. Shared IOMMU1 gates remain pinned."
+    }
+  },
+  "nsi": {
+    "ports": [
+      7,
+      8
+    ],
+    "base": "0x02020000",
+    "donor_configuration": {
+      "mode": 0,
+      "priority": 1,
+      "select": 1
+    },
+    "port7_registers": {
+      "mode": "0x02020e10",
+      "priority": "0x02020e14",
+      "select": "0x02020e18"
+    },
+    "port8_registers": {
+      "mode": "0x02021010",
+      "priority": "0x02021014",
+      "select": "0x02021018"
+    },
+    "masks": "mode bits1:0=0; priority bits3:0=0x5 (read/write pri1); select bit0=1. T736 uses direct port numbering, not SUN55IW3 legacy port-1 mapping.",
+    "interpretation": "Donor configuration controls QoS/priority input selection, not a per-port traffic enable. No reviewed evidence makes reconfiguring these QoS values a prerequisite for a bounded decoder trial. Preserve current global NSI/MBUS clock/reset state and other ports; do not import donor all-master initialization.",
+    "source": "sunxi-nsi.c:69-141,190-223,1137-1167; sunxi-nsi.h:195-218,354-356,424-427; sun60iw2p1.dtsi:1570-1584"
+  },
+  "reset_and_dma": {
+    "donor_vcu_pulse": "After module enable and IOCTL_RESET_VE, donor RMWs decoder base+0x804 (0x01c0e804) bits0 and4 to1 then0, preserving other bits; cedar_ve.c:388-405,532-537,966-971.",
+    "completion_boundary": "No reviewed kernel donor/manual evidence proves outstanding external DMA is drained merely because DEC reset is asserted or its bit reads back. A fixed delay is not completion proof.",
+    "root_design_response": "Root requested imported buffers permanently pinned through reboot with a bounded budget; permanent pinning applies even to closes/releases until a supported quiescence boundary exists.",
+    "userspace_review": "desktop_review identified veInquireIdle but has not established that it means external DMA drain; do not treat its name or loop as proof.",
+    "reset_API": "Linux reset_control_reset returns -ENOTSUPP when provider has no .reset, without assert/deassert fallback. Cedar must explicitly assert/deassert and check results; root reports new consumer does so.",
+    "consumer_status": "code_index reports frozen driver SHA256 5c9a73ed2d701bfb5905aa59da73f7f07f60b1c0636c6746f1b7110a68265402: explicit assert/status/deassert; permanently pins imported buffers until reboot, total budget128MiB. Independent hardware reviewer did not rerun its build/tests."
+  },
+  "mmio_boundary": {
+    "manual": "VE_DEC 0x01c0e000-0x01c0ffff = 0x2000 bytes; independent VE_ENC starts 0x01c10000.",
+    "donor": "Decoder DTS resource 0x3000 also covers encoder page.",
+    "finding": "For decoder-only interface, restrict mmap to first 0x2000 or shrink resource after checking userspace ABI. Root and code_index notified.",
+    "status": "FIXED_DTS_RESOURCE_0x2000_AND_CONSUMER_MAP_RESTRICTED",
+    "verified_correction": "Root changed t736-media-v27.dtsi decoder resource to0x2000; code_index reports the consumer permits only offset0 length0x1000 MMIO mapping."
+  },
+  "acceptance": {
+    "board_operated": false,
+    "register_writes_performed": false,
+    "build_or_tests_run": false,
+    "codec_decode_accepted": false,
+    "codec_encode_accepted": false,
+    "browser_decode_accepted": false,
+    "public_checkout_changed": false
+  },
+  "updated_utc": "2026-11-17T03:21:06.555417+00:00",
+  "reviewed_final_local_sources": [
+    {
+      "path": "boards/clk-t736-ve.c",
+      "bytes": 8846,
+      "sha256": "a68e6cf5c2c0ea2c94c4c55722cf2e53c936f7de45b666a00d62cf93cbace7bd"
+    },
+    {
+      "path": "boards/t736-ve-power.c",
+      "bytes": 3994,
+      "sha256": "8902a8e487ed6109c0dd9aadb83b75bdeb4e3a7bf16406dc35a9243a4970bfc9"
+    },
+    {
+      "path": "boards/t736-media-v27.dtsi",
+      "bytes": 1513,
+      "sha256": "01b24b44440094407429898fc81d8725ddfd0e3b5d6942057c5fd5cc785a9dd5"
+    },
+    {
+      "path": "boards/t736-cedar-wc.c",
+      "bytes": 21452,
+      "sha256": "5c9a73ed2d701bfb5905aa59da73f7f07f60b1c0636c6746f1b7110a68265402"
+    }
+  ],
+  "remaining_boundaries": [
+    "Actual PMIC/DCDC2 voltage and device state require root-owned live evidence. No voltage, PLL or NSI tuning was performed by reviewer.",
+    "No DMA drain completion was proved; keep permanent imported-buffer pinning and bounded allocation policy.",
+    "Fixed200MHz, target-onlybypass and source verification do not establish actual decode, encode, browser integration, performance or final image acceptance."
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v25-aggregate-diagnostic-design",
+  "status": "implemented-unit-and-ARM64-compile-check-passed-final-review-pending",
+  "date": "2026-11-16",
+  "baseline": {
+    "path": "boards/t736_mmc_hs400_draft.c",
+    "sha256": "515d7f75b871ee9da838ef71199706ddedb5425ae6cfac186c3089831d8598e5"
+  },
+  "activation": "t736_mmc_pio.collect_timing=1; bool read-only 0444 default false",
+  "surface": "/sys/kernel/debug/t736_mmc_timing/stats; read-only 0444 open-time snapshot",
+  "scope": "Only direction-consistent normal CMD17/18/24/25 with data and !tuning_running; includes associated SBC and error-stop commands. Initialization and tuning excluded. Background ordinary block I/O is included.",
+  "behavior_changes": [],
+  "preserved": [
+    "64 KiB maximum request",
+    "1 KiB descriptor chunks, 64 descriptors",
+    "coherent bounce allocation and full payload copies",
+    "all readl/writel and polling order/arguments",
+    "both mandatory DMA reset fences, error paths, ownership checks and quarantine",
+    "HS200/HS400 tuning and timing policy",
+    "ordered unbound workqueue and affinity"
+  ],
+  "segments": {
+    "dispatch": "request-side timestamp immediately before queue_work to worker-side sample start after eligibility check",
+    "worker_service_before_done": "worker sample start through all command handling until immediately before completion bookkeeping",
+    "dma_start": "entire t736_dma_start call, including nested pre_reset and write_copy; do not sum these nested values",
+    "pre_reset": "mandatory t736_dma_stop at beginning of dma_start",
+    "write_copy": "sg_copy_to_buffer call only",
+    "command_wait": "before IRQ clearing/argument/command submission through poll-loop completion; includes hardware, sleep and scheduling, not device-only time; SBC/data/error stop are separate invocations",
+    "busy_wait": "MMC_RSP_BUSY readl_poll_timeout call",
+    "post_reset": "mandatory t736_dma_stop after completed/failed data transaction",
+    "read_copy": "sg_copy_from_buffer call after dma_rmb; includes possible interrupts/scheduling",
+    "completion_callback": "mmc_request_done call only; no request/data access after it",
+    "worker_total_before_merge": "worker sample start through completion return; excludes final aggregate lock/update and function entry/exit bookkeeping"
+  },
+  "aggregation": {
+    "sample_bytes": 816,
+    "stats_bytes": 7416,
+    "event_capacity": 32,
+    "capacity_policy": "Any overflow/invalid segment/backwards clock discards whole sample from totals; incomplete_samples/dropped_events visible. Actual request success path needs well below capacity.",
+    "counts": "attempted/success/failed, requested/completed bytes, size bins <=4K/<=16K/<=64K/>64K by read/write; poll iterations and sleep attempts have no per-poll timestamps",
+    "segment_fields": "calls, total_ns, lifetime max_ns; max is not subtractable",
+    "cpu_fields": "segment start/end counts, same-endpoint count/ns per CPU0..7 and other bucket8; different-endpoint count/ns per segment; compare raw CPU ids before bucketing",
+    "cpu_limits": "Same endpoints do not prove no migration. Different endpoints prove at least one migration, not residency or number of migrations. Brief get_cpu/put_cpu brackets each endpoint timestamp only.",
+    "overhead": "All added wall timestamp/counter work is gated by default-off activation/eligible request; timing instrumentation and final merge overhead can affect diagnostic-on measurements.",
+    "snapshot_lifetime": "normal debugfs_create_file protected open proxy covers copy; snapshot owns all later seq state; remove removes debugfs before host free; no snapshot host dereference after open",
+    "snapshot_boundary": "contains only samples merged after completion callback; user wake may precede last merge. Take stable after snapshot and reconcile counts; adjacent /proc/probe/debugfs windows are not identical."
+  },
+  "validation": {
+    "actual_C_aggregation": "ASan/UBSan PASS: nested segments, multi-command request, failed DMA, CPU other-bucket, whole-sample overflow/invalid-clock/invalid-segment",
+    "ARM64_external_module": "PASS against frozen v24 build; compile-only artifact, not intended for board",
+    "board": "not tested"
+  },
+  "files": {
+    "boards/t736_mmc_hs400_timing_draft.c": "e5874fee67a7a2b04f495b29c7711c9da446b06ab8954c0fa75d23ac97ac2cee",
+    "boards/t736_mmc_timing_stats_draft.h": "dd507fc5ea4868c3d6b892e096fd56e7ee57833e820b0b4fffd05e78d7f30604",
+    "tests/test_mmc_timing_stats.py": "7a8a765362daa668b4ab735a536c132c62869602cd419953ccc518ce6824394d"
+  }
+}

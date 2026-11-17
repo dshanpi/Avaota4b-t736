@@ -1,12 +1,34 @@
 # T736 主线 Armbian 移植
 
-## 当前阶段快照（2026-11-16）
+## 当前阶段快照（2026-11-17）
 
-**storage-v23 的 HS200 200 MHz 阶段已通过，持久默认仍保留 storage-v16。** 这次是源码与证据备份检查点，尚不是最终镜像发布。完整索引见 [阶段备份记录](docs/BACKUP_STAGE_20261116.md)，实板依据见 [v23 阶段记录](evidence/storage-v23-hs200-stage-record-20261116.json)。
+**GNOME、PVR GPU 和 B 站 1080p30 硬解已在实板运行，用户确认明显流畅。本次是源码与实测记录同步，尚不是最终系统镜像发布。** 实板当前为一次性启动的 `6.18.63-t736-media-v29`；持久默认启动仍为 `storage-v16`，未修改 SPL、GPT 或保存新的 U-Boot 启动选择。
 
-本板固定 8 GiB LPDDR4x，沿用用户授权的 DDR 库及源码后续启动级。v23 一次性启动到 GNOME，eMMC 为 200 MHz、8-bit、1.8 V HS200；独立命令采样选中 tap15，32 MiB 两套模式的直接读写校验全部通过，GPU 60 帧四象限回读与 PVR 健康检查通过。64 KiB 带校验顺序读为 37.03/36.81 MiB/s，写为 89.10 MiB/s。历史 v22 的 200 MHz 首次失败保留，不改成成功。
+| 项目 | 当前事实与证据 |
+|---|---|
+| 启动与内存 | 本板固定 8 GiB LPDDR4x；使用已授权 DDR 库，后续交接、TF-A、U-Boot 为源码实现。纯源码 ZCal 尚未解决。 |
+| 桌面与显示 | GNOME X11、PVR BXM-4-64，HDMI 1920×1080/60 Hz；CPU、存储修复后用户确认流畅。 |
+| eMMC | HS400、8-bit、1.8 V，实际时钟 200 MHz；v26 有界完整性与性能记录见 `evidence/storage-v26-hs400-200-integrity-health-20261116.log`，不等同于所有负载跑满规格峰值。 |
+| B 站网页硬解 | v27/FFmpeg6/backend4/WC5 的约 30.86 秒窗口：926 帧、零丢帧，VE IRQ +929；实际片源是 30fps。64 帧真实流回放的画面和 PTS 全部一致，详见 [网页记录](evidence/browser-hevc-v6-live-candidate-pending-20261117.json)。 |
+| 60fps | 已有软件解码约 60fps、零丢帧对照；硬解浏览器 60fps 尚未通过。不得将 VE IRQ、回调编号或原生解码吞吐当作屏幕显示帧率。 |
+| 共享内存候选 | v29 启用标准 `madvise` 接口；原生 seals/fork 测试、180 帧精确回放通过。540 帧原生硬解与传输为 81.8fps，但 Firefox 的用户 namespace 导致严格 UID 检查拒绝连接；候选未推广。见 [v29 实板记录](evidence/browser-v29-shm2-hardware-phase-20261117.json)。 |
+| 编码与长期使用 | 编码、端到端零拷贝、通用视频切换和 DMA 回收仍未验收；导入的 DMA 内存当前保留到重启，预算 128 MiB。 |
+| 网口 | 当前仍为 100 Mbps，全双工；PHY 报告从千兆降速，千兆线缆/端口对照尚未完成。 |
 
-HS400 正在独立实现和复核，未验收。GNOME 帧反馈仍在诊断；EGL 小窗口的交换计数与像素回读成功不等于桌面流畅度或实体 HDMI 目视验收。新最终镜像、完整压力测试均未完成。下面的 source-v6 段落是当时的完整镜像验收历史，不表示当前运行内核或桌面状态。
+已停止新的性能实验。恢复用户原 Firefox profile 和 B 站页面，以 protocol1、FFmpeg7、backend5、WC5 运行；恢复后已观察到真实硬解会话、首帧和 IRQ 增加。这是恢复核对，不是新一次 60fps 验收。测试页面、测试 HTTP 服务和临时防休眠服务已关闭；Firefox 未使用远程控制或关闭沙箱的启动参数。
+
+从 [代码导航](docs/CODE_MAP.md) 查看各模块入口，从 [浏览器接入说明](tools/browser/README.md) 查看协议、构建与限制，从 [构建说明](docs/BUILD.md) 查看内核和外部依赖。`status.json` 和 `evidence/browser-code-sync-checkpoint-20261117.json` 为本轮状态入口。源码与脱敏证据同步至 GitHub；厂家库、完整镜像和私人媒体采集只保存在私有构建机。以下旧快照按日期保留，其中“当前”只指当时状态。
+
+
+## 历史阶段快照（2026-11-16）
+
+**storage-v24 的 HS400 100 MHz、200 MHz 有界阶段均已通过，持久默认仍保留 storage-v16。** 这是第二次源码与证据检查点的准备稿，尚未提交或上传；已发布的旧检查点为 [`72333d3`](https://github.com/dshanpi/Avaota4b-t736/commit/72333d335c0256542ee9b60912d666c4dbd82649)。阶段入口见 [备份记录](docs/BACKUP_STAGE_20261116.md)，实板依据见 [v24 阶段记录](evidence/storage-v24-hs400-stage-record-20261116.json)。
+
+本板固定 8 GiB LPDDR4x，沿用用户授权的 DDR 库及源码后续启动级。v24 实板实际运行 200 MHz、8-bit、1.8 V HS400，卡模式为 HS_TIMING=0x03、BUS_WIDTH=0x06；命令与数据选通分别选中 tap16、tap14。两套 32 MiB 直接文件读写校验、GPU 60 帧像素回读与 PVR 健康检查通过。历史 v22 的 200 MHz 首次失败和 v23 的 HS200 阶段分别保留。
+
+读取速度取决于样本与观测协议：8 MiB 短样本为 83.92 MiB/s；两次重复文件前缀、累计 512 MiB 的临时观测为 45.01 / 48.95 MiB/s；冻结探针的同量样本为 74.90 MiB/s。冻结探针提前触碰目标缓冲区，不能据此认定差异由此产生，也不能把任一值写成固定持续性能。32 MiB、64 KiB 分块写入样本为 102.50 MiB/s。完整边界见 [性能复核](evidence/storage-v24-hs400-performance-review-20261116.json)。
+
+v25 仅增加默认关闭的分段计时，源码、聚合检查和 ARM64 编译检查已通过；本检查点冻结时完整内核构建仍在进行，未上板。Mutter 交换完成反馈候选仍未上板，GNOME 响应和实体 HDMI 目视验收未完成。存储阶段之后重启 GDM 的窗口新增两条 fbdev timeout，已单独保留，不能把早期有限窗口无错推广为整个运行期无错。新最终镜像和完整压力测试仍未完成；下面的 source-v6 段落仅为历史验收。
 
 ## 历史 source-v6 验收快照（2026-11-14）
 

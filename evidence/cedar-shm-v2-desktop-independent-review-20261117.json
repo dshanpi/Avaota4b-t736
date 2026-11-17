@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "SOURCE_FORK_EXEC_AND_FINAL_PACKAGE_REVIEW_PASS_TARGET_MADVISE_KERNEL_REQUIREMENT_PENDING",
+  "reviewer": "desktop_review",
+  "implementation_owner": "code_index",
+  "board_access": false,
+  "implementation_modified": false,
+  "sources": [
+    {
+      "path": "tools/browser/shm_v2/cedar_client.c",
+      "bytes": 11031,
+      "sha256": "84ec6f08321aa4ac76f449fbb05d82cfd97467d3774d200a11d85431bc06778a"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_broker.c",
+      "bytes": 13460,
+      "sha256": "8d81f7697a1b367689df34002ff4d9f8fc25ae4136c1aae734caa517e3b9d081"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_shm.h",
+      "bytes": 7421,
+      "sha256": "c99cefb5bad2318bec39e57fa6f7ef27a33013bb58dae15d3c237bef97e2590c"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_protocol.h",
+      "bytes": 1459,
+      "sha256": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_client.h",
+      "bytes": 1181,
+      "sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_backend.h",
+      "bytes": 2505,
+      "sha256": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b"
+    },
+    {
+      "path": "tools/browser/shm_v2/README.md",
+      "bytes": 2909,
+      "sha256": "2020f674745d84f80fcdfd8eb57a97d300d749cd139403c59550b176d23a3cbd"
+    }
+  ],
+  "static_review": {
+    "abi": "Both public client and backend headers compare byte-for-byte equal to canonical v1. FFmpeg v7 still owns its existing AVFrame destination and copies no hardware handle.",
+    "peer_identity": "Client preconnect validates dedicated non-root service account, runtime directory and socket owner, SO_PEERCRED uid/pid; server checks allowed client uid before setup.",
+    "shared_object": "Producer makes one ordinary memfd per peer, fixed3110400B, NOEXEC_SEAL and shrink/grow/future-write/seal protections. Producer retains its existing RW map; receiver validates metadata/device/inode/owner/seals/CLOEXEC then makes RO+DONTFORK map and closes descriptor.",
+    "publication": "Broker memcpy ordinary backend frame to per-peer shared slot finishes before release fence and metadata response; frame is freed afterward. Receiver holds global client API mutex across request, metadata validation, acquire fence and memcpy into caller-owned destination. Next request acknowledges copy completion.",
+    "bounds": "Dimensions, evenness, exact I420 bytes, capacity, active session and dimensions, color enums, sequence/version/status/reserved fields are validated before copying.",
+    "cleanup": "Malformed setup/reply and transfer failure disconnect and unmap; received descriptor ownership is closed on every rejected ancillary path. Producer peer memory not reused for another connection.",
+    "service_compatibility": "Existing service uses t736-cedar and runtime0750, AF_UNIX, no-new-privileges, MemoryMax512M; package has no installer. Matched v2 broker/client must start together; old protocol is refused.",
+    "finding": "No blocking source defect identified for the intended retained single-codec experiment."
+  },
+  "independent_test": {
+    "source": {
+      "path": "tests/test_cedar_shm_client_fork.c",
+      "bytes": 6172,
+      "sha256": "f1d2710f5555ac5065330b71d15898c5424e3f30792285335fc2fb6f370765a4"
+    },
+    "method": "Include unmodified actual client and a software ordinary-memfd setup peer; real Linux SCM_RIGHTS, mmap, fork, exec and pthread mutex. No vendor backend/socket service/device.",
+    "runs": [
+      "Native gcc O2 with -Wall -Wextra -Werror",
+      "Native gcc ASan+UBSan+LSan detect_leaks=1 halt_on_error=1"
+    ],
+    "cases": [
+      "Fork while parent deliberately holds the actual client mutex: every child API returns unavailable/ENOTCONN before lock, guarded by3-second alarm.",
+      "Child sends no socket bytes and leaves output buffers/frame metadata untouched.",
+      "MADV_DONTFORK removes client mapping in child. Reuse the same address for a new private allocation; child client_exit closes inherited socket without unmapping new allocation.",
+      "Repeated destructor is safe. Parent mapping and socket remain valid and see subsequent producer writes.",
+      "Exec closes inherited client connection via FD_CLOEXEC and no active client state survives.",
+      "Open fd count returns to baseline."
+    ],
+    "logs": [
+      {
+        "path": "evidence/build/cedar-shm-fork-native-20261117.log",
+        "bytes": 195,
+        "sha256": "9d7bddfa63ae538cee6c390ce7346b23c9d766711728d9c73530cbd48a9ad66a"
+      },
+      {
+        "path": "evidence/build/cedar-shm-fork-sanitized-20261117.log",
+        "bytes": 195,
+        "sha256": "9d7bddfa63ae538cee6c390ce7346b23c9d766711728d9c73530cbd48a9ad66a"
+      }
+    ]
+  },
+  "related_tests": [
+    "evidence/cedar-shm-seals-20261117.json",
+    "tests/test_cedar_shm_transport.c"
+  ],
+  "limits": [
+    "Native fork test does not exercise Firefox RDD sandbox on the board.",
+    "SHM still makes two ordinary RAM copies after backend output; no zero-copy or performance claim.",
+    "MFD_NOEXEC_SEAL availability must be verified on target; unsupported setup fails closed into existing pre-delivery fallback.",
+    "Whole v7 chain remains below target fps on current hardware; source/host test success is not playback acceptance."
+  ],
+  "package_audit": {
+    "archive": {
+      "path": "build/cedar-shm-transport-v2-20261117/t736-cedar-transport-v2.tar.gz",
+      "bytes": 49037,
+      "sha256": "b1524d0072ad96995c7104ca92c5b9ee46d27bc2990195dbaad629f9796bc92c"
+    },
+    "build_record": {
+      "path": "build/cedar-shm-transport-v2-20261117/build-record.json",
+      "bytes": 13576,
+      "sha256": "49300a4179d7ba2ce30b84271ecd5e76439a1d9248b1ced9b7ab3e1412f63e84"
+    },
+    "all14_manifest_file_hashes_verified": true,
+    "safe_relative_member_paths_regular_files_only": true,
+    "packaged_client_backend_headers_equal_canonical_v1": true,
+    "packaged_core_and_independent_fork_test_equal_reviewed_local_files": true,
+    "client_elf": {
+      "architecture": "AArch64",
+      "soname": "libt736_cedar_client.so",
+      "needed": [
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "sha256": "40b0ed5415f2c63dc41315d9c68a6c5cfe80713ac67ddf3821f0390ff7d2e5b2"
+    },
+    "broker_elf": {
+      "architecture": "AArch64 PIE",
+      "needed": [
+        "libcedar_backend.so",
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "rpath": "$ORIGIN/../lib",
+      "sha256": "15f95c7bbc5f63c0919326c4e58b19b9fe9628b2210328a60d7514d9e8d279a2"
+    },
+    "qemu_dontfork_limitation": {
+      "path": "evidence/cedar-shm-qemu-dontfork-limitation-20261117.json",
+      "bytes": 5585,
+      "sha256": "149eb551bfbdd899ced58aec42727792394558bed4b6065c217dafbacff921a0"
+    },
+    "board_dependency_reported_by_root": "v28 CONFIG_ADVISE_SYSCALLS is unset; madvise(MADV_DONTFORK) returns ENOSYS, so v2 correctly rejects setup. Independent v29 configuration-only rebuild in progress. No unsafe downgrade."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "kind": "v25-real-c-emitter-python-collector-contract-check",
+  "status": "PASS",
+  "source_sha256": "e5874fee67a7a2b04f495b29c7711c9da446b06ab8954c0fa75d23ac97ac2cee",
+  "header_sha256": "dd507fc5ea4868c3d6b892e096fd56e7ee57833e820b0b4fffd05e78d7f30604",
+  "collector_sha256": "2a98c83e8154a850d1cd9a55e92cee3fffbec8eb27cecfef030cb39f7744c54b",
+  "source_emitter_extracted_unchanged": true,
+  "harness_sha256": "ecfd649b222d8af7833c376f3573ad83aceb0544d7ac43cd59f625b6a4e33079",
+  "build_host_tmp": "/tmp/t736-timing-emitter.orpAPt",
+  "compiler": "cc -std=c11 -O1 -Wall -Wextra -Werror -Wno-unused-parameter -fsanitize=address,undefined",
+  "cases": [
+    "actual source emitter empty snapshot",
+    "actual source emitter migrated multi-command request and same-endpoint copy",
+    "same real C aggregator header",
+    "delta keeps max as before/after only",
+    "malformed endpoint totals rejected",
+    "malformed poll totals rejected",
+    "duplicate schema row rejected"
+  ],
+  "frozen_v24_mmio_poll_barrier_alloc_call_sequence_matches": true,
+  "matched_calls": 114,
+  "board_run": false,
+  "limits": "Synthetic inputs exercise emitter/parser consistency; no hardware time or performance inference.",
+  "record_update": "Replayed unchanged source-emitter outputs after adding observed read-count/byte lower bounds and outer inode identity checks; parser/difference contract remains PASS. No board run."
+}

@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "status": "COMPILED_DEVICE_FREE_TESTS_PASS_HARDWARE_PENDING",
+  "board_access": false,
+  "commands": [
+    {
+      "name": "arm64-build",
+      "argv": [
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "-fPIC",
+        "-shared",
+        "/home/ubuntu/t736-mainline/tools/browser/cedar_backend.c",
+        "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0",
+        "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/glib-2.0",
+        "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/lib/glib-2.0/include",
+        "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include",
+        "-pthread",
+        "-L/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/lib",
+        "-lgstapp-1.0",
+        "-lgstvideo-1.0",
+        "-lgstbase-1.0",
+        "-lgstreamer-1.0",
+        "-lgobject-2.0",
+        "-lglib-2.0",
+        "-Wl,-z,relro,-z,now",
+        "-o",
+        "/home/ubuntu/t736-mainline/build/cedar-browser-backend-v3-20261117/libcedar_backend.so"
+      ]
+    },
+    {
+      "name": "arm64-test-build",
+      "argv": [
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/aarch64-none-linux-gnu-gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "/home/ubuntu/t736-mainline/tests/test_cedar_backend.c",
+        "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0",
+        "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/glib-2.0",
+        "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/lib/glib-2.0/include",
+        "-I/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include",
+        "-pthread",
+        "-L/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/lib",
+        "-lgstapp-1.0",
+        "-lgstvideo-1.0",
+        "-lgstbase-1.0",
+        "-lgstreamer-1.0",
+        "-lgobject-2.0",
+        "-lglib-2.0",
+        "-o",
+        "/home/ubuntu/t736-mainline/build/cedar-browser-backend-v3-20261117/test-copy-arm64"
+      ]
+    },
+    {
+      "name": "arm64-qemu-test",
+      "argv": [
+        "/usr/bin/qemu-aarch64-static",
+        "-L",
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot",
+        "/home/ubuntu/t736-mainline/build/cedar-browser-backend-v3-20261117/test-copy-arm64"
+      ]
+    },
+    {
+      "name": "host-test-build",
+      "argv": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "/home/ubuntu/t736-mainline/tests/test_cedar_backend.c",
+        "-idirafter",
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0",
+        "-idirafter",
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/glib-2.0",
+        "-idirafter",
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/lib/glib-2.0/include",
+        "-idirafter",
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include",
+        "-pthread",
+        "-l:libgstapp-1.0.so.0",
+        "-l:libgstvideo-1.0.so.0",
+        "-l:libgstreamer-1.0.so.0",
+        "-l:libgobject-2.0.so.0",
+        "-l:libglib-2.0.so.0",
+        "-o",
+        "/home/ubuntu/t736-mainline/build/cedar-browser-backend-v3-20261117/test-copy-sanitized"
+      ]
+    },
+    {
+      "name": "host-sanitizer-test",
+      "argv": [
+        "/home/ubuntu/t736-mainline/build/cedar-browser-backend-v3-20261117/test-copy-sanitized"
+      ]
+    }
+  ],
+  "tests": [
+    "ARM64 QEMU actual GstVideoFrame copy path and software EOS-flush-reuse",
+    "native actual C ASan/UBSan, leak detection disabled for GStreamer process globals"
+  ],
+  "hardware_not_tested": [
+    "OMX pool reuse",
+    "actual crop query",
+    "real Cedar decoding",
+    "Firefox"
+  ],
+  "sources": [
+    {
+      "path": "tools/browser/cedar_backend.c",
+      "sha256": "c29f2bfd2cb398086cef4deae702d9c427cb3392b67ad3cea464d40a36b80360"
+    },
+    {
+      "path": "tools/browser/cedar_backend.h",
+      "sha256": "15185e24165524a1f738293ef59e288401c8eef353915f7f00d1ca230a59123a"
+    },
+    {
+      "path": "tests/test_cedar_backend.c",
+      "sha256": "0d1e2eb3aeb5e0bb631cde659de217e4972b104e1b07c258568bb1472643670d"
+    }
+  ],
+  "library_sha256": "564ce7417e5c8f0d3f6f3e1e5500a7ee1ef4403445c139c9a6c535063c1e0fe7",
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 1130,
+      "sha256": "70e55c905f848088fca9523f8a88f16e6058ed5800c9321da2a64faea6adbd33"
+    },
+    {
+      "path": "cedar_backend.c",
+      "bytes": 21233,
+      "sha256": "c29f2bfd2cb398086cef4deae702d9c427cb3392b67ad3cea464d40a36b80360"
+    },
+    {
+      "path": "cedar_backend.h",
+      "bytes": 2352,
+      "sha256": "15185e24165524a1f738293ef59e288401c8eef353915f7f00d1ca230a59123a"
+    },
+    {
+      "path": "libcedar_backend.so",
+      "bytes": 29104,
+      "sha256": "564ce7417e5c8f0d3f6f3e1e5500a7ee1ef4403445c139c9a6c535063c1e0fe7"
+    }
+  ],
+  "package": "/home/ubuntu/t736-mainline/build/cedar-browser-backend-v3-20261117/t736-cedar-browser-backend-v3.tar.gz",
+  "package_sha256": "c298c2221ade827949cc9fe2c2ea2e2c879a4010c8ca101c9bc78131f1ce26c6",
+  "bytes": 20076
+}

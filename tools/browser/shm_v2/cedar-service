@@ -1,0 +1,19 @@
+#!/bin/sh
+# Explicit protocol-v2 experiment; ordinary RAM transport, verified backend v5.
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+# Vendor OMX does not handle device-open denial safely. Fail before loading it.
+for device in /dev/cedar_dev /dev/dma_heap/t736-ve; do
+    if [ ! -c "$device" ] || [ ! -r "$device" ] || [ ! -w "$device" ]; then
+        printf 'CEDAR_SERVICE: dedicated decoder device unavailable: %s\n' "$device" >&2
+        exit 1
+    fi
+done
+export LD_LIBRARY_PATH=/opt/t736-cedar-browser-backend-v5:/opt/t736-cedar-wc-v5/lib:/opt/t736-gst-parser-v27/usr/lib/aarch64-linux-gnu
+export GST_PLUGIN_SYSTEM_PATH_1_0=/opt/t736-gst-parser-v27/selected:/usr/lib/aarch64-linux-gnu/gstreamer-1.0
+export GST_PLUGIN_PATH_1_0=/opt/t736-cedar-wc-v5/lib/gstreamer-1.0
+export GST_OMX_CONFIG_DIR="$root/config"
+export GST_REGISTRY_1_0=/run/t736-cedar/registry.bin
+export GST_REGISTRY_FORK=no
+unset GST_AW_OMX_DEFAULT_ARM_AFBC AW_AFBC_MODE
+exec "$root/bin/cedar-broker" 1000

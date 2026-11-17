@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "status": "SOURCE_REVIEW_AND_267_ACTUAL_CALLBACK_SANITIZER_CASES_PASS_KERNEL_BUILD_PENDING",
+  "board_access": false,
+  "boot_time_read_added": false,
+  "kernel_path": "drivers/regulator/t736-gpu-supply.c",
+  "baseline_source": "boards/t736-gpu-supply.c",
+  "baseline_sha256": "697544d5d9a46d6eadf0896bc7a71f634f5ec5124e5b9c4b8b2070c4c37dafda",
+  "candidate_sha256": "f8bcc3006951b12cca545c6dc75f0c297d7596ce19193d6a6a9380eb1a4be9d5",
+  "patch_sha256": "381a9782af313ceabb94df1fa801581d210a72e6712d454d56a2b3098844a24d",
+  "attribute": "dcdc2_snapshot",
+  "mode": "0444",
+  "transaction": "Explicit sysfs read only; existing owner lock then bus mutex; reads 0x0e, 0x10, 0x13, 0x1b, 0x1d",
+  "guards": [
+    "Correct bound owner",
+    "PMIC ID 3",
+    "DCDC2 enabled",
+    "Non-reserved 7-bit selector",
+    "DCDC2/3 multiphase disabled"
+  ],
+  "preserved": [
+    "CPU snapshot struct and exported API",
+    "All PMIC write functions and callers",
+    "Bus initialization policy",
+    "Accepted v27 source and output"
+  ],
+  "scope": "PMIC programmed setpoint readback, not ADC or physical rail measurement",
+  "test_log": "dcdc2-snapshot-test.log",
+  "test_log_sha256": "f8ccd8ca707d998073a48fcd6ff05f8c36dab1134e0d864768afbdc00c02e2ae",
+  "test_cases": 267
+}

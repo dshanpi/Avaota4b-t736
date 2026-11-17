@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "status": "READ_ONLY_DESIGN_REVIEW_IMPLEMENTATION_AND_RECLAMATION_PROOF_PENDING",
+  "date": "2026-11-17",
+  "board_access": false,
+  "sources": {
+    "mainline/tools/browser/cedar_broker.c": "0011409a112975f5ee010518c9ddb2a86a2dce22e0eb8a53c954f63b52997612",
+    "mainline/boards/t736-cedar-wc.c": "5c9a73ed2d701bfb5905aa59da73f7f07f60b1c0636c6746f1b7110a68265402",
+    "mainline/sources/audit/cedar-wc-v5-20261117/gstomxvideodec.c": "76b94240f827a26c9abcbdcb518fb8bf85bebdfa000f02cac435a609104c5e9d"
+  },
+  "facts": [
+    "Broker context matching currently compares codec and visiblewidth/height only.",
+    "GstOMX set_format additionally reacts to framerate, codec_data and codec-specific profile/level/tier/alignment, and disables/reallocates buffers when changing activeformat.",
+    "v27 mappingrelease moves the mapping into retired; finalownerclose explicitly quarantines importedDMA untilreboot because reset assertion is notproof ofAXIidle.",
+    "Consequently samevisible1080p is notproof of sameallocationrequirements or reusablecontext; brokerrestart cannot recoverretired heap."
+  ],
+  "near_term_proposal": [
+    "Match normalized parameter-set fingerprint plus actualnegotiatedcaps rather than onlyvisible dimensions; include codedsize/crop/DPB/bitdepth/framerate/profile asrelevant.",
+    "Require broker-sidevalidation of firstconfiguration and inbandchanges beforeforwarding toOMX; a caller-supplieddigestalone isnotvalidation.",
+    "Reuse only knownidenticalconfiguration within thecurrent pinnedkernel constraints. Reject incompatible newconfiguration beforefirsthardwareframe so existingnativefallback can run.",
+    "Midstreamconfigurationchange needs anexplicit decoderrestart/native retryboundary; do not silentlyreuse incompatibleDPB or pretend output-safe post-framefallback.",
+    "Measure pinnedbytes acrosssamestreamclose/open/seek and acrossattemptedconfigurationchanges; stopallocationsbefore128MiBexhaustion."
+  ],
+  "long_term_proposal": [
+    "Establish a documented andtestedhardwarequiescence contract: returnalloutstandingOMXbuffers, closealloldMMIOcallers, synchronizeIRQs and proveVE/AXIstopped, notmerely readOMXIdle orresetbit.",
+    "Use hardwareworkerprocess generations so olduserspaceMMIOandcodec threads exitbeforeadmitting newconfiguration. Kernel last-owner teardown can reclaim onlyaftertheprovenquiescence condition; unknown/failedteardown remains quarantined.",
+    "Implement bounded generation-aware retiredmappingrelease andvalidate manyconfigurationchanges, drain/seek/cancel, workercrash andtimeout cases with stableDMAusage andexactframes.",
+    "Do notincreaseheapbudgetor blindlyrecyclephysicaladdresses as asubstitute forDMA-lifetimeproof."
+  ],
+  "non_actions": [
+    "No kernelchange",
+    "No changes tobroker/vendorplugin ownedbyotheragents",
+    "No claim that indefinitecrossSPS hardwareuse currentlyworks"
+  ]
+}

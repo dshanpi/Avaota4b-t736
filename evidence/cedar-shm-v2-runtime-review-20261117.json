@@ -1,0 +1,252 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-17T06:22:20.939879+00:00",
+  "status": "STATIC_RUNTIME_REVIEW_PASS_V29_NATIVE_RAM_AND_POST_PERMISSION_FIX_180FRAME_REPLAY_PASS_BROWSER_60FPS_PENDING",
+  "reviewer": "code_index",
+  "board_access": false,
+  "source_modified": false,
+  "package": {
+    "path": "build/cedar-shm-transport-v2-20261117/t736-cedar-transport-v2.tar.gz",
+    "bytes": 49037,
+    "sha256": "b1524d0072ad96995c7104ca92c5b9ee46d27bc2990195dbaad629f9796bc92c"
+  },
+  "package_members": [
+    {
+      "path": "t736-cedar-transport-v2/README.md",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 3532
+    },
+    {
+      "path": "t736-cedar-transport-v2/bin/cedar-broker",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o775",
+      "bytes": 30048
+    },
+    {
+      "path": "t736-cedar-transport-v2/lib/libt736_cedar_client.so",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o775",
+      "bytes": 19976
+    },
+    {
+      "path": "t736-cedar-transport-v2/manifest.json",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 13358
+    },
+    {
+      "path": "t736-cedar-transport-v2/tests/test_cedar_shm_client_fork.c",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 6172
+    },
+    {
+      "path": "t736-cedar-transport-v2/tests/test_cedar_shm_seals.c",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 22667
+    },
+    {
+      "path": "t736-cedar-transport-v2/tests/test_cedar_shm_transport.c",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 14084
+    },
+    {
+      "path": "t736-cedar-transport-v2/tools/browser/shm_v2/README.md",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 3532
+    },
+    {
+      "path": "t736-cedar-transport-v2/tools/browser/shm_v2/cedar_backend.h",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 2505
+    },
+    {
+      "path": "t736-cedar-transport-v2/tools/browser/shm_v2/cedar_broker.c",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 13460
+    },
+    {
+      "path": "t736-cedar-transport-v2/tools/browser/shm_v2/cedar_client.c",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 11031
+    },
+    {
+      "path": "t736-cedar-transport-v2/tools/browser/shm_v2/cedar_client.h",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 1181
+    },
+    {
+      "path": "t736-cedar-transport-v2/tools/browser/shm_v2/cedar_protocol.h",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 1459
+    },
+    {
+      "path": "t736-cedar-transport-v2/tools/browser/shm_v2/cedar_shm.h",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 7421
+    },
+    {
+      "path": "t736-cedar-transport-v2/tools/build_cedar_shm_transport.py",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664",
+      "bytes": 8955
+    }
+  ],
+  "runtime_sources": [
+    {
+      "path": "tools/browser/shm_v2/cedar-service",
+      "bytes": 993,
+      "sha256": "e5559b8c79c36c5e5d8e99794e2602bccfed39ba5bbad4c987dc800155ac76a5"
+    },
+    {
+      "path": "tools/browser/shm_v2/firefox-cedar",
+      "bytes": 636,
+      "sha256": "82a0a7b16d883af27b012d902ea5b07b2fb7faf4b1735d07c095949f90193304"
+    },
+    {
+      "path": "tools/browser/shm_v2/t736-cedar-experiment.service",
+      "bytes": 1018,
+      "sha256": "0b90b795d43153f54da1b97a73c566814759ad79b5600c018728a8af75d09cdf"
+    },
+    {
+      "path": "tools/browser/shm_v2/70-t736-cedar.rules",
+      "bytes": 263,
+      "sha256": "fc09eb8652f1351a995b353eba854ad38d3146c945459180f3f4dd73025a8299"
+    }
+  ],
+  "layout": {
+    "root": "/opt/t736-cedar-transport-v2",
+    "frozen_binary_members": [
+      "bin/cedar-broker",
+      "lib/libt736_cedar_client.so"
+    ],
+    "separately_installed": [
+      "bin/cedar-service",
+      "bin/firefox-cedar",
+      "config/gstomx.conf",
+      "config/cedarc.conf",
+      "transient t736-cedar-experiment.service",
+      "/etc/udev/rules.d/70-t736-cedar.rules"
+    ],
+    "not_in_archive": [
+      "backendv5",
+      "vendor OMX libraries",
+      "FFmpegv7 libraries",
+      "ARM64 test executables",
+      "runtime shell scripts and service unit"
+    ],
+    "dependencies": {
+      "backend": "/opt/t736-cedar-browser-backend-v5/libcedar_backend.so",
+      "backend_sha256": "52bf715c24ac9c072c1550f04fe47ab4df195ffdf1b51c4ac7f84414556f8f08",
+      "vendor": "/opt/t736-cedar-wc-v5/lib",
+      "gstreamer": "/opt/t736-gst-parser-v27/usr/lib/aarch64-linux-gnu",
+      "ffmpeg": "/opt/t736-browser-ffmpeg-v7/lib"
+    },
+    "ownership_requirement": "Archive members have uid/gid1000 ubuntu and binary mode0775;root extraction must use --no-same-owner and normalize candidate directories/executables root:root0755 and libraries/config root:root0644. Frozen archive unchanged."
+  },
+  "compatibility": [
+    "All three runtime files have LF-only line endings;no CRLF shebang.",
+    "Service is restricted to kernelv29 and same dedicated t736-cedar UID/group/runtime directory/sandbox/device allowlist. No install/autostart section.",
+    "Broker retained DT_RPATH ORIGIN/../lib has no backend in frozen bundle;LD_LIBRARY_PATH chooses separately verified backendv5. Confirm runtime maps after service launch.",
+    "GST_OMX_CONFIG_DIR is v2root/config;copy verified gstomx.conf. Private cedarc.conf bind must retain existing keys and use [paramter] cdc_log_level=6.",
+    "Protocol2 uses same socket path asv1;matching broker/client and fresh RDD exec required;no concurrent v1 service.",
+    "firefox-cedar preloads v2client+FFmpegv7 and unsets TEST_CLIENT;private profile must set dom.ipc.forkserver.enable=false. No sandbox disable variable.",
+    "Launch from clean LD_PRELOAD/LD_LIBRARY_PATH to avoid appending inherited oldclient or diagnostic capture shim.",
+    "Allowed desktop UID remains1000;verify id -u t736;dedicated service UID is separate.",
+    "Coldboot DAC prerequisite is now explicit:exactudev0600 ownership plus service -c/-r/-w preflight before vendor load;preflight does not itself perform a deviceopen or prove arbitrary MAC/devicecgroup configuration."
+  ],
+  "native_ram_tests": {
+    "preconditions": "Run as t736 after confirmed v29 boot, with exact frozen executables copied under the following basenames;no vendor/device libraries are used.",
+    "commands": [
+      "env -u LD_PRELOAD -u LD_LIBRARY_PATH -u T736_CEDAR_ENABLE -u T736_CEDAR_TEST_CLIENT /home/t736/seals-arm64",
+      "env -u LD_PRELOAD -u LD_LIBRARY_PATH -u T736_CEDAR_ENABLE -u T736_CEDAR_TEST_CLIENT /home/t736/client_fork-arm64"
+    ],
+    "hashes": {
+      "seals-arm64": "4c344edd163ce9228943b138ebad5c50eb40b36fbedf413a8625acd100353f60",
+      "client_fork-arm64": "f17a57ddffc984867564980cf0bc85fe1f49b2dece94a677ec115ad526cecd16"
+    },
+    "alias": "Earlier client-fork-arm64 build is byte-identical to final client_fork-arm64;use actual installed name, validate samehash.",
+    "v29_result": "Board owner root reports seals58casesPASS with200ms test-only deadline;actualclient PID/mutex/DONTFORK/addressreuse/exec/fd testPASS. No direct board access by this reviewer;raw native logs archived by board owner separately."
+  },
+  "replay": {
+    "script": "/home/t736/browser_cedar_replay.py",
+    "ABI": "Unchanged: C.CDLL(None) obtains preloaded t736_client_* exports;no script change/recompile needed.",
+    "command_template": "env -u LD_LIBRARY_PATH -u T736_CEDAR_TRACE LD_PRELOAD=/opt/t736-cedar-transport-v2/lib/libt736_cedar_client.so T736_CEDAR_ENABLE=1 T736_CEDAR_TEST_CLIENT=1 python3 /home/t736/browser_cedar_replay.py --codec 2 --width 1920 --height 1080 --records \"$AU_RECORDS\" --reference \"$FRAME_MD5_REFERENCE\" --output \"$UNIQUE_OUTPUT_JSON\"",
+    "inputs": "Keep the exact prior180-frame fixture/reference, do not replace with a different SPS/coded-size stream. Previous fixture records SHA5bcfe27c02e9b9bb7b27ff441769058f21547a7926374e2d1972e20000e5dc07. Caller provides existing paths;output must not exist.",
+    "acceptance": "180 frames,all_frames_exact=true,pts_match_input=true,pts_monotonic=true,close_result=0, protocol2 preconnected log;later verify mappedclient/backend identities.",
+    "limit": "buffer.raw creates an additional Pythonbytes copy and MD5 hashes every3.11MB frame;elapsed_seconds_including_hashes is not a decode throughput benchmark."
+  },
+  "performance_measurement_plan": {
+    "already_measured": {
+      "source": {
+        "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-service.log",
+        "bytes": 151192,
+        "sha256": "08512431e35c104dca5a506196fec55527926ce8cd5359b938a6122ac325bc17"
+      },
+      "window": "Same brokerPID3713,CEDAR_COPY frames6900to7200",
+      "delta_total_copy_us": 2941984,
+      "copy_us_per_frame": 9806.613333333333,
+      "delta_total_map_us": 23523,
+      "map_us_per_frame": 78.41,
+      "interpretation": "Backend copy_sample map cost~0.078ms,WCtoordinaryRAM copy+ram_acquire~9.807ms/frame in this window. It is not per-frame mmap evidence and excludes appsinkwait,unmap,slot/clientcopy and Firefox scheduling. SHM does not remove thisWCcopy."
+    },
+    "unchanged_first_run": "Same1080p60 localfixture,v7,bigcoreaffinity6/7,logging6,defaultqueue;sample20s steady interval. Record actual mozPresented delta and quality(total-drop),IRQdelta,brokerdelivered,frameDelay,corefreq,temp,perthreadCPU/minorfaults/schedstat deltas. IRQ60/s alone is not acceptance.",
+    "tools": "Existing browser_live_metrics_v3.py and browser_debug_metrics.py;use one Marionette session at a time. Debug samples include decodedVideoEndTime-clock,sink size/promise/late and sink/compositor drops. Never treat rVFC metadata.presentedFrames IDs as actual presented counts.",
+    "stage_measurements_proposed_only": [
+      "Backend: split gst_app_sink_try_pull_sample wait,map,ramcopy,unmap;use existing CEDAR_COPY counter deltas immediately.",
+      "Broker: hardware_lockwait,cedar_pull time,RAMframe->peerSHM memcpy,metadata send duration.",
+      "Client: API mutexwait,request/send->metadata receive RTT,validation,SHM->existing AVFrame destination memcpy.",
+      "FFmpeg/RDD: receive_frame entry->oneframe return and request scheduling gap;correlate with returned framePTS,not wallclock minus media clock.",
+      "Firefox: framePTS/decodedend relative to media clock,VideoSink queue/promise and dropped counters vs compositor dropped;perthread runqueuewait to distinguish CPU work from delayed wakeup."
+    ],
+    "instrumentation_boundary": "If next run remains below60fps,prepare a separate diagnostics-only candidate with bounded inRAM trace/counters for at most2048frames,common CLOCK_MONOTONIC stamps and session/sequence/PTS;flush summaries after interval,no perframe printf,no publicABI/protocol/ownership/sandbox changes. No such instrumentation implemented here.",
+    "statistics": "Warmup and steady phases separate;reportp50/p95/p99/max plus missed16.667ms periods. Correlate sameframe timings before subtracting durations;do not subtract independent percentile distributions or sum asynchronous stage averages as a throughput model.",
+    "decision_rules": [
+      "If backendoutput or clientreceive cadence is below60fps,locate WCcopy or wait/RTT stall first;keep exact pixels and same SPS while changing one measured cost.",
+      "If actual client/RDD output keeps60fps but sinkdrops persist,inspect PTS/media-clock alignment and RDD/VideoSink wakeups;avoid blindly increasing queue or VEclock.",
+      "If frame ready ahead of media deadline and compositor drops grow,investigate upload/presentation side;currentv28 evidence had mostly VideoSink drops,so this is conditional.",
+      "If WCcopy remains dominant,use existing cedar_wc_copy_bench only on an alreadyidle stable authorized buffer;ordinaryRAM selftest cannot prove WC bandwidth. No newDMA allocation/import or browser hardware handle."
+    ]
+  },
+  "limits": [
+    "Static runtime review only;no deployment,service action,board operation or code modification by code_index.",
+    "v29 nativeRAM andpostpermissionfix180framev2replayPASS reportedbyparent;Firefox60fps remainsparent-ownedpending.",
+    "Frozen package/buildrecord andv1 sources remain unchanged."
+  ],
+  "updated_utc": "2026-11-17T06:30:29.936828+00:00",
+  "runtime_incident": {
+    "source": "Parent root board observations;this reviewer did not access board.",
+    "observed": "v29 native seals58cases and actualclient fork/exec passed. Both newv2 and originalv1 broker subsequently SIGSEGV during OMXNULLtoREADY before packets/frames.",
+    "root_cause": "Root strace shows openat(/dev/cedar_dev,O_RDWR)=-1 EACCES followed by SIGSEGV address0x58. Coldboot recreated bothnodes root:root0600;serviceuid999 lacked access. Earlier v28 chown was not persistent.",
+    "not_protocol_or_kernel_regression": "v1 control onv29 had samecrash. No direct madvise/fadvise calls found in publicTina multimediaC/C++/S source or dynamic imports ofWC5 libraries. This search does not exclude indirectlibc calls,but strace pinpointsEACCES as init trigger.",
+    "source_review": "v1/v2 OPEN paths and backend ABI unchanged;actualARM64 cedar_open arguments correct;SHM pixelcopy/framefree occur after successfulopen. ini parser strips key/value whitespace.",
+    "fix_review": "Root addedexactudev rules for SUBSYSTEM=misc KERNEL=cedar_dev and SUBSYSTEM=dma_heap KERNEL=t736-ve,OWNER/GROUP=t736-cedar,MODE0600. Driver names match. Service checkscharacter type/read/write asdedicatedUID beforeloadingvendorbroker. Existing systemd exactDeviceAllow stays unchanged.",
+    "validation_pending": "Parent ownsbrowser60fps measurement,rawstrace/replayevidence andlatercoldbootpermissionpersistenceverification.",
+    "post_fix_replay": "Parent root reports matchingprotocol2 brokerPID6705:180/180 frameMD5 andPTS exact,firstframe1.286s,close0. This reviewer did notrunboard or independentlyinspectrawreplaylog."
+  }
+}

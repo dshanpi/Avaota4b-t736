@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "SOURCE_REVIEW_NO_BLOCKER_FOR_CONTROLLED_TARGET_VALIDATION",
+  "scope": "Independent offline review of gst-omx borrowed DMA-fd ownership patch. Reviewer did not operate the board or repeat the author build/mock tests.",
+  "candidate_source_sha256": "19fceea8e5598e67af7ad9b70678a8db33aa0c995cf4689e77869efdaa459e72",
+  "builder": "tools/build_cedar_wc_v2.py",
+  "builder_sha256": "e6f36314e88d51f82df1952ec9c694d38b60e22a273b7f48ffd07497bd26535a",
+  "facts": [
+    "MemAdapter ion_alloc_get_fd returns its owned DMA descriptor; it does not transfer ownership.",
+    "Original gst-omx FOREIGN_MEM_DMABUF branch passed this borrowed descriptor directly to gst_dmabuf_allocator_alloc.",
+    "SDK GStreamer gstdmabuf.c documentation and gstfdmemory.c implementation close the passed fd at GstMemory destruction unless DONT_CLOSE is set.",
+    "Candidate duplicates the borrowed fd with F_DUPFD_CLOEXEC, retries EINTR, and transfers only the new descriptor to GstMemory.",
+    "On dup failure the GstOMXMemory wrapper remains unpublished, with foreign_mem NULL and no custom dispose; gst_memory_unref safely frees only that wrapper.",
+    "On foreign allocation failure the duplicate is closed once and unpublished wrapper is released. Actual SDK NULL-return branches do not consume or close the fd.",
+    "On success normal existing foreign_mem disposal closes only the duplicate; MemAdapter retains a valid original descriptor for FREE ioctl and final close."
+  ],
+  "reviewed_ranges": {
+    "gstomxallocator-wc-v2.c": [
+      "498-526 duplicate, failures and publish",
+      "132-138 zeroed wrapper initialization",
+      "458-469 dispose installation",
+      "539-553 allocator publication and free"
+    ],
+    "gstdmabuf.c": [
+      "142-160 allocation ownership contract and delegation"
+    ],
+    "gstfdmemory.c": [
+      "283-305 fd adoption and failure paths"
+    ]
+  },
+  "library_source_hashes": {
+    "gstdmabuf.c": "2ff8a52e7fb6f14e85980c199f07d03446a69c14d24f3585ff6c508a48216cc7",
+    "gstfdmemory.c": "5c1adf7a6c4eb5ae8290580facdbc29b8cdb17c00586beb670408cd0118a4775"
+  },
+  "limits": [
+    "Author independently owns compile/export/mock validation.",
+    "Target pipeline must still demonstrate successful EOS/frame content and no teardown EBADF.",
+    "Kernel quarantine until reboot and 128MiB cap are unchanged.",
+    "No change to MemAdapter get_fd contract, proprietary decoder libraries or kernel is required."
+  ]
+}

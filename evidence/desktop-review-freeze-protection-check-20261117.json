@@ -1,0 +1,37 @@
+{
+  "checks": {
+    "v29_artifacts": true,
+    "v28_artifacts": true,
+    "protected_v28_linux_source": true,
+    "protected_v28_pvr_source": true,
+    "v28_three_sources": true,
+    "canonical_backend5_unchanged": true
+  },
+  "v29_artifact_count": 6,
+  "v28_artifact_count": 6,
+  "protected_linux_file_count": 39,
+  "protected_pvr_file_count": 1072,
+  "config_diff": {
+    "removed": [
+      "# CONFIG_ADVISE_SYSCALLS is not set",
+      "CONFIG_LOCALVERSION=\"-t736-media-v28\""
+    ],
+    "added": [
+      "# CONFIG_ANON_VMA_NAME is not set",
+      "CONFIG_ADVISE_SYSCALLS=y",
+      "CONFIG_LOCALVERSION=\"-t736-media-v29\""
+    ],
+    "semantic_changes": {
+      "CONFIG_LOCALVERSION": {
+        "old": "\"-t736-media-v28\"",
+        "new": "\"-t736-media-v29\""
+      },
+      "CONFIG_ADVISE_SYSCALLS": {
+        "old": "n",
+        "new": "y"
+      }
+    },
+    "disabled_comment_note": "ANON_VMA_NAME remains disabled; its dependency became visible."
+  },
+  "v29_build_record_sha256": "a60b5a27bce9c90c07aed374a56bf0f84cf1be0f2c7bb5f130b396d11d58adfb"
+}

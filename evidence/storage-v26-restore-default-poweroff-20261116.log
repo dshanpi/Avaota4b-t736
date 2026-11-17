@@ -1,0 +1,14 @@
+{
+  "status": "ROLLBACK_CHECK_PASS",
+  "backup_directory": "/var/backups/t736-storage-v26/20261116T145236Z-qqefdb92",
+  "write_attempted": false,
+  "rebooted": false
+}
+{
+  "status": "V16_RESTORED_NOT_REBOOTED",
+  "backup_directory": "/var/backups/t736-storage-v26/20261116T145236Z-qqefdb92",
+  "rebooted": false
+}
+vmlinuz-6.18.63-t736-storage-v16
+initrd.img-6.18.63-t736-storage-v16
+6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b  /boot/dtb/allwinner/t736-mainline-bringup.dtb

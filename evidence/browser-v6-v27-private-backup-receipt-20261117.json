@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "status": "PRIVATE_SFTP_BACKUP_READBACK_VERIFIED",
+  "recorded_utc": "2026-11-17T05:36:21.151657+00:00",
+  "host": "192.168.1.228",
+  "remote_root": "/home/ubuntu/t736-mainline",
+  "public_upload": false,
+  "board_operation": false,
+  "README_root_reviewed_sha256": "06e08378c35e23487ce995fd47cb0e09fdaf46ee497adc280173a61f93d93ea8",
+  "files": [
+    {
+      "path": "tools/browser/README.md",
+      "bytes": 14600,
+      "sha256": "06e08378c35e23487ce995fd47cb0e09fdaf46ee497adc280173a61f93d93ea8",
+      "readback_verified": true
+    },
+    {
+      "path": "tools/browser/cedar-service",
+      "bytes": 639,
+      "sha256": "bf9d33514fa40a31354c4e170f921e964c11b2d4a7c618784581dde35cdca175",
+      "readback_verified": true
+    },
+    {
+      "path": "tools/browser/gstomx.conf",
+      "bytes": 591,
+      "sha256": "ee435630b57faf0de41e48c4150247d2f42736da531acde4907bcb45af922fb3",
+      "readback_verified": true
+    },
+    {
+      "path": "tools/browser/cedarc.conf",
+      "bytes": 112,
+      "sha256": "df9f8915fca4e773efd5760caee71c521d7c50fba364270fb896c1e112a2ee4a",
+      "readback_verified": true
+    },
+    {
+      "path": "tools/browser/t736-cedar-experiment.service",
+      "bytes": 1019,
+      "sha256": "bfee57118c313ce8ad7c4a2eb01c28d2a9acc6d321f30182775b0edd488005e2",
+      "readback_verified": true
+    },
+    {
+      "path": "evidence/browser-hevc-v6-live-candidate-pending-20261117.json",
+      "bytes": 9272,
+      "sha256": "256a84df53ad124a22004d169d855cb3498a4370e9b2cb523494e7ee58d51c84",
+      "readback_verified": true
+    },
+    {
+      "path": "evidence/browser-1080p60-v27-affinity-baseline-20261117.json",
+      "bytes": 6253,
+      "sha256": "78a28a99e2053e054f9805b3e58df1364a743d0c7290cbcace559cca6e1ca945",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/bili-v6-current-private.tar.gz",
+      "bytes": 7651,
+      "sha256": "3d560e43fcaaec2cab5926f013f4de5a0468f5695f4eccfb6a7ba7954a921017",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private.tar.gz",
+      "bytes": 17638,
+      "sha256": "654fc9daea74ebe9512333d8ff532de8a8426f0a2a0b99267979e369348af431",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v6-current-private/bilibili-hardware-first64-v6.json",
+      "bytes": 4071,
+      "sha256": "86252c4d916c62ca8e44f1d590a0ea76b1383221a723fded250761d59eba60d7",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v6-current-private/bilibili-live-v6-30s-second.json",
+      "bytes": 27677,
+      "sha256": "5d5447752d437a6f06a594963d1833435ab36fdb32d15afb44ebd02538847926",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v6-current-private/bilibili-live-v6-30s.json",
+      "bytes": 24414,
+      "sha256": "0bd98c425aecfbdb8057355996a92bc90f174af6a56ec2f2a09eeff9cac70325",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v6-current-private/firefox-cedar-bilibili-v6.log",
+      "bytes": 4065,
+      "sha256": "ad6b3e7936d17a34a555cf24cf133e50ecef07d28c97df3d7bb80eaa75dcd14e",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-dmabufs.log",
+      "bytes": 6197,
+      "sha256": "da3f91690630f83094d409821cdcbdff5595feeeb89e85bb82c7cb812f39322d",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-parent-affinity.log",
+      "bytes": 6480,
+      "sha256": "4f02caf1bef1d7940f038cbbf8083f39b2e95f3ce5641a5c86e6d4707abbcd94",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-service.log",
+      "bytes": 53848,
+      "sha256": "866609744388160ac7d583298b376ba8da7323a296a377ecb0aed0f245ba2528",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-v6-parent-big.json",
+      "bytes": 17079,
+      "sha256": "d59f892740d7124c690539fb4dd29f3fea49ad7b93d03fc996da3f82615c088a",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/60fps-v27-v6-unpinned.json",
+      "bytes": 17014,
+      "sha256": "d91a7527890bfde19812a26661c7c20a3314199f30fc6d7ddfc0e021ae2b12e8",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/firefox-60fps-v27-v6.log",
+      "bytes": 2855,
+      "sha256": "f6e35730d7cbcb1519e9ae9c6089f221840fcbc5b2f2324bb95bdf9c3eaa5feb",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/firefox-v6-v27-support.json",
+      "bytes": 18552,
+      "sha256": "a9e67c8669bc5a21f3fb457bb7850e2bb640b7384ed03ed6a36bec4367be5bae",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v27-records-private/hevc-60fps-v27-log6-exact.json",
+      "bytes": 10022,
+      "sha256": "e5cd5957f675673f1e02fc29695112641d3e820d5131978a4f1940ddc35b1463",
+      "readback_verified": true
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v25-build-readiness",
+  "date": "2026-11-16",
+  "status": "KERNEL_PVR_PACKAGE_STATIC_PASS_NOT_BOARD_ACCEPTED",
+  "kernel_release": "6.18.63-t736-storage-v25",
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v25_6.18.63-25_arm64.deb",
+    "size": 5604584,
+    "sha256": "801450446396cbf6b5504315ae07d4f4e13881dfdeca7ca31956273db1e23456"
+  },
+  "image": {
+    "path": "build/linux-storage-v25/arch/arm64/boot/Image",
+    "sha256": "1d23722f7589d040896c4ddf4f2b0a8ed0a3b0a671bd1ce781f2c8ad60de6805"
+  },
+  "pvr": {
+    "path": "build/pvr-storage-v25/target_aarch64/pvrsrvkm.ko",
+    "size": 1913816,
+    "sha256": "abfc1c65daf09bcca178ce9f4cbff12f261263525b2d1edc346b286d07e92ddd",
+    "name": "pvrsrvkm",
+    "vermagic": "6.18.63-t736-storage-v25 SMP mod_unload aarch64",
+    "license": "Dual MIT/GPL"
+  },
+  "package_regular_file_count": 82,
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "dtb_and_Module_symvers_unchanged_from_v24": true,
+  "frozen_v24_manifest_rechecked_after_build": true,
+  "linked_diagnostic_symbols": [
+    "ffff800080b824b8 b collect_timing",
+    "ffff8000808b4b78 r __param_collect_timing",
+    "ffff8000804dfbfc t t736_diag_open",
+    "ffff8000804de790 t t736_diag_release",
+    "ffff8000804de7c8 t t736_diag_show"
+  ],
+  "collect_timing_default": "false; zero-initialized BSS symbol, read-only boot/module parameter",
+  "activation": [
+    "t736_mmc_pio.enable_hs200=1",
+    "t736_mmc_pio.hs200_max_hz=200000000",
+    "t736_mmc_pio.enable_hs400=1",
+    "t736_mmc_pio.hs400_max_hz=200000000",
+    "t736_mmc_pio.collect_timing=1"
+  ],
+  "debugfs": "/sys/kernel/debug/t736_mmc_timing/stats",
+  "behavior": "aggregate observations only; source review preserved all114 MMIO/poll/barrier/allocation calls and64KiB limits",
+  "warnings": "Existing BSP compiler/DT warnings and vendor PVR missing MODULE_DESCRIPTION; successful build/link/package audit. No new diagnostic-driver warning observed.",
+  "records": {
+    "evidence/storage-v25-build-20261116.json": "5a161976fb7fcf62fd9ff27ebef733052942f01058dddfb33391d240d6c00780",
+    "evidence/storage-v25-package-20261116.json": "addf13b51d885c4ca5c27f6ff2abe310c003e1794d905da4911721bf58a4b861",
+    "evidence/storage-v25-pvr-build-20261116.json": "771be7ba4cad01004f13f1c408a9f3ce1ccd361fb3e93801277fc82646d8b47e",
+    "evidence/storage-v25-timing-independent-review-20261116.json": "996b5c21daf405d660efe8e0da918e79b84562eb886f3d0d4178e62094b763c8",
+    "evidence/storage-v25-timing-collector-independent-review-20261116.json": "37d3c2e6175bdedfb706c53ee0427ee49ddb77cb1f621b6fce5b19bd51ed3cb7",
+    "evidence/build/mmc-timing-draft-check-20261116.log": "94b253e5348c461a418610454662d7f0bdd755468ff5573ed32a2637324f8a9d",
+    "evidence/build/linux-storage-v25-build-20261116.log": "a077ee1d9e8aafecaedcfd563ba7ba9bb1e3d142c173b0d3ccbd4c0cfe1d8555",
+    "evidence/build/pvr-storage-v25-build-20261116.log": "1ff2e3139dac435ab1379e441940444f7d7ed832c4000d2d7ae6d6485ef1e6b3"
+  },
+  "remaining": [
+    "final exact-binding updater review/fault tests",
+    "parent-owned one-shot boot and read-only diagnostic workload with integrity/GPU validation as required"
+  ],
+  "boundaries": [
+    "No board operation by source/build agent",
+    "No throughput optimization or sustained400MB/s claim",
+    "Source-v11 image remains unbuilt pending final candidate and canonical GPU profile acceptance",
+    "No persistent boot promotion by this build"
+  ]
+}

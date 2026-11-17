@@ -1,0 +1,114 @@
+{
+  "schema": "t736-browser-ffmpeg-v5-bootstrap-validation-v1",
+  "date": "2026-11-17",
+  "result": "PASS_SOFTWARE_ONLY",
+  "implementation_owner": "desktop_review",
+  "independent_test_owner": "backup_audit",
+  "hardware_access": false,
+  "source": {
+    "path": "tools/browser/ffmpeg_cedar.c",
+    "bytes": 32161,
+    "sha256": "d402b82afae7effedafc1fa9f25b119e61742de820d473604777a792c00a4c20"
+  },
+  "test": {
+    "path": "tests/test_ffmpeg_cedar.c",
+    "bytes": 24706,
+    "sha256": "b72ae26ce88923af9aca5ef6be34dae2a281f4804feeda53b0b187a98bb0214e"
+  },
+  "log": {
+    "path": "build/browser-ffmpeg-build-v1-20261117/qemu-audit-v5.log",
+    "bytes": 17297,
+    "sha256": "5b0391444d3ac1cd78a6eb5168afce4a205a5a9844762ca729e5fbb87c84a25a"
+  },
+  "artifact": {
+    "archive": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v5.tar.gz",
+    "bytes": 6984832,
+    "sha256": "84db81f3b8be006bf5d1cb7f8118716e78dbe59e606b344ca608324993865f6c",
+    "manifest_sha256": "32de5f536147ac4f02f4d8f5b19ee5eb781984b1a70866d620793b57cecb00fa",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084312,
+        "sha256": "d2f2a97dad3d2ef1a65a0c18cd8660b86838f578e31e2bc6b48bd3c8b0852d81",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    }
+  },
+  "checks": 5827,
+  "method": "Run actual candidate ARM64 libraries under qemu-aarch64-static with exported stub client APIs; derive Annex-B extradata and the first random-access AU independently using upstream FFmpeg BSFs on real H264/HEVC MP4 fixtures.",
+  "new_checks": [
+    "Remove all parameter sets from the first random-access AU, retain/add leading AUD, and verify complete bootstrap sets of the expected types.",
+    "Strip parameters from resulting wire packet and verify that AUD, SEI and VCL payload is byte-identical to the input AU.",
+    "A second AU in the same generation is not seeded again; a flush makes the same AU receive identical bootstrap again.",
+    "Complete in-band configuration AU remains byte-identical.",
+    "Original avcC/hvcC path matches upstream BSF output byte-for-byte without duplicated parameter sets.",
+    "H264 SPS-only and HEVC VPS-only/SPS-only AUs receive a complete dependency-ordered prefix, followed by the original in-band parameter NAL unchanged.",
+    "v4 unknown wire DTS, original packet/frame timestamps, v3 pool lifecycle, v2 backpressure and all eight native-fallback comparisons still pass."
+  ],
+  "review_finding_fixed": "Injecting only missing PPS before an existing SPS could invert dependency order. v5 now seeds complete filtered configuration only when the AU lacks a full configuration, then preserves in-band updates; full configuration AUs are unchanged.",
+  "limitations": [
+    "No board, broker device, DMA or actual Firefox MSE execution in this audit.",
+    "These cases prove configuration transport behavior, not that missing extradata caused the observed Bilibili 64-packet/zero-frame session.",
+    "Real website diagnosis and hardware acceptance remain with root; private binaries are not publicly published."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "kind": "source-v11-independent-review-metadata-addendum",
+  "date": "2026-11-16",
+  "status": "TEMPLATE_BINDING_REVIEWED_STILL_PENDING_NOT_BUILT",
+  "prior_script_review": {
+    "path": "evidence/source-v11-draft-independent-review-20261116.json",
+    "sha256": "dfdd0d7af2c076f77f282adb180694fc637a4a2a494b3bbf475a55211fe526f6"
+  },
+  "current_metadata": {
+    "config/source-v11-inputs.template.json": "28108825bef7e5c2552709d2d8dd97902364900d616750d595903412fca1eb36",
+    "evidence/source-v11-draft-preparation-20261116.json": "2270ae24311b9be33d21dda4c73cdfa84a1872b9f2b4b13406bab03f374e85c7"
+  },
+  "supersession": "The prior review remains the source/script review at its recorded hashes. Only its template/preparation metadata bindings are superseded by this addendum; all reviewed scripts and tests retain exact hashes.",
+  "change": "Pending input template now binds an exact GstGL archive. No ready-state promotion, image build, package install or board operation occurred.",
+  "gstreamer_gl": {
+    "path": "build/gstgl-v11-artifacts/gstreamer1.0-gl_1.26.2-1+deb13u2_arm64.deb",
+    "sha256": "d11878da40f521674727914e53c15ae4ea16129190f606bd3aa9dd0069199b08",
+    "independent_build_host_checks": [
+      "sha256sum matched",
+      "dpkg-deb Package gstreamer1.0-gl",
+      "Version 1.26.2-1+deb13u2",
+      "Architecture arm64"
+    ],
+    "repository_origin": "Author records Debian13 clone APT download; this reviewer checked artifact hash and package metadata, not a new independent download."
+  },
+  "remaining": "Canonical v24 GPU profile acceptance/input readiness and final image build/cold boot remain separate."
+}

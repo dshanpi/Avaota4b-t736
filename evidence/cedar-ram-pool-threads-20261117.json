@@ -1,0 +1,88 @@
+{
+  "schema": "t736-cedar-ram-pool-thread-test-v1",
+  "date": "2026-11-17",
+  "status": "PASS_ASAN_UBSAN_LSAN_NO_HARDWARE",
+  "board_access": false,
+  "gst_initialized": false,
+  "base_build_record_sha256": "a9ae60ad51cf5bdeac5fc5d79dbc989790564f89b2bed4a2ea46d2be60fda5ea",
+  "base_sources_unchanged": true,
+  "source": {
+    "path": "tests/test_cedar_ram_pool_threads.c",
+    "sha256": "90070f3fb4332ccc471f42cdb39c012fde84da5fc1a83b669d1c090fd5886d7e",
+    "bytes": 4247
+  },
+  "backend_sources": [
+    {
+      "path": "tools/browser/cedar_backend.c",
+      "sha256": "0186b91b99c39134ee394dc5fe009b9d09415eb86b4d15bb09401a0a0cce1177"
+    },
+    {
+      "path": "tools/browser/cedar_backend.h",
+      "sha256": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b"
+    }
+  ],
+  "trials": 1024,
+  "worker_threads": 2048,
+  "barrier_parties": 3,
+  "held_frame_after_close_trials": 512,
+  "last_reference_race_trials": 512,
+  "sanitizers": {
+    "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "commands": [
+    {
+      "name": "build",
+      "argv": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "/home/ubuntu/t736-mainline/tests/test_cedar_ram_pool_threads.c",
+        "-idirafter",
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/gstreamer-1.0",
+        "-idirafter",
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include/glib-2.0",
+        "-idirafter",
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/lib/glib-2.0/include",
+        "-idirafter",
+        "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/aarch64-buildroot-linux-gnu/sysroot/usr/include",
+        "-pthread",
+        "-l:libgstapp-1.0.so.0",
+        "-l:libgstvideo-1.0.so.0",
+        "-l:libgstreamer-1.0.so.0",
+        "-l:libgobject-2.0.so.0",
+        "-l:libglib-2.0.so.0",
+        "-o",
+        "/home/ubuntu/t736-mainline/build/cedar-ram-pool-threads-20261117/test-ram-pool-threads-sanitized"
+      ],
+      "exit_code": 0,
+      "log": "/home/ubuntu/t736-mainline/build/cedar-ram-pool-threads-20261117/build.log"
+    },
+    {
+      "name": "sanitizer",
+      "argv": [
+        "/home/ubuntu/t736-mainline/build/cedar-ram-pool-threads-20261117/test-ram-pool-threads-sanitized"
+      ],
+      "exit_code": 0,
+      "log": "/home/ubuntu/t736-mainline/build/cedar-ram-pool-threads-20261117/sanitizer.log"
+    }
+  ],
+  "binary_sha256": "e75ef0634dc1941cd052ce8c2569ea5016c50ddaabb1f14002fa990b98281612",
+  "logs": [
+    {
+      "path": "build/cedar-ram-pool-threads-20261117/build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "build/cedar-ram-pool-threads-20261117/sanitizer.log",
+      "sha256": "10b7a05da2483b810f95dd326e709a827f681863f3987ffde12536bc7c5be173",
+      "bytes": 251
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schema": "t736-cedar-backend-v5-ram-pool-review-v1",
+  "date": "2026-11-17",
+  "reviewer": "code_index/media_ve_review",
+  "result": "PASS_SOURCE_REVIEW_AND_INDEPENDENT_ASAN_UBSAN_LSAN_THREAD_TEST",
+  "board_access": false,
+  "production_source_modified_by_reviewer": false,
+  "sources": {
+    "backend": {
+      "path": "tools/browser/cedar_backend.c",
+      "bytes": 25203,
+      "sha256": "0186b91b99c39134ee394dc5fe009b9d09415eb86b4d15bb09401a0a0cce1177",
+      "frozen_v4_sha256": "4c2e83a7ab8e9bf914ec00926c9b71f0e63287db8537c65f170718e4e8d4b5dc"
+    },
+    "header": {
+      "path": "tools/browser/cedar_backend.h",
+      "bytes": 2505,
+      "sha256": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b",
+      "frozen_v4_sha256": "15185e24165524a1f738293ef59e288401c8eef353915f7f00d1ca230a59123a"
+    },
+    "frozen_author_test": {
+      "path": "tests/test_cedar_backend.c",
+      "sha256": "770333f1786593b61a460d28a3693cbf5d1dc7dc58cb434863ff4e6eafefc70b",
+      "modified_by_reviewer": false
+    },
+    "independent_test": {
+      "path": "tests/test_cedar_ram_pool_threads.c",
+      "bytes": 4247,
+      "sha256": "90070f3fb4332ccc471f42cdb39c012fde84da5fc1a83b669d1c090fd5886d7e",
+      "implementation": "Includes the actual production cedar_backend.c, not a reimplemented pool."
+    }
+  },
+  "static_findings": [
+    {
+      "lines": "21-40,60-100",
+      "finding": "A pool has one decoder-owner reference and one atomic reference per outstanding frame. acquire is called only through externally serialized decoder operations, so owner lifetime covers the unlock-to-frame-ref-increment interval."
+    },
+    {
+      "lines": "103-124",
+      "finding": "release holds the frame reference until after releasing the mutex. It caches only when open and cached < 2. It never dereferences the block after unlock, allowing close to free a newly cached block or another acquire to reuse it before the old frame's final unref."
+    },
+    {
+      "lines": "127-144",
+      "finding": "close detaches the decoder pointer, marks closed and detaches the idle list under the same mutex. It drains only idle blocks while retaining the owner reference. Outstanding frames retain their own blocks and keep the pool alive until their releases."
+    },
+    {
+      "lines": "52-57,103-144",
+      "finding": "Final atomic unref cannot clear a mutex held or awaited by another valid frame release: each such release retains its reference through unlock. The owner similarly retains its reference through close's unlock and idle-list freeing."
+    },
+    {
+      "lines": "21-40,60-100",
+      "finding": "Cached idle storage is bounded to two blocks, each <= CEDAR_MAX_OUTPUT. Caller-owned outstanding frames are intentionally outside that cache bound. Exact-capacity matching prevents undersized reuse. 64-byte aligned allocation plus the static offset assertion preserves aligned pixel pointers; the 16 MiB size guard prevents header-plus-size overflow on supported LP64 targets."
+    },
+    {
+      "lines": "60-100,461-470",
+      "finding": "Pool or block allocation failure returns NULL without creating a frame reference. A newly created empty pool remains owned by the decoder and is released on close. No later error branch exists after successful output allocation in the current copy_sample implementation."
+    },
+    {
+      "lines": "404-531,639-661",
+      "finding": "Exact comparison against the frozen v4 package shows changes limited to the ordinary-RAM pool, output allocation/release/close and allocation/reuse counters. Crop validation, plane-span bounds, NEON/chroma copying, source mapping, flush and idle behavior are unchanged."
+    },
+    {
+      "source": "tools/browser/cedar_backend.h",
+      "finding": "Only ownership documentation changes. cedar_frame member types/order and all public function prototypes are unchanged. Returned data must be released with cedar_frame_free, and one owning frame must not be duplicated or freed concurrently twice."
+    }
+  ],
+  "author_test_review": {
+    "owned_frames": "The frozen test uses real appsrc/appsink and cedar_pull, checking distinct frame contents and retained pixels across another pull, flush, close and release of a different outstanding frame.",
+    "reuse_and_bound": "The frozen test verifies 1000 acquire/free cycles use one allocation, 8 simultaneous frames are distinct, idle cache ends at two blocks and frame references return to the owner-only value.",
+    "limitation_addressed_independently": "The author's original two-thread close race starts threads without a start barrier. The separate test below uses a three-party barrier and does not modify the frozen v5 test or source.",
+    "benchmark_limit": "The author's malloc-versus-pool copy benchmark explicitly measures ordinary host RAM, not WC mapping or real decoder/browser throughput."
+  },
+  "independent_thread_validation": {
+    "record": "evidence/cedar-ram-pool-threads-20261117.json",
+    "record_sha256": "8336434a273f0af2093a132ee0a1c30ea09ab440bff91db46a087b84d55005db",
+    "remote_directory": "/home/ubuntu/t736-mainline/build/cedar-ram-pool-threads-20261117",
+    "compile_arguments": "Copied frozen v5 build-record commands[name=host-test-build].argv, replacing only source and output paths.",
+    "compiler": "gcc -std=c11 -Wall -Wextra -Werror -O1 -g -fsanitize=address,undefined",
+    "trials": 1024,
+    "worker_threads": 2048,
+    "barrier_parties": 3,
+    "initial_state": "Every trial allocates three distinct blocks then returns one, producing one idle cached block and two outstanding worker frames before the barrier.",
+    "last_reference_teardown_trials": 512,
+    "held_frame_trials": 512,
+    "held_frame_checks": "An additional outstanding frame keeps the closed pool alive until both workers join. Check refcount=1, closed=true, cached=0, idle=NULL and every retained pixel, then free the final frame.",
+    "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1",
+    "build_exit_code": 0,
+    "test_exit_code": 0,
+    "sanitizer_diagnostics": "None; AddressSanitizer, UndefinedBehaviorSanitizer and leak detection enabled.",
+    "build_log": "evidence/build/cedar-ram-pool-threads-build-20261117.log",
+    "test_log": "evidence/build/cedar-ram-pool-threads-sanitizer-20261117.log",
+    "test_log_sha256": "10b7a05da2483b810f95dd326e709a827f681863f3987ffde12536bc7c5be173",
+    "frozen_inputs_unchanged": "Backend source, header, original v5 test and v5 build-record hashes match before and after the independent build/test.",
+    "gst_initialized": false,
+    "vendor_component_loaded": false,
+    "hardware_device_opened": false
+  },
+  "limits": [
+    "Concurrent scheduling tests complement the reference-lifetime proof; they do not exhaust every possible interleaving or replace ThreadSanitizer.",
+    "Decoder API calls, including acquire versus close, remain externally serialized. Only independent frame release is supported concurrently with these calls.",
+    "No board decoding, OMX/DMA pool behavior, WC memory performance, browser acceptance or deployment is established by this review."
+  ]
+}

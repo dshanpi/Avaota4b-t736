@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "status": "COMPILED_ARM64_SOFTWARE_AUDIT_PASS_HARDWARE_PENDING",
+  "date": "2026-11-17",
+  "board_access": false,
+  "build_result": {
+    "archive": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v1.tar.gz",
+    "bytes": 6980776,
+    "sha256": "419cb652686a81a806418009d675ccee82b5508b4539ad2e981905034f15ebae",
+    "manifest_sha256": "b96d35e46536cc026b89dde1615e67a28f30ec7faf1ef5cc6e6a373ba4979b94",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084304,
+        "sha256": "6213002abf88701df8f13724ddf7105a8591ceb74540cdcf38002939a5000b06",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    }
+  },
+  "manifest": {
+    "schema": 1,
+    "status": "COMPILED_TESTS_AND_BOARD_PENDING",
+    "upstream": "FFmpeg official n7.1.5 tag",
+    "source_archive_sha256": "e3963a50831c985933e1a625ed566ec4c7adb5c012c34fa9f84438e1d61bdacc",
+    "source_archive_url": "https://codeload.github.com/FFmpeg/FFmpeg/tar.gz/refs/tags/n7.1.5",
+    "configure": [
+      "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/src/configure",
+      "--prefix=/opt/t736-browser-ffmpeg",
+      "--arch=aarch64",
+      "--target-os=linux",
+      "--enable-cross-compile",
+      "--cross-prefix=aarch64-linux-gnu-",
+      "--enable-shared",
+      "--disable-static",
+      "--enable-pic",
+      "--disable-doc",
+      "--disable-programs",
+      "--disable-autodetect",
+      "--disable-network",
+      "--disable-encoders",
+      "--disable-muxers",
+      "--disable-devices",
+      "--disable-filters",
+      "--disable-avdevice",
+      "--disable-avfilter",
+      "--disable-postproc",
+      "--extra-ldflags=-ldl",
+      "--enable-decoder=h264_cedar,hevc_cedar,h264,hevc",
+      "--enable-bsf=h264_mp4toannexb,hevc_mp4toannexb"
+    ],
+    "source_sha256": "17377752d741a8115c7f5ddce36b5004cbee89ecc23b51a07e9d1087971c5aec",
+    "client_header_sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+    "codec_list_sha256": "c9ad395080a43e0298f16aca4ac1ceec48fe54b08ce032971603f6888a8ae0be",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084304,
+        "sha256": "6213002abf88701df8f13724ddf7105a8591ceb74540cdcf38002939a5000b06",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    },
+    "selection": "Cedar wrappers lead av_codec_iterate and avcodec_find_decoder; native names h264/hevc remain available for fallback.",
+    "software_codecs": "All available in-tree decoders/parsers retained; external codec libraries not auto-detected or linked. Native h264/hevc and audio fallback retained.",
+    "sandbox": "No sandbox disabling. Hardware API resolved only from an already-preloaded, already-connected client.",
+    "limits": [
+      "Only even <=1920x1080 8-bit hardware frames accepted.",
+      "Bounded replay fallback only before a hardware frame is delivered; post-delivery hardware errors remain explicit.",
+      "No assertion of hardware use based on Firefox software-frame backend labels.",
+      "No system library installation or target execution by this builder."
+    ]
+  },
+  "source_sha256": "17377752d741a8115c7f5ddce36b5004cbee89ecc23b51a07e9d1087971c5aec",
+  "builder_sha256": "0a3f54b433d8b5d7423e36112fbc0b3f8b6ed597cd2f3771adb15a1b8c3b62d9",
+  "test_log": "mainline/evidence/build/browser-ffmpeg-v1-arm64-qemu-20261117.log",
+  "test_log_sha256": "a16e7e3f44619b587f610adb6eccf180010b664657d8b49cbec24e300037f0b7",
+  "tests": {
+    "architecture": "Actual ARM64 candidate shared libraries under /usr/bin/qemu-aarch64-static -L /usr/aarch64-linux-gnu",
+    "result": "PASS",
+    "checks": 4994,
+    "codec_selection": "avcodec_find_decoder picks h264_cedar/hevc_cedar; original named h264/hevc stay selectable",
+    "native_fallback": [
+      "no preconnected client",
+      "broker open EBUSY",
+      "hardware failure after seven submitted original packets and before any output",
+      "drain failure before any output"
+    ],
+    "comparison": "Each H264 and HEVC fixture yields 45 frames identical to the named native decoder in MD5, PTS and duration in all four fallback modes",
+    "synthetic": [
+      "three consecutive push EAGAINs internally retried before successful frame",
+      "negative DTS/PTS normalization and reverse mapping",
+      "EOS drain",
+      "flush and timestamp offset reset",
+      "post-delivery failure stays explicit",
+      "unexpected EOF rejected",
+      "known HEVC Main10 stays software"
+    ]
+  },
+  "fixtures": {
+    "directory": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117",
+    "h264-b2.mp4": "3ed08f1e69c11d71ba8eb9de1da7b943f56427da800a128e9a726b8aea1dfb1d",
+    "hevc-b2.mp4": "27c668c8cde0bfe39b83685157fbe14788a490543c9805e3cd50cf2769fdd5e7",
+    "shape": "320x180, 30 fps, 45 frames, bframes=2, keyint=30, 8-bit YUV420"
+  },
+  "limits": [
+    "No board, broker, vendor library, DMA or physical video-engine access in these tests",
+    "Firefox sandbox status, actual RDD selection, vendor hardware decoding and real browser playback are pending root-agent board verification",
+    "Hardware candidate limited to even 8-bit progressive YUV420 <=1920x1080; backend also constrains parser caps before OMX",
+    "After first delivered hardware frame errors remain explicit; replay fallback is only before delivery",
+    "Builder manifest changed after this artifact to hash copied compile source; this artifact was independently verified to have the same source SHA in patched source and manifest"
+  ]
+}

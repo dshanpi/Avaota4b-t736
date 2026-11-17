@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "kind": "t736-v26-final-desktop-evidence-backup",
+  "utc": "2026-11-16T15:01:52.253359+00:00",
+  "host": "192.168.1.228",
+  "destination": "/home/ubuntu/t736-mainline",
+  "files": [
+    {
+      "path": "status.json",
+      "bytes": 70954,
+      "sha256": "ade4453a4967f8ddd5a62750c7b7c266d529c6a20b321f650aac21b9df3b461e"
+    },
+    {
+      "path": "evidence/storage-v26-settings-mouse-20261116.json",
+      "bytes": 648683,
+      "sha256": "6cde879595125af7fb95647dc6a86401a4badf40e6c9e63379f620fd92edfea6"
+    },
+    {
+      "path": "evidence/storage-v26-settings-mouse-summary-20261116.log",
+      "bytes": 2529,
+      "sha256": "d0491ae0e0d5dbb5145732d46bfd9dec8d59be750335553b92f15523b377ccc4"
+    },
+    {
+      "path": "evidence/storage-v26-settings-observation-20261116.json",
+      "bytes": 2348,
+      "sha256": "74ce5db2df88b0533405070e524867191d0e17eb37cfd091a7ef1d205ed3bfc0"
+    },
+    {
+      "path": "evidence/storage-v26-settings-static-rejected-20261116.app.log",
+      "bytes": 78,
+      "sha256": "c1ad6fdb928c00a20f7f8d8f59d091370b71474bde7fd831a8e420f91641d724"
+    },
+    {
+      "path": "evidence/storage-v26-settings-static-rejected-20261116.json",
+      "bytes": 17426,
+      "sha256": "f530a1c0f7950ee7da374d6b7015bba20ef35bc6930a29a480476db24c730be7"
+    },
+    {
+      "path": "evidence/storage-v26-settings-static-retry-20261116.json",
+      "bytes": 94195,
+      "sha256": "09607efafc6014c87a580049bdc4f85371033ebd5fecee6e67b0751ca1aaef43"
+    },
+    {
+      "path": "evidence/storage-v26-settings-static-retry-summary-20261116.log",
+      "bytes": 2599,
+      "sha256": "20e46f07b56e067f6120fe6d945b1384c67098a87f627d18d33315b0faf60d6e"
+    },
+    {
+      "path": "evidence/storage-v26-settings-static-summary-20261116.log",
+      "bytes": 206,
+      "sha256": "f688c6c0eab0de277882d161cd38fdc7b6308603d0acfed33342c49f2afdb942"
+    },
+    {
+      "path": "evidence/storage-v26-final-runtime-state-20261116.log",
+      "bytes": 1135,
+      "sha256": "91f4985c73de6dc40967df52a86d6c3b6da4db779d8d6e447fbf113c17a6e339"
+    },
+    {
+      "path": "evidence/storage-v26-desktop-session-20261116.log",
+      "bytes": 283,
+      "sha256": "fc7d1c96666f012cd0793c1337c285059c90b94afa7f01311f8f15295a7f6046"
+    }
+  ],
+  "public_git_push": false
+}

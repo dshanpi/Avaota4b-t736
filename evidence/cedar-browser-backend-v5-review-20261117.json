@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "COMPILED_AND_INDEPENDENT_LIFETIME_OOM_TESTS_PASS_HARDWARE_PENDING",
+  "board_access": false,
+  "change": "Replace per-frame ordinary I420 RAM allocation/free with a private reference-counted output pool; each delivered frame exclusively owns its allocation until cedar_frame_free.",
+  "architecture": {
+    "idle_cache_limit": 2,
+    "references": "One decoder owner plus one reference per outstanding frame; cached blocks hold no reference. Closing marks pool closed and frees cached blocks; outstanding frames release their blocks and final pool reference later.",
+    "threading": "Decoder operations including pull/flush/close remain externally serialized. Independent frame frees can run concurrently with each other and decoder close.",
+    "memory_scope": "Ordinary CPU RAM only, no DMA allocation/import/map lifetime change. Max two idle1080p I420 blocks are approximately6.22MB; caller-retained outstanding frames are separately owned and not counted in idle limit.",
+    "ABI": "cedar_frame field types/order and all exported prototypes unchanged; release through cedar_frame_free from the matching backend library, not free(data)."
+  },
+  "package": {
+    "local_path": "build/cedar-browser-backend-v5-20261117/t736-cedar-browser-backend-v5.tar.gz",
+    "bytes": 22103,
+    "sha256": "e60685777a4700631fbe1df472cb98c037ed5fba276b372d2845d4a786f2a8c0",
+    "library_sha256": "52bf715c24ac9c072c1550f04fe47ab4df195ffdf1b51c4ac7f84414556f8f08"
+  },
+  "preserved": [
+    "CropMeta and plane-span validation",
+    "I420/YV12 plane copies and NV12/NV21 NEON splitting",
+    "Pixel dimensions/colors/timestamps",
+    "GStreamer input/output queues and private OMX lifecycle",
+    "First-error/poison policy",
+    "Kernel128MiB import quarantine"
+  ],
+  "validation": [
+    "ARM64 compilation and actual copy/lifetime tests under QEMU",
+    "Native ASan/UBSan actual appsrc/appsink cedar_pull frames retained across subsequent pulls, flush, close and release of a different frame",
+    "1000 allocation/release cycles with one allocation and999reuses;8simultaneous independent blocks;idle cache <=2",
+    "Independent calloc/posix_memalign failure injection, invalid/max sizes, mixed-size cache and held-frame preservation; tracked allocation balance0",
+    "1024 three-party barrier trials/2048worker threads racing frame returns and decoder close;512post-close held-frame cases;ASan/UBSan/LSan detect_leaks=1 pass"
+  ],
+  "ordinary_host_ram_benchmark": {
+    "malloc": {
+      "frames": 300,
+      "bytes": 3110400,
+      "elapsed_us": 25331,
+      "minor_faults": 1519,
+      "major_faults": 0,
+      "allocations": 300,
+      "reuses": 0,
+      "checksum": 27000,
+      "log": "evidence/build/cedar-browser-backend-v5-host-ram-bench-malloc-20261117.log"
+    },
+    "pool": {
+      "frames": 300,
+      "bytes": 3110400,
+      "elapsed_us": 23558,
+      "minor_faults": 760,
+      "major_faults": 0,
+      "allocations": 1,
+      "reuses": 299,
+      "checksum": 27000,
+      "log": "evidence/build/cedar-browser-backend-v5-host-ram-bench-pool-20261117.log"
+    }
+  },
+  "benchmark_interpretation": "One optimized-host run, ordinary cached RAM only. Pool reduces measured allocation calls from300to1 and minor faults1519to760. 25.331ms versus23.558ms is not statistically established throughput improvement and is not WC/board/browser performance. Baseline fault count does not support assuming every old frame required a fresh mmap/page-fault cycle.",
+  "hardware_pending": [
+    "Compare actual CEDAR_COPY map/copy timings and ram_allocations/ram_reuses under same kernel/stream",
+    "Exact decoded pixels,PTS,IRQ and browser dropped-frame behavior",
+    "Retained lease flush/close behavior on board; do not infer hardware performance from software pool tests"
+  ],
+  "evidence": [
+    {
+      "path": "evidence/cedar-browser-backend-v5-build-20261117.json",
+      "sha256": "a9ae60ad51cf5bdeac5fc5d79dbc989790564f89b2bed4a2ea46d2be60fda5ea"
+    },
+    {
+      "path": "evidence/cedar-browser-backend-v5-ram-pool-review-20261117.json",
+      "sha256": "583495f36ca06854b2b4d1971f372c94ae3fcfc4bd3e479d3e120044155c1a3f"
+    },
+    {
+      "path": "evidence/cedar-browser-backend-v5-independent-review-20261117.json",
+      "sha256": "77f7d11b94ce5c7c1a75bfed793a4cc7ff051202c909067e8a11b6d5c85e59cc"
+    },
+    {
+      "path": "evidence/cedar-ram-pool-threads-20261117.json",
+      "sha256": "8336434a273f0af2093a132ee0a1c30ea09ab440bff91db46a087b84d55005db"
+    }
+  ]
+}

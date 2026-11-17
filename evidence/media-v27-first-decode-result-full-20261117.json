@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "status": "NOT_ACCEPTED",
+  "kernel": "6.18.63-t736-media-v27",
+  "command": [
+    "/opt/t736-cedar-wc-v1/bin/cedar-env",
+    "/opt/t736-cedar-wc-v1/bin/vdecoderdemo",
+    "-i",
+    "/home/t736/media-input-v27-30frames.h264",
+    "-codFmat",
+    "1",
+    "-o",
+    "/run/t736-cedar-nv21-first/decoded.nv21",
+    "-n",
+    "31",
+    "-ss",
+    "1",
+    "-sn",
+    "30",
+    "-outFmat",
+    "5",
+    "-decNum",
+    "1"
+  ],
+  "elapsed_seconds": 25.032249910000004,
+  "process_pid": 2116,
+  "returncode": 143,
+  "timed_out": true,
+  "process_still_running": false,
+  "fixture_sha256": "470c8bb5cfb3159fb1566f115e452bf29791975686db6662fbc6a71a2ba6d267",
+  "reference_sha256": "cca7302cbb871683366faa34a4e0799493eb8fc63b095d66bdda54e7cd8f945b",
+  "decoded_bytes": 806400,
+  "expected_bytes": 3456000,
+  "decoded_sha256": "397ae3eada8f113262e30eaa063590b03b0438aeabdc38f1dcd0909022b447e7",
+  "frame_bytes": 115200,
+  "expected_frames": 30,
+  "matched_frames": 7,
+  "per_frame_exact_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "version_and_phy_offset": [
+    [
+      "0x3331000021320",
+      "0x0"
+    ]
+  ],
+  "irq_before": {
+    "414": 0
+  },
+  "irq_after": {
+    "414": 9
+  },
+  "irq_delta": 9,
+  "decode_log_sha256": "53c00eb08721f98519ff30603a160254a3aedb9b00f25997056bd6e3e6aadcf2",
+  "bundle_manifest_sha256": "351878fa95940041f61495d30cf7914b298cb733f2a08b7d691a16e74f73fa81",
+  "limits": [
+    "320x240 H264 High/B-frame single fixture only; no throughput claim.",
+    "No player, HDMI, encoding, zero-copy or browser acceptance.",
+    "Imported DMA remains pinned until reboot in this bring-up kernel.",
+    "Any mismatch/timeout/remaining process is a failure requiring diagnosis; no silent fallback."
+  ]
+}

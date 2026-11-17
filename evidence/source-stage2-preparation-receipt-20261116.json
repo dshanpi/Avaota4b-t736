@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "kind": "t736-second-source-checkpoint-preparation",
+  "verified_utc": "2026-11-16T14:29:40.980940+00:00",
+  "status": "PREPARED_VERIFIED_FROZEN_NOT_COMMITTED_NOT_PUSHED",
+  "checkout": "G:/codex/t736/backup/Avaota4b-t736",
+  "repository": "https://github.com/dshanpi/Avaota4b-t736",
+  "base_commit": "72333d335c0256542ee9b60912d666c4dbd82649",
+  "manifest_sha256": "beb41c44ca598241c589ad3e5aaca30b03234ab7519f32e39c93e1b5c08eac55",
+  "prepared_at": "2026-11-16T22:23:42.107692+08:00",
+  "manifest_files_excluding_itself": 1826,
+  "manifest_bytes_excluding_itself": 27410760,
+  "changes": {
+    "tracked_modified": 6,
+    "untracked_added": 78,
+    "total_full_diff_files": 84
+  },
+  "verification": {
+    "prepare_and_verify_only": "PASS",
+    "manifest_exact_coverage_hashes_JSON_Python_compile_secret_scans": "PASS",
+    "private_paths_and_new_images": "PASS; only previously published source-v6 framebufferPNG retained",
+    "full_staged_diff_check": "PASS through separate temporary GIT_INDEX_FILE; realindex and HEAD unchanged",
+    "full_diff_check_log": "evidence/source-stage2-full-diff-check-20261116.log",
+    "full_diff_check_log_sha256": "e3454fbff30676b692ad05ce2bfb1516149783c5622080aaedfb6a2fa6396551"
+  },
+  "frozen_scope": "v24 HS400100/200 boundedPASS and varied read observations; persistentdefaultv16; v25 source/static/ARM64 compile diagnostics and pendingbindings; Mutter feedback candidate not board-tested; source-v11 draft notbuilt; finalimage incomplete.",
+  "later_artifacts_excluded": "v25 full kernel/PVR/package completion and final updater bindings arrived after this freeze and were not auto-added.",
+  "privacy": "No auth/tunnel/credential evidence, private home archive/screenshots, vendor binaries, full images or compiled payloads published.",
+  "pending_before_root_commit": [
+    "Root owns final content review and commit/push after segment evidence.",
+    "Change README/docs opening prepared/not-yet-pushed wording to neutral checkpoint wording before publication; root requested this after freeze.",
+    "Any intentional refresh must regenerate and reverify manifest; do not silently mix later evidence into this frozen view."
+  ],
+  "prior_published_checkpoint_preserved": "72333d3 remains HEAD; first upload receipt retains historical HS200 scope.",
+  "receipt_outside_frozen_public_snapshot": true
+}

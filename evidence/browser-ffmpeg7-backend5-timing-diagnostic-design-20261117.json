@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "READ_ONLY_DIAGNOSTIC_DESIGN_NOT_IMPLEMENTED",
+  "reviewer": "desktop_review",
+  "board_access": false,
+  "implementation_changed": false,
+  "condition": "Use only if v29 + SHM transport2 + FFmpeg7 still shows substantial VideoSink lateness. Existing real frame/drop counters remain acceptance criteria.",
+  "sources": [
+    {
+      "path": "tools/browser/ffmpeg_cedar.c",
+      "sha256": "909ab49e890aecdfaf955518cfddc132e0d84d0f41c6c3397071d61a36f06bda"
+    },
+    {
+      "path": "tools/browser/cedar_backend.c",
+      "sha256": "0186b91b99c39134ee394dc5fe009b9d09415eb86b4d15bb09401a0a0cce1177"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_client.c",
+      "sha256": "84ec6f08321aa4ac76f449fbb05d82cfd97467d3774d200a11d85431bc06778a"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_broker.c",
+      "sha256": "8d81f7697a1b367689df34002ff4d9f8fc25ae4136c1aae734caa517e3b9d081"
+    },
+    {
+      "path": "build/firefox-esr153-timing-review-20261117/FFmpegDataDecoder.cpp",
+      "sha256": "9d055c6eca99741bf531b363c52e25777e6db6e219d893e934be83408147f16c"
+    },
+    {
+      "path": "build/firefox-esr153-timing-review-20261117/FFmpegVideoDecoder.cpp",
+      "sha256": "487d7f50b1d4502433a82bb489b45b56ab3918dea2360355e5cb1de8c0a1497d"
+    }
+  ],
+  "findings": [
+    {
+      "where": "cedar_backend.c:465-497",
+      "finding": "Existing copy_us starts before ram_acquire, so it includes pool lookup/allocation and I420 copy/deinterleave. It does not isolate DMA-to-RAM copy."
+    },
+    {
+      "where": "cedar_backend.c:530,553",
+      "finding": "Existing map/copy counters omit gst_video_frame_unmap and gst_sample_unref; buffer return/recycle latency may be outside current accounting."
+    },
+    {
+      "where": "cedar_backend.c:545",
+      "finding": "gst_app_sink_try_pull_sample time is appsink dequeue/wait, not pure OMX/VE execution time. The asynchronous pipeline has separate input, reorder and output queues."
+    },
+    {
+      "where": "ffmpeg_cedar.c:447-487",
+      "finding": "1920-wide I420 satisfies the64-pixel alignment fast path: receive_buffer transfers to frame->buf[0]. No whole-frame copy occurs during this wrapper assembly; other widths use aligned plane copies."
+    },
+    {
+      "where": "FFmpegVideoDecoder.cpp:2037,2050,2102",
+      "finding": "Firefox may create from its own shmem allocator, upload software YUV to a DMABuf, or use CreateAndCopyData depending on runtime path. The Cedar pool is not automatically Firefox ImageBufferWrapper allocation. Caller-side image work is outside the wrapper callback."
+    },
+    {
+      "where": "ffmpeg_cedar.c:572,680; FFmpegDataDecoder.cpp:312-316",
+      "finding": "Current bounded_batch elapsed spans multiple callbacks and includes caller gaps; DecodePromise resolves only after DoDecode ends. Elapsed alone cannot separate inside-wrapper work from Firefox/core overhead."
+    }
+  ],
+  "phase1_no_broker_restart": {
+    "scope": "New diagnostic-only FFmpeg wrapper/client candidate, load via new RDD exec while retained SHM2 broker/backend5 remain running. No return value, wait, batching, timestamp, ownership or protocol changes.",
+    "points": [
+      {
+        "component": "FFmpeg receive callback",
+        "site": "Wrap cedar_receive implementation once at entry/exit to cover every return path",
+        "fields": [
+          "entry_mono_ns",
+          "exit_mono_ns",
+          "rc",
+          "generation",
+          "session",
+          "batch_frames",
+          "batch_inputs",
+          "input_pending",
+          "filtered_pending",
+          "broker_draining"
+        ],
+        "derived": [
+          "per-callback active wall time",
+          "sum active wall per batch",
+          "batch span minus sum active wall = time outside callback, including FFmpeg core/Firefox work and scheduling",
+          "gap since preceding callback return, classified by previous rc"
+        ]
+      },
+      {
+        "component": "FFmpeg pull_frame",
+        "sites": [
+          "before/after av_buffer_pool_get",
+          "before/after api.pull",
+          "after metadata/AVFrame assembly"
+        ],
+        "fields": [
+          "pool_us",
+          "client_pull_total_us",
+          "assemble_us",
+          "aligned_ownership_transfer",
+          "timeout_ms",
+          "pull_reason",
+          "wire_pts_us",
+          "output_pts",
+          "rc"
+        ]
+      },
+      {
+        "component": "FFmpeg input/backpressure",
+        "sites": [
+          "before/after api.push",
+          "all actual pull calls inside pending-AU/backpressure/replay/EOS branches",
+          "contract-safe EAGAIN return"
+        ],
+        "fields": [
+          "push_us",
+          "push_rc",
+          "pull_count_by_reason",
+          "empty_pull_count",
+          "wait_requested_ms",
+          "first_frame_wait_active",
+          "backpressure_active",
+          "input_empty_at_yield"
+        ]
+      },
+      {
+        "component": "client request and shared copy",
+        "sites": [
+          "before/after pthread_mutex_lock",
+          "before request header send",
+          "after PULL metadata body complete",
+          "before/after memcpy(dst,shared_pixels,bytes)",
+          "before unlock/return"
+        ],
+        "fields": [
+          "session",
+          "sequence",
+          "operation",
+          "status",
+          "wire_pts_us",
+          "bytes",
+          "lock_wait_us",
+          "request_to_complete_metadata_us",
+          "shm_to_destination_us",
+          "client_total_us"
+        ]
+      }
+    ],
+    "return_codes": "Distinguish client pull0 (no sample), client push -EAGAIN (input pressure), and FFmpeg receive -EAGAIN (needs new input). Do not combine them into a single waiting statistic."
+  },
+  "phase2_only_if_wire_wait_dominates": {
+    "scope": "At a necessary broker restart/coldboot, add timings to private broker/backend candidate. ABI and wire structures unchanged.",
+    "broker_points": [
+      "Immediately after complete request header/body: rx_complete_ns, existing sequence/session/op.",
+      "Before/after hardware_lock: lock_wait_us; execute duration includes backend calls.",
+      "Before/after memcpy(shm.data,frame.data,frame.size): backend_RAM_to_SHM_us.",
+      "Before/after cedar_frame_free: frame_free_us.",
+      "Immediately before first reply byte and after complete metadata send: tx_begin_ns, send_us."
+    ],
+    "backend_points": [
+      "cedar_pull entry/bus check and before/after gst_app_sink_try_pull_sample: appsink_wait_us, timeout_ms, sample/no-sample/EOF.",
+      "copy_sample before/after gst_video_frame_map: map_us.",
+      "before/after ram_acquire: pool_us and allocated-vs-reused counter delta.",
+      "after successful acquire through final Y/UV copy: dma_wc_to_ram_us.",
+      "before/after gst_video_frame_unmap: unmap_us.",
+      "before/after gst_sample_unref: sample_release_us."
+    ],
+    "optional_ready_probe": "Only if no-sample/feeding remains dominant: a separate appsink sink BUFFER pad probe records ready time into a fixed bounded table keyed by generation+buffer/PTS, never modifies timestamps or buffers. Matching dequeue gives ready-to-pull residence time. appsrc submission-to-ready includes parser/queues/OMX/reorder and must not be labeled pure VE execution."
+  },
+  "bounded_collection": {
+    "enable": "Explicit test-only opt-in, off by default; read setting before sandbox. Preallocate fixed ordinary-RAM storage, no new device/socket/file access in sandbox.",
+    "window": "One window per test process: record first8 successful output frames for startup and64 consecutive successful frames after120 warmup outputs; hard cap1024 callback/request records and5seconds of active capture. Count discarded trace records if cap reached; never discard video frames.",
+    "io": "No per-row/per-packet fprintf in timed sections. Aggregate into fixed arrays/counters and dump at decoder close/client teardown or explicit end of the test, with a strict total byte cap. Preserve full browser dropped-frame counters; diagnostic overhead is reported, not hidden.",
+    "grouping": "Keep ordinary polling, pending-AU20ms waits, replay-limit waits and EOS1000ms drains in separate buckets. Report call count and successful frame count, not averages over mixed outcomes.",
+    "thread_cpu_optional": "One CLOCK_THREAD_CPUTIME_ID entry/exit pair for each sampled receive callback or serve operation can separate on-CPU from total wall time. Wall minus threadCPU includes waiting and scheduling, not uniquely scheduler delay."
+  },
+  "correlation_and_accounting": {
+    "clock": "Use explicit CLOCK_MONOTONIC in all diagnostic components and record units; no wall-clock or arbitrary media-PTS offsets.",
+    "keys": "Client/broker use existing sequence+session. Backend uses generation+wire PTS+output ordinal; FFmpeg logs both wirePTS and restored outputPTS. Unknown/duplicate PTS require ordered local-event correlation, not a presumed unique timestamp key.",
+    "avoid_double_count": "Client RTT already contains broker/backend phases. FFmpeg client_pull_total already contains client lock/wire/copy. Nested durations cannot be added as independent costs; correlated per-frame totals or residuals are required.",
+    "safe_transport_residual": "For the same PULL seq: (client_metadata_done - client_request_begin) - (broker_tx_begin - broker_rx_complete). This residual includes client/kernel transport and scheduling. Do not subtract entire broker send duration because it can overlap client receive completion.",
+    "distribution": "Report count, median, p95 and max by stage/outcome; do not sum p95 values as if they describe the same frame."
+  },
+  "decision_rules": [
+    "If client SHM copy or FFmpeg assembly/pool dominates, investigate ordinary RAM allocation/copy path;1920 assembly should be ownership-only.",
+    "If backend WC copy still consumes8-10ms and serial total approaches/exceeds16.667ms at60fps, there is insufficient service margin. Do not compensate by rewriting PTS or suppressing drops.",
+    "If callback active time is low but batch gap is high, investigate Firefox image creation, packet feeding and scheduling before attributing it to hardware decode.",
+    "If API pull0/no-sample dominates while complete per-frame service is fast, add ready probe to distinguish input/OMX/reorder readiness from ready-frame polling latency.",
+    "If all measured service phases fit budget yet decodedVideoEndTime-clock remains negative, compare actual input/output lead and frame readiness; averageIRQ60/s does not prove timely delivery."
+  ],
+  "validation_if_implemented": [
+    "Use delay stubs with known push/pull/copy sleeps to verify timer attribution and status buckets.",
+    "All old FFmpeg8311 and independent batch4009 checks must still pass with timing disabled and enabled.",
+    "Re-run client malformed metadata, concurrency and fork tests; trace path must not change copying locks or post-fork API behavior.",
+    "For performance acceptance rerun with diagnostics disabled, same kernel/codec/file/CPU placement and unchanged Firefox frame/drop counters."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "kind": "storage-v25-timing-collector-independent-review",
+  "reviewer": "/root/code_index",
+  "status": "PASS_STATIC_REVIEW_NOT_BOARD_RUN",
+  "date": "2026-11-16",
+  "files": {
+    "tools/validation/mmc_timing_collect.py": "2a98c83e8154a850d1cd9a55e92cee3fffbec8eb27cecfef030cb39f7744c54b",
+    "tools/validation/mmc_read_cost_probe.py": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946",
+    "evidence/storage-v25-timing-collector-contract-20261116.json": "95070e8423cd6d2da5d124483c736572751d31e7b412c8151f37f47dbb2b438d"
+  },
+  "checks": [
+    "No writes, resets, raw block-device access, cache/affinity/tuning controls; invokes frozen c5b7ae probe through argv only.",
+    "Kernel release and boot identity pinned; probe SHA256 checked before/after. Existing regular target requires mmcblk0p4; outer dev/inode/size/mtime stable before/after and accurately labelled preflight identity.",
+    "Matches actual driver read-only schema and includes all segment/CPU rows; rejects missing, duplicate, malformed/negative counter rows and mismatched request/CPU/poll sums.",
+    "Snapshot difference checks monotonic counters/schema; lifetime max values retained as before/after and never subtracted. Nested durations and CPU endpoint limitations are explicit.",
+    "Raw before, immediate-after and stable-after snapshots retained with hashes; at most five 10 ms stability observations. No hardware drain claim.",
+    "Request coverage requires read attempted/success >=8192 and requested/completed bytes >=536870912. Loss or failed lower bound marks INCOMPLETE_TIMING_SAMPLES. Does not force equality with expected counts because background I/O is included."
+  ],
+  "review_changes": "Added lower-bound coverage guard and outer target identity comparison following this review; final collector SHA bound above.",
+  "limits": [
+    "Stable/lower-bound counters cannot exclude background I/O masking a small delayed merge; not exact residency or exact matching windows.",
+    "Actual workload/board validation remains parent-owned and has not been performed by this reviewer.",
+    "Contract tests were independently authored/executed by backup_audit; this record is a separate source review and does not claim rerunning hardware."
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "t736-ffmpeg-v6-first-frame-wait-validation-v1",
+  "date": "2026-11-17",
+  "result": "PASS_SOFTWARE_ONLY",
+  "implementation_owner": "desktop_review",
+  "independent_test_and_review_owner": "backup_audit",
+  "hardware_access": false,
+  "source_snapshot": {
+    "path": "build/browser-ffmpeg-build-v1-20261117/ffmpeg_cedar-v6.c",
+    "bytes": 34222,
+    "sha256": "d796914045308833bff3be778abdab95e0a9a87fb9a122282ec4caac2e66c791"
+  },
+  "test_snapshot": {
+    "path": "build/browser-ffmpeg-build-v1-20261117/test_ffmpeg_cedar-v6-8311.c",
+    "bytes": 28525,
+    "sha256": "6e46f225f946cae083a8944c1c4af64ce529d4bd0d78af2817b136956384b244"
+  },
+  "source_current_matches_snapshot": true,
+  "log": {
+    "path": "build/browser-ffmpeg-build-v1-20261117/qemu-audit-v6-timeout.log",
+    "bytes": 18928,
+    "sha256": "9164fc671ba1ce7e5d6e6fc92dad0847bca2df80d48767b874c3b303038757b1"
+  },
+  "artifact": {
+    "archive": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v6.tar.gz",
+    "bytes": 6984933,
+    "sha256": "4b6fdfe373f6c1c284765685f77b59a0dcb709776f394c244edaad2274bbecf3",
+    "manifest_sha256": "cd8479dfb373daf60ff0f3f733865aca30d4d0216b5ee8a12cd8620f6bd35b8c",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084312,
+        "sha256": "abaf5db087ab97398f87dd6439d084b51b6ce6e715d4f80ed89defe6df4b9a35",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    }
+  },
+  "checks": 8311,
+  "trigger": "64 compressed packets can be submitted before an asynchronous hardware pipeline produces its first frame. The old replay-limit branch immediately selected native fallback, even without a decoder failure.",
+  "implementation_review": [
+    "Replay limits remain 64 packets and 8 MiB; budget exhaustion stops hardware feeding and retains the next original packet separately as input_pending.",
+    "One monotonic first_frame_wait_started value is retained until progress, flush, or fallback; each remaining-time calculation uses that same start.",
+    "Each requested backend pull is at most 1000 ms and at most the rounded remaining progress budget; nonpositive remaining time triggers ETIMEDOUT fallback.",
+    "On first-frame success, clear_replay does not clear input_pending. The next packet-fetch branch uses the retained input instead of overwriting it with ff_decode_get_packet.",
+    "On timeout, packet 65 has not been cloned and input_in_replay is false. Native fallback replays the saved 64 originals and then consumes the retained packet 65 exactly once."
+  ],
+  "executed_tests": {
+    "runner": "Actual candidate ARM64 shared libraries under qemu-aarch64-static; exported stub client, no socket or devices.",
+    "delayed_first_frame": "All zero-timeout polls remain empty for 64 accepted packets. Only the third bounded pull produces a frame. Final 65 output frames and 65 submissions have exact ordered timestamps without duplication or loss.",
+    "real_timeout": {
+      "elapsed_us": 5138462,
+      "fixture_frames": 70,
+      "hardware_stub_pushes": 64,
+      "opens": 1,
+      "closes": 1,
+      "pending_packet_65_replayed": true,
+      "all_output_equal_native": [
+        "pixel MD5",
+        "dimensions",
+        "format",
+        "PTS",
+        "best_effort_timestamp",
+        "duration"
+      ],
+      "fixture_sha256": "8f49c787e16ddc38b1da5df4333e5deea769e86793e7095cb541df6e2b848975"
+    },
+    "eos_regression": "Both 45-frame H264 and HEVC fixtures retain the drain-error fallback/native-output comparison.",
+    "prior_regressions": "DTS omission, ordinary-RAM pool lifetime, parameter bootstrap/no-duplication and all prior fallback tests remain included."
+  },
+  "timing_boundary": "Five seconds is the decoder-progress budget. The existing client socket receive/send timeout is separately 15 seconds per I/O wait; an unresponsive broker or stalled transport can exceed a five-second total wall-clock duration. The real-time QEMU test uses a responsive stub and measures the five-second progress branch, not a socket outage.",
+  "limits": [
+    "This validates the startup race handling and exact native replay, not actual Bilibili hardware compatibility.",
+    "Actual v4 Bilibili capture already contained complete VPS/SPS/PPS; missing parameter sets is not established as its root cause.",
+    "Private capture and proprietary libraries are not uploaded publicly.",
+    "No board operation, broker restart or DMA allocation was performed by this audit."
+  ]
+}

@@ -1,0 +1,1 @@
+PASS: actual v2 client PID gates all APIs before inherited mutex; no child socket traffic; DONTFORK and address reuse destructor safety; parent mapping/socket retained; exec CLOEXEC; fd balance0

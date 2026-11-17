@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "kind": "storage-v25-guarded-updater-preparation",
+  "date": "2026-11-16",
+  "status": "READY_FOR_ROOT_BOARD_CHECK_APPLY_AND_ONE_SHOT_DIAGNOSTIC",
+  "files_sha256": {
+    "tools/validation/update_t736_storage_v25.py": "dbbfa8b9ea82f10c1b7a0399856c69290de7354aaeb84a441291c6f0c8f726e3",
+    "tools/validation/test_update_t736_storage_v25.py": "4fcbbbdc9ba268724e2e3b8be5fb6284f57bf525386e8e57b63360905f6c9307",
+    "evidence/storage-v25-updater-offline-tests-20261116.log": "d8474fd2ce268d95d584265d59d24904be6e17fb3c969ac01405e79eb0d46619",
+    "evidence/storage-v25-updater-exact-inputs-20261116.json": "c6c1db33f422227a7de502b6e6e4b3cde9b18aacf1b41393e22f4a02309bbe03",
+    "evidence/storage-v25-updater-independent-review-20261116.json": "7e57f1b2342522320494b26f9f31dff89e2a26e7815432ccbc58644384598fa4",
+    "evidence/storage-v25-updater-bindings-20261116.json": "75b054b1cf1f5eafe5a8b7e7adf0ab05ce32f04761ee3bc4a839f30edf1ebf8d",
+    "evidence/storage-v25-updater-control-manifest-20261116.json": "e834319794cac62461db7424d7c0849762e677f9cba0863f4d1be35c040bd3dc",
+    "evidence/storage-v25-updater-payload-manifest-20261116.json": "7d8776e7ad46a87666ea7768409cd314fed290ea3030d0d15028a8a87d33ad4d",
+    "evidence/storage-v25-build-20261116.json": "5a161976fb7fcf62fd9ff27ebef733052942f01058dddfb33391d240d6c00780",
+    "evidence/storage-v25-package-20261116.json": "addf13b51d885c4ca5c27f6ff2abe310c003e1794d905da4911721bf58a4b861",
+    "evidence/storage-v25-pvr-build-20261116.json": "771be7ba4cad01004f13f1c408a9f3ce1ccd361fb3e93801277fc82646d8b47e",
+    "evidence/storage-v25-timing-independent-review-20261116.json": "996b5c21daf405d660efe8e0da918e79b84562eb886f3d0d4178e62094b763c8",
+    "evidence/storage-v25-timing-collector-contract-20261116.json": "95070e8423cd6d2da5d124483c736572751d31e7b412c8151f37f47dbb2b438d",
+    "evidence/storage-v25-timing-collector-independent-review-20261116.json": "37d3c2e6175bdedfb706c53ee0427ee49ddb77cb1f621b6fce5b19bd51ed3cb7",
+    "evidence/emmc-clocks-readonly-v4-storage-v25-20261116.json": "b9fefa524cd9e794f1d6495e0d5f6f431650ef7acab71e27015523689826ce7d",
+    "tools/validation/mmc_read_cost_probe.py": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946",
+    "tools/validation/mmc_timing_collect.py": "2a98c83e8154a850d1cd9a55e92cee3fffbec8eb27cecfef030cb39f7744c54b"
+  },
+  "bindings": {
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate_dtb_bytes": 12028,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "control_manifest_sha256": "13ac83cd9707cc2241a6987131a4f48803f3228b9ebacc1d0393dcb67f67929e",
+    "kernel_bytes": 5604584,
+    "kernel_sha256": "801450446396cbf6b5504315ae07d4f4e13881dfdeca7ca31956273db1e23456",
+    "payload_manifest_sha256": "bba064dae378b56432405a22cefca6df5790e4ca6647a4f2e3b16db3cd48cf69",
+    "pvr_bytes": 1913816,
+    "pvr_sha256": "abfc1c65daf09bcca178ce9f4cbff12f261263525b2d1edc346b286d07e92ddd",
+    "raw_image_bytes": 11800584,
+    "raw_image_sha256": "1d23722f7589d040896c4ddf4f2b0a8ed0a3b0a671bd1ce781f2c8ad60de6805"
+  },
+  "offline_tests": {
+    "passed": 14,
+    "includes": [
+      "Running v24 identity/corruption refusal while fallback remainsv16",
+      "Backup corruption/path escape/final verification/selection fault handling",
+      "No rollback racing an unquiesced subprocess"
+    ]
+  },
+  "actual_inputs": {
+    "payload_entries": 82,
+    "control_entries": 6,
+    "status": "PASS",
+    "maintainer_scripts_executed": false,
+    "maintainer_scripts_equal_v24_except_release": true
+  },
+  "independent_review": {
+    "reviewer": "code_index",
+    "status": "PASS",
+    "updater_sha256": "dbbfa8b9ea82f10c1b7a0399856c69290de7354aaeb84a441291c6f0c8f726e3",
+    "AST_equivalent_functions_and_classes": 29,
+    "normalized_package_files_unchanged": 77,
+    "changed_of_82": "kernel/config/System.map/modules.builtin.modinfo/changelog"
+  },
+  "state_separation": {
+    "allowed_running": [
+      "6.18.63-t736-storage-v16",
+      "6.18.63-t736-storage-v24"
+    ],
+    "persistent_fallback": "6.18.63-t736-storage-v16",
+    "fallback_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate": "6.18.63-t736-storage-v25"
+  },
+  "planned_board_flow": [
+    "Root checks/applies pinned transaction.",
+    "Root immediately restores persistent aliases/DT from new BACKUP_FSYNC_VERIFIED backup; v25 files remain installed.",
+    "Root performs explicit-path one-shot boot with diagnostic parameters; no saveenv or SPL/GPT/raw write by updater.",
+    "Root verifies actualmode/tuning/GPUhealth and captures frozen readprobe with before/after debugfs; collector rejects loss or obvious count/byte shortfall."
+  ],
+  "boot_parameters": [
+    "t736_mmc_pio.enable_hs200=1",
+    "t736_mmc_pio.hs200_max_hz=200000000",
+    "t736_mmc_pio.enable_hs400=1",
+    "t736_mmc_pio.hs400_max_hz=200000000",
+    "t736_mmc_pio.collect_timing=1"
+  ],
+  "readonly_module": {
+    "local_path": "output/t736-emmc-clocks-readonly-v4-storage-v25.ko",
+    "remote_path": "build/emmc-clocks-readonly-v4-storage-v25/t736-emmc-clocks-readonly-v4.ko",
+    "bytes": 8176,
+    "sha256": "126915bfaf13f01ba3a9217f2e2e24b2a71461c18a8978d41247b0bffb17884d",
+    "module_name": "t736_emmc_clocks_readonly_v4",
+    "vermagic": "6.18.63-t736-storage-v25 SMP mod_unload aarch64"
+  },
+  "diagnostic_scope": "Default-off aggregate observations only. Frozenv24 DMA, resetting, error handling, ownership, poll timing,64KiB cap and affinity policies remain unchanged. Instrumentation adds measurable overhead; not an optimization.",
+  "board_operations_by_this_agent": false,
+  "candidate_board_accepted": false,
+  "delivery": "SFTP only; no new HTTP service.",
+  "public_checkpoint": "Second prepare remains frozen at earlier draft-state snapshot; these final build/binding artifacts were not silently added to the public working copy."
+}

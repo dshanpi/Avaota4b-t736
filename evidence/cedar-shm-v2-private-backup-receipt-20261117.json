@@ -1,0 +1,361 @@
+{
+  "schema": 1,
+  "status": "PRIVATE_SFTP_BACKUP_READBACK_VERIFIED",
+  "recorded_utc": "2026-11-17T06:13:47.467407+00:00",
+  "host": "192.168.1.228",
+  "remote_root": "/home/ubuntu/t736-mainline",
+  "transport": "Paramiko RejectPolicy, known-host verification, temporary upload then atomic rename and final byte readback",
+  "public_upload": false,
+  "board_operation": false,
+  "file_count": 57,
+  "total_bytes": 417792,
+  "files": [
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-broker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-client.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-client_fork-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-seals-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-seals-test.log",
+      "bytes": 317,
+      "sha256": "5c6a98bd866187d5f914c483532e088729f2394474e19dfd97577805dae72da8",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-transport-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-transport-test.log",
+      "bytes": 1111,
+      "sha256": "7889a928eba90f410c9ab1c402046ba95cf16278e2c2025bd86c09884698296b",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/broker-elf.log",
+      "bytes": 2746,
+      "sha256": "5acb145e6881a7b6c1614f7610de55fb901262dbb4cab47e46cede141420fe67",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/build-record.json",
+      "bytes": 13576,
+      "sha256": "49300a4179d7ba2ce30b84271ecd5e76439a1d9248b1ced9b7ab3e1412f63e84",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/cedar-broker",
+      "bytes": 30048,
+      "sha256": "15f95c7bbc5f63c0919326c4e58b19b9fe9628b2210328a60d7514d9e8d279a2",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/client-elf.log",
+      "bytes": 2610,
+      "sha256": "2e33a3d21eb6dd63950abfcbd4bbe60e4ceec4a968f48487e141d96a21860f16",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/client-exports.txt",
+      "bytes": 260,
+      "sha256": "f77fe8993d25f7dc3c5e87e194b80e432c113b1cb4a535f1d7abd14602395d94",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/client_fork-arm64",
+      "bytes": 39568,
+      "sha256": "f17a57ddffc984867564980cf0bc85fe1f49b2dece94a677ec115ad526cecd16",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-client_fork-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-client_fork-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-client_fork-native-test.log",
+      "bytes": 195,
+      "sha256": "9d7bddfa63ae538cee6c390ce7346b23c9d766711728d9c73530cbd48a9ad66a",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-client_fork-test.log",
+      "bytes": 195,
+      "sha256": "9d7bddfa63ae538cee6c390ce7346b23c9d766711728d9c73530cbd48a9ad66a",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-seals-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-seals-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-seals-native-test.log",
+      "bytes": 784,
+      "sha256": "2eb4f9f72d81c4cd766ced851f9e91c6862c7df00bf181e9298cca469b6ae7a2",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-seals-test.log",
+      "bytes": 781,
+      "sha256": "ac6c6dc08cf3909b52da05585d36a361e4a8601c4d18fe733b8e4ab27c62b5a7",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-transport-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-transport-test.log",
+      "bytes": 1111,
+      "sha256": "7889a928eba90f410c9ab1c402046ba95cf16278e2c2025bd86c09884698296b",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/libt736_cedar_client.so",
+      "bytes": 19976,
+      "sha256": "40b0ed5415f2c63dc41315d9c68a6c5cfe80713ac67ddf3821f0390ff7d2e5b2",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/seals-arm64",
+      "bytes": 51104,
+      "sha256": "4c344edd163ce9228943b138ebad5c50eb40b36fbedf413a8625acd100353f60",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/seals-v28-native-arm64-FAIL.log",
+      "bytes": 265,
+      "sha256": "1ba0458f18b4c3902426b9d21aab9f9bd4edaf488ef65ce6d20af9d4bf2fd67f",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/t736-cedar-transport-v2.tar.gz",
+      "bytes": 49037,
+      "sha256": "b1524d0072ad96995c7104ca92c5b9ee46d27bc2990195dbaad629f9796bc92c",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/transport-arm64",
+      "bytes": 49792,
+      "sha256": "5fbecac6fcdaa1d813bf4f27be010a6cec45289e58716bc922b2fbca9fc7d0e0",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/cedar-shm-fork-native-20261117.log",
+      "bytes": 195,
+      "sha256": "9d7bddfa63ae538cee6c390ce7346b23c9d766711728d9c73530cbd48a9ad66a",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/cedar-shm-fork-sanitized-20261117.log",
+      "bytes": 195,
+      "sha256": "9d7bddfa63ae538cee6c390ce7346b23c9d766711728d9c73530cbd48a9ad66a",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/cedar-shm-seals-build-20261117.log",
+      "bytes": 1112,
+      "sha256": "eb06d321058ac26747ce34f108f2d988aa3259608c8e92c483cc5f83f69fdf61",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/cedar-shm-seals-default-timeout-20261117.log",
+      "bytes": 784,
+      "sha256": "2eb4f9f72d81c4cd766ced851f9e91c6862c7df00bf181e9298cca469b6ae7a2",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/cedar-shm-seals-sanitizer-20261117.log",
+      "bytes": 781,
+      "sha256": "ba2e9f63a8dc9164992f2356c3de020ce81c1f6ef1914e5734452523271d326d",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/madvise-dontfork-probe-build-20261117.log",
+      "bytes": 1084,
+      "sha256": "c4d1b06416346134f16550f74b1cd1e7e5d94caff1a874fb8e15f3d81eb93686",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/madvise-dontfork-probe-native-20261117.log",
+      "bytes": 1118,
+      "sha256": "5612d87f2d2c8afda82976ac2246ab069ad33428b94d414cb33a659dcb90fe04",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/madvise-dontfork-probe-native-strace-20261117.log",
+      "bytes": 2258,
+      "sha256": "76a603b853115c8a6e69391aff03285060807ec25c168e62eb659bb002560b4d",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/madvise-dontfork-probe-qemu-20261117.log",
+      "bytes": 1191,
+      "sha256": "a84a6f77abf4fc26e5d16e4d38d6c3739798a78e534ef55429a9fc5edf5dd9b9",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/madvise-dontfork-probe-qemu-guest-strace-20261117.log",
+      "bytes": 5427,
+      "sha256": "506e894a84a928ae17bd87cefd58b61cf8e8fa70f5cba5ee85a3ab171ceb9e6e",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/build/madvise-dontfork-probe-qemu-host-strace-20261117.log",
+      "bytes": 2492,
+      "sha256": "f79eda8dfd8ad779885f0f5bb9bd4aef67c5141957a96ace4ef16e2e222b6639",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-shm-qemu-dontfork-limitation-20261117.json",
+      "bytes": 5585,
+      "sha256": "149eb551bfbdd899ced58aec42727792394558bed4b6065c217dafbacff921a0",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-shm-seals-20261117.json",
+      "bytes": 4125,
+      "sha256": "c8e62b00450c9a3356549a7ad3832ffe254abc5a0f44fe467034fc1f8493eb76",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-shm-v2-build-review-20261117.json",
+      "bytes": 11255,
+      "sha256": "923cfd6d89651ff164e163b2af4fc97536aae41c69029d41ebf48d48289d1a01",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-shm-v2-client-broker-static-review-20261117.json",
+      "bytes": 9679,
+      "sha256": "d5255cc4b8a8042ceb3aaeee6fab32328495d74a5279d81c9dab52f259fcca63",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-shm-v2-desktop-independent-review-20261117.json",
+      "bytes": 7349,
+      "sha256": "28e75dddfca4d3b69e70a5c135dd860935deddd71b870008f8713559b43e116c",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "evidence/cedar-shm-v2-independent-review-20261117.json",
+      "bytes": 4020,
+      "sha256": "0aaf306417366535295122fae3d81ebd8bf978ccb4f220db76f48a4ec2369607",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tests/test_cedar_shm_client_fork.c",
+      "bytes": 6172,
+      "sha256": "f1d2710f5555ac5065330b71d15898c5424e3f30792285335fc2fb6f370765a4",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tests/test_cedar_shm_seals.c",
+      "bytes": 22667,
+      "sha256": "341fab86314c3a04d27dc31d10a311b5ef3f7eccab6d44b3e495262f6c8ab102",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tests/test_cedar_shm_transport.c",
+      "bytes": 14084,
+      "sha256": "b0689c6aa1593d94ecbb1748ce41b0744988cc758bc5bcba845598db881bcc9f",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/README.md",
+      "bytes": 3532,
+      "sha256": "2ee99642d7f74480aca39be20536a02a1d56fe2b979dbb65c6f896f35b6501fd",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_backend.h",
+      "bytes": 2505,
+      "sha256": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_broker.c",
+      "bytes": 13460,
+      "sha256": "8d81f7697a1b367689df34002ff4d9f8fc25ae4136c1aae734caa517e3b9d081",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_client.c",
+      "bytes": 11031,
+      "sha256": "84ec6f08321aa4ac76f449fbb05d82cfd97467d3774d200a11d85431bc06778a",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_client.h",
+      "bytes": 1181,
+      "sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_protocol.h",
+      "bytes": 1459,
+      "sha256": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/browser/shm_v2/cedar_shm.h",
+      "bytes": 7421,
+      "sha256": "c99cefb5bad2318bec39e57fa6f7ef27a33013bb58dae15d3c237bef97e2590c",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/build_cedar_shm_transport.py",
+      "bytes": 8955,
+      "sha256": "09a9a2bfe87d81fbd39237da1230267c6c7a95685f6b59a82377096a906ce32f",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    },
+    {
+      "path": "tools/validation/madvise_dontfork_probe.c",
+      "bytes": 3199,
+      "sha256": "9a5eb6706be9215fe9abd91d4bf16c7957f31b97a7f192ff0d3c76faeb3bcaf6",
+      "verification": "BYTE_IDENTICAL_FINAL_READBACK"
+    }
+  ],
+  "limits": [
+    "v28 native ARM64 seals failed due CONFIG_ADVISE_SYSCALLS unset;v29 native tests still required.",
+    "QEMU full ARM64 fork/helper acceptance failed due independently reproduced DONTFORK emulation limitation.",
+    "Final independent package audit PASS;no browser or hardware native acceptance onv28."
+  ]
+}

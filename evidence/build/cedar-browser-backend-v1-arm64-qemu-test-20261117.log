@@ -1,0 +1,1 @@
+PASS: actual Gst copy path; 4 layouts, padded strides/heights, crop origin, odd sizes, timestamps, color, malformed/missing crop, resolution change, mapped-plane span rejection; software appsrc/appsink EOS-flush-reuse

@@ -1,0 +1,282 @@
+--- a/omx/gstomxvideodec.c
++++ b/omx/gstomxvideodec.c
+@@ -294,6 +294,131 @@
+     // }
+ //}
+ 
++/* Diagnostic snapshots are taken with the decoder stream lock held.
++ * The component mutex protects its raw state and both port queues. Never call
++ * an OMX helper or print while holding that mutex: helpers acquire it too.
++ * These diagnostics do not dispatch messages, change state, or retry errors. */
++typedef struct {
++  gboolean present, enabled, populated, flushing, flushed;
++  gboolean enabled_pending, disabled_pending;
++  guint index, allocated, pending;
++  gint settings, configured;
++} T736OmxPortSnapshot;
++
++typedef struct {
++  gboolean present, started;
++  gint flow, raw, pending;
++  guint error;
++  T736OmxPortSnapshot in, out;
++} T736OmxSnapshot;
++
++static void
++t736_omx_snapshot_port (GstOMXPort * port, T736OmxPortSnapshot * dst)
++{
++  if (!port)
++    return;
++  dst->present = TRUE;
++  dst->index = port->index;
++  dst->enabled = port->port_def.bEnabled;
++  dst->populated = port->port_def.bPopulated;
++  dst->flushing = port->flushing;
++  dst->flushed = port->flushed;
++  dst->enabled_pending = port->enabled_pending;
++  dst->disabled_pending = port->disabled_pending;
++  dst->allocated = port->buffers ? port->buffers->len : 0;
++  dst->pending = g_queue_get_length (&port->pending_buffers);
++  dst->settings = port->settings_cookie;
++  dst->configured = port->configured_settings_cookie;
++}
++
++static void
++t736_omx_snapshot (GstOMXVideoDec * self, T736OmxSnapshot * dst)
++{
++  memset (dst, 0, sizeof (*dst));
++  dst->raw = dst->pending = -1;
++  dst->started = self->started;
++  dst->flow = self->downstream_flow_ret;
++  if (!self->dec)
++    return;
++  g_mutex_lock (&self->dec->lock);
++  dst->present = TRUE;
++  dst->raw = self->dec->state;
++  dst->pending = self->dec->pending_state;
++  dst->error = self->dec->last_error;
++  t736_omx_snapshot_port (self->dec_in_port, &dst->in);
++  t736_omx_snapshot_port (self->dec_out_port, &dst->out);
++  g_mutex_unlock (&self->dec->lock);
++}
++
++static void
++t736_omx_print (GstOMXVideoDec * self, const gchar * phase,
++    const T736OmxSnapshot * s, gint idle, gint actual, gint target,
++    guint result, const gchar * reason)
++{
++  g_printerr ("T736_OMX_DIAG self=%p phase=%s idle=%d actual=%d target=%d "
++      "result=0x%08x present=%d started=%d flow=%d raw=%d pending=%d "
++      "error=0x%08x "
++      "in={present:%d,index:%u,enabled:%d,populated:%d,flushing:%d,flushed:%d,"
++      "enable_pending:%d,disable_pending:%d,allocated:%u,pending:%u,settings:%d,configured:%d} "
++      "out={present:%d,index:%u,enabled:%d,populated:%d,flushing:%d,flushed:%d,"
++      "enable_pending:%d,disable_pending:%d,allocated:%u,pending:%u,settings:%d,configured:%d} "
++      "reason=%s\n", (void *) self, phase, idle, actual, target, result,
++      s->present, s->started, s->flow, s->raw, s->pending, s->error,
++      s->in.present, s->in.index, s->in.enabled, s->in.populated,
++      s->in.flushing, s->in.flushed, s->in.enabled_pending,
++      s->in.disabled_pending, s->in.allocated, s->in.pending,
++      s->in.settings, s->in.configured,
++      s->out.present, s->out.index, s->out.enabled, s->out.populated,
++      s->out.flushing, s->out.flushed, s->out.enabled_pending,
++      s->out.disabled_pending, s->out.allocated, s->out.pending,
++      s->out.settings, s->out.configured, reason ? reason : "-");
++}
++
++static void
++t736_omx_trace (GstOMXVideoDec * self, const gchar * phase,
++    gint actual, gint target, guint result)
++{
++  T736OmxSnapshot snapshot;
++  t736_omx_snapshot (self, &snapshot);
++  t736_omx_print (self, phase, &snapshot, -1, actual, target, result, NULL);
++}
++
++static OMX_STATETYPE
++t736_omx_diag_get_state (GstOMXVideoDec * self, GstClockTime timeout,
++    const gchar * phase)
++{
++  OMX_STATETYPE state = gst_omx_component_get_state (self->dec, timeout);
++  t736_omx_trace (self, phase, state, -1, 0);
++  return state;
++}
++
++static OMX_ERRORTYPE
++t736_omx_diag_set_state (GstOMXVideoDec * self, OMX_STATETYPE target,
++    const gchar * phase)
++{
++  OMX_ERRORTYPE err = gst_omx_component_set_state (self->dec, target);
++  t736_omx_trace (self, phase, -1, target, err);
++  return err;
++}
++
++static OMX_ERRORTYPE
++t736_omx_diag_set_flushing (GstOMXVideoDec * self, GstOMXPort * port,
++    GstClockTime timeout, gboolean flush, const gchar * phase)
++{
++  OMX_ERRORTYPE err = gst_omx_port_set_flushing (port, timeout, flush);
++  t736_omx_trace (self, phase, -1, -1, err);
++  return err;
++}
++
++static OMX_ERRORTYPE
++t736_omx_diag_populate (GstOMXVideoDec * self, GstOMXPort * port,
++    const gchar * phase)
++{
++  OMX_ERRORTYPE err = gst_omx_port_populate (port);
++  t736_omx_trace (self, phase, -1, -1, err);
++  return err;
++}
++
+ /* Private broker action, only after a completed flushing seek and with no
+  * further input being fed. This is deliberately NOT a Gst state mapping:
+  * vendor Pause->Executing returns both port queues and is not a lossless
+@@ -301,15 +426,18 @@
+ static gboolean
+ gst_omx_video_dec_t736_set_idle (GstOMXVideoDec * self, gboolean idle)
+ {
+-  OMX_STATETYPE state, target;
+-  OMX_ERRORTYPE err;
++  OMX_STATETYPE state = OMX_StateInvalid, target = OMX_StateInvalid;
++  OMX_ERRORTYPE err = OMX_ErrorNone;
++  T736OmxSnapshot snapshot;
+   gboolean success = TRUE;
+   const gchar *reason = NULL;
+ 
+   GST_VIDEO_DECODER_STREAM_LOCK (self);
++  t736_omx_snapshot (self, &snapshot);
++  t736_omx_print (self, "action.entry", &snapshot, idle, -1, -1, 0, NULL);
+   if (!self->dec)
+     goto done;
+-  state = gst_omx_component_get_state (self->dec, 5 * GST_SECOND);
++  state = t736_omx_diag_get_state (self, 5 * GST_SECOND, "action.initial-state");
+   if (state == OMX_StateLoaded || state == OMX_StateIdle)
+     goto done;                 /* First input still initializes the component. */
+ 
+@@ -331,12 +459,13 @@
+     target = OMX_StateExecuting;
+   }
+ 
+-  err = gst_omx_component_set_state (self->dec, target);
++  err = t736_omx_diag_set_state (self, target, "action.set-state");
+   if (err != OMX_ErrorNone) {
+     reason = "OpenMAX rejected broker idle/resume transition";
+     goto failed;
+   }
+-  if (gst_omx_component_get_state (self->dec, 5 * GST_SECOND) != target) {
++  state = t736_omx_diag_get_state (self, 5 * GST_SECOND, "action.wait-state");
++  if (state != target) {
+     reason = "OpenMAX broker idle/resume transition failed or timed out";
+     goto failed;
+   }
+@@ -345,7 +474,8 @@
+      * drains the returned output queue and resets flags/nFilledLen before
+      * FillThisBuffer, without reallocating the existing pool. */
+     if (!self->dec_out_port ||
+-        gst_omx_port_populate (self->dec_out_port) != OMX_ErrorNone) {
++        (err = t736_omx_diag_populate (self, self->dec_out_port,
++                "action.populate-output")) != OMX_ErrorNone) {
+       reason = "cannot repopulate the existing output pool after broker resume";
+       goto failed;
+     }
+@@ -356,10 +486,17 @@
+   self->downstream_flow_ret = GST_FLOW_ERROR;
+   success = FALSE;
+ done:
++  t736_omx_snapshot (self, &snapshot);
++  t736_omx_print (self, success ? "action.success" : "action.failure",
++      &snapshot, idle, state, target, err, reason);
+   GST_VIDEO_DECODER_STREAM_UNLOCK (self);
+   if (!success)
+     GST_ELEMENT_ERROR (self, LIBRARY, FAILED,
+-        ("T736 broker idle/resume failed"), ("%s", reason));
++        ("T736 broker idle/resume failed: %s; actual=%d started=%d "
++            "raw=%d pending=%d error=0x%08x result=0x%08x",
++            reason, (gint) state, snapshot.started, snapshot.raw,
++            snapshot.pending, snapshot.error, (guint) err),
++        ("idle=%d target=%d flow=%d", idle, (gint) target, snapshot.flow));
+   return success;
+ }
+ 
+@@ -3366,14 +3503,17 @@
+   OMX_ERRORTYPE err = OMX_ErrorNone;
+ 
+   GST_DEBUG_OBJECT (self, "Flushing decoder");
+-
+-  if (gst_omx_component_get_state (self->dec, 0) == OMX_StateLoaded)
++  t736_omx_trace (self, "flush.entry", -1, -1, 0);
++
++  if (t736_omx_diag_get_state (self, 0, "flush.initial-state") == OMX_StateLoaded) {
++    t736_omx_trace (self, "flush.loaded-return", OMX_StateLoaded, -1, 0);
+     return TRUE;
++  }
+ 
+   /* 0) Pause the components */
+-  if (gst_omx_component_get_state (self->dec, 0) == OMX_StateExecuting) {
+-    gst_omx_component_set_state (self->dec, OMX_StatePause);
+-    gst_omx_component_get_state (self->dec, GST_CLOCK_TIME_NONE);
++  if (t736_omx_diag_get_state (self, 0, "flush.pause-check") == OMX_StateExecuting) {
++    t736_omx_diag_set_state (self, OMX_StatePause, "flush.set-pause");
++    t736_omx_diag_get_state (self, GST_CLOCK_TIME_NONE, "flush.wait-pause");
+   }
+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
+   if (self->eglimage) {
+@@ -3386,8 +3526,10 @@
+ 
+   /* 1) Flush the ports */
+   GST_DEBUG_OBJECT (self, "flushing ports");
+-  gst_omx_port_set_flushing (self->dec_in_port, 5 * GST_SECOND, TRUE);
+-  gst_omx_port_set_flushing (self->dec_out_port, 5 * GST_SECOND, TRUE);
++  t736_omx_diag_set_flushing (self, self->dec_in_port, 5 * GST_SECOND,
++      TRUE, "flush.in-begin");
++  t736_omx_diag_set_flushing (self, self->dec_out_port, 5 * GST_SECOND,
++      TRUE, "flush.out-begin");
+ 
+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
+   if (self->eglimage) {
+@@ -3405,8 +3547,8 @@
+   GST_VIDEO_DECODER_STREAM_LOCK (self);
+ 
+   /* 3) Resume components */
+-  gst_omx_component_set_state (self->dec, OMX_StateExecuting);
+-  gst_omx_component_get_state (self->dec, GST_CLOCK_TIME_NONE);
++  t736_omx_diag_set_state (self, OMX_StateExecuting, "flush.set-executing");
++  t736_omx_diag_get_state (self, GST_CLOCK_TIME_NONE, "flush.wait-executing");
+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
+   if (self->eglimage) {
+     gst_omx_component_set_state (self->egl_render, OMX_StateExecuting);
+@@ -3415,8 +3557,10 @@
+ #endif
+ 
+   /* 4) Unset flushing to allow ports to accept data again */
+-  gst_omx_port_set_flushing (self->dec_in_port, 5 * GST_SECOND, FALSE);
+-  gst_omx_port_set_flushing (self->dec_out_port, 5 * GST_SECOND, FALSE);
++  t736_omx_diag_set_flushing (self, self->dec_in_port, 5 * GST_SECOND,
++      FALSE, "flush.in-end");
++  t736_omx_diag_set_flushing (self, self->dec_out_port, 5 * GST_SECOND,
++      FALSE, "flush.out-end");
+ 
+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
+   if (self->eglimage) {
+@@ -3425,10 +3569,10 @@
+     err = gst_omx_port_populate (self->egl_out_port);
+     gst_omx_port_mark_reconfigured (self->egl_out_port);
+   } else {
+-    err = gst_omx_port_populate (self->dec_out_port);
++    err = t736_omx_diag_populate (self, self->dec_out_port, "flush.populate-output");
+   }
+ #else
+-  err = gst_omx_port_populate (self->dec_out_port);
++  err = t736_omx_diag_populate (self, self->dec_out_port, "flush.populate-output");
+ #endif
+ 
+   if (err != OMX_ErrorNone) {
+@@ -3441,6 +3585,7 @@
+   self->downstream_flow_ret = GST_FLOW_OK;
+   self->started = FALSE;
+   GST_DEBUG_OBJECT (self, "Flush finished");
++  t736_omx_trace (self, "flush.end", -1, -1, err);
+ 
+   return TRUE;
+ }

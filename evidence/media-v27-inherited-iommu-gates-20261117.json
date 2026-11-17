@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "kind": "media-v27-inherited-iommu-deployment-gates",
+  "local_date": "2026-11-17",
+  "timezone": "Asia/Shanghai",
+  "recorded_utc": "2026-11-17T03:05:48.119775+00:00",
+  "reviewer": "backup_audit",
+  "scope": "Read-only consolidation of frozen media-v17 independent review and consumer contract for the new v26-based media-v27 work. This does not assess or modify v27 implementation, and does not approve v17 deployment.",
+  "inputs": [
+    {
+      "path": "evidence/media-v17-stage1-independent-review-20261116.json",
+      "bytes": 7957,
+      "sha256": "38a2583a4815c4c254d42e612406b3b42792e5170fd80a098c4455947ed10961"
+    },
+    {
+      "path": "evidence/media-v17-stage2-pte-independent-review-20261116.json",
+      "bytes": 1636,
+      "sha256": "ab1a5afcca64f988e65ecaca9cd91458163587bc07fca76df2160bd8cfea8779"
+    },
+    {
+      "path": "evidence/media-v17-stage2-master-addendum-20261116.json",
+      "bytes": 1485,
+      "sha256": "f7d1832daca0abe0768b868b7db3a58a578a5c43ad96862daafdca11a93b4531"
+    },
+    {
+      "path": "evidence/media-v17-build-stage2-20261116.json",
+      "bytes": 3545,
+      "sha256": "e287237a4f386c61ddb9e52112fe05b3827c0a591a55e0368a6cbf0eb617b728"
+    },
+    {
+      "path": "docs/CEDAR_BRIDGE.md",
+      "bytes": 9769,
+      "sha256": "b5929883df3e11c48b8d72ad058f07933da72377d3cf539db2a2ed61744fbf9b"
+    }
+  ],
+  "v17_disposition": {
+    "stage2_compile_passed": true,
+    "hardware_nodes_enabled": [],
+    "hardware_validation": false,
+    "approved_for_deployment": false,
+    "closed_finding": "pte-4g-carry only: independently encode each full-width physical page; stage2 boundary arithmetic tests passed.",
+    "unresolved_original_findings": [
+      "unmap-order",
+      "table-dma-ownership",
+      "completion-evidence",
+      "domain-lifetime",
+      "master-ownership",
+      "mapping-conflict",
+      "probe-and-power-unwind",
+      "group-and-of-refs",
+      "master-name-inverted",
+      "fault-master-bounds"
+    ]
+  },
+  "minimum_gates": [
+    {
+      "gate": "1-unmap-and-dual-instance-completion",
+      "owners": [
+        "code_index"
+      ],
+      "findings": [
+        "unmap-order",
+        "completion-evidence"
+      ],
+      "minimum": "Clear PTE/L1 entries, publish device-visible contents, invalidate the affected TLB/PTW in both v20 instances, establish completion, then allow data/table reuse. Propagate failure and prevent unsafe reuse. Read/check both instances rather than returning instance0 alone.",
+      "critical_limit": "The existing set-delay10us-clear sequence is not proof of completion, and no version-correct completion semantics were established. Do not borrow v3 offsets/self-clear semantics. Delaying only L2 free is insufficient if stale translations can access recycled data pages."
+    },
+    {
+      "gate": "2-page-table-DMA-and-map-atomicity",
+      "owners": [
+        "code_index"
+      ],
+      "findings": [
+        "table-dma-ownership",
+        "mapping-conflict"
+      ],
+      "minimum": "Use coherent DMA allocations or properly mapped table buffers with actual DMA handles and complete ownership/synchronization. Zero/synchronize L2 before publishing its L1 descriptor. Preserve32bitIOVA/34bitPA bounds and per-page high-bit encoding. Reject existing-PTE conflicts, propagate mapped length/error and roll back partially published allocation state.",
+      "critical_limit": "virt_to_phys is not a DMA mapping handle. A WARN plus overwrite or ignored map helper error cannot be deployed."
+    },
+    {
+      "gate": "3-domain-group-lifetime",
+      "owners": [
+        "code_index"
+      ],
+      "findings": [
+        "domain-lifetime",
+        "group-and-of-refs"
+      ],
+      "minimum": "Serialize shared domain/group creation and attach/detach ownership; fail allocation/attach on hardware-init errors. Quiesce or block all attached masters and remove their live TTB references before table destruction. Balance group/OF refs and remove unused notifier allocations.",
+      "critical_limit": "Do not free page tables while hardware can still walk them; do not cache ERR_PTR or publish a partially initialized singleton."
+    },
+    {
+      "gate": "4-VE-master-isolation-and-fault-bounds",
+      "owners": [
+        "code_index",
+        "root-DT-review"
+      ],
+      "findings": [
+        "master-ownership",
+        "master-name-inverted",
+        "fault-master-bounds"
+      ],
+      "minimum": "Validate every iommus argument and explicitly own both VE masters6/7. Keep unrelated GPU/display/storage masters unchanged or initially bypassed as appropriate; the old0x3ff mask omitted masters10/11. Compare names for equality with NULL/unknown handling. Restrict fault bits to six valid masters per instance; validate nonzero/range before __ffs, array indexing, callbacks or master MMIO.",
+      "critical_limit": "Instance1 seventh-MIC decoding must not address master12. Fault/unknown bits must not be converted into a fabricated valid master."
+    },
+    {
+      "gate": "5-provider-probe-and-power-unwind",
+      "owners": [
+        "root-VE-clocks-nodes",
+        "code_index-IOMMU-probe"
+      ],
+      "findings": [
+        "probe-and-power-unwind"
+      ],
+      "minimum": "Use IS_ERR/PTR_ERR for MMIO resources; acquire and check runtime power, clocks and reset resources before MMIO. Balance failure unwind and publish globals only after complete initialization. Dual-instance resource integration must preserve shared GPU/display/storage gates and locks.",
+      "critical_limit": "Donor PM power timeout that merely prints or WARNs before returning success is not an acceptable provider contract."
+    },
+    {
+      "gate": "6-Cedar-dmabuf-consumer-contract",
+      "owners": [
+        "root-VE-kernel-interface",
+        "desktop_review-Cedar-ABI"
+      ],
+      "findings": [
+        "system_heap_consumer_contract"
+      ],
+      "minimum": "Cedar2.0 selects system dma-heap/IOMMU, which may supply discontiguous physical pages. Use full dma-buf attach/map/unmap/detach lifetime, validate a contiguous complete DMA-address extent and the32bit private-ioctl range, and hold mapping ownership while VE may access it.",
+      "critical_limit": "The first SG physical address is not a whole-buffer mapping. Plugin registration or heap availability alone does not establish real decode, encode, AFBC, zero-copy presentation or browser acceleration."
+    }
+  ],
+  "priority": "Gate1 is the earliest unresolved hardware-contract dependency; gates2-5 are concrete source/resource correctness closures. Gate6 is required before handing system-heap buffers to Cedar/VE. These are deployment prerequisites, not a request for broad additional testing.",
+  "preserved_boundaries": {
+    "base": "frozen storage-v26",
+    "persistent_default": "storage-v16",
+    "original_Mutter": "retained",
+    "final_integrated_image_flashed": false,
+    "v17_source_modified": false,
+    "other_agent_source_modified": false,
+    "board_operated": false,
+    "new_builds_or_tests_run": false
+  },
+  "next_evidence": "Each v27 closure should identify its exact implementation and supporting version-correct contract or observation; compile/host arithmetic success cannot substitute for missing DMA completion semantics."
+}

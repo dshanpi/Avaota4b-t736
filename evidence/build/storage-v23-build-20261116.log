@@ -1,0 +1,235 @@
+PASS: exact100/200MHz, all2080linear intervals, no endpoint-wrap, minimum margins, actual-board seed boundaries
+PASS: observed0xac/0x22 classified bad tap; normalI/O still fails; unexplained summary/hard/unknown bits rejected; partial eye center15
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v23'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-storage-v23'
+  GEN     Makefile
+#
+# No change to .config
+#
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-storage-v23'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v23'
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v23'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-storage-v23'
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux-storage-v23/scripts/checksyscalls.sh
+  CC      drivers/mmc/host/t736_mmc_pio.o
+  AR      drivers/mmc/host/built-in.a
+  AR      drivers/mmc/built-in.a
+  AR      drivers/built-in.a
+  AR      built-in.a
+  AR      vmlinux.a
+  LD      vmlinux.o
+  MODPOST Module.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+  NM      .tmp_vmlinux1.syms
+  KSYMS   .tmp_vmlinux1.kallsyms.S
+  AS      .tmp_vmlinux1.kallsyms.o
+  LD      .tmp_vmlinux2
+  NM      .tmp_vmlinux2.syms
+  KSYMS   .tmp_vmlinux2.kallsyms.S
+  AS      .tmp_vmlinux2.kallsyms.o
+  LD      vmlinux.unstripped
+  NM      System.map
+  SORTTAB vmlinux.unstripped
+  OBJCOPY vmlinux
+  GEN     modules.builtin.modinfo
+  GEN     modules.builtin
+  OBJCOPY arch/arm64/boot/Image
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-storage-v23'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v23'
+make: Entering directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v23'
+make[1]: Entering directory '/home/ubuntu/t736-mainline/build/linux-storage-v23'
+  GEN     debian
+dpkg-buildpackage --build=binary --no-pre-clean --unsigned-changes -R'make -f debian/rules' -j1 -a$(cat debian/arch)
+dpkg-buildpackage: info: source package linux-upstream
+dpkg-buildpackage: info: source version 6.18.63-23
+dpkg-buildpackage: info: source distribution noble
+dpkg-buildpackage: info: source changed by ubuntu <ubuntu@ubuntu2404>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture arm64
+ make -f debian/rules binary
+  GEN     Makefile
+#
+# No change to .config
+#
+  GEN     Makefile
+  CALL    /home/ubuntu/t736-mainline/sources/work/linux-storage-v23/scripts/checksyscalls.sh
+  GZIP    arch/arm64/boot/Image.gz
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-amarula-relic.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-bananapi-m64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-nanopi-a64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-oceanic-5205-5inmfd.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-olinuxino.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-olinuxino-emmc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-orangepi-win.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-pine64-lts.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-pine64-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-pine64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-pinebook.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-pinephone-1.0.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-pinephone-1.1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-pinephone-1.2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-pinetab.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-pinetab-early-adopter.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-sopine-baseboard.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a64-teres-i.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h64-remix-mini-pc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a100-allwinner-perf1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-a133-liontron-h-a133l.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-bananapi-m2-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-emlid-neutis-n5-devboard.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-libretech-all-h3-cc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-libretech-all-h3-it.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-libretech-all-h5-cc.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-nanopi-neo2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-nanopi-neo-plus2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-nanopi-r1s-h5.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-orangepi-pc2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-orangepi-prime.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-orangepi-zero-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h5-orangepi-zero-plus2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h6-beelink-gs1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h6-orangepi-3.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h6-orangepi-lite2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h6-orangepi-one-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h6-pine-h64.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h6-pine-h64-model-b.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h6-tanix-tx6.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h6-tanix-tx6-mini.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h313-tanix-tx1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h313-x96q.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h616-bigtreetech-cb1-manta.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h616-bigtreetech-pi.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h616-orangepi-zero2.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h616-x96-mate.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h618-longanpi-3h.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h618-orangepi-zero2w.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h618-orangepi-zero3.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h618-transpeed-8k618-t.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h618-yuzukihd-chameleon.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h700-anbernic-rg35xx-2024.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h700-anbernic-rg35xx-h.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h700-anbernic-rg35xx-plus.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun55i-a527-cubie-a5e.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun55i-h728-x96qpro+.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun55i-t527-avaota-a1.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/sun55i-t527-orangepi-4a.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/t736-mainline-bringup.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/t736-hdmi-candidate.dtb
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/t736-gpu-candidate.dtb
+  SYMLINK debian/linux-image-6.18.63-t736-storage-v23/lib/modules/6.18.63-t736-storage-v23/build
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/lib/modules/6.18.63-t736-storage-v23/modules.order
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/lib/modules/6.18.63-t736-storage-v23/modules.builtin
+  INSTALL debian/linux-image-6.18.63-t736-storage-v23/lib/modules/6.18.63-t736-storage-v23/modules.builtin.modinfo
+  DEPMOD  debian/linux-image-6.18.63-t736-storage-v23/lib/modules/6.18.63-t736-storage-v23
+  INSTALL debian/linux-libc-dev/usr/include
+dpkg-deb: building package 'linux-image-6.18.63-t736-storage-v23' in '../linux-image-6.18.63-t736-storage-v23_6.18.63-23_arm64.deb'.
+dpkg-deb: building package 'linux-libc-dev' in '../linux-libc-dev_6.18.63-23_arm64.deb'.
+ dpkg-genbuildinfo --build=binary -O../linux-upstream_6.18.63-23_arm64.buildinfo
+ dpkg-genchanges --build=binary -O../linux-upstream_6.18.63-23_arm64.changes
+dpkg-genchanges: info: binary-only upload (no source code included)
+ dpkg-source --after-build .
+dpkg-buildpackage: info: binary-only upload (no source included)
+make[1]: Leaving directory '/home/ubuntu/t736-mainline/build/linux-storage-v23'
+make: Leaving directory '/home/ubuntu/t736-mainline/sources/work/linux-storage-v23'
+{
+  "schema": 1,
+  "kind": "t736-storage-v23-hs200-candidate",
+  "status": "compiled-not-board-accepted",
+  "kernel_release": "6.18.63-t736-storage-v23",
+  "baseline_release": "6.18.63-t736-storage-v22",
+  "configuration_changes": [
+    "CONFIG_LOCALVERSION"
+  ],
+  "source_tree": "sources/work/linux-storage-v23",
+  "output_tree": "build/linux-storage-v23",
+  "design": "evidence/storage-v23-hs200-error-recovery-design-20261116.json",
+  "default_hs200_enabled": false,
+  "first_stage_hs200_hz": 100000000,
+  "later_stage_hs200_hz": 200000000,
+  "boot_parameters": [
+    "t736_mmc_pio.enable_hs200=1",
+    "t736_mmc_pio.hs200_max_hz=100000000"
+  ],
+  "tuning": "64 linear taps,20 fresh128B patterns/tap,window>=12,16 center verification patterns",
+  "flow_control": "HS200 per-request128/512B THLD; preserves SFC/BCIG; restores legacy policy on exit",
+  "shared_pll_or_rail_writes": false,
+  "hs400_enabled": false,
+  "dt_delta": "None; exact v22 DTB hash",
+  "package": {
+    "path": "build/linux-image-6.18.63-t736-storage-v23_6.18.63-23_arm64.deb",
+    "size": 5604114,
+    "sha256": "64b25cd6f4160d239aceab28222ad74b2c734f43f4f1adaafd4fedb0ea682ff0"
+  },
+  "files": {
+    "build/linux-storage-v23/.config": "ac261fc54cd55ef4d8a8a6536697721530c02352b278694d3a507b0289cd7bc0",
+    "build/linux-storage-v23/arch/arm64/boot/Image": "89e626ddc88c62693f1e45047896b46e899b2e21bc477b4fd6caaf412d007e94",
+    "build/linux-storage-v23/arch/arm64/boot/Image.gz": "2a2920f717dca0b63b2eeb9706ecb645208a2fc02aa52ba7d4dc0504488e7b51",
+    "build/linux-storage-v23/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "build/linux-storage-v23/System.map": "009d41fe25b87b3e7ea9f67d845533ccb0e4d08da810436a6e5bf5a65510176c",
+    "build/linux-storage-v23/Module.symvers": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "boards/t736_mmc_hs200_v23_draft.c": "e812522e9295ab162ae604ff2a0f626d1210ddb1c86a6402102897f30ea39d46",
+    "boards/t736_mmc_clock_hs200_draft.h": "33f4c8eae7d5b7c73534e07c4c24652a01d0400fc00f286b9212116ee83cd5a2",
+    "boards/t736_mmc_tuning_draft.h": "2ba574aec0bf5fe06d4d0a90319891c0c3c7b2871cbdddaa6ae004e91d66eeb0",
+    "boards/t736_mmc_tuning_error_draft.h": "2cd7bc09f6200e47986f0a08e3755033964898b2e9ba10e1add250b2d95ac243",
+    "tests/test_mmc_hs200_error_recovery.py": "52c548de2ce0e6ac74456074aed3472ab053f70e4ad15389f696ce2a2ac69bf7",
+    "boards/t736_mmc_dma_desc.h": "d1936275bae1cf1ddc83044523ce58a003b8286bfd3e01b1c7762cf3cc6e1f0c",
+    "tools/build_hs200_v23_storage_kernel.sh": "7c25105b78ea67b2743141ff6ae6b82edfba19bc067ff415fa22adf643d4805d"
+  },
+  "frozen_v22_files_unchanged": true,
+  "board_validation": "pending100MHz then200MHz one-shot tuning/integrity/performance/GPU; defaults remain existing fallback"
+}
+{
+  "evidence": "/home/ubuntu/t736-mainline/evidence/storage-v23-package-20261116.json",
+  "package": {
+    "path": "/home/ubuntu/t736-mainline/build/linux-image-6.18.63-t736-storage-v23_6.18.63-23_arm64.deb",
+    "size": 5604114,
+    "sha256": "64b25cd6f4160d239aceab28222ad74b2c734f43f4f1adaafd4fedb0ea682ff0",
+    "control": {
+      "Package": "linux-image-6.18.63-t736-storage-v23",
+      "Source": "linux-upstream",
+      "Version": "6.18.63-23",
+      "Architecture": "arm64",
+      "Maintainer": "ubuntu <ubuntu@ubuntu2404>",
+      "Installed-Size": "9319",
+      "Section": "kernel",
+      "Priority": "optional",
+      "Homepage": "https://www.kernel.org/",
+      "Description": "Linux kernel, version 6.18.63-t736-storage-v23"
+    }
+  },
+  "matched_build_artifacts": {
+    "boot/vmlinuz-6.18.63-t736-storage-v23": {
+      "build_file": "build/linux-storage-v23/arch/arm64/boot/Image.gz",
+      "size": 5043735,
+      "sha256": "2a2920f717dca0b63b2eeb9706ecb645208a2fc02aa52ba7d4dc0504488e7b51",
+      "compression": "gzip",
+      "uncompressed_size": 11800584,
+      "uncompressed_sha256": "89e626ddc88c62693f1e45047896b46e899b2e21bc477b4fd6caaf412d007e94"
+    },
+    "boot/config-6.18.63-t736-storage-v23": {
+      "build_file": "build/linux-storage-v23/.config",
+      "size": 99084,
+      "sha256": "ac261fc54cd55ef4d8a8a6536697721530c02352b278694d3a507b0289cd7bc0"
+    },
+    "boot/System.map-6.18.63-t736-storage-v23": {
+      "build_file": "build/linux-storage-v23/System.map",
+      "size": 2641459,
+      "sha256": "009d41fe25b87b3e7ea9f67d845533ccb0e4d08da810436a6e5bf5a65510176c"
+    },
+    "usr/lib/linux-image-6.18.63-t736-storage-v23/allwinner/t736-gpu-candidate.dtb": {
+      "build_file": "build/linux-storage-v23/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb",
+      "size": 12028,
+      "sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244"
+    }
+  },
+  "regular_file_count": 82
+}

@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "status": "PRIVATE_SFTP_BACKUP_READBACK_VERIFIED",
+  "recorded_utc": "2026-11-17T06:07:37.950690+00:00",
+  "host": "192.168.1.228",
+  "remote_root": "/home/ubuntu/t736-mainline",
+  "files": [
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-active-debug.json",
+      "bytes": 111025,
+      "sha256": "dc6fd9eab4ebd0961e9ff4d8c5c55da0035e0943588478671a0bd1b131c3106a",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend4-rdd-big.json",
+      "bytes": 17181,
+      "sha256": "75244d7c8e9ac99c1e4f1e3ad8778fadec8de84da1c6df771a7b9b67fe9f85ef",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend4-service.log",
+      "bytes": 53854,
+      "sha256": "9e15fa40574686ea84327c591b72d4074c61b577695dff8738e23cf41ff53523",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend4-unpinned.json",
+      "bytes": 17198,
+      "sha256": "cd34e6b44c92dfab9bb0c717abd8ff6a25bc5e54aa32c9a356ada7059e638b3c",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-paused-prime.json",
+      "bytes": 20180,
+      "sha256": "49e518daa493ac34f0404126abe6e329e44e4559093e6558448e3d6b980810ef",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-queue20.json",
+      "bytes": 20189,
+      "sha256": "5051934cc087be13961929ab776262460f00298324ddd3eb92ebb8635ef817e6",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-rdd-affinity.log",
+      "bytes": 360,
+      "sha256": "e4af4961b2237dc622cb4243c77a65f885010ddcfb6e76b53e0c66cb1b9e4428",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-rdd-big.json",
+      "bytes": 17124,
+      "sha256": "3241c98f27db129e84f72a6ef08fe2460e360d4539119a13c67668bb70c3e4f5",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-service.log",
+      "bytes": 151192,
+      "sha256": "08512431e35c104dca5a506196fec55527926ce8cd5359b938a6122ac325bc17",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-backend5-thread-cpu.json",
+      "bytes": 2075,
+      "sha256": "ac21550018367f6a832f73e58f694ad282efbc720524a71c206144edf07e5d09",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-debug-queue20.json",
+      "bytes": 4881,
+      "sha256": "1e012e08628588d47d9efa57d7dff679f958cbb3b069f4735f643545d5a065f1",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-dmabufs.log",
+      "bytes": 12357,
+      "sha256": "3f8e85c2fe0ee52adf56f7db527950b92e525a3696ecab0ce2acaa8b62f958a4",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-native-control.json",
+      "bytes": 20161,
+      "sha256": "d0cc0c87f0ae9229cc003d59fce42fa7cd580cf61dc8c4bc376a300de32c065d",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-rdd-affinity.log",
+      "bytes": 360,
+      "sha256": "56c787656e6ab62ba09a4cc38c9665945b89c701eef777bb230d039818551bc5",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/firefox-60fps-v28-backend4.log",
+      "bytes": 2503,
+      "sha256": "56600c2745fe5058596832cd92ac94a8c266c2869bf3902ed8821641759bc6ec",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/firefox-60fps-v28-backend5.log",
+      "bytes": 4042,
+      "sha256": "0894e1911dacb32c68f3daca9bb897463532eb2afc39ac0685aefad1422d9f82",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/firefox-60fps-v28-native-control.log",
+      "bytes": 1486,
+      "sha256": "97dd36e3c1550c831cad938f80859998f8b030be48210151e4016658b9592719",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/hevc-60fps-v28-backend4-exact.json",
+      "bytes": 10023,
+      "sha256": "68a1a68ad067bd3b4afb78c1e9a2d9376266a600294af4bca82c6d6885b13127",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/hevc-60fps-v28-backend5-exact-r2.json",
+      "bytes": 10017,
+      "sha256": "73f186b20c241e026119864ff3147fd0058575dd65c066749b5136dbe252fff3",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/hevc-60fps-v28-backend5-exact.json",
+      "bytes": 437,
+      "sha256": "f399b15a342b7947402c11d1865839cb189321f26145ccbf8b9433dc48e0c16b",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/v28-stage-result.json",
+      "bytes": 1251,
+      "sha256": "61634fdbb9126879bc43db47d0330fc1c2349b00ba187126c7341bba31111868",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/ffmpeg7-private/60fps-v28-ffmpeg7-queue20-prime.json",
+      "bytes": 20179,
+      "sha256": "1690d4dfda43bcd29c9d3a779c5eb5e7a9627d9e0dd6758d325416e3da798cda",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/ffmpeg7-private/60fps-v28-ffmpeg7-rdd-affinity.log",
+      "bytes": 360,
+      "sha256": "6b18ade10c04298a999a23090f3fe5fde749fe67a25a09263298698b999b64e2",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/ffmpeg7-private/60fps-v28-ffmpeg7.json",
+      "bytes": 20263,
+      "sha256": "03f585d8f1ffed0ca5a9bd12eaf11704c6922a853efe2489f6303cafe3e13d9f",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/ffmpeg7-private/firefox-60fps-v28-ffmpeg7.log",
+      "bytes": 5231,
+      "sha256": "b4eef6890ba02b33ae7a0212e59f71013e72b20e88845055817193fd0cc90038",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v28-rail-clock.log",
+      "bytes": 302,
+      "sha256": "24367b42f74777a4865c0f3ad2f8d1fc663f09994cf6f78ea47824e9a0f743df",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/60fps-v28-boot.log",
+      "bytes": 6721,
+      "sha256": "bdba29b4d5620ad5c34cb9f670a2fb3996c988b7e5ede34f8260e8a3de5dd4b3",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/browser-v28-before-v7-private.tar.gz",
+      "bytes": 30940,
+      "sha256": "f79aa58b83122cac26709d97e89870791f80000b49a387530469ed2c9deedb28",
+      "readback_verified": true
+    },
+    {
+      "path": "build/browser-fixture-20261117/browser-ffmpeg7-private.tar.gz",
+      "bytes": 5589,
+      "sha256": "1c030e16a79be4416b1a2eb27d103ceee8424e8e28652bbc22c949b6569c7639",
+      "readback_verified": true
+    },
+    {
+      "path": "evidence/browser-v28-v7-hardware-phase-20261117.json",
+      "bytes": 17538,
+      "sha256": "db2e6d0e2bdfcd36f69f55ddaae5e219ca42dadb4580374bb16ac4210ccbd15b",
+      "readback_verified": true
+    }
+  ],
+  "total_bytes": 585019,
+  "board_access": false,
+  "public_upload": false,
+  "status_json_or_readme_modified": false
+}

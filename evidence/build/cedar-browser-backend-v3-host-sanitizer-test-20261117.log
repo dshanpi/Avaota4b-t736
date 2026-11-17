@@ -1,0 +1,9 @@
+CEDAR_COPY frames=1 format=NV21 storage=8x8 crop=2,2,4,4 strides=12,12,0 map_us=1 copy_us=0 total_map_us=1 total_copy_us=0 avg_copy_us=0
+CEDAR_COPY frames=1 format=NV21 storage=8x8 crop=2,2,5,3 strides=12,12,0 map_us=0 copy_us=0 total_map_us=0 total_copy_us=0 avg_copy_us=0
+CEDAR_COPY frames=1 format=NV12 storage=8x8 crop=2,2,4,4 strides=12,12,0 map_us=0 copy_us=0 total_map_us=0 total_copy_us=0 avg_copy_us=0
+CEDAR_COPY frames=1 format=NV12 storage=8x8 crop=2,2,5,3 strides=12,12,0 map_us=0 copy_us=0 total_map_us=0 total_copy_us=0 avg_copy_us=0
+CEDAR_COPY frames=1 format=I420 storage=8x8 crop=2,2,4,4 strides=12,6,6 map_us=0 copy_us=0 total_map_us=0 total_copy_us=0 avg_copy_us=0
+CEDAR_COPY frames=1 format=I420 storage=8x8 crop=2,2,5,3 strides=12,6,6 map_us=0 copy_us=0 total_map_us=0 total_copy_us=0 avg_copy_us=0
+CEDAR_COPY frames=1 format=YV12 storage=8x8 crop=2,2,4,4 strides=12,6,6 map_us=0 copy_us=0 total_map_us=0 total_copy_us=0 avg_copy_us=0
+CEDAR_COPY frames=1 format=YV12 storage=8x8 crop=2,2,5,3 strides=12,6,6 map_us=0 copy_us=0 total_map_us=0 total_copy_us=0 avg_copy_us=0
+PASS: actual Gst copy path; 4 layouts, padded strides/heights, crop origin, odd sizes, timestamps, color, malformed/missing crop, resolution change, mapped-plane span rejection; software EOS-flush-idle-resume-reuse with mock private action; UV vector/tail/unaligned ranges

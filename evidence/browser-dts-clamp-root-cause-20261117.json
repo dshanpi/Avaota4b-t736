@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "ROOT_CAUSE_SUPPORTED_BY_REAL_INPUT_TRACE_AND_180_FRAME_NOPTS_DTS_TRIAL_FIREFOX_V4_PENDING",
+  "board_access_by_author": false,
+  "hardware_operator": "root",
+  "runtime_reported_by_operator": {
+    "h265parse_version": "1.26.2",
+    "h265parse_path": "/opt/t736-gst-parser-v27/selected/libgstvideoparsersbad.so",
+    "symlink_target": "../usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstvideoparsersbad.so",
+    "plugin_source": "Debian package extracted privately, as reported by operator",
+    "libgstreamer1.0-0": "1.26.2-2",
+    "libgstreamer-plugins-base1.0-0": "1.26.2-1+deb13u2"
+  },
+  "source_scope": "Official upstream1.26.2 source was inspected after initial Tina1.20.1 finding. Matching release version does not claim byte-identical Debian binaries or a complete Debian patch audit.",
+  "sources": [
+    {
+      "path": "sources/audit/gstreamer-1.26.2-pts-review/gstbaseparse.c",
+      "url": "https://raw.githubusercontent.com/GStreamer/gstreamer/1.26.2/subprojects/gstreamer/libs/gst/base/gstbaseparse.c",
+      "sha256": "c7c932a68b818fe21c58d068d2dcaf6e5a0461427e0c8d4a90b26d35b4c0b4dd",
+      "lines": "1037-1049: valid PTS<DTS changes PTS=DTS;1338-1343: TIME segment clears next_dts"
+    },
+    {
+      "path": "sources/audit/gstreamer-1.26.2-pts-review/gsth265parse.c",
+      "url": "https://raw.githubusercontent.com/GStreamer/gstreamer/1.26.2/subprojects/gst-plugins-bad/gst/videoparsers/gsth265parse.c",
+      "sha256": "530a338f27ed8376e7c4f50ff85fb59b5f2e2a95f3b97c1937be71d3c774c7c3",
+      "lines": "173-174: disable PTS interpolation and timestamp inference"
+    }
+  ],
+  "real_wire_trace_from_operator": {
+    "units": "microseconds",
+    "decode_order_pts_dts": [
+      [
+        0,
+        0
+      ],
+      [
+        50000,
+        16666
+      ],
+      [
+        33333,
+        33333
+      ],
+      [
+        16666,
+        50000
+      ],
+      [
+        100000,
+        66666
+      ],
+      [
+        83333,
+        83333
+      ],
+      [
+        66666,
+        100000
+      ]
+    ],
+    "observed_pull_prefix_us": [
+      0,
+      33333,
+      50000,
+      50000
+    ]
+  },
+  "root_cause": {
+    "operation": "GstBaseParse unconditionally clamps valid PTS to DTS when PTS<DTS; inference disabled does not bypass this branch",
+    "specific_examples": [
+      {
+        "input_pts": 16666,
+        "input_dts": 50000,
+        "clamped_pts": 50000
+      },
+      {
+        "input_pts": 66666,
+        "input_dts": 100000,
+        "clamped_pts": 100000
+      }
+    ],
+    "consequence": "Original presentation timestamps are lost and duplicated before the OMX frame association path",
+    "excluded_explanations": [
+      "PTS0 is valid; missing timestamp is GST_CLOCK_TIME_NONE",
+      "This tens-of-milliseconds change is not microsecond truncation",
+      "gst-omx nearest-frame matching uses integer nanoseconds and3ms tolerance, not floating point"
+    ]
+  },
+  "minimal_fix": {
+    "owner": "desktop_review",
+    "path": "tools/browser/ffmpeg_cedar.c",
+    "source_sha256": "ef61bbc5e0749ec2540821b44294dd566ea4f860cae9c7eff75626b388552b8a",
+    "change": "Pass INT64_MIN for DTS only in s->api.push(...,pts,INT64_MIN)",
+    "preserved": [
+      "original AVPacket PTS/DTS",
+      "software fallback replay packet",
+      "saved output timing metadata including original pkt_dts",
+      "normalization offset and inverse PTS translation"
+    ],
+    "reason": "Packets are submitted in decode order; valid PTS supplies OMX nTimeStamp without using this incompatible external DTS"
+  },
+  "stream_reset_requirement": "Begin repaired stream after existing lease flush/new TIME segment; hot switching DTS toNONE without clearing old BaseParse next_dts can retain old inferred decode times. Same retained decoder pool is allowed; destruction is unnecessary.",
+  "hardware_trial_reported_by_operator": {
+    "case": "Same HEVC fixture with wire DTS=NOPTS",
+    "frames": 180,
+    "result": "PASS reported by root",
+    "raw_log_reference": "Pending operator-provided artifact path; this record does not claim independent board operation or unreported hash details"
+  },
+  "firefox_v4_acceptance": "Pending root real Firefox playback retest; direct broker180-frame pass is not browser acceptance",
+  "next_checks": [
+    "Firefox same fixture reaches EOS with expected displayed frame/PTS sequence",
+    "Original pkt_dts and software fallback remain unchanged in desktop regression tests",
+    "Root attaches raw trial log and final browser outcome separately"
+  ]
+}

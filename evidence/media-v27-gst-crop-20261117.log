@@ -1,0 +1,47 @@
+GST_EXIT=0
+414:         52          0          0          0          0          0          0          0    GICv3  81 Level     t736-cedar-wc
+-rw-r--r-- 1 root root 3.3M 11月17日 03:33 /run/t736-cedar-gst-crop/output.nv21
+cca7302cbb871683366faa34a4e0799493eb8fc63b095d66bdda54e7cd8f945b  /run/t736-cedar-gst-crop/output.nv21
+设置暂停管道 ...
+iniparser: cannot open /etc/cedarc.conf
+iniparser: cannot open /etc/cedarc.conf
+T736_WC: version=0x3331000021320 phy_offset=0x0 heap=t736-ve cache=WC barriers=dmb-osh
+DEBUG  : cedarc <CdcIniParserInit:36>: cannot parse file: /etc/cedarc.conf
+
+DEBUG  : cedarc <AwOmxComponentInit:40>: OMXCORE: aw_omx_component_init bfe36f20
+
+收到 EOS 信号 - 中止管道 ...
+Execution ended after 0:00:00.052378706
+设置 NULL 管道 ...
+WARNING: omx_vdec_aw <standbyOutBufferArr:879>: ** return pic when flush,i[2],pPic[0xffff700017d8]
+WARNING: omx_vdec_aw <standbyOutBufferArr:879>: ** return pic when flush,i[4],pPic[0xffff70001a98]
+INFO   : cedarc <DestroyVideoDecoder:441>: DestroyVideoDecoder, pDecoder=0xffff74009f00
+INFO   : cedarc <VeRelease:1865>: not malloc locks
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+ERROR  : ionAlloc <ion_alloc_pfree:386>: VeFreeIommuAddr error
+
+INFO   : cedarc <VeRelease:1865>: not malloc locks
+
+释放管道资源 ...

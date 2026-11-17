@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "COMPILED_DEVICE_FREE_TESTS_PASS_HARDWARE_PERFORMANCE_PENDING",
+  "board_access": false,
+  "source_sha256": "c29f2bfd2cb398086cef4deae702d9c427cb3392b67ad3cea464d40a36b80360",
+  "change": "NV12/NV21 chroma split uses AArch64 NEON vld2q_u8 plus two vst1q_u8; planar I420/YV12 remain row memcpy; preserve v2 explicit idle/resume",
+  "tests": [
+    "ARM64 -Wall -Wextra -Werror",
+    "QEMU ARM64 actual NEON UV rows1,15,16,17,31,32,35,960 at unaligned pointers, both chroma orders and sentinel guard bytes",
+    "Actual Gst four-format mapping/crop/copy and malformed span rejection",
+    "Native ASan/UBSan scalar fallback and full backend tests",
+    "objdump confirms ld2 {v0.16b-v1.16b} in produced library"
+  ],
+  "measurement": "CLOCK_MONOTONIC: first frame and each300th frame log actual format/storage/crop/plane strides, map time, allocation+copy time, cumulative frames/map/copy, average copy; no per-frame log",
+  "limits": [
+    "Performance benefit only applies if negotiated input is NV12/NV21",
+    "QEMU and CPU tests do not measure target WC memory throughput",
+    "No clock changes or board operations performed",
+    "Hardware exact output and runtime benchmark remain parent-owned"
+  ]
+}

@@ -1,0 +1,613 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v24-hs400-stage-record",
+  "updated_utc": "2026-11-16T13:50:54.582019+00:00",
+  "status": "HS400-100MHz-and-200MHz-bounded-stages-passed",
+  "default_promoted": false,
+  "kernel_release": "6.18.63-t736-storage-v24",
+  "previous_stage_history": [
+    {
+      "path": "evidence/storage-v23-hs200-stage-record-20261116.json",
+      "sha256": "683f10fdccb694f71a241d6f2b0769b2d5fc59e80596ba9f14c2a5260f284f74",
+      "bytes": 13183
+    },
+    {
+      "path": "evidence/storage-v22-hs200-stage-record-20261116.json",
+      "sha256": "dbdc10fea7ae36c238cb12a737a14e1c247ceefd5ab3a9c7504eec4609613738",
+      "bytes": 11718
+    }
+  ],
+  "fixed_artifacts": {
+    "package": {
+      "path": "build/linux-image-6.18.63-t736-storage-v24_6.18.63-24_arm64.deb",
+      "bytes": 5603706,
+      "sha256": "c58e56fab073adf8f62c14148ab7d79d7feb7ee43e134744c834556079ac0578"
+    },
+    "updater_sha256": "0344a5364a9e7e126b5413870387ced4c9c1f83a9135dfd703ad55141546290e",
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "pvr_sha256": "badb7af910bd31bf60df0642db893111d77031f9f3560b3f2a23303d0ed700ea",
+    "source_files": [
+      {
+        "path": "boards/t736_mmc_hs400_draft.c",
+        "sha256": "515d7f75b871ee9da838ef71199706ddedb5425ae6cfac186c3089831d8598e5",
+        "bytes": 42516
+      },
+      {
+        "path": "boards/t736_mmc_hs400_policy_draft.h",
+        "sha256": "ae7f25d6309e1f6b1489277b2edab2fd06bc3f7c64f5a05b7103ea8036922384",
+        "bytes": 2295
+      },
+      {
+        "path": "boards/t736_mmc_hs400_tuning_draft.h",
+        "sha256": "c202f8f5dc5fb625e568c5b8f9f87f2d3c3e2531e2b3a859d361a805fda1c2bf",
+        "bytes": 1533
+      }
+    ]
+  },
+  "transaction": {
+    "check": "CHECK_PASS",
+    "apply": "INSTALLED_AND_SELECTED_NOT_BOOT_TESTED",
+    "backup_directory": "/var/backups/t736-storage-v24/20261116T134338Z-ut7gjkis",
+    "immediate_rollback": "V16_RESTORED_NOT_REBOOTED",
+    "running_kernel_during_install": "6.18.63-t736-storage-v23",
+    "persistent_fallback": "6.18.63-t736-storage-v16",
+    "persistent_fallback_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b",
+    "candidate_files_preserved_for_explicit_boot": true,
+    "installed_final_sha256": {
+      "kernel": "bb44b15ef67cfb3718672e5ed864108f75f258d6fa1cc5a1f21287fadad08784",
+      "config": "2ebe51f737ee4c679a00237136d051c0bce542560a4c2159aa55bebc5e63b3e3",
+      "dtb": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+      "pvr": "badb7af910bd31bf60df0642db893111d77031f9f3560b3f2a23303d0ed700ea",
+      "initrd": "22171f9c0297ff26afe084dedb06f84e69110af496c1fbcb16505116cc64d6e0",
+      "modules_dep": "a04354f94edd7ebf9b94fe65b273460c00e8a0d4b60956054937f43544b0230b"
+    },
+    "saveenv": false
+  },
+  "stages": {
+    "hs400_100": {
+      "status": "passed-bounded-hs400-100MHz-boot-command-and-strobe-tuning-integrity-and-health-stage",
+      "accepted": true,
+      "boot_id": "59f154aa-d471-4696-920d-bc61fae1e834",
+      "boot_parameters": [
+        "t736_mmc_pio.enable_hs200=1",
+        "t736_mmc_pio.hs200_max_hz=200000000",
+        "t736_mmc_pio.enable_hs400=1",
+        "t736_mmc_pio.hs400_max_hz=100000000"
+      ],
+      "software_ios": {
+        "requested_hz": 200000000,
+        "actual_hz": 100000000,
+        "timing": 10,
+        "timing_name": "mmc HS400",
+        "width_bits": 8,
+        "signal_voltage": "1.80V",
+        "card_hs_timing": "0x03",
+        "card_bus_width": "0x06",
+        "request_vs_actual": "Core requested200MHz; driver hs400_max_hz cap intentionally programmed100MHz. Actual clock and requested clock are kept distinct."
+      },
+      "boot_seconds": {
+        "kernel": 6.849,
+        "userspace": 6.099,
+        "total": 12.948
+      },
+      "tuning": {
+        "frequency_hz": 100000000,
+        "hs200_prerequisite": {
+          "frequency_hz": 200000000,
+          "passing_bitmap": "0xffffffc0ffffffff",
+          "abort_failure_bitmap": "0x0000003f00000000",
+          "linear_window_first": 0,
+          "linear_window_count": 32,
+          "chosen_tap": 15,
+          "center_verification_transfers": 16,
+          "pattern_bytes": 128
+        },
+        "command_eye": {
+          "opcode": 13,
+          "command_retries": 0,
+          "passing_bitmap": "0xffffffffffffffff",
+          "linear_window_first": 0,
+          "linear_window_count": 64,
+          "chosen_tap": 31,
+          "successful_trials_per_passing_tap": 20,
+          "center_verification_transfers": 16,
+          "final_r1": "0x00000900",
+          "boundary": "All64 command taps passed; no failing command boundary was observed. Midpoint31 is an algorithm choice, not proof of the physical optimum."
+        },
+        "data_strobe_eye": {
+          "opcode": 8,
+          "bytes_per_read": 512,
+          "passing_bitmap": "0x007ffffffffffff8",
+          "linear_window_first": 3,
+          "linear_window_count": 52,
+          "chosen_tap": 28,
+          "successful_trials_per_passing_tap": 20,
+          "center_verification_transfers": 16,
+          "abort_failure_bitmap": "0xff80000000000007",
+          "failed_and_abort_failed_taps": "0..2 and55..63",
+          "reference": "26 immutable bytes from core low-speed EXT_CSD plus current HS_TIMING03 and BUS_WIDTH06; no first-read golden reference."
+        },
+        "final_ext_csd_mode": "03/06",
+        "ordinary_read_thld": "0x02000001",
+        "sfc": "0x00000006",
+        "qualification": "Finite read-only trials do not establish physical analog margins or long-term write endurance."
+      },
+      "readbacks": {
+        "passes": 3,
+        "registers_per_pass": 25,
+        "all_three_passes_match": true,
+        "values": {
+          "PLL_REF_CTRL": "0xf8675f00",
+          "PLL_PERI0_CTRL": "0xff126310",
+          "PLL_PERI0_PAT0": "0x00000000",
+          "PLL_PERI0_PAT1": "0x30000000",
+          "PLL_PERI1_CTRL": "0x40126310",
+          "PLL_PERI1_PAT0": "0x00000000",
+          "PLL_PERI1_PAT1": "0x30000000",
+          "SMHC3_CLK": "0x81000003",
+          "SMHC3_BGR": "0x00010001",
+          "STORE_MBUS_GATE": "0xf1055803",
+          "MSI_LITE1_GATE": "0x00030001",
+          "PERI0PLL_GATE_EN": "0x8fff0fff",
+          "PERI0PLL_GATE_STAT": "0x0fff0000",
+          "SMHC3_CTRL": "0x20000000",
+          "SMHC3_CLKDIV": "0x00010000",
+          "SMHC3_WIDTH": "0x00000002",
+          "SMHC3_CSDC": "0x00000006",
+          "SMHC3_NTSR": "0x01710000",
+          "SMHC3_THLD": "0x02000001",
+          "SMHC3_SFC": "0x00000006",
+          "SMHC3_EDSD": "0x80000000",
+          "SMHC3_DRV_DL": "0x00010000",
+          "SMHC3_SAMP_DL": "0x00001f9f",
+          "SMHC3_DS_DL": "0x00001c9c",
+          "SMHC3_SMCV": "0x03050610"
+        },
+        "sample_delay_software_mask": "0x000000bf",
+        "sample_delay_masked": "0x0000009f",
+        "normal_read_thld": "0x02000001",
+        "qualification": "Non-atomic register snapshots, not physical frequency measurement or DLL calibration.",
+        "strobe_delay_software_mask": "0x000000bf",
+        "strobe_delay_masked": "0x0000009c"
+      },
+      "integrity": {
+        "status": "PASS",
+        "file_bytes": 33554432,
+        "phases": 2,
+        "raw_device_access": false,
+        "buffered_fallback": false,
+        "scratch_retained": false,
+        "total_seconds": 9.259953066000008,
+        "phases_summary": [
+          {
+            "phase": 1,
+            "write_chunk_bytes": 4096,
+            "write_mib_per_second": 10.514694105605626,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 22.158453731580288,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 21.49569449837103,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 37.33337659027239,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 31.594006152598734,
+                "hash_match": true
+              }
+            ]
+          },
+          {
+            "phase": 2,
+            "write_chunk_bytes": 65536,
+            "write_mib_per_second": 87.65085105210274,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 19.03507224970164,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 15.156208064672716,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 42.67314701077163,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 37.756754187769815,
+                "hash_match": true
+              }
+            ]
+          }
+        ]
+      },
+      "post_probe_health": {
+        "gpu_probe": "PASS",
+        "frames": 60,
+        "quadrants": 4,
+        "pvr_driver": "OK",
+        "pvr_firmware": "OK",
+        "pvr_reported_error_counters": 0,
+        "mmc_filesystem_errors": "Final filtered health log contains tuning success and no new MMC/filesystem error entries.",
+        "scope": "Bounded GPU readback and driver health; not GNOME responsiveness or physical-display acceptance."
+      },
+      "physical_display_test": null,
+      "display_health": {
+        "new_display_errors_reported_by_root": 0,
+        "scope": "No new display errors observed for this bounded v24 stage; does not erase the two previous v23 fbdev timeout events.",
+        "physical_monitor_accepted": false
+      }
+    },
+    "hs400_200": {
+      "status": "passed-bounded-hs400-200MHz-boot-command-and-strobe-tuning-integrity-and-health-stage",
+      "accepted": true,
+      "boot_id": "5e72df86-6d96-4e2b-9677-4018a2c2f862",
+      "boot_parameters": [
+        "t736_mmc_pio.enable_hs200=1",
+        "t736_mmc_pio.hs200_max_hz=200000000",
+        "t736_mmc_pio.enable_hs400=1",
+        "t736_mmc_pio.hs400_max_hz=200000000"
+      ],
+      "software_ios": {
+        "requested_hz": 200000000,
+        "actual_hz": 200000000,
+        "timing": 10,
+        "timing_name": "mmc HS400",
+        "width_bits": 8,
+        "signal_voltage": "1.80V",
+        "card_hs_timing": "0x03",
+        "card_bus_width": "0x06",
+        "request_vs_actual": "Core requested 200 MHz and actual host clock is 200 MHz; timing10/8-bit/1.8V/EXT_CSD03/06 independently reported."
+      },
+      "boot_seconds": {
+        "kernel": 7.72,
+        "userspace": 6.2,
+        "total": 13.921,
+        "note": "Values as printed by systemd; component rounding accounts for0.001s difference."
+      },
+      "tuning": {
+        "frequency_hz": 200000000,
+        "hs200_prerequisite": {
+          "frequency_hz": 200000000,
+          "passing_bitmap": "0xffffffc0ffffffff",
+          "abort_failure_bitmap": "0x0000003f00000000",
+          "linear_window_first": 0,
+          "linear_window_count": 32,
+          "chosen_tap": 15,
+          "center_verification_transfers": 16,
+          "pattern_bytes": 128
+        },
+        "command_eye": {
+          "opcode": 13,
+          "command_retries": 0,
+          "passing_bitmap": "0xfffffff1ffffffff",
+          "linear_window_first": 0,
+          "linear_window_count": 33,
+          "chosen_tap": 16,
+          "successful_trials_per_passing_tap": 20,
+          "center_verification_transfers": 16,
+          "final_r1": "0x00000900",
+          "boundary": "Passing taps0..32 and36..63, failed taps33..35; longest linear window0..32 selected tap16 and16 zero-retry CMD13 confirmations passed. This finite scan is not a physical timing-margin measurement."
+        },
+        "data_strobe_eye": {
+          "opcode": 8,
+          "bytes_per_read": 512,
+          "passing_bitmap": "0x0000000003fffff0",
+          "linear_window_first": 4,
+          "linear_window_count": 22,
+          "chosen_tap": 14,
+          "successful_trials_per_passing_tap": 20,
+          "center_verification_transfers": 16,
+          "abort_failure_bitmap": "0xfffffffffc00000f",
+          "failed_and_abort_failed_taps": "0..3 and26..63",
+          "reference": "26 immutable bytes from core low-speed EXT_CSD plus current HS_TIMING03 and BUS_WIDTH06; no first-read golden reference."
+        },
+        "final_ext_csd_mode": "03/06",
+        "ordinary_read_thld": "0x02000001",
+        "sfc": "0x00000006",
+        "qualification": "Finite read-only trials do not establish physical analog margins or long-term write endurance."
+      },
+      "readbacks": {
+        "passes": 3,
+        "registers_per_pass": 25,
+        "all_three_passes_match": true,
+        "values": {
+          "PLL_REF_CTRL": "0xf8675f00",
+          "PLL_PERI0_CTRL": "0xff126310",
+          "PLL_PERI0_PAT0": "0x00000000",
+          "PLL_PERI0_PAT1": "0x30000000",
+          "PLL_PERI1_CTRL": "0x40126310",
+          "PLL_PERI1_PAT0": "0x00000000",
+          "PLL_PERI1_PAT1": "0x30000000",
+          "SMHC3_CLK": "0x81000001",
+          "SMHC3_BGR": "0x00010001",
+          "STORE_MBUS_GATE": "0xf1055803",
+          "MSI_LITE1_GATE": "0x00030001",
+          "PERI0PLL_GATE_EN": "0x8fff0fff",
+          "PERI0PLL_GATE_STAT": "0x0fff0000",
+          "SMHC3_CTRL": "0x20000000",
+          "SMHC3_CLKDIV": "0x00010000",
+          "SMHC3_WIDTH": "0x00000002",
+          "SMHC3_CSDC": "0x00000006",
+          "SMHC3_NTSR": "0x01710000",
+          "SMHC3_THLD": "0x02000001",
+          "SMHC3_SFC": "0x00000006",
+          "SMHC3_EDSD": "0x80000000",
+          "SMHC3_DRV_DL": "0x00010000",
+          "SMHC3_SAMP_DL": "0x00001090",
+          "SMHC3_DS_DL": "0x00000e8e",
+          "SMHC3_SMCV": "0x03050610"
+        },
+        "sample_delay_software_mask": "0x000000bf",
+        "sample_delay_masked": "0x00000090",
+        "normal_read_thld": "0x02000001",
+        "qualification": "Non-atomic register snapshots, not physical frequency measurement or DLL calibration.",
+        "strobe_delay_software_mask": "0x000000bf",
+        "strobe_delay_masked": "0x0000008e",
+        "source_path": "evidence/storage-v24-hs400-200-runtime-full-20261116.log"
+      },
+      "integrity": {
+        "status": "PASS",
+        "file_bytes": 33554432,
+        "phases": 2,
+        "raw_device_access": false,
+        "buffered_fallback": false,
+        "scratch_retained": false,
+        "total_seconds": 9.821456288000007,
+        "phases_summary": [
+          {
+            "phase": 1,
+            "write_chunk_bytes": 4096,
+            "write_mib_per_second": 10.31331385653051,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 18.17497158740776,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 12.526877668727161,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 28.028602554760113,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 27.822643916434917,
+                "hash_match": true
+              }
+            ]
+          },
+          {
+            "phase": 2,
+            "write_chunk_bytes": 65536,
+            "write_mib_per_second": 102.49748576870697,
+            "fsync_completed": true,
+            "reads": [
+              {
+                "chunk_bytes": 4096,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 19.58861969168436,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 4096,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 15.13289160624152,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "sequential",
+                "covers_full_file": true,
+                "mib_per_second": 45.67932445600767,
+                "hash_match": true
+              },
+              {
+                "chunk_bytes": 65536,
+                "order": "fixed_seed_random",
+                "covers_full_file": false,
+                "mib_per_second": 38.33286094471242,
+                "hash_match": true
+              }
+            ]
+          }
+        ]
+      },
+      "post_probe_health": {
+        "gpu_probe": "PASS",
+        "frames": 60,
+        "quadrants": 4,
+        "pvr_driver": "OK",
+        "pvr_firmware": "OK",
+        "pvr_reported_error_counters": 0,
+        "mmc_filesystem_errors": "Final filtered health log contains tuning success and no new MMC/filesystem error entries.",
+        "scope": "Bounded GPU readback and driver health; not GNOME responsiveness or physical-display acceptance."
+      },
+      "physical_display_test": null,
+      "display_health": {
+        "new_display_errors_reported_by_root": 0,
+        "scope": "No new display errors observed for this bounded v24 stage; does not erase the two previous v23 fbdev timeout events.",
+        "physical_monitor_accepted": false
+      },
+      "supplemental_read_only_throughput": {
+        "runs": [
+          {
+            "readonly_file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+            "chunk": 65536,
+            "bytes": 8388608,
+            "seconds": 0.10037954599999921,
+            "MiB_s": 79.69751128382333,
+            "compare_hash": false
+          },
+          {
+            "readonly_file": "/boot/initrd.img-6.18.63-t736-storage-v23",
+            "chunk": 1048576,
+            "bytes": 8388608,
+            "seconds": 0.09533124699999007,
+            "MiB_s": 83.9179204275051,
+            "compare_hash": false
+          }
+        ],
+        "qualification": "Two8MiB reads from the same existing v23 initrd file used in the v23 comparison; no compare/hash. This performance observation does not replace the two-pattern integrity probe."
+      }
+    }
+  },
+  "earlier_display_baseline": {
+    "kernel": "6.18.63-t736-storage-v23",
+    "fbdev_plane_update_timeouts": 2,
+    "event_seconds": [
+      227.706728,
+      227.910564
+    ],
+    "path": "evidence/storage-v24-display-baseline-20261116.log",
+    "interpretation": "These preceding v23 events are retained as historical evidence; no claim that v24 fixed their cause."
+  },
+  "acceptance_boundary": [
+    "This record accepts separate bounded v24 HS400100MHz and200MHz boot, tuning, integrity and GPU-health stages.",
+    "100MHz and200MHz have distinct boot IDs, command/data-strobe windows, register reads and integrity evidence; neither stage is inferred from the other.",
+    "All command taps passed at100MHz; that does not demonstrate a failing eye boundary or physical optimum.",
+    "Failed DS taps and their abort errors remain recorded.",
+    "Measured integrity throughput includes compare/hash/poison overhead and varies with background work.",
+    "A32MiB two-pattern check is not complete media endurance or full-system stress certification.",
+    "GPU/PVR completion is not GNOME responsiveness or physical HDMI acceptance.",
+    "Persistent default remains v16; final image and desktop acceptance remain incomplete.",
+    "Authentication/tunnel logs, credentials, private screenshots and private home archives are excluded from public backup.",
+    "HS400 is the interface mode name. The reported rates are measured MiB/s; no400MB/s throughput claim is made."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/storage-v24-preflight-20261116.log",
+      "sha256": "e5a73cc2175207c50dbe90394b680d0280e5f21d6ca74c8169437cb93ecd7106",
+      "bytes": 490
+    },
+    {
+      "path": "evidence/storage-v24-install-20261116.log",
+      "sha256": "26124728995c9766a0b931156a6983df603087d4bc26f8dfa96d0452212131ff",
+      "bytes": 950
+    },
+    {
+      "path": "evidence/storage-v24-restore-default-poweroff-20261116.log",
+      "sha256": "b998ee7fb95cea7be7a4c4fbe617157cb8fcb8669cd794107afbe9bb40582bfa",
+      "bytes": 335
+    },
+    {
+      "path": "evidence/storage-v24-display-baseline-20261116.log",
+      "sha256": "70c5a170966fc59bfc6e7f006df9d2d14332001f4147fcea5724dd8d1c862114",
+      "bytes": 652
+    },
+    {
+      "path": "evidence/storage-v24-hs400-100-coldboot-20261116.log",
+      "sha256": "e31673aeb6010c0de2a5021a55c07395ddbb747d0736f7e841530aba82142e33",
+      "bytes": 51156
+    },
+    {
+      "path": "evidence/storage-v24-hs400-100-runtime-20261116.log",
+      "sha256": "68d62c5f79496429cecc35f9fc2ded7d484a0265c943be863dce2932b1da1d63",
+      "bytes": 8460
+    },
+    {
+      "path": "evidence/storage-v24-hs400-100-integrity-20261116.json",
+      "sha256": "4fe121aec62f4f3616694f5d92d80775074ee43b3d7d935087178dafe431d869",
+      "bytes": 17556
+    },
+    {
+      "path": "evidence/storage-v24-hs400-100-integrity-health-20261116.log",
+      "sha256": "ea5f60e0c8e1e292aeb3200b2f96b310fccc3646511a212e63abfa2d8726ab8e",
+      "bytes": 1484
+    },
+    {
+      "path": "evidence/storage-v24-updater-preparation-20261116.json",
+      "sha256": "ead8a4bff3793f3206a2e6f88f4890f192206e504c9180aac914b713c769d81d",
+      "bytes": 5181
+    },
+    {
+      "path": "evidence/storage-hs400-implementation-review-20261116.json",
+      "sha256": "785699885c8fb1da35e5e3d77589493f295fb9fc64699eb14211366aa6fd55b1",
+      "bytes": 4795
+    },
+    {
+      "path": "evidence/storage-v24-hs400-200-coldboot-20261116.log",
+      "sha256": "fdb94964460bd99917ce751132cf22c2f3ceb3916ef8637445f96585f100b7b2",
+      "bytes": 61324
+    },
+    {
+      "path": "evidence/storage-v24-hs400-200-runtime-full-20261116.log",
+      "sha256": "d4fa21353fe30e8339dbb412ecf51c7cdc7da7d3c5cf7e3989cf3e63ea58ae16",
+      "bytes": 8396
+    },
+    {
+      "path": "evidence/storage-v24-hs400-200-integrity-20261116.json",
+      "sha256": "26323d7709ab69450d2dd4a355325b4a0d1c0ea0419e4366ee1fa2475cf02d69",
+      "bytes": 17583
+    },
+    {
+      "path": "evidence/storage-v24-hs400-200-integrity-health-20261116.log",
+      "sha256": "3bbe63cbbc6db1dd41edb312570e4168a9a69291bb8f3d7328b521e3b7c943a1",
+      "bytes": 1071
+    },
+    {
+      "path": "evidence/storage-v24-hs400-200-direct-read-only-20261116.log",
+      "sha256": "81469743d2e6fad91ae9bd98587411e029c3dbdbd7365db5d2ba5273883ab9ea",
+      "bytes": 444
+    }
+  ],
+  "board_operations_by_record_author": false,
+  "evidence_quality": {
+    "full_200MHz_runtime": "evidence/storage-v24-hs400-200-runtime-full-20261116.log",
+    "truncated_200MHz_runtime": {
+      "path": "evidence/storage-v24-hs400-200-runtime-20261116.log",
+      "sha256": "0ed72f5fb2a5b9f9ca3eca9f070a36c930befae891e3032d9ed3c4e6315ff65c",
+      "bytes": 1446
+    },
+    "truncation_reason": "Earlier local Select -First26 output captured only26lines. Retained historically but not used as full register or stage evidence.",
+    "full_register_samples": 75
+  }
+}

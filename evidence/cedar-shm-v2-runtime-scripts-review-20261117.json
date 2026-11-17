@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "PASS_READ_ONLY_RUNTIME_SCRIPT_AND_ABI_REVIEW_BOARD_DEPLOYMENT_NOT_PERFORMED",
+  "reviewer": "backup_audit",
+  "hardware_access": false,
+  "deployment": false,
+  "files": [
+    {
+      "path": "tools/browser/shm_v2/cedar-service",
+      "bytes": 666,
+      "sha256": "96cc74d0092f2cfce51f2c28543f47a7b9480fd612b61251e059e0dc4cc7361e"
+    },
+    {
+      "path": "tools/browser/shm_v2/firefox-cedar",
+      "bytes": 636,
+      "sha256": "82a0a7b16d883af27b012d902ea5b07b2fb7faf4b1735d07c095949f90193304"
+    },
+    {
+      "path": "tools/browser/shm_v2/t736-cedar-experiment.service",
+      "bytes": 1018,
+      "sha256": "0b90b795d43153f54da1b97a73c566814759ad79b5600c018728a8af75d09cdf"
+    },
+    {
+      "path": "build/cedar-shm-runtime-script-review-20261117/host-checks.json",
+      "bytes": 6758,
+      "sha256": "05cc7c3ca6e2c4362e5a5bb064524ca78099bcd5afb1df6a1b925c2823382d9a"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/build-record.json",
+      "bytes": 13576,
+      "sha256": "49300a4179d7ba2ce30b84271ecd5e76439a1d9248b1ced9b7ab3e1412f63e84"
+    }
+  ],
+  "findings": [],
+  "checked": [
+    "bin/cedar-service and bin/firefox-cedar derive /opt/t736-cedar-transport-v2 from their own location. ExecStart and read-only cedarc.conf bind use that same private root.",
+    "Broker loader paths resolve verified backend v5, WC v5 vendor libraries and parser v27; OMX config is private, AFBC variables cleared, registry under the dedicated runtime directory.",
+    "Firefox preload selects the matched v2 client before FFmpeg v7 libraries; FFmpeg resolves the unchanged seven t736_client_* symbols using RTLD_DEFAULT. Both public client/backend headers are byte-identical to v1.",
+    "Actual compiled client/broker hashes match their build record; AArch64, client SONAME, broker libcedar_backend dependency and seven public exports verified.",
+    "Unit requires media-v29 and cedar_dev; keeps dedicated account/group, strict filesystem, private network/tmp, no capabilities, device allowlist, cgroup memory/task limits and CPU affinity. No Install section or automatic restart. PrivateMounts explicitly retained.",
+    "No new MOZ_DISABLE_*_SANDBOX settings or reduced sandbox levels. Test-client override cleared before Firefox exec.",
+    "Two shell scripts pass sh -n. Unit verification with the actual path only fails because that /opt path is absent on the build host; syntax copy with ExecStart=/usr/bin/true passes. Existing unrelated host netplan unit permission warning is preserved in the raw log."
+  ],
+  "deployment_requirements": [
+    "Install these launchers separately into the transport bin directory, and provide config/gstomx.conf plus config/cedarc.conf. The previously built transport archive contains candidate binaries/sources/tests only, not this new operational layout.",
+    "Stop the old broker before starting the matched v2 pair because both use /run/t736-cedar/decoder.sock. Create a new RDD exec, not an already-connected old process.",
+    "Launcher does not create/select a private profile or change its preferences. The invoker must use the isolated --no-remote profile with dom.ipc.forkserver.enable=false, as in the existing v1 workflow.",
+    "Allowed browser UID remains explicitly 1000, matching the existing board setup; service runs as t736-cedar with t736 group. Runtime account and file ownership checks remain board acceptance work."
+  ],
+  "limits": [
+    "Read-only software review does not prove native ARM64 DONTFORK/seals enforcement, RDD sandbox runtime success, correct deployed loader paths or video performance.",
+    "Retaining caller LD_LIBRARY_PATH/LD_PRELOAD follows the existing launcher behavior; this review does not assert arbitrary external environments are sanitized."
+  ]
+}

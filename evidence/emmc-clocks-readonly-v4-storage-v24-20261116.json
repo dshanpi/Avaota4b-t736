@@ -1,0 +1,308 @@
+{
+  "schema": 1,
+  "kind": "t736-emmc-clocks-readonly-v4-storage-v24-module",
+  "status": "built-and-independently-reviewed-not-board-loaded-by-author",
+  "source": {
+    "path": "tools/validation/t736-emmc-clocks-readonly-v4.c",
+    "sha256": "91987660977d31436f81467cb57b78f94976ec84428db90b1ce624aa02f41834"
+  },
+  "module": {
+    "local_path": "output/t736-emmc-clocks-readonly-v4-storage-v24.ko",
+    "remote_path": "build/emmc-clocks-readonly-v4-storage-v24/t736-emmc-clocks-readonly-v4.ko",
+    "bytes": 8176,
+    "sha256": "056412109119a377b7bf441bee8e6ab832288bcbe1f7112dc808797c3a650693",
+    "module_name": "t736_emmc_clocks_readonly_v4",
+    "vermagic": "6.18.63-t736-storage-v24 SMP mod_unload aarch64"
+  },
+  "build": {
+    "kernel_output": "build/linux-storage-v24",
+    "kernel_config_sha256": "2ebe51f737ee4c679a00237136d051c0bce542560a4c2159aa55bebc5e63b3e3",
+    "kernel_symvers_sha256": "f1e10b154efc9009be1da92cd5512b33b08b85ca5e612c382f174c9d15eb9963",
+    "command": "make -C /home/ubuntu/t736-mainline/build/linux-storage-v24 M=/home/ubuntu/t736-mainline/build/emmc-clocks-readonly-v4-storage-v24 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules",
+    "log": "evidence/build/emmc-clocks-readonly-v4-storage-v24-build-20261116.log",
+    "log_sha256": "8a07462a0a54270c80414a9a1e03e51c7406e5395fe58ce3383228a34f69a065",
+    "warnings": []
+  },
+  "registers": [
+    {
+      "name": "PLL_REF_CTRL",
+      "address": "0x02002000",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI0_CTRL",
+      "address": "0x020020a0",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI0_PAT0",
+      "address": "0x020020a8",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI0_PAT1",
+      "address": "0x020020ac",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI1_CTRL",
+      "address": "0x020020c0",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI1_PAT0",
+      "address": "0x020020c8",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PLL_PERI1_PAT1",
+      "address": "0x020020cc",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_CLK",
+      "address": "0x02002d30",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_BGR",
+      "address": "0x02002d3c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "STORE_MBUS_GATE",
+      "address": "0x020025e0",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "MSI_LITE1_GATE",
+      "address": "0x0200259c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PERI0PLL_GATE_EN",
+      "address": "0x02003908",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "PERI0PLL_GATE_STAT",
+      "address": "0x02003988",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_CTRL",
+      "address": "0x04023000",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_CLKDIV",
+      "address": "0x04023004",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_WIDTH",
+      "address": "0x0402300c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_CSDC",
+      "address": "0x04023054",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_NTSR",
+      "address": "0x0402305c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_THLD",
+      "address": "0x04023100",
+      "semantics": "Ordinary R/W configuration: size[28:16],write-enable[2],BCIG[1],read-enable[0]; no read-clear"
+    },
+    {
+      "name": "SMHC3_SFC",
+      "address": "0x04023104",
+      "semantics": "Ordinary R/W configuration: stop-clock-position[4:1],bypass[0]; no read-clear"
+    },
+    {
+      "name": "SMHC3_EDSD",
+      "address": "0x0402310c",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_DRV_DL",
+      "address": "0x04023140",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_SAMP_DL",
+      "address": "0x04023144",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_DS_DL",
+      "address": "0x04023148",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    },
+    {
+      "name": "SMHC3_SMCV",
+      "address": "0x04023300",
+      "semantics": "Read-only version/status or ordinary R/W configuration; not read-clear"
+    }
+  ],
+  "sampling": {
+    "passes": 3,
+    "registers_per_pass": 25,
+    "total_readl_calls": 75,
+    "mapping": [
+      "CCU0x02002000 size0x2000",
+      "SMHC3 0x04023000 size0x400"
+    ],
+    "print_after_unmap": true,
+    "atomic_snapshot": false,
+    "physical_frequency_measurement": false,
+    "transient_control_changes": "SMHC3 CTRL/THLD can change during active I/O; raw non-atomic passes retained."
+  },
+  "read_only_audit": {
+    "mmio_writes": 0,
+    "clear_on_read_targets": 0,
+    "ccf_calls": 0,
+    "mmc_requests": 0,
+    "devmem_access": false,
+    "dma_operations": 0,
+    "clock_reset_voltage_changes": false,
+    "old_diagnostic_sources_modified": false,
+    "undefined_symbols": [
+      "arm64_use_ng_mappings",
+      "__ioremap_prot",
+      "iounmap",
+      "memset",
+      "of_machine_compatible_match",
+      "_printk"
+    ]
+  },
+  "references": {
+    "manual": "evidence/vendor-reference/reference-1.txt",
+    "manual_sections": [
+      "4.1.6.11 PERI1 CTRL",
+      "4.1.6.13 PERI1 PAT0",
+      "4.1.6.14 PERI1 PAT1",
+      "4.1.6.78 MSI_LITE1",
+      "4.1.6.82 MBUS_MAT_CLK_GATING",
+      "4.1.6.133 SMHC3 CLK",
+      "4.1.6.6 PERI0 CTRL",
+      "4.1.6.8 PERI0 PAT0",
+      "4.1.6.9 PERI0 PAT1",
+      "4.1.6.134 SMHC3 BGR",
+      "4.1.6.254 PERI0PLL_GATE_EN",
+      "4.1.6.263 PERI0PLL_GATE_STAT",
+      "11.3.9 CTRL/CLKDIV/WIDTH/CSDC/NTSR/EDSD/DRV_DL/SAMP_DL/DS_DL/SMCV",
+      "11.3.9.30 THLD at0x100",
+      "11.3.9.31 SFC at0x104"
+    ],
+    "pll_ref_donor": "Tina U-Boot plat-sun60iw2p1/clock_autogen.h lines3-43; Linux ccu-sun60iw2.c39-55",
+    "parent_clock_review": "evidence/storage-hs-parent-clock-independent-review-20261116.json",
+    "manual_sha256": "c7dd44cbf270b4c846d1a60319912d19270f583825fabc3760644ebe9c7c8483",
+    "manual_line_references": {
+      "THLD": [
+        28783,
+        28784,
+        28785,
+        28786,
+        28787,
+        28788,
+        28789,
+        28790,
+        28791,
+        28792,
+        28793,
+        28794,
+        28795,
+        28796,
+        28797,
+        28798,
+        28799,
+        28800,
+        28801,
+        28802,
+        28803,
+        28804,
+        28805,
+        28806,
+        28807,
+        28808,
+        28809,
+        28810,
+        28811,
+        28812,
+        28813,
+        28814,
+        28815,
+        28816,
+        28817,
+        28818,
+        28819,
+        28820,
+        28821,
+        28822
+      ],
+      "SFC": [
+        28825,
+        28826,
+        28827,
+        28828,
+        28829,
+        28830,
+        28831,
+        28832,
+        28833,
+        28834,
+        28835,
+        28836,
+        28837,
+        28838,
+        28839,
+        28840,
+        28841,
+        28842,
+        28843,
+        28844,
+        28845,
+        28846,
+        28847,
+        28848,
+        28849
+      ]
+    }
+  },
+  "independent_source_review": {
+    "reviewer": "code_index",
+    "status": "PASS",
+    "source_sha256": "91987660977d31436f81467cb57b78f94976ec84428db90b1ce624aa02f41834",
+    "findings": "PASS by code_index: v3 diff only addsTHLD0x100/SFC0x104 ordinaryR/W reads plusv4 naming/THLD-transient comment; no read-clear/write effects,25x3=75readl. Existing bound-mapping/unmap-before-log behavior preserved.",
+    "board_touched_by_reviewer": false
+  },
+  "runtime_commands": [
+    "test \"$(uname -r)\" = 6.18.63-t736-storage-v24",
+    "sudo insmod /home/t736/t736-emmc-clocks-readonly-v4-storage-v24.ko",
+    "sudo dmesg | grep 't736-emmc-clocks-ro-v4:'",
+    "sudo rmmod t736_emmc_clocks_readonly_v4"
+  ],
+  "hardware_accessibility": "Real nonsecure bus access and resulting register values remain root-owned board validation, not guaranteed by static register semantics.",
+  "board_operations_by_author": false,
+  "previous_v1_preserved": {
+    "source_sha256": "6cdee150d67934c8af06bec155a52d5b3098bafe160462b8fcf33ee495c59d5d",
+    "module_sha256": "af4213782fb1686f9b746ce9553a5411bb895e2955b79c03efe849ee37333a4b",
+    "reason_for_v2": "v20 live PERI1_CTRL40126310 is off; inspect already-enabled PERI0 instead of enabling a shared PLL."
+  },
+  "previous_v2_preserved": {
+    "source_sha256": "8cff1dca8e790b3d10fa8bae11b5f269fb337ca8d2c1d915b9321f23330b39e0",
+    "module_sha256": "8b475ecd6eef85ad1012ba6329bab56063c681eb532c9195d5b334e77a5d5942"
+  },
+  "rebuild_scope": "Unchanged independently reviewed v4 source rebuilt only after final v24 kernel build completed and .config/Module.symvers matched final build record; root owns board capture.",
+  "previous_v3_preserved": {
+    "source_sha256": "d41fddbae90823f0e7af14832eaa365209de6aff5613a5a1540948c9f910bff1",
+    "module_sha256": "778ee20320f84543c3e2063ee776792cee31a15c730a540676dd28a97474b072"
+  },
+  "reason_for_v4": "Root requested frozenv21 THLD/SFC baseline before HS200 candidate; append only these2configuration reads."
+}

@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "READ_ONLY_METHOD_SOURCE_REVIEW_AND_ROOT_BOARD_USE_CONFIRMED",
+  "board_access_by_reviewer": false,
+  "reviewer": "desktop_review",
+  "sources": [
+    {
+      "path": "build/firefox-esr153-timing-review-20261117/evaluate.sys.mjs",
+      "bytes": 10142,
+      "sha256": "60c1fb04ee7513b80312e2a7100ccc86eb84980a10e78b0a17199d6efc0290e6"
+    },
+    {
+      "path": "build/firefox-esr153-timing-review-20261117/MarionetteCommandsChild.sys.mjs",
+      "bytes": 21903,
+      "sha256": "8276fd5632ab455427a0ffc6e7ebaf1948de882dfccf2ccae36b872d1208f84c"
+    },
+    {
+      "path": "build/firefox-esr153-timing-review-20261117/driver.sys.mjs",
+      "bytes": 148651,
+      "sha256": "8b60184b0ee76db755b5853e91816baacab2e0d4f26301045842678931b33426"
+    },
+    {
+      "path": "build/firefox-esr153-timing-review-20261117/nsContentUtils.cpp",
+      "bytes": 455795,
+      "sha256": "731a4599862c61bb3f22d9fe1aaaae1c014b12c29d1429e0957fb5ae653b5eeb"
+    },
+    {
+      "path": "tools/validation/firefox_media_debug_snapshot.js",
+      "bytes": 1729,
+      "sha256": "51c752dc9f574c7c2191c1200f2373ddfd7dc6a3ca1ae460ad684777fea45fad"
+    }
+  ],
+  "source_ref": "FIREFOX_153_7_0esr_RELEASE 9aecd40e03ebf6e866e32a0a3001488ed751228d",
+  "method": {
+    "context": "content",
+    "sandbox": "system",
+    "newSandbox": true,
+    "python_call": "execute_async_script(script, sandbox=\"system\", new_sandbox=True)",
+    "driver": "sandbox request maps to sandboxName for actor execution",
+    "actor": "Uses named sandbox with selected content Window",
+    "evaluate": "system sandbox name creates a system principal",
+    "effect": "Calls mozRequestDebugInfo without changing playback, preferences, URL or persistent state"
+  },
+  "root_raw_evidence": {
+    "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-active-debug.json",
+    "bytes": 111025,
+    "sha256": "dc6fd9eab4ebd0961e9ff4d8c5c55da0035e0943588478671a0bd1b131c3106a"
+  },
+  "limitations": [
+    "The script requires exactly one video in the current content document.",
+    "Privileged WebDriver diagnostics are for the local controlled test browser, not ordinary page JavaScript.",
+    "Source review uses exact upstream release; Debian patches/binary equivalence not asserted."
+  ]
+}

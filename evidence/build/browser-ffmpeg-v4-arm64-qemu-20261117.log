@@ -1,0 +1,16 @@
+synthetic backpressure_negative_pts_eos_flush_fatal_format PASS
+pooled_receive_lifetime width=320 direct=1 flush_reuse_and_close PASS
+pooled_receive_lifetime width=318 direct=0 flush_reuse_and_close PASS
+firefox_decode_order_dts codec=27 original_pts_dts_preserved_wire_dts_unknown PASS
+firefox_decode_order_dts codec=173 original_pts_dts_preserved_wire_dts_unknown PASS
+fallback mode=0 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=1 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=2 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=3 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=0 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+fallback mode=1 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+fallback mode=2 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+fallback mode=3 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+{"result":"PASS","checks":5343,"hardware_access":false}
+[h264_cedar @ 0x400002cd42a0] T736_CEDAR_PROXY: explicit hardware failure after_delivery=1 error=-5
+[h264_cedar @ 0x400002cd42a0] T736_CEDAR_PROXY: explicit hardware failure after_delivery=0 error=-71

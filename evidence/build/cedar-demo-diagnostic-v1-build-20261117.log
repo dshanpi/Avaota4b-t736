@@ -1,0 +1,4 @@
+/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v1-20261117/vdecoderDemo.c: In function ‘ChannelThread’:
+/home/ubuntu/t736-mainline/build/cedar-demo-diagnostic-v1-20261117/vdecoderDemo.c:1125:14: warning: assignment to ‘void *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+ 1125 |         nRet = initDecoder(Decoder);
+      |              ^

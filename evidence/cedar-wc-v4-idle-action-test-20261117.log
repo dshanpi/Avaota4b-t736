@@ -1,0 +1,1 @@
+PASS: extracted idle action; initial/idempotent states, pause/resume/populate, active-input rejection, state/queue failures, balanced locks

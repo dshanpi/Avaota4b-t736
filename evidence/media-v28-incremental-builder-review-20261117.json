@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "SOURCE_REVIEW_PASS_MTIME_FINDING_FIXED",
+  "board_access": false,
+  "path": "tools/apply_media_v28_readback.py",
+  "sha256": "54685fd62b83345f94a3ae6cb6ee3a05eef0bca64b634de2532b545229960c39",
+  "finding": "copy2 could install the modified source with an mtime older than the first-build object, causing make to skip its incremental compilation",
+  "fix": "copyfile plus os.utime(target,None) after original build completion; final vmlinux must contain dcdc2_snapshot and kind=programmed-setpoint",
+  "reviewed": [
+    "New one-shot stage directory prevents overwrite of a prior incremental attempt",
+    "Original artifact hashes verified and copies retained before mutation",
+    "Only independent v28 PMIC source changes; baseline source/config hashes checked before/after",
+    "Kernel Image/DTB/modules/deb and matching PVR rebuilt; DTB equals v27; config unchanged from clock-only v28",
+    "Linked readback strings plus PVR release vermagic checked"
+  ],
+  "build_evidence": "evidence/media-v28-combined-build-20261117.json"
+}

@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "status": "COMPILED_HARDWARE_PENDING",
+  "board_access": false,
+  "change": "broker-only t736-set-idle(boolean)->boolean action, bounded OMX Pause/Executing transitions and output repopulation",
+  "baseline_manifest_sha256": "253edaf6e5f91f3ee9d5940fffa28933fa1ca0ff9f90abdadce6866c10eb077d",
+  "source_before_sha256": "b084e2e7c6ce2e2972ce3d4270a4084e775750930cfba26d03fc794148af2682",
+  "source_after_sha256": "0c59ac64ef759bd856d309b15b39e64acfb91a6530c02b576f04f23f729e08fe",
+  "patch_sha256": "adb84875f8c4bcfa818a235ccee94f8aa9540e4f2dd3d145a416b48547595daf",
+  "plugin_sha256": "e92446f586b9b7ed00e28d2cafc76b12c95bd42efdc1428b52b0203cf480df17",
+  "allocator_sha256": "19fceea8e5598e67af7ad9b70678a8db33aa0c995cf4689e77869efdaa459e72",
+  "unchanged_libraries": [
+    {
+      "path": "lib/libMemAdapter.so",
+      "sha256": "f89ed54db02e7d1aa0dfa84ee89a24170c7a073c3338e571e4c718195b626c74"
+    },
+    {
+      "path": "lib/libOmxCore.so",
+      "sha256": "a29760452c43c9e9988742e0b20ad44a7558d35979f9796928272e731b04424f"
+    },
+    {
+      "path": "lib/libOmxVdec.so",
+      "sha256": "a524cdbda7b9c7becbf4a5d1bdc83afb859aa8297b18b1b092157b6d26c6e24e"
+    },
+    {
+      "path": "lib/libVE.so",
+      "sha256": "3af49a5eb24f6832518a858274fb206d60e490985bff02f5d5be36d053f65be4"
+    },
+    {
+      "path": "lib/libawavs.so",
+      "sha256": "3d46076a1a2cb039540e2e5a945a7320791958b827024b7a6586bd2d3cc6824a"
+    },
+    {
+      "path": "lib/libawavs2.so",
+      "sha256": "7b7ba32eafc0605755a5ee4a46a1ec03a94ff004a366314689a90b1d8d8ff2ae"
+    },
+    {
+      "path": "lib/libawh264.so",
+      "sha256": "c977fe936a0bf1418f0a452c9769158b3ad2c8ff32aa972c1db4e21630f7fcc3"
+    },
+    {
+      "path": "lib/libawh265.so",
+      "sha256": "6adc1bba9ca552e17f6bc8a5d4b28b6cba1a6268feebfded0fa99ed199457df1"
+    },
+    {
+      "path": "lib/libawmjpeg.so",
+      "sha256": "c6c0fff04dcddc633544831430727b445a3f1fe4873c881a16aeaed958513e65"
+    },
+    {
+      "path": "lib/libawmjpegplus.so",
+      "sha256": "99b4d3dcac4e5e5c38f9e1387bc803d8d9fd6f975eb7d83899928e79e8feda9d"
+    },
+    {
+      "path": "lib/libawmpeg2.so",
+      "sha256": "f93ffabbb28c314769fbaaa0b2432b1cca4f4f5f160a9767fba00a76a37863de"
+    },
+    {
+      "path": "lib/libawmpeg4base.so",
+      "sha256": "d3e89676527bbb61f424cf9b09be46db2c27db26032af9c0f3507c46843d8220"
+    },
+    {
+      "path": "lib/libawmpeg4dx.so",
+      "sha256": "01c72ccbd86be598867391a1e33c944c89e8beae2a1efa4044afe5e1819e08d0"
+    },
+    {
+      "path": "lib/libawmpeg4h263.so",
+      "sha256": "fa224002a349b36131212bee325173772fa1dbb0d8e3d80bbd91446f87cb9548"
+    },
+    {
+      "path": "lib/libawmpeg4normal.so",
+      "sha256": "286687b64fa5fc39ff1f3aad2c8931d3e3073707d578e36a1381eb1890553768"
+    },
+    {
+      "path": "lib/libawmpeg4vp6.so",
+      "sha256": "1e4476aa88bcca548978fae4a135c84f55ba2a7b1e096e7da0a72e0fc0d7191e"
+    },
+    {
+      "path": "lib/libawvp6soft.so",
+      "sha256": "bc86eb76c6f4a23e08af46b18ca8c04ce336539133722f8ac966ba1c30f585f7"
+    },
+    {
+      "path": "lib/libawvp8.so",
+      "sha256": "fd9bfce1d37fe33a91eebbf5006945174e8f7bbb5d354e88d922c5c584ee3e20"
+    },
+    {
+      "path": "lib/libawvp9HwAL.so",
+      "sha256": "59432ffc48ea834c292fadd16f7c0dee2fd632d5af909c9ce04e4b5f0e4178f0"
+    },
+    {
+      "path": "lib/libcdc_base.so",
+      "sha256": "9077522122e67391c09bf44668b091f4e1ecb01c0b1d832dd54a71b37c4a2f03"
+    },
+    {
+      "path": "lib/libfbm.so",
+      "sha256": "711db0ea30a1a04a43fb95cc6f91cc4a301bb074d03a5270c52b8669ed5e29a7"
+    },
+    {
+      "path": "lib/libsbm.so",
+      "sha256": "0bba9af82a6ed76a06ee5c5894ebf75bef6c42aeea0a9026035331aa6f808151"
+    },
+    {
+      "path": "lib/libscaledown.so",
+      "sha256": "65ff549bfc6541da9abddf87030c0763ae1197abf98fba7882fc38e967a699ef"
+    },
+    {
+      "path": "lib/libvdecVcs.so",
+      "sha256": "4e239fc13922fc450b4b70a88ddce131117208d261cf0dbbd16282380a8e6a1f"
+    },
+    {
+      "path": "lib/libvdecoder.so",
+      "sha256": "ec47b638c4f3880689d2b148579a32548edcd371d9ff8ff4dcbee82ca9473f9e"
+    },
+    {
+      "path": "lib/libvideoengine.so",
+      "sha256": "abfea1fa75f6a3ca5413d16eb69fcb87692f3e3b6552d83a222a998e909cef82"
+    }
+  ],
+  "commands": [
+    [
+      "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/meson",
+      "setup",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/build",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/src",
+      "--cross-file",
+      "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/etc/meson/cross-compilation.conf",
+      "--prefix=/usr",
+      "--libdir=lib",
+      "-Dtarget=buildroot",
+      "-Dstruct_packing=8",
+      "-Dexamples=disabled",
+      "-Dtests=disabled",
+      "-Dtools=disabled",
+      "-Ddoc=disabled"
+    ],
+    [
+      "/home/ubuntu/t736-aiot/tina/out/t736/demo_aiot/buildroot/buildroot/host/bin/ninja",
+      "-C",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/build",
+      "-j4"
+    ]
+  ],
+  "tests": {
+    "status": "PASS",
+    "command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/idle-action-test.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/idle-action-test"
+    ],
+    "output": "PASS: extracted idle action; initial/idempotent states, pause/resume/populate, active-input rejection, state/queue failures, balanced locks",
+    "source_sha256": "61a2e2fb0d761008934a9b75b4b0c7a2fe4ab18ee53b4d0d6919d733feca19cd"
+  },
+  "contract": "after completed flushing seek, externally stop input; ordinary Gst state changes/preroll are unchanged",
+  "idle": "Executing->Pause only when started=false; Pause/Loaded/Idle/no component are idempotent",
+  "resume": "Pause->Executing then populate existing output pool; Executing/Loaded/Idle/no component are idempotent",
+  "waits": "each OMX state query uses 5*GST_SECOND; failure returns false and posts GST_ELEMENT_ERROR",
+  "kernel_memadapter_vendor_unchanged": true,
+  "v2_fd_and_v3_crop_preserved": true
+}

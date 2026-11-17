@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "status": "COMPILED_DIAGNOSTIC_CANDIDATE_HARDWARE_PENDING",
+  "package": "/home/ubuntu/t736-mainline/build/cedar-wc-v5-20261117/t736-cedar-wc-v5.tar.gz",
+  "bytes": 1161505,
+  "sha256": "fb2644eaf61ad5d2f06c6fecd00e8ec64c6695d79d4eff9cf915eeac3a15b7ba",
+  "plugin_sha256": "08f27091eebc0bfd1f6f0e542025555d142e0ae79726739217b6b5443ed9db37",
+  "manifest_sha256": "12bc817ceeb093b76720f3019fb0453dc4f179bdcd379ec85a07095721a0d989",
+  "source_patch_sha256": "2bf4e20f253c6e6ec4fcf2b3016b76549655b337f6efb2987256a9b67f195609",
+  "source_sha256": "76b94240f827a26c9abcbdcb518fb8bf85bebdfa000f02cac435a609104c5e9d",
+  "tests": {
+    "status": "PASS",
+    "command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v5-20261117/state-diagnostics-test.c",
+      "-o",
+      "/home/ubuntu/t736-mainline/build/cedar-wc-v5-20261117/state-diagnostics-test"
+    ],
+    "output": "PASS: extracted snapshot/action; raw vs queried state, ports/queues, unlocked APIs/printing, unchanged idle gates/failures, detailed primary error",
+    "source_sha256": "0c7f30d89ccdb4a54ad382f2103243fe3df814fc7fd08538536a242a6c96ef22"
+  }
+}

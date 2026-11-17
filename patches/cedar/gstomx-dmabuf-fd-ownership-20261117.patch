@@ -1,0 +1,41 @@
+--- a/omx/gstomxallocator.c
++++ b/omx/gstomxallocator.c
+@@ -24,6 +24,9 @@
+ 
+ #include "gstomxallocator.h"
+ #include <gst/allocators/gstdmabuf.h>
++#include <errno.h>
++#include <fcntl.h>
++#include <unistd.h>
+ 
+ GST_DEBUG_CATEGORY_STATIC (gst_omx_allocator_debug_category);
+ #define GST_CAT_DEFAULT gst_omx_allocator_debug_category
+@@ -496,9 +499,27 @@
+     {
+       OmxPrivateBuffer *sOmxOutPrivateBuffer = (OmxPrivateBuffer*)(omx_buf->omx_buf->pBuffer);
+       gint fd = sOmxOutPrivateBuffer->nShareBufFd;
++      gint owned_fd;
++
++      /* OpenMAX/MemAdapter owns fd. GstFdMemory takes ownership of its fd
++       * and closes it on destruction, so transfer a distinct descriptor. */
++      do {
++        owned_fd = fcntl (fd, F_DUPFD_CLOEXEC, 0);
++      } while (owned_fd < 0 && errno == EINTR);
++      if (owned_fd < 0) {
++        GST_ERROR_OBJECT (allocator, "Cannot duplicate borrowed OMX DMA fd: %s",
++            g_strerror (errno));
++        gst_memory_unref ((GstMemory *) mem);
++        return NULL;
++      }
+       mem->foreign_mem =
+-          gst_dmabuf_allocator_alloc (allocator->foreign_allocator, fd,
++          gst_dmabuf_allocator_alloc (allocator->foreign_allocator, owned_fd,
+           omx_buf->omx_buf->nAllocLen);
++      if (!mem->foreign_mem) {
++        close (owned_fd);
++        gst_memory_unref ((GstMemory *) mem);
++        return NULL;
++      }
+       gst_mini_object_set_qdata (GST_MINI_OBJECT (mem->foreign_mem),
+           GST_OMX_MEMORY_QUARK, mem, NULL);
+       install_mem_dispose (mem);

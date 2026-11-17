@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "kind": "t736-v24-updater-independent-review",
+  "status": "PASS-static-AST-bindings-and-identity-review",
+  "reviewer": "code_index",
+  "updater": {
+    "path": "tools/validation/update_t736_storage_v24.py",
+    "sha256": "0344a5364a9e7e126b5413870387ced4c9c1f83a9135dfd703ad55141546290e"
+  },
+  "baseline_updater": {
+    "path": "tools/validation/update_t736_storage_v23.py",
+    "sha256": "d6b3c43bfb99d94b53544ae9586fa83c5a9be2ff233086eb947da5574d3c3541"
+  },
+  "validation": [
+    "Python compile passed",
+    "All28 function ASTs equal frozen v23 after exactly7 approved version-string mappings plus matching environment-keyword rename; no transaction/control-flow changes",
+    "All11 fixed artifact bindings equal final v24 build/package/PVR evidence",
+    "Previous running-release hashes equal frozen v23; permanent fallback OLD and baseline hashes remain v16",
+    "Expected running-release tuple remains OLD/PREVIOUS; new version24 and rootUUID checked",
+    "No raw disk/SPL/GPT/bootcmd operations introduced"
+  ],
+  "bound_artifacts": {
+    "kernel_sha256": "c58e56fab073adf8f62c14148ab7d79d7feb7ee43e134744c834556079ac0578",
+    "kernel_bytes": 5603706,
+    "pvr_sha256": "badb7af910bd31bf60df0642db893111d77031f9f3560b3f2a23303d0ed700ea",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "2f6abfc2f19fd736cf9b30bf885afd6804686ccbf87d94023e7484e5b8387a5e",
+    "payload_manifest_sha256": "e2d952dcc99ee6e1637a81bff640286093fee15fe66cb9b9e122b641a0ce18ac",
+    "raw_image_sha256": "6f1ee43143befeefa495f982bfeac36ed95669370c4fe9e8e68cb1636c7560ac",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "candidate_dtb_bytes": 12028,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "scope": "Static independent review only; actual inputs and14 offline injection tests owned by backup_audit; board acceptance and application owned by root",
+  "referenced_evidence": {
+    "evidence/storage-v24-build-20261116.json": "313b2472f667fe0800d9e76beadef0cb6a3c7df3dabd6e56138a2ae3f5b57e22",
+    "evidence/storage-v24-package-20261116.json": "2f696b6ef46bf6e5368da12b547f627fd9db5d51e6d3b6ecffd01bbde21b80ff",
+    "evidence/storage-v24-pvr-build-20261116.json": "0945bf9ae364361cf54b0fe15d391d3a59d5d0e3bfa54d9d61ffcc18466ad358"
+  },
+  "board_accepted": false
+}

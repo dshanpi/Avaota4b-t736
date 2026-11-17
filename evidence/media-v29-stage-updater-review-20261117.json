@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "PASS_SOURCE_PACKAGE_AND_23_HOST_CHECKS_BOARD_STAGING_NOT_RUN_BY_REVIEWERS",
+  "implementation_owner": "backup_audit",
+  "independent_reviewers": [
+    "code_index/media_ve_review"
+  ],
+  "hardware_access": false,
+  "candidate_release": "6.18.63-t736-media-v29",
+  "persistent_default": "6.18.63-t736-storage-v16",
+  "protected_releases": [
+    "6.18.63-t736-storage-v16",
+    "6.18.63-t736-media-v27",
+    "6.18.63-t736-media-v28"
+  ],
+  "required_running_release_for_stage": "6.18.63-t736-media-v28",
+  "files": [
+    {
+      "path": "tools/validation/update_t736_media_v29.py",
+      "bytes": 33109,
+      "sha256": "391393decbf298921871f7ead3d18281dd79c91103f96a95967b2e4976e9804e"
+    },
+    {
+      "path": "tools/validation/audit_media_v29_package.py",
+      "bytes": 7497,
+      "sha256": "5949fd6dfe24bc3533b489d92260b5108d97bf41946524aa162f35bf7865c066"
+    },
+    {
+      "path": "tests/test_media_v28_stage.py",
+      "bytes": 6101,
+      "sha256": "0457cd11e735b0e890904fa4b47dd9f1e24d4f11a0e89cc4125a8a1cceff1737"
+    },
+    {
+      "path": "tests/test_media_v29_config.py",
+      "bytes": 3601,
+      "sha256": "e2a4f66516a1d5bf8469534ab2c4f5837234f807f94ed5f77a846099fdd98ab5"
+    },
+    {
+      "path": "evidence/media-v29-package-stage-audit-20261117.json",
+      "bytes": 25818,
+      "sha256": "789247c48a94f6d2a452a89a2fd1ec4ae848123bc2d4e155fe987c9db2fa7825"
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/build-result.json",
+      "bytes": 142257,
+      "sha256": "a60b5a27bce9c90c07aed374a56bf0f84cf1be0f2c7bb5f130b396d11d58adfb"
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/config-diff.json",
+      "bytes": 551,
+      "sha256": "b061251cfeacf9d7908583bcba0be159a4eddc7adb3218a9306edebf5383621b"
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/stage-host-tests.json",
+      "bytes": 882,
+      "sha256": "7430e3dee310f34bcbc24a2e558076df975e0c8af176c0661e17ec2f432eaec2"
+    },
+    {
+      "path": "build/media-v29-candidate-build-20261117/config-host-tests.json",
+      "bytes": 651,
+      "sha256": "8b6ea373c2889a84102828cb83b093b863dd472a82d3601decdc5381f531ca34"
+    }
+  ],
+  "behavior": [
+    "Check is default. Explicit --apply stages only the versioned v29 kernel package, matching PVR and initrd; no default selection or reboot.",
+    "Never changes bootcmd/SPL/GPT, raw media, default kernel aliases or default DTB. Protects every existing noncandidate /boot entry, generic root symlinks and v16/v27/v28 release trees/package state.",
+    "Fixed known v16/v27/v28 boot files, DTBs and PVRs checked before installation; final protected snapshots compared byte-for-byte.",
+    "Private mount namespace suppresses /etc/kernel, /usr/share/kernel, /etc/initramfs/post-update.d and /etc/initramfs-tools/post-update.d hooks.",
+    "Complete package/control/payload/Image/PVR bindings fixed by independent read-only audit. Maintainer scripts identical to reviewed v28 except release string.",
+    "Package config must be a regular file with exactly one enabled ADVISE_SYSCALLS assignment during inputs() before installation, and again in final_check(). Missing/disabled/conflicting/duplicate settings or config symlinks are refused.",
+    "Only semantic config changes are ADVISE_SYSCALLS=y and LOCALVERSION=v29. Newly visible ANON_VMA_NAME disabled comment does not enable that feature; both generated autoconf headers keep it absent.",
+    "Writer process groups must stop before rollback. Saved bounded protected roots recover missing files; symlink parent/leaf handling preserved from reviewed v28 updater.",
+    "Unbound check/apply/rollback entry points all stop before board access. Successful apply reports STAGED_NOT_SELECTED_NOT_BOOT_TESTED."
+  ],
+  "host_tests": {
+    "status": "PASS_HOST_ONLY",
+    "board_access": false,
+    "checks": [
+      "actual fixed package/control/payload/PVR validation",
+      "parent rc0 descendant rejected",
+      "parent rc0 descendant stopped before rollback",
+      "parent rc1 descendant rejected",
+      "parent rc1 descendant stopped before rollback",
+      "timeout command stopped and original error propagated",
+      "directory leaf symlink restored without following",
+      "outside target untouched",
+      "symlink parent rejected before write",
+      "deleted protected boot file accepted for recovery",
+      "deleted protected boot file restored exactly",
+      "unbound blocks before board access: []",
+      "unbound blocks before board access: ['--apply']",
+      "unbound blocks before board access: ['--rollback', '/not-a-backup']",
+      "unbound blocks before board access: ['--rollback', '/not-a-backup', '--apply']"
+    ]
+  },
+  "config_host_tests": {
+    "status": "PASS_HOST_ONLY",
+    "board_access": false,
+    "checks": [
+      "actual fixed package accepts its enabled madvise config",
+      "missing setting rejected during inputs before module/board access",
+      "disabled setting rejected during inputs before module/board access",
+      "explicit n rejected during inputs before module/board access",
+      "conflicting duplicate rejected during inputs before module/board access",
+      "duplicate y rejected during inputs before module/board access",
+      "missing config file rejected during inputs before module/board access",
+      "config symlink rejected during inputs before module/board access"
+    ]
+  },
+  "review_repairs": [
+    "Moved the essential ADVISE config check into inputs() so --check itself refuses unsuitable fixed artifacts. Kept final verification using the same exact-setting validator."
+  ],
+  "frozen_v28_updater": {
+    "path": "tools/validation/update_t736_media_v28.py",
+    "bytes": 31371,
+    "sha256": "97612a6fe75aa397a2ce50eb9b5c5869d3e567e8095689d30404c65f0f0ed453"
+  },
+  "limits": [
+    "No board staging, reboot, native madvise/SHM test or 1080p60 acceptance performed by these reviewers.",
+    "Host rollback tests use temporary filesystem state and simulate root journal ownership. Board identity, filesystem and private mount checks remain runtime gates.",
+    "Failure can retain versioned candidate files for diagnosis; this updater does not uninstall or select them."
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "schema": 1,
+  "kind": "storage-v25-independent-raw-timing-numeric-review",
+  "date": "2026-11-16",
+  "reviewer": "backup_audit/timing_review",
+  "status": "PASS-numeric-reconciliation-with-dispatch-interpretation-correction",
+  "source": {
+    "path": "evidence/storage-v25-hs400-200-timing-20261116.json",
+    "bytes": 134728,
+    "sha256": "b785fa91b60b34367d4db978a44f6203d92e04663a72c3aede66a3b02c0fb709"
+  },
+  "inputs": [
+    {
+      "path": "tools/validation/mmc_timing_collect.py",
+      "bytes": 13339,
+      "sha256": "2a98c83e8154a850d1cd9a55e92cee3fffbec8eb27cecfef030cb39f7744c54b"
+    },
+    {
+      "path": "tools/validation/mmc_read_cost_probe.py",
+      "bytes": 5692,
+      "sha256": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946"
+    },
+    {
+      "path": "boards/t736_mmc_hs400_timing_draft.c",
+      "bytes": 50764,
+      "sha256": "e5874fee67a7a2b04f495b29c7711c9da446b06ab8954c0fa75d23ac97ac2cee"
+    },
+    {
+      "path": "boards/t736_mmc_timing_stats_draft.h",
+      "bytes": 3694,
+      "sha256": "dd507fc5ea4868c3d6b892e096fd56e7ee57833e820b0b4fffd05e78d7f30604"
+    }
+  ],
+  "method": "A separate local parser, without importing the collector, parsed every requests/size_bins/segment/cpu_endpoints row from all three preserved raw snapshots; independently recomputed every numeric delta, lifetime-max pair and per-call mean and compared the entire result to delta. Reviewed the measurement boundaries in the exact local driver and probe.",
+  "checks": {
+    "all_three_raw_sha256_match": true,
+    "collector_and_probe_hashes_match_exact_local_files": true,
+    "kernel_and_boot_id_match_probe": true,
+    "entire_recomputed_delta_exactly_matches": true,
+    "all_three_snapshots_request_success_failure_size_bin_counts_reconcile": true,
+    "all_three_snapshots_CPU_endpoint_counts_and_time_totals_reconcile": true,
+    "poll_iterations_minus_sleep_attempts_matches_command_wait_calls": true,
+    "all_lifetime_maxima_valid_and_not_subtracted": true,
+    "throughput_and_512MiB_probe_arithmetic_match": true,
+    "first_after_and_after_all_counters_identical": true
+  },
+  "snapshot_window": {
+    "before_ns": 118420260142,
+    "first_after_ns": 128206219742,
+    "after_ns": 128225113498,
+    "interval_ns": 9804853356,
+    "first_after_to_after_ns": 18893756,
+    "raw_sha256": {
+      "before": "113df4d5f43334b40448fa642fbb8b4e0e890b113fba88868128774dba144f45",
+      "first_after": "e234c0c68d39408c6f71dea5c08d007438e85d5813959f04bde1cdbede0ab9b1",
+      "after": "7ecc6d2fdd57c863a31512fc5b81fc1665769a9a62862175fdde135f7d636d5e"
+    },
+    "complete_samples": 8218,
+    "incomplete_samples": 0,
+    "dropped_events": 0
+  },
+  "probe": {
+    "bytes": 536870912,
+    "seconds": 9.533278629999998,
+    "MiB_per_s": 53.70660188078444,
+    "repeated_prefix_bytes": 8388608,
+    "repetitions": 64,
+    "userspace_read_bytes": 1048576,
+    "process_CPU_seconds": 0.20282282399999998,
+    "named_dma_worker_CPU_seconds_tick_quantized": 5.2,
+    "system_system_CPU_seconds": 5.36,
+    "probe_content_validation": false
+  },
+  "read_requests": {
+    "attempted": 8197,
+    "success": 8197,
+    "failed": 0,
+    "requested_bytes": 537137152,
+    "completed_bytes": 537137152,
+    "poll_iterations": 49352,
+    "poll_sleep_attempts": 41155
+  },
+  "read_size_bins": {
+    "le4096": 0,
+    "le16384": 1,
+    "le65536": 8196,
+    "gt65536": 0
+  },
+  "write_requests": {
+    "attempted": 21,
+    "success": 21,
+    "failed": 0,
+    "requested_bytes": 180224,
+    "completed_bytes": 180224,
+    "poll_iterations": 43,
+    "poll_sleep_attempts": 22
+  },
+  "write_size_bins": {
+    "le4096": 17,
+    "le16384": 1,
+    "le65536": 3,
+    "gt65536": 0
+  },
+  "probe_coverage": {
+    "expected_probe_requests_at_64KiB": 8192,
+    "read_request_surplus": 5,
+    "read_byte_surplus": 266240,
+    "count_and_byte_lower_bounds_satisfied": true,
+    "interpretation": "The aggregate has 5 more read requests and 266240 more read bytes than the probe minimum, plus 21 writes. This is consistent with background I/O and different measurement-window endpoints; aggregate counters cannot identify each request or prove that background reads did not mask a smaller omission. The probe itself performs no storage writes."
+  },
+  "read_phases": {
+    "dispatch": {
+      "calls": 8197,
+      "total_wall_ns": 81689915,
+      "mean_wall_ns_per_call": 9965.83079175308,
+      "fraction_of_read_service": 0.008825463666791652
+    },
+    "worker_service_before_done": {
+      "calls": 8197,
+      "total_wall_ns": 9256161272,
+      "mean_wall_ns_per_call": 1129213.2819324143,
+      "fraction_of_read_service": 1.0
+    },
+    "dma_start": {
+      "calls": 8197,
+      "total_wall_ns": 38492458,
+      "mean_wall_ns_per_call": 4695.9202147127,
+      "fraction_of_read_service": 0.004158576851555099
+    },
+    "pre_reset": {
+      "calls": 8197,
+      "total_wall_ns": 15408330,
+      "mean_wall_ns_per_call": 1879.7523484201538,
+      "fraction_of_read_service": 0.0016646566051750184
+    },
+    "write_copy": {
+      "calls": 0,
+      "total_wall_ns": 0,
+      "mean_wall_ns_per_call": null,
+      "fraction_of_read_service": 0.0
+    },
+    "command_wait": {
+      "calls": 8197,
+      "total_wall_ns": 4463116238,
+      "mean_wall_ns_per_call": 544481.6686592656,
+      "fraction_of_read_service": 0.4821778820450094
+    },
+    "busy_wait": {
+      "calls": 0,
+      "total_wall_ns": 0,
+      "mean_wall_ns_per_call": null,
+      "fraction_of_read_service": 0.0
+    },
+    "post_reset": {
+      "calls": 8197,
+      "total_wall_ns": 15489770,
+      "mean_wall_ns_per_call": 1889.687690618519,
+      "fraction_of_read_service": 0.001673455068988128
+    },
+    "read_copy": {
+      "calls": 8197,
+      "total_wall_ns": 4724849806,
+      "mean_wall_ns_per_call": 576412.0783213371,
+      "fraction_of_read_service": 0.5104545682768868
+    },
+    "completion_callback": {
+      "calls": 8197,
+      "total_wall_ns": 31342671,
+      "mean_wall_ns_per_call": 3823.6758570208613,
+      "fraction_of_read_service": 0.0033861414120788884
+    },
+    "worker_total_before_merge": {
+      "calls": 8197,
+      "total_wall_ns": 9288705782,
+      "mean_wall_ns_per_call": 1133183.5771623764,
+      "fraction_of_read_service": 1.0035159834669742
+    }
+  },
+  "phase_accounting": {
+    "dma_start_includes_pre_reset": true,
+    "worker_total_includes_service_and_callback": true,
+    "worker_total_excludes_final_sample_merge": true,
+    "service_outside_dma_start_command_wait_busy_wait_post_reset_read_copy_ns": 14213000,
+    "worker_total_minus_service_minus_completion_callback_ns": 1201839,
+    "read_copy_fraction_of_service": 0.5104545682768868,
+    "command_wait_fraction_of_service": 0.4821778820450094,
+    "poll_iterations_mean_per_read": 6.020739294863975,
+    "poll_sleep_attempts_mean_per_read": 5.020739294863975,
+    "interpretation": "Read copy accounts for 51.0454568% of measured read-service wall time, and command_wait 48.2177882%. dma_start includes pre_reset and must not be added to it. The remaining 14.213 ms is time inside service but outside the listed measured subsegments, not an independently identified cause. command_wait includes command issue, MMIO polling, requested sleeps and intervening scheduling; it is not a direct controller-only or sleep-only timing."
+  },
+  "read_copy_CPU_endpoint_groups": {
+    "5": {
+      "starts": 5301,
+      "ends": 5301,
+      "same_endpoints": 5301,
+      "same_endpoint_ns": 4195955967,
+      "mean_wall_ns_per_same_endpoint_call": 791540.4578381438
+    },
+    "6": {
+      "starts": 75,
+      "ends": 75,
+      "same_endpoints": 75,
+      "same_endpoint_ns": 13784733,
+      "mean_wall_ns_per_same_endpoint_call": 183796.44
+    },
+    "7": {
+      "starts": 2821,
+      "ends": 2821,
+      "same_endpoints": 2821,
+      "same_endpoint_ns": 515109106,
+      "mean_wall_ns_per_same_endpoint_call": 182598.05246366537
+    }
+  },
+  "read_copy_CPU_6_7_combined": {
+    "calls": 2896,
+    "wall_ns": 528893839,
+    "mean_wall_ns_per_call": 182629.0880524862
+  },
+  "interpretation_correction": {
+    "severity": "documentation-and-analysis",
+    "scope": "dispatch CPU endpoint meaning",
+    "finding": "The raw generic statement different_means_at_least_one_migration is too broad for dispatch. dispatch begins in t736_request and ends in t736_worker, which are different execution contexts. Its 8197 differing endpoint pairs show submitter-to-worker CPU handoff, not 8197 migrations of one thread.",
+    "source_locations": [
+      "boards/t736_mmc_hs400_timing_draft.c:842",
+      "boards/t736_mmc_hs400_timing_draft.c:901"
+    ],
+    "correction": "Apply the at-least-one-migration interpretation only to measured segments executed within the same worker task. For dispatch, report different submitter/worker CPUs. No change to raw counters or measured data is needed."
+  },
+  "limits": [
+    "No board operation, runtime executable inspection, upload or new hardware test was performed by this reviewer. This review establishes local evidence consistency, not independent provenance of the running kernel.",
+    "Timing segments measure wall time including interrupts and scheduling; 4.724849806 seconds is read-copy segment wall time, not independently measured copy CPU time.",
+    "Same CPU endpoints do not establish residency. The CPU 5 versus CPU 6/7 per-call mean differences are observations with no controlled CPU frequency/load or per-CPU request-size attribution; they do not prove a cache or CPU-class cause.",
+    "Worker CPU time is tick-quantized and includes its work in the task-counter window; whole-system CPU includes all tasks. Neither can be equated directly to an individual phase.",
+    "Snapshot, syscall, worker-counter and diskstats windows differ. First-after stability over 18.893756 ms is not hardware draining or proof that no request was outstanding.",
+    "Only the first 8 MiB is repeated 64 times with O_DIRECT and a prefaulted destination. Device-internal cache may be warm; this is not unique-media streaming or content integrity validation.",
+    "Lifetime maxima remain before/after observations; their difference is not an interval maximum.",
+    "The measured cost justifies evaluating a cacheable payload-bounce experiment while retaining correctness checks; it does not prove that cacheability alone will recover a particular throughput."
+  ],
+  "board_operated": false,
+  "public_backup_modified": false
+}

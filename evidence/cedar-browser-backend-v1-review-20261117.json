@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "SOURCE_REVIEW_AND_DEVICE_FREE_TESTS_PASS_HARDWARE_PENDING",
+  "board_access": false,
+  "reviewer": "code_index/media_ve_review",
+  "source_sha256": "745ff74b6e8a6136b69c7bba54309d883a6012a28f27c8767e460dc34f9a12ac",
+  "test_sha256": "a420f7069d39986161319034bf50a602915d1ed3e62ae4fe8d570ab8605a4848",
+  "resolved_findings": [
+    "Validate every actual cropped plane read against its GstMapInfo mapping, including malicious stride/offset/short buffer",
+    "Remove upstream width/height override, force parser inspection, restrict visible dimensions/chroma420/8bit before OMX"
+  ],
+  "tests": [
+    "ARM64 -Wall -Wextra -Werror shared-library build",
+    "ARM64 QEMU actual Gst mapping/crop/copy; software appsrc/appsink EOS-flush-reuse",
+    "Native actual C ASan/UBSan; 4 pixel formats, padded strides and heights, nonzero crop origins, odd dimensions, malformed crop and mapped extents"
+  ],
+  "lifetime": {
+    "api": "one externally serialized decoder; one active same-configuration lease; process shutdown only closes",
+    "flush": "Gst flushing seek through appsrc/parser/OMX/appsink; no READY/NULL transition",
+    "source_review": "OMX Pause -> flush ports -> Executing/populate; ResetVideoDecoder -> FbmFlush/SbmReset, no FBM destruction",
+    "not_proven": "actual hardware repeated-stream pool reuse or AXI DMA drain"
+  },
+  "limitations": [
+    "Parser caps are visible dimensions; coded dimensions/DPB/SPS changes can still alter allocation, even with same visible size",
+    "Progressive restriction checked on output; parser does not expose a reliable interlace-mode field here",
+    "Current WC-v3 packaged config registers H264 only; runtime HEVC section must explicitly use verified GstOMXH265Dec/OMX.allwinner.video.decoder.hevc",
+    "No board decoding, Firefox, Bilibili, or hardware flush acceptance performed by this agent"
+  ],
+  "v3_crop_patch_review": "No new blocker in four output paths; crop snapshot precedes buffer release; queried OMX rectangle and bounds replace private-buffer guessed origin; controlled target acceptance remains pending"
+}

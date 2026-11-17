@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "kind": "storage-v26-collector-offline-contract",
+  "status": "PASS-offline-contract-hardware-pending",
+  "date": "2026-11-16",
+  "collector": {
+    "path": "tools/validation/mmc_timing_collect_v26.py",
+    "sha256": "a99dc35116a763cae60b760fb710483c911f2a84cff7ddc3c1a322d55caf0bbe"
+  },
+  "frozen_v25_collector_sha256": "2a98c83e8154a850d1cd9a55e92cee3fffbec8eb27cecfef030cb39f7744c54b",
+  "frozen_probe_sha256": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946",
+  "fixed_release": "6.18.63-t736-storage-v26",
+  "changes": [
+    "v26 release guard and descriptive strings only; normalized full AST identical to v25.",
+    "dma_start includes sync_device; post_reset includes sync_cpu. Nested phases must not be added.",
+    "dispatch is submitter-to-worker CPU handoff, not same-thread migration."
+  ],
+  "checks": [
+    "Independent load/reparse of three preserved actual v25 raw snapshots gives the identical full delta.",
+    "Replacing only descriptive metadata with the exact v26 C show strings retains identical numeric parsing; this is parser compatibility, not simulated hardware evidence.",
+    "All original request coverage, loss, identity, pinned probe, raw snapshot retention and bounded-stability logic remain identical."
+  ],
+  "runtime_executed": false,
+  "board_operated": false
+}

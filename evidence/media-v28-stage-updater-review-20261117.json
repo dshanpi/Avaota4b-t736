@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "PASS_SOURCE_AND_HOST_TESTS_BOARD_STAGING_NOT_RUN_BY_REVIEWERS",
+  "implementation_owner": "backup_audit",
+  "independent_reviewers": [
+    "code_index/media_ve_review",
+    "desktop_review"
+  ],
+  "hardware_access": false,
+  "candidate_release": "6.18.63-t736-media-v28",
+  "persistent_default": "6.18.63-t736-storage-v16",
+  "accepted_media_release_protected": "6.18.63-t736-media-v27",
+  "files": [
+    {
+      "path": "tools/validation/update_t736_media_v28.py",
+      "bytes": 31371,
+      "sha256": "97612a6fe75aa397a2ce50eb9b5c5869d3e567e8095689d30404c65f0f0ed453"
+    },
+    {
+      "path": "tests/test_media_v28_stage.py",
+      "bytes": 6101,
+      "sha256": "0457cd11e735b0e890904fa4b47dd9f1e24d4f11a0e89cc4125a8a1cceff1737"
+    },
+    {
+      "path": "evidence/media-v28-package-stage-audit-20261117.json",
+      "bytes": 23918,
+      "sha256": "51fd544b5ca1c9930e8c2a5cf45ed3dfa38cfd2538bea965a6d66abe0e3173f2"
+    },
+    {
+      "path": "build/media-v28-candidate-build-20261117/stage-host-tests.json",
+      "bytes": 882,
+      "sha256": "7430e3dee310f34bcbc24a2e558076df975e0c8af176c0661e17ec2f432eaec2"
+    }
+  ],
+  "behavior": [
+    "Check is default; explicit --apply stages only versioned kernel package, matching PVR and initrd.",
+    "No candidate-selection function, default symlink replacement, reboot, bootcmd, SPL, GPT or raw block-device writes.",
+    "Fixed final combined VE400/DCDC2-readback artifacts, package control and complete payload manifests verified. Maintainer scripts read in full: only scoped run-parts under suppressed hook roots.",
+    "Private mount namespace suppresses package/kernel/initramfs post-update hooks; all existing noncandidate boot objects, v16/v27 module and DTB trees, package metadata, initramfs state and generic kernel links are journaled.",
+    "Default v16 kernel/config/System.map/DTB and accepted v27 kernel/config/System.map/DTB/PVR checked against fixed hashes before staging.",
+    "Successful staging rechecks protected snapshots and reports STAGED_NOT_SELECTED_NOT_BOOT_TESTED; candidate paths supplied for a separately operated one-shot boot.",
+    "Failures restore journaled protected bytes only after writer process groups have stopped; unconfirmed termination explicitly blocks rollback.",
+    "Saved bounded protected-root list allows recovery of missing boot files; directory leaf symlinks are unlinked before restoring a directory and symlink parent chains are rejected."
+  ],
+  "host_tests": {
+    "status": "PASS_HOST_ONLY",
+    "board_access": false,
+    "checks": [
+      "actual fixed package/control/payload/PVR validation",
+      "parent rc0 descendant rejected",
+      "parent rc0 descendant stopped before rollback",
+      "parent rc1 descendant rejected",
+      "parent rc1 descendant stopped before rollback",
+      "timeout command stopped and original error propagated",
+      "directory leaf symlink restored without following",
+      "outside target untouched",
+      "symlink parent rejected before write",
+      "deleted protected boot file accepted for recovery",
+      "deleted protected boot file restored exactly",
+      "unbound blocks before board access: []",
+      "unbound blocks before board access: ['--apply']",
+      "unbound blocks before board access: ['--rollback', '/not-a-backup']",
+      "unbound blocks before board access: ['--rollback', '/not-a-backup', '--apply']"
+    ]
+  },
+  "review_repairs": [
+    "Detected child writer groups even when the parent returns after closing captured pipes.",
+    "Used saved bounded roots and fixed required paths for missing-file rollback, rather than live directory enumeration.",
+    "Prevented directory restoration through symlink leaves/parents.",
+    "Moved missing-build-binding guard before all check/apply/rollback entry points."
+  ],
+  "limits": [
+    "No board check/apply/rollback/reboot performed by these reviewers.",
+    "Host rollback test uses a temporary filesystem and simulates root ownership of its private journal directory; real board identity/storage and private mount operation remain runtime checks.",
+    "Stage failure may retain versioned candidate files for diagnosis; it does not uninstall or select the candidate.",
+    "The package remains a hardware candidate; this audit proves neither VE400 runtime voltage/clock state nor 1080p60 performance."
+  ]
+}

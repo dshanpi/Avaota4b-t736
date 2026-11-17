@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "kind": "t736-storage-v25-updater-independent-review",
+  "date": "2026-11-16",
+  "reviewer": "/root/code_index",
+  "status": "PASS_STATIC_AST_AND_EXACT_BINDINGS",
+  "files": {
+    "tools/validation/update_t736_storage_v25.py": "dbbfa8b9ea82f10c1b7a0399856c69290de7354aaeb84a441291c6f0c8f726e3",
+    "tools/validation/update_t736_storage_v24.py": "0344a5364a9e7e126b5413870387ced4c9c1f83a9135dfd703ad55141546290e",
+    "evidence/storage-v25-build-20261116.json": "5a161976fb7fcf62fd9ff27ebef733052942f01058dddfb33391d240d6c00780",
+    "evidence/storage-v25-package-20261116.json": "addf13b51d885c4ca5c27f6ff2abe310c003e1794d905da4911721bf58a4b861",
+    "evidence/storage-v25-pvr-build-20261116.json": "771be7ba4cad01004f13f1c408a9f3ce1ccd361fb3e93801277fc82646d8b47e"
+  },
+  "checks": {
+    "functions_classes_AST_equivalent": 29,
+    "permitted_AST_renames": [
+      "v23 running identity to v24",
+      "v24 candidate identity to v25",
+      "6.18.63 package version -23 to -24 / -24 to -25 as applicable",
+      "paired private mount namespace environment key/keyword T736_V23_CALLER_MNT to T736_V25_CALLER_MNT"
+    ],
+    "top_level_changes": [
+      "NEW",
+      "VERSION",
+      "PREVIOUS",
+      "BACKUPS",
+      "BINDINGS",
+      "PREVIOUS_BOOT_SHA256"
+    ],
+    "exact_artifact_bindings": 11,
+    "complete_control_manifest_hash_recomputed": true,
+    "complete_payload_manifest_hash_recomputed": true,
+    "maintainer_scripts_same_after_release_rename": true,
+    "package_regular_files": 82,
+    "regular_payload_files_changed_from_v24": 5,
+    "changed_regular_files": [
+      "boot/System.map",
+      "boot/config (only LOCALVERSION config change)",
+      "boot/vmlinuz",
+      "modules.builtin.modinfo (new diagnostic description/parameter)",
+      "changelog.Debian.gz"
+    ],
+    "unchanged_regular_files": 77,
+    "accepted_running_releases": [
+      "6.18.63-t736-storage-v16",
+      "6.18.63-t736-storage-v24"
+    ],
+    "recovery_release": "6.18.63-t736-storage-v16",
+    "running_v24_boot_hashes_match_frozen_build": true,
+    "raw_Image_gzip_DTB_PVR_bytes_and_sha256_match_records": true,
+    "no_unbound_None_values": true
+  },
+  "behavior_review": "No transaction control-flow change after explicit identity renaming. Default remains read-only check. Private namespace hook suppression and checked process-group termination/rollback are retained; no reboot, bootcmd, SPL, GPT or raw-media write introduced.",
+  "validation_limit": "This reviewer inspected final source and package records; backup_audit runs final actual-package/PVR inputs and14 fault-injection tests. Parent alone performs board check/apply/boot.",
+  "board_acceptance": false
+}

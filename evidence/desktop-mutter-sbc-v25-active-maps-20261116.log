@@ -1,0 +1,19 @@
+[
+  {
+    "pid": 5491,
+    "environment": {
+      "DISPLAY": ":0",
+      "XAUTHORITY": "/run/user/1000/gdm/Xauthority",
+      "LD_LIBRARY_PATH": "/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu:/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16:/opt/t736-img-ddk-24.2-x11/runtime-gles",
+      "GI_TYPELIB_PATH": "/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16:/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/girepository-1.0",
+      "COGL_EGL_X11_SBC_FEEDBACK": "1",
+      "COGL_EGL_X11_SBC_TRACE": "1"
+    },
+    "mutter_maps": [
+      "/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/libmutter-16.so.0.0.0",
+      "/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16/libmutter-clutter-16.so.0.0.0",
+      "/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16/libmutter-cogl-16.so.0.0.0",
+      "/opt/t736-mutter-sbc-48.7-ac42f10a/lib/aarch64-linux-gnu/mutter-16/libmutter-mtk-16.so.0.0.0"
+    ]
+  }
+]

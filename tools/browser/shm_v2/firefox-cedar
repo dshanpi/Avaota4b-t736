@@ -1,0 +1,12 @@
+#!/bin/sh
+# Matched v2 client with FFmpeg v7; preserve the Firefox RDD sandbox.
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+ffmpeg=/opt/t736-browser-ffmpeg-v7/lib
+export T736_CEDAR_ENABLE=1
+export LD_LIBRARY_PATH="$ffmpeg:$root/lib:/opt/t736-img-ddk-24.2-x11/runtime-gles${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export LIBGL_DRIVERS_PATH="${LIBGL_DRIVERS_PATH:-/opt/t736-img-ddk-24.2-x11/lib/dri}"
+export MOZ_X11_EGL=1
+export LD_PRELOAD="$root/lib/libt736_cedar_client.so:$ffmpeg/libavutil.so.59:$ffmpeg/libavcodec.so.61${LD_PRELOAD:+:$LD_PRELOAD}"
+unset T736_CEDAR_TEST_CLIENT
+exec /usr/lib/firefox-esr/firefox-esr "$@"

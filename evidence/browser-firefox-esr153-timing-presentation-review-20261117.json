@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "READ_ONLY_TIMING_AND_PRESENTATION_SOURCE_REVIEW_RUNTIME_CAUSE_NOT_YET_PROVEN",
+  "reviewer": "desktop_review",
+  "board_access": false,
+  "production_code_modified": false,
+  "runtime_version_reported_by_root": "153.7.0esr-1~deb13u1",
+  "source": {
+    "upstream_tag": "FIREFOX_153_7_0esr_RELEASE",
+    "commit": "9aecd40e03ebf6e866e32a0a3001488ed751228d",
+    "runtime_match_scope": "Exact upstream release corresponding to reported runtime version; Debian package patches/binary not independently matched. Debian source endpoint returned404.",
+    "local_directory": "build/firefox-esr153-timing-review-20261117",
+    "files": [
+      {
+        "name": "FFmpegVideoDecoder.cpp",
+        "sha256": "487d7f50b1d4502433a82bb489b45b56ab3918dea2360355e5cb1de8c0a1497d"
+      },
+      {
+        "name": "FFmpegUtils.h",
+        "sha256": "cd78337a90130250390145f52ad21b8e3c8e4644df4cafee46efd02e4e480513"
+      },
+      {
+        "name": "VideoSink.cpp",
+        "sha256": "787da0b117424afd1b865a1bac769397e3c9be8dbaabfa1491356c9d4f938b60"
+      },
+      {
+        "name": "FrameStatistics.h",
+        "sha256": "ffa0d459a65cd72a5aaaea65756904a835b13a25cb826461c2ec389fcd3d6166"
+      },
+      {
+        "name": "MediaDecoderStateMachine.cpp",
+        "sha256": "430a213358223cd1c987aa3e0773b7f5ee0358b276c5a33bb3c52f611abd10b8"
+      },
+      {
+        "name": "HTMLVideoElement.cpp",
+        "sha256": "6047130b2de2dd1fcf3abee183bd48fce235d858fc3d22b37d3e95de173379d5"
+      },
+      {
+        "name": "HTMLMediaElement.webidl",
+        "sha256": "671c8850450cd12011c8dd49f2395349761356067653915c95a53b2cf40c4b16"
+      },
+      {
+        "name": "HTMLVideoElement.webidl",
+        "sha256": "d51d12f103f68d4bc7986b5e8ff66b11979878666b30a16b27194b3df25784ae"
+      },
+      {
+        "name": "MediaDebugInfo.webidl",
+        "sha256": "b3cdc20b483e07200033fea53f2e613572c543e49e82e4e87a689b64f56c94b9"
+      },
+      {
+        "name": "StaticPrefList.yaml",
+        "sha256": "0622c4111a21ff47d3aa35b1134d0bbbd5d49886d2f8c64b6c3771b85c9c24fc"
+      }
+    ]
+  },
+  "timing_chain": [
+    {
+      "location": "FFmpegVideoDecoder.cpp:1524",
+      "finding": "Input packet DTS=mTimecode in microseconds, PTS=mTime in microseconds; duration=mDuration at1589."
+    },
+    {
+      "location": "FFmpegVideoDecoder.cpp:1420",
+      "finding": "For libavcodec61 GetFramePts directly returns AVFrame.pts. It does not use best_effort_timestamp or guess from pkt_dts."
+    },
+    {
+      "location": "FFmpegUtils.h:66",
+      "finding": "For libavcodec61 Duration returns AVFrame.duration, not deprecated pkt_duration."
+    },
+    {
+      "location": "FFmpegVideoDecoder.cpp:1719",
+      "finding": "The ordinary software-image path passes these exact PTS/duration values to CreateImage; this branch has no realtime lateness drop adjustment."
+    },
+    {
+      "location": "FFmpegVideoDecoder.cpp:2102",
+      "finding": "VideoData uses PTS/duration for presentation and pkt_dts as mTimecode; RecordFrame:1787 uses mTimecode for performance recording."
+    },
+    {
+      "location": "tools/browser/ffmpeg_cedar.c:499",
+      "finding": "Wrapper returns broker-restored PTS, and looks up original packet duration/DTS/position by exact PTS in a256-entry ring. Broker DTS is intentionally unknown, original packet DTS remains output metadata."
+    }
+  ],
+  "ffmpeg_semantics_review": "evidence/browser-ffmpeg-v6-output-timing-review-20261117.json",
+  "timing_conclusion": "No evidence currently ties original-packet DTS mapping or has_b_frames to the live60fps drops. The packet-DTS association differs from FFmpeg frame.h wording and the timing-ring miss/duplicate cases deserve separate correctness work, but changing DTS/PTS blindly is not justified by this experiment.",
+  "drop_and_callback_findings": [
+    {
+      "location": "FrameStatistics.h:119",
+      "finding": "total frames=presented+dropped; dropped sums decoder,sink,compositor counters. total alone is not proof of rendering throughput."
+    },
+    {
+      "location": "VideoSink.cpp:527",
+      "finding": "Expired frames that were never sent to the compositor accumulate droppedSinkFrames."
+    },
+    {
+      "location": "VideoSink.cpp:597",
+      "finding": "The sink deliberately throttles persistently late current frames: it sends another after cumulative skipped durations exceed lateness. A fixed latency can keep large drop ratios even when mean decode rate equals source rate."
+    },
+    {
+      "location": "HTMLVideoElement.cpp:950",
+      "finding": "rVFC presentedFrames advances by selected frameID difference, including IDs skipped between callbacks. The source explicitly says this is not composition count. A60/s metadata delta can coexist with10/s callbacks and large actual drop counts."
+    }
+  ],
+  "bounded_readonly_diagnostics": {
+    "privileged_method": "await video.mozRequestDebugInfo() (tabs/debugger privilege required)",
+    "fields": [
+      "decoder.reader.frameStats.droppedDecodedFrames",
+      "decoder.reader.frameStats.droppedSinkFrames",
+      "decoder.reader.frameStats.droppedCompositorFrames",
+      "decoder.reader.videoHardwareAccelerated",
+      "decoder.reader.videoState.queueSize",
+      "decoder.reader.videoState.pending",
+      "decoder.stateMachine.clock",
+      "decoder.stateMachine.decodedVideoEndTime",
+      "decoder.stateMachine.mediaSink.videoSink.size",
+      "decoder.stateMachine.mediaSink.videoSink.videoFrameEndTime"
+    ],
+    "ordinary_page_counters": [
+      "mozParsedFrames",
+      "mozDecodedFrames",
+      "mozPresentedFrames",
+      "mozPaintedFrames",
+      "mozFrameDelay",
+      "getVideoPlaybackQuality()"
+    ],
+    "interpretation": "Sample a few times per second with common monotonic timestamps; compare decoder-ahead and sink lateness trends plus decomposed drop deltas. These asynchronous API snapshots do not prove physical HDMI scanout."
+  },
+  "prebuffer_design": {
+    "already_exists": true,
+    "classification": "The Cedar proxy is not VAAPI,V4L2 or Vulkan, so this Firefox implementation reports software decoding and selects default-size rather than hw-accel-size.",
+    "current_default": "media.video-queue.default-size=10; VideoPrerollFrames=floor(queueSize/2*playbackRate+1), capped by decoder max if any.",
+    "current_startup_at60": "6 frames, approximately100ms; the same six frames provide approximately200ms at30fps.",
+    "diagnostic_first": "Same-format pause about1s then resume or preload without autoplay. Record whether latency and drops disappear and whether the improvement persists; do not seek or modify PTS.",
+    "conditional_candidate": "If the pause test establishes insufficient lead rather than deficient steady throughput, test private-profile default-size20:11-frame startup approximately183ms at60fps and nominal20-frame queue333ms.",
+    "memory_delta": "At most about31.1MB more tightly packed1080p I420 pixel payload for10 additional queue frames, plus allocator/metadata overhead; ordinary RAM, not permission to enlarge kernel DMA quarantine.",
+    "acceptance": "Maintain the same fps,PTS,A/V timeline and drop accounting. Require low sink/compositor drop deltas and stable positive decode lead over long playback plus pause/seek checks. If lateness keeps growing or drops merely recur later, increased buffering is not a fix.",
+    "throughput_priority": "Keep VE400 and backendv5 results separate, retain A76/RDD scheduling comparison, quantify WC copy and IPC/RDD costs. Sustained processing must have margin above60fps; exactly60fps averages cannot reliably recover from stalls."
+  },
+  "not_proposed": [
+    "No PTS or duration offset to disguise lateness.",
+    "No disabling dropped-frame counters.",
+    "No media.ruin-av-sync.enabled bypass.",
+    "No new kernel/cache-attribute change."
+  ],
+  "next_action_owner": "root owns all board, browser and live experiments; this reviewer provides source evidence only."
+}

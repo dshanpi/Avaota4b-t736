@@ -1,0 +1,112 @@
+{
+  "schema": "t736-browser-ffmpeg-independent-review-v1",
+  "date": "2026-11-17",
+  "result": "PASS_SOFTWARE_REVIEW_AND_ARM64_QEMU",
+  "hardware_access": false,
+  "live_browser_acceptance_claimed": false,
+  "public_backup_updated": false,
+  "sources_and_evidence": [
+    {
+      "path": "tools/browser/ffmpeg_cedar.c",
+      "sha256": "17377752d741a8115c7f5ddce36b5004cbee89ecc23b51a07e9d1087971c5aec",
+      "bytes": 20687
+    },
+    {
+      "path": "tests/test_ffmpeg_cedar.c",
+      "sha256": "4093d3d51c046ebef31271259b639416a68d465969e6fbbcedbade11e28d81eb",
+      "bytes": 10429
+    },
+    {
+      "path": "tools/browser/cedar_client.h",
+      "sha256": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+      "bytes": 1181
+    },
+    {
+      "path": "evidence/build/browser-ffmpeg-v1-arm64-qemu-20261117.log",
+      "sha256": "a16e7e3f44619b587f610adb6eccf180010b664657d8b49cbec24e300037f0b7",
+      "bytes": 1389
+    },
+    {
+      "path": "evidence/browser-ffmpeg-v1-build-20261117.json",
+      "sha256": "b454731f163fcfa6379117c84f08732ebdccee61fe83b2796fa719727c77bfaf",
+      "bytes": 8967
+    }
+  ],
+  "reviewed_library": {
+    "bytes": 11084304,
+    "sha256": "6213002abf88701df8f13724ddf7105a8591ceb74540cdcf38002939a5000b06",
+    "needed": [
+      "libswresample.so.5",
+      "libavutil.so.59",
+      "libm.so.6",
+      "libc.so.6",
+      "ld-linux-aarch64.so.1"
+    ],
+    "soname": [
+      "libavcodec.so.61"
+    ]
+  },
+  "archive": {
+    "archive": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v1.tar.gz",
+    "bytes": 6980776,
+    "sha256": "419cb652686a81a806418009d675ccee82b5508b4539ad2e981905034f15ebae",
+    "manifest_sha256": "b96d35e46536cc026b89dde1615e67a28f30ec7faf1ef5cc6e6a373ba4979b94"
+  },
+  "selection_review": {
+    "codec_iterate": "Configured generated codec_list places h264_cedar and hevc_cedar before native decoders; ID lookup returns wrappers.",
+    "fallback": "Native decoders are looked up by exact names h264 and hevc, avoiding wrapper recursion.",
+    "build_binding": "Final copied source SHA matches manifest; desktop_review checked source and object timestamps."
+  },
+  "fixes_applied": [
+    "Pending filtered AU backpressure retries internally with a 5-second progress bound, avoiding simultaneous send/receive EAGAIN.",
+    "Unexpected broker EOS outside drain becomes EPROTO; flush resets backpressure and timestamp state.",
+    "Timestamp rescale overflow is rejected rather than converted to unknown; normalized values respect broker nanosecond range.",
+    "Known unsupported pixel depth, chroma, interlace and codec profile use native fallback before opening hardware context.",
+    "Failed runtime native initialization frees unopened context, persists error, and avoids flushing a released hardware BSF.",
+    "Native fallback inherits caller max_pixels and apply_cropping limits."
+  ],
+  "executed_tests": {
+    "runner": "desktop_review; ARM64 candidate libraries executed by qemu-aarch64-static on build host",
+    "checks": 4994,
+    "synthetic": [
+      "Three consecutive backpressure events progress internally before send_packet returns.",
+      "Negative DTS offset and negative PTS after flush round trip.",
+      "EOS drain and flush/restart.",
+      "Post-delivery EIO remains fatal; unexpected pre-drain EOS is EPROTO.",
+      "Known HEVC Main10 opens no stub hardware session."
+    ],
+    "fixtures": [
+      {
+        "codec": "H264",
+        "profile": "8-bit 4:2:0 B-frames",
+        "dimensions": "320x180",
+        "fps": 30,
+        "frames": 45,
+        "sha256": "3ed08f1e69c11d71ba8eb9de1da7b943f56427da800a128e9a726b8aea1dfb1d"
+      },
+      {
+        "codec": "HEVC",
+        "profile": "8-bit 4:2:0 B-frames",
+        "dimensions": "320x180",
+        "fps": 30,
+        "frames": 45,
+        "sha256": "27c668c8cde0bfe39b83685157fbe14788a490543c9805e3cd50cf2769fdd5e7"
+      }
+    ],
+    "fallback_modes": [
+      "client unavailable",
+      "hardware open returns EBUSY",
+      "backend EIO after seven accepted packets and before first frame",
+      "backend EIO at drain after all packets accepted"
+    ],
+    "comparisons": "All eight 45-frame output sequences equal native in per-frame dimensions, format, pixel MD5, PTS, best_effort_timestamp and duration."
+  },
+  "limitations": [
+    "Tests use exported stub client APIs; no actual vendor decode, DMA, broker socket or browser sandbox behavior is tested.",
+    "No repeated browser-session allocation plateau or AXI DMA drain is established.",
+    "Unknown codec parameters rely on actual parser output validation before OMX; wrapper does not parse SPS itself.",
+    "Timestamp transport quantizes to microseconds; finer timebases and duplicate PTS metadata are not acceptance-tested.",
+    "Replay-cap exhaustion, forced allocation failure, and five-second stall timeout are source-reviewed but not exercised by this harness.",
+    "Current bypass DMA route still lacks IOMMU containment."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "kind": "storage-v25-timing-independent-implementation-review",
+  "date": "2026-11-16",
+  "reviewer": "/root/backup_audit",
+  "status": "STATIC_AND_SOURCE_CONTRACT_PASS_FULL_KERNEL_AND_BOARD_PENDING",
+  "files_sha256": {
+    "boards/t736_mmc_hs400_draft.c": "515d7f75b871ee9da838ef71199706ddedb5425ae6cfac186c3089831d8598e5",
+    "boards/t736_mmc_hs400_timing_draft.c": "e5874fee67a7a2b04f495b29c7711c9da446b06ab8954c0fa75d23ac97ac2cee",
+    "boards/t736_mmc_timing_stats_draft.h": "dd507fc5ea4868c3d6b892e096fd56e7ee57833e820b0b4fffd05e78d7f30604",
+    "tests/test_mmc_timing_stats.py": "7a8a765362daa668b4ab735a536c132c62869602cd419953ccc518ce6824394d",
+    "evidence/storage-v25-timing-design-20261116.json": "1c92996b3e075e8b7c8a5997658467ff65b8fe1ea73540101e3f372f8015ed3f",
+    "evidence/build/mmc-timing-draft-check-20261116.log": "94b253e5348c461a418610454662d7f0bdd755468ff5573ed32a2637324f8a9d",
+    "tools/validation/mmc_timing_collect.py": "2a98c83e8154a850d1cd9a55e92cee3fffbec8eb27cecfef030cb39f7744c54b",
+    "tools/validation/mmc_read_cost_probe.py": "c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946",
+    "evidence/storage-v25-timing-collector-contract-20261116.json": "95070e8423cd6d2da5d124483c736572751d31e7b412c8151f37f47dbb2b438d",
+    "tools/build_timing_storage_kernel.sh": "92676b1af05ab5ec75ce1aac37fd0e28bc5bd29a5ffa2dee744aeda484c67be7",
+    "tools/validation/audit_timing_storage_package.py": "55595dbad3c3fb0287df91b11c758a5139163fdfd82df7c86c0023b3b5f63394"
+  },
+  "scope": {
+    "board_operations": false,
+    "frozen_v24_modified": false,
+    "public_checkout_modified": false,
+    "candidate_code_modified_by_reviewer": false,
+    "collector_authored_by_reviewer": true
+  },
+  "checks": [
+    "Complete source diff reviewed against frozen v24. All114 readl/writel/readl_poll_timeout/usleep_range/dma_wmb/dma_rmb/dma_alloc_coherent/dma_free_coherent calls have identical arguments and source order. Both mandatory reset fences, quarantine, OWN checking, errors, tuning and 64KiB caps are preserved.",
+    "Timing opt-in is default false, read-only module parameter. Ordinary CMD17/18/24/25 require direction-consistent data and !tuning_running; associated SBC/error-stop commands are part of that normal request sample. Initialization/tuning are excluded.",
+    "Stack sample is816bytes, bounded32events. Overflow, invalid segment and backwards timestamp increment loss markers and discard the entire sample from request/segment totals. CPU out-of-range classification compares real identifiers before bucket8; different real CPUs in bucket8 are not falsely marked same.",
+    "Instrumentation segments preserve nesting. command_wait includes command register writes, hardware duration, polling sleep and run delay; it is not hardware-only. completion_callback tightly brackets mmc_request_done. worker_total ends before final aggregate merge and does not include all instrumentation overhead.",
+    "Allmrq/data values are captured and active_sample cleared before mmc_request_done. Callback may enqueue another work item or release mrq; subsequent code accesses only local sample and live host aggregation state. The ordered queue serializes workers.",
+    "Each timestamp uses get_cpu/ktime_get_ns/put_cpu, keeping endpoint identity consistent without affinity between endpoints. Same endpoints do not establish residency or no intervening migration. Different endpoints indicate at least one migration only.",
+    "Normal debugfs_create_file full-proxy open protects host while copying under timing spinlock; open creates an independent snapshot, show/release do not dereference host. remove removes debugfs before host teardown. max is explicitly lifetime-only and not subtractable.",
+    "Snapshots contain only post-callback merged samples. Userspace can wake first; background ordinary I/O and adjacent measurement windows prevent unconditional count equality. Collector retains first-after and bounded stable-after observations, raw hashes and explicit limitations.",
+    "Actual C emitter and real aggregation header were compiled with ASan/UBSan, then parsed by collector. Empty/migrated/multi-command/copy snapshots accepted; malformed endpoints, poll-count inconsistency and duplicate rows rejected. Maxima stay before/after values, never subtracted.",
+    "Collector pins the unchanged read-cost probe c5b7ae1169bdab4cbc690d13f01b7e1b6f627f1cbe523fdbcbad96829a611946, kernel/boot identity and regular file on179:4. It does not change counter state, request size, cache, tuning, clocks or affinity."
+  ],
+  "validation": {
+    "author_actual_C_unit_test": "PASS with ASan/UBSan, observed logbound above",
+    "author_final_ARM64_compile": "PASS against frozenv24 kernel external-module headers; compile-only artifact not intended for board",
+    "independent_actual_emitter_parser_contract": "PASS; see bound contract JSON",
+    "full_v25_kernel_PVR_and_package": "Pending at review time",
+    "board_measurement": "NOT_RUN"
+  },
+  "limits": [
+    "Observability adds branches/timestamps/aggregation and affects timings; default-off does not mean machine code/layout identical to v24. This is not a throughput optimization.",
+    "Wallcopy/reset/poll segments may include IRQ/scheduling. Root must correlate workerCPU and frozen-probe bytes/counts; do not assign allworkerCPU to memcpy from source alone.",
+    "Stable sample counters are not a device drain and do not prove zero outstanding requests.",
+    "Final package/PVR hashes, updater exact-input validation and separate board acceptance remain required."
+  ],
+  "collector_followup": "After code_index review, read request/success counts and requested/completed byte lower bounds are checked; deficits/loss mark INCOMPLETE_TIMING_SAMPLES. Outer preflight/final identity is compared, with inode explicitly labelled preflight. Background reads can mask a small omission; this is not a hardware drain."
+}

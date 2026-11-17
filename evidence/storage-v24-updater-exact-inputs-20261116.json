@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "kind": "storage-v24-updater-exact-input-validation",
+  "status": "PASS",
+  "payload_entries": 82,
+  "control_entries": 6,
+  "bindings": {
+    "kernel_sha256": "c58e56fab073adf8f62c14148ab7d79d7feb7ee43e134744c834556079ac0578",
+    "kernel_bytes": 5603706,
+    "pvr_sha256": "badb7af910bd31bf60df0642db893111d77031f9f3560b3f2a23303d0ed700ea",
+    "pvr_bytes": 1913816,
+    "control_manifest_sha256": "2f6abfc2f19fd736cf9b30bf885afd6804686ccbf87d94023e7484e5b8387a5e",
+    "payload_manifest_sha256": "e2d952dcc99ee6e1637a81bff640286093fee15fe66cb9b9e122b641a0ce18ac",
+    "raw_image_sha256": "6f1ee43143befeefa495f982bfeac36ed95669370c4fe9e8e68cb1636c7560ac",
+    "raw_image_bytes": 11800584,
+    "candidate_dtb_sha256": "07824de9f58de27e0aebfaf70e4da464d145570e0235f17bcbd01abed39ff244",
+    "candidate_dtb_bytes": 12028,
+    "baseline_dtb_sha256": "6124591aab1cfc02b287a88872835b20a6d2dac70b3e7cd2b93bb9af36d3e82b"
+  },
+  "pvr_vermagic": "6.18.63-t736-storage-v24 SMP mod_unload aarch64",
+  "maintainer_scripts": {
+    "preinst": {
+      "bytes": 584,
+      "sha256": "7eb0f245b05660197c51d863c121111058639651e82ca9d42160e711251560f5",
+      "same_as_v23_except_release": true
+    },
+    "postinst": {
+      "bytes": 586,
+      "sha256": "7177dc2bfa7f30a7f2c1dc536e5039bce2730a94873ff150392c84ac88dca802",
+      "same_as_v23_except_release": true
+    },
+    "prerm": {
+      "bytes": 580,
+      "sha256": "962ed435f7bc757b2c230aa3ffa07102f2f7feeb7e5155894e85362fd73a0d5c",
+      "same_as_v23_except_release": true
+    },
+    "postrm": {
+      "bytes": 582,
+      "sha256": "80fd77e5ffb01398dfa703e85e5c572e31db750a914c7e2c11833067b40ab73c",
+      "same_as_v23_except_release": true
+    }
+  },
+  "maintainer_scripts_executed": false,
+  "device_check_executed": false,
+  "candidate_sha_borrowed_from_v23": false,
+  "updater_sha256": "0344a5364a9e7e126b5413870387ced4c9c1f83a9135dfd703ad55141546290e"
+}

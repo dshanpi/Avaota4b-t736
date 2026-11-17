@@ -1,0 +1,10 @@
+PASS create failures: memfd/chmod/truncate/mmap/seals/stat/metadata cleanup
+PASS seals: write/pwrite/shrink/grow/punch/RW mmap/mprotect/exec-mode/add-seals rejected; existing RW and DONTFORK verified
+PASS descriptor send failures: invalid fd/disconnected peer, source ownership retained
+PASS SCM_RIGHTS: fragments/CLOEXEC/absent/multiple/late-extra/truncated/EOF/credentials/request-no-fd and fd counts
+PASS setup silent deadline: 200 ms
+PASS setup drip-feed deadline: 200 ms
+PASS receiver metadata: capacity/format/seals/reserved/device/inode/owner/cloexec/type/size/mode
+PASS receiver syscall failures: seals/stat/mmap/madvise cleanup
+PASS peers: separate inodes/content; receiver survives producer fd/map close
+PASS cedar_shm_seals: 58 cases, no fd leaks, helper timeout=200 ms

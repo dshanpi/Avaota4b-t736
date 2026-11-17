@@ -1,0 +1,10 @@
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.004s
+
+OK
+tools/build_source_rootfs_v11.sh shell parse + embedded Python PASS 3
+tools/build_source_uboot_source_v11.sh shell parse + embedded Python PASS 3
+tools/validation/source_v11_plan.py Python compile PASS
+tools/pack_t736_source_v11.py Python compile PASS
+STATIC_ONLY: no rootfs/UBoot build, no mounts, no flash, no new acceptance claims

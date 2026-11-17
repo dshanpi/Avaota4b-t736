@@ -1,0 +1,235 @@
+{
+  "schema": "t736-hevc-caps-lifecycle-source-review-v1",
+  "date": "2026-11-17",
+  "result": "SOURCE_REVIEW_COMPLETE_NO_HARDWARE_CLAIM",
+  "reviewer": "code_index/media_ve_review",
+  "scope": "Repeated identical SPS and changed HEVC configuration at the same visible dimensions and frame rate, using official GStreamer 1.26.2 parser/core and the frozen private Cedar WC-v4/WC-v5 gst-omx sources.",
+  "hardware_access": false,
+  "build_performed": false,
+  "deployment_performed": false,
+  "runtime_recovery_performed": false,
+  "vendor_libraries_or_private_video_copied": false,
+  "summary": [
+    "Repeated identical SPS does not automatically emit new parser caps or trigger gst-omx buffer reallocation.",
+    "A different GstCaps object or a different codec_data GstBuffer object with identical bytes is not by itself sufficient: parser and VideoDecoder compare caps values, and GstBuffer values compare size and contents.",
+    "The current broker forces byte-stream/AU at appsrc and at the parser output gate. The reviewed parser creates downstream codec_data only for hvc1/hev1 with AU alignment; the normal broker path therefore has NULL codec_data.",
+    "An accepted change to profile, level, tier, alignment, dimensions, or frame rate can trigger input-format reconfiguration even when visible dimensions stay 1920x1080. A metadata-only caps change need not do so.",
+    "OMX output-port settings events form a separate reallocation path. The wrapper increments a settings cookie without first checking dimensions, and an output settings event can cause buffer release/reallocation even when input caps and visible dimensions are unchanged.",
+    "Source review cannot establish whether the vendor decoder emits such an event for the current Bilibili SPS or whether its internal FBM changes. That requires runtime event/cookie/port-definition evidence. No board operation was performed for this review."
+  ],
+  "sources": {
+    "h265parse": {
+      "version": "GStreamer 1.26.2 official tag",
+      "url": "https://raw.githubusercontent.com/GStreamer/gstreamer/1.26.2/subprojects/gst-plugins-bad/gst/videoparsers/gsth265parse.c",
+      "local_path": "sources/audit/gstreamer-1.26.2-pts-review/gsth265parse.c",
+      "bytes": 119338,
+      "sha256": "530a338f27ed8376e7c4f50ff85fb59b5f2e2a95f3b97c1937be71d3c774c7c3"
+    },
+    "videodecoder": {
+      "version": "GStreamer 1.26.2 official tag",
+      "url": "https://raw.githubusercontent.com/GStreamer/gstreamer/1.26.2/subprojects/gst-plugins-base/gst-libs/gst/video/gstvideodecoder.c",
+      "read_method": "HTTPS, memory only; not saved by this review",
+      "bytes": 172611,
+      "sha256": "b80214d440224d5def8e87db057652cc76cfbe7da598fba4d542d1b85a8d05f9"
+    },
+    "gstvalue": {
+      "version": "GStreamer 1.26.2 official tag",
+      "url": "https://raw.githubusercontent.com/GStreamer/gstreamer/1.26.2/subprojects/gstreamer/gst/gstvalue.c",
+      "read_method": "HTTPS, memory only; not saved by this review",
+      "bytes": 244538,
+      "sha256": "5c2ebf14ae2cc5718f972ecb4d46ecc455e42280b540479e4d58e3d9b8063f77"
+    },
+    "gstomxvideodec_wc4": {
+      "version": "Frozen private Cedar WC-v4 20261117",
+      "local_path": "sources/audit/cedar-wc-v4-20261117/gstomxvideodec.c",
+      "remote_path": "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/src/omx/gstomxvideodec.c",
+      "bytes": 132381,
+      "sha256": "0c59ac64ef759bd856d309b15b39e64acfb91a6530c02b576f04f23f729e08fe"
+    },
+    "gstomxvideodec_wc5": {
+      "version": "Private Cedar WC-v5 diagnostics candidate 20261117",
+      "local_path": "sources/audit/cedar-wc-v5-20261117/gstomxvideodec.c",
+      "remote_path": "/home/ubuntu/t736-mainline/build/cedar-wc-v5-20261117/src/omx/gstomxvideodec.c",
+      "bytes": 138060,
+      "sha256": "76b94240f827a26c9abcbdcb518fb8bf85bebdfa000f02cac435a609104c5e9d",
+      "behavior": "Adds state/flush diagnostics; the reviewed caps-change predicates and output reconfiguration path are unchanged from WC-v4. Line offsets are not uniform over the full file."
+    },
+    "gstomxh265dec_wc4_wc5": {
+      "version": "Identical in frozen private WC-v4 and WC-v5 source trees",
+      "remote_paths": [
+        "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/src/omx/gstomxh265dec.c",
+        "/home/ubuntu/t736-mainline/build/cedar-wc-v5-20261117/src/omx/gstomxh265dec.c"
+      ],
+      "bytes": 7376,
+      "sha256": "8f0919d6fe7d72e3a92be22d662d648d53cac1234db952b8aa76ceb455ee133b"
+    },
+    "gstomx_wc4_wc5": {
+      "version": "Identical in frozen private WC-v4 and WC-v5 source trees",
+      "remote_paths": [
+        "/home/ubuntu/t736-mainline/build/cedar-wc-v4-20261117/src/omx/gstomx.c",
+        "/home/ubuntu/t736-mainline/build/cedar-wc-v5-20261117/src/omx/gstomx.c"
+      ],
+      "bytes": 134103,
+      "sha256": "9c034eca9133198e4b3ad399d5031b835f4f9c6a69108007ab4940b8ac29e108"
+    },
+    "broker_backend": {
+      "local_path": "tools/browser/cedar_backend.c",
+      "bytes_at_review": 21755,
+      "sha256_at_review": "4c2e83a7ab8e9bf914ec00926c9b71f0e63287db8537c65f170718e4e8d4b5dc",
+      "note": "Working source snapshot identity, not proof of the currently installed broker binary."
+    }
+  },
+  "parser_caps_path": [
+    {
+      "source": "h265parse",
+      "lines": "761-784,787-823,835-838",
+      "finding": "Each successfully parsed VPS and SPS sets update_caps=TRUE; PPS conditionally requests a check. This requests a caps check, not unconditional caps emission. Identical repeated SPS still passes through this check."
+    },
+    {
+      "source": "h265parse",
+      "lines": "2138-2158",
+      "finding": "codec_data is built only for hvc1/hev1 output with AU alignment. New versus stored codec_data is compared by byte length and gst_buffer_memcmp, not pointer identity."
+    },
+    {
+      "source": "broker_backend",
+      "lines": "143-164",
+      "finding": "appsrc uses byte-stream/AU; parser disables passthrough and repeats configuration at IDR (config-interval=-1); output gate uses byte-stream/AU plus requested visible dimensions, 4:2:0 and 8-bit. appsrc deliberately omits dimensions so SPS can determine them."
+    },
+    {
+      "source": "h265parse",
+      "lines": "2170-2186,2271-2309,2326-2354,2382-2400,2403-2522",
+      "finding": "Caps describe visible/cropped width and height, frame rate, chroma/bit depth, colorimetry, PAR, profile/tier/level and additional stream metadata. Equal visible dimensions and fps are not equivalent to equal full caps. Upstream supplied dimensions/framerate may override SPS in generic parser use; this broker omits them at appsrc."
+    },
+    {
+      "source": "h265parse",
+      "lines": "2524-2571",
+      "finding": "After at least one output frame, existing codec_data is copied into candidate caps for equality testing so a midstream codec_data-only change does not resend caps. When new codec_data differs and the current frame lacks SPS or PPS, codec_data_modified is recorded. For byte-stream without codec_data, leftover codec_data is removed."
+    },
+    {
+      "source": "h265parse",
+      "lines": "2574-2595",
+      "finding": "gst_pad_set_caps is called only when existing src caps and candidate caps are not gst_caps_is_strictly_equal. A codec_data-only change can instead set push_codec to inject updated parameter sets in-band at the next IDR."
+    }
+  ],
+  "videodecoder_caps_path": [
+    {
+      "source": "videodecoder",
+      "lines": "883-888,910-914",
+      "finding": "gst_video_decoder_setcaps uses gst_caps_is_equal against its retained input state. Equal caps return TRUE without calling the subclass set_format, even if the GstCaps object address changes."
+    },
+    {
+      "source": "videodecoder",
+      "lines": "786-805,891-897",
+      "finding": "Only a caps value change creates a new input state and invokes subclass set_format. _new_input_state stores a caps reference and duplicates the boxed codec_data reference into state->codec_data."
+    },
+    {
+      "source": "gstvalue",
+      "lines": "3220-3266",
+      "finding": "GstBuffer value comparison fast-paths identical pointers but otherwise compares size and mapped bytes with memcmp. Identical codec_data bytes in a different GstBuffer object therefore compare equal, assuming successful mapping."
+    }
+  ],
+  "input_format_reconfiguration": [
+    {
+      "wc4_lines": "3246-3256",
+      "wc5_lines": "3383-3393",
+      "finding": "gst_omx_video_dec_set_format combines input port width, field height, Q16 frame rate, codec_data pointer inequality, and the codec subclass predicate. These checks run only after VideoDecoder accepts changed caps."
+    },
+    {
+      "source": "gstomxh265dec_wc4_wc5",
+      "lines": "75-77,96-131",
+      "finding": "The H265 subclass is_format_change compares profile, level, tier and alignment strings. Thus a profile/level/tier/alignment change can trigger disable at identical visible dimensions and fps. This predicate does not compare all SPS bytes."
+    },
+    {
+      "wc4_lines": "3258-3277",
+      "wc5_lines": "3395-3414",
+      "finding": "For a component already beyond Loaded, no real format change only updates input_state and returns. A real format change calls gst_omx_video_dec_disable. The state query uses an unbounded wait in both versions."
+    },
+    {
+      "wc4_lines": "2815-2825,2848-2867,2901-2908",
+      "wc5_lines": "2952-2962,2985-3004,3038-3045",
+      "finding": "Disable drains, flushes output, disables ports and frees input/output buffers. The NO_COMPONENT_RECONFIGURE hack instead stops/closes/reopens the component. This is a real resource transition, not merely a caps reference update."
+    },
+    {
+      "wc4_lines": "3007-3039,3480-3488",
+      "wc5_lines": "3144-3176,3625-3633",
+      "finding": "The next eligible input frame can enable the disabled component and allocate input buffers again. Output buffers are allocated by the applicable output-enable/reconfiguration path."
+    },
+    {
+      "wc4_lines": "3597-3634",
+      "wc5_lines": "3742-3779",
+      "finding": "self->codec_data is pending CODECCONFIG input and is cleared to NULL after submission. Consequently a later nonidentical caps event with non-NULL codec_data can make the pointer predicate true even if the bytes match the original configuration. This is conditional on reaching set_format; it does not bypass the earlier caps equality checks and is ordinarily absent in this byte-stream pipeline."
+    }
+  ],
+  "independent_output_reconfiguration": [
+    {
+      "source": "gstomx_wc4_wc5",
+      "lines": "749-774",
+      "finding": "The OMX callback converts OMX_EventPortSettingsChanged into a queued settings-change message, applying configured event index quirks."
+    },
+    {
+      "source": "gstomx_wc4_wc5",
+      "lines": "331-368",
+      "finding": "Message processing increments each matching port settings_cookie and refreshes its definition; output ports enter pending_reconfigure_outports. No width/height equality filter precedes the cookie increment."
+    },
+    {
+      "source": "gstomx_wc4_wc5",
+      "lines": "2200-2216,2225-2240",
+      "finding": "Input acquisition waits for pending output reconfiguration. Output acquisition drains old pending buffers and then returns GST_OMX_ACQUIRE_BUFFER_RECONFIGURE when settings_cookie differs from configured_settings_cookie."
+    },
+    {
+      "wc4_lines": "2182-2213",
+      "wc5_lines": "2319-2350",
+      "finding": "The output loop handles RECONFIGURE independently of input set_format. If the output port is enabled it disables it, waits for buffer release and deallocates output buffers, then runs reconfigure_output_port."
+    },
+    {
+      "wc4_lines": "2004-2043",
+      "wc5_lines": "2141-2180",
+      "finding": "Output reconfiguration negotiates caps, allocates output buffers, populates the port and marks it reconfigured. Equal visible dimensions alone do not suppress this path."
+    }
+  ],
+  "case_matrix": [
+    {
+      "case": "Repeated identical SPS/VPS/PPS, stable emitted caps",
+      "input_caps_reallocation": "No automatic caps event or set_format call; checks suppress equal caps.",
+      "output_reallocation": "Not established; independent vendor settings events remain possible."
+    },
+    {
+      "case": "Different caps/codec_data object addresses, otherwise identical values",
+      "input_caps_reallocation": "No automatic set_format call; semantic equality is the gate.",
+      "output_reallocation": "Independent of object address changes."
+    },
+    {
+      "case": "Changed SPS contents with identical visible dimensions, fps, profile, level, tier, alignment and all emitted caps fields",
+      "input_caps_reallocation": "No input caps-triggered reallocation in the reviewed byte-stream path.",
+      "output_reallocation": "Possible if vendor sends settings change, or vendor internal resources change; neither follows automatically from this source review."
+    },
+    {
+      "case": "Changed profile/level/tier or alignment at 1920x1080 with the same fps",
+      "input_caps_reallocation": "Yes if changed caps are accepted and component is not Loaded, via H265 subclass predicate.",
+      "output_reallocation": "May also happen independently."
+    },
+    {
+      "case": "Only unrelated metadata changes, stable width/field-height/fps/profile/level/tier/alignment, NULL codec_data",
+      "input_caps_reallocation": "set_format can run but returns after replacing input_state without disabling ports.",
+      "output_reallocation": "Still determined by vendor settings events, not the metadata-only input path."
+    },
+    {
+      "case": "OMX output settings event, even with unchanged visible dimensions",
+      "input_caps_reallocation": "Not required.",
+      "output_reallocation": "Yes when the event reaches the normal active output acquisition/reconfiguration path; errors or flushing may interrupt completion."
+    }
+  ],
+  "actionable_conclusions": [
+    "Do not remove repeated SPS or weaken the current caps gate solely on the theory that every SPS/codec_data object forces OMX reallocation; that premise is false for the reviewed path.",
+    "For the retained decoder, compare full emitted caps and record OMX settings_cookie/configured_settings_cookie, event port/index, output port definition and allocation count across the stream boundary.",
+    "Distinguish parser caps change, VideoDecoder set_format, input-port disable, output-port settings change, and vendor-internal FBM allocation as separate events in evidence.",
+    "The existing visible-size/8-bit/4:2:0 gate does not prove stable coded layout, DPB requirements, SPS semantics, or absence of OMX output reconfiguration.",
+    "Any proposed broader retained-context reuse needs evidence that its accepted SPS changes do not consume additional quarantined DMA resources; current source review alone does not supply that evidence."
+  ],
+  "limits": [
+    "Official parser/core source version is exact 1.26.2, but this review does not establish byte-for-byte source provenance for the installed private parser in /opt/t736-gst-parser-v27.",
+    "WC-v4/WC-v5 source identities were checked locally and/or by read-only SSH to the build host. No board SSH, serial, FEL, reboot, service control, deployment or recovery was used.",
+    "No dynamic repeated-SPS test was run. Findings describe the inspected control flow, not a verified cause of the current zero-output/idle failure.",
+    "This record contains source hashes, paths and conclusions only; no vendor binary or private media payload is included."
+  ]
+}

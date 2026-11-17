@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "kind": "t736-v26-settings-runtime-observation",
+  "status": "MEASURED_NOT_OVERALL_DESKTOP_ACCEPTANCE",
+  "kernel": "6.18.63-t736-storage-v26",
+  "boot_id": "4b3ad302-5619-49f8-94e3-bab3f8bbc2cd",
+  "static_panel": {
+    "status": "COMPLETE",
+    "window_mapped_seconds": 1.255942,
+    "process_cpu_seconds": 3.95,
+    "major_faults": 57,
+    "window_seconds": 10.0
+  },
+  "mouse_panel": {
+    "status": "COMPLETE",
+    "dispatch_seconds": 1.5329784709999785,
+    "process_cpu_seconds": 4.24,
+    "window_seconds": 10.0
+  },
+  "excluded_initial_launch": {
+    "reason": "Maintenance launch omitted XDG_CURRENT_DESKTOP; Settings refused non-GNOME environment and exited. Corrected XDG_CURRENT_DESKTOP=GNOME for the actual existing GNOME session.",
+    "evidence": {
+      "path": "evidence/storage-v26-settings-static-rejected-20261116.json",
+      "sha256": "f530a1c0f7950ee7da374d6b7015bba20ef35bc6930a29a480476db24c730be7"
+    }
+  },
+  "limits": [
+    "Successful static run followed a rejected launch; cache warmth differs. Do not attribute its 1.256s vs prior 1.812s mapping time solely to storage or call it a cold-start comparison.",
+    "X11 mapping and CLI request return are not first-paint or fully-interactive latency.",
+    "PVR shader optimisation and mouse-panel media setup still consume CPU. Storage improvement alone does not establish complete desktop responsiveness."
+  ],
+  "final_state": {
+    "gnome_shell_pid": 3186,
+    "user": "t736",
+    "mutter": "system original",
+    "gpu_library": "PVR",
+    "display_mode": "1920x1080@60",
+    "actual_display_observed_by_user": false,
+    "persistent_default": "storage-v16",
+    "current_trial": "storage-v26",
+    "gdm_config_restored_and_hashed": true
+  },
+  "evidence": [
+    {
+      "path": "evidence/storage-v26-settings-static-retry-20261116.json",
+      "sha256": "09607efafc6014c87a580049bdc4f85371033ebd5fecee6e67b0751ca1aaef43"
+    },
+    {
+      "path": "evidence/storage-v26-settings-mouse-20261116.json",
+      "sha256": "6cde879595125af7fb95647dc6a86401a4badf40e6c9e63379f620fd92edfea6"
+    },
+    {
+      "path": "evidence/storage-v26-final-runtime-state-20261116.log",
+      "sha256": "91f4985c73de6dc40967df52a86d6c3b6da4db779d8d6e447fbf113c17a6e339"
+    }
+  ]
+}

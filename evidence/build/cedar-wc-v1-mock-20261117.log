@@ -1,0 +1,11 @@
+T736_WC: version=0x300003321021321 phy_offset=0x40000000 heap=t736-ve cache=WC barriers=dmb-osh
+T736_WC: version=0x300003321021321 phy_offset=0x0 heap=t736-ve cache=WC barriers=dmb-osh
+T736_WC: first validated WC ordering barrier
+T736_WC: rejecting flush outside owned WC mapping: 0x400000c3ffff size=2
+qemu: uncaught target signal 6 (Aborted) - core dumped
+DEBUG  : ionAlloc <__GetIonMemOpsS:729>: *** get __GetIonMemOpsS ***
+DEBUG  : ionAlloc <ion_alloc_close:231>: pid: 2340441, release g_context = 0x400000b3f330 
+
+DEBUG  : ionAlloc <ion_alloc_close:283>: ion_alloc_close ok
+
+PASS: actual candidate; missing heap, phy offset, allocation/import errors, WC range/barrier, overflow and lifetime

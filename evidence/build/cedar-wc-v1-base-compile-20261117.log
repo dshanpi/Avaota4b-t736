@@ -1,0 +1,11 @@
+/home/ubuntu/t736-mainline/build/cedar-wc-v1-r2-20261117/src/base/CdcIonUtil.c: In function ‘CdcIonIsLegacy’:
+/home/ubuntu/t736-mainline/build/cedar-wc-v1-r2-20261117/src/base/CdcIonUtil.c:44:34: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   44 |         int err = CdcIonFree(fd, (aw_ion_user_handle_t)NULL);
+      |                                  ^
+/home/ubuntu/t736-mainline/build/cedar-wc-v1-r2-20261117/src/base/cdcIniparser/cdcIniparser.c: In function ‘iniparser_load’:
+/home/ubuntu/t736-mainline/build/cedar-wc-v1-r2-20261117/src/base/cdcIniparser/cdcIniparser.c:722:32: warning: ‘sprintf’ may write a terminating nul past the end of the destination [-Wformat-overflow=]
+  722 |             sprintf(tmp, "%s:%s", section, key);
+      |                                ^
+/home/ubuntu/t736-mainline/build/cedar-wc-v1-r2-20261117/src/base/cdcIniparser/cdcIniparser.c:722:13: note: ‘sprintf’ output between 2 and 2050 bytes into a destination of size 2049
+  722 |             sprintf(tmp, "%s:%s", section, key);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

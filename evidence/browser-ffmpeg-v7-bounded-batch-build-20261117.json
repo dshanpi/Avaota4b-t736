@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "CANDIDATE_HOST_TESTED_HARDWARE_PERFORMANCE_PENDING",
+  "owner": "desktop_review",
+  "board_access": false,
+  "upstream": "FFmpeg n7.1.5; Firefox upstream FIREFOX_153_7_0esr_RELEASE 9aecd40e03ebf6e866e32a0a3001488ed751228d (Debian patch equivalence not asserted)",
+  "artifact": {
+    "path": "build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v7.tar.gz",
+    "bytes": 6984940,
+    "sha256": "5672174f8995b34b781a40f8ffc601dc4c310bdcb179fbffc298f2911ccfe3da"
+  },
+  "build": {
+    "archive": "/home/ubuntu/t736-mainline/build/browser-ffmpeg-build-v1-20261117/t736-browser-ffmpeg-v7.tar.gz",
+    "bytes": 6984940,
+    "sha256": "5672174f8995b34b781a40f8ffc601dc4c310bdcb179fbffc298f2911ccfe3da",
+    "manifest_sha256": "1c41bd100fc490d1da0f4c96a2da062bd01b85f94011ec1bcc5e950d34d85ed4",
+    "libraries": {
+      "libavcodec.so.61.19.101": {
+        "bytes": 11084312,
+        "sha256": "66c1d490d1c80ff962d97875900aa8c38098f7c47a2b3f6fc04a2ca1086ab731",
+        "needed": [
+          "libswresample.so.5",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavcodec.so.61"
+        ]
+      },
+      "libavformat.so.61.7.103": {
+        "bytes": 1578272,
+        "sha256": "db8fdc55276212536037770148e612ae55427348d8a39dc84d4778b4355ef8f4",
+        "needed": [
+          "libavcodec.so.61",
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavformat.so.61"
+        ]
+      },
+      "libavutil.so.59.39.100": {
+        "bytes": 789200,
+        "sha256": "b8226551f1775ba66cff897ffa9d3cf1ea371a6a59961a9c2a9e9f39272d6271",
+        "needed": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libavutil.so.59"
+        ]
+      },
+      "libswresample.so.5.3.100": {
+        "bytes": 133424,
+        "sha256": "a8e546687bfad25eadc45efd3692cb5157e2be650967924373a3fd3805c5d360",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswresample.so.5"
+        ]
+      },
+      "libswscale.so.8.3.100": {
+        "bytes": 461120,
+        "sha256": "f0308cf18d0b726df427f2e34b74e7e5bd92912ac86dd6b7217f6f92df8cd4c0",
+        "needed": [
+          "libavutil.so.59",
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-aarch64.so.1"
+        ],
+        "soname": [
+          "libswscale.so.8"
+        ]
+      }
+    }
+  },
+  "wrapper": {
+    "path": "build/browser-ffmpeg-build-v1-20261117/ffmpeg_cedar-v7.c",
+    "bytes": 35703,
+    "sha256": "909ab49e890aecdfaf955518cfddc132e0d84d0f41c6c3397071d61a36f06bda"
+  },
+  "regression_test": {
+    "path": "build/browser-ffmpeg-build-v1-20261117/test_ffmpeg_cedar-v7.c",
+    "bytes": 28982,
+    "sha256": "419e56621a2b367db07f6d835bf096c26461e25fb5a4cd5b80f47d2103f57c15"
+  },
+  "regression_log": {
+    "path": "evidence/build/browser-ffmpeg-v7-arm64-qemu-20261117.log",
+    "bytes": 20206,
+    "sha256": "e1b574811597682c31cd09dbfd401a43d3979f1c66ef79959af5eea32becfd38"
+  },
+  "motivation": {
+    "active_debug": {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-active-debug.json",
+      "bytes": 111025,
+      "sha256": "dc6fd9eab4ebd0961e9ff4d8c5c55da0035e0943588478671a0bd1b131c3106a"
+    },
+    "samples": 21,
+    "ahead_us_min": -111028,
+    "ahead_us_max": -22633,
+    "queue_size_min": 4,
+    "queue_size_max": 9,
+    "all_sink_size_one": true,
+    "all_reader_has_promise": true,
+    "last_frame_stats": {
+      "droppedCompositorFrames": 2,
+      "droppedDecodedFrames": 0,
+      "droppedSinkFrames": 1005
+    },
+    "queue20_debug": {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-debug-queue20.json",
+      "bytes": 4881,
+      "sha256": "1e012e08628588d47d9efa57d7dff679f958cbb3b069f4735f643545d5a065f1"
+    },
+    "queue20_final_frame_stats": {
+      "droppedCompositorFrames": 3,
+      "droppedDecodedFrames": 0,
+      "droppedSinkFrames": 1455
+    },
+    "queue20_decoded": 1800,
+    "queue20_presented": 342,
+    "queue20_conclusion": "Increasing the software video queue preference to20 did not resolve presentation drops. Earlier conditional preroll suggestion was tested and is not a demonstrated fix.",
+    "native_control": {
+      "path": "build/browser-fixture-20261117/v28-before-v7-private/60fps-v28-native-control.json",
+      "bytes": 20161,
+      "sha256": "d0cc0c87f0ae9229cc003d59fce42fa7cd580cf61dc8c4bc376a300de32c065d"
+    },
+    "native_summary": {
+      "total_frames_delta": 1230,
+      "dropped_frames_delta": 24,
+      "media_seconds_delta": 20.482744999999998,
+      "sample_seconds": 20.514514539999936,
+      "browser_non_dropped_frames_per_second": 58.78764509140579,
+      "video_size": [
+        1920,
+        1080
+      ],
+      "rate": 1,
+      "mozDecodedFrames_delta": 1236,
+      "mozPresentedFrames_delta": 1206,
+      "mozPaintedFrames_delta": 1222,
+      "mozFrameDelay_first": 0,
+      "mozFrameDelay_last": 0.003572048,
+      "main_thread_callback_fps": 24.72252285727486,
+      "rvfc_reported_presented_frames_per_second": 59.96317671148177
+    },
+    "native_irq_delta": 0,
+    "interpretation": "Sink lateness is measured; GPU compositor is not the dominant drop source. The software decode control presents near60 fps. A v6 per-DecodePromise output batch size has not yet been measured on hardware."
+  },
+  "design": {
+    "firefox": "FFmpegDataDecoder::ProcessDecode resolves results only after DoDecode returns; DoDecode receives repeatedly until EAGAIN, retaining earlier frames during later synchronous output copies.",
+    "target": "Prioritize input consumption after the first output and publish at the next contract-safe EAGAIN point.",
+    "gate": [
+      "No filtered_pending or input_pending remains.",
+      "Private H264/HEVC BSF has returned EAGAIN.",
+      "ff_decode_get_packet has returned EAGAIN, after consuming the generic FFmpeg input filterchain and buffer_pkt."
+    ],
+    "exceptions": [
+      "Owned pending-AU backpressure retains bounded waits and may pull additional frames beyond the normal one-frame batch.",
+      "Replay64/pending65 first-frame wait retains its existing deadline and pending packet ownership.",
+      "EOS is not bounded by the output quota; all remaining frames drain before EOF.",
+      "Native fallback remains unchanged."
+    ],
+    "reset": "Flush clears batch counters; each contract-safe EAGAIN starts a fresh batch.",
+    "diagnostics": "At most12 nonempty batch logs per generation. elapsed_us covers callback span and may include time between caller invocations; it is not a pure-copy measurement.",
+    "unchanged": [
+      "PTS/DTS/duration conversion",
+      "Tina hardware library and broker",
+      "kernel and DMA mapping",
+      "HDMI and GNOME configuration",
+      "system/default boot images"
+    ]
+  },
+  "validation": {
+    "runner": "Actual ARM64 candidate shared libraries via qemu-aarch64-static and exported software stub, no sockets/devices",
+    "regression_checks": 8311,
+    "regression_cases": [
+      "Backpressure and explicit hardware failures",
+      "H264/HEVC fallback:45B-frame fixtures exact MD5/PTS/duration",
+      "64 startup packets and pending65 remain ordered; first output publishes then all65 EOS frames delivered",
+      "Real5s startup timeout falls back with all70 frames exact MD5/PTS/duration",
+      "Flush/pool reuse/outstanding frame ownership and decoder close",
+      "AnnexB parameter bootstrap and original container BSF equivalence",
+      "Firefox decode-order DTS preserved in output metadata and omitted only on broker wire"
+    ],
+    "independent_review_path": "evidence/browser-ffmpeg-v7-batch-independent-review-20261117.json",
+    "independent_summary": "Actual v6/v7 ARM64 delay-stub A/B; final4009 v7 checks and4373 v6 checks including occupied FFmpeg input-slot EOS/flush.8ready frames with10ms copies: old batch8 adds72-74ms first-frame holding time; new normal batch1 under0.3ms."
+  },
+  "limits": [
+    "Host tests do not establish real-board improvement.",
+    "The normal one-frame target is not an absolute batch limit under broker backpressure or EOS.",
+    "Ready backend frames may remain until subsequent input or EOS; this is not a zero-buffering promise for every caller policy.",
+    "Do not interpret totalVideoFrames or rVFC presentedFrames as actual compositor throughput."
+  ]
+}

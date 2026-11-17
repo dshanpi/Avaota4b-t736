@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "status": "SOURCE_AND_BINARY_INPUTS_AVAILABLE_ENCODER_HARDWARE_NOT_VALIDATED",
+  "scope": "read-only local/build-host audit; no driver change, build, board access or encoder execution",
+  "donor_root": "/home/ubuntu/t736-aiot/tina",
+  "package": "debian/packages/arm64/libcedarc/libcedarc-dev_2.0.0_arm64.deb",
+  "source_available": [
+    "platform/allwinner/multimedia/libcedarc_v2.0/vencoder/vencoder.c",
+    "platform/allwinner/multimedia/libcedarc_v2.0/vencoder/base/{EncAdapter,FrameBufferManager,BitstreamManager}.c",
+    "platform/allwinner/multimedia/libcedarc_v2.0/openmax/venc/",
+    "platform/allwinner/multimedia/libcedarc_v2.0/demo/vencoderDemo/EncoderTest.c"
+  ],
+  "source_limit": "Encoder API/base/OpenMAX/demo source exists; codec implementation source completeness is not established. libvenc_codec binary is available.",
+  "binaries": [
+    {
+      "name": "libvencoder.so",
+      "bytes": 77096,
+      "sha256": "0a251db4871b4cacd03776ae760eea5722b46a8091a09f18f83e45a2d7355ccf"
+    },
+    {
+      "name": "libvenc_base.so",
+      "bytes": 54968,
+      "sha256": "5282b1cd4f69014bb11b3dba9e13daa734de2407c39f4dec3566b7af534b599d"
+    },
+    {
+      "name": "libvenc_codec.so",
+      "bytes": 507848,
+      "sha256": "9b22f6db1f55b64562ce1c00a33a52cf4e8829269abe61cc632a5d3e8d365a46"
+    },
+    {
+      "name": "libOmxVenc.so",
+      "bytes": 215488,
+      "sha256": "77aa399a4d6d1bbd9d4bdf55a75dc9050902de727939165d8995be5cd4f5db7d"
+    }
+  ],
+  "dependency_audit": {
+    "method": "readelf DT_NEEDED transitive closure and GLOBAL undefined/exported symbol union; no code execution",
+    "additional_vendor_dependencies": [
+      "libVE.so",
+      "libcdc_base.so",
+      "libMemAdapter.so"
+    ],
+    "system_dependencies": [
+      "libc.so.6",
+      "libm.so.6",
+      "libdl.so.2",
+      "libpthread.so.0",
+      "librt.so.1",
+      "ld-linux-aarch64.so.1"
+    ],
+    "vendor_soname_closure_complete": true,
+    "unresolved_global_symbols_in_four_encoder_libraries": [],
+    "symbol_provider_selection": "Original matched encoder libraries plus unchanged libVE, WC-v2/r2 Base/MemAdapter, and matching SDK glibc libraries",
+    "encoder_library_glibc_requirements": [
+      "GLIBC_2.17"
+    ],
+    "runtime_limit": "Static closure only, not target loader, codec initialization, DMA or encode validation. Private library path must override obsolete donor build RPATHs."
+  },
+  "actual_libve": {
+    "sha256": "3af49a5eb24f6832518a858274fb206d60e490985bff02f5d5be36d053f65be4",
+    "flags": "vencoder.c:174-183 sets nDecoderFlag=0,nEncoderFlag=1 before CdcVeInit; binary veEnvInit tests encoder field context+4 at VA0x24f0/0x2504",
+    "encoder_device": "/dev/cedar_dev_ve2; access at VA0x266c-0x2678, O_RDWR open at0x2818-0x2820",
+    "fallback": "If ve2 is absent actual libVE falls back to /dev/cedar_dev. This is not encoder support and must not be used with decoder-only v27.",
+    "ioctls": "WAIT_EN0x103 scalar1second; WAIT_VCU_EN0x801 scalar10seconds; VE_MODE0x800; GET_TOP_OFFSET0x804 must return0x800 for encoder"
+  },
+  "sun60iw2_encoder": {
+    "dt_source": "bsp/configs/linux-6.6/sun60iw2p1.dtsi:876-900",
+    "compatible": "allwinner,sunxi-cedar-ve2",
+    "registers": "0x01c10000 size0x1000; syscfg0x03000000 size0x10",
+    "irq": "GIC_SPI48 level-high",
+    "top_offset": "0x800",
+    "clocks": [
+      "PLL_VE1",
+      "VE_ENC_AHB_GATE",
+      "MBUS_VE_GATE",
+      "MBUS_VE",
+      "BUS_VE_ENC",
+      "VE_ENC0"
+    ],
+    "reset": "RST_BUS_VE_ENC0",
+    "power_domain": "SUN60IW2_PCK_VE_ENC",
+    "iommu_master": 3,
+    "nsi_master": 9,
+    "irq_source": "bsp/drivers/ve/cedar-ve/platforms/ve_plat_sun60iw2.c:22-34,200-263",
+    "irq_avc": "selector+0x800 bit7; status+0xb1c mask0xf; ctrl+0xb14 enablemask7; mask enables, preserve codec status, wake WAIT_EN",
+    "irq_encpp": "selector bit6; status+0xa10 and ctrl+0xa08 mask1",
+    "irq_vcu": "mode3; cfg+0x85c bit0, status+0x928 bit0 W1C",
+    "mode_enum": "ENCPP0,ENC1,DE2,VCUENC3,VCUDEC4"
+  },
+  "concrete_gaps": [
+    "Current private WC-v2 package omits four encoder libraries and encoder OMX component configuration; static inputs exist but have not been integrated.",
+    "v27 has no dedicated cedar_dev_ve2 encoder node/driver, ENC clocks/reset/PPU/bypass-master3 path, encoder IRQ or WAIT_EN/VCU_EN implementation. Decoder1080p acceptance does not cover these.",
+    "Current t736-ve heap accepts only its actual decoder device and current MemAdapter uses a global context with decoder-default open. Encoder allocation/import ownership must be designed explicitly; no foreign heap or first-SG identity shortcut.",
+    "Current128MiB permanent import quarantine and decoder-only buffer policy are bring-up constraints, not a production encode/decode memory lifecycle.",
+    "First encoder validation still needs a known raw-frame input, actual encoder IRQ/completion, valid output bitstream, software decode comparison, error handling and teardown checks. No encoder quality, performance or supported-format claim is validated."
+  ],
+  "encoder_hardware_validated": false,
+  "encoder_binary_executed": false,
+  "independent_binary_and_irq_reviewer": "code_index/media_ve_review"
+}

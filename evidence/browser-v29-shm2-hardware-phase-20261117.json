@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "status": "FROZEN_BY_USER_FOR_CODE_SYNC_BROWSER_USERNS_ADAPTATION_NOT_IMPLEMENTED",
+  "kernel": "6.18.63-t736-media-v29",
+  "persistent_default": "6.18.63-t736-storage-v16",
+  "stage": "STAGED_NOT_SELECTED",
+  "boot": "one-shot cold boot, no saveenv",
+  "hardware": {
+    "ve_hz": 400000000,
+    "dcdc2_programmed_uv": 900000,
+    "emmc": "HS400 actual200MHz",
+    "display": "1920x1080p60"
+  },
+  "native_tests": {
+    "seals": "58 cases PASS; short helper timeout200ms",
+    "fork": "actual client PID/mutex/DONTFORK/exec/fd balance PASS"
+  },
+  "first_blocker": {
+    "cause": "cold boot reset /dev/cedar_dev and /dev/dma_heap/t736-ve to root0600; vendor open denial EACCES followed by SIGSEGV0x58",
+    "not_caused_by": "protocol2 or madvise; reproduced with protocol1",
+    "fix": "exact udev OWNER/GROUP t736-cedar MODE0600; fail-closed launcher precheck",
+    "denial_test": "service exits1 before vendor load",
+    "replay_after_fix": "180/180 exact frame MD5 and PTS, first1.286s, close0"
+  },
+  "browser_trial1": {
+    "classification": "SOFTWARE_FALLBACK_NOT_HARDWARE_ACCEPTANCE",
+    "irq_delta": 0,
+    "sample_seconds": 20.54830429099991,
+    "total": 1233,
+    "dropped": 0,
+    "moz_presented_delta": 1233,
+    "fps": 60.004951383752385,
+    "rdd_cpu_percent_one_core100": 149.50651306608452,
+    "candidate_reason": "RDD user namespace maps only1000->1000; client constructor precise failure stage under investigation"
+  },
+  "sandbox": {
+    "rdd_NoNewPrivs": 1,
+    "rdd_Seccomp": 2,
+    "disable_sandbox": false
+  },
+  "files": {
+    "mainline\\build\\cedar-shm-transport-v2-20261117\\seals-v29-native-arm64-PASS.log": {
+      "bytes": 781,
+      "sha256": "dcf4e18cb1a13e4ee1058db954b973687350c7c1037a27f766e6e6d90d6c40ff"
+    },
+    "mainline\\build\\cedar-shm-transport-v2-20261117\\fork-v29-native-arm64-PASS.log": {
+      "bytes": 195,
+      "sha256": "9d7bddfa63ae538cee6c390ce7346b23c9d766711728d9c73530cbd48a9ad66a"
+    },
+    "mainline\\build\\cedar-shm-transport-v2-20261117\\replay180-v29-PASS.json": {
+      "bytes": 10022,
+      "sha256": "282cf32ea9934edc1f2834ebe2d595ddefe82e0e83e6040bd1f8e8d675bfff5a"
+    },
+    "mainline\\build\\cedar-shm-transport-v2-20261117\\startup-v29-device-denied.strace": {
+      "bytes": 656088,
+      "sha256": "c4ff82e35cca9b60e336c0753651b20ab2ebf1d467191d3fb3bd958d7aa31b05"
+    },
+    "mainline\\build\\cedar-shm-transport-v2-20261117\\browser60-v29-software-fallback.json": {
+      "bytes": 20359,
+      "sha256": "b1a7b57ba0cd429fcd34f053c1a82460916da4f44a0ba247b7b17ebdcf98f049"
+    }
+  },
+  "namespace_diagnosis": {
+    "confirmed": true,
+    "rdd_uid_map": "1000 1000 1",
+    "account_uid": 999,
+    "directory_visible_uid": 65534,
+    "rejected_stage": "directory ownership mismatch",
+    "wire2_browser_hardware_accepted": false,
+    "client_v3_implemented": false,
+    "sandbox_disabled": false
+  },
+  "native_transport540": {
+    "scope": "native transport throughput including all backend/client copies; no browser, no hashing",
+    "input_frames": 540,
+    "first_frame_seconds": 0.05440044800002397,
+    "decode_transport_seconds": 6.602931605000094,
+    "passed": true,
+    "frames": 540,
+    "pts_exact": true,
+    "irq_delta": 540,
+    "frames_per_second": 81.78185574284656,
+    "close_result": 0,
+    "push": {
+      "count": 540,
+      "sum_ms": 73.263413,
+      "mean_ms": 0.13567298703703703,
+      "p50_ms": 0.069668,
+      "p95_ms": 0.218755,
+      "max_ms": 6.692903
+    },
+    "pull_frame": {
+      "count": 540,
+      "sum_ms": 6443.239587,
+      "mean_ms": 11.931925161111112,
+      "p50_ms": 11.555221,
+      "p95_ms": 14.678001,
+      "max_ms": 28.728405
+    },
+    "pull_empty_or_eos": {
+      "count": 541,
+      "sum_ms": 60.670908,
+      "mean_ms": 0.11214585582255084,
+      "p50_ms": 0.040584,
+      "p95_ms": 0.162046,
+      "max_ms": 4.953363
+    }
+  },
+  "closeout_runtime_record": "evidence/browser-code-sync-final-runtime-20261117.json",
+  "final_runtime": "v29 one-shot, protocol1 restored, FFmpeg7/backend5/WC5, original Bilibili profile/page; browser preconnection, hardware first frame and IRQ progress observed; no new FPS acceptance"
+}

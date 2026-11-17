@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "reviewer": "desktop_review",
+  "scope": "Supplemental static audit; stage1 fixed review and stage2 PTE review unchanged",
+  "source": "sunxi-iommu-v2.c",
+  "source_sha256": "472d7930fa9cbca209a16af874a390b599f8408b9fb33fb0f26248de47c301e0",
+  "findings": [
+    {
+      "id": "master-name-inverted",
+      "locations": [
+        "sunxi-iommu-v2.c:1255-1258"
+      ],
+      "finding": "get_idx_by_name uses same length AND nonzero strcasecmp as its matching predicate; that selects a different same-length master name rather than an equal name. NULL master names are not guarded.",
+      "required": "Require strcasecmp==0 and a defined NULL/unknown-name path before any master operation."
+    },
+    {
+      "id": "fault-master-bounds",
+      "locations": [
+        "sunxi-iommu-v2.c:1361-1371",
+        "sunxi-iommu-v2.c:1400-1418"
+      ],
+      "finding": "Fault decoding contains a seventh per-instance MIC branch although MIC_MAX_MASTER=6. On instance1 this indexes master[12] outside the12-element array. Later __ffs(bitmap&0xffff) is called without a nonzero/range check and its result indexes both master names and callable fault-handler pointers.",
+      "required": "Mask only valid per-instance master bits, check zero/range before __ffs/indexing/callback/MMIO, and handle L1/L2/unknown faults without inventing a valid master."
+    }
+  ],
+  "approved_for_deployment": false,
+  "board_access": false
+}

@@ -1,0 +1,45 @@
+--- a/drivers/clk/clk-t736-ve.c
++++ b/drivers/clk/clk-t736-ve.c
+@@ -1,5 +1,5 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+-/* T736 decoder-only CCU subset. Fixed PERI0_800M / 4, no PLL writes.
++/* T736 decoder-only CCU subset. Fixed PERI0_800M / 2, no PLL writes.
+  * Manual 4.1.6.114: VE_DEC has a plain divider, NOT the GPU UPD handshake.
+  * Shared master gates use the same CCF enable serialization as USB/display.
+  */
+@@ -12,13 +12,13 @@
+ #include <linux/platform_device.h>
+ #include <linux/reset-controller.h>
+ 
+-#define VE_RATE 200000000UL
++#define VE_RATE 400000000UL
+ #define VE_CLOCKS 8
+ #define VE_CORE 0
+ #define VE_PERI800 7
+ #define VE_MUX GENMASK(26, 24)
+ #define VE_DIV GENMASK(4, 0)
+-#define VE_FIXED ((2U << 24) | 3)
++#define VE_FIXED ((2U << 24) | 1)
+ 
+ struct ve_ccu;
+ struct ve_clk {
+--- a/drivers/soc/sunxi/t736-ve-power.c
++++ b/drivers/soc/sunxi/t736-ve-power.c
+@@ -70,7 +70,7 @@
+ 	if (ret) goto put_reset;
+ 	ret = clk_bulk_prepare_enable(ARRAY_SIZE(p->clocks), p->clocks);
+ 	if (ret) goto put_reset;
+-	if (clk_get_rate(p->clocks[7].clk) != 200000000) {
++	if (clk_get_rate(p->clocks[7].clk) != 400000000) {
+ 		ret = -ERANGE;
+ 		goto disable_clocks;
+ 	}
+@@ -96,7 +96,7 @@
+ 	reset = NULL;
+ 	ret = of_genpd_add_provider_simple(dev->of_node, &p->genpd);
+ 	if (ret) goto remove_domain;
+-	dev_info(dev, "VE_DEC PPU=ON, 200MHz, DEC0/1 bypass verified; reset held\n");
++	dev_info(dev, "VE_DEC PPU=ON, 400MHz, DEC0/1 bypass verified; reset held\n");
+ 	return 0;
+ remove_domain:
+ 	pm_genpd_remove(&p->genpd);

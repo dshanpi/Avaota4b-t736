@@ -1,0 +1,263 @@
+{
+  "schema": 1,
+  "kind": "mutter-sbc-v25-gi2-independent-comparison",
+  "updated_at_utc": "2026-11-16T14:55:47.627738+00:00",
+  "status": "BOARD_STARTUP_AND_SBC_FEEDBACK_PASS_PERFORMANCE_MIXED_ROLLED_BACK_NOT_PRODUCTION",
+  "raw_inputs": {
+    "baseline": {
+      "path": "evidence/desktop-mutter-sbc-v25-baseline-gtk-20261116.log",
+      "bytes": 404872,
+      "sha256": "dbe6f0a0107aac289d1227328402c63774c3f5c5ddd6f428ea59dea6c111058c"
+    },
+    "candidate": {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-opengl-20261116.json",
+      "bytes": 425098,
+      "sha256": "388851d6aa8f3891684ab32c2bdeefbc16ab60da2d20e43061c17f97e47ee6b6"
+    },
+    "excluded_cairo": {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-cairo-rejected-20261116.json",
+      "bytes": 267701,
+      "sha256": "e4492d2fcf1a805c88f2b2dbbe1b22cba9289cd9bab8f91c1ae3112dc1e96298"
+    },
+    "session_identity": {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-session-20261116.log",
+      "bytes": 3109,
+      "sha256": "46084a69a1cb240d7054921407515ee3a91dad01da01a7ba0e5bfffd6ba09727"
+    },
+    "trace_and_pvr": {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-opengl-summary-20261116.log",
+      "bytes": 3340,
+      "sha256": "8cb105944da2230964dd0a35cb4553f2bdef37bc30ba25d81c574bd4d6d98102"
+    },
+    "rollback": {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-rollback-20261116.log",
+      "bytes": 537,
+      "sha256": "0308179adeee357ba504226492eae1ebad0dc8efcce7570577dc9bdbd960d61f"
+    },
+    "install_arm": {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-install-arm-20261116.log",
+      "bytes": 573,
+      "sha256": "f425e42a6cc30614523443b57e05ac9eb3a946445068dc314e89b222528a4676"
+    },
+    "activate": {
+      "path": "evidence/desktop-mutter-sbc-v25-gi2-activate-20261116.log",
+      "bytes": 125,
+      "sha256": "ffc6cfc5f1653b5f3c78434eeb8e4b9f13c993fc8d6b36a43ff39dc588ea737a"
+    }
+  },
+  "method": {
+    "calculation_script": {
+      "path": "build/mutter-egl-sbc-candidate/analyze-v25-gi2.py",
+      "bytes": 10793,
+      "sha256": "4bba928bcb3030b3ab13b467eb1f4eee5fe61f80f3611a3a26e53655418090a1"
+    },
+    "sample_selection": "frame_observations.records filtered by phase == 'sample'; warmup excluded",
+    "p95": "Sorted values at zero-based min(n-1, floor(n*0.95)), matching probe convention; no interpolation.",
+    "after_paint_and_tick_intervals": "Raw probe summary; tick timestamps are smoothed frame times and may cross the warmup boundary.",
+    "cpu_scope": "this process and its threads only; excludes compositor, Xorg, GPU and kernel workers",
+    "paint_scope": "callback phase wall time includes update/layout/drawing and any waits; not GPU execution time",
+    "gap_scope": "time outside observed paint callbacks; does not by itself identify a compositor, scheduler or GPU wait",
+    "feedback_read": "after sampling stops, without draining pending events; final frames may remain incomplete",
+    "repetitions": "One accepted baseline/candidate pair; no distribution across repeated runs."
+  },
+  "matched_conditions": {
+    "renderer_gtype": "GskGLRenderer",
+    "environment": {
+      "GDK_BACKEND": "x11",
+      "GDK_DISABLE": "gl-api,glx,vulkan",
+      "GSK_RENDERER": "opengl",
+      "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+      "LIBGL_DRIVERS_PATH": "/opt/t736-img-ddk-24.2-x11/lib/dri"
+    },
+    "workload": "24 rounded libadwaita cards with labels, buttons and switches; 240px/s scroll",
+    "loaded_test_libraries_equal": true,
+    "kernel_context": "Both v25, as reported by the board-controlling agent; raw GTK documents do not embed uname.",
+    "display_context": "1080p60 as reported for both trials; candidate session log explicitly records 1920x1080 at 60Hz.",
+    "session_checks": "Both unlocked and overview inactive at start, end of warmup and end; not continuous observation."
+  },
+  "excluded_sample": {
+    "renderer_gtype": "GskCairoRenderer",
+    "environment": {
+      "GDK_BACKEND": "x11",
+      "GDK_DISABLE": null,
+      "GSK_RENDERER": "gl",
+      "LD_LIBRARY_PATH": "/opt/t736-img-ddk-24.2-x11/runtime-gles",
+      "LIBGL_DRIVERS_PATH": null
+    },
+    "reason": "Actual Cairo renderer and differing GDK_DISABLE/LIBGL_DRIVERS_PATH invalidate this as the OpenGL A/B candidate.",
+    "alias_note": "Do not attribute exclusion to the requested gl spelling alone; GTK4.18.6 gl/opengl/ngl are renderer aliases."
+  },
+  "baseline": {
+    "sample_seconds": 10.00076876999998,
+    "warmup_seconds": 5.035775245000025,
+    "after_paint_count": 509,
+    "after_paint_callbacks_per_second": 50.8960872614997,
+    "test_process_cpu_seconds": 2.755332433,
+    "test_process_cpu_us_per_after_paint": 5413.226783889981,
+    "after_paint_intervals": {
+      "count": 508,
+      "median_ms": 16.753500000000003,
+      "p95_ms": 34.333,
+      "over_33_5ms": 82
+    },
+    "tick_intervals": {
+      "count": 508,
+      "median_ms": 16.741,
+      "p95_ms": 33.459,
+      "over_33_5ms": 9
+    },
+    "paint_callback_span_us": {
+      "count": 509,
+      "median": 5416,
+      "p95": 6300,
+      "maximum": 8080
+    },
+    "outside_paint_gap_us": {
+      "count": 508,
+      "median": 11433.0,
+      "p95": 28443,
+      "maximum": 89328
+    },
+    "sample_frame_records": 509,
+    "identity_correct_count": 509,
+    "complete_counts": {
+      "true": 508,
+      "false": 1
+    },
+    "presentation_time_us_counts": {
+      "0": 509
+    },
+    "refresh_interval_us_counts": {
+      "0": 509
+    },
+    "per_second_after_paint_counts": [
+      53,
+      50,
+      50,
+      51,
+      50,
+      51,
+      50,
+      52,
+      50,
+      52
+    ],
+    "session_before": {
+      "locked": false,
+      "overview_active": false
+    },
+    "session_after_warmup": {
+      "locked": false,
+      "overview_active": false
+    },
+    "session_after": {
+      "locked": false,
+      "overview_active": false
+    },
+    "physical_display_verified_by_probe": false
+  },
+  "candidate": {
+    "sample_seconds": 10.000872100999914,
+    "warmup_seconds": 5.017243994999944,
+    "after_paint_count": 544,
+    "after_paint_callbacks_per_second": 54.395256184269115,
+    "test_process_cpu_seconds": 3.1624093459999996,
+    "test_process_cpu_us_per_after_paint": 5813.252474264705,
+    "after_paint_intervals": {
+      "count": 543,
+      "median_ms": 18.487,
+      "p95_ms": 33.517,
+      "over_33_5ms": 29
+    },
+    "tick_intervals": {
+      "count": 543,
+      "median_ms": 16.613,
+      "p95_ms": 34.364,
+      "over_33_5ms": 66
+    },
+    "paint_callback_span_us": {
+      "count": 544,
+      "median": 6362.5,
+      "p95": 14615,
+      "maximum": 19804
+    },
+    "outside_paint_gap_us": {
+      "count": 543,
+      "median": 9244,
+      "p95": 26928,
+      "maximum": 49946
+    },
+    "sample_frame_records": 544,
+    "identity_correct_count": 544,
+    "complete_counts": {
+      "true": 542,
+      "false": 2
+    },
+    "presentation_time_us_counts": {
+      "0": 544
+    },
+    "refresh_interval_us_counts": {
+      "16667": 542,
+      "0": 2
+    },
+    "per_second_after_paint_counts": [
+      57,
+      54,
+      55,
+      56,
+      56,
+      55,
+      52,
+      54,
+      55,
+      50
+    ],
+    "session_before": {
+      "locked": false,
+      "overview_active": false
+    },
+    "session_after_warmup": {
+      "locked": false,
+      "overview_active": false
+    },
+    "session_after": {
+      "locked": false,
+      "overview_active": false
+    },
+    "physical_display_verified_by_probe": false
+  },
+  "candidate_vs_baseline": {
+    "after_paint_callbacks_per_second_percent": 6.87512363139231,
+    "test_process_cpu_seconds_percent": 14.774148778729224,
+    "test_process_cpu_us_per_after_paint_percent": 7.389782588921268
+  },
+  "board_findings": {
+    "gi_startup": "Candidate-prefix executable and all four Mutter/Cogl/Clutter/Mtk libraries; GNOME Shell JS started successfully.",
+    "feedback": "542 of 544 candidate sample records have refresh_interval_us=16667; remaining two are incomplete with zero interval. All presentation timestamps remain zero.",
+    "trace": {
+      "last_logged_submitted": 841,
+      "last_logged_confirmed": 840,
+      "submit_failures": 0,
+      "symbolic": 0,
+      "disabled": 0,
+      "max_wait_us": 143435,
+      "max_queue_depth": 2
+    },
+    "trace_limits": "Logging is bounded to eight messages per surface. Its cumulative maximum is not a latency distribution and cannot be assigned to the accepted sample window.",
+    "pvr_snapshot": "Driver/Firmware OK; all reported error counters zero. This is not full service acceptance.",
+    "service_warnings": "Accessibility/calendar/Polkit/GeoClue warnings remain in the session log.",
+    "rollback": "Controlling agent performed rollback. Cited rollback log records baseline session config restoration, daemon.conf hash verification and healthy PVR snapshot; it does not include postrollback library maps."
+  },
+  "conclusion": [
+    "GI launcher fixes the demonstrated duplicate-Clutter startup failure, and SBC completion/refresh feedback is observed on hardware.",
+    "Callback throughput increased about 6.9%, but test-process CPU increased about 14.8% and CPU per callback increased. This does not establish an overall efficiency improvement.",
+    "After-paint long intervals decreased, while its median increased and tick long intervals plus paint-span tail latency worsened. Performance evidence is mixed.",
+    "No scanout timestamps are available. Callback throughput must not be called display FPS, stable 60Hz presentation, or completed desktop acceptance.",
+    "Candidate remains experimental and was rolled back; no promotion into the production image."
+  ],
+  "next_direction": [
+    "Measure EGL query/notification cost and completion-latency distribution before altering the 2ms polling algorithm.",
+    "If pursued further, repeat matched baseline/candidate runs with CPU and latency observations; one pair cannot isolate causality or run-to-run variation.",
+    "Keep the v26 storage DMA experiment separate; it does not belong in this compositor A/B."
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-17T06:10:07.089972+00:00",
+  "status": "SOFTWARE_CANDIDATE_FROZEN_V28_NATIVE_BLOCKED_BY_MISSING_ADVISE_SYSCALLS",
+  "scope": "Isolated protocol2 ordinary-memfd client/broker transport candidate; preserves canonical v1 and public client/backend headers; no board operation by code_index.",
+  "package": {
+    "path": "build/cedar-shm-transport-v2-20261117/t736-cedar-transport-v2.tar.gz",
+    "bytes": 49037,
+    "sha256": "b1524d0072ad96995c7104ca92c5b9ee46d27bc2990195dbaad629f9796bc92c"
+  },
+  "build_record": {
+    "path": "build/cedar-shm-transport-v2-20261117/build-record.json",
+    "bytes": 13576,
+    "sha256": "49300a4179d7ba2ce30b84271ecd5e76439a1d9248b1ced9b7ab3e1412f63e84"
+  },
+  "client_sha256": "40b0ed5415f2c63dc41315d9c68a6c5cfe80713ac67ddf3821f0390ff7d2e5b2",
+  "broker_sha256": "15f95c7bbc5f63c0919326c4e58b19b9fe9628b2210328a60d7514d9e8d279a2",
+  "required_backend_sha256": "52bf715c24ac9c072c1550f04fe47ab4df195ffdf1b51c4ac7f84414556f8f08",
+  "native_x86_64": {
+    "actual_client_broker": "ASan/UBSan/LSan PASS; real Unix socket+SCM_RIGHTS; UID/version/sequence rejected before backend use;4x4 and1080p exact pixels+guards;old frames stable across pulls/AGAIN/flush/close/reopen;1000 concurrent pulls with mutex verified inside actual memcpy;v1 refusal both directions;8 malformed replies;fd balance0.",
+    "helper_seals": "58 cases PASS ASan/UBSan/LSan with200ms test deadline;also nativeO2 production5000ms deadline(silent5005ms/drip5000ms). Includes create/metadata/syscall failures,seals,ancillary fragmentation/extra/truncation,per-peer identity and cleanup.",
+    "actual_client_fork_exec": "ASan/UBSan/LSan and nativeO2 PASS;child APIs reject before inherited locked mutex;no child socket traffic;DONTFORK+same-address reuse not unmapped by destructor;parent remains valid;CLOEXEC;fd balance0."
+  },
+  "arm64": {
+    "cross_compile": "client,broker,transport,seals,client_fork PASS with -Wall -Wextra -Werror;exact7 public client symbols;headers byte-identical to canonical.",
+    "qemu_transport": "Actual client/broker transport PASS under qemu-aarch64-static.",
+    "qemu_seals": "Original full run FAILED in fork/mincore test;independent no-Cedar probe proves QEMU8.2.2 reports successful MADV_DONTFORK but retains child map. No test/protection weakened;not accepted as full ARM64 helper runtime PASS.",
+    "native_v28": {
+      "status": "FAILED_KERNEL_PREREQUISITE",
+      "source": "Board-owner root report;raw log /home/t736/cedar-shm-seals-native-arm64.log;code_index did not run or inspect board directly.",
+      "finding": "/boot/config has CONFIG_ADVISE_SYSCALLS unset;MADV_DONTFORK returns ENOSYS;helper receiver mapping fails closed.",
+      "next_gate": "v29 kernel with CONFIG_ADVISE_SYSCALLS=y;run unchanged native ARM64 seals and client_fork tests before protocol2 deployment."
+    }
+  },
+  "references": [
+    {
+      "path": "evidence/cedar-shm-seals-20261117.json",
+      "bytes": 4125,
+      "sha256": "c8e62b00450c9a3356549a7ad3832ffe254abc5a0f44fe467034fc1f8493eb76"
+    },
+    {
+      "path": "evidence/cedar-shm-v2-independent-review-20261117.json",
+      "bytes": 4020,
+      "sha256": "0aaf306417366535295122fae3d81ebd8bf978ccb4f220db76f48a4ec2369607"
+    },
+    {
+      "path": "evidence/cedar-shm-v2-client-broker-static-review-20261117.json",
+      "bytes": 9679,
+      "sha256": "d5255cc4b8a8042ceb3aaeee6fab32328495d74a5279d81c9dab52f259fcca63"
+    },
+    {
+      "path": "evidence/cedar-shm-v2-desktop-independent-review-20261117.json",
+      "bytes": 7349,
+      "sha256": "28e75dddfca4d3b69e70a5c135dd860935deddd71b870008f8713559b43e116c"
+    },
+    {
+      "path": "evidence/cedar-shm-qemu-dontfork-limitation-20261117.json",
+      "bytes": 5585,
+      "sha256": "149eb551bfbdd899ced58aec42727792394558bed4b6065c217dafbacff921a0"
+    }
+  ],
+  "logs": [
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-broker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-client.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-client_fork-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-seals-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-seals-test.log",
+      "bytes": 317,
+      "sha256": "5c6a98bd866187d5f914c483532e088729f2394474e19dfd97577805dae72da8"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-transport-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/arm64-transport-test.log",
+      "bytes": 1111,
+      "sha256": "7889a928eba90f410c9ab1c402046ba95cf16278e2c2025bd86c09884698296b"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/broker-elf.log",
+      "bytes": 2746,
+      "sha256": "5acb145e6881a7b6c1614f7610de55fb901262dbb4cab47e46cede141420fe67"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/client-elf.log",
+      "bytes": 2610,
+      "sha256": "2e33a3d21eb6dd63950abfcbd4bbe60e4ceec4a968f48487e141d96a21860f16"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-client_fork-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-client_fork-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-client_fork-native-test.log",
+      "bytes": 195,
+      "sha256": "9d7bddfa63ae538cee6c390ce7346b23c9d766711728d9c73530cbd48a9ad66a"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-client_fork-test.log",
+      "bytes": 195,
+      "sha256": "9d7bddfa63ae538cee6c390ce7346b23c9d766711728d9c73530cbd48a9ad66a"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-seals-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-seals-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-seals-native-test.log",
+      "bytes": 784,
+      "sha256": "2eb4f9f72d81c4cd766ced851f9e91c6862c7df00bf181e9298cca469b6ae7a2"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-seals-test.log",
+      "bytes": 781,
+      "sha256": "ac6c6dc08cf3909b52da05585d36a361e4a8601c4d18fe733b8e4ab27c62b5a7"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-transport-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/cedar-shm-transport-v2-20261117/host-transport-test.log",
+      "bytes": 1111,
+      "sha256": "7889a928eba90f410c9ab1c402046ba95cf16278e2c2025bd86c09884698296b"
+    }
+  ],
+  "test_binaries": [
+    {
+      "path": "transport-arm64",
+      "bytes": 49792,
+      "sha256": "5fbecac6fcdaa1d813bf4f27be010a6cec45289e58716bc922b2fbca9fc7d0e0"
+    },
+    {
+      "path": "seals-arm64",
+      "bytes": 51104,
+      "sha256": "4c344edd163ce9228943b138ebad5c50eb40b36fbedf413a8625acd100353f60"
+    },
+    {
+      "path": "client_fork-arm64",
+      "bytes": 39568,
+      "sha256": "f17a57ddffc984867564980cf0bc85fe1f49b2dece94a677ec115ad526cecd16"
+    }
+  ],
+  "core_sources": {
+    "tools/browser/shm_v2/README.md": "2ee99642d7f74480aca39be20536a02a1d56fe2b979dbb65c6f896f35b6501fd",
+    "tools/browser/shm_v2/cedar_backend.h": "9d39909bbbce44cca77393d815b8361adc0ea5c41527ebd1b14389bb4282d12b",
+    "tools/browser/shm_v2/cedar_broker.c": "8d81f7697a1b367689df34002ff4d9f8fc25ae4136c1aae734caa517e3b9d081",
+    "tools/browser/shm_v2/cedar_client.c": "84ec6f08321aa4ac76f449fbb05d82cfd97467d3774d200a11d85431bc06778a",
+    "tools/browser/shm_v2/cedar_client.h": "6ab621351225a1fbae4c077d2e1bce18c1ac9409f69f0ccad035fd6b18630113",
+    "tools/browser/shm_v2/cedar_protocol.h": "c3b776da0ace7f191738cf45076d977ff255d6d5c58a708cbd34b5fea111b646",
+    "tools/browser/shm_v2/cedar_shm.h": "c99cefb5bad2318bec39e57fa6f7ef27a33013bb58dae15d3c237bef97e2590c",
+    "tests/test_cedar_shm_transport.c": "b0689c6aa1593d94ecbb1748ce41b0744988cc758bc5bcba845598db881bcc9f",
+    "tests/test_cedar_shm_seals.c": "341fab86314c3a04d27dc31d10a311b5ef3f7eccab6d44b3e495262f6c8ab102",
+    "tests/test_cedar_shm_client_fork.c": "f1d2710f5555ac5065330b71d15898c5424e3f30792285335fc2fb6f370765a4",
+    "tools/build_cedar_shm_transport.py": "09a9a2bfe87d81fbd39237da1230267c6c7a95685f6b59a82377096a906ce32f"
+  },
+  "canonical_v1_preserved": {
+    "tools/browser/cedar_client.c": "38668a12869dcc182a02ff2e4838c274a78377efdf673486617b03f5c1d960f5",
+    "tools/browser/cedar_broker.c": "0011409a112975f5ee010518c9ddb2a86a2dce22e0eb8a53c954f63b52997612",
+    "tools/browser/cedar_protocol.h": "7819144ee5c4b180d81d6aef579d89b68b8b34e674d3b071624abf2b528f30ba"
+  },
+  "delivery": {
+    "local_verified": true,
+    "build_host": "192.168.1.228",
+    "remote_directory": "/home/ubuntu/t736-mainline/build/cedar-shm-transport-v2-20261117",
+    "download_readback_sha256_verified_files": 27,
+    "private_backup": "Source/build/test record remain on authenticated SSH build host;no public upload or proprietary library included."
+  },
+  "deployment_requirements": [
+    "Fresh v29 boot to avoid accumulating old broker hardware DMA allocations;board owner controls deployment.",
+    "Matching protocol2 broker/client pair then new RDD exec;no silent v1 downgrade.",
+    "Retain accepted v1/old candidate rollback path;do not replace default kernel.",
+    "No service/sandbox permission weakening;no DMAfd/device handle/address transfer."
+  ],
+  "limits": [
+    "Hardware native tests not passed onv28;kernel prerequisite missing.",
+    "No Firefox/RDD sandbox playback or performance acceptance.",
+    "Two ordinaryRAM copies after backend output remain;not zero-copy and not a demonstrated VideoSink lateness fix.",
+    "NOEXEC_SEAL means immutable nonexec filemode;not a claim that all PROT_EXEC mappings are impossible."
+  ],
+  "final_package_independent_audit": "PASS: all14 manifest files exact;safe relative regular-only archive;public headers identical to canonical;core and fork test exact reviewed sources;ELF client only libc/pthread/loader and broker additional backendv5 with ORIGIN/../lib."
+}

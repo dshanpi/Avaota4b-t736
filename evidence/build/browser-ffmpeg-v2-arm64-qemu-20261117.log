@@ -1,0 +1,12 @@
+synthetic backpressure_negative_pts_eos_flush_fatal_format PASS
+fallback mode=0 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=1 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=2 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=3 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/h264-b2.mp4
+fallback mode=0 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+fallback mode=1 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+fallback mode=2 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+fallback mode=3 frames=45 exact_md5_pts_duration file=/home/ubuntu/t736-mainline/build/browser-ffmpeg-fixtures-20261117/hevc-b2.mp4
+{"result":"PASS","checks":4994,"hardware_access":false}
+[h264_cedar @ 0x400002cc42a0] T736_CEDAR_PROXY: explicit hardware failure after_delivery=1 error=-5
+[h264_cedar @ 0x400002cc42a0] T736_CEDAR_PROXY: explicit hardware failure after_delivery=0 error=-71
