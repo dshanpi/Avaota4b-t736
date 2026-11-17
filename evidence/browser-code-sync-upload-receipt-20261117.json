@@ -1,0 +1,11 @@
+{
+  "status": "SYNCED_AND_ALL_FILES_REHASHED",
+  "public_commit": "627527c64cc0cdff5c89af091a45fb3ba0c8703b",
+  "files": 2211,
+  "bytes": 34190784,
+  "changed": 986,
+  "already_equal": 1225,
+  "archive_sha256": "36d4161c8be103d855ca2729f91f10ffcddd5d35c67543bc297a45b4cd664eba",
+  "archive": "/home/ubuntu/t736-mainline/build/private-sync/checkpoint-20261117-source.tar.gz",
+  "local_archive": "backup\\code-sync-20261117-private.tar.gz"
+}

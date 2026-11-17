@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "date": "2026-11-17",
+  "timezone": "Asia/Shanghai",
+  "scope": "Recorded issues and reproducibility gaps; documentation update only, no new hardware experiment or firmware change.",
+  "runtime_observation_utc": "2026-11-17T06:49:10.662152+00:00",
+  "source_checkpoint_commit": "627527c64cc0cdff5c89af091a45fb3ba0c8703b",
+  "priority_meaning": {
+    "P0": "完整可重建镜像交付的前置项",
+    "P1": "日常使用、性能或稳定性的重要未完成项",
+    "P2": "独立功能/替代实现，不能据解码成功推定完成"
+  },
+  "issues": [
+    {
+      "id": "BUILD-01",
+      "priority": "P0",
+      "area": "完整镜像可重建流程",
+      "status": "未完成",
+      "finding": "公开仓库已保存板级源码、补丁、配置和脚本；尚不能仅下载Armbian build并套补丁重建实板最终状态。各阶段已有锁定版本和hash，但缺覆盖当前组合的一体化输入清单与干净环境构建验证。",
+      "next_action": "汇总Linux/U-Boot/TF-A/Armbian提交、工具链、rootfs包和所有私有依赖；完成独立输出目录的一体构建入口。",
+      "acceptance": "在干净构建环境按文档生成镜像，保存输入锁、软件清单和产物hash，再完成实板验收。",
+      "evidence": [
+        "config/sources.lock.json",
+        "docs/BUILD.md"
+      ]
+    },
+    {
+      "id": "BUILD-02",
+      "priority": "P0",
+      "area": "运行内核与持久启动不一致",
+      "status": "未完成",
+      "finding": "最近采集运行media-v29一次性启动；持久默认仍为storage-v16，未保存新的U-Boot启动选择。重启不能视为自动回到本轮媒体环境。",
+      "next_action": "选定最终内核/DTB/PVR组合，纳入rootfs和镜像，保留可验证恢复入口。",
+      "acceptance": "最终镜像烧录后不经串口干预启动指定版本，并复核恢复、桌面和媒体。",
+      "evidence": [
+        "evidence/browser-code-sync-final-runtime-20261117.json",
+        "evidence/media-v29-build-20261117.json"
+      ]
+    },
+    {
+      "id": "BUILD-03",
+      "priority": "P0",
+      "area": "私有库与桌面配置打包",
+      "status": "未完成",
+      "finding": "DDR、GPU和codec厂家二进制未随公开源码发布。板上私有库路径、FFmpeg、专用服务用户、设备规则及GNOME设置尚未统一固化到最终镜像流程。",
+      "next_action": "用外部输入包和hash校验接入授权厂家库；将安装、所有权、服务生命周期和首次启动设置脚本化，凭据继续独立注入。",
+      "acceptance": "镜像首次启动即可重现目标桌面/硬解组合，无需手工复制库或改权限；源码不包含凭据。",
+      "evidence": [
+        "tools/browser/README.md",
+        "tools/browser/shm_v2/70-t736-cedar.rules",
+        "docs/BUILD.md"
+      ]
+    },
+    {
+      "id": "MEDIA-01",
+      "priority": "P1",
+      "area": "浏览器1080p60硬解",
+      "status": "未通过",
+      "finding": "B站约30fps片源的30.863秒窗口926帧零丢帧，用户确认明显流畅。此前硬解60fps仍有VideoSink迟到丢帧；软件60fps成功不能替代硬解验收。",
+      "next_action": "在正确连接硬解服务后测量解码、传输和显示时序，保持原始时间戳、沙箱和丢帧统计。",
+      "acceptance": "浏览器真实60fps片源连续播放，核对硬解IRQ/会话、mozPresentedFrames和丢帧，记录可复算窗口与CPU占用。",
+      "evidence": [
+        "evidence/browser-hevc-v6-live-candidate-pending-20261117.json",
+        "evidence/browser-v28-v7-hardware-phase-20261117.json"
+      ]
+    },
+    {
+      "id": "MEDIA-02",
+      "priority": "P1",
+      "area": "共享内存客户端与Firefox用户namespace",
+      "status": "已定位，未适配",
+      "finding": "wire2原生seals/fork和180帧像素/PTS通过；540帧解码与传输约81.8fps。RDD中用户映射仅1000→1000，服务实际UID999显示为65534，严格目录身份校验拒绝连接并回退软件。v3尚无实现。",
+      "next_action": "实现受信目录链与namespace身份适配并覆盖拒绝路径，保留memfd seals、DONTFORK和Firefox沙箱。",
+      "acceptance": "真实RDD成功连接wire2，确认共享映射只读、沙箱仍启用，并重新完成像素、PTS及浏览器播放验证。",
+      "evidence": [
+        "evidence/browser-v29-shm2-hardware-phase-20261117.json",
+        "tools/browser/shm_v2/README.md"
+      ]
+    },
+    {
+      "id": "MEDIA-03",
+      "priority": "P1",
+      "area": "DMA生命周期与通用视频切换",
+      "status": "未解决",
+      "finding": "导入DMA保留到重启。最后记录128335872/134217728字节已占用；仅保留一个codec/尺寸context。同尺寸也可能因SPS/输出池变化再分配。",
+      "next_action": "先通过受控重启恢复预算再开展新硬件会话；实现并证明DMA停止/退役条件后才允许回收，测试跨流和并发回退。",
+      "acceptance": "重复切流、关闭、异常路径和长时间播放无预算累积、无越界DMA，保留可复算压力记录。",
+      "evidence": [
+        "evidence/browser-code-sync-final-runtime-20261117.json",
+        "evidence/browser-retained-context-lifetime-review-20261117.json"
+      ]
+    },
+    {
+      "id": "MEDIA-04",
+      "priority": "P1",
+      "area": "VE DMA隔离",
+      "status": "未实现",
+      "finding": "CPU侧使用专用UID、设备白名单和Firefox沙箱；VE当前bypass DMA路径没有IOMMU DMA隔离。",
+      "next_action": "明确可用IOMMU域、设备映射和所有权设计，单独评审/测试；不把用户态沙箱称为DMA隔离。",
+      "acceptance": "受限DMA映射与故障隔离有实板验证。",
+      "evidence": [
+        "tools/browser/README.md",
+        "evidence/media-v27-inherited-iommu-gates-20261117.json"
+      ]
+    },
+    {
+      "id": "MEDIA-05",
+      "priority": "P2",
+      "area": "视频编码与端到端零拷贝",
+      "status": "未验收",
+      "finding": "目前有限成功覆盖解码；编码设备/时钟/IRQ/DMA路径和编码实测未完成；共享内存传输仍含普通RAM拷贝。",
+      "next_action": "编码与零拷贝分别立项，完成资源、缓存一致性、帧所有权和格式约束设计。",
+      "acceptance": "编码输出经参考解码器验证，零拷贝路径证明布局/同步/生命周期正确并测得收益。",
+      "evidence": [
+        "evidence/cedar-encoder-readiness-20261117.json",
+        "tools/browser/shm_v2/README.md"
+      ]
+    },
+    {
+      "id": "NET-01",
+      "priority": "P1",
+      "area": "千兆以太网链路",
+      "status": "未通过",
+      "finding": "当前实测100Mbps全双工，PHY报告从1Gbps降速。用户确认设备支持千兆，但不方便换线/端口，未完成物理对照。",
+      "next_action": "用已在其他设备跑到千兆的线缆和端口对照，再结合PHY状态、错误计数和驱动配置定位。",
+      "acceptance": "稳定协商1000Mbps/full，完成双向吞吐与校验，记录错误计数和冷启动复测。",
+      "evidence": [
+        "docs/ETHERNET.md",
+        "evidence/browser-code-sync-checkpoint-20261117.json"
+      ]
+    },
+    {
+      "id": "DDR-01",
+      "priority": "P2",
+      "area": "纯源码LPDDR4x训练/ZCal",
+      "status": "未解决，当前使用授权库",
+      "finding": "固定8GiB LPDDR4x已通过授权DDR库启动。纯源码ZCal的PU/PD仍为零，不能记作源码训练成功；0x2030d候选无上板通过记录。",
+      "next_action": "保留授权库启动基线；后续单独排查ZCal时钟、使能和反馈路径。",
+      "acceptance": "源码训练成功、独立初始化后内存验证与冷启动通过。",
+      "evidence": [
+        "config/boot-policy.json",
+        "evidence/t736-phy-zcal-companion-sram-hardware-20261114.json"
+      ]
+    },
+    {
+      "id": "QA-01",
+      "priority": "P1",
+      "area": "完整镜像与长期稳定性验收",
+      "status": "未完成",
+      "finding": "GNOME/PVR、1080p60显示模式、CPU及HS400已有阶段验证和用户流畅反馈；不能推广为最终镜像、HDMI音频/热插拔或所有负载压力测试通过。",
+      "next_action": "镜像集成后制定冷启动/恢复、存储、图形、网络、媒体及音频/热插拔覆盖矩阵。",
+      "acceptance": "同一最终镜像完成烧录读回、多次冷启动与长期运行，各项留存版本、日志和失败记录。",
+      "evidence": [
+        "README.md",
+        "evidence/browser-code-sync-checkpoint-20261117.json"
+      ]
+    }
+  ],
+  "resolved_in_this_stage": [
+    {
+      "issue": "冷启动后Cedar设备权限恢复root0600，厂家库打开失败后崩溃",
+      "resolution": "已加入仅限专用服务用户的精确udev规则和服务启动前检查；实时规则触发后180帧回放通过。最终镜像冷启动流程仍需验证规则随镜像部署。",
+      "evidence": "evidence/browser-v29-shm2-hardware-phase-20261117.json"
+    },
+    {
+      "issue": "旧内核缺少madvise，wire2原生DONTFORK检查失败",
+      "resolution": "v29启用CONFIG_ADVISE_SYSCALLS，真实ARM64原生测试通过。",
+      "evidence": "evidence/media-v29-build-20261117.json"
+    }
+  ]
+}

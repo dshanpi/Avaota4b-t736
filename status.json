@@ -1,6 +1,6 @@
 {
   "date": "2026-11-17",
-  "updated_utc": "2026-11-17T06:49:54.923068+00:00",
+  "updated_utc": "2026-11-17T07:47:21.040694+00:00",
   "state": "media_v29_one_shot_browser_30fps_bounded_hardware_pass_code_sync_checkpoint",
   "versions": {
     "u_boot": "2026.10-t736-bringup",
@@ -2015,5 +2015,11 @@
       "new_final_integrated_image_flashed": false,
       "public_git_refresh_or_push": false
     }
-  ]
+  ],
+  "issue_register": {
+    "path": "evidence/source-project-issues-20261117.json",
+    "count": 11,
+    "complete_reproducible_image_available": false,
+    "documentation_only_update": true
+  }
 }

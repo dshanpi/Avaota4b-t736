@@ -1,10 +1,10 @@
 {
   "date": "2026-11-17",
   "timezone": "Asia/Shanghai",
-  "prepared_at": "2026-11-17T14:56:30.315244+08:00",
+  "prepared_at": "2026-11-17T15:47:23.980591+08:00",
   "repository": "https://github.com/dshanpi/Avaota4b-t736",
-  "base_commit": "72333d335c0256542ee9b60912d666c4dbd82649",
-  "purpose": "2026-11-17 code and evidence checkpoint; bounded browser1080p30 hardware pass; hardware60fps not accepted; no new firmware release",
+  "base_commit": "627527c64cc0cdff5c89af091a45fb3ba0c8703b",
+  "purpose": "2026-11-17 issue and reproducibility-gap register; documentation-only update; no new hardware acceptance",
   "explicit_artifact_records": [],
   "manifest_excludes_itself": true,
   "log_processing": "UTF-8/LF; remove ANSI/backspace and excessive blank lines; retain failures; raw private originals remain local",
@@ -1055,11 +1055,11 @@
     },
     {
       "path": "docs/BUILD.md",
-      "bytes": 17512,
-      "sha256": "8c648b70634344722e191dc385719faba52b64c9ab62f9c24587c9e6d2c0f92b",
-      "git_blob_sha": "7f24897e7ae8f1f0520104ebd779f08f2746791b",
+      "bytes": 21050,
+      "sha256": "6b5434de75e96c6a5b83eed78919e94cacf63e9585e8152c22b768e828de9230",
+      "git_blob_sha": "9d4e98969069c1b32ccd397d24d0efddabebcd15",
       "mode": "100644",
-      "workspace_sha256": "8c648b70634344722e191dc385719faba52b64c9ab62f9c24587c9e6d2c0f92b"
+      "workspace_sha256": "22a38c59e9ac3e2d39f409c0c669704a234cae35bdf3eae57cfe65dbec514110"
     },
     {
       "path": "docs/CEDAR_BRIDGE.md",
@@ -1236,6 +1236,14 @@
       "git_blob_sha": "8ba6e875198989fad4d808bc94f8a82712205516",
       "mode": "100644",
       "workspace_sha256": "8daa989190870665b36edd812edf0b8f0e0f7fb272a5e6e99c14553d9a849bdb"
+    },
+    {
+      "path": "evidence/browser-code-sync-upload-receipt-20261117.json",
+      "bytes": 440,
+      "sha256": "1abcb09ca3c5a31c4d76dfd4ac8c0135167c8f4beb8ebb3d228bda2df4d6c70a",
+      "git_blob_sha": "f1025880965aac2b089d2b3744b5ca88683770d8",
+      "mode": "100644",
+      "workspace_sha256": "9d1fa1e4405ceb701258c4b09c6943ec930d1a9b35b2fb9d5e7bac1af7118bc9"
     },
     {
       "path": "evidence/browser-dts-clamp-root-cause-20261117.json",
@@ -5100,6 +5108,14 @@
       "git_blob_sha": "328f14696c0cbf2a12e7d0517599c68a17de0f7b",
       "mode": "100644",
       "workspace_sha256": "b48027e52740a0eed1a3af989d0902f41733d714d8351b4b81d4003c380d4d34"
+    },
+    {
+      "path": "evidence/source-project-issues-20261117.json",
+      "bytes": 9313,
+      "sha256": "1315a1ed37bd3ef68e5e0edefa3e9642b6ea5a89090f88fea4d0c59f014405b6",
+      "git_blob_sha": "279e89e8dce36848f69de53c01fe67281d8da8bf",
+      "mode": "100644",
+      "workspace_sha256": "b52069fdb13e7980fd2de74cdaadbc5e871a9f181750f193683b5b36302c62aa"
     },
     {
       "path": "evidence/source-raw-v1-download-start-20261114.json",
@@ -13335,11 +13351,11 @@
     },
     {
       "path": "README.md",
-      "bytes": 13812,
-      "sha256": "ceb7e3f5d732fb2348cc0b536b937f13b269c9c75ee212cfb2548899a0e35d38",
-      "git_blob_sha": "731e696650145943f6d9963c406298034127e3ec",
+      "bytes": 14019,
+      "sha256": "9e4ab6118b14fc2151ac3a804d61b5e76f469acf79475513cdc0966e362e7cb1",
+      "git_blob_sha": "8616d120d30f79b379c9b10985ec956e97c8e8ce",
       "mode": "100644",
-      "workspace_sha256": "ceb7e3f5d732fb2348cc0b536b937f13b269c9c75ee212cfb2548899a0e35d38"
+      "workspace_sha256": "1dd29f4ffeb3e4983d48085254623de7d9799ecdaeb0c5c9c256b23d854f088b"
     },
     {
       "path": "spl/ccu_probe/probe.c",
@@ -15175,11 +15191,11 @@
     },
     {
       "path": "status.json",
-      "bytes": 84781,
-      "sha256": "0a2f642cac12a010d233ae2d0d36577a573877557ad62d3ca83acdf6ed5af5a7",
-      "git_blob_sha": "eeeddedc8cbfe8aaa9426535693d8837234b2396",
+      "bytes": 84975,
+      "sha256": "76efe749c0e4dbdd2192d5dfe21079b6e8f9625fa06c033913e9105245e1339d",
+      "git_blob_sha": "cbbd432830a04a396e6edd654b8f5d1bf3b8ad96",
       "mode": "100644",
-      "workspace_sha256": "cdb6877120c8bc638a7eb258a53765bb675e76987adb503de184d65d739ae70e"
+      "workspace_sha256": "a4821950dea31a06d72f2913e372f9eaa21ad08281e72e74f080c5f04f0f5074"
     },
     {
       "path": "tests/cedar_nv21_compare_test.py",
