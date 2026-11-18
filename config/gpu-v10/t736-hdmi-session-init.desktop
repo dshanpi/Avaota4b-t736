@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=T736 HDMI session initialization
+Comment=Keep the T736 HDMI desktop at 1920x1080 SDR
+Exec=/usr/local/sbin/t736-hdmi-session-init
+NoDisplay=true
+Terminal=false
+OnlyShowIn=GNOME;
+X-GNOME-Autostart-enabled=true

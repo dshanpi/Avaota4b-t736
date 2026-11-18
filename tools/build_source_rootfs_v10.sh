@@ -361,6 +361,8 @@ install -m 644 "$state/gpu-helpers/20-t736-modesetting-1080p.conf" "$stage/usr/s
 install -m 755 "$profile_tool" "$stage/usr/local/sbin/t736-gpu-profile"
 install -m 755 "$runtime_tool" "$stage/usr/local/sbin/t736-gpu-runtime-check"
 install -m 755 "$state/gpu-helpers/t736-mutter-1080p" "$stage/usr/local/sbin/t736-mutter-1080p"
+install -m 755 "$root/config/gpu-v10/t736-hdmi-session-init.sh" "$stage/usr/local/sbin/t736-hdmi-session-init"
+install -D -m 644 "$root/config/gpu-v10/t736-hdmi-session-init.desktop" "$stage/etc/xdg/autostart/t736-hdmi-session-init.desktop"
 # Preserve the tested physical 1080p layout for both login and user sessions;
 # account paths/ownership come from the copied rootfs, not host passwd entries.
 for account in t736 Debian-gdm; do
@@ -402,7 +404,9 @@ paths += ['/opt/t736-img-ddk-24.2-x11/manifest.json', '/opt/t736-img-ddk-24.2-x1
 paths += ['/usr/lib/aarch64-linux-gnu/gstreamer-1.0/libgstopengl.so']
 paths += ['/usr/share/t736-gpu-profile/20-t736-modesetting-1080p.conf',
           '/usr/local/sbin/t736-gpu-profile', '/usr/local/sbin/t736-gpu-runtime-check',
-          '/usr/local/sbin/t736-mutter-1080p', '/usr/local/lib/t736-validation/t736-cpu-clock-readonly-storage-v16.ko',
+          '/usr/local/sbin/t736-mutter-1080p', '/usr/local/sbin/t736-hdmi-session-init',
+          '/etc/xdg/autostart/t736-hdmi-session-init.desktop',
+          '/usr/local/lib/t736-validation/t736-cpu-clock-readonly-storage-v16.ko',
           '/home/t736/.config/monitors.xml', '/var/lib/gdm3/.config/monitors.xml',
           '/etc/sysctl.d/90-t736-console.conf']
 record = {'schema': 1, 'variant': variant, 'desktop_profile': profile, 'kernel_release': '6.18.63-t736-storage-v16',

@@ -1,0 +1,66 @@
+{
+  "variant": "media-v28-boot-command",
+  "hardware_tested": false,
+  "path": "t736-source-boot-package-media-v28.bin",
+  "bytes": 326144,
+  "sha256": "4742e0d36c2f35c9b58e4b70fad657fb7d265248451c3f618b46ab07b84385f0",
+  "sector_bytes": 512,
+  "start_lba": 24576,
+  "sector_count": 637,
+  "end_lba_exclusive": 25213,
+  "required_end_below_lba": 32800,
+  "baseline": {
+    "path": "t736-source-boot-package-cpu-d.bin",
+    "bytes": 325632,
+    "sha256": "f2ea2157acc3b65b2cc7416dfdba39650e7daa6679693c558fbbdcc30ef9780a"
+  },
+  "uboot": {
+    "path": "u-boot.bin",
+    "bytes": 265936,
+    "sha256": "2ed192c7f72f3fe15b82ccbabaddd40f6453567cf40989b2895c1e6a97829219"
+  },
+  "images": [
+    {
+      "sector": 24577,
+      "address": "0x47000000",
+      "bytes": 5040,
+      "crc32": "caa77399",
+      "sha256": "44aeb8e56f64f2ccd80a1cd286460eda6d0232f9cc1e82618866826b23298535",
+      "offset": 512
+    },
+    {
+      "sector": 24587,
+      "address": "0x48000000",
+      "bytes": 53924,
+      "crc32": "aa2158fa",
+      "sha256": "81f53c1d1f571c74bd907317d813a5ed56c64382479caa75edd3cec43ada6dc6",
+      "offset": 5632
+    },
+    {
+      "sector": 24693,
+      "address": "0x52000000",
+      "bytes": 265936,
+      "crc32": "b35c1cd4",
+      "sha256": "2ed192c7f72f3fe15b82ccbabaddd40f6453567cf40989b2895c1e6a97829219",
+      "offset": 59904
+    }
+  ],
+  "changes": [
+    "third payload U-Boot",
+    "third payload length and CRC",
+    "header CRC"
+  ],
+  "unchanged": [
+    "stage64 bytes and padding",
+    "TF-A bytes and padding",
+    "all payload LBAs and load addresses"
+  ],
+  "required_existing_spl": {
+    "variant": "v4",
+    "sha256": "a1d821eaee602fdf8b481c38cf4790d0f8a6f31539dd9fc6c1a714c1e92bd0ea",
+    "modified": false
+  },
+  "boot_policy": "U-Boot aliases load media-v28; default bootargs enable verified HS200/HS400 200MHz; t736_recovery=1 selects v16 recovery.",
+  "scope": "Candidate only; no storage writes performed.",
+  "acceptance": "Back up the current package, write only LBA 24576 through the bounded end, read back the package, then cold-boot and verify media-v28, HS400 200MHz, GPU/VE/HDMI and recovery selection."
+}

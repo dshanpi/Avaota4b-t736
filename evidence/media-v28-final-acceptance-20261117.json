@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-11-17",
+  "board": "T736 custom board mainline bring-up",
+  "transport": {
+    "cold_reboot": "pass",
+    "login": "verified (credential omitted)"
+  },
+  "boot": {
+    "kernel": "6.18.63-t736-media-v28",
+    "default_kernel": "/boot/vmlinuz-6.18.63-t736-media-v28",
+    "default_initrd": "/boot/initrd.img-6.18.63-t736-media-v28",
+    "dtb_sha256": "45012aeb86d657fca568417e831067170d12e224ebe71720c1956989af6f3626",
+    "systemd": "running",
+    "log": "evidence/media-v28-final-acceptance-20261117.log",
+    "acceptance_log": "evidence/media-v28-final-acceptance-20261117.log"
+  },
+  "storage": {
+    "timing": "HS400",
+    "card_hz": 200000000,
+    "hs200_tuning": "verified 16x128 tap=15",
+    "hs400_tuning": "verified 16xCMD13+16x512 ds=14"
+  },
+  "media": {
+    "gpu": "PVR RGX BVNC 36.56.104.183 registered, 400MHz, 900000uV",
+    "ve": "VE_DEC 400MHz PPU=ON",
+    "hdmi": "Configuration complete; 2560x1440@60 cold boot"
+  },
+  "network": {
+    "interface": "end0",
+    "link": "100Mb/s full duplex"
+  },
+  "wireless": {
+    "wifi": "no iw device exposed in current DTB/kernel",
+    "bluetooth": "no adapter exposed in current DTB/kernel"
+  },
+  "boot_package": {
+    "path": "mainline/output/t736-source-boot-package-media-v28.bin",
+    "sha256": "4742e0d36c2f35c9b58e4b70fad657fb7d265248451c3f618b46ab07b84385f0",
+    "flash_lba": 24576,
+    "flash_sectors": 637,
+    "readback": "sha256 match",
+    "board_readback_sha256": "4742e0d36c2f35c9b58e4b70fad657fb7d265248451c3f618b46ab07b84385f0",
+    "board_readback": "dd /dev/mmcblk0 skip=24576 count=637; SHA256 match"
+  }
+}

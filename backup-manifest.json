@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-17",
+  "date": "2026-11-18",
   "timezone": "Asia/Shanghai",
-  "prepared_at": "2026-11-17T15:47:23.980591+08:00",
+  "prepared_at": "2026-11-18T11:42:04+08:00",
   "repository": "https://github.com/dshanpi/Avaota4b-t736",
-  "base_commit": "627527c64cc0cdff5c89af091a45fb3ba0c8703b",
-  "purpose": "2026-11-17 issue and reproducibility-gap register; documentation-only update; no new hardware acceptance",
+  "base_commit": "ad352b466009ab449f44420bbc8fe38528369d0b",
+  "purpose": "2026-11-18 media-v28 startup package, HDMI desktop policy, and evidence backup; no new kernel source patch",
   "explicit_artifact_records": [],
   "manifest_excludes_itself": true,
   "log_processing": "UTF-8/LF; remove ANSI/backspace and excessive blank lines; retain failures; raw private originals remain local",
@@ -904,10 +904,10 @@
     {
       "path": "config/gpu-v10/20-t736-modesetting-1080p.conf",
       "bytes": 862,
-      "sha256": "ad0e2b03a3b31450a69a272f437760ea1f2adaffb77a6e15703c3b5f1c3c101d",
-      "git_blob_sha": "9c87881250a001f5ccd8d7885261c7fb0821761a",
+      "sha256": "84510b1c6cb18bf764bda884a2284e8ed12751dfdc3bb3be5cf5f4653bdb8829",
+      "git_blob_sha": "c9827c3198c41384ac1eedbb1dc38978204d6472",
       "mode": "100644",
-      "workspace_sha256": "ad0e2b03a3b31450a69a272f437760ea1f2adaffb77a6e15703c3b5f1c3c101d"
+      "workspace_sha256": "84510b1c6cb18bf764bda884a2284e8ed12751dfdc3bb3be5cf5f4653bdb8829"
     },
     {
       "path": "config/gpu-v10/user-monitors.xml",
@@ -16087,11 +16087,11 @@
     },
     {
       "path": "tools/build_source_rootfs_v10.sh",
-      "bytes": 25843,
-      "sha256": "62adadc873cb036f38d5da27040ffa20c47a4bafdf3b84f01beb439f2dc99140",
-      "git_blob_sha": "cd8ac7d7457c94fdff411ef37d9d4e1342f255eb",
+      "bytes": 26199,
+      "sha256": "4b90c90ae3034c08282534edd4730123c39dcfa83df2c9360ce5b4bfb577086a",
+      "git_blob_sha": "10177bb63574ada0487c0f0b863679ad6fdc03f9",
       "mode": "100644",
-      "workspace_sha256": "62adadc873cb036f38d5da27040ffa20c47a4bafdf3b84f01beb439f2dc99140"
+      "workspace_sha256": "4b90c90ae3034c08282534edd4730123c39dcfa83df2c9360ce5b4bfb577086a"
     },
     {
       "path": "tools/build_source_rootfs_v11.sh",
@@ -17916,6 +17916,70 @@
       "git_blob_sha": "0a64d559a7b2e8e086963642f3d5143d520d0ae3",
       "mode": "100644",
       "workspace_sha256": "378d2bf542bdfbc470caede39f856b45a4231aaa01941a0bb5899b367c06a923"
+    },
+    {
+      "path": "config/gpu-v10/t736-hdmi-session-init.desktop",
+      "bytes": 246,
+      "sha256": "d122964f3fe29dcc0572d60c466c6abdec86cff7a157ad63521052f8b0e20b71",
+      "git_blob_sha": "107d0d73fd4d7fdfee27bb25a9373383b104cb32",
+      "mode": "100644",
+      "workspace_sha256": "d122964f3fe29dcc0572d60c466c6abdec86cff7a157ad63521052f8b0e20b71"
+    },
+    {
+      "path": "config/gpu-v10/t736-hdmi-session-init.sh",
+      "bytes": 921,
+      "sha256": "fda02d340e0dd64b16d7813a540bfa5147098923ba889574f63eaf1b2faa8123",
+      "git_blob_sha": "0a9b06d7fcc435cd3becb5d922a478502169afe1",
+      "mode": "100644",
+      "workspace_sha256": "fda02d340e0dd64b16d7813a540bfa5147098923ba889574f63eaf1b2faa8123"
+    },
+    {
+      "path": "docs/BACKUP_MEDIA_V28_20261117.md",
+      "bytes": 2525,
+      "sha256": "9d1e6b54a79fe65621018eea5f6aa2260c0e5330236522f793563af7faf88a56",
+      "git_blob_sha": "73a8c968f72d6da5530bfe44cbc9e6345c5566a5",
+      "mode": "100644",
+      "workspace_sha256": "9d1e6b54a79fe65621018eea5f6aa2260c0e5330236522f793563af7faf88a56"
+    },
+    {
+      "path": "evidence/boot-package-readback-20261117.log",
+      "bytes": 2328,
+      "sha256": "0a7b084f5551e5b256927f3b3326222ad231d07de1a6117e445042481090fa79",
+      "git_blob_sha": "de5728404c555f82945107a16917b338c4ba6eae",
+      "mode": "100644",
+      "workspace_sha256": "0a7b084f5551e5b256927f3b3326222ad231d07de1a6117e445042481090fa79"
+    },
+    {
+      "path": "evidence/hdmi-browser-modeset-20261118.md",
+      "bytes": 1149,
+      "sha256": "44ef3ad41ce051282534edcb3cd54ef5acd42e0631a9dc6067c2e304d6319da8",
+      "git_blob_sha": "f739698443b8ef6f002fb52fde39eb3da021d689",
+      "mode": "100644",
+      "workspace_sha256": "44ef3ad41ce051282534edcb3cd54ef5acd42e0631a9dc6067c2e304d6319da8"
+    },
+    {
+      "path": "evidence/media-v28-final-acceptance-20261117.json",
+      "bytes": 1652,
+      "sha256": "5cff310ccca23e2e75c803fffb51c8b60cade5a4ecf47f079cf563db6dfc73c4",
+      "git_blob_sha": "6cf35f50a8ff50c5a7aa93b34455e55a7cca888e",
+      "mode": "100644",
+      "workspace_sha256": "5cff310ccca23e2e75c803fffb51c8b60cade5a4ecf47f079cf563db6dfc73c4"
+    },
+    {
+      "path": "evidence/media-v28-final-acceptance-20261117.log",
+      "bytes": 1932,
+      "sha256": "29a6a45d1c9b26f315ab5c2cf5c4b5b7328de1cae9a2e197d325c818fe749e7d",
+      "git_blob_sha": "90ba84f58865972ff5d79a6557d5b72d349440c8",
+      "mode": "100644",
+      "workspace_sha256": "29a6a45d1c9b26f315ab5c2cf5c4b5b7328de1cae9a2e197d325c818fe749e7d"
+    },
+    {
+      "path": "evidence/t736-source-boot-package-media-v28.manifest.json",
+      "bytes": 2212,
+      "sha256": "a1903db0f873f02ecfe53457dcc9554c929bf5089c5a36399b9b0beaa0d31f67",
+      "git_blob_sha": "6c18d533c0ee884405bd46a5481b769b4782e85a",
+      "mode": "100644",
+      "workspace_sha256": "a1903db0f873f02ecfe53457dcc9554c929bf5089c5a36399b9b0beaa0d31f67"
     }
   ]
 }

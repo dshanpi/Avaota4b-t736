@@ -1,0 +1,22 @@
+printf '
+[?2004l
+[?2004h> ===T736_ACCEPTANCE===\n'; uname -r; cat /proc/cmdline; readlink -f /boot/vmlinuz-6.18.63-t736-armbian; readlink -f /boot/initrd.img-6.18.63-t736-armbian; sha256sum /boot/dtb/allwinner/t736-mainline-bringup.dtb; systemctl is-system-running; dmesg | grep -Ei 'HS400 tuned|HS200 tuning|pvrsrvkm|BVNC|VE_DEC|Configuration complete' | tail -n 20; printf '===T736_ACCEPTANCE_END===\n'
+[?2004l
+
+===T736_ACCEPTANCE===
+6.18.63-t736-media-v28
+earlycon=uart8250,mmio32,0x02500000 console=ttyS0,115200 root=PARTUUID=a0085546-4166-744a-a353-fca9272b8e48 rootwait rw clk_ignore_unused t736_mmc_pio.enable_hs200=1 t736_mmc_pio.hs200_max_hz=200000000 t736_mmc_pio.enable_hs400=1 t736_mmc_pio.hs400_max_hz=200000000
+/boot/vmlinuz-6.18.63-t736-media-v28
+/boot/initrd.img-6.18.63-t736-media-v28
+45012aeb86d657fca568417e831067170d12e224ebe71720c1956989af6f3626  /boot/dtb/allwinner/t736-mainline-bringup.dtb
+running
+[    0.511802] t736-ve-power 7062000.power-controller: VE_DEC PPU=ON, 400MHz, DEC0/1 bypass verified; reset held
+[    1.737367] [drm] HDMI-A-1: Configuration complete
+[    3.193173] t736-smhc3-pio 4023000.mmc: HS200 tuning card=200000000 pass=ffffffc0ffffffff abort_err=0000003f00000000 window=0+32 tap=15 verified=16x128 THLD=00800001 SFC=00000006
+[    6.757859] t736-smhc3-pio 4023000.mmc: HS400 tuned card=200000000 cmd_pass=fffffff1ffffffff cmd_window=0+33 cmd=16 ds_pass=0000000003fffff0 ds_window=4+22 ds=14 abort_err=fffffffffc00000f verified=16xCMD13+16x512 EXT_CSD=03/06 R1=00000900 THLD=02000001 SFC=00000006
+[    9.373408] pvrsrvkm: loading out-of-tree module taints kernel.
+[    9.386668] pvrsrvkm 1800000.gpu: T736 GPU fixed 400000000 Hz, supply 900000 uV, CCF/genpd enabled
+[    9.398471] PVR_K:  280: Read BVNC 36.56.104.183 from HW device registers
+[    9.405302] PVR_K:  280: RGX Device registered BVNC 36.56.104.183 with 1 core in the system
+===T736_ACCEPTANCE_END===
+[?2004hroot@t736:~# 
